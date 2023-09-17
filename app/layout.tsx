@@ -2,6 +2,7 @@ import Collage from "@/components/Collage";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="flex flex-col gap-8">
+        <main className="flex relative flex-col mt-16">
+          <Navbar />
           <Collage />
           {children}
         </main>
