@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
+import ModalProvider from "@/components/modal/ModalProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,8 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="flex relative flex-col mt-16">
-          <Navbar />
+        <ModalProvider />
+        <main className="relative mt-14 flex flex-col">
+          <div className="fixed top-0 z-50 h-20 w-full bg-zinc-800">
+            <Navbar />
+          </div>
           <Collage />
           {children}
         </main>
