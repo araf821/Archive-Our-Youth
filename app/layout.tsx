@@ -1,7 +1,8 @@
-import Collage from "@/components/Collage";
 import "./globals.css";
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
+
 import Navbar from "@/components/Navbar";
 import ModalProvider from "@/components/modal/ModalProvider";
 
@@ -18,17 +19,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ModalProvider />
-        <main className="relative mt-14 flex flex-col">
-          <div className="fixed top-0 z-50 h-20 w-full bg-zinc-800">
-            <Navbar />
-          </div>
-          <Collage />
-          {children}
-        </main>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <ModalProvider />
+          <main className="relative mt-[8vh] flex flex-col">
+            <div className="fixed top-0 z-50 h-[8vh] w-full bg-zinc-800">
+              <Navbar />
+            </div>
+            {children}
+          </main>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
