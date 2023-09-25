@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -14,9 +15,17 @@ enum STEPS {
   CONFIRM = 4,
 }
 
+enum POST_TYPE {
+  TEXT,
+  IMAGE,
+  VIDEO,
+  AUDIO,
+}
+
 const SubmitPage = () => {
   const router = useRouter();
   const [step, setStep] = useState(STEPS.WELCOME);
+  const [type, setType] = useState<POST_TYPE>();
 
   const onNext = () => {
     setStep((currentStep) => currentStep + 1);
@@ -26,8 +35,8 @@ const SubmitPage = () => {
     setStep((currentStep) => currentStep - 1);
   };
 
-  const onTypeSelect = (e: any) => {
-    alert("Selected type of " + e.target.innerText);
+  const onTypeSelect = (type: POST_TYPE) => {
+    setType(type);
   };
 
   let content = (
@@ -59,26 +68,50 @@ const SubmitPage = () => {
         {/* types */}
         <div className="flex flex-col items-center justify-center gap-4 md:flex-row md:gap-8">
           <button
-            onClick={onTypeSelect}
-            className="w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg"
+            onClick={() => onTypeSelect(POST_TYPE.TEXT)}
+            className={cn(
+              "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
+              {
+                "bg-zinc-200 text-zinc-800 hover:bg-zinc-100 hover:text-zinc-950":
+                  type === POST_TYPE.TEXT,
+              },
+            )}
           >
             Text
           </button>
           <button
-            onClick={onTypeSelect}
-            className="w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg"
+            onClick={() => onTypeSelect(POST_TYPE.IMAGE)}
+            className={cn(
+              "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
+              {
+                "bg-zinc-200 text-zinc-800 hover:bg-zinc-100 hover:text-zinc-950":
+                  type === POST_TYPE.IMAGE,
+              },
+            )}
           >
             Image
           </button>
           <button
-            onClick={onTypeSelect}
-            className="w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg"
+            onClick={() => onTypeSelect(POST_TYPE.VIDEO)}
+            className={cn(
+              "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
+              {
+                "bg-zinc-200 text-zinc-800 hover:bg-zinc-100 hover:text-zinc-950":
+                  type === POST_TYPE.VIDEO,
+              },
+            )}
           >
             Video
           </button>
           <button
-            onClick={onTypeSelect}
-            className="w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg"
+            onClick={() => onTypeSelect(POST_TYPE.AUDIO)}
+            className={cn(
+              "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
+              {
+                "bg-zinc-200 text-zinc-800 hover:bg-zinc-100 hover:text-zinc-950":
+                  type === POST_TYPE.AUDIO,
+              },
+            )}
           >
             Audio
           </button>
