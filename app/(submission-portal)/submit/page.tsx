@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 enum STEPS {
   WELCOME = 0,
@@ -133,8 +134,44 @@ const SubmitPage = () => {
     content = (
       <div className="space-y-8">
         <p className="text-2xl md:text-3xl">
-          Come up with a title that best suits your content!
+          What would you call your work?
         </p>
+
+        <div className="mx-auto w-full max-w-2xl">
+          <input
+            type="text"
+            placeholder="Title of the post"
+            className="w-full border-b border-zinc-600 bg-transparent px-3 py-2 text-xl font-semibold focus:outline-none md:text-2xl"
+          />
+        </div>
+
+        <div className="mx-auto flex w-32 items-center justify-between pt-4">
+          <Button onClick={onBack} variant="link" className="px-0 text-white">
+            <ArrowLeft />
+          </Button>
+          <Button onClick={onNext} variant="link" className="px-0 text-white">
+            <ArrowRight />
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  if (step === STEPS.TAGS) {
+    content = (
+      <div className="space-y-8">
+        <p className="text-2xl md:text-3xl">
+          Choose the tags that best represent your content!
+        </p>
+
+        <div className="mx-auto w-full max-w-2xl">
+          <input
+            type="text"
+            placeholder="Title of the post"
+            className="w-full border-b border-zinc-600 bg-transparent px-3 py-2 text-xl font-semibold focus:outline-none md:text-2xl"
+          />
+        </div>
+
         <div className="mx-auto flex w-32 items-center justify-between pt-4">
           <Button onClick={onBack} variant="link" className="px-0 text-white">
             <ArrowLeft />
