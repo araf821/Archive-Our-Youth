@@ -23,7 +23,8 @@ enum ContentType {
 }
 
 model User {
-  id        String   @id @map("_id") @db.ObjectId
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @unique
   name      String
   imageUrl  String?
   email     String

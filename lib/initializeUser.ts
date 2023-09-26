@@ -10,7 +10,7 @@ export const initializeUser = async () => {
 
   const user = await db.user.findUnique({
     where: {
-      id: authorizedUser.id,
+      userId: authorizedUser.id,
     },
   });
 
@@ -20,7 +20,7 @@ export const initializeUser = async () => {
 
   const newUser = await db.user.create({
     data: {
-      id: authorizedUser.id,
+      userId: authorizedUser.id,
       name: `${authorizedUser.firstName} ${authorizedUser.lastName}`,
       imageUrl: authorizedUser.imageUrl,
       email: authorizedUser.emailAddresses[0].emailAddress,
