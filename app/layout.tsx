@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Nunito } from "next/font/google";
 
 import ModalProvider from "@/components/modal/ModalProvider";
+import { Toaster } from "@/components/ui/Toaster";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={nunito.className}>
+          <Toaster />
           <ModalProvider />
           {children}
         </body>

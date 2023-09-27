@@ -11,6 +11,7 @@ import {
   CommandSeparator,
 } from "./ui/Command";
 import Link from "next/link";
+import { Users } from "lucide-react";
 
 interface SearchProps {}
 
@@ -31,7 +32,7 @@ const Search: FC<SearchProps> = ({}) => {
 
       {input.length > 0 ? (
         <CommandList className="absolute inset-x-0 top-full mt-1 rounded-md border border-zinc-700 bg-zinc-800 text-white shadow-md">
-          {/* <CommandEmpty>No results found.</CommandEmpty> */}
+          <CommandEmpty>No results found.</CommandEmpty>
 
           <CommandGroup heading="Communities">
             <CommandItem
@@ -44,7 +45,7 @@ const Search: FC<SearchProps> = ({}) => {
                 setInput("");
               }}
             >
-              {/* <Users className="mr-2 h-4 w-4" /> */}
+              <Users className="mr-2 h-4 w-4" />
               <Link href={`/`}>idk</Link>
             </CommandItem>
           </CommandGroup>

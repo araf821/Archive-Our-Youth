@@ -1,11 +1,11 @@
 "use client";
 
+import PostCreationForm from "@/components/PostCreationForm";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 
 enum STEPS {
   WELCOME = 0,
@@ -133,9 +133,7 @@ const SubmitPage = () => {
   if (step === STEPS.TITLE) {
     content = (
       <div className="space-y-8">
-        <p className="text-2xl md:text-3xl">
-          What would you call your work?
-        </p>
+        <p className="text-2xl md:text-3xl">What would you call your work?</p>
 
         <div className="mx-auto w-full max-w-2xl">
           <input
@@ -192,7 +190,9 @@ const SubmitPage = () => {
       >
         Back to Home
       </Button>
-      <div className="max-w-screen-md px-4 text-center">{content}</div>
+      <div className="max-w-screen-md px-4 text-center">
+        <PostCreationForm />
+      </div>
     </div>
   );
 };

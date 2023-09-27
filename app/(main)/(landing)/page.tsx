@@ -2,7 +2,7 @@ import Collage from "@/components/Collage";
 import { initializeUser } from "@/lib/initializeUser";
 
 export default async function Home() {
-  const user = await initializeUser();
+  await initializeUser();
 
   return (
     <div className="relative">

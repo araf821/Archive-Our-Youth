@@ -1,15 +1,17 @@
 import Navbar from "@/components/Navbar";
+import { getCurrentUser } from "@/lib/getCurrentUser";
 
-export default function MainLayout({
+export default async function MainLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const user = await getCurrentUser();
+
   return (
     <main className="relative mt-[8vh] flex flex-col">
-      <div className="fixed top-0 z-50 h-[8vh] w-full bg-zinc-800">
-        <Navbar />
-      </div>
+      
+        <Navbar user={user} />
       {children}
     </main>
   );

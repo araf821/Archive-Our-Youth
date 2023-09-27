@@ -94,3 +94,22 @@
     background-position: 0% 50%;
   }
 }
+
+::-webkit-scrollbar {
+  width: 0.65em;
+}
+
+::-webkit-scrollbar-track {
+  background: #585858;
+}
+
+::-webkit-scrollbar-thumb {
+  /* border: 0.3rem solid transparent; */
+  border-radius: 100vw;
+  background-color: #323232;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0c0c0c;
+  /* background: linear-gradient(#b92341, rgba(0, 0, 0, 0.1), #3767c7); */
+}
