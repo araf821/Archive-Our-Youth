@@ -2,6 +2,7 @@
 
 import { FC, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import {
@@ -60,6 +61,7 @@ const formSchema = z.object({
 
 const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
   const router = useRouter();
+  const [preview, setPreview] = useState(false);
   const [step, setStep] = useState(STEPS.WELCOME);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -111,7 +113,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
   if (step === STEPS.TYPE) {
     content = (
       <div className="space-y-8">
-        <p className="text-2xl md:text-3xl">
+        <p className="text-2xl text-zinc-300 md:text-3xl">
           What type of content would you like to submit?
         </p>
 
@@ -194,12 +196,12 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
         name="title"
         render={({ field }) => (
           <FormItem className="space-y-12">
-            <FormLabel className="text-2xl md:text-3xl">
-              What would you name this masterpiece?
+            <FormLabel className="text-2xl text-zinc-300 md:text-3xl">
+              What would you like to name this masterpiece?
             </FormLabel>
             <FormControl>
               <input
-                placeholder="Title of the post"
+                placeholder="Title"
                 className="w-full border-b border-zinc-600 bg-transparent px-3 py-2 text-center text-2xl font-semibold placeholder:text-center focus:outline-none md:text-3xl"
                 type="text"
                 {...field}
@@ -213,17 +215,71 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
   }
 
   if (step === STEPS.CONTENT) {
-    content = (
-      <FormField
-        control={form.control}
-        name="content"
-        render={({ field }) => (
-          <FormItem className="space-y-12">
-            Post Content - {contentType}
-          </FormItem>
-        )}
-      />
-    );
+    if (form.getValues().contentType === "TEXT") {
+      content = (
+        <FormField
+          name="content"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem className="mx-auto max-w-screen-sm space-y-4 ">
+              <FormLabel className="text-2xl capitalize text-zinc-300 md:text-3xl">
+                Content Type Chosen:{" "}
+                {form.getValues().contentType.toLowerCase()}
+              </FormLabel>
+              <div className="flex gap-1.5 pb-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  onClick={() => setPreview(false)}
+                  className={cn(
+                    "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                    { "bg-emerald-500 text-black hover:bg-emerald-600": !preview },
+                  )}
+                >
+                  Write
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  onClick={() => setPreview(true)}
+                  className={cn(
+                    "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                    { "bg-emerald-500 text-black hover:bg-emerald-600": preview },
+                  )}
+                >
+                  Preview
+                </Button>
+              </div>
+              <FormControl>
+                {preview ? (
+                  <ReactMarkdown className="prose prose-base prose-img:rounded-lg md:prose-lg prose-headings:font-josefin prose-headings:font-semibold prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap max-w-full break-words rounded-md border-2 border-neutral-300 p-2 text-justify shadow-inner">
+                    {form.getValues().content}
+                  </ReactMarkdown>
+                ) : (
+                  <textarea
+                    {...field}
+                    placeholder="Placeholder Text"
+                    rows={10}
+                    className="w-full resize-none rounded-sm border-none bg-zinc-700 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
+                  />
+                )}
+              </FormControl>
+            </FormItem>
+          )}
+        />
+      );
+    }
+    // content = (
+    //   <FormField
+    //     control={form.control}
+    //     name="content"
+    //     render={({ field }) => (
+    //       <FormItem className="space-y-12">
+    //         Post Content - {contentType}
+    //       </FormItem>
+    //     )}
+    //   />
+    // );
   }
 
   if (step === STEPS.TAGS) {
@@ -244,25 +300,47 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
         control={form.control}
         name="content"
         render={({ field }) => (
-          <FormItem className="space-y-12">Confirmation Page</FormItem>
+          <FormItem className="space-y-12">
+            <FormControl></FormControl>
+            CONFIRMATION
+            <div className="fixed bottom-[15vh] left-0 w-full md:bottom-[20vh]">
+              <div className="mx-auto flex max-w-lg items-center justify-between px-4 md:w-full">
+                <Button
+                  type="button"
+                  onClick={onBack}
+                  variant="link"
+                  className="px-0 text-white"
+                >
+                  <ArrowLeft />
+                </Button>
+                <Button
+                  size={"lg"}
+                  className="gap-x-1 bg-zinc-200 font-bold text-zinc-900 transition hover:translate-x-1 hover:bg-zinc-50"
+                >
+                  Submit
+                  <ArrowRight />
+                </Button>
+              </div>
+            </div>
+          </FormItem>
         )}
       />
     );
   }
 
   return (
-    <div className="max-w-screen-md px-4 text-center">
+    <div className="w-full max-w-screen-md px-4 text-center">
       <Form {...form}>
         <form onSubmit={() => {}}>{content}</form>
       </Form>
       {step > 0 && step < 5 && (
-        <div className="fixed bottom-[15vh] left-0 mx-auto w-full md:bottom-[25vh]">
-          <div className="mx-auto flex w-32 items-center justify-between">
+        <div className="mx-auto w-full ">
+          <div className="mx-auto mt-12 flex w-32 items-center justify-between">
             <Button
               type="button"
               onClick={onBack}
               variant="link"
-              className="px-0 text-white"
+              className="px-0 text-zinc-400 hover:scale-105 hover:text-zinc-200"
             >
               <ArrowLeft />
             </Button>
@@ -270,7 +348,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
               type="button"
               onClick={onNext}
               variant="link"
-              className="px-0 text-white"
+              className="px-0 text-zinc-400 hover:scale-105 hover:text-zinc-200"
             >
               <ArrowRight />
             </Button>
