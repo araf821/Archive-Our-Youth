@@ -268,7 +268,6 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
                   <textarea
                     {...field}
                     placeholder="Placeholder Text"
-                    // rows={10}
                     className="h-96 w-full  resize-none rounded-sm border-none bg-zinc-700 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
                   />
                 )}
@@ -277,18 +276,19 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
           )}
         />
       );
+    } else if (form.getValues().contentType === "IMAGE") {
+      content = (
+        <FormField
+          name="content"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem className="mx-auto max-w-screen-sm space-y-4">
+              asdfasd
+            </FormItem>
+          )}
+        />
+      );
     }
-    // content = (
-    //   <FormField
-    //     control={form.control}
-    //     name="content"
-    //     render={({ field }) => (
-    //       <FormItem className="space-y-12">
-    //         Post Content - {contentType}
-    //       </FormItem>
-    //     )}
-    //   />
-    // );
   }
 
   if (step === STEPS.TAGS) {
