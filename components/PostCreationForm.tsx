@@ -102,7 +102,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
         onClick={onNext}
         type="button"
         size="lg"
-        className="fixed bottom-[25vh] flex gap-x-2 bg-zinc-200 text-zinc-800 transition hover:translate-x-2 hover:bg-white"
+        className="fixed bottom-[20vh] flex gap-x-2 bg-zinc-200 text-zinc-800 transition hover:translate-x-2 hover:bg-white"
       >
         Get Started
         <ArrowRight />
@@ -221,7 +221,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
           name="content"
           control={form.control}
           render={({ field }) => (
-            <FormItem className="mx-auto max-w-screen-sm space-y-4 ">
+            <FormItem className="mx-auto max-w-screen-sm space-y-4">
               <FormLabel className="text-2xl capitalize text-zinc-300 md:text-3xl">
                 Content Type Chosen:{" "}
                 {form.getValues().contentType.toLowerCase()}
@@ -233,7 +233,10 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
                   onClick={() => setPreview(false)}
                   className={cn(
                     "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
-                    { "bg-emerald-500 text-black hover:bg-emerald-600": !preview },
+                    {
+                      "bg-emerald-500 text-black hover:bg-emerald-600":
+                        !preview,
+                    },
                   )}
                 >
                   Write
@@ -244,7 +247,9 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
                   onClick={() => setPreview(true)}
                   className={cn(
                     "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
-                    { "bg-emerald-500 text-black hover:bg-emerald-600": preview },
+                    {
+                      "bg-emerald-500 text-black hover:bg-emerald-600": preview,
+                    },
                   )}
                 >
                   Preview
@@ -252,15 +257,19 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
               </div>
               <FormControl>
                 {preview ? (
-                  <ReactMarkdown className="prose prose-base prose-img:rounded-lg md:prose-lg prose-headings:font-josefin prose-headings:font-semibold prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap max-w-full break-words rounded-md border-2 border-neutral-300 p-2 text-justify shadow-inner">
-                    {form.getValues().content}
-                  </ReactMarkdown>
+                  form.getValues().content ? (
+                    <ReactMarkdown className="prose-headings:font-josefin prose h-96 max-h-[400px] max-w-full overflow-y-auto break-words rounded-md bg-zinc-700 p-2.5 text-start text-zinc-200 prose-headings:font-semibold prose-headings:text-zinc-100 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                      {form.getValues().content}
+                    </ReactMarkdown>
+                  ) : (
+                    <p className="grid place-items-center h-96">Nothing to preview</p>
+                  )
                 ) : (
                   <textarea
                     {...field}
                     placeholder="Placeholder Text"
-                    rows={10}
-                    className="w-full resize-none rounded-sm border-none bg-zinc-700 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
+                    // rows={10}
+                    className="h-96 w-full  resize-none rounded-sm border-none bg-zinc-700 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
                   />
                 )}
               </FormControl>

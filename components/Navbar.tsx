@@ -74,17 +74,19 @@ const Navbar = ({ user }: NavbarProps) => {
           >
             Submit
           </Link>
-          <button
-            onClick={() => {}}
-            className="relative aspect-square h-10 w-10 rounded-full bg-zinc-600"
-          >
-            <Image
-              src={user?.imageUrl ?? ""}
-              alt="user profile picture"
-              fill
-              className="rounded-full object-cover"
-            />
-          </button>
+          {user && (
+            <button
+              onClick={() => {}}
+              className="relative aspect-square h-10 w-10 rounded-full bg-zinc-600"
+            >
+              <Image
+                src={user.imageUrl || ""}
+                alt="user profile picture"
+                fill
+                className="rounded-full object-cover"
+              />
+            </button>
+          )}
         </div>
       </div>
     </div>
