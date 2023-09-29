@@ -20,6 +20,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContentType } from "@prisma/client";
 import { cn } from "@/lib/utils";
+import FileUpload from "./FileUpload";
 
 interface PostCreationFormProps {}
 
@@ -262,7 +263,9 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
                       {form.getValues().content}
                     </ReactMarkdown>
                   ) : (
-                    <p className="grid place-items-center h-96">Nothing to preview</p>
+                    <p className="grid h-96 place-items-center">
+                      Nothing to preview
+                    </p>
                   )
                 ) : (
                   <textarea
@@ -283,7 +286,13 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
           control={form.control}
           render={({ field }) => (
             <FormItem className="mx-auto max-w-screen-sm space-y-4">
-              asdfasd
+              <FormControl>
+                <FileUpload
+                  endPoint="image"
+                  onChange={field.onChange}
+                  value={field.value}
+                />
+              </FormControl>
             </FormItem>
           )}
         />

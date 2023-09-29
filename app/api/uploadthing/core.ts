@@ -8,16 +8,23 @@ const handleAuth = () => {
   if (!userId) {
     throw new Error("Unauthorized");
   }
-
   return { userId };
 };
 
 export const ourFileRouter = {
-  serverImage: f({ image: { maxFileSize: "4MB", maxFileCount: 1 } })
+  image: f({ image: { maxFileSize: "4MB", maxFileCount: 1 } })
     .middleware(() => handleAuth())
     .onUploadComplete(() => {}),
 
-  messageFile: f(["image", "pdf"])
+  video: f({ video: { maxFileSize: "64MB", maxFileCount: 1 } })
+    .middleware(() => handleAuth())
+    .onUploadComplete(() => {}),
+
+  audio: f({ video: { maxFileSize: "16MB", maxFileCount: 1 } })
+    .middleware(() => handleAuth())
+    .onUploadComplete(() => {}),
+
+  pdf: f({ pdf: { maxFileCount: 1, maxFileSize: "2MB" } })
     .middleware(() => handleAuth())
     .onUploadComplete(() => {}),
 } satisfies FileRouter;

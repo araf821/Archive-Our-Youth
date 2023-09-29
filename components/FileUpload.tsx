@@ -7,13 +7,15 @@ import Image from "next/image";
 import { FileIcon, X } from "lucide-react";
 
 interface FileUploadProps {
-  endPoint: "messageFile" | "serverImage";
+  endPoint: "audio" | "image" | "pdf" | "video";
   onChange: (url?: string) => void;
   value: string;
 }
 
 const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
   const fileType = value?.split(".").pop();
+
+  console.log("FILE UPLOAD PROPS:\n\n\n", endPoint, value);
 
   if (value && fileType !== "pdf") {
     return (
