@@ -121,24 +121,23 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
   );
 
   typeSelectionScreen = (
-    <div className="space-y-8">
+    <div className="flex h-[40vh] flex-col items-center justify-center space-y-8">
       <p className="text-2xl text-zinc-300 md:text-3xl">
         What type of content would you like to submit?
       </p>
-
       <FormField
         control={form.control}
         name="contentType"
         render={({ field }) => (
-          <FormItem className="flex flex-col items-center justify-center gap-4 md:flex-row md:gap-8">
+          <FormItem className="flex items-center justify-center gap-4 max-md:flex-col md:flex-row md:gap-x-8">
             <FormControl>
               <button
                 type="button"
                 onClick={() => form.setValue("contentType", "TEXT")}
                 className={cn(
-                  "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
+                  "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:translate-y-1 md:text-lg",
                   {
-                    "bg-zinc-200 text-zinc-800 hover:bg-zinc-100 hover:text-zinc-950":
+                    "bg-zinc-200 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-white/20 hover:bg-zinc-100 hover:text-zinc-950":
                       contentType === ContentType.TEXT,
                   },
                 )}
@@ -153,7 +152,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
                 className={cn(
                   "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
-                    "bg-zinc-200 text-zinc-800 hover:bg-zinc-100 hover:text-zinc-950":
+                    "bg-zinc-200 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-white/20 hover:bg-zinc-100 hover:text-zinc-950":
                       contentType === ContentType.IMAGE,
                   },
                 )}
@@ -168,7 +167,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
                 className={cn(
                   "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
-                    "bg-zinc-200 text-zinc-800 hover:bg-zinc-100 hover:text-zinc-950":
+                    "bg-zinc-200 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-white/20 hover:bg-zinc-100 hover:text-zinc-950":
                       contentType === ContentType.VIDEO,
                   },
                 )}
@@ -183,7 +182,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
                 className={cn(
                   "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
-                    "bg-zinc-200 text-zinc-800 hover:bg-zinc-100 hover:text-zinc-950":
+                    "bg-zinc-200 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-white/20 hover:bg-zinc-100 hover:text-zinc-950":
                       contentType === ContentType.AUDIO,
                   },
                 )}
@@ -202,7 +201,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
       control={form.control}
       name="title"
       render={({ field }) => (
-        <FormItem className="space-y-12">
+        <FormItem className="flex h-[40vh] flex-col items-center justify-center space-y-12">
           <FormLabel className="text-2xl text-zinc-300 md:text-3xl">
             What would you like to name this masterpiece?
           </FormLabel>
@@ -226,11 +225,11 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto max-w-screen-sm space-y-4">
+          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-2">
             <FormLabel className="text-2xl capitalize text-zinc-300 md:text-3xl">
               Content Type Chosen: {form.getValues().contentType.toLowerCase()}
             </FormLabel>
-            <div className="flex gap-1.5 pb-2">
+            <div className="flex gap-1.5">
               <Button
                 type="button"
                 size="sm"
@@ -261,7 +260,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
             <FormControl>
               {preview ? (
                 form.getValues().content ? (
-                  <ReactMarkdown className="prose-headings:font-josefin prose h-96 max-h-[400px] max-w-full overflow-y-auto break-words rounded-md bg-zinc-700 p-2.5 text-start text-zinc-200 prose-headings:font-semibold prose-headings:text-zinc-100 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                  <ReactMarkdown className="prose-headings:font-josefin prose h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-700 p-2.5 text-start text-zinc-200 prose-headings:font-semibold prose-headings:text-zinc-100 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                     {form.getValues().content}
                   </ReactMarkdown>
                 ) : (
@@ -273,7 +272,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
                 <textarea
                   {...field}
                   placeholder="Placeholder Text"
-                  className="h-96 w-full  resize-none rounded-sm border-none bg-zinc-700 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
+                  className="h-full resize-none rounded-sm border-none bg-zinc-700 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
                 />
               )}
             </FormControl>
@@ -287,7 +286,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto max-w-screen-sm space-y-4">
+          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col items-center justify-center space-y-4">
             <FormControl>
               <FileUpload
                 endPoint="image"

@@ -34,7 +34,7 @@ const Navbar = ({ user }: NavbarProps) => {
         }
 
         setPrevScrollPos(currentScrollPos);
-      }, 300); // debounce delay
+      }, 50); // debounce delay
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -48,9 +48,9 @@ const Navbar = ({ user }: NavbarProps) => {
   return (
     <div
       className={cn(
-        "fixed top-0 z-50 h-[8vh] w-full bg-zinc-800 opacity-40 transition duration-300 hover:opacity-100",
+        "fixed top-0 z-50 h-[8vh] w-full -translate-y-full bg-zinc-800 transition duration-300 hover:opacity-100",
         {
-          "opacity-100": visible,
+          "translate-y-0": visible,
         },
       )}
     >
@@ -64,7 +64,7 @@ const Navbar = ({ user }: NavbarProps) => {
 
         <Search />
 
-        <div className="hidden items-center gap-x-6 md:flex">
+        <div className="max-md:hidden md:flex md:items-center md:gap-x-6">
           {/* <UserButton afterSignOutUrl="/" /> */}
           <Link
             className={cn(

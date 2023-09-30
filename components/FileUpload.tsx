@@ -62,6 +62,7 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
 
   return (
     <UploadDropzone
+      className="bg-zinc-800"
       endpoint={endPoint}
       onClientUploadComplete={(res) => {
         onChange(res?.[0].url);

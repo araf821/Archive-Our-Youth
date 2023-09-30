@@ -19,7 +19,7 @@ const Search: FC<SearchProps> = ({}) => {
   const [input, setInput] = useState("");
 
   return (
-    <Command className="relative z-50 hidden bg-zinc-700 md:block md:max-w-xs lg:max-w-lg">
+    <Command className="relative z-50 bg-zinc-700 max-md:hidden md:block md:max-w-xs lg:max-w-lg">
       <CommandInput
         value={input}
         onValueChange={(text) => {
@@ -27,7 +27,7 @@ const Search: FC<SearchProps> = ({}) => {
           //   debounceRequest();
         }}
         placeholder="Search for communities..."
-        className="border-none text-zinc-100 text-base outline-none ring-0 placeholder:text-zinc-400 focus:border-none focus:outline-0"
+        className="border-none text-base text-zinc-100 outline-none ring-0 placeholder:text-zinc-400 focus:border-none focus:outline-0"
       />
 
       {input.length > 0 ? (
