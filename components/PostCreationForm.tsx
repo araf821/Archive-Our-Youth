@@ -298,6 +298,24 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
         )}
       />
     );
+  } else if (form.getValues().contentType === "VIDEO") {
+    contentScreen = (
+      <FormField
+        name="content"
+        control={form.control}
+        render={({ field }) => (
+          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col items-center justify-center space-y-4">
+            <FormControl>
+              <FileUpload
+                endPoint="video"
+                onChange={field.onChange}
+                value={field.value}
+              />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+    );
   }
 
   tagsScreen = (

@@ -17,21 +17,36 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
 
   console.log("FILE UPLOAD PROPS:\n\n\n", endPoint, value);
 
-  if (value && fileType !== "pdf") {
+  if (endPoint === "image") {
     return (
-      <div className="relative h-20 w-20">
+      <div className="relative h-full w-full">
         <Image
           src={value}
           alt="uploaded image"
-          className="rounded-full object-cover"
+          className="rounded-sm object-cover"
           fill
         />
         <button
           onClick={() => onChange("")}
           type="button"
-          className="absolute -right-1 top-0 rounded-full bg-rose-500 p-1 text-white shadow-sm"
+          className="group absolute -right-2 -top-2 rounded-md bg-zinc-700 p-1 text-white shadow-sm"
         >
-          <X className="h-4 w-4" />
+          <X className="h-6 w-6 transition group-hover:rotate-90" />
+        </button>
+      </div>
+    );
+  }
+
+  if (endPoint === "video") {
+    return (
+      <div className="relative h-full w-full aspect-video">
+        <video src={value} controls className="rounded-sm w-full h-full object-cover" />
+        <button
+          onClick={() => onChange("")}
+          type="button"
+          className="group absolute -right-2 -top-2 rounded-md bg-zinc-700 p-1 text-white shadow-sm"
+        >
+          <X className="h-6 w-6 transition group-hover:rotate-90" />
         </button>
       </div>
     );
@@ -62,7 +77,7 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
 
   return (
     <UploadDropzone
-      className="bg-zinc-800"
+      className="h-full w-full bg-zinc-800"
       endpoint={endPoint}
       onClientUploadComplete={(res) => {
         onChange(res?.[0].url);
