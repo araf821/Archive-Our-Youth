@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
@@ -89,6 +89,17 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
     setStep((currentStep) => currentStep - 1);
   };
 
+  const handleTypeChange = useCallback(
+    (type: ContentType) => {
+      if (type === form.getValues().contentType) {
+        return;
+      }
+      form.setValue("contentType", type);
+      form.setValue("content", "");
+    },
+    [form],
+  );
+
   let introScreen,
     typeSelectionScreen,
     titleScreen,
@@ -121,21 +132,24 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
   );
 
   typeSelectionScreen = (
-    <div className="flex h-[40vh] flex-col items-center justify-center space-y-8">
-      <p className="text-2xl text-zinc-300 md:text-3xl">
-        What type of content would you like to submit?
-      </p>
+    <div className="flex h-[40vh] flex-col justify-center space-y-8">
+      <div className="space-y-2">
+        <p className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
+          What type of content would you like to submit?
+        </p>
+        <hr className="w-full border-zinc-700" />
+      </div>
       <FormField
         control={form.control}
         name="contentType"
         render={({ field }) => (
-          <FormItem className="flex items-center justify-center gap-4 max-md:flex-col md:flex-row md:gap-x-8">
+          <FormItem className="flex items-center justify-center space-y-4 max-md:flex-col md:flex-row md:space-x-6 md:space-y-0">
             <FormControl>
               <button
                 type="button"
-                onClick={() => form.setValue("contentType", "TEXT")}
+                onClick={() => handleTypeChange("TEXT")}
                 className={cn(
-                  "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:translate-y-1 md:text-lg",
+                  "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
                     "bg-zinc-200 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-white/20 hover:bg-zinc-100 hover:text-zinc-950":
                       contentType === ContentType.TEXT,
@@ -148,7 +162,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
             <FormControl>
               <button
                 type="button"
-                onClick={() => form.setValue("contentType", "IMAGE")}
+                onClick={() => handleTypeChange("IMAGE")}
                 className={cn(
                   "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
@@ -163,7 +177,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
             <FormControl>
               <button
                 type="button"
-                onClick={() => form.setValue("contentType", "VIDEO")}
+                onClick={() => handleTypeChange("VIDEO")}
                 className={cn(
                   "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
@@ -178,7 +192,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
             <FormControl>
               <button
                 type="button"
-                onClick={() => form.setValue("contentType", "AUDIO")}
+                onClick={() => handleTypeChange("AUDIO")}
                 className={cn(
                   "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
@@ -193,6 +207,10 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
           </FormItem>
         )}
       />
+      <p className="text-center text-zinc-400 max-md:text-sm md:text-base">
+        Note: You will get the chance to add a description for the image, video
+        and audio file types.
+      </p>
     </div>
   );
 
@@ -201,14 +219,17 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
       control={form.control}
       name="title"
       render={({ field }) => (
-        <FormItem className="flex h-[40vh] flex-col items-center justify-center space-y-12">
-          <FormLabel className="text-2xl text-zinc-300 md:text-3xl">
-            What would you like to name this masterpiece?
-          </FormLabel>
+        <FormItem className="flex h-[40vh] flex-col justify-center space-y-8">
+          <div className="space-y-2">
+            <p className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
+              What type of content would you like to submit?
+            </p>
+            <hr className="w-full border-zinc-700" />
+          </div>
           <FormControl>
             <input
               placeholder="Title"
-              className="w-full border-b border-zinc-600 bg-transparent px-3 py-2 text-center text-2xl font-semibold placeholder:text-center focus:outline-none md:text-3xl"
+              className="inset-2 w-full rounded-md bg-zinc-800 px-3 py-2 text-2xl font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-3xl"
               type="text"
               {...field}
             />
@@ -225,10 +246,13 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-2">
-            <FormLabel className="text-2xl capitalize text-zinc-300 md:text-3xl">
-              Content Type Chosen: {form.getValues().contentType.toLowerCase()}
-            </FormLabel>
+          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
+            <div className="space-y-2">
+              <p className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
+                Text heading idk
+              </p>
+              <hr className="w-full border-zinc-700" />
+            </div>
             <div className="flex gap-1.5">
               <Button
                 type="button"
@@ -308,6 +332,24 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
             <FormControl>
               <FileUpload
                 endPoint="video"
+                onChange={field.onChange}
+                value={field.value}
+              />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+    );
+  } else if (form.getValues().contentType === "AUDIO") {
+    contentScreen = (
+      <FormField
+        name="content"
+        control={form.control}
+        render={({ field }) => (
+          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col items-center justify-center gap-y-6 space-y-4">
+            <FormControl>
+              <FileUpload
+                endPoint="audio"
                 onChange={field.onChange}
                 value={field.value}
               />

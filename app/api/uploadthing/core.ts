@@ -16,11 +16,11 @@ export const ourFileRouter = {
     .middleware(() => handleAuth())
     .onUploadComplete(() => {}),
 
-  video: f({ video: { maxFileSize: "64MB", maxFileCount: 1 } })
+  video: f({ video: { maxFileSize: "32MB", maxFileCount: 1 } })
     .middleware(() => handleAuth())
     .onUploadComplete(() => {}),
 
-  audio: f({ video: { maxFileSize: "16MB", maxFileCount: 1 } })
+  audio: f({ audio: { maxFileSize: "16MB", maxFileCount: 1 } })
     .middleware(() => handleAuth())
     .onUploadComplete(() => {}),
 
