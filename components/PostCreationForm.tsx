@@ -4,7 +4,15 @@ import { FC, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Loader,
+  Loader2,
+  RefreshCcw,
+  RotateCcw,
+  X,
+} from "lucide-react";
 import {
   Form,
   FormControl,
@@ -21,6 +29,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ContentType } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import FileUpload from "./FileUpload";
+import MultiSelect from "./MultiSelect";
 
 interface PostCreationFormProps {}
 
@@ -58,6 +67,10 @@ const formSchema = z.object({
       message: "Description must be between 3 to 2000 characters in length",
     })
     .optional(),
+  tags: z
+    .string()
+    .array()
+    .max(5, { message: "You can only choose up to 5 tags." }),
 });
 
 const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
@@ -73,6 +86,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
       contentType: "TEXT",
       content: "",
       description: "",
+      tags: [],
     },
   });
 
@@ -80,6 +94,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
 
   const isLoading = form.formState.isSubmitting;
   const contentType = form.watch("contentType");
+  const tags = form.watch("tags");
 
   const onNext = () => {
     setStep((currentStep) => currentStep + 1);
@@ -247,12 +262,10 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
         control={form.control}
         render={({ field }) => (
           <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
-            <div className="space-y-2">
-              <p className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
-                Text heading idk
-              </p>
-              <hr className="w-full border-zinc-700" />
-            </div>
+            <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
+              Text heading idk
+              <hr className="mt-1.5 w-full border-zinc-700" />
+            </FormLabel>
             <div className="flex gap-1.5">
               <Button
                 type="button"
@@ -310,7 +323,11 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col items-center justify-center space-y-4">
+          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
+            <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
+              Add an image
+              <hr className="mt-1.5 w-full border-zinc-700" />
+            </FormLabel>
             <FormControl>
               <FileUpload
                 endPoint="image"
@@ -328,7 +345,11 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col items-center justify-center space-y-4">
+          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
+            <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
+              Add a video
+              <hr className="mt-1.5 w-full border-zinc-700" />
+            </FormLabel>{" "}
             <FormControl>
               <FileUpload
                 endPoint="video"
@@ -346,7 +367,11 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col items-center justify-center gap-y-6 space-y-4">
+          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
+            <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
+              Add an audio
+              <hr className="mt-1.5 w-full border-zinc-700" />
+            </FormLabel>
             <FormControl>
               <FileUpload
                 endPoint="audio"
@@ -365,7 +390,62 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
       control={form.control}
       name="content"
       render={({ field }) => (
-        <FormItem className="space-y-12">Post Tags</FormItem>
+        <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
+          <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
+            Pick the tags that best represent your content
+            <hr className="mt-1.5 w-full border-zinc-700" />
+          </FormLabel>
+          <FormControl>
+            <MultiSelect
+              onChange={(values: string[]) => {
+                form.setValue("tags", values);
+              }}
+              options={["helkljhjklo", "hi", "hey", "hola", "bola"]}
+              selectedOptions={tags}
+            />
+          </FormControl>
+          <ul className="flex flex-wrap gap-4 text-white">
+            {form.getValues().tags.map((tag, index) => (
+              <li
+                key={tag}
+                className={cn(
+                  "text-bold flex items-center justify-between gap-2 rounded-t-md rounded-bl-md rounded-br-none px-4 py-1.5 text-zinc-900",
+                  {
+                    "bg-rose-400": index === 0,
+                    "bg-emerald-400": index === 1,
+                    "bg-amber-400": index === 2,
+                    "bg-sky-400": index === 3,
+                    "bg-pink-400": index === 4,
+                  },
+                )}
+              >
+                {tag}
+                <button
+                  onClick={() =>
+                    form.setValue(
+                      "tags",
+                      tags.filter((t) => t !== tag),
+                    )
+                  }
+                  type="button"
+                  className=""
+                >
+                  <X size={15} />
+                </button>
+              </li>
+            ))}
+            {!!tags.length && (
+              <button
+                type="button"
+                onClick={() => form.setValue("tags", [])}
+                className="flex w-fit items-center gap-2 rounded-sm px-3 py-2 text-white transition hover:bg-zinc-800 max-md:text-sm md:text-base"
+              >
+                Reset
+                <RefreshCcw size={16} />
+              </button>
+            )}
+          </ul>
+        </FormItem>
       )}
     />
   );

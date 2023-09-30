@@ -60,8 +60,7 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
 
     if (endPoint === "audio") {
       return (
-        <div className="w-full space-y-8 ">
-          <p className="text-xl text-zinc-300 lg:text-2xl">Uploaded Audio</p>
+        <div className="w-full space-y-8 pt-4">
           <audio src={value} controls className="w-full" />
           <Button
             onClick={() => onChange("")}
