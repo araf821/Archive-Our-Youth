@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
@@ -55,19 +55,24 @@ const formSchema = z.object({
     ContentType.VIDEO,
     ContentType.AUDIO,
   ]),
-  content: z.string().min(3, { message: "Invalid input." }),
-  description: z
+  content: z
     .string()
-    .min(15, {
-      message: "Description must be between 3 to 2000 characters in length.",
+    .min(3, {
+      message: "Content must be between 5 and 2000 characters in length.",
     })
     .max(2000, {
-      message: "Description must be between 3 to 2000 characters in length",
+      message: "Content must be between 5 and 2000 characters in length.",
+    }),
+  description: z
+    .string()
+    .max(2000, {
+      message: "Description must be less than 2000 characters in length",
     })
     .optional(),
   tags: z
     .string()
     .array()
+    .min(1, { message: "At least one tag is required." })
     .max(5, { message: "You can only choose up to 5 tags." }),
 });
 
@@ -91,6 +96,9 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
   const isLoading = form.formState.isSubmitting;
   const contentType = form.watch("contentType");
   const tags = form.watch("tags");
+
+  console.log(form.formState.errors.tags);
+  console.log(tags);
 
   const onNext = () => {
     setStep((currentStep) => {
@@ -122,8 +130,6 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
   );
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("asdf");
-
     toast({
       title: "hello",
     });
@@ -276,7 +282,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
               {...field}
             />
           </FormControl>
-          <FormMessage className="text-red-500" content="asdf" />
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -346,6 +352,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
                 />
               )}
             </FormControl>
+            <FormMessage />
           </FormItem>
         )}
       />
@@ -482,6 +489,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
               />
             )}
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -490,8 +498,8 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
   tagsScreen = (
     <FormField
       control={form.control}
-      name="content"
-      render={({ field }) => (
+      name="tags"
+      render={() => (
         <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
           <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
             Pick the tags that best represent your content
@@ -506,6 +514,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
               selectedOptions={tags}
             />
           </FormControl>
+          <FormMessage />
           <ul className="flex flex-wrap gap-4 text-white">
             {form.getValues().tags.map((tag, index) => (
               <li
@@ -547,6 +556,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
               </button>
             )}
           </ul>
+          {/* <FormMessage /> */}
         </FormItem>
       )}
     />
@@ -555,27 +565,40 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
   confirmationScreen = (
     <ScrollArea className="mx-auto flex h-[60vh] max-w-screen-sm flex-col justify-center space-y-4 overflow-y-auto">
       <div className="pb-4 text-xl text-zinc-300 md:text-2xl">
-        Confirmation
+        Confirm Submission
         <p className="text-left text-zinc-300 max-md:text-sm md:text-base">
-          Please review your content one last time before submission
+          Please review your content one last time before submitting
         </p>
         <hr className="mt-1.5 w-full border-zinc-700" />
       </div>
       <div className="divide-y-2 divide-zinc-700 rounded-md border border-zinc-700 px-4">
-        <p className="pb-3 pt-5 capitalize">
-          Post Type:{" "}
+        <div className="pb-3 pt-5 capitalize">
+          <p className="pb-2">Post Type</p>
           <span className="font-bold">{contentType.toLowerCase()}</span>
-        </p>
-        <p className="py-4 capitalize md:text-lg">
-          Title: <span className="font-bold">{form.getValues().title}</span>
-        </p>
+        </div>
+        <div className="py-4 capitalize">
+          <p className="pb-2">Title</p>
+          <span className="font-bold">
+            {form.getValues().title || (
+              <p className="font-normal text-zinc-400">
+                Title is missing,{" "}
+                <button
+                  onClick={() => setStep(STEPS.TITLE)}
+                  className="normal-case text-blue-400"
+                >
+                  click here to navigate to the title screen.
+                </button>
+              </p>
+            )}
+          </span>
+        </div>
         <div className="py-4">
           {contentType === "TEXT" && (
             <>
               <p className="pb-2">Content</p>
               {form.getValues().content ? (
                 <ReactMarkdown className="scroll-y-auto prose-headings:font-josefin prose h-full max-h-40 max-w-full overflow-y-auto break-words rounded-md bg-zinc-100 p-2.5 text-start text-zinc-800 prose-headings:font-semibold prose-headings:text-zinc-950 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
-                  {form.getValues().description || ""}
+                  {form.getValues().content || ""}
                 </ReactMarkdown>
               ) : (
                 <p className="text-zinc-400">
@@ -592,14 +615,14 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
             </>
           )}
           {contentType !== "TEXT" && !form.getValues().content ? (
-            <p>
+            <p className="text-zinc-400">
               {contentType} not added yet,{" "}
               <button
                 type="button"
                 onClick={() => setStep(STEPS.CONTENT)}
                 className="text-blue-400"
               >
-                click here to go to the upload screen
+                click here to go to the upload screen.
               </button>
             </p>
           ) : (
@@ -615,7 +638,8 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
                 </div>
               )}
               {contentType === "VIDEO" && (
-                <div className="relative mx-auto aspect-video w-60">
+                <div className="relative aspect-video ">
+                  <p className="pb-4">Uploaded Content</p>
                   <video
                     src={form.getValues().content}
                     className="object-cover"
@@ -624,10 +648,12 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
                 </div>
               )}
               {contentType === "AUDIO" && (
-                <div className="relative mx-auto aspect-video w-60">
+                <div className="w-full">
+                  <p className="pb-4">Uploaded Content</p>
                   <audio
                     src={form.getValues().content}
-                    className="object-cover"
+                    controls
+                    className="w-full"
                   />
                 </div>
               )}
@@ -647,7 +673,21 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
           </div>
         )}
         <div className="py-4">
-          Tags
+          <p className={cn("pb-2", { "text-red-500": tags.length < 1 })}>
+            Tags
+          </p>
+          {form.getValues().tags.length < 1 && (
+            <p className="text-zinc-400">
+              At least one tag is required,{" "}
+              <button
+                type="button"
+                onClick={() => setStep(STEPS.TAGS)}
+                className="text-blue-400"
+              >
+                click here to navigate to the tags screen.
+              </button>
+            </p>
+          )}
           <div className="flex flex-wrap gap-2 pt-2">
             {form.getValues().tags.map((tag, index) => (
               <li
