@@ -32,8 +32,9 @@ enum STEPS {
   TYPE = 1,
   TITLE = 2,
   CONTENT = 3,
-  TAGS = 4,
-  CONFIRM = 5,
+  DESCRIPTION = 4,
+  TAGS = 5,
+  CONFIRM = 6,
 }
 
 const formSchema = z.object({
@@ -91,11 +92,21 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
   const tags = form.watch("tags");
 
   const onNext = () => {
-    setStep((currentStep) => currentStep + 1);
+    setStep((currentStep) => {
+      if (contentType === "TEXT" && step === STEPS.CONTENT) {
+        return currentStep + 2;
+      }
+      return currentStep + 1;
+    });
   };
 
   const onBack = () => {
-    setStep((currentStep) => currentStep - 1);
+    setStep((currentStep) => {
+      if (contentType === "TEXT" && step === STEPS.TAGS) {
+        return currentStep - 2;
+      }
+      return currentStep - 1;
+    });
   };
 
   const handleTypeChange = useCallback(
@@ -114,6 +125,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
     titleScreen,
     contentScreen,
     tagsScreen,
+    descriptionScreen,
     confirmationScreen;
 
   introScreen = (
@@ -289,7 +301,11 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
               <Button
                 type="button"
                 size="sm"
-                onClick={() => setPreview(true)}
+                onClick={() => {
+                  if (form.getValues().content) {
+                    setPreview(true);
+                  }
+                }}
                 className={cn(
                   "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
                   {
@@ -303,7 +319,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
             <FormControl>
               {preview ? (
                 form.getValues().content ? (
-                  <ReactMarkdown className="prose-headings:font-josefin prose h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-700 p-2.5 text-start text-zinc-200 prose-headings:font-semibold prose-headings:text-zinc-100 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                  <ReactMarkdown className="prose-headings:font-josefin prose h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-100 p-2.5 text-start text-zinc-800 prose-headings:font-semibold prose-headings:text-zinc-950 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                     {form.getValues().content}
                   </ReactMarkdown>
                 ) : (
@@ -315,7 +331,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
                 <textarea
                   {...field}
                   placeholder="Placeholder Text"
-                  className="h-full resize-none rounded-sm border-none bg-zinc-700 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
+                  className="h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
                 />
               )}
             </FormControl>
@@ -391,6 +407,69 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
     );
   }
 
+  descriptionScreen = (
+    <FormField
+      name="description"
+      control={form.control}
+      render={({ field }) => (
+        <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
+          <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
+            Add a description (optional)
+            <hr className="mt-1.5 w-full border-zinc-700" />
+          </FormLabel>
+          <div className="w-fit space-x-2">
+            <Button
+              type="button"
+              size="sm"
+              onClick={() => setPreview(false)}
+              className={cn(
+                "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                {
+                  "bg-emerald-500 text-black hover:bg-emerald-600": !preview,
+                },
+              )}
+            >
+              Write
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              onClick={() => setPreview(true)}
+              className={cn(
+                "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                {
+                  "bg-emerald-500 text-black hover:bg-emerald-600": preview,
+                },
+              )}
+            >
+              Preview
+            </Button>
+          </div>
+
+          <FormControl>
+            {preview ? (
+              form.getValues().description ? (
+                <ReactMarkdown className="prose-headings:font-josefin prose h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-100 p-2.5 text-start text-zinc-800 prose-headings:font-semibold prose-headings:text-zinc-950 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                  {form.getValues().description || ""}
+                </ReactMarkdown>
+              ) : (
+                <p className="grid h-96 place-items-center">
+                  Nothing to preview
+                </p>
+              )
+            ) : (
+              <textarea
+                {...field}
+                placeholder="Placeholder Text"
+                className="h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
+              />
+            )}
+          </FormControl>
+        </FormItem>
+      )}
+    />
+  );
+
   tagsScreen = (
     <FormField
       control={form.control}
@@ -459,10 +538,9 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
   confirmationScreen = (
     <FormField
       control={form.control}
-      name="content"
+      name="description"
       render={({ field }) => (
-        <FormItem className="space-y-12">
-          <FormControl></FormControl>
+        <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
           CONFIRMATION
           <div className="fixed bottom-[15vh] left-0 w-full md:bottom-[20vh]">
             <div className="mx-auto flex max-w-lg items-center justify-between px-4 md:w-full">
@@ -496,11 +574,14 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
           {step === STEPS.TYPE && typeSelectionScreen}
           {step === STEPS.TITLE && titleScreen}
           {step === STEPS.CONTENT && contentScreen}
+          {step === STEPS.DESCRIPTION &&
+            contentType !== "TEXT" &&
+            descriptionScreen}
           {step === STEPS.TAGS && tagsScreen}
           {step === STEPS.CONFIRM && confirmationScreen}
         </form>
       </Form>
-      {step > 0 && step < 5 && (
+      {step > 0 && step < 6 && (
         <div className="mx-auto w-full ">
           <div className="mx-auto mt-12 flex w-32 items-center justify-between">
             <Button
