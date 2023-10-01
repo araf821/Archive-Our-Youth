@@ -4,7 +4,7 @@ import { FC, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
-import { ArrowLeft, ArrowRight, Divide, RefreshCcw, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, RefreshCcw, X } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -181,13 +181,13 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
                 className={cn(
                   "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
-                    "bg-rose-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-rose-500/20 duration-200 hover:bg-rose-600 hover:text-zinc-950":
+                    "bg-gradient-to-br from-red-400 to-red-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-rose-500/30 duration-200 hover:bg-rose-600 hover:text-zinc-950":
                       contentType === ContentType.TEXT,
                   },
                 )}
               >
                 {contentType === ContentType.TEXT && (
-                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-rose-500/30 md:top-[60%]" />
+                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-br from-red-400/70 to-rose-700/70 md:top-[60%]" />
                 )}
                 Text
               </button>
@@ -199,13 +199,13 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
                 className={cn(
                   "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
-                    "bg-rose-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-rose-500/20 duration-200 hover:bg-rose-600 hover:text-zinc-950":
+                    "bg-gradient-to-br from-lime-400 to-emerald-500 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-lime-500/30 duration-200 hover:text-zinc-950":
                       contentType === ContentType.IMAGE,
                   },
                 )}
               >
                 {contentType === ContentType.IMAGE && (
-                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-rose-500/30 md:top-[60%]" />
+                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-br from-lime-400/70 to-emerald-600/70 md:top-[60%]" />
                 )}
                 Image
               </button>
@@ -217,13 +217,13 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
                 className={cn(
                   "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
-                    "bg-rose-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-rose-500/20 duration-200 hover:bg-rose-600 hover:text-zinc-950":
+                    "bg-gradient-to-br from-teal-400 to-sky-700 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-sky-500/30 duration-200 hover:text-zinc-950":
                       contentType === ContentType.VIDEO,
                   },
                 )}
               >
                 {contentType === ContentType.VIDEO && (
-                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-rose-500/30 md:top-[60%]" />
+                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-tr from-teal-400/70 to-sky-700/70 md:top-[60%]" />
                 )}
                 Video
               </button>
@@ -235,13 +235,13 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
                 className={cn(
                   "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
-                    "bg-rose-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-rose-500/20 duration-200 hover:bg-rose-600 hover:text-zinc-950":
+                    "bg-gradient-to-br from-amber-400 to-orange-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-orange-500/30 duration-200 hover:text-zinc-950":
                       contentType === ContentType.AUDIO,
                   },
                 )}
               >
                 {contentType === ContentType.AUDIO && (
-                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-rose-500/30 md:top-[60%]" />
+                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-tr from-amber-400/70 to-orange-600/70 md:top-[60%]" />
                 )}
                 Audio
               </button>
@@ -264,7 +264,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
         <FormItem className="flex h-[40vh] flex-col justify-center space-y-4">
           <div className="space-y-2">
             <p className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
-              What would you call this masterpiece?
+              What would you like to call this masterpiece?
             </p>
             <hr className="w-full border-zinc-700" />
           </div>
@@ -301,7 +301,8 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
                 className={cn(
                   "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
                   {
-                    "bg-emerald-500 text-black hover:bg-emerald-600": !preview,
+                    "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
+                      !preview,
                   },
                 )}
               >
@@ -318,7 +319,8 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
                 className={cn(
                   "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
                   {
-                    "bg-emerald-500 text-black hover:bg-emerald-600": preview,
+                    "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
+                      preview,
                   },
                 )}
               >
@@ -376,7 +378,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex h-full max-h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
+          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
             <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
               Add a video
               <hr className="mt-1.5 w-full border-zinc-700" />
@@ -434,7 +436,8 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
               className={cn(
                 "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
                 {
-                  "bg-emerald-500 text-black hover:bg-emerald-600": !preview,
+                  "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
+                    !preview,
                 },
               )}
             >
@@ -443,11 +446,16 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
             <Button
               type="button"
               size="sm"
-              onClick={() => setPreview(true)}
+              onClick={() => {
+                if (form.getValues().description) {
+                  setPreview(true);
+                }
+              }}
               className={cn(
                 "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
                 {
-                  "bg-emerald-500 text-black hover:bg-emerald-600": preview,
+                  "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
+                    preview,
                 },
               )}
             >
@@ -503,13 +511,13 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
               <li
                 key={tag}
                 className={cn(
-                  "text-bold flex items-center justify-between gap-2 rounded-t-md rounded-bl-md rounded-br-none px-4 py-1.5 text-zinc-900",
+                  "text-bold flex items-center justify-between gap-2 rounded-lg px-4 py-1.5 text-zinc-900",
                   {
-                    "bg-rose-400": index === 0,
-                    "bg-emerald-400": index === 1,
-                    "bg-amber-400": index === 2,
-                    "bg-sky-400": index === 3,
-                    "bg-pink-400": index === 4,
+                    "border-2 border-rose-500 text-rose-500": index === 0,
+                    "border-2 border-lime-500 text-lime-500": index === 1,
+                    "border-2 border-sky-500 text-sky-500": index === 2,
+                    "border-2 border-amber-500 text-amber-500": index === 3,
+                    "border-2 border-fuchsia-500 text-fuchsia-500": index === 4,
                   },
                 )}
               >

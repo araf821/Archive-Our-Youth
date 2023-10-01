@@ -41,7 +41,7 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
 
     if (endPoint === "video") {
       return (
-        <div className="relative aspect-video h-full w-full">
+        <div className="aspect-video relative w-full">
           <video
             src={value}
             controls
@@ -73,29 +73,6 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
       );
     }
   }
-
-  // if (value && fileType === "pdf") {
-  //   return (
-  //     <div className="relative mt-2 flex items-center rounded-md bg-background/10 p-2">
-  //       <FileIcon className="h-10 w-10 fill-indigo-200 stroke-indigo-400" />
-  //       <a
-  //         href={value}
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //         className="ml-2 text-sm text-indigo-200 hover:underline dark:text-indigo-400"
-  //       >
-  //         {value}
-  //       </a>
-  //       <button
-  //         onClick={() => onChange("")}
-  //         type="button"
-  //         className="absolute -right-2 -top-2 rounded-full bg-rose-500 p-1 text-white shadow-sm"
-  //       >
-  //         <X className="h-4 w-4" />
-  //       </button>
-  //     </div>
-  //   );
-  // }
 
   return (
     <UploadDropzone
