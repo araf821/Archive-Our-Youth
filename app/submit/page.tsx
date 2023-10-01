@@ -1,10 +1,11 @@
 import PostCreationForm from "@/components/PostCreationForm";
-import { Button, buttonVariants } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/Button";
+import { getCurrentUser } from "@/lib/getCurrentUser";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
-const SubmitPage = () => {
+const SubmitPage = async () => {
+  const currentUser = await getCurrentUser();
+
   return (
     <div className="relative grid h-screen place-items-center bg-zinc-900 text-white">
       <Link
@@ -17,7 +18,7 @@ const SubmitPage = () => {
         Back to Home
       </Link>
 
-      <PostCreationForm />
+      <PostCreationForm currentUser={currentUser} />
     </div>
   );
 };

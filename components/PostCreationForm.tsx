@@ -4,15 +4,7 @@ import { FC, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
-import {
-  ArrowLeft,
-  ArrowRight,
-  Loader,
-  Loader2,
-  RefreshCcw,
-  RotateCcw,
-  X,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, RefreshCcw, X } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -26,12 +18,14 @@ import { Button } from "./ui/Button";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ContentType } from "@prisma/client";
+import { ContentType, User } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import FileUpload from "./FileUpload";
 import MultiSelect from "./MultiSelect";
 
-interface PostCreationFormProps {}
+interface PostCreationFormProps {
+  currentUser: User | null;
+}
 
 enum STEPS {
   WELCOME = 0,
@@ -73,7 +67,7 @@ const formSchema = z.object({
     .max(5, { message: "You can only choose up to 5 tags." }),
 });
 
-const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
+const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
   const router = useRouter();
   const [preview, setPreview] = useState(false);
   const [step, setStep] = useState(STEPS.WELCOME);
@@ -158,19 +152,22 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
         control={form.control}
         name="contentType"
         render={({ field }) => (
-          <FormItem className="flex items-center justify-center space-y-4 max-md:flex-col md:flex-row md:space-x-6 md:space-y-0">
+          <FormItem className="flex items-center justify-center space-y-4 max-md:flex-col md:flex-row md:space-x-6 md:space-y-0 lg:space-x-8">
             <FormControl>
               <button
                 type="button"
                 onClick={() => handleTypeChange("TEXT")}
                 className={cn(
-                  "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
+                  "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
-                    "bg-zinc-200 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-white/20 hover:bg-zinc-100 hover:text-zinc-950":
+                    "bg-rose-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-rose-500/20 duration-200 hover:bg-rose-600 hover:text-zinc-950":
                       contentType === ContentType.TEXT,
                   },
                 )}
               >
+                {contentType === ContentType.TEXT && (
+                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-rose-500/30 md:top-[60%]" />
+                )}
                 Text
               </button>
             </FormControl>
@@ -179,13 +176,16 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
                 type="button"
                 onClick={() => handleTypeChange("IMAGE")}
                 className={cn(
-                  "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
+                  "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
-                    "bg-zinc-200 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-white/20 hover:bg-zinc-100 hover:text-zinc-950":
+                    "bg-rose-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-rose-500/20 duration-200 hover:bg-rose-600 hover:text-zinc-950":
                       contentType === ContentType.IMAGE,
                   },
                 )}
               >
+                {contentType === ContentType.IMAGE && (
+                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-rose-500/30 md:top-[60%]" />
+                )}
                 Image
               </button>
             </FormControl>
@@ -194,13 +194,16 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
                 type="button"
                 onClick={() => handleTypeChange("VIDEO")}
                 className={cn(
-                  "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
+                  "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
-                    "bg-zinc-200 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-white/20 hover:bg-zinc-100 hover:text-zinc-950":
+                    "bg-rose-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-rose-500/20 duration-200 hover:bg-rose-600 hover:text-zinc-950":
                       contentType === ContentType.VIDEO,
                   },
                 )}
               >
+                {contentType === ContentType.VIDEO && (
+                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-rose-500/30 md:top-[60%]" />
+                )}
                 Video
               </button>
             </FormControl>
@@ -209,20 +212,23 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
                 type="button"
                 onClick={() => handleTypeChange("AUDIO")}
                 className={cn(
-                  "w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
+                  "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
                   {
-                    "bg-zinc-200 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-white/20 hover:bg-zinc-100 hover:text-zinc-950":
+                    "bg-rose-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-rose-500/20 duration-200 hover:bg-rose-600 hover:text-zinc-950":
                       contentType === ContentType.AUDIO,
                   },
                 )}
               >
+                {contentType === ContentType.AUDIO && (
+                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-rose-500/30 md:top-[60%]" />
+                )}
                 Audio
               </button>
             </FormControl>
           </FormItem>
         )}
       />
-      <p className="text-center text-zinc-400 max-md:text-sm md:text-base">
+      <p className="text-left text-zinc-400 max-md:text-sm md:text-base">
         Note: You will get the chance to add a description for the image, video
         and audio file types.
       </p>
@@ -234,17 +240,17 @@ const PostCreationForm: FC<PostCreationFormProps> = ({}) => {
       control={form.control}
       name="title"
       render={({ field }) => (
-        <FormItem className="flex h-[40vh] flex-col justify-center space-y-8">
+        <FormItem className="flex h-[40vh] flex-col justify-center space-y-4">
           <div className="space-y-2">
             <p className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
-              What type of content would you like to submit?
+              What would you call this masterpiece?
             </p>
             <hr className="w-full border-zinc-700" />
           </div>
           <FormControl>
             <input
               placeholder="Title"
-              className="inset-2 w-full rounded-md bg-zinc-800 px-3 py-2 text-2xl font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-3xl"
+              className="w-full rounded-md bg-zinc-800 px-3 py-2 text-2xl font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-3xl"
               type="text"
               {...field}
             />

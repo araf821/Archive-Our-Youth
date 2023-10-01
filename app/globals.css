@@ -75,6 +75,11 @@
   }
 }
 
+.perspective {
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  filter: blur(1em);
+}
+
 .moving-bg {
   background: linear-gradient(-45deg, orange, #000, red);
   background-size: 600% 600%;

@@ -62,14 +62,13 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
       return (
         <div className="w-full space-y-8 pt-4">
           <audio src={value} controls className="w-full" />
-          <Button
+          <button
             onClick={() => onChange("")}
             type="button"
-            size={"lg"}
-            className="bg-zinc-800 text-base hover:bg-zinc-700"
+            className="rounded-md max-md:text-sm px-3 py-2 md:text-base text-zinc-300 transition hover:bg-zinc-800"
           >
             Remove selected audio
-          </Button>
+          </button>
         </div>
       );
     }
