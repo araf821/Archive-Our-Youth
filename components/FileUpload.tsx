@@ -31,9 +31,9 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
           <button
             onClick={() => onChange("")}
             type="button"
-            className="group absolute -right-2 -top-2 rounded-md bg-zinc-700 p-1 text-white shadow-sm"
+            className="group absolute -right-2 -top-2 rounded-md bg-zinc-800 p-1 text-white shadow-sm"
           >
-            <X className="h-6 w-6 transition group-hover:rotate-90" />
+            <X className="h-5 w-5 transition group-hover:rotate-90" />
           </button>
         </div>
       );
@@ -45,14 +45,14 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
           <video
             src={value}
             controls
-            className="h-full w-full rounded-sm object-cover"
+            className="h-full w-full rounded-sm"
           />
           <button
             onClick={() => onChange("")}
             type="button"
-            className="group absolute -right-2 -top-2 rounded-md bg-zinc-700 p-1 text-white shadow-sm"
+            className="group absolute -right-2 -top-2 rounded-md bg-zinc-800 p-1 text-white shadow-sm"
           >
-            <X className="h-6 w-6 transition group-hover:rotate-90" />
+            <X className="h-5 w-5 transition group-hover:rotate-90" />
           </button>
         </div>
       );

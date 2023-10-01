@@ -4,7 +4,7 @@ import { FC, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
-import { ArrowLeft, ArrowRight, RefreshCcw, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Divide, RefreshCcw, X } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -22,6 +22,9 @@ import { ContentType, User } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import FileUpload from "./FileUpload";
 import MultiSelect from "./MultiSelect";
+import Image from "next/image";
+import { ScrollArea } from "./ui/ScrollArea";
+import { toast } from "./ui/useToast";
 
 interface PostCreationFormProps {
   currentUser: User | null;
@@ -85,8 +88,6 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
     },
   });
 
-  console.log(form.getValues());
-
   const isLoading = form.formState.isSubmitting;
   const contentType = form.watch("contentType");
   const tags = form.watch("tags");
@@ -119,6 +120,14 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
     },
     [form],
   );
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log("asdf");
+
+    toast({
+      title: "hello",
+    });
+  };
 
   let introScreen,
     typeSelectionScreen,
@@ -367,7 +376,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
+          <FormItem className="mx-auto flex h-full max-h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
             <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
               Add a video
               <hr className="mt-1.5 w-full border-zinc-700" />
@@ -536,40 +545,108 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
   );
 
   confirmationScreen = (
-    <FormField
-      control={form.control}
-      name="description"
-      render={({ field }) => (
-        <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
-          CONFIRMATION
-          <div className="fixed bottom-[15vh] left-0 w-full md:bottom-[20vh]">
-            <div className="mx-auto flex max-w-lg items-center justify-between px-4 md:w-full">
-              <Button
+    <ScrollArea className="mx-auto flex h-[60vh] max-w-screen-sm flex-col justify-center space-y-4 overflow-y-auto">
+      <div className="pb-4 text-xl text-zinc-300 md:text-2xl">
+        Confirmation
+        <p className="text-left text-zinc-300 max-md:text-sm md:text-base">
+          Please review your content one last time before submission
+        </p>
+        <hr className="mt-1.5 w-full border-zinc-700" />
+      </div>
+      <div className="divide-y-2 divide-zinc-700 rounded-md border border-zinc-700 px-4">
+        <p className="pb-3 pt-5 capitalize">
+          Post Type:{" "}
+          <span className="font-bold">{contentType.toLowerCase()}</span>
+        </p>
+        <p className="py-4 capitalize md:text-lg">
+          Title: <span className="font-bold">{form.getValues().title}</span>
+        </p>
+        <div className="py-4">
+          {contentType !== "TEXT" && !form.getValues().content ? (
+            <p>
+              {contentType} not added yet,{" "}
+              <button
                 type="button"
-                onClick={onBack}
-                variant="link"
-                className="px-0 text-white"
+                onClick={() => setStep(STEPS.CONTENT)}
+                className="text-blue-400"
               >
-                <ArrowLeft />
-              </Button>
-              <Button
-                size={"lg"}
-                className="gap-x-1 bg-zinc-200 font-bold text-zinc-900 transition hover:translate-x-1 hover:bg-zinc-50"
-              >
-                Submit
-                <ArrowRight />
-              </Button>
-            </div>
+                click here to go to the upload screen
+              </button>
+            </p>
+          ) : (
+            <>
+              {contentType === "IMAGE" && (
+                <div className="relative aspect-video w-40">
+                  <Image
+                    fill
+                    src={form.getValues().content}
+                    className="object-cover"
+                    alt="post image"
+                  />
+                </div>
+              )}
+              {contentType === "VIDEO" && (
+                <div className="relative mx-auto aspect-video w-60">
+                  <video
+                    src={form.getValues().content}
+                    className="object-cover"
+                    controls
+                  />
+                </div>
+              )}
+              {contentType === "AUDIO" && (
+                <div className="relative mx-auto aspect-video w-60">
+                  <audio
+                    src={form.getValues().content}
+                    className="object-cover"
+                  />
+                </div>
+              )}
+            </>
+          )}
+        </div>
+        {contentType !== "TEXT" && (
+          <div className="py-4">
+            <p className="pb-2">Description (optional)</p>
+            {form.getValues().description ? (
+              <ReactMarkdown className="scroll-y-auto prose-headings:font-josefin prose h-full max-h-40 max-w-full overflow-y-auto break-words rounded-md bg-zinc-100 p-2.5 text-start text-zinc-800 prose-headings:font-semibold prose-headings:text-zinc-950 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                {form.getValues().description || ""}
+              </ReactMarkdown>
+            ) : (
+              <p className="text-zinc-400">Description was not added</p>
+            )}
           </div>
-        </FormItem>
-      )}
-    />
+        )}
+        <div className="py-4">
+          Tags
+          <div className="flex flex-wrap gap-2 pt-2">
+            {form.getValues().tags.map((tag, index) => (
+              <li
+                key={tag}
+                className={cn(
+                  "text-bold flex items-center justify-between gap-2 rounded-lg px-3 py-1 text-zinc-900",
+                  {
+                    "border border-rose-400 text-rose-400": index === 0,
+                    "border border-emerald-400 text-emerald-400": index === 1,
+                    "border border-amber-400 text-amber-400": index === 2,
+                    "border border-sky-400 text-sky-400": index === 3,
+                    "border border-pink-400 text-pink-400": index === 4,
+                  },
+                )}
+              >
+                {tag}
+              </li>
+            ))}
+          </div>
+        </div>
+      </div>
+    </ScrollArea>
   );
 
   return (
-    <div className="w-full max-w-screen-md px-4 text-center">
+    <div className="w-full max-w-screen-md px-4">
       <Form {...form}>
-        <form onSubmit={() => {}}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
           {step === STEPS.WELCOME && introScreen}
           {step === STEPS.TYPE && typeSelectionScreen}
           {step === STEPS.TITLE && titleScreen}
@@ -581,17 +658,29 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
           {step === STEPS.CONFIRM && confirmationScreen}
         </form>
       </Form>
-      {step > 0 && step < 6 && (
-        <div className="mx-auto w-full ">
-          <div className="mx-auto mt-12 flex w-32 items-center justify-between">
-            <Button
-              type="button"
-              onClick={onBack}
-              variant="link"
-              className="px-0 text-zinc-400 hover:scale-105 hover:text-zinc-200"
+      {step > 0 && (
+        <div
+          className={cn(
+            "mx-auto mt-12 flex w-32 items-center justify-between",
+            { "w-full max-w-[350px]": step === STEPS.CONFIRM },
+          )}
+        >
+          <Button
+            type="button"
+            onClick={onBack}
+            variant="link"
+            className="px-0 text-zinc-400 hover:scale-105 hover:text-zinc-200"
+          >
+            <ArrowLeft />
+          </Button>
+          {step === STEPS.CONFIRM ? (
+            <button
+              className="rounded-md bg-zinc-800 px-3 py-2 transition hover:bg-zinc-700"
+              onClick={form.handleSubmit(onSubmit)}
             >
-              <ArrowLeft />
-            </Button>
+              Submit Post
+            </button>
+          ) : (
             <Button
               type="button"
               onClick={onNext}
@@ -600,7 +689,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
             >
               <ArrowRight />
             </Button>
-          </div>
+          )}
         </div>
       )}
     </div>
