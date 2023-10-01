@@ -562,6 +562,27 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
           Title: <span className="font-bold">{form.getValues().title}</span>
         </p>
         <div className="py-4">
+          {contentType === "TEXT" && (
+            <>
+              <p className="pb-2">Content</p>
+              {form.getValues().content ? (
+                <ReactMarkdown className="scroll-y-auto prose-headings:font-josefin prose h-full max-h-40 max-w-full overflow-y-auto break-words rounded-md bg-zinc-100 p-2.5 text-start text-zinc-800 prose-headings:font-semibold prose-headings:text-zinc-950 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                  {form.getValues().description || ""}
+                </ReactMarkdown>
+              ) : (
+                <p className="text-zinc-400">
+                  No text to preview,{" "}
+                  <button
+                    onClick={() => setStep(3)}
+                    type="button"
+                    className="text-blue-400"
+                  >
+                    click here to get back to the content screen.
+                  </button>
+                </p>
+              )}
+            </>
+          )}
           {contentType !== "TEXT" && !form.getValues().content ? (
             <p>
               {contentType} not added yet,{" "}
