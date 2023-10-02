@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { FC, useState } from "react";
+import { toast } from "./ui/useToast";
 
 interface MultiSelectProps {
   options: string[];
@@ -21,8 +22,8 @@ const MultiSelect: FC<MultiSelectProps> = ({
     if (selectedOptions?.includes(option)) {
       onChange(selectedOptions.filter((val) => val !== option));
     } else {
-      if (selectedOptions.length >= 5) {
-        alert("You may only add up to 5 tags.");
+      if (selectedOptions.length >= 8) {
+        toast({title: "Up to 8 tags allowed."})
         return;
       }
       onChange([...selectedOptions, option]);

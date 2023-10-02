@@ -1,13 +1,20 @@
 import { dummyItems } from "@/lib/data";
 import { FC, Fragment } from "react";
 import CollageItem from "./CollageItem";
+import { db } from "@/lib/db";
 
 interface CollageProps {}
 
-const Collage: FC<CollageProps> = ({}) => {
+const Collage: FC<CollageProps> = async ({}) => {
+  const posts = await db.post.findMany();
+
+  if (posts) {
+    return <div className="w-full h-[92vh] grid place-items-center">Nothing to display</div>;
+  }
+
   return (
     <div className="grid grid-cols-2 items-center overflow-hidden bg-black sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-      {[...dummyItems, ...dummyItems, ...dummyItems].map((item, index) => (
+      {posts.map((item, index) => (
         <Fragment key={index}>
           <CollageItem key={index} item={item} />
         </Fragment>

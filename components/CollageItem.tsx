@@ -14,9 +14,9 @@ const CollageItem: FC<CollageItemProps> = ({ item }) => {
   return (
     <div
       onClick={() => onOpen("postModal", { post: item })}
-      className={`group relative aspect-square cursor-pointer overflow-hidden opacity-75 transition duration-500 hover:opacity-100`}
+      className={`group relative aspect-square cursor-pointer hover:brightness-125 overflow-hidden transition duration-500`}
     >
-      <div className="absolute left-0 top-20 z-10 h-12 w-[700px] translate-x-full rotate-45 bg-white/10 blur-xl transition duration-700 group-hover:-translate-x-full md:duration-500" />
+      <div className="absolute brightness-200 left-0 top-20 z-10 h-12 w-[700px] translate-x-full rotate-45 bg-white/10 blur-xl transition duration-700 group-hover:-translate-x-full md:duration-500" />
       <Image
         src={item.imageUrl}
         alt="collage item"

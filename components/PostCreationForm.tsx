@@ -1,8 +1,9 @@
 "use client";
 
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import axios from "axios";
 
 import { ArrowLeft, ArrowRight, RefreshCcw, X } from "lucide-react";
 import {
@@ -73,7 +74,7 @@ const formSchema = z.object({
     .string()
     .array()
     .min(1, { message: "At least one tag is required." })
-    .max(5, { message: "You can only choose up to 5 tags." }),
+    .max(8, { message: "You can only choose up to 8 tags." }),
 });
 
 const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
@@ -96,9 +97,6 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
   const isLoading = form.formState.isSubmitting;
   const contentType = form.watch("contentType");
   const tags = form.watch("tags");
-
-  console.log(form.formState.errors.tags);
-  console.log(tags);
 
   const onNext = () => {
     setStep((currentStep) => {
@@ -130,9 +128,16 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
   );
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    toast({
-      title: "hello",
-    });
+    try {
+      const response = await axios.post("/api/post", values);
+
+      console.log(response);
+
+      toast({ title: "success" });
+    } catch (error: any) {
+      toast({ title: "Something went wrong.", variant: "destructive" });
+      console.log(error);
+    }
   };
 
   let introScreen,
@@ -510,7 +515,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
               onChange={(values: string[]) => {
                 form.setValue("tags", values);
               }}
-              options={["helkljhjklo", "hi", "hey", "hola", "bola"]}
+              options={dummyTags}
               selectedOptions={tags}
             />
           </FormControl>
@@ -527,6 +532,9 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
                     "border-2 border-sky-500 text-sky-500": index === 2,
                     "border-2 border-amber-500 text-amber-500": index === 3,
                     "border-2 border-fuchsia-500 text-fuchsia-500": index === 4,
+                    "border-2 border-teal-400 text-teal-400": index === 5,
+                    "border-2 border-red-400 text-red-400": index === 6,
+                    "border-2 border-indigo-400 text-indigo-400": index === 7,
                   },
                 )}
               >
@@ -565,7 +573,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
   confirmationScreen = (
     <ScrollArea className="mx-auto flex h-[60vh] max-w-screen-sm flex-col justify-center space-y-4 overflow-y-auto">
       <div className="pb-4 text-xl text-zinc-300 md:text-2xl">
-        Confirm Submission
+        Review Submission
         <p className="text-left text-zinc-300 max-md:text-sm md:text-base">
           Please review your content one last time before submitting
         </p>
@@ -673,9 +681,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
           </div>
         )}
         <div className="py-4">
-          <p className={cn("pb-2", { "text-red-500": tags.length < 1 })}>
-            Tags
-          </p>
+          <p className={cn("pb-2", { "text-red-500": tags.length < 1 })}>Tag</p>
           {form.getValues().tags.length < 1 && (
             <p className="text-zinc-400">
               At least one tag is required,{" "}
@@ -695,11 +701,14 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
                 className={cn(
                   "text-bold flex items-center justify-between gap-2 rounded-lg px-3 py-1 text-zinc-900",
                   {
-                    "border border-rose-400 text-rose-400": index === 0,
-                    "border border-emerald-400 text-emerald-400": index === 1,
-                    "border border-amber-400 text-amber-400": index === 2,
-                    "border border-sky-400 text-sky-400": index === 3,
-                    "border border-pink-400 text-pink-400": index === 4,
+                    "border-2 border-rose-500 text-rose-500": index === 0,
+                    "border-2 border-lime-500 text-lime-500": index === 1,
+                    "border-2 border-sky-500 text-sky-500": index === 2,
+                    "border-2 border-amber-500 text-amber-500": index === 3,
+                    "border-2 border-fuchsia-500 text-fuchsia-500": index === 4,
+                    "border-2 border-teal-400 text-teal-400": index === 5,
+                    "border-2 border-red-400 text-red-400": index === 6,
+                    "border-2 border-indigo-400 text-indigo-400": index === 7,
                   },
                 )}
               >
@@ -744,6 +753,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
           </Button>
           {step === STEPS.CONFIRM ? (
             <button
+              disabled={isLoading}
               className="rounded-md bg-zinc-800 px-3 py-2 transition hover:bg-zinc-700"
               onClick={form.handleSubmit(onSubmit)}
             >
@@ -766,3 +776,57 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
 };
 
 export default PostCreationForm;
+
+const dummyTags = [
+  "art",
+  "photography",
+  "painting",
+  "digitalart",
+  "illustration",
+  "design",
+  "sculpture",
+  "crafts",
+  "drawing",
+  "animation",
+  "videography",
+  "shortfilm",
+  "documentary",
+  "music",
+  "audio",
+  "poetry",
+  "prose",
+  "writing",
+  "journal",
+  "diary",
+  "creative",
+  "visual",
+  "storytelling",
+  "experimental",
+  "abstract",
+  "nature",
+  "architecture",
+  "landscape",
+  "portrait",
+  "conceptual",
+  "urban",
+  "vintage",
+  "contemporary",
+  "minimalism",
+  "collage",
+  "mixedmedia",
+  "performance",
+  "installation",
+  "digitalmedia",
+  "webdesign",
+  "technology",
+  "fashion",
+  "craftsmanship",
+  "foodart",
+  "travel",
+  "adventure",
+  "inspiration",
+  "love",
+  "emotions",
+  "life",
+  "reflection",
+];
