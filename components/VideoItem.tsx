@@ -28,7 +28,7 @@ const VideoItem: FC<VideoItemProps> = ({ post, onClick }) => {
       className="group relative grid aspect-square w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800"
     >
       <div className="absolute left-0 top-20 z-10 h-12 w-[700px] translate-x-full rotate-45 bg-white/10 blur-xl brightness-200 transition duration-700 group-hover:-translate-x-full md:duration-500" />
-      <div className="absolute left-0 top-0 rounded-br-md bg-black px-2 py-0.5 text-xs text-zinc-100 sm:text-sm lg:text-base">
+      <div className="absolute left-0 top-0 rounded-br-md bg-black px-2 py-0.5 max-sm:text-xs text-zinc-100 sm:text-sm">
         Video
       </div>
       <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">

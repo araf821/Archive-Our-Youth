@@ -1,9 +1,10 @@
+import { Post, User } from "@prisma/client";
 import { create } from "zustand";
 
 export type ModalType = "postModal";
 
 interface ModalData {
-  post?: any;
+  post?: Post & { user: User };
 }
 
 interface ModalStoreProps {

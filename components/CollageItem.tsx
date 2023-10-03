@@ -32,19 +32,24 @@ const CollageItem: FC<CollageItemProps> = ({ post }) => {
       onClick={handleClick}
       className={`group relative aspect-square cursor-pointer overflow-hidden border border-zinc-800 transition duration-500 hover:brightness-125`}
     >
-      <div className="absolute left-0 top-0 z-10 rounded-br-md bg-black px-2 py-0.5 text-xs text-zinc-100 sm:text-sm lg:text-base">
+      <div className="absolute left-0 top-0 z-10 rounded-br-md bg-black px-2 py-0.5 text-zinc-100 max-sm:text-xs sm:text-sm">
         {post.contentType === "TEXT" ? "Written" : "Image"}
       </div>
       <div className="absolute left-0 top-20 z-10 h-12 w-[700px] translate-x-full rotate-45 bg-white/10 blur-xl brightness-200 transition duration-700 group-hover:-translate-x-full md:duration-500" />
       {post.contentType === "IMAGE" && (
         // <div className="flex flex-col gap-1">
         //   <div className="relative aspect-square w-[60%] mx-auto bg-pink-500">
-        <Image
-          src={post.postContent}
-          alt="collage item"
-          fill
-          className="object-cover"
-        />
+        <>
+          <Image
+            src={post.postContent}
+            alt="collage item"
+            fill
+            className="object-cover"
+          />
+          <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/50 px-1.5 py-0.5 text-zinc-200">
+            {post.user.name}
+          </span>
+        </>
         // </div>
         //  <p className="bg-pink-300 text-2xl text-white">hello</p>
         // </div>

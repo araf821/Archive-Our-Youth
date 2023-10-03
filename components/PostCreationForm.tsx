@@ -129,11 +129,11 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.post("/api/post", values);
-
-      console.log(response);
-
-      toast({ title: "success" });
+      await axios.post("/api/post", values);
+      toast({ title: "Your post has been published!" });
+      form.reset();
+      router.push("/");
+      router.refresh();
     } catch (error: any) {
       toast({ title: "Something went wrong.", variant: "destructive" });
       console.log(error);
@@ -636,11 +636,11 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
           ) : (
             <>
               {contentType === "IMAGE" && (
-                <div className="relative aspect-video w-40">
+                <div className="relative aspect-video w-full">
                   <Image
                     fill
                     src={form.getValues().content}
-                    className="object-cover"
+                    className="object-contain"
                     alt="post image"
                   />
                 </div>

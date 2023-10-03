@@ -10,8 +10,7 @@ export default async function MainLayout({
 
   return (
     <main className="relative mt-[8vh] flex flex-col">
-      
-        <Navbar user={user} />
+      <Navbar user={user} />
       {children}
     </main>
   );
