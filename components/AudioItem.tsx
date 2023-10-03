@@ -29,10 +29,11 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post }) => {
       <div className="absolute left-0 top-0 rounded-br-md bg-black px-2 py-0.5 text-xs text-zinc-100 sm:text-sm lg:text-base">
         Audio
       </div>
-      <div className="flex flex-col items-center justify-center gap-1 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
+      <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
         <Volume2 className="md:h-10 md:w-10" />
         <p className="text-lg md:text-2xl">{post.title}</p>
         <span className="text-sm">Click to Expand</span>
+        <span className="text-sm">{post.user.name}</span>
       </div>
 
       {/* {isHovered ? (

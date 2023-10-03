@@ -31,13 +31,11 @@ const VideoItem: FC<VideoItemProps> = ({ post, onClick }) => {
       <div className="absolute left-0 top-0 rounded-br-md bg-black px-2 py-0.5 text-xs text-zinc-100 sm:text-sm lg:text-base">
         Video
       </div>
-      <div className="flex flex-col items-center justify-center gap-1 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
+      <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
         <VideoIcon className="md:h-10 md:w-10" />
         <p className="text-lg md:text-2xl">{post.title}</p>
-        <div className="flex flex-col gap-0.5">
-          {/* <span className="text-sm">Hover for Preview</span> */}
-          <span className="text-sm">Click to Expand</span>
-        </div>
+        <span className="text-sm">Click to Expand</span>
+        <span className="text-sm">{post.user.name}</span>
       </div>
       {/* <AnimatePresence>
         {isHovered && (

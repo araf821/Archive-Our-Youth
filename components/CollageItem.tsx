@@ -6,6 +6,7 @@ import Image from "next/image";
 import { FC } from "react";
 import VideoItem from "./VideoItem";
 import AudioItem from "./AudioItem";
+import { Pen } from "lucide-react";
 
 interface CollageItemProps {
   post: Post & { user: User };
@@ -51,7 +52,12 @@ const CollageItem: FC<CollageItemProps> = ({ post }) => {
 
       {post.contentType === "TEXT" && (
         <div className="flex h-full w-full flex-col items-center justify-center gap-2 overflow-hidden p-2 text-zinc-100">
-          <p className="text-lg md:text-2xl">{post.title}</p>
+          <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
+            <Pen className="md:h-10 md:w-10" />
+            <p className="text-lg md:text-2xl">{post.title}</p>
+            <span className="text-sm">Click to Expand</span>
+            <span className="text-sm">{post.user.name}</span>
+          </div>
         </div>
       )}
     </div>
