@@ -11,7 +11,6 @@ interface ModalData {
 interface ModalStoreProps {
   type: ModalType | null;
   data: ModalData;
-  currentUser: User | null;
   isOpen: boolean;
   onOpen: (type: ModalType, data?: ModalData) => void;
   onClose: () => void;
@@ -20,7 +19,6 @@ interface ModalStoreProps {
 export const useModal = create<ModalStoreProps>((set) => ({
   type: null,
   data: {},
-  currentUser: null,
   isOpen: false,
   onOpen: (type, data = {}) => {
     set({ isOpen: true, type, data });

@@ -38,8 +38,6 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
       </div>
       <div className="absolute left-0 top-20 z-10 h-12 w-[700px] translate-x-full rotate-45 bg-white/10 blur-xl brightness-200 transition duration-700 group-hover:-translate-x-full md:duration-500" />
       {post.contentType === "IMAGE" && (
-        // <div className="flex flex-col gap-1">
-        //   <div className="relative aspect-square w-[60%] mx-auto bg-pink-500">
         <>
           <Image
             src={post.postContent}
@@ -51,9 +49,6 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
             {post.user.name}
           </span>
         </>
-        // </div>
-        //  <p className="bg-pink-300 text-2xl text-white">hello</p>
-        // </div>
       )}
 
       {post.contentType === "TEXT" && (

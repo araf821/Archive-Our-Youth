@@ -11,7 +11,7 @@ import Link from "next/link";
 import LikeButton from "../LikeButton";
 
 const PostModal = ({}) => {
-  const { onClose, data, type, isOpen, onOpen, currentUser } = useModal();
+  const { onClose, data, type, isOpen, onOpen } = useModal();
   const router = useRouter();
   const { post } = data;
   if (!post) {
@@ -66,7 +66,7 @@ const PostModal = ({}) => {
                 Jelly sweet roll jelly beans biscuit pie
               </p>
               <div className="flex gap-4">
-                <LikeButton postId={post.id} currentUser={currentUser} />
+                <LikeButton postId={post.id} likes={post.likes} currentUser={data.currentUser} />
                 <ShareButton link={`/post/${post.slug}`} />
               </div>
               <hr className="border-zinc-700" />
