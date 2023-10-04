@@ -1,18 +1,15 @@
 import { Dialog, DialogContent } from "../ui/Dialog";
 import { useModal } from "@/hooks/useModal";
-import Image from "next/image";
-import { ExternalLink, X } from "lucide-react";
 import DynamicImage from "../DynamicImage";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { dateFormat } from "@/lib/dateFormat";
-import ShareButton from "../ShareButton";
 import Link from "next/link";
 import LikeButton from "../LikeButton";
-import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const PostModal = ({}) => {
   const { onClose, data, type, isOpen } = useModal();
   const { post } = data;
+  const router = useRouter();
 
   if (!post) {
     return null;
@@ -23,26 +20,28 @@ const PostModal = ({}) => {
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <div className="px-4">
-        <DialogContent className="max-h-[80vh] max-w-screen-md border-none bg-transparent px-4 text-zinc-100 outline-none backdrop-blur-0">
-          <div className="h-full max-h-[80vh] w-full overflow-hidden overflow-y-auto rounded-sm bg-[#202020] px-4 py-2 pb-8 md:rounded-md md:p-6">
-            <div className="flex h-8 w-full items-center justify-between border-b-2 border-zinc-700">
-              <Link
+        <DialogContent className="max-h-[80vh] max-w-screen-md border-none bg-transparent px-4 text-zinc-100 outline-none">
+          <div className="h-full max-h-[80vh] w-full overflow-hidden overflow-y-auto rounded-sm bg-[#202020] px-4 py-4 pb-8 md:rounded-md md:p-6">
+            {/* <div className="flex h-8 w-full items-center justify-between"> */}
+            {/* <Link
                 href={`/post/${post.slug}`}
                 className="flex cursor-pointer items-center gap-2 text-sm text-zinc-400 transition duration-200 hover:text-zinc-200"
               >
                 Expand Post{" "}
                 <ExternalLink className="h-4 w-4 -translate-y-0.5" />
-              </Link>
-              <button onClick={onClose}>
+              </Link> */}
+            {/* <div className="flex">
+              <button className="ml-auto" onClick={onClose}>
                 <X className="h-5 w-5 cursor-pointer text-zinc-400 transition duration-200 hover:rotate-90 hover:text-zinc-200" />
               </button>
-            </div>
+            </div> */}
+            {/* </div> */}
             {post.contentType === "IMAGE" && (
               <DynamicImage src={post.postContent} />
             )}
 
             {post.contentType === "VIDEO" && (
-              <div className="relative mb-10 mt-4 aspect-video w-full overflow-hidden">
+              <div className="relative my-4 aspect-video w-full overflow-hidden">
                 <video
                   src={post.postContent}
                   className="h-full w-full"
@@ -52,7 +51,7 @@ const PostModal = ({}) => {
             )}
 
             {post.contentType === "AUDIO" && (
-              <div className="relative mb-10 mt-8 w-full overflow-hidden">
+              <div className="relative my-4 w-full overflow-hidden">
                 <audio
                   src={post.postContent}
                   controls
@@ -61,15 +60,53 @@ const PostModal = ({}) => {
               </div>
             )}
 
+            <div className="flex w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">
+              <LikeButton
+                postId={post.id}
+                likes={post.likes}
+                currentUser={data.currentUser}
+              />
+
+              {/* <div className="flex items-center gap-2 text-zinc-300 md:text-lg"> */}
+              {/* <div className="relative h-10 w-10 rounded-full">
+                  <Image
+                    src={post.user.imageUrl ?? ""}
+                    fill
+                    alt=""
+                    className="rounded-full object-cover"
+                  />
+                </div> */}
+              <p className="text-zinc-400">Posted by {post.user.name}</p>
+              {/* </div> */}
+            </div>
+
+            <p className="mt-2 break-words font-karla text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
+              {post.title}
+            </p>
+            <div className="mt-4 flex items-center justify-between">
+              <button
+                onClick={() => onClose()}
+                className="w-32 rounded-md bg-zinc-800 px-2.5 py-1.5 text-white transition hover:bg-zinc-700"
+              >
+                Back
+              </button>
+              <Link
+                href={`/post/${post.slug}`}
+                className="w-32 rounded-md bg-rose-600 px-2.5 py-1.5 text-center font-bold text-white transition duration-300 hover:bg-rose-700 hover:shadow-[0_0_15px_8px] hover:shadow-red-500/10"
+              >
+                View Post
+              </Link>
+            </div>
+
             {/* Post info */}
-            <div className="mt-4 flex flex-col gap-4">
-              <span className="-mb-3 w-fit rounded-md bg-zinc-700 px-1.5 py-0.5 text-sm text-zinc-300">
+            {/* <div className="mt-4 flex flex-col gap-4"> */}
+            {/* <span className="-mb-3 w-fit rounded-md bg-zinc-700 px-1.5 py-0.5 text-sm text-zinc-300">
                 {dateFormat(new Date(post.createdAt).toISOString())}
-              </span>
-              <p className="break-words font-karla text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
+              </span> */}
+            {/* <p className="break-words font-karla text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
                 {post.title}
-              </p>
-              <ul className="flex flex-wrap gap-2 pt-2">
+              </p> */}
+            {/* <ul className="flex flex-wrap gap-2 pt-2">
                 {post.tags.map((tag, index) => (
                   <li
                     key={tag}
@@ -92,16 +129,16 @@ const PostModal = ({}) => {
                     {tag}
                   </li>
                 ))}
-              </ul>
-              <div className="flex gap-4">
+              </ul> */}
+            {/* <div className="flex gap-4">
                 <LikeButton
                   postId={post.id}
                   likes={post.likes}
                   currentUser={data.currentUser}
                 />
                 <ShareButton link={`/post/${post.slug}`} />
-              </div>
-              <hr className="border-zinc-700" />
+              </div> */}
+            {/* <hr className="border-zinc-700" />
               <div className="flex items-center gap-2 text-zinc-300 md:text-lg">
                 <div className="relative h-10 w-10 rounded-full">
                   <Image
@@ -132,7 +169,7 @@ const PostModal = ({}) => {
                 <hr className="border-zinc-700" />
               </div>
               {/* Comment Section */}
-              <div className="text-zinc-400 md:text-lg">
+            {/* <div className="text-zinc-400 md:text-lg">
                 View more posts from{" "}
                 <Link
                   href={`/users/${post.userId}`}
@@ -146,8 +183,8 @@ const PostModal = ({}) => {
 
               <div className="font-bold md:text-lg">
                 Comments <span className="text-zinc-400">[Coming Soon]</span>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
           </div>
         </DialogContent>
       </div>
