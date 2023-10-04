@@ -10,13 +10,14 @@ import { Pen } from "lucide-react";
 
 interface CollageItemProps {
   post: Post & { user: User };
+  currentUser: User | null;
 }
 
-const CollageItem: FC<CollageItemProps> = ({ post }) => {
+const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
   const { onOpen } = useModal();
 
   const handleClick = () => {
-    onOpen("postModal", { post });
+    onOpen("postModal", { post, currentUser });
   };
 
   if (post.contentType === "VIDEO") {

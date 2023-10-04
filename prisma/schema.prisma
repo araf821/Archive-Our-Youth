@@ -32,7 +32,8 @@ model User {
   updatedAt DateTime @updatedAt
   role      UserType @default(MEMBER)
 
-  posts Post[]
+  likedPosts String[]
+  posts      Post[]
 
   likedPostIds String[] @db.ObjectId
 }

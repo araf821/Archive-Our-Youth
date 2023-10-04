@@ -72,6 +72,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    color-scheme: dark;
   }
 }
 
@@ -81,7 +82,7 @@
 }
 
 audio::-webkit-media-controls-panel {
-  @apply bg-gradient-to-br rounded-sm from-rose-600 to-orange-600;
+  @apply rounded-sm bg-gradient-to-br from-rose-600 to-orange-600;
 }
 
 audio::-webkit-media-controls-play-button {
