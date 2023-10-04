@@ -82,7 +82,7 @@
 }
 
 audio::-webkit-media-controls-panel {
-  @apply rounded-sm bg-gradient-to-br from-rose-600 to-orange-600;
+  @apply bg-gradient-to-br from-rose-700 outline outline-rose-800 -outline-offset-2 rounded-full to-orange-500;
 }
 
 audio::-webkit-media-controls-play-button {

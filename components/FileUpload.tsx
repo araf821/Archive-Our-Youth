@@ -41,11 +41,11 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
 
     if (endPoint === "video") {
       return (
-        <div className="aspect-video relative w-full">
+        <div className="aspect-video max-h-[40vh] relative w-full">
           <video
             src={value}
             controls
-            className="h-full w-full rounded-sm"
+            className="h-full w-full object-contain rounded-sm"
           />
           <button
             onClick={() => onChange("")}
@@ -65,7 +65,7 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
           <button
             onClick={() => onChange("")}
             type="button"
-            className="rounded-md max-md:text-sm px-3 py-2 md:text-base text-zinc-300 transition hover:bg-zinc-800"
+            className="rounded-md max-md:text-sm px-3 py-2 md:text-base text-zinc-300 transition hover:bg-zinc-700 bg-zinc-800"
           >
             Remove selected audio
           </button>

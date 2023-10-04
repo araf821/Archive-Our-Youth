@@ -42,7 +42,6 @@ const LikeButton: FC<LikeButtonProps> = ({
       const response = await axios.put(`/api/post/${postId}/like`);
 
       onOpen("postModal", { post: response.data, currentUser });
-      router.refresh();
     } catch (error) {
       setLiked((liked) => !liked);
       toast({ title: "Something went wrong." });
@@ -56,11 +55,11 @@ const LikeButton: FC<LikeButtonProps> = ({
     <button
       disabled={isLoading}
       onClick={handleClick}
-      className="flex items-center gap-1.5 text-zinc-400 transition hover:text-zinc-100"
+      className="flex items-center gap-1.5 text-zinc-400 transition hover:text-zinc-100 disabled:cursor-not-allowed disabled:opacity-75"
     >
       <Heart
         className={cn("h-5 w-5", {
-          "fill-red-600": liked,
+          "fill-rose-500 text-rose-500": liked,
         })}
       />{" "}
       {likes} Likes

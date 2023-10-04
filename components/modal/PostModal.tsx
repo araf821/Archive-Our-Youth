@@ -1,19 +1,19 @@
-import { useRouter } from "next/navigation";
 import { Dialog, DialogContent } from "../ui/Dialog";
 import { useModal } from "@/hooks/useModal";
 import Image from "next/image";
-import { ExternalLink, Heart, X } from "lucide-react";
+import { ExternalLink, X } from "lucide-react";
 import DynamicImage from "../DynamicImage";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { dateFormat } from "@/lib/dateFormat";
 import ShareButton from "../ShareButton";
 import Link from "next/link";
 import LikeButton from "../LikeButton";
+import { cn } from "@/lib/utils";
 
 const PostModal = ({}) => {
-  const { onClose, data, type, isOpen, onOpen } = useModal();
-  const router = useRouter();
+  const { onClose, data, type, isOpen } = useModal();
   const { post } = data;
+
   if (!post) {
     return null;
   }
@@ -23,7 +23,7 @@ const PostModal = ({}) => {
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <div className="px-4">
-        <DialogContent className="max-h-[80vh] max-w-screen-md bg-transparent px-4 text-zinc-100 outline-none">
+        <DialogContent className="max-h-[80vh] max-w-screen-md border-none bg-transparent px-4 text-zinc-100 outline-none backdrop-blur-0">
           <div className="h-full max-h-[80vh] w-full overflow-hidden overflow-y-auto rounded-sm bg-[#202020] px-4 py-2 pb-8 md:rounded-md md:p-6">
             <div className="flex h-8 w-full items-center justify-between border-b-2 border-zinc-700">
               <Link
@@ -43,7 +43,11 @@ const PostModal = ({}) => {
 
             {post.contentType === "VIDEO" && (
               <div className="relative mb-10 mt-4 aspect-video w-full overflow-hidden">
-                <video src={post.postContent} className="w-full" controls />
+                <video
+                  src={post.postContent}
+                  className="h-full w-full"
+                  controls
+                />
               </div>
             )}
 
@@ -60,13 +64,41 @@ const PostModal = ({}) => {
             {/* Post info */}
             <div className="mt-4 flex flex-col gap-4">
               <span className="-mb-3 w-fit rounded-md bg-zinc-700 px-1.5 py-0.5 text-sm text-zinc-300">
-                {dateFormat(post.createdAt.toISOString())}
+                {dateFormat(new Date(post.createdAt).toISOString())}
               </span>
-              <p className="font-karla break-words text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
-                Jelly sweet roll jelly beans biscuit pie
+              <p className="break-words font-karla text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
+                {post.title}
               </p>
+              <ul className="flex flex-wrap gap-2 pt-2">
+                {post.tags.map((tag, index) => (
+                  <li
+                    key={tag}
+                    className={cn(
+                      "text-bold flex items-center justify-between gap-2 rounded-lg px-3 py-1 text-zinc-900",
+                      {
+                        "border-2 border-rose-500 text-rose-500": index === 0,
+                        "border-2 border-lime-500 text-lime-500": index === 1,
+                        "border-2 border-sky-500 text-sky-500": index === 2,
+                        "border-2 border-amber-500 text-amber-500": index === 3,
+                        "border-2 border-fuchsia-500 text-fuchsia-500":
+                          index === 4,
+                        "border-2 border-teal-400 text-teal-400": index === 5,
+                        "border-2 border-red-400 text-red-400": index === 6,
+                        "border-2 border-indigo-400 text-indigo-400":
+                          index === 7,
+                      },
+                    )}
+                  >
+                    {tag}
+                  </li>
+                ))}
+              </ul>
               <div className="flex gap-4">
-                <LikeButton postId={post.id} likes={post.likes} currentUser={data.currentUser} />
+                <LikeButton
+                  postId={post.id}
+                  likes={post.likes}
+                  currentUser={data.currentUser}
+                />
                 <ShareButton link={`/post/${post.slug}`} />
               </div>
               <hr className="border-zinc-700" />
@@ -97,6 +129,23 @@ const PostModal = ({}) => {
                     ? post.postContent
                     : post.description}
                 </ReactMarkdown>
+                <hr className="border-zinc-700" />
+              </div>
+              {/* Comment Section */}
+              <div className="text-zinc-400 md:text-lg">
+                View more posts from{" "}
+                <Link
+                  href={`/users/${post.userId}`}
+                  className="font-bold text-rose-400"
+                >
+                  {post.user.name}
+                </Link>
+              </div>
+
+              <hr className="border-zinc-700" />
+
+              <div className="font-bold md:text-lg">
+                Comments <span className="text-zinc-400">[Coming Soon]</span>
               </div>
             </div>
           </div>
