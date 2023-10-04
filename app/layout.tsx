@@ -1,12 +1,18 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Nunito } from "next/font/google";
+import { Karla, Nunito } from "next/font/google";
 
 import ModalProvider from "@/components/modal/ModalProvider";
 import { Toaster } from "@/components/ui/Toaster";
 
 const nunito = Nunito({ subsets: ["latin"] });
+
+const karla = Karla({
+  subsets: ["latin"],
+  weight: ["200", "400", "600", "800"],
+  variable: "--font-karla",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +27,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={nunito.className}>
+        <body className={`${nunito.className} ${karla.variable}`}>
           <Toaster />
           <ModalProvider />
           {children}

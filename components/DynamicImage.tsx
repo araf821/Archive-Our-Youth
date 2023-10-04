@@ -12,7 +12,7 @@ const DynamicImage: FC<DynamicImageProps> = ({ src }) => {
   const [contained, setContained] = useState(false);
 
   return (
-    <div className="relative mt-4 aspect-[4/3] overflow-hidden">
+    <div className="relative mt-4 mb-10 aspect-[4/3] overflow-hidden">
       <Image
         fill
         src={src}

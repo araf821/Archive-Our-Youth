@@ -21,7 +21,7 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post }) => {
   return (
     <div
       onClick={onClick}
-      className="group relative grid h-full aspect-square w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800 bg-zinc-900"
+      className="group relative grid aspect-square h-full w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800 bg-zinc-900"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -31,7 +31,17 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post }) => {
       </div>
       <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
         <Volume2 className="md:h-10 md:w-10" />
-        <p className="text-lg md:text-2xl">{post.title}</p>
+        <p className="text-lg md:text-2xl lg:hidden">
+          {post.title.length > 24
+            ? post.title.slice(0, 24) + "..."
+            : post.title}
+        </p>{" "}
+
+        <p className="text-lg max-lg:hidden lg:block md:text-2xl">
+          {post.title.length > 50
+            ? post.title.slice(0, 50) + "..."
+            : post.title}
+        </p>{" "}
         <span className="text-sm">Click to Expand</span>
         <span className="text-sm">{post.user.name}</span>
       </div>

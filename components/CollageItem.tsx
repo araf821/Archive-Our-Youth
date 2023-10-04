@@ -59,7 +59,16 @@ const CollageItem: FC<CollageItemProps> = ({ post }) => {
         <div className="flex h-full w-full flex-col items-center justify-center gap-2 overflow-hidden p-2 text-zinc-100">
           <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
             <Pen className="md:h-10 md:w-10" />
-            <p className="text-lg md:text-2xl">{post.title}</p>
+            <p className="text-lg md:text-2xl lg:hidden">
+              {post.title.length > 24
+                ? post.title.slice(0, 24) + "..."
+                : post.title}
+            </p>{" "}
+            <p className="text-lg max-lg:hidden md:text-2xl lg:block">
+              {post.title.length > 50
+                ? post.title.slice(0, 50) + "..."
+                : post.title}
+            </p>{" "}
             <span className="text-sm">Click to Expand</span>
             <span className="text-sm">{post.user.name}</span>
           </div>

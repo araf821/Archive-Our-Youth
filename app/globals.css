@@ -80,8 +80,16 @@
   filter: blur(1em);
 }
 
+audio::-webkit-media-controls-panel {
+  @apply bg-gradient-to-br rounded-sm from-rose-600 to-orange-600;
+}
+
+audio::-webkit-media-controls-play-button {
+  @apply rounded-full fill-white transition hover:bg-red-700;
+}
+
 .moving-bg {
-  background: linear-gradient(-45deg, orange, #000, red);
+  background: linear-gradient(-45deg, orange, #27272a, red);
   background-size: 600% 600%;
   animation: gradient 10s ease infinite;
 }
