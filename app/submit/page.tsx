@@ -3,6 +3,12 @@ import { buttonVariants } from "@/components/ui/Button";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Submission Portal | Digital Collage",
+  description:
+    "Submit your work to have displayed inside of a collage viewed by millions of people!",
+};
+
 const SubmitPage = async () => {
   const currentUser = await getCurrentUser();
 

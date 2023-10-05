@@ -11,6 +11,10 @@ interface SinglePostPage {
   };
 }
 
+export const metadata = {
+  title: "Post Page | Digital Collage",
+};
+
 const page: FC<SinglePostPage> = async ({ params }) => {
   const post = await db.post.findFirst({
     where: {

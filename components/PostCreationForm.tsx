@@ -132,7 +132,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
       await axios.post("/api/post", values);
       toast({ title: "Your post has been published!" });
       form.reset();
-      router.push("/");
+      router.push("/collage");
       router.refresh();
     } catch (error: any) {
       toast({ title: "Something went wrong.", variant: "destructive" });
@@ -588,7 +588,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
           <p className="pb-2">Title</p>
           <span className="font-bold">
             {form.getValues().title || (
-              <p className="font-normal text-zinc-400">
+              <p className="font-normal normal-case text-zinc-400">
                 Title is missing,{" "}
                 <button
                   onClick={() => setStep(STEPS.TITLE)}
@@ -624,7 +624,8 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
           )}
           {contentType !== "TEXT" && !form.getValues().content ? (
             <p className="text-zinc-400">
-              {contentType} not added yet,{" "}
+              <span className="capitalize">{contentType.toLowerCase()}</span>{" "}
+              not added yet,{" "}
               <button
                 type="button"
                 onClick={() => setStep(STEPS.CONTENT)}
