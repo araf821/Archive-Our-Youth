@@ -41,7 +41,9 @@ const PostModal = ({}) => {
             </div> */}
             {/* </div> */}
             {post.contentType === "IMAGE" && (
-              <DynamicImage src={post.postContent} />
+              <div className="mx-auto max-w-[500px]">
+                <DynamicImage src={post.postContent} />
+              </div>
             )}
 
             {post.contentType === "VIDEO" && (
@@ -93,7 +95,7 @@ const PostModal = ({}) => {
                 onClick={() => onClose()}
                 className="w-32 rounded-md bg-zinc-800 px-2.5 py-1.5 text-white transition hover:bg-zinc-700"
               >
-                Back
+                Close
               </button>
               <Link
                 href={`/post/${post.slug}`}

@@ -30,7 +30,6 @@ const LikeButton: FC<LikeButtonProps> = ({
   const [liked, setLiked] = useState(
     currentUser?.likedPostIds.includes(postId) ? true : false,
   );
-  console.log(currentUser?.likedPostIds);
 
   const handleClick = async () => {
     if (!currentUser) {

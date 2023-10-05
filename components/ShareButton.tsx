@@ -13,7 +13,7 @@ const ShareButton: FC<ShareButtonProps> = ({}) => {
   const handleClick = () => {};
 
   return (
-    <button className="flex items-center gap-1.5 text-zinc-400">
+    <button className="flex items-center gap-1 text-emerald-500">
       {clicked ? null : (
         <>
           <Share className="h-5 w-5" /> Share

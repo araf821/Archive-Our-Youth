@@ -32,7 +32,7 @@ const VideoItem: FC<VideoItemProps> = ({ post, onClick }) => {
         Video
       </div>
       <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
-        <VideoIcon className="md:h-10 md:w-10" />
+        <VideoIcon className="md:h-10 md:w-10 transition fill-rose-400 group-hover:fill-rose-500 text-rose-400 group-hover:text-rose-500" />
         <p className="text-lg md:text-2xl lg:hidden">
           {post.title.length > 24
             ? post.title.slice(0, 24) + "..."

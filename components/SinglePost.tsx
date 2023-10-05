@@ -7,6 +7,8 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { cn } from "@/lib/utils";
 import LikeButton from "./LikeButton";
 import ShareButton from "./ShareButton";
+import Link from "next/link";
+import { buttonVariants } from "./ui/Button";
 
 interface SinglePostProps {
   currentUser: User | null;
@@ -15,7 +17,16 @@ interface SinglePostProps {
 
 const SinglePost: FC<SinglePostProps> = ({ post }) => {
   return (
-    <section className="my-8 flex flex-col gap-6">
+    <section className="my-8 flex flex-col gap-6 px-4">
+      <Link
+        href="/collage"
+        className={buttonVariants({
+          className: "w-32 bg-zinc-800 hover:bg-zinc-700",
+        })}
+      >
+        Back
+      </Link>
+
       {post.contentType === "IMAGE" && <DynamicImage src={post.postContent} />}
 
       {post.contentType === "VIDEO" && (
@@ -108,12 +119,18 @@ const SinglePost: FC<SinglePostProps> = ({ post }) => {
               DESCRIPTION
             </p>
           )}
-          <ReactMarkdown className="prose-headings:font-josefin prose mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-100 p-2.5 text-start text-zinc-800 prose-headings:font-semibold prose-headings:text-zinc-950 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+          <ReactMarkdown className="prose-headings:font-josefin prose mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
             {post.contentType === "TEXT" ? post.postContent : post.description}
           </ReactMarkdown>
           <hr className="border-zinc-700" />
         </div>
       </div>
+
+      {/* Comments */}
+      <section className="flex flex-col gap-2">
+        <p className="text-zinc-100 md:text-lg">Comments</p>
+        <p className="text-zinc-400">Coming Soon</p>
+      </section>
     </section>
   );
 };

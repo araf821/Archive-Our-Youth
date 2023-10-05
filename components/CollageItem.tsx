@@ -54,7 +54,7 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
       {post.contentType === "TEXT" && (
         <div className="flex h-full w-full flex-col items-center justify-center gap-2 overflow-hidden p-2 text-zinc-100">
           <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
-            <Pen className="md:h-10 md:w-10" />
+            <Pen className="fill-blue-400 text-blue-400 transition group-hover:fill-blue-500 group-hover:text-blue-500 md:h-10 md:w-10" />
             <p className="text-lg md:text-2xl lg:hidden">
               {post.title.length > 24
                 ? post.title.slice(0, 24) + "..."

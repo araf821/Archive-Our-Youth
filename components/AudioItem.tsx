@@ -30,7 +30,7 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post }) => {
         Audio
       </div>
       <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
-        <Volume2 className="md:h-10 md:w-10" />
+        <Volume2 className="md:h-10 md:w-10 transition fill-lime-400 group-hover:fill-lime-500 text-lime-400 group-hover:text-lime-500" />
         <p className="text-lg md:text-2xl lg:hidden">
           {post.title.length > 24
             ? post.title.slice(0, 24) + "..."

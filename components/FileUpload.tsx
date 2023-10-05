@@ -14,10 +14,6 @@ interface FileUploadProps {
 }
 
 const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
-  const fileType = value?.split(".").pop();
-
-  console.log("FILE UPLOAD PROPS:\n\n\n", endPoint, value);
-
   if (value) {
     if (endPoint === "image") {
       return (

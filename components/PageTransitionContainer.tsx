@@ -10,12 +10,12 @@ interface PageTransitionContainerProps {
 const PageTransitionContainer: FC<PageTransitionContainerProps> = ({ children }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
+      initial={{ opacity: 0, scale: 0.3 }}
       whileInView={{
         opacity: 1,
         y: 0,
         scale: 1,
-        transition: { duration: 0.5 },
+        transition: { duration: 0.3 },
       }}
     >
       {children}
