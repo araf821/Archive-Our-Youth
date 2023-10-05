@@ -6,6 +6,8 @@ import Search from "./Search";
 import { User } from "@prisma/client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useFilters } from "@/hooks/useFilters";
+import { usePathname } from "next/navigation";
 
 interface NavbarProps {
   user: User | null;
@@ -14,6 +16,9 @@ interface NavbarProps {
 const Navbar = ({ user }: NavbarProps) => {
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>(true);
+  const { isOpen, onOpen, onClose } = useFilters();
+  const pathname = usePathname();
+  console.log(pathname);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -48,7 +53,7 @@ const Navbar = ({ user }: NavbarProps) => {
   return (
     <div
       className={cn(
-        "fixed top-0 z-50 h-[8vh] w-full -translate-y-full bg-zinc-900 transition duration-300 hover:opacity-100 border-b border-zinc-800",
+        "fixed top-0 z-50 h-[8vh] w-full -translate-y-full border-b border-zinc-800 bg-zinc-900 transition duration-300 hover:opacity-100",
         {
           "translate-y-0": visible,
         },
@@ -62,7 +67,19 @@ const Navbar = ({ user }: NavbarProps) => {
           Digital Collage
         </Link>
 
-        <Search />
+        <div className="hidden items-center gap-4 text-zinc-50 md:flex">
+          {/* <Search /> */}
+          {pathname === "/collage" && (
+            <button
+              onClick={() => {
+                if (isOpen) onClose();
+                else onOpen();
+              }}
+            >
+              Filters
+            </button>
+          )}
+        </div>
 
         <div className="max-md:hidden md:flex md:items-center md:gap-x-6">
           {/* <UserButton afterSignOutUrl="/" /> */}
