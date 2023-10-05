@@ -7,9 +7,11 @@ interface FiltersProps {}
 const filterVariants = {
   hidden: {
     height: 0,
+    opacity: 0,
   },
   visible: {
     height: "auto",
+    opacity: 1,
     transition: { duration: 0.2 },
   },
 };
@@ -19,6 +21,7 @@ const Filters: FC<FiltersProps> = ({}) => {
 
   return (
     <motion.section
+      initial={{ height: 0 }}
       variants={filterVariants}
       animate={isOpen ? "visible" : "hidden"}
       className="text-3xl text-white"
