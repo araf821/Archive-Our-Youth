@@ -9,13 +9,13 @@ const SubmitPage = async () => {
   return (
     <div className="relative grid h-screen place-items-center bg-zinc-900 text-white">
       <Link
-        href="/"
+        href="/collage"
         className={buttonVariants({
           className:
             "fixed left-5 top-5 bg-zinc-800 hover:bg-zinc-700 md:left-12 md:top-12 xl:left-32",
         })}
       >
-        Back to Home
+        Back
       </Link>
 
       <PostCreationForm currentUser={currentUser} />

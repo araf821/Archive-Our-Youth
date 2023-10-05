@@ -3,13 +3,17 @@ import { useModal } from "@/hooks/useModal";
 import DynamicImage from "../DynamicImage";
 import Link from "next/link";
 import LikeButton from "../LikeButton";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 const PostModal = ({}) => {
   const { onClose, data, type, isOpen } = useModal();
   const { post } = data;
-  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    onClose();
+  }, [pathname, onClose]);
 
   if (!post) {
     return null;
@@ -65,6 +69,7 @@ const PostModal = ({}) => {
                 postId={post.id}
                 likes={post.likes}
                 currentUser={data.currentUser}
+                modal={true}
               />
 
               {/* <div className="flex items-center gap-2 text-zinc-300 md:text-lg"> */}

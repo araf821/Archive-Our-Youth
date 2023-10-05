@@ -1,3 +1,5 @@
+"use client";
+
 import { Share } from "lucide-react";
 import { FC, useState } from "react";
 

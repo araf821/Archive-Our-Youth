@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { User } from "@prisma/client";
 import { Heart } from "lucide-react";
@@ -11,9 +13,11 @@ interface LikeButtonProps {
   postId: string;
   likes: number;
   currentUser: User | null | undefined;
+  modal?: boolean;
 }
 
 const LikeButton: FC<LikeButtonProps> = ({
+  modal,
   currentUser,
   postId,
   likes = 0,
@@ -41,7 +45,12 @@ const LikeButton: FC<LikeButtonProps> = ({
       setIsLoading(true);
       const response = await axios.put(`/api/post/${postId}/like`);
 
-      onOpen("postModal", { post: response.data, currentUser });
+      if (modal) {
+        router.refresh();
+        onOpen("postModal", { post: response.data, currentUser });
+      } else {
+        router.refresh();
+      }
     } catch (error) {
       setLiked((liked) => !liked);
       toast({ title: "Something went wrong." });

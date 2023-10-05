@@ -48,7 +48,7 @@ const Navbar = ({ user }: NavbarProps) => {
   return (
     <div
       className={cn(
-        "fixed top-0 z-50 h-[8vh] w-full -translate-y-full bg-zinc-900 transition duration-300 hover:opacity-100",
+        "fixed top-0 z-50 h-[8vh] w-full -translate-y-full bg-zinc-900 transition duration-300 hover:opacity-100 border-b border-zinc-800",
         {
           "translate-y-0": visible,
         },
