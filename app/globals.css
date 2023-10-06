@@ -82,7 +82,7 @@
 }
 
 audio::-webkit-media-controls-panel {
-  @apply bg-gradient-to-br from-rose-700 outline outline-rose-800 -outline-offset-2 rounded-full to-orange-500;
+  @apply rounded-full bg-gradient-to-br from-rose-700 to-orange-500 outline -outline-offset-2 outline-rose-800;
 }
 
 audio::-webkit-media-controls-play-button {
@@ -126,4 +126,33 @@ audio::-webkit-media-controls-play-button {
 ::-webkit-scrollbar-thumb:hover {
   background: #0c0c0c;
   /* background: linear-gradient(#b92341, rgba(0, 0, 0, 0.1), #3767c7); */
+}
+
+/* loader */
+.loader {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.loader:before,
+.loader:after {
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3) inset;
+}
+.loader:after {
+  box-shadow: 0 2px 0 #ff3d00 inset;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

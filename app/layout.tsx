@@ -1,5 +1,4 @@
 import "./globals.css";
-import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Karla, Nunito } from "next/font/google";
 
@@ -28,7 +27,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${nunito.className} ${karla.variable}`}>
+        <body className={`${nunito.className} bg-zinc-900 ${karla.variable}`}>
           <Toaster />
           <ModalProvider />
           {children}

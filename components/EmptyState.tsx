@@ -27,7 +27,7 @@ const EmptyState: FC<EmptyStateProps> = ({
         classNames,
       )}
     >
-      <div className="m-4 flex max-w-screen-sm flex-col gap-4 rounded-md border-2 border-zinc-800 px-4 py-8">
+      <div className="m-4 flex w-full max-w-screen-sm flex-col gap-4 rounded-md border-2 border-zinc-800 px-4 py-8">
         <p className="text-4xl font-bold text-white">{title}</p>
         <p className="text-lg font-light text-zinc-400">{description}</p>
         {link && (
