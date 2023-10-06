@@ -150,7 +150,7 @@ const Navbar = ({ user }: NavbarProps) => {
           >
             Submit
           </Link>
-          {user && <UserButton afterSignOutUrl="/" />}
+          {user && <UserButton afterSignOutUrl="/collage" />}
         </div>
 
         {/* Mobile Menu */}
