@@ -9,6 +9,7 @@ import LikeButton from "./LikeButton";
 import ShareButton from "./ShareButton";
 import Link from "next/link";
 import { buttonVariants } from "./ui/Button";
+import BackButton from "./BackButton";
 
 interface SinglePostProps {
   currentUser: User | null;
@@ -18,14 +19,7 @@ interface SinglePostProps {
 const SinglePost: FC<SinglePostProps> = ({ post }) => {
   return (
     <section className="my-8 flex flex-col gap-6 px-4">
-      <Link
-        href="/collage"
-        className={buttonVariants({
-          className: "w-32 bg-zinc-800 hover:bg-zinc-700",
-        })}
-      >
-        Back
-      </Link>
+      <BackButton />
 
       {post.contentType === "IMAGE" && <DynamicImage src={post.postContent} />}
 
