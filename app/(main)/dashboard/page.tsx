@@ -1,20 +1,8 @@
-import Tag from "@/components/Tag";
-import DashboardPostInfo from "@/components/post/DashboardPostInfo";
+import UserPostsSection from "@/components/post/UserPostsSection";
 import { dateFormat } from "@/lib/dateFormat";
 import { db } from "@/lib/db";
-import { cn } from "@/lib/utils";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
-import { Post } from "@prisma/client";
-import {
-  ArrowRight,
-  ImageIcon,
-  Pen,
-  Trash,
-  VideoIcon,
-  Volume2Icon,
-} from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 const DashboardPage = async () => {
   const { userId } = auth();
@@ -23,16 +11,14 @@ const DashboardPage = async () => {
     return redirectToSignIn();
   }
 
-  console.log(userId);
-
   const currentUser = await db.user.findUnique({
     where: {
       userId,
     },
     include: {
-      posts: {
-        orderBy: {
-          createdAt: "desc",
+      _count: {
+        select: {
+          posts: true,
         },
       },
     },
@@ -47,9 +33,7 @@ const DashboardPage = async () => {
       {/* Header */}
       <div className="flex flex-col gap-2">
         <p className="text-4xl font-semibold md:text-5xl">Dashboard</p>
-        <p className="text-zinc-400 max-md:text-sm">
-          Manage your posts and make changes to your profile
-        </p>
+        <p className="text-zinc-400 max-md:text-sm">Manage your posts</p>
         <hr className="border-zinc-800" />
       </div>
 
@@ -70,10 +54,11 @@ const DashboardPage = async () => {
             Member Since:{" "}
             {dateFormat(new Date(currentUser.createdAt).toISOString())}
           </p>
-          <p className="text-zinc-400">Posts: {currentUser.posts.length}</p>
+          <p className="text-zinc-400">Posts: {currentUser._count.posts}</p>
         </div>
       </div>
-      <div className="flex flex-col gap-2 pt-8">
+      <UserPostsSection userId={currentUser.id} />
+      {/* <div className="flex flex-col gap-2 pt-8">
         <p className="text-2xl md:text-3xl">Your Posts</p>
         <hr className="border-zinc-800" />
       </div>
@@ -135,11 +120,11 @@ const DashboardPage = async () => {
 
                 {post.contentType === "AUDIO" && (
                   <>
-                    <div className="relative my-2">
+                    <div className="relative m-2">
                       <audio
                         src={post.postContent}
                         controls
-                        className="w-full py-0.5"
+                        className="w-full"
                       />
                     </div>
                     <DashboardPostInfo post={post} />
@@ -162,7 +147,7 @@ const DashboardPage = async () => {
             </div>
           ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
