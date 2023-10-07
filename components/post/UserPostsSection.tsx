@@ -12,6 +12,9 @@ const UserPostsSection: FC<UserPostsSectionProps> = async ({ userId }) => {
     where: {
       userId,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   return (

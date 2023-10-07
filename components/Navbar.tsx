@@ -19,7 +19,6 @@ const Navbar = ({ user }: NavbarProps) => {
   const [visible, setVisible] = useState<boolean>(true);
   const { isOpen, onOpen, onClose } = useFilters();
   const pathname = usePathname();
-  console.log(pathname);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;

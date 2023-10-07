@@ -1,16 +1,39 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { Post } from "@prisma/client";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useState } from "react";
 import DashboardPostInfo from "./DashboardPostInfo";
 import { ArrowRight, Trash } from "lucide-react";
 import Link from "next/link";
+import axios from "axios";
+import { useToast } from "../ui/useToast";
+import { useRouter } from "next/navigation";
 
 interface UserPostProps {
   post: Post;
 }
 
 const UserPost: FC<UserPostProps> = ({ post }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+  const router = useRouter();
+
+  const handleDelete = async () => {
+    setIsLoading(true);
+
+    try {
+      await axios.delete(`/api/post/${post.id}`);
+      toast({ title: "Post deleted" });
+      router.refresh();
+    } catch (error) {
+      toast({ title: "Something went wrong" });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div
       key={post.id}
@@ -61,7 +84,11 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
       </div>
       <hr className="border-zinc-700" />
       <div className="flex items-center justify-between pb-2">
-        <button className="flex items-center gap-2 rounded-md px-2 py-1 text-center tracking-wide text-zinc-400 transition hover:bg-red-600 hover:text-white">
+        <button
+          onClick={handleDelete}
+          disabled={isLoading}
+          className="flex items-center gap-2 rounded-md px-2 py-1 text-center tracking-wide text-zinc-400 transition hover:bg-red-600 hover:text-white"
+        >
           <Trash className="h-5 w-5" /> Delete Post
         </button>
         <Link
