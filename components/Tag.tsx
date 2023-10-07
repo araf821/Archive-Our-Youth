@@ -3,15 +3,16 @@ import { FC } from "react";
 
 interface TagProps {
   tag: string;
-  index: number
+  index: number;
+  small?: boolean;
 }
 
-const Tag: FC<TagProps> = ({ tag, index }) => {
+const Tag: FC<TagProps> = ({ small, tag, index }) => {
   return (
     <li
       key={tag}
       className={cn(
-        "text-bold w-fit flex items-center justify-between gap-2 rounded-lg px-3 py-1 text-zinc-900",
+        "text-bold flex w-fit items-center justify-between gap-2 rounded-lg px-3 py-1 text-zinc-900",
         {
           "border-2 border-rose-500 text-rose-500": index === 0,
           "border-2 border-lime-500 text-lime-500": index === 1,
@@ -21,6 +22,7 @@ const Tag: FC<TagProps> = ({ tag, index }) => {
           "border-2 border-teal-400 text-teal-400": index === 5,
           "border-2 border-red-400 text-red-400": index === 6,
           "border-2 border-indigo-400 text-indigo-400": index === 7,
+          "border px-2 py-1 text-sm": small,
         },
       )}
     >

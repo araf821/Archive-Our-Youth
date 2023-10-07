@@ -1,8 +1,18 @@
-import CollageItem from "@/components/CollageItem";
 import Tag from "@/components/Tag";
+import DashboardPostInfo from "@/components/post/DashboardPostInfo";
 import { dateFormat } from "@/lib/dateFormat";
 import { db } from "@/lib/db";
+import { cn } from "@/lib/utils";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
+import { Post } from "@prisma/client";
+import {
+  ArrowRight,
+  ImageIcon,
+  Pen,
+  Trash,
+  VideoIcon,
+  Volume2Icon,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,7 +30,11 @@ const DashboardPage = async () => {
       userId,
     },
     include: {
-      posts: true,
+      posts: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
     },
   });
 
@@ -60,7 +74,7 @@ const DashboardPage = async () => {
         </div>
       </div>
       <div className="flex flex-col gap-2 pt-8">
-        <p className="text-4xl md:text-5xl">Your Posts</p>
+        <p className="text-2xl md:text-3xl">Your Posts</p>
         <hr className="border-zinc-800" />
       </div>
       {currentUser.posts.length < 1 ? (
@@ -80,46 +94,70 @@ const DashboardPage = async () => {
             // />
             <div
               key={post.id}
-              className="flex flex-col gap-4 rounded-sm bg-zinc-800 p-2 pb-2"
+              className="flex flex-col gap-4 rounded-sm border border-zinc-700 bg-zinc-800 p-2"
             >
-              <div className="flex flex-col gap-2 md:flex-row md:gap-4">
+              <div
+                className={cn("flex flex-col gap-2 md:gap-4", {
+                  "md:flex-row":
+                    post.contentType === "VIDEO" ||
+                    post.contentType === "IMAGE",
+                })}
+              >
                 {post.contentType === "IMAGE" && (
-                  <div className="relative aspect-square w-full max-w-[300px]">
-                    <Image
-                      src={post.postContent}
-                      alt="post image"
-                      fill
-                      className="rounded-sm object-cover"
-                    />
-                  </div>
+                  <>
+                    <div className="relative aspect-[4/3] w-full md:max-w-[300px]">
+                      <Image
+                        src={post.postContent}
+                        alt="post image"
+                        fill
+                        className="rounded-sm object-cover"
+                      />
+                    </div>
+                    <DashboardPostInfo post={post} />
+                  </>
                 )}
 
                 {post.contentType === "TEXT" && (
-                  <div className="flex flex-col gap-2">
-                    <p className="break-words text-xl md:text-2xl">
-                      {post.title}
-                    </p>
-                    <p className="text-zinc-400">
-                      Date Published:{" "}
-                      {dateFormat(new Date(post.createdAt).toISOString())}
-                    </p>
-                    <p className="text-zinc-400">Tags</p>
-                    <ul className="">
-                      {post.tags.map((tag, index) => {
-                        return <Tag key={tag} index={index} tag={tag} />;
-                      })}
-                    </ul>
-                  </div>
+                  <DashboardPostInfo post={post} />
+                )}
+
+                {post.contentType === "VIDEO" && (
+                  <>
+                    <div className="relative aspect-video max-h-[40vh] w-full rounded-md md:max-w-[300px]">
+                      <video
+                        src={`${post.postContent}#t=15`}
+                        className="h-full w-full "
+                      />
+                    </div>
+                    <DashboardPostInfo post={post} />
+                  </>
+                )}
+
+                {post.contentType === "AUDIO" && (
+                  <>
+                    <div className="relative my-2">
+                      <audio
+                        src={post.postContent}
+                        controls
+                        className="w-full py-0.5"
+                      />
+                    </div>
+                    <DashboardPostInfo post={post} />
+                  </>
                 )}
               </div>
               <hr className="border-zinc-700" />
-              <div className="flex items-center justify-between">
-                <button className="rounded-md px-2 py-1 text-center tracking-wide text-zinc-400 transition hover:bg-red-600 hover:text-white">
-                  Delete Post
+              <div className="flex items-center justify-between pb-2">
+                <button className="flex items-center gap-2 rounded-md px-2 py-1 text-center tracking-wide text-zinc-400 transition hover:bg-red-600 hover:text-white">
+                  <Trash className="h-5 w-5" /> Delete Post
                 </button>
-                <button className="rounded-md bg-rose-500 px-2 py-1 text-center font-semibold tracking-wide text-zinc-900 transition hover:bg-rose-600">
+                <Link
+                  href={`/post/${post.slug}`}
+                  className="flex items-center gap-2 rounded-md bg-rose-500 px-2 py-1 text-center font-semibold tracking-wide text-zinc-900 transition duration-200 hover:bg-rose-600"
+                >
                   View Post
-                </button>
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
               </div>
             </div>
           ))}
