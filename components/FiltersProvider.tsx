@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import PostModal from "./PostModal";
+import Filters from "./Filters";
 
-const ModalProvider = ({}) => {
+const FiltersProvider = ({}) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -16,9 +16,9 @@ const ModalProvider = ({}) => {
 
   return (
     <>
-      <PostModal />
+      <Filters />
     </>
   );
 };
 
-export default ModalProvider;
+export default FiltersProvider;

@@ -2,7 +2,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Karla, Nunito } from "next/font/google";
 
-import ModalProvider from "@/components/modal/ModalProvider";
+import ModalProvider from "@/components/modals/ModalProvider";
 import { Toaster } from "@/components/ui/Toaster";
 
 const nunito = Nunito({ subsets: ["latin"] });

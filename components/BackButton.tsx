@@ -16,12 +16,9 @@ const BackButton: FC<BackButtonProps> = ({ classNames, label }) => {
   return (
     <Button
       onClick={() => router.back()}
-      className={cn(
-        buttonVariants({
-          className: "w-32 bg-zinc-800 hover:bg-zinc-700",
-        }),
-        { classNames },
-      )}
+      className={buttonVariants({
+        className: `${classNames} w-32 bg-zinc-800 hover:bg-zinc-700`,
+      })}
     >
       {label ? label : "Back"}
     </Button>

@@ -33,10 +33,9 @@ const LikeButton: FC<LikeButtonProps> = ({
 
   const handleClick = async () => {
     if (!currentUser) {
-      return toast({
-        title: "You must be signed in to like posts.",
-        variant: "destructive",
-      });
+      console.log('user doesnt exist');
+      
+      return onOpen("authModal");
     }
 
     setLiked((liked) => !liked);

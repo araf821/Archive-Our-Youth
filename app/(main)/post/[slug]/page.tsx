@@ -1,6 +1,6 @@
 import EmptyState from "@/components/EmptyState";
 import PageTransitionContainer from "@/components/PageTransitionContainer";
-import SinglePost from "@/components/SinglePost";
+import SinglePost from "@/components/post/SinglePost";
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { FC } from "react";

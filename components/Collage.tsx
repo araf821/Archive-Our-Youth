@@ -1,5 +1,5 @@
 import { FC, Fragment } from "react";
-import CollageItem from "./CollageItem";
+import CollageItem from "./post/CollageItem";
 import { db } from "@/lib/db";
 import EmptyState from "./EmptyState";
 import { HomeIcon } from "lucide-react";

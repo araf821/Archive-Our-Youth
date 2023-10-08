@@ -1,23 +1,23 @@
 import { Post, User } from "@prisma/client";
 import { FC } from "react";
-import DynamicImage from "./DynamicImage";
+import DynamicImage from "../DynamicImage";
 import { dateFormat } from "@/lib/dateFormat";
 import Image from "next/image";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { cn } from "@/lib/utils";
-import LikeButton from "./LikeButton";
-import ShareButton from "./ShareButton";
+import LikeButton from "../LikeButton";
+import ShareButton from "../ShareButton";
 import Link from "next/link";
-import { buttonVariants } from "./ui/Button";
-import BackButton from "./BackButton";
-import Tag from "./Tag";
+import { buttonVariants } from "../ui/Button";
+import BackButton from "../BackButton";
+import Tag from "../Tag";
 
 interface SinglePostProps {
   currentUser: User | null;
   post: Post & { user: User };
 }
 
-const SinglePost: FC<SinglePostProps> = ({ post }) => {
+const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
   return (
     <section className="my-8 flex flex-col gap-6 px-4">
       <BackButton />
@@ -46,7 +46,7 @@ const SinglePost: FC<SinglePostProps> = ({ post }) => {
           <LikeButton
             postId={post.id}
             likes={post.likes}
-            currentUser={post.user}
+            currentUser={currentUser}
           />
           <ShareButton link="idk" />
         </div>
@@ -97,7 +97,7 @@ const SinglePost: FC<SinglePostProps> = ({ post }) => {
               DESCRIPTION
             </p>
           )}
-          <ReactMarkdown className="prose-headings:font-josefin prose mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+          <ReactMarkdown className="prose-headings:font-josefin prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
             {post.contentType === "TEXT" ? post.postContent : post.description}
           </ReactMarkdown>
           <hr className="border-zinc-700" />

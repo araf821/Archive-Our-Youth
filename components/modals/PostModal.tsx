@@ -24,22 +24,8 @@ const PostModal = ({}) => {
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <div className="px-4">
-        <DialogContent className="max-h-[80vh] max-w-screen-md border-none bg-transparent px-4 text-zinc-100 outline-none">
+        <DialogContent className="max-h-[80vh] max-w-screen-md border-none bg-transparent text-zinc-100 outline-none">
           <div className="h-full max-h-[80vh] w-full overflow-hidden overflow-y-auto rounded-sm bg-[#202020] px-4 py-4 pb-8 md:rounded-md md:p-6">
-            {/* <div className="flex h-8 w-full items-center justify-between"> */}
-            {/* <Link
-                href={`/post/${post.slug}`}
-                className="flex cursor-pointer items-center gap-2 text-sm text-zinc-400 transition duration-200 hover:text-zinc-200"
-              >
-                Expand Post{" "}
-                <ExternalLink className="h-4 w-4 -translate-y-0.5" />
-              </Link> */}
-            {/* <div className="flex">
-              <button className="ml-auto" onClick={onClose}>
-                <X className="h-5 w-5 cursor-pointer text-zinc-400 transition duration-200 hover:rotate-90 hover:text-zinc-200" />
-              </button>
-            </div> */}
-            {/* </div> */}
             {post.contentType === "IMAGE" && (
               <div className="mx-auto max-w-[500px]">
                 <DynamicImage src={post.postContent} />

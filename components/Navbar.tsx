@@ -4,7 +4,6 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { User } from "@prisma/client";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { useFilters } from "@/hooks/useFilters";
 import { usePathname } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
@@ -13,6 +12,25 @@ import { Menu, Search } from "lucide-react";
 interface NavbarProps {
   user: User | null;
 }
+
+export const navLinks = [
+  {
+    label: "Home",
+    pathname: "/collage",
+  },
+  {
+    label: "About Us",
+    pathname: "/about",
+  },
+  {
+    label: "Contact",
+    pathname: "/contact",
+  },
+  {
+    label: "Dashboard",
+    pathname: "/dashboard",
+  },
+];
 
 const Navbar = ({ user }: NavbarProps) => {
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
@@ -69,63 +87,21 @@ const Navbar = ({ user }: NavbarProps) => {
 
         <div className="flex items-center gap-4 max-lg:hidden">
           <div className="flex items-center gap-1.5 rounded-full border-2 border-zinc-800 bg-zinc-800 p-2 font-karla tracking-wider text-zinc-50">
-            <Link
-              href={"/collage"}
-              className={cn(
-                "rounded-l-full rounded-r-[200rem] px-6 py-1 transition hover:bg-rose-300/10",
-                {
-                  "hover:slide-in- bg-gradient-to-tr from-rose-600 to-red-400 text-black shadow-[0_0_20px_2px] shadow-red-500/40 hover:cursor-default":
-                    pathname === "/collage",
-                },
-              )}
-            >
-              Home
-            </Link>
-
-            <div className="h-7 border-l-[1px] border-zinc-700" />
-
-            <Link
-              href={"/about"}
-              className={cn(
-                "rounded-sm px-6 py-1 transition hover:bg-rose-300/10",
-                {
-                  "bg-gradient-to-b from-rose-600 to-red-400 text-black shadow-[0_0_20px_2px] shadow-red-500/40 hover:cursor-default hover:bg-rose-500":
-                    pathname === "/about",
-                },
-              )}
-            >
-              About Us
-            </Link>
-
-            <div className="h-7 border-l-[1px] border-zinc-700" />
-
-            <Link
-              href={"/contact"}
-              className={cn(
-                "rounded-sm px-6 py-1 transition hover:bg-rose-300/10",
-                {
-                  "bg-gradient-to-b from-rose-600 to-red-400 text-black shadow-[0_0_20px_2px] shadow-red-500/40 hover:cursor-default hover:bg-rose-500":
-                    pathname === "/contact",
-                },
-              )}
-            >
-              Contact
-            </Link>
-
-            <div className="h-7 border-l-[1px] border-zinc-700" />
-
-            <Link
-              href={"/dashboard"}
-              className={cn(
-                "rounded-l-[200rem] rounded-r-full  px-6 py-1 transition hover:bg-rose-300/10",
-                {
-                  "bg-gradient-to-tl from-rose-600 to-red-400 text-black shadow-[0_0_20px_2px] shadow-red-500/40 hover:cursor-default hover:bg-rose-500":
-                    pathname === "/dashboard",
-                },
-              )}
-            >
-              Dashboard
-            </Link>
+            {navLinks.map((link) => (
+              <Link
+                key={link.pathname}
+                href={link.pathname}
+                className={cn(
+                  "rounded-sm px-6 py-1 transition first:rounded-l-full first:rounded-r-[200rem] last:rounded-l-[200rem] last:rounded-r-full hover:bg-rose-300/10",
+                  {
+                    "hover:slide-in- bg-gradient-to-tr from-rose-600 to-red-400 text-black shadow-[0_0_20px_2px] shadow-red-500/40 hover:cursor-default":
+                      pathname === link.pathname,
+                  },
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
           {pathname === "/collage" && (
             <button

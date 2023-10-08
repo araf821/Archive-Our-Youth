@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Filters from "../Filters";
+import PostModal from "./PostModal";
+import AuthModal from "./AuthModal";
 
-const FiltersProvider = ({}) => {
+const ModalProvider = ({}) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -16,9 +17,10 @@ const FiltersProvider = ({}) => {
 
   return (
     <>
-      <Filters />
+      <PostModal />
+      <AuthModal />
     </>
   );
 };
 
-export default FiltersProvider;
+export default ModalProvider;

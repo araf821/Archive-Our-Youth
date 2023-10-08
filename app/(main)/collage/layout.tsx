@@ -1,4 +1,4 @@
-import FiltersProvider from "@/components/modal/FiltersProvider";
+import FiltersProvider from "@/components/FiltersProvider";
 import { FC } from "react";
 
 interface layoutProps {
