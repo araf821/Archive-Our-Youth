@@ -33,8 +33,6 @@ const LikeButton: FC<LikeButtonProps> = ({
 
   const handleClick = async () => {
     if (!currentUser) {
-      console.log('user doesnt exist');
-      
       return onOpen("authModal");
     }
 
@@ -62,7 +60,7 @@ const LikeButton: FC<LikeButtonProps> = ({
     <button
       disabled={isLoading}
       onClick={handleClick}
-      className="flex items-center gap-1.5 text-zinc-400 transition hover:text-zinc-100 disabled:cursor-not-allowed disabled:opacity-75"
+      className="flex focus-visible:outline-2 outline-white items-center gap-1.5 text-zinc-400 transition hover:text-zinc-100 disabled:cursor-not-allowed disabled:opacity-75"
     >
       <Heart
         className={cn("h-5 w-5", {

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import PostModal from "./PostModal";
 import AuthModal from "./AuthModal";
+import ShareModal from "./ShareModal";
 
 const ModalProvider = ({}) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -19,6 +20,7 @@ const ModalProvider = ({}) => {
     <>
       <PostModal />
       <AuthModal />
+      <ShareModal />
     </>
   );
 };

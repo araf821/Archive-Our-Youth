@@ -1,7 +1,7 @@
 import { Post, User } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "postModal" | "authModal";
+export type ModalType = "postModal" | "authModal" | "shareModal";
 
 interface ModalData {
   post?: Post & { user: User };

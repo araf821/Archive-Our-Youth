@@ -1,24 +1,22 @@
 "use client";
 
+import { useModal } from "@/hooks/useModal";
 import { Share } from "lucide-react";
-import { FC, useState } from "react";
+import { FC } from "react";
 
 interface ShareButtonProps {
   link: string;
 }
 
 const ShareButton: FC<ShareButtonProps> = ({}) => {
-  const [clicked, setClicked] = useState(false);
-
-  const handleClick = () => {};
+  const { onOpen } = useModal();
 
   return (
-    <button className="flex items-center gap-1 text-emerald-500">
-      {clicked ? null : (
-        <>
-          <Share className="h-5 w-5" /> Share
-        </>
-      )}
+    <button
+      onClick={() => onOpen("shareModal")}
+      className="flex items-center gap-1 text-emerald-500"
+    >
+      <Share className="h-5 w-5" /> Share
     </button>
   );
 };

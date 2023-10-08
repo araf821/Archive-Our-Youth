@@ -31,10 +31,11 @@ const UserPostsSection: FC<UserPostsSectionProps> = async ({ userId }) => {
           </Link>
         </div>
       ) : (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col pb-8 gap-4">
           {posts.map((post) => (
             <UserPost key={post.id} post={post} />
           ))}
+          <p className="text-center text-zinc-400 my-4">- End of Posts -</p>
         </div>
       )}
     </>
