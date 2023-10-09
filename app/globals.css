@@ -156,3 +156,11 @@ audio::-webkit-media-controls-play-button {
     transform: rotate(360deg);
   }
 }
+
+.text-outline {
+  text-shadow:
+    -2px -2px 2px #000,
+    2px -2px 2px #000,
+    -2px 2px 2px #000,
+    2px 2px 2px #000;
+}
