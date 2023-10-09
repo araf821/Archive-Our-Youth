@@ -157,10 +157,30 @@ audio::-webkit-media-controls-play-button {
   }
 }
 
-.text-outline {
-  text-shadow:
-    -2px -2px 2px #000,
-    2px -2px 2px #000,
-    -2px 2px 2px #000,
-    2px 2px 2px #000;
+.text-background {
+  outline: none;
+  background: url(https://media2.giphy.com/media/d5PPYjcb3caPTHM3hv/giphy.gif);
+  background-size: contain;
+  background-position: top left;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.animate-next {
+  animation: animate-next 2s ease infinite;
+}
+
+@keyframes animate-next {
+  0% {
+    transform: translateX(-10px);
+  }
+
+  60% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    transform: translateX(-10px);
+  }
 }
