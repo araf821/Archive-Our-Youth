@@ -105,7 +105,13 @@ const Navbar = ({ user }: NavbarProps) => {
           </div>
           {pathname === "/collage" && (
             <button
-              className="rounded-full bg-zinc-800 p-3 text-white transition hover:bg-zinc-700 max-lg:hidden"
+              className={cn(
+                "rounded-full bg-zinc-800 p-3 text-white transition hover:bg-zinc-700 active:scale-90 max-lg:hidden",
+                {
+                  "bg-rose-500 shadow-[0_0_15px_2px] shadow-rose-500/50 hover:bg-rose-600":
+                    isOpen,
+                },
+              )}
               onClick={() => {
                 if (isOpen) onClose();
                 else onOpen();

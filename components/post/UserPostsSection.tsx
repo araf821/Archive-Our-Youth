@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { db } from "@/lib/db";
 import UserPost from "./UserPost";
+import DynamicUserPosts from "./DynamicUserPosts";
 
 interface UserPostsSectionProps {
   userId: string;
@@ -31,12 +32,7 @@ const UserPostsSection: FC<UserPostsSectionProps> = async ({ userId }) => {
           </Link>
         </div>
       ) : (
-        <div className="flex flex-col pb-8 gap-4">
-          {posts.map((post) => (
-            <UserPost key={post.id} post={post} />
-          ))}
-          <p className="text-center text-zinc-400 my-4">- End of Posts -</p>
-        </div>
+        <DynamicUserPosts posts={posts} />
       )}
     </>
   );

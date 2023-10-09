@@ -3,41 +3,26 @@
 import { cn } from "@/lib/utils";
 import { Post } from "@prisma/client";
 import Image from "next/image";
-import { FC, useState } from "react";
+import { FC } from "react";
 import DashboardPostInfo from "./DashboardPostInfo";
 import { ArrowRight, Trash } from "lucide-react";
 import Link from "next/link";
-import axios from "axios";
-import { useToast } from "../ui/useToast";
-import { useRouter } from "next/navigation";
+import { useModal } from "@/hooks/useModal";
+import { motion } from "framer-motion";
 
 interface UserPostProps {
   post: Post;
 }
 
 const UserPost: FC<UserPostProps> = ({ post }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
-  const router = useRouter();
-
-  const handleDelete = async () => {
-    setIsLoading(true);
-
-    try {
-      await axios.delete(`/api/post/${post.id}`);
-      toast({ title: "Post deleted" });
-      router.refresh();
-    } catch (error) {
-      toast({ title: "Something went wrong" });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { onOpen } = useModal();
 
   return (
-    <div
+    <motion.div
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, scaleY: 0, transition: { duration: 0.5 } }}
       key={post.id}
-      className="flex flex-col gap-4 rounded-sm border border-zinc-700 bg-zinc-800 p-2"
+      className="flex flex-col origin-top gap-4 rounded-sm border border-zinc-700 bg-zinc-800 p-2"
     >
       <div
         className={cn("flex flex-col gap-2 md:gap-4", {
@@ -85,8 +70,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
       <hr className="border-zinc-700" />
       <div className="flex items-center justify-between pb-2">
         <button
-          onClick={handleDelete}
-          disabled={isLoading}
+          onClick={() => onOpen("deletePostModal", { postWithoutUser: post })}
           className="flex items-center gap-2 rounded-md px-2 py-1 text-center tracking-wide text-zinc-400 transition hover:bg-red-600 hover:text-white"
         >
           <Trash className="h-5 w-5" /> Delete Post
@@ -99,7 +83,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
           <ArrowRight className="h-5 w-5" />
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

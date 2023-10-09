@@ -59,18 +59,7 @@ const PostModal = ({}) => {
                 currentUser={data.currentUser}
                 modal={true}
               />
-
-              {/* <div className="flex items-center gap-2 text-zinc-300 md:text-lg"> */}
-              {/* <div className="relative h-10 w-10 rounded-full">
-                  <Image
-                    src={post.user.imageUrl ?? ""}
-                    fill
-                    alt=""
-                    className="rounded-full object-cover"
-                  />
-                </div> */}
               <p className="text-zinc-400">Posted by {post.user.name}</p>
-              {/* </div> */}
             </div>
 
             <p className="mt-2 break-words font-karla text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
@@ -90,94 +79,6 @@ const PostModal = ({}) => {
                 View Post
               </Link>
             </div>
-
-            {/* Post info */}
-            {/* <div className="mt-4 flex flex-col gap-4"> */}
-            {/* <span className="-mb-3 w-fit rounded-md bg-zinc-700 px-1.5 py-0.5 text-sm text-zinc-300">
-                {dateFormat(new Date(post.createdAt).toISOString())}
-              </span> */}
-            {/* <p className="break-words font-karla text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
-                {post.title}
-              </p> */}
-            {/* <ul className="flex flex-wrap gap-2 pt-2">
-                {post.tags.map((tag, index) => (
-                  <li
-                    key={tag}
-                    className={cn(
-                      "text-bold flex items-center justify-between gap-2 rounded-lg px-3 py-1 text-zinc-900",
-                      {
-                        "border-2 border-rose-500 text-rose-500": index === 0,
-                        "border-2 border-lime-500 text-lime-500": index === 1,
-                        "border-2 border-sky-500 text-sky-500": index === 2,
-                        "border-2 border-amber-500 text-amber-500": index === 3,
-                        "border-2 border-fuchsia-500 text-fuchsia-500":
-                          index === 4,
-                        "border-2 border-teal-400 text-teal-400": index === 5,
-                        "border-2 border-red-400 text-red-400": index === 6,
-                        "border-2 border-indigo-400 text-indigo-400":
-                          index === 7,
-                      },
-                    )}
-                  >
-                    {tag}
-                  </li>
-                ))}
-              </ul> */}
-            {/* <div className="flex gap-4">
-                <LikeButton
-                  postId={post.id}
-                  likes={post.likes}
-                  currentUser={data.currentUser}
-                />
-                <ShareButton link={`/post/${post.slug}`} />
-              </div> */}
-            {/* <hr className="border-zinc-700" />
-              <div className="flex items-center gap-2 text-zinc-300 md:text-lg">
-                <div className="relative h-10 w-10 rounded-full">
-                  <Image
-                    src={post.user.imageUrl ?? ""}
-                    fill
-                    alt=""
-                    className="rounded-full object-cover"
-                  />
-                </div>
-                <p>Posted by {post.user.name}</p>
-              </div>
-              <hr className="border-zinc-700" />
-              <div
-                className={`${
-                  post.contentType !== "TEXT" && !post.description && "hidden"
-                }`}
-              >
-                {post.contentType !== "TEXT" && (
-                  <p className="mb-4 text-sm font-semibold text-zinc-400">
-                    DESCRIPTION
-                  </p>
-                )}
-                <ReactMarkdown className="prose-headings:font-josefin prose mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-100 p-2.5 text-start text-zinc-800 prose-headings:font-semibold prose-headings:text-zinc-950 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
-                  {post.contentType === "TEXT"
-                    ? post.postContent
-                    : post.description}
-                </ReactMarkdown>
-                <hr className="border-zinc-700" />
-              </div>
-              {/* Comment Section */}
-            {/* <div className="text-zinc-400 md:text-lg">
-                View more posts from{" "}
-                <Link
-                  href={`/users/${post.userId}`}
-                  className="font-bold text-rose-400"
-                >
-                  {post.user.name}
-                </Link>
-              </div>
-
-              <hr className="border-zinc-700" />
-
-              <div className="font-bold md:text-lg">
-                Comments <span className="text-zinc-400">[Coming Soon]</span>
-              </div> */}
-            {/* </div> */}
           </div>
         </DialogContent>
       </div>

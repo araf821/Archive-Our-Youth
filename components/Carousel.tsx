@@ -67,7 +67,7 @@ const Carousel = ({}) => {
           )}
 
           {page === 2 && (
-            <div className="mx-4 -mt-20 flex max-w-screen-sm flex-col items-center justify-center gap-3 rounded-lg bg-black/30 px-4 py-4 backdrop-blur-sm">
+            <div className="mx-4 flex max-w-screen-sm flex-col items-center justify-center gap-3 rounded-lg bg-black/30 px-4 py-4 backdrop-blur-sm">
               <p className="w-fit font-karla text-4xl font-bold text-white ">
                 Our Story
               </p>
@@ -77,12 +77,7 @@ const Carousel = ({}) => {
                 cake. Marzipan marshmallow croissant tootsie roll lollipop.
                 Cupcake lemon drops bear claw gummies. Jelly bear claw gummi
                 bears lollipop cotton candy gummi bears chocolate bar cake
-                cookie. Cupcake muffin danish muffin cookie gummies. Jelly beans
-                tiramisu pudding. Toffee soufflé chocolate cake pastry brownie.
-                Oat cake halvah sweet roll cotton candy croissant lollipop.
-                Macaroon tiramisu chocolate bar candy candy carrot cake jelly
-                sweet. Gummies croissant macaroon dessert. Chocolate cake dragée
-                pie.
+                cookie.
               </p>
             </div>
           )}
@@ -146,7 +141,7 @@ const Carousel = ({}) => {
           )}
         </motion.div>
       </AnimatePresence>
-      <div className="absolute bottom-20 left-0 right-0 flex justify-center gap-40 md:bottom-36">
+      <div className="fixed bottom-20 left-0 right-0 z-10 flex justify-center gap-40 md:bottom-36">
         {page > 1 && (
           <button
             className="next"
@@ -155,12 +150,14 @@ const Carousel = ({}) => {
             <ArrowLeft className="h-16 w-16 text-white" />
           </button>
         )}
-        <button
-          className="prev"
-          onClick={() => (page === 3 ? null : paginate(1))}
-        >
-          <ArrowRight className="h-16 w-16 text-white" />
-        </button>
+        {page < 3 && (
+          <button
+            className="prev"
+            onClick={() => (page === 3 ? null : paginate(1))}
+          >
+            <ArrowRight className="h-16 w-16 text-white" />
+          </button>
+        )}
       </div>
     </div>
   );
