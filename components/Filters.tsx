@@ -21,7 +21,7 @@ const Filters: FC<FiltersProps> = ({}) => {
 
   return (
     <motion.section
-      initial={{ height: 0 }}
+      initial={{ height: 0, opacity: 0 }}
       variants={filterVariants}
       animate={isOpen ? "visible" : "hidden"}
       className="text-3xl text-white"

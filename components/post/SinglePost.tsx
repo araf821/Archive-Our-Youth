@@ -4,11 +4,8 @@ import DynamicImage from "../DynamicImage";
 import { dateFormat } from "@/lib/dateFormat";
 import Image from "next/image";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { cn } from "@/lib/utils";
 import LikeButton from "../LikeButton";
 import ShareButton from "../ShareButton";
-import Link from "next/link";
-import { buttonVariants } from "../ui/Button";
 import BackButton from "../BackButton";
 import Tag from "../Tag";
 
