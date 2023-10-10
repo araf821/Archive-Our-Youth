@@ -12,9 +12,8 @@ const SubmitPage = async () => {
   const currentUser = await getCurrentUser();
 
   return (
-    <div className="relative grid h-screen place-items-center bg-zinc-900 text-white">
+    <div className="relative grid h-[100dvh] place-items-center bg-zinc-900 text-white">
       <BackButton classNames="w-fit fixed left-5 top-5 md:left-12 md:top-12 xl:left-32" />
-
       <PostCreationForm currentUser={currentUser} />
     </div>
   );

@@ -153,7 +153,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
         step > 1 && "hidden"
       }`}
     >
-      <p className="flex flex-col gap-2 text-6xl font-bold tracking-wider text-zinc-100 md:text-9xl">
+      <p className="flex flex-col font-karla gap-2 text-6xl font-bold text-zinc-100 md:text-9xl">
         Digital<span>Collage</span>
       </p>
       <p className="text-xl font-semibold text-zinc-300 md:text-2xl">
@@ -172,7 +172,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
   );
 
   typeSelectionScreen = (
-    <div className="flex h-[40vh] flex-col justify-center space-y-8">
+    <div className="flex flex-col justify-center space-y-8">
       <div className="space-y-2">
         <p className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
           What type of content would you like to submit?
@@ -739,8 +739,10 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
       {step > 0 && (
         <div
           className={cn(
-            "mx-auto mt-12 flex w-32 items-center justify-between",
-            { "w-full max-w-[350px]": step === STEPS.CONFIRM },
+            "absolute inset-x-0 bottom-12 md:bottom-32 mx-auto mt-8 flex w-32 items-center justify-between",
+            {
+              "w-full max-w-[350px]": step === STEPS.CONFIRM,
+            },
           )}
         >
           <Button

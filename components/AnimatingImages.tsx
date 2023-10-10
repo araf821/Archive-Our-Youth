@@ -37,7 +37,7 @@ const AnimatingImages = () => {
   }, []);
 
   return (
-    <div className="absolute h-screen w-screen opacity-75">
+    <div className="absolute h-[100dvh] w-screen opacity-75">
       <Image
         src={images[currentImage]}
         alt=""
