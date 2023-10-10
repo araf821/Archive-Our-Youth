@@ -133,7 +133,6 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
       toast({ title: "Your post has been published!" });
       form.reset();
       router.push("/collage");
-      router.refresh();
     } catch (error: any) {
       toast({ title: "Something went wrong.", variant: "destructive" });
       console.log(error);

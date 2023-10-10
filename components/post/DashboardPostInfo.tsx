@@ -10,7 +10,7 @@ interface DashboardPostInfoProps {
 
 const DashboardPostInfo: FC<DashboardPostInfoProps> = ({ post }) => {
   return (
-    <div className="relative flex flex-col gap-2">
+    <div className="relative flex flex-col w-full gap-2">
       <p className="break-words pr-8 text-xl md:text-2xl">{post.title}</p>
       {post.contentType === "TEXT" ? (
         <Pen className="absolute right-1 top-1 h-5 w-5 text-teal-500" />

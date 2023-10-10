@@ -20,14 +20,16 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
   return (
     <motion.div
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, scaleY: 0, transition: { duration: 0.5 } }}
+      exit={{ opacity: 0, x: -500, transition: { duration: 0.5 } }}
       key={post.id}
-      className="flex flex-col origin-top gap-4 rounded-sm border border-zinc-700 bg-zinc-800 p-2"
+      className="flex flex-col gap-4 rounded-sm border border-zinc-700 bg-zinc-800 p-2"
     >
       <div
-        className={cn("flex flex-col gap-2 md:gap-4", {
+        className={cn("flex max-md:flex-col max-md:gap-2 md:gap-4", {
           "md:flex-row":
             post.contentType === "VIDEO" || post.contentType === "IMAGE",
+          "flex-col":
+            post.contentType === "TEXT" || post.contentType === "AUDIO",
         })}
       >
         {post.contentType === "IMAGE" && (
