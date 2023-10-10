@@ -75,5 +75,6 @@ export async function PUT(
     return NextResponse.json(post);
   } catch (error) {
     console.log("POST LIKE ERROR: ", error);
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }
