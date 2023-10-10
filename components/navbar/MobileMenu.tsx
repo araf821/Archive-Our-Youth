@@ -25,7 +25,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
         className="flex h-full flex-col gap-4 bg-zinc-900 p-0"
         side="right"
       >
-        <div className="flex justify-between bg-gradient-to-tr from-red-600 to-rose-500 p-6 pb-6 shadow-[0_2px_10px] shadow-red-500/50">
+        <div className="flex items-center justify-between bg-gradient-to-tr from-red-600 to-rose-500 p-6 pb-6 shadow-[0_2px_10px] shadow-red-500/50 md:text-lg">
           <Link
             href="/"
             className="font-karla text-xl font-semibold text-white"
@@ -37,11 +37,18 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
           </SheetClose>
         </div>
 
-        <div className="flex h-full flex-col justify-between rounded-full p-2 font-karla tracking-wider text-zinc-50">
+        <div className="flex h-full flex-col justify-between rounded-full px-4 pb-4 font-karla tracking-wider text-zinc-50">
           <div
             onClick={() => close()}
             className="flex flex-col items-center gap-4"
           >
+            <Link
+              href="/submit"
+              className="w-full rounded-sm bg-white py-2.5 text-center text-lg font-semibold text-black shadow-md shadow-white/50 transition hover:bg-rose-500 hover:shadow-rose-500/50"
+            >
+              Submit A Post
+            </Link>
+            <hr className="w-full border-zinc-800" />
             {navLinks.map((link) => (
               <Link
                 key={link.pathname}
