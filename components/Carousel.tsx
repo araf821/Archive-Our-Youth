@@ -72,12 +72,8 @@ const Carousel = ({}) => {
                 Our Story
               </p>
               <p className="text-center text-lg text-white">
-                Jelly sweet roll jelly beans biscuit pie macaroon chocolate
-                donut. Carrot cake caramels pie sweet apple pie tiramisu carrot
-                cake. Marzipan marshmallow croissant tootsie roll lollipop.
-                Cupcake lemon drops bear claw gummies. Jelly bear claw gummi
-                bears lollipop cotton candy gummi bears chocolate bar cake
-                cookie.
+                Note: This is just the first iteration of deployment. Things may
+                and will most likely break!
               </p>
             </div>
           )}
