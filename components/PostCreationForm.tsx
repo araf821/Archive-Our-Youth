@@ -154,7 +154,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
       }`}
     >
       <p className="flex flex-col font-karla gap-2 text-6xl font-bold text-zinc-100 md:text-9xl">
-        Digital<span>Collage</span>
+        Digital<span>Archive</span>
       </p>
       <p className="text-xl font-semibold text-zinc-300 md:text-2xl">
         Submission Portal

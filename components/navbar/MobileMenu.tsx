@@ -30,7 +30,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
             href="/"
             className="font-karla text-xl font-semibold text-white"
           >
-            Digital Collage
+            Digital Archive
           </Link>
           <SheetClose className="text-white">
             <X />

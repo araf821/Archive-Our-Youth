@@ -3,9 +3,9 @@ import PostCreationForm from "@/components/PostCreationForm";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 
 export const metadata = {
-  title: "Submission Portal | Digital Collage",
+  title: "Submission Portal | Digital Archive",
   description:
-    "Submit your work to have displayed inside of a collage viewed by millions of people!",
+    "Submit your work to have displayed inside of an archive viewed by millions of people!",
 };
 
 const SubmitPage = async () => {

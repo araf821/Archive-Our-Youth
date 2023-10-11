@@ -12,7 +12,7 @@ interface SinglePostPage {
 }
 
 export const metadata = {
-  title: "Post Page | Digital Collage",
+  title: "Post Page | Digital Archive",
 };
 
 const page: FC<SinglePostPage> = async ({ params }) => {

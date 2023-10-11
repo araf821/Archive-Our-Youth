@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FC } from "react";
 
 export const navLinks = [
   {

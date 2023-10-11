@@ -12,22 +12,12 @@ const images = [
 ];
 
 const AnimatingImages = () => {
-  const [currentImage, setCurrentImage] = useState(0);
+  const [currentImage, setCurrentImage] = useState<number | null>(null);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
-  const changeBackgroundImage = () => {
-    setIsFadingOut(true);
-
-    setTimeout(() => {
-      setCurrentImage((prevIndex) => (prevIndex + 1) % images.length);
-      setIsFadingOut(false);
-    }, 500);
-  };
-
-  const imageStyle = {
-    opacity: isFadingOut ? 0 : 1,
-    transition: "opacity 0.5s ease-in-out",
-  };
+  useEffect(() => {
+    setCurrentImage(0);
+  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(changeBackgroundImage, 3000);
@@ -35,6 +25,22 @@ const AnimatingImages = () => {
     // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);
   }, []);
+
+  if (currentImage === null) return null;
+
+  function changeBackgroundImage() {
+    setIsFadingOut(true);
+
+    setTimeout(() => {
+      setCurrentImage((prevIndex) => (prevIndex! + 1) % images.length);
+      setIsFadingOut(false);
+    }, 500);
+  }
+
+  const imageStyle = {
+    opacity: isFadingOut ? 0 : 1,
+    transition: "opacity 0.5s ease-in-out",
+  };
 
   return (
     <div className="absolute h-[100dvh] w-screen opacity-75">
