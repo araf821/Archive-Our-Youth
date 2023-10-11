@@ -9,7 +9,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { SignInButton, useAuth } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
+import { useModal } from "@/hooks/useModal";
 
 const variants = {
   enter: (direction: number) => {
@@ -35,6 +36,7 @@ const variants = {
 const Carousel = ({}) => {
   const [[page, direction], setPage] = useState([1, 0]);
   const { userId } = useAuth();
+  const {onOpen} = useModal();
 
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
@@ -86,19 +88,20 @@ const Carousel = ({}) => {
               <div className="flex w-full flex-col gap-4">
                 <div className="space-y-4">
                   <>
-                    <Link
-                      href="/submit"
-                      className="group flex w-full justify-between rounded-sm bg-gradient-to-tr from-red-600 to-rose-500 px-4 py-2 text-white shadow-[0_0_10px] shadow-rose-600/50 transition hover:bg-rose-600 hover:shadow-[0_0_25px_2px] hover:shadow-rose-500/50"
-                    >
-                      {!userId ? (
-                        <SignInButton afterSignInUrl="/submit">
-                          Submit A Post
-                        </SignInButton>
-                      ) : (
-                        "Submit A Post"
-                      )}
-                      <SendHorizonal className="transition group-hover:translate-x-2" />
-                    </Link>
+                    {userId ? (
+                      <Link
+                        href="/submit"
+                        className="group flex w-full justify-between rounded-sm bg-gradient-to-tr from-red-600 to-rose-500 px-4 py-2 text-white shadow-[0_0_10px] shadow-rose-600/50 transition hover:bg-rose-600 hover:shadow-[0_0_25px_2px] hover:shadow-rose-500/50"
+                      >
+                        Submit A Post
+                        <SendHorizonal className="transition group-hover:translate-x-2" />
+                      </Link>
+                    ) : (
+                      <button onClick={() => onOpen("submitAuthModal")} className="group flex w-full justify-between rounded-sm bg-gradient-to-tr from-red-600 to-rose-500 px-4 py-2 text-white shadow-[0_0_10px] shadow-rose-600/50 transition hover:bg-rose-600 hover:shadow-[0_0_25px_2px] hover:shadow-rose-500/50">
+                        Submit A Post
+                        <SendHorizonal className="transition group-hover:translate-x-2" />
+                      </button>
+                    )}
                     <Link
                       href="/collage"
                       className="group flex w-full justify-between rounded-sm border border-white px-4 py-2 text-white transition hover:bg-zinc-100 hover:text-black"

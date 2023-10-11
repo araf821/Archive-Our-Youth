@@ -5,7 +5,8 @@ export type ModalType =
   | "postModal"
   | "authModal"
   | "shareModal"
-  | "deletePostModal";
+  | "deletePostModal"
+  | "submitAuthModal";
 
 interface ModalData {
   post?: Post & { user: User };
