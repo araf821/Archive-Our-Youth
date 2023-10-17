@@ -3,19 +3,39 @@ import PageTransitionContainer from "@/components/PageTransitionContainer";
 import SinglePost from "@/components/post/SinglePost";
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
+import { notFound } from "next/navigation";
 import { FC } from "react";
 
-interface SinglePostPage {
+interface SinglePostPageParams {
   params: {
     slug: string;
   };
 }
 
-export const metadata = {
-  title: "Post Page | Digital Archive",
-};
+// export const metadata:  = {
+//   title: "Post Page | Digital Archive",
+// };
 
-const page: FC<SinglePostPage> = async ({ params }) => {
+export async function generateMetadata({ params }: SinglePostPageParams) {
+  const post = await db.post.findFirst({
+    where: {
+      slug: params.slug,
+    },
+    select: {
+      title: true,
+    },
+  });
+
+  if (!post) {
+    return { title: "Post Page | Digital Archive" };
+  }
+
+  return {
+    title: post?.title + " | Digital Archive",
+  };
+}
+
+const page: FC<SinglePostPageParams> = async ({ params }) => {
   const post = await db.post.findFirst({
     where: {
       slug: params.slug,

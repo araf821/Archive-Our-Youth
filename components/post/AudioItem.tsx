@@ -3,7 +3,7 @@ import { Volume1, Volume2 } from "lucide-react";
 import { FC, useState } from "react";
 
 interface AudioItemProps {
-  post: Post & { user: User };
+  post: Post & { user: User | null };
   onClick: () => void;
 }
 
@@ -30,20 +30,19 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post }) => {
         Audio
       </div>
       <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
-        <Volume2 className="md:h-10 md:w-10 transition fill-lime-400 group-hover:fill-lime-500 text-lime-400 group-hover:text-lime-500" />
+        <Volume2 className="fill-lime-400 text-lime-400 transition group-hover:fill-lime-500 group-hover:text-lime-500 md:h-10 md:w-10" />
         <p className="text-lg md:text-2xl lg:hidden">
           {post.title.length > 24
             ? post.title.slice(0, 24) + "..."
             : post.title}
         </p>{" "}
-
-        <p className="text-lg max-lg:hidden lg:block md:text-2xl">
+        <p className="text-lg max-lg:hidden md:text-2xl lg:block">
           {post.title.length > 50
             ? post.title.slice(0, 50) + "..."
             : post.title}
         </p>{" "}
         <span className="text-sm">Click to Expand</span>
-        <span className="text-sm">{post.user.name}</span>
+        <span className="text-sm">{post.user?.name || "Anonymous"}</span>
       </div>
 
       {/* {isHovered ? (

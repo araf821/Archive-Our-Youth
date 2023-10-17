@@ -9,10 +9,6 @@ export async function POST(req: Request) {
     const user = await getCurrentUser();
     const { title, contentType, content, description, tags } = await req.json();
 
-    if (!user) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
-
     const post = await db.post.create({
       data: {
         title,
@@ -20,7 +16,7 @@ export async function POST(req: Request) {
         postContent: content,
         description: contentType === "TEXT" ? "" : description,
         tags,
-        userId: user.id,
+        userId: user?.id,
         slug: slugify(title) + nanoid(5),
       },
     });

@@ -26,10 +26,7 @@ import MultiSelect from "./MultiSelect";
 import Image from "next/image";
 import { ScrollArea } from "./ui/ScrollArea";
 import { toast } from "./ui/useToast";
-
-interface PostCreationFormProps {
-  currentUser: User | null;
-}
+import { useAuth } from "@clerk/nextjs";
 
 enum STEPS {
   WELCOME = 0,
@@ -77,13 +74,13 @@ const formSchema = z.object({
     .max(8, { message: "You can only choose up to 8 tags." }),
 });
 
-const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
+const PostCreationForm = () => {
+  const { userId } = useAuth();
   const router = useRouter();
   const [preview, setPreview] = useState(false);
   const [step, setStep] = useState(STEPS.WELCOME);
 
   const form = useForm<z.infer<typeof formSchema>>({
-    // @ts-ignore
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
@@ -153,7 +150,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
         step > 1 && "hidden"
       }`}
     >
-      <p className="flex flex-col font-karla gap-2 text-6xl font-bold text-zinc-100 md:text-9xl">
+      <p className="flex flex-col gap-2 font-karla text-6xl font-bold text-zinc-100 md:text-9xl">
         Digital<span>Archive</span>
       </p>
       <p className="text-xl font-semibold text-zinc-300 md:text-2xl">
@@ -182,7 +179,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
       <FormField
         control={form.control}
         name="contentType"
-        render={({ field }) => (
+        render={() => (
           <FormItem className="flex items-center justify-center space-y-4 max-md:flex-col md:flex-row md:space-x-6 md:space-y-0 lg:space-x-8">
             <FormControl>
               <button
@@ -571,11 +568,13 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
 
   confirmationScreen = (
     <ScrollArea className="mx-auto flex h-[60vh] max-w-screen-sm flex-col justify-center space-y-4 overflow-y-auto">
-      <div className="pb-4 text-xl text-zinc-300 md:text-2xl">
-        Review Submission
-        <p className="text-left text-zinc-300 max-md:text-sm md:text-base">
-          Please review your content one last time before submitting
-        </p>
+      <div className="pb-4">
+        <p className="text-xl text-zinc-300 md:text-2xl">Review Submission</p>
+        {userId ? null : (
+          <p className="text-left text-zinc-300 max-md:text-sm md:text-base">
+            Posting <span className="font-bold">anonymously</span>, you will not be able to delete your post later without contacting us.
+          </p>
+        )}
         <hr className="mt-1.5 w-full border-zinc-700" />
       </div>
       <div className="divide-y-2 divide-zinc-700 rounded-md border border-zinc-700 px-4">
@@ -722,7 +721,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
   );
 
   return (
-    <div className="w-full max-w-screen-md px-4">
+    <div className="w-full max-w-screen-md px-4 lg:px-0">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           {step === STEPS.WELCOME && introScreen}
@@ -739,7 +738,7 @@ const PostCreationForm: FC<PostCreationFormProps> = ({ currentUser }) => {
       {step > 0 && (
         <div
           className={cn(
-            "absolute inset-x-0 bottom-12 md:bottom-32 mx-auto mt-8 flex w-32 items-center justify-between",
+            "absolute inset-x-0 bottom-12 mx-auto mt-8 flex w-32 items-center justify-between md:bottom-32",
             {
               "w-full max-w-[350px]": step === STEPS.CONFIRM,
             },

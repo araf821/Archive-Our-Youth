@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
 import { useFilters } from "@/hooks/useFilters";
 import { usePathname } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
-import { Menu, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
+import { useModal } from "@/hooks/useModal";
 
 interface NavbarProps {
   user: User | null;
@@ -19,6 +20,7 @@ const Navbar = ({ user }: NavbarProps) => {
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>(true);
   const { isOpen, onOpen, onClose } = useFilters();
+  const { onOpen: onOpenModal } = useModal();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -54,7 +56,7 @@ const Navbar = ({ user }: NavbarProps) => {
   return (
     <nav
       className={cn(
-        "fixed top-0 z-50 h-[8vh] w-full -translate-y-full border-b border-zinc-800 bg-zinc-900 transition duration-300 hover:opacity-100",
+        "fixed top-0 z-50 h-20 w-full -translate-y-full border-b border-zinc-800 bg-zinc-900 transition duration-300 hover:opacity-100",
         {
           "translate-y-0": visible,
         },
@@ -74,14 +76,25 @@ const Navbar = ({ user }: NavbarProps) => {
         <NavLinks />
 
         <div className="max-lg:hidden md:items-center md:gap-x-6 lg:flex">
-          <Link
-            className={cn(
-              "rounded-md bg-zinc-200 px-4 py-1.5 font-bold tracking-widest text-black transition duration-300 hover:bg-rose-500 hover:shadow-[0_0_20px_2px] hover:shadow-rose-500/40",
-            )}
-            href={user ? "/submit" : "/sign-in"}
-          >
-            Submit
-          </Link>
+          {user ? (
+            <Link
+              className={cn(
+                "rounded-md bg-zinc-200 px-4 py-1.5 font-bold tracking-widest text-black transition duration-300 hover:bg-rose-500 hover:shadow-[0_0_20px_2px] hover:shadow-rose-500/40",
+              )}
+              href={user ? "/submit" : "/sign-in"}
+            >
+              Submit
+            </Link>
+          ) : (
+            <button
+              className={cn(
+                "rounded-md bg-zinc-200 px-4 py-1.5 font-bold tracking-widest text-black transition duration-300 hover:bg-rose-500 hover:shadow-[0_0_20px_2px] hover:shadow-rose-500/40",
+              )}
+              onClick={() => onOpenModal("submitAuthModal")}
+            >
+              Submit
+            </button>
+          )}
           {user && <UserButton afterSignOutUrl="/collage" />}
         </div>
 

@@ -1,20 +1,18 @@
 import BackButton from "@/components/BackButton";
 import PostCreationForm from "@/components/PostCreationForm";
-import { getCurrentUser } from "@/lib/getCurrentUser";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Submission Portal | Digital Archive",
   description:
-    "Submit your work to have displayed inside of an archive viewed by millions of people!",
+    "Submit your work to have displayed inside of an archive viewed by thousands of people!",
 };
 
-const SubmitPage = async () => {
-  const currentUser = await getCurrentUser();
-
+const SubmitPage = () => {
   return (
     <div className="relative grid h-[100dvh] place-items-center bg-zinc-900 text-white">
       <BackButton classNames="w-fit fixed left-5 top-5 md:left-12 md:top-12 xl:left-32" />
-      <PostCreationForm currentUser={currentUser} />
+      <PostCreationForm />
     </div>
   );
 };

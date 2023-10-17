@@ -9,7 +9,7 @@ export type ModalType =
   | "submitAuthModal";
 
 interface ModalData {
-  post?: Post & { user: User };
+  post?: Post & { user: User | null };
   postWithoutUser?: Post;
   currentUser?: User | null;
 }

@@ -40,7 +40,10 @@ const DashboardPage = async () => {
       <div className="flex gap-4 rounded-md border-2 border-zinc-800 p-2">
         <div className="relative aspect-square overflow-hidden max-md:w-20 md:w-32">
           <Image
-            src={currentUser.imageUrl ?? ""}
+            src={
+              currentUser.imageUrl ||
+              "https://utfs.io/f/611b7606-d2ed-4c74-aaff-7a4d5c66d365-9w6i5v.jpg"
+            }
             alt="user profile picture"
             fill
             className="rounded-md object-cover"

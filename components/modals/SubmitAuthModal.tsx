@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "../ui/Dialog";
-import { SignInButton, redirectToSignIn } from "@clerk/nextjs";
+import { SignInButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { X } from "lucide-react";
 
@@ -28,8 +28,8 @@ const SubmitAuthModal = () => {
         </DialogHeader>
 
         <Link
-          href={"sign-in"}
-          className="w-full rounded-sm bg-rose-500 py-1.5 text-center font-semibold transition hover:bg-opacity-80 md:text-lg"
+          href={"/sign-in"}
+          className="w-full rounded-sm bg-rose-500 py-1.5 text-center font-semibold text-white transition hover:bg-opacity-80 md:text-lg"
         >
           <SignInButton afterSignInUrl="/submit">Sign In</SignInButton>
         </Link>

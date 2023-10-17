@@ -59,7 +59,9 @@ const PostModal = ({}) => {
                 currentUser={data.currentUser}
                 modal={true}
               />
-              <p className="text-zinc-400">Posted by {post.user.name}</p>
+              <p className="text-zinc-400">
+                Posted by {post.user?.name || "Anonymous"}
+              </p>
             </div>
 
             <p className="mt-2 break-words font-karla text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">

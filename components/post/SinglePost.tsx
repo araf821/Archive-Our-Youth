@@ -11,7 +11,7 @@ import Tag from "../Tag";
 
 interface SinglePostProps {
   currentUser: User | null;
-  post: Post & { user: User };
+  post: Post & { user: User | null };
 }
 
 const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
@@ -68,18 +68,25 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         <div className="-my-1 flex gap-2 text-zinc-300 md:text-lg">
           <div className="relative h-14 w-14 rounded-full">
             <Image
-              src={post.user.imageUrl ?? ""}
+              src={
+                post.user?.imageUrl ||
+                "https://utfs.io/f/611b7606-d2ed-4c74-aaff-7a4d5c66d365-9w6i5v.jpg"
+              }
               fill
               alt=""
               className="rounded-lg object-cover"
             />
           </div>
           <div className="flex flex-col gap-0.5">
-            <p className="font-semibold tracking-wide">{post.user.name}</p>
-            <p className="text-base font-normal text-zinc-400">
-              Member Since:{" "}
-              {dateFormat(new Date(post.user.createdAt).toISOString())}
+            <p className="font-semibold tracking-wide">
+              {post.user?.name || "Anonymous"}
             </p>
+            {post.user ? (
+              <p className="text-base font-normal text-zinc-400">
+                Member Since:{" "}
+                {dateFormat(new Date(post.user.createdAt).toISOString())}
+              </p>
+            ) : null}
           </div>
         </div>
         <hr className="border-zinc-800" />

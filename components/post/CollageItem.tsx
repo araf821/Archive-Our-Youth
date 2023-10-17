@@ -9,7 +9,7 @@ import AudioItem from "./AudioItem";
 import { Pen } from "lucide-react";
 
 interface CollageItemProps {
-  post: Post & { user: User };
+  post: Post & { user: User | null };
   currentUser: User | null;
 }
 
@@ -46,7 +46,7 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
             className="object-cover"
           />
           <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/50 px-1.5 py-0.5 text-zinc-200">
-            {post.user.name}
+            {post.user?.name || "Anonymous"}
           </span>
         </>
       )}
@@ -66,7 +66,7 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
                 : post.title}
             </p>{" "}
             <span className="text-sm">Click to Expand</span>
-            <span className="text-sm">{post.user.name}</span>
+            <span className="text-sm">{post.user?.name || "Anonymous"}</span>
           </div>
         </div>
       )}
