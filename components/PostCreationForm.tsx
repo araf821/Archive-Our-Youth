@@ -337,7 +337,7 @@ const PostCreationForm = () => {
             <FormControl>
               {preview ? (
                 form.getValues().content ? (
-                  <ReactMarkdown className="prose-headings:font-josefin prose h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-100 p-2.5 text-start text-zinc-800 prose-headings:font-semibold prose-headings:text-zinc-950 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                  <ReactMarkdown className="prose-headings:font-josefin prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                     {form.getValues().content}
                   </ReactMarkdown>
                 ) : (
@@ -474,7 +474,7 @@ const PostCreationForm = () => {
           <FormControl>
             {preview ? (
               form.getValues().description ? (
-                <ReactMarkdown className="prose-headings:font-josefin prose h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-100 p-2.5 text-start text-zinc-800 prose-headings:font-semibold prose-headings:text-zinc-950 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                <ReactMarkdown className="prose-headings:font-josefin prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                   {form.getValues().description || ""}
                 </ReactMarkdown>
               ) : (
@@ -572,7 +572,8 @@ const PostCreationForm = () => {
         <p className="text-xl text-zinc-300 md:text-2xl">Review Submission</p>
         {userId ? null : (
           <p className="text-left text-zinc-300 max-md:text-sm md:text-base">
-            Posting <span className="font-bold">anonymously</span>, you will not be able to delete your post later without contacting us.
+            Posting <span className="font-bold">anonymously</span>, you will not
+            be able to delete your post later without contacting us.
           </p>
         )}
         <hr className="mt-1.5 w-full border-zinc-700" />
@@ -603,7 +604,7 @@ const PostCreationForm = () => {
             <>
               <p className="pb-2">Content</p>
               {form.getValues().content ? (
-                <ReactMarkdown className="scroll-y-auto prose-headings:font-josefin prose h-full max-h-40 max-w-full overflow-y-auto break-words rounded-md bg-zinc-100 p-2.5 text-start text-zinc-800 prose-headings:font-semibold prose-headings:text-zinc-950 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                <ReactMarkdown className="prose-headings:font-josefin prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                   {form.getValues().content || ""}
                 </ReactMarkdown>
               ) : (
@@ -671,7 +672,7 @@ const PostCreationForm = () => {
           <div className="py-4">
             <p className="pb-2">Description (optional)</p>
             {form.getValues().description ? (
-              <ReactMarkdown className="scroll-y-auto prose-headings:font-josefin prose h-full max-h-40 max-w-full overflow-y-auto break-words rounded-md bg-zinc-100 p-2.5 text-start text-zinc-800 prose-headings:font-semibold prose-headings:text-zinc-950 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+              <ReactMarkdown className="prose-headings:font-josefin prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                 {form.getValues().description || ""}
               </ReactMarkdown>
             ) : (
