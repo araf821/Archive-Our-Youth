@@ -6,7 +6,7 @@ import LikeButton from "../LikeButton";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-const PostModal = ({}) => {
+const PostModal = () => {
   const { onClose, data, type, isOpen } = useModal();
   const { post } = data;
   const pathname = usePathname();
@@ -60,7 +60,10 @@ const PostModal = ({}) => {
                 modal={true}
               />
               <p className="text-zinc-400">
-                Posted by {post.user?.name || "Anonymous"}
+                {post.user
+                  ? `Posted by ${post.user.name}`
+                  : "Posted Anonymously"}
+                {/* Posted by {post.user?.name || "Anonymous"} */}
               </p>
             </div>
 

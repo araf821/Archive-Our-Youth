@@ -79,7 +79,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
           </div>
           <div className="flex flex-col gap-0.5">
             <p className="font-semibold tracking-wide">
-              {post.user?.name || "Anonymous"}
+              {post.user?.name || "Posted Anonymously"}
             </p>
             {post.user ? (
               <p className="text-base font-normal text-zinc-400">

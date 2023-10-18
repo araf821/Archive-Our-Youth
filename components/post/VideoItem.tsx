@@ -2,31 +2,28 @@
 
 import { Post, User } from "@prisma/client";
 import { FC, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { VideoIcon } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
+import Overlay from "../Overlay";
 
 interface VideoItemProps {
   post: Post & { user: User | null };
   onClick: () => void;
+  clicked: boolean;
+  onClose: () => void;
 }
 
-const VideoItem: FC<VideoItemProps> = ({ post, onClick }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
+const VideoItem: FC<VideoItemProps> = ({ post, onClick, clicked, onClose }) => {
   return (
     <div
       onClick={onClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       className="group relative grid aspect-square w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800"
     >
+      <AnimatePresence>
+        {!clicked && (
+          <Overlay onClose={onClose} />
+        )}
+      </AnimatePresence>
       <div className="absolute left-0 top-20 z-10 h-12 w-[700px] translate-x-full rotate-45 bg-white/10 blur-xl brightness-200 transition duration-700 group-hover:-translate-x-full md:duration-500" />
       <div className="absolute left-0 top-0 rounded-br-md bg-black px-2 py-0.5 text-zinc-100 max-sm:text-xs sm:text-sm">
         Video

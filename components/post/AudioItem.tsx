@@ -1,30 +1,27 @@
 import { Post, User } from "@prisma/client";
+import { AnimatePresence } from "framer-motion";
 import { Volume1, Volume2 } from "lucide-react";
 import { FC, useState } from "react";
+import Overlay from "../Overlay";
 
 interface AudioItemProps {
   post: Post & { user: User | null };
   onClick: () => void;
+  clicked: boolean;
+  onClose: () => void;
 }
 
-const AudioItem: FC<AudioItemProps> = ({ onClick, post }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-
+const AudioItem: FC<AudioItemProps> = ({ onClick, post, clicked, onClose }) => {
   return (
     <div
       onClick={onClick}
       className="group relative grid aspect-square h-full w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800 bg-zinc-900"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
+      <AnimatePresence>
+        {!clicked && (
+          <Overlay onClose={onClose} />
+        )}
+      </AnimatePresence>
       <div className="absolute left-0 top-20 z-10 h-12 w-[700px] translate-x-full rotate-45 bg-white/10 blur-xl brightness-200 transition duration-700 group-hover:-translate-x-full md:duration-500" />
       <div className="absolute left-0 top-0 rounded-br-md bg-black px-2 py-0.5 text-zinc-100 max-sm:text-xs sm:text-sm">
         Audio

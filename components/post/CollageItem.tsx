@@ -3,10 +3,12 @@
 import { useModal } from "@/hooks/useModal";
 import { Post, User } from "@prisma/client";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useState } from "react";
 import VideoItem from "./VideoItem";
 import AudioItem from "./AudioItem";
 import { Pen } from "lucide-react";
+import Overlay from "../Overlay";
+import { AnimatePresence } from "framer-motion";
 
 interface CollageItemProps {
   post: Post & { user: User | null };
@@ -15,17 +17,43 @@ interface CollageItemProps {
 
 const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
   const { onOpen } = useModal();
+  const [clicked, setClicked] = useState(
+    post.contentType === "IMAGE" ? true : false,
+  );
+
+  const onClose = () => {
+    setClicked(true);
+
+    setTimeout(() => {
+      setClicked(false);
+    }, 3000);
+  };
 
   const handleClick = () => {
+    if (!clicked) return;
     onOpen("postModal", { post, currentUser });
   };
 
   if (post.contentType === "VIDEO") {
-    return <VideoItem post={post} onClick={handleClick} />;
+    return (
+      <VideoItem
+        post={post}
+        onClick={handleClick}
+        onClose={onClose}
+        clicked={clicked}
+      />
+    );
   }
 
   if (post.contentType === "AUDIO") {
-    return <AudioItem post={post} onClick={handleClick} />;
+    return (
+      <AudioItem
+        post={post}
+        clicked={clicked}
+        onClose={onClose}
+        onClick={handleClick}
+      />
+    );
   }
 
   return (
@@ -33,6 +61,11 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
       onClick={handleClick}
       className={`group relative aspect-square cursor-pointer overflow-hidden border border-zinc-800 transition duration-500 hover:brightness-125`}
     >
+      <AnimatePresence>
+        {post.contentType === "TEXT" && !clicked && (
+          <Overlay onClose={onClose} />
+        )}
+      </AnimatePresence>
       <div className="absolute left-0 top-0 z-10 rounded-br-md bg-black px-2 py-0.5 text-zinc-100 max-sm:text-xs sm:text-sm">
         {post.contentType === "TEXT" ? "Written" : "Image"}
       </div>

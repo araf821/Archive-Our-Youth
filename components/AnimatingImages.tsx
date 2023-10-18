@@ -12,21 +12,19 @@ const images = [
 ];
 
 const AnimatingImages = () => {
-  const [currentImage, setCurrentImage] = useState<number | null>(null);
+  const [currentImage, setCurrentImage] = useState<number>(0);
   const [isFadingOut, setIsFadingOut] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setCurrentImage(0);
-  }, []);
-
-  useEffect(() => {
+    setIsMounted(true);
     const intervalId = setInterval(changeBackgroundImage, 3000);
 
     // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);
   }, []);
 
-  if (currentImage === null) return null;
+  if (!isMounted) return null;
 
   function changeBackgroundImage() {
     setIsFadingOut(true);
