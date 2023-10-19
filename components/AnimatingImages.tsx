@@ -18,9 +18,8 @@ const AnimatingImages = () => {
 
   useEffect(() => {
     setIsMounted(true);
-    const intervalId = setInterval(changeBackgroundImage, 3000);
+    const intervalId = setInterval(changeBackgroundImage, 5000);
 
-    // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);
   }, []);
 
@@ -32,12 +31,12 @@ const AnimatingImages = () => {
     setTimeout(() => {
       setCurrentImage((prevIndex) => (prevIndex! + 1) % images.length);
       setIsFadingOut(false);
-    }, 500);
+    }, 1100);
   }
 
   const imageStyle = {
     opacity: isFadingOut ? 0 : 1,
-    transition: "opacity 0.5s ease-in-out",
+    transition: "opacity 1s ease-in-out",
   };
 
   return (
