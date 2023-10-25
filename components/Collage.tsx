@@ -5,23 +5,54 @@ import EmptyState from "./EmptyState";
 import { HomeIcon } from "lucide-react";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import FadeInContainer from "./FadeInContainer";
-import axios from "axios";
-import { Post, User } from "@prisma/client";
 
-interface CollageProps {}
+interface CollageProps {
+  keyword?: string;
+  sortBy?: string;
+}
 
-const Collage: FC<CollageProps> = async ({}) => {
+const Collage: FC<CollageProps> = async ({ keyword, sortBy }) => {
   const currentUser = await getCurrentUser();
+  let orderBy: any = { createdAt: "desc" };
+
+  switch (sortBy) {
+    case "most-popular":
+      orderBy = {
+        likes: "desc",
+      };
+      break;
+    case "least-popular":
+      orderBy = { likes: "asc" };
+      break;
+    case "latest":
+      orderBy = { createdAt: "desc" };
+      break;
+    case "oldest":
+      orderBy = { createdAt: "asc" };
+      break;
+    default:
+  }
+
   const posts = await db.post.findMany({
-    orderBy: {
-      createdAt: "desc",
+    where: {
+      AND: [
+        {
+          OR: [
+            keyword
+              ? {
+                  title: {
+                    contains: keyword,
+                    mode: "insensitive",
+                  },
+                }
+              : {},
+          ],
+        },
+      ],
     },
+    orderBy,
     include: { user: true },
   });
-  // let posts: (Post & { user: User })[] = [];
-  // if (typeof window !== undefined) {
-  //   posts = await axios.get(window.location.origin + "/api/post");
-  // }
 
   if (!posts) {
     return (
