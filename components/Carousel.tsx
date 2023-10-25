@@ -36,18 +36,18 @@ const variants = {
 const Carousel = ({}) => {
   const [[page, direction], setPage] = useState([1, 0]);
   const { userId } = useAuth();
-  const {onOpen} = useModal();
+  const { onOpen } = useModal();
 
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
   };
 
   return (
-    <div className="flex">
+    <div className="flex h-[90vh]">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={page}
-          className="pointer-events-none absolute bottom-0 left-0 right-0 top-0 grid place-items-center"
+          className="pointer-events-none absolute px-4 bottom-0 left-0 right-0 top-0 grid place-items-center"
           custom={direction}
           variants={variants}
           initial="enter"
@@ -60,7 +60,7 @@ const Carousel = ({}) => {
         >
           {page === 1 && (
             <div className="max-w-screen-sm rounded-lg p-8">
-              <p className="z-10 flex select-none flex-col gap-4 py-8 text-center font-karla text-8xl font-bold tracking-tighter text-background text-white opacity-100 md:text-[10rem]">
+              <p className="z-10 flex select-none flex-col gap-4 py-8 text-center font-karla text-[5rem] font-bold leading-none tracking-tighter text-background text-white opacity-100 md:text-[6rem] lg:text-[7rem]">
                 Digital
                 <span>Archive</span>
               </p>
@@ -80,43 +80,44 @@ const Carousel = ({}) => {
           )}
 
           {page === 3 && (
-            <div className="pointer-events-auto mx-4 flex max-w-screen-sm flex-col items-center justify-center gap-6 rounded-lg bg-black/30 px-4 py-8 text-center backdrop-blur-sm">
+            <div className="pointer-events-auto flex w-full max-w-sm flex-col items-center justify-center gap-6 rounded-sm bg-black/60 px-6 py-12 text-center backdrop-blur-sm">
               <p className="w-fit font-karla text-4xl font-bold text-white ">
                 Let&rsquo;s get started!
               </p>
 
-              <div className="flex w-full flex-col gap-4">
-                <div className="space-y-4">
-                  <>
-                    {userId ? (
-                      <Link
-                        href="/submit"
-                        className="group flex w-full justify-between rounded-sm bg-gradient-to-tr from-red-600 to-rose-500 px-4 py-2 text-white shadow-[0_0_10px] shadow-rose-600/50 transition hover:bg-rose-600 hover:shadow-[0_0_25px_2px] hover:shadow-rose-500/50"
-                      >
-                        Submit A Post
-                        <SendHorizonal className="transition group-hover:translate-x-2" />
-                      </Link>
-                    ) : (
-                      <button onClick={() => onOpen("submitAuthModal")} className="group flex w-full justify-between rounded-sm bg-gradient-to-tr from-red-600 to-rose-500 px-4 py-2 text-white shadow-[0_0_10px] shadow-rose-600/50 transition hover:bg-rose-600 hover:shadow-[0_0_25px_2px] hover:shadow-rose-500/50">
-                        Submit A Post
-                        <SendHorizonal className="transition group-hover:translate-x-2" />
-                      </button>
-                    )}
+              <div className="space-y-4 mt-8 w-full">
+                <>
+                  {userId ? (
                     <Link
-                      href="/collage"
-                      className="group flex w-full justify-between rounded-sm border border-white px-4 py-2 text-white transition hover:bg-zinc-100 hover:text-black"
+                      href="/submit"
+                      className="group flex w-full justify-between rounded-sm bg-gradient-to-tr from-red-600 to-rose-500 px-4 py-2 text-white shadow-[0_0_10px] shadow-rose-600/50 transition hover:bg-rose-600 hover:shadow-[0_0_25px_2px] hover:shadow-rose-500/50"
                     >
-                      View All Submissions
-                      <Tv className="transition group-hover:translate-x-2" />
+                      Submit A Post
+                      <SendHorizonal className="transition group-hover:translate-x-2" />
                     </Link>
-                  </>
-                </div>
+                  ) : (
+                    <button
+                      onClick={() => onOpen("submitAuthModal")}
+                      className="group flex w-full justify-between rounded-sm bg-gradient-to-tr from-red-600 to-rose-500 px-4 py-2 text-white shadow-[0_0_10px] shadow-rose-600/50 transition hover:bg-rose-600 hover:shadow-[0_0_25px_2px] hover:shadow-rose-500/50"
+                    >
+                      Submit A Post
+                      <SendHorizonal className="transition group-hover:translate-x-2" />
+                    </button>
+                  )}
+                  <Link
+                    href="/collage"
+                    className="group flex w-full justify-between rounded-sm border border-white px-4 py-2 text-white transition hover:bg-zinc-100 hover:text-black"
+                  >
+                    View All Submissions
+                    <Tv className="transition group-hover:translate-x-2" />
+                  </Link>
+                </>
               </div>
             </div>
           )}
         </motion.div>
       </AnimatePresence>
-      <div className="fixed bottom-20 left-0 right-0 z-10 flex justify-center gap-40 md:bottom-36">
+      <div className="max-[]: fixed bottom-20 left-0 right-0 z-10 flex justify-center gap-40 md:bottom-36">
         {page > 1 && (
           <button
             className="next"

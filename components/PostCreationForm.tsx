@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import axios from "axios";
@@ -55,7 +55,7 @@ const formSchema = z.object({
   ]),
   content: z
     .string()
-    .min(3, {
+    .min(5, {
       message: "Content must be between 5 and 2000 characters in length.",
     })
     .max(2000, {
@@ -515,7 +515,7 @@ const PostCreationForm = () => {
               selectedOptions={tags}
             />
           </FormControl>
-          <FormMessage />
+          {tags.length < 1 && <FormMessage />}
           <ul className="flex flex-wrap gap-4 text-white">
             {form.getValues().tags.map((tag, index) => (
               <li
@@ -584,7 +584,13 @@ const PostCreationForm = () => {
           <span className="font-bold">{contentType.toLowerCase()}</span>
         </div>
         <div className="py-4 capitalize">
-          <p className="pb-2">Title</p>
+          <p
+            className={cn("pb-2", {
+              "text-rose-600": form.formState.errors.title,
+            })}
+          >
+            Title
+          </p>
           <span className="font-bold">
             {form.getValues().title || (
               <p className="font-normal normal-case text-zinc-400">
@@ -602,7 +608,13 @@ const PostCreationForm = () => {
         <div className="py-4">
           {contentType === "TEXT" && (
             <>
-              <p className="pb-2">Content</p>
+              <p
+                className={cn("pb-2", {
+                  "text-rose-600": form.formState.errors.content,
+                })}
+              >
+                Content
+              </p>
               {form.getValues().content ? (
                 <ReactMarkdown className="prose-headings:font-josefin prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                   {form.getValues().content || ""}
@@ -670,7 +682,13 @@ const PostCreationForm = () => {
         </div>
         {contentType !== "TEXT" && (
           <div className="py-4">
-            <p className="pb-2">Description (optional)</p>
+            <p
+              className={cn("pb-2", {
+                "text-rose-600": form.formState.errors.description,
+              })}
+            >
+              Description (optional)
+            </p>
             {form.getValues().description ? (
               <ReactMarkdown className="prose-headings:font-josefin prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                 {form.getValues().description || ""}
@@ -681,7 +699,13 @@ const PostCreationForm = () => {
           </div>
         )}
         <div className="py-4">
-          <p className={cn("pb-2", { "text-red-500": tags.length < 1 })}>Tag</p>
+          <p
+            className={cn("pb-2", {
+              "text-rose-600": tags.length < 1 || tags.length > 8,
+            })}
+          >
+            Tag
+          </p>
           {form.getValues().tags.length < 1 && (
             <p className="text-zinc-400">
               At least one tag is required,{" "}
@@ -755,11 +779,22 @@ const PostCreationForm = () => {
           </Button>
           {step === STEPS.CONFIRM ? (
             <button
-              disabled={isLoading}
-              className="rounded-md bg-zinc-800 px-3 py-2 transition hover:bg-zinc-700"
+              disabled={
+                isLoading ||
+                !!form.formState.errors.content ||
+                !!form.formState.errors.contentType ||
+                !!form.formState.errors.title ||
+                !!form.formState.errors.description
+              }
+              className="rounded-md bg-zinc-800 px-3 py-2 transition hover:bg-zinc-700 disabled:opacity-70 disabled:hover:bg-zinc-800"
               onClick={form.handleSubmit(onSubmit)}
             >
-              Submit Post
+              {!!form.formState.errors.content ||
+              !!form.formState.errors.contentType ||
+              !!form.formState.errors.title ||
+              !!form.formState.errors.description
+                ? "Form Incomplete"
+                : "Submit Post"}
             </button>
           ) : (
             <Button

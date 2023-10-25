@@ -18,7 +18,7 @@ const AnimatingImages = () => {
 
   useEffect(() => {
     setIsMounted(true);
-    const intervalId = setInterval(changeBackgroundImage, 5000);
+    const intervalId = setInterval(changeBackgroundImage, 2000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -31,12 +31,12 @@ const AnimatingImages = () => {
     setTimeout(() => {
       setCurrentImage((prevIndex) => (prevIndex! + 1) % images.length);
       setIsFadingOut(false);
-    }, 1100);
+    }, 300);
   }
 
   const imageStyle = {
     opacity: isFadingOut ? 0 : 1,
-    transition: "opacity 1s ease-in-out",
+    transition: "opacity 0.3s ease-in-out",
   };
 
   return (

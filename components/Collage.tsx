@@ -5,6 +5,8 @@ import EmptyState from "./EmptyState";
 import { HomeIcon } from "lucide-react";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import FadeInContainer from "./FadeInContainer";
+import axios from "axios";
+import { Post, User } from "@prisma/client";
 
 interface CollageProps {}
 
@@ -16,6 +18,10 @@ const Collage: FC<CollageProps> = async ({}) => {
     },
     include: { user: true },
   });
+  // let posts: (Post & { user: User })[] = [];
+  // if (typeof window !== undefined) {
+  //   posts = await axios.get(window.location.origin + "/api/post");
+  // }
 
   if (!posts) {
     return (

@@ -23,9 +23,18 @@ const MultiSelect: FC<MultiSelectProps> = ({
       onChange(selectedOptions.filter((val) => val !== option));
     } else {
       if (selectedOptions.length >= 8) {
-        toast({title: "Up to 8 tags allowed."})
+        toast({ title: "Up to 8 tags allowed.", variant: "destructive" });
         return;
       }
+
+      if (option.length > 16) {
+        toast({
+          title: "Tags must be less than 15 characters long.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       onChange([...selectedOptions, option]);
     }
     setInput("");
@@ -48,6 +57,8 @@ const MultiSelect: FC<MultiSelectProps> = ({
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();
+            selectOption(input);
+            setIsOpen(false);
           }
         }}
       />
@@ -58,10 +69,9 @@ const MultiSelect: FC<MultiSelectProps> = ({
           isOpen ? "scale-y-100" : "scale-y-0"
         } absolute left-0 top-[110%] z-10 max-h-72 w-full origin-top-left divide-y-[1px] divide-zinc-700 overflow-y-auto rounded-md border border-zinc-700 bg-zinc-800 text-zinc-100 transition duration-200 ease-out`}
       >
-        {options.map((option, index) => {
-          if (!option.includes(input)) {
-            return;
-          }
+        {[input, ...options].map((option, index) => {
+          if (!option.includes(input)) return;
+          if (option === "") return;
           return (
             <li
               tabIndex={0}
