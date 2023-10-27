@@ -57,7 +57,7 @@ const Collage: FC<CollageProps> = async ({ keyword, sortBy }) => {
   if (!posts.length && (keyword || sortBy)) {
     return (
       <EmptyState
-        title="No Posts Found"
+        title="No Results"
         description="No posts match the search criteria."
         link={{ label: "Clear Search", route: "/home", icon: RefreshCcw }}
       />

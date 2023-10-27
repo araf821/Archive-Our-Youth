@@ -66,9 +66,11 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
           <Overlay onClose={onClose} />
         )}
       </AnimatePresence>
-      <div className="absolute left-0 top-0 z-10 rounded-br-md bg-black px-2 py-0.5 text-zinc-100 max-sm:text-xs sm:text-sm">
-        {post.contentType === "TEXT" ? "Written" : "Image"}
-      </div>
+      {post.contentType === "TEXT" && (
+        <p className="absolute z-20 left-0 top-0 rounded-br-md bg-black px-2 py-0.5 text-zinc-100 max-sm:text-xs sm:text-sm">
+          Written
+        </p>
+      )}
       <div className="absolute left-0 top-20 z-10 h-12 w-[700px] translate-x-full rotate-45 bg-white/10 blur-xl brightness-200 transition duration-700 group-hover:-translate-x-full md:duration-500" />
       {post.contentType === "IMAGE" && (
         <>

@@ -20,12 +20,10 @@ const VideoItem: FC<VideoItemProps> = ({ post, onClick, clicked, onClose }) => {
       className="group relative grid aspect-square w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800"
     >
       <AnimatePresence>
-        {!clicked && (
-          <Overlay onClose={onClose} />
-        )}
+        {!clicked && <Overlay onClose={onClose} />}
       </AnimatePresence>
       <div className="absolute left-0 top-20 z-10 h-12 w-[700px] translate-x-full rotate-45 bg-white/10 blur-xl brightness-200 transition duration-700 group-hover:-translate-x-full md:duration-500" />
-      <div className="absolute left-0 top-0 rounded-br-md bg-black px-2 py-0.5 text-zinc-100 max-sm:text-xs sm:text-sm">
+      <div className="absolute left-0 top-0 z-20 rounded-br-md bg-black px-2 py-0.5 text-zinc-100 max-sm:text-xs sm:text-sm">
         Video
       </div>
       <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">

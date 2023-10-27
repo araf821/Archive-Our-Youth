@@ -50,15 +50,13 @@ const Filters: FC<FiltersProps> = ({}) => {
   const router = useRouter();
 
   const searchParams = useSearchParams();
-  const sortBy = searchParams.get("sortBy");
-  const keyword = searchParams.get("keyword");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       keyword: searchParams.get("keyword") || "",
       // tags: [],
-      sortBy: searchParams.get("sortBy") || "",
+      sortBy: "latest",
     },
   });
   const errors = form.formState.errors;
@@ -75,8 +73,8 @@ const Filters: FC<FiltersProps> = ({}) => {
 
     const updatedQuery: any = {
       ...currentQuery,
-      keyword: form.getValues("keyword") || null,
-      sortBy: form.getValues("sortBy") || null,
+      keyword: values.keyword || null,
+      sortBy: values.sortBy || null,
     };
 
     const url = qs.stringifyUrl(
@@ -131,17 +129,14 @@ const Filters: FC<FiltersProps> = ({}) => {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Search by Title</FormLabel>
+                  <FormLabel>Sort By</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="bg-zinc-900 py-6 text-zinc-100 outline-none">
-                        <SelectValue
-                          defaultValue="latest"
-                          placeholder="Latest Posts"
-                        />
+                      <SelectTrigger className="border-none bg-zinc-800 py-5 text-zinc-100 outline-none">
+                        <SelectValue placeholder="Sort by..." />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent className="rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
@@ -201,6 +196,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                 onClick={() => {
                   form.reset();
                   onClose();
+                  form.setValue("sortBy", "latest");
                   router.push("/home");
                 }}
                 type="button"

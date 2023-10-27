@@ -52,7 +52,7 @@ const Overlay: FC<OverlayProps> = ({ onClose }) => {
       initial={{ opacity: 0 }}
       exit={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.5 } }}
-      onClick={onClose} // Call the provided callback to close the overlay.
+      onClick={onClose}
       className={cn(
         "absolute left-0 top-0 z-20 h-full w-full",
         randomBackgroundColor,
