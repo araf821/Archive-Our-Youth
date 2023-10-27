@@ -2,7 +2,7 @@ import { FC, Fragment } from "react";
 import CollageItem from "./post/CollageItem";
 import { db } from "@/lib/db";
 import EmptyState from "./EmptyState";
-import { HomeIcon } from "lucide-react";
+import { HomeIcon, RefreshCcw } from "lucide-react";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import FadeInContainer from "./FadeInContainer";
 
@@ -54,12 +54,12 @@ const Collage: FC<CollageProps> = async ({ keyword, sortBy }) => {
     include: { user: true },
   });
 
-  if (!posts) {
+  if (!posts.length && (keyword || sortBy)) {
     return (
       <EmptyState
         title="No Posts Found"
-        description="Seems like something may have gone wrong on our end. Please check back later."
-        link={{ label: "Back to Home", route: "/", icon: HomeIcon }}
+        description="No posts match the search criteria."
+        link={{ label: "Clear Search", route: "/home", icon: RefreshCcw }}
       />
     );
   }

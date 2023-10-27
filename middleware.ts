@@ -6,7 +6,7 @@ import { authMiddleware } from "@clerk/nextjs";
 export default authMiddleware({
   publicRoutes: [
     "/",
-    "/collage",
+    "/home",
     "/post/:path*",
     "/about",
     "/contact",

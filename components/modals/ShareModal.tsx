@@ -5,11 +5,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/Dialog";
 import { usePathname } from "next/navigation";
 import { Check, Copy, CopyPlus } from "lucide-react";
 import { useState } from "react";
-import { useToast } from "../ui/useToast";
+import { toast } from "sonner";
 
 const ShareModal = () => {
   const { onClose, type, isOpen } = useModal();
-  const { toast } = useToast();
   const [clicked, setClicked] = useState(false);
   const pathname = usePathname();
 
@@ -21,14 +20,14 @@ const ShareModal = () => {
         .writeText(generatedContent)
         .then(() => {
           setClicked(true);
-          toast({ title: "Copied to clipboard." });
+          toast.success("Copied to clipboard.");
           setTimeout(() => {
             setClicked(false);
           }, 1000);
         })
         .catch((error) => {
           console.error("Clipboard write failed:", error);
-          // toast.error("Copy failed. Please try again.");
+          toast.error("Failed to copy link.");
         });
     }
   };

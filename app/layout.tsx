@@ -3,7 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Karla, Nunito } from "next/font/google";
 
 import ModalProvider from "@/components/modals/ModalProvider";
-import { Toaster } from "@/components/ui/Toaster";
+import { Toaster } from "sonner";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -14,7 +14,7 @@ const karla = Karla({
 });
 
 export const metadata = {
-  title: "Digital Collage",
+  title: "Digital Archive",
   description:
     "Explore a global showcase of written, visual, and vocal artistry on Digital Collage. Join creators from around the world as they share their talents. Discover captivating stories, striking visuals, and powerful voices. Welcome to a diverse community of creativity.",
 };
@@ -28,7 +28,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`${nunito.className} bg-zinc-900 ${karla.variable}`}>
-          <Toaster />
+          <Toaster richColors />
           <ModalProvider />
           {children}
         </body>

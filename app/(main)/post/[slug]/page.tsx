@@ -50,7 +50,7 @@ const page: FC<SinglePostPageParams> = async ({ params }) => {
       <EmptyState
         title="Post Not Found"
         description="The post you're looking for does not exist. It may have been taken deleted."
-        link={{ label: "View All Posts", route: "/collage" }}
+        link={{ label: "View All Posts", route: "/home" }}
       />
     );
   }

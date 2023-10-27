@@ -105,7 +105,7 @@ const Carousel = ({}) => {
                     </button>
                   )}
                   <Link
-                    href="/collage"
+                    href="/home"
                     className="group flex w-full justify-between rounded-sm border border-white px-4 py-2 text-white transition hover:bg-zinc-100 hover:text-black"
                   >
                     View All Submissions

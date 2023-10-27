@@ -2,15 +2,17 @@
 
 import { cn } from "@/lib/utils";
 import { FC, useState } from "react";
-import { toast } from "./ui/useToast";
+import { toast } from "sonner";
 
 interface MultiSelectProps {
   options: string[];
   selectedOptions: string[];
   onChange: (value: string[]) => void;
+  maxSelection: number;
 }
 
 const MultiSelect: FC<MultiSelectProps> = ({
+  maxSelection,
   options,
   selectedOptions,
   onChange,
@@ -22,16 +24,13 @@ const MultiSelect: FC<MultiSelectProps> = ({
     if (selectedOptions?.includes(option)) {
       onChange(selectedOptions.filter((val) => val !== option));
     } else {
-      if (selectedOptions.length >= 8) {
-        toast({ title: "Up to 8 tags allowed.", variant: "destructive" });
+      if (selectedOptions.length >= maxSelection) {
+        toast.error(`Up to ${maxSelection} tags allowed.`);
         return;
       }
 
       if (option.length > 16) {
-        toast({
-          title: "Tags must be less than 15 characters long.",
-          variant: "destructive",
-        });
+        toast.error("Tags must be less than 15 characters long.");
         return;
       }
 

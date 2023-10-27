@@ -6,8 +6,7 @@ import { navLinks } from "./NavLinks";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { SignInButton, SignOutButton, useAuth } from "@clerk/nextjs";
-import { toast } from "../ui/useToast";
-
+import { toast } from "sonner";
 interface MobileMenuProps {}
 
 const MobileMenu: FC<MobileMenuProps> = ({}) => {
@@ -67,7 +66,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
           </div>
           {userId ? (
             <button
-              onClick={() => toast({ title: "Signed Out" })}
+              onClick={() => toast.success("Signed Out")}
               className="w-full bg-zinc-800 py-3 transition hover:bg-zinc-700"
             >
               <SheetClose className="w-full">

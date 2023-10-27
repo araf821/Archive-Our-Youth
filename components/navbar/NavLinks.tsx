@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 export const navLinks = [
   {
     label: "Home",
-    pathname: "/collage",
+    pathname: "/home",
   },
   {
     label: "About Us",
@@ -46,7 +46,7 @@ const NavLinks = ({}) => {
           </Link>
         ))}
       </div>
-      {pathname === "/collage" && (
+      {pathname === "/home" && (
         <button
           className={cn(
             "rounded-full bg-zinc-800 p-3 text-white transition hover:bg-zinc-700 active:scale-90 max-lg:hidden",

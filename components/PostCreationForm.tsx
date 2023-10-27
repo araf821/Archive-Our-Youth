@@ -19,14 +19,14 @@ import { Button } from "./ui/Button";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ContentType, User } from "@prisma/client";
+import { ContentType } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import FileUpload from "./FileUpload";
 import MultiSelect from "./MultiSelect";
 import Image from "next/image";
 import { ScrollArea } from "./ui/ScrollArea";
-import { toast } from "./ui/useToast";
 import { useAuth } from "@clerk/nextjs";
+import { toast } from "sonner";
 
 enum STEPS {
   WELCOME = 0,
@@ -127,11 +127,11 @@ const PostCreationForm = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.post("/api/post", values);
-      toast({ title: "Your post has been published!" });
+      toast.success("Your post has been published!");
       form.reset();
-      router.push("/collage");
+      router.push("/home");
     } catch (error: any) {
-      toast({ title: "Something went wrong.", variant: "destructive" });
+      toast.error("Something went wrong.");
       console.log(error);
     }
   };
@@ -508,10 +508,11 @@ const PostCreationForm = () => {
           </FormLabel>
           <FormControl>
             <MultiSelect
+              maxSelection={8}
               onChange={(values: string[]) => {
                 form.setValue("tags", values);
               }}
-              options={dummyTags}
+              options={allTags}
               selectedOptions={tags}
             />
           </FormControl>
@@ -814,56 +815,159 @@ const PostCreationForm = () => {
 
 export default PostCreationForm;
 
-const dummyTags = [
-  "art",
-  "photography",
-  "painting",
-  "digitalart",
-  "illustration",
-  "design",
-  "sculpture",
-  "crafts",
-  "drawing",
-  "animation",
-  "videography",
-  "shortfilm",
-  "documentary",
-  "music",
-  "audio",
-  "poetry",
-  "prose",
-  "writing",
-  "journal",
-  "diary",
-  "creative",
-  "visual",
-  "storytelling",
-  "experimental",
-  "abstract",
-  "nature",
-  "architecture",
-  "landscape",
-  "portrait",
-  "conceptual",
-  "urban",
-  "vintage",
-  "contemporary",
-  "minimalism",
-  "collage",
-  "mixedmedia",
-  "performance",
-  "installation",
-  "digitalmedia",
-  "webdesign",
-  "technology",
-  "fashion",
-  "craftsmanship",
-  "foodart",
-  "travel",
-  "adventure",
-  "inspiration",
-  "love",
-  "emotions",
-  "life",
-  "reflection",
+const allTags = [
+  "Planet",
+  "Land",
+  "Forest",
+  "Ecosystem",
+  "Biomimicry",
+  "Human",
+  "Community",
+  "Wellbeing",
+  "Mental Health",
+  "Planetary Health",
+  "Climate Change",
+  "Age",
+  "Aging",
+  "Emotional Health",
+  "Gen Z",
+  "Millennials",
+  "Gen Y",
+  "Gen Alpha",
+  "Spirit",
+  "Spiritual Health",
+  "Interconnectedness",
+  "Generation",
+  "Change",
+  "Pollution",
+  "Place",
+  "Space",
+  "Friends",
+  "Time",
+  "Family",
+  "Toronto",
+  "6ix",
+  "Canada",
+  "Digital",
+  "Online",
+  "Misinformation",
+  "Disinformation",
+  "Privacy",
+  "Archive",
+  "SDGs",
+  "Sustainable",
+  "School",
+  "Dream",
+  "Future",
+  "Changing",
+  "Everyday life",
+  "Love",
+  "Hate",
+  "Live",
+  "Moment",
+  "Laugh",
+  "YOLO",
+  "Slay",
+  "FOMO",
+  "Fear",
+  "Headspace",
+  "Peace",
+  "Yo",
+  "Futurist",
+  "Utopia",
+  "Dystopia",
+  "Systems",
+  "Systemic Change",
+  "Dance",
+  "Experimentation",
+  "Improvisation",
+  "Reconnect",
+  "Hello",
+  "Me",
+  "Hola",
+  "Spanish",
+  "French",
+  "English",
+  "Español",
+  "Francais",
+  "Wa Gwan",
+  "Rastafarian",
+  "Jah",
+  "Quebecois",
+  "News",
+  "War",
+  "Education",
+  "Information",
+  "Natural Disaster",
+  "Children",
+  "Renovation",
+  "Evolve",
+  "Thriving",
+  "Flourishing",
+  "Remembering",
+  "Growth",
+  "Green Space",
+  "Water",
+  "Air",
+  "Indigenous",
+  "Sovereignty",
+  "Mississauga",
+  "Mississauga of the Credit",
+  "Anishinaabe",
+  "Haudenosaunee",
+  "Huron-Wendat",
+  "Metis",
+  "Inuit",
+  "First Nations",
+  "Immigrants",
+  "Refugee",
+  "First Generation",
+  "Second Generation",
+  "High School",
+  "Secondary School",
+  "University",
+  "Diaspora",
+  "Trades",
+  "Elementary School",
+  "College",
+  "Employed",
+  "Unemployed",
+  "Inspiration",
+  "Motivation",
+  "Equity",
+  "Diversity",
+  "Inclusion",
+  "Colonization",
+  "Capitalism",
+  "Patriarchy",
+  "Matriarchy",
+  "Thrift",
+  "Eco-friendly",
+  "NPC",
+  "Safe",
+  "Brave",
+  "Justice",
+  "Intergenerational",
+  "Trauma",
+  "Advocacy",
+  "Television",
+  "Phones",
+  "TikTok",
+  "Instagram",
+  "Sugar",
+  "Resource",
+  "Need",
+  "Want",
+  "Desire",
+  "Dream Future",
+  "Happy",
+  "Health",
+  "Lifestyle",
+  "Climate",
+  "Environment",
+  "Outdoor",
+  "Outside",
+  "Sunset",
+  "Sunrise",
+  "Sky",
 ];

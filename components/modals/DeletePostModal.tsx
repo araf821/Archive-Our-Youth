@@ -3,16 +3,15 @@
 import { useModal } from "@/hooks/useModal";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/Dialog";
 import axios from "axios";
-import { useToast } from "../ui/useToast";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 const DeletePostModal = () => {
   const { onClose, type, data, isOpen } = useModal();
   const { postWithoutUser } = data;
 
-  const { toast } = useToast();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,11 +23,11 @@ const DeletePostModal = () => {
 
     try {
       await axios.delete(`/api/post/${postWithoutUser?.id}`);
-      toast({ title: "Post deleted" });
+      toast.success("Post deleted");
       router.refresh();
       onClose();
     } catch (error) {
-      toast({ title: "Something went wrong" });
+      toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
     }

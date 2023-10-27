@@ -95,12 +95,16 @@ const Navbar = ({ user }: NavbarProps) => {
               Submit
             </button>
           )}
-          {user && <UserButton afterSignOutUrl="/collage" />}
+          {user && (
+            <div className="border-zinc-700 border-2 rounded-full">
+              <UserButton afterSignOutUrl="/home" />
+            </div>
+          )}
         </div>
 
         {/* Mobile Menu */}
         <div className="items-center justify-center gap-3 rounded-md bg-zinc-800 p-2 text-white max-lg:flex lg:hidden">
-          {pathname === "/collage" && (
+          {pathname === "/home" && (
             <button
               className={cn("transition", { "text-rose-500": isOpen })}
               onClick={() => {

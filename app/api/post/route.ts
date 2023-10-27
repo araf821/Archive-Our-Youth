@@ -9,6 +9,10 @@ export async function POST(req: Request) {
     const user = await getCurrentUser();
     const { title, contentType, content, description, tags } = await req.json();
 
+    if (!user) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
     const post = await db.post.create({
       data: {
         title,
@@ -24,27 +28,6 @@ export async function POST(req: Request) {
     return NextResponse.json(post);
   } catch (error) {
     console.log("POST CREATION ERROR: ", error);
-    return new NextResponse("Internal Error", { status: 500 });
-  }
-}
-
-export async function GET(req: Request) {
-  try {
-    const { searchParams } = new URL(req.url);
-    const sortBy = searchParams.get("sortBy");
-
-    const posts = await db.post.findMany({
-      orderBy: {
-        likes: "desc",
-      },
-      include: {
-        user: true,
-      },
-    });
-
-    return NextResponse.json(posts);
-  } catch (error) {
-    console.log("POST FETCH ERROR", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
