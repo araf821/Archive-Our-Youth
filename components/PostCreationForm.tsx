@@ -815,7 +815,7 @@ const PostCreationForm = () => {
 
 export default PostCreationForm;
 
-const allTags = [
+export const allTags = [
   "Planet",
   "Land",
   "Forest",

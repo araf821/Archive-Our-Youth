@@ -4,8 +4,8 @@ import { FC } from "react";
 import "@uploadthing/react/styles.css";
 import { UploadDropzone } from "@/lib/uploadthing";
 import Image from "next/image";
-import { FileIcon, X } from "lucide-react";
-import { Button } from "./ui/Button";
+import { X } from "lucide-react";
+import { toast } from "sonner";
 
 interface FileUploadProps {
   endPoint: "audio" | "image" | "pdf" | "video";
@@ -37,11 +37,11 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
 
     if (endPoint === "video") {
       return (
-        <div className="aspect-video max-h-[40vh] relative w-full">
+        <div className="relative aspect-video max-h-[40vh] w-full">
           <video
             src={value}
             controls
-            className="h-full w-full object-contain rounded-sm"
+            className="h-full w-full rounded-sm object-contain"
           />
           <button
             onClick={() => onChange("")}
@@ -61,7 +61,7 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
           <button
             onClick={() => onChange("")}
             type="button"
-            className="rounded-md max-md:text-sm px-3 py-2 md:text-base text-zinc-300 transition hover:bg-zinc-700 bg-zinc-800"
+            className="rounded-md bg-zinc-800 px-3 py-2 text-zinc-300 transition hover:bg-zinc-700 max-md:text-sm md:text-base"
           >
             Remove selected audio
           </button>
@@ -79,6 +79,16 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
       }}
       onUploadError={(error: Error) => {
         console.log(error);
+
+        if (error.message.includes("maximum allowed size")) {
+          toast.error(
+            "File size limit exceeded. Please choose a different file.",
+          );
+        } else {
+          toast.error(
+            "Something went wrong. Could not upload your file at this time.",
+          );
+        }
       }}
     />
   );

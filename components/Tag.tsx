@@ -1,13 +1,15 @@
 import { cn } from "@/lib/utils";
+import { X } from "lucide-react";
 import { FC } from "react";
 
 interface TagProps {
   tag: string;
   index: number;
   small?: boolean;
+  onDelete?: (tag: string) => void;
 }
 
-const Tag: FC<TagProps> = ({ small, tag, index }) => {
+const Tag: FC<TagProps> = ({ small, tag, index, onDelete }) => {
   return (
     <li
       key={tag}
@@ -27,6 +29,11 @@ const Tag: FC<TagProps> = ({ small, tag, index }) => {
       )}
     >
       {tag}
+      {onDelete && (
+        <button type="button" onClick={() => onDelete(tag)}>
+          <X className="h-4 w-4" />
+        </button>
+      )}
     </li>
   );
 };

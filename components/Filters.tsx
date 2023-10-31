@@ -25,6 +25,9 @@ import {
   SelectValue,
 } from "./ui/select";
 import { cn } from "@/lib/utils";
+import MultiSelect from "./MultiSelect";
+import { allTags } from "./PostCreationForm";
+import Tag from "./Tag";
 
 interface FiltersProps {}
 
@@ -43,6 +46,7 @@ const filterVariants = {
 const formSchema = z.object({
   keyword: z.string().optional(),
   sortBy: z.string().optional(),
+  tags: z.string().array().max(5),
 });
 
 const Filters: FC<FiltersProps> = ({}) => {
@@ -55,12 +59,13 @@ const Filters: FC<FiltersProps> = ({}) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       keyword: searchParams.get("keyword") || "",
-      // tags: [],
+      tags: [],
       sortBy: "latest",
     },
   });
-  const errors = form.formState.errors;
-  console.log(errors);
+
+  const tags = form.watch("tags");
+  console.log(tags);
 
   const handleSearch = (values: z.infer<typeof formSchema>) => {
     console.log("called");
@@ -87,6 +92,13 @@ const Filters: FC<FiltersProps> = ({}) => {
 
     router.push(url);
     onClose();
+  };
+
+  const onDeleteTag = (tag: string) => {
+    form.setValue(
+      "tags",
+      tags.filter((t) => t !== tag),
+    );
   };
 
   return (
@@ -181,16 +193,36 @@ const Filters: FC<FiltersProps> = ({}) => {
               )}
             />
 
-            {/* <select
-              onChange={(e) => setSortBy(e.target.value)}
-              name="sortBy"
-              id="sortBy"
-            >
-              <option value="latest">latest</option>
-              <option value="least-popular">least-popular</option>
-              <option value="oldest">oldest</option>
-              <option value="most-popular">most-popular</option>
-            </select> */}
+            <FormField
+              name="tags"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className="z-30">
+                  <FormLabel>Tags</FormLabel>
+                  <MultiSelect
+                    onChange={field.onChange}
+                    maxSelection={5}
+                    options={allTags}
+                    selectedOptions={tags}
+                  />
+                  <FormMessage />
+                  {!!tags.length && (
+                    <div className="flex flex-wrap gap-4 pt-2">
+                      {tags.map((tag, index) => (
+                        <Tag
+                          key={tag}
+                          tag={tag}
+                          index={index}
+                          onDelete={onDeleteTag}
+                        />
+                      ))}
+                    </div>
+                  )}
+                  <div className=""></div>
+                </FormItem>
+              )}
+            />
+
             <div className="flex gap-4">
               <Button
                 onClick={() => {

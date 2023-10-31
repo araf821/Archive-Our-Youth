@@ -16,7 +16,7 @@ const karla = Karla({
 export const metadata = {
   title: "Digital Archive",
   description:
-    "Explore a global showcase of written, visual, and vocal artistry on Digital Collage. Join creators from around the world as they share their talents. Discover captivating stories, striking visuals, and powerful voices. Welcome to a diverse community of creativity.",
+    "Explore a global showcase of written, visual, and vocal artistry on Digital Archive. Join creators from around the world as they share their talents. Discover captivating stories, striking visuals, and powerful voices. Welcome to a diverse community of creativity.",
 };
 
 export default function RootLayout({
