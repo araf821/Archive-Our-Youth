@@ -65,11 +65,8 @@ const Filters: FC<FiltersProps> = ({}) => {
   });
 
   const tags = form.watch("tags");
-  console.log(tags);
 
   const handleSearch = (values: z.infer<typeof formSchema>) => {
-    console.log("called");
-
     let currentQuery = {};
 
     if (searchParams) {
@@ -80,6 +77,7 @@ const Filters: FC<FiltersProps> = ({}) => {
       ...currentQuery,
       keyword: values.keyword || null,
       sortBy: values.sortBy || null,
+      tags: values.tags || null,
     };
 
     const url = qs.stringifyUrl(

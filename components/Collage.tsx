@@ -2,18 +2,22 @@ import { FC, Fragment } from "react";
 import CollageItem from "./post/CollageItem";
 import { db } from "@/lib/db";
 import EmptyState from "./EmptyState";
-import { HomeIcon, RefreshCcw } from "lucide-react";
+import { RefreshCcw } from "lucide-react";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import FadeInContainer from "./FadeInContainer";
 
 interface CollageProps {
   keyword?: string;
   sortBy?: string;
+  tags?: string[];
 }
 
-const Collage: FC<CollageProps> = async ({ keyword, sortBy }) => {
+const Collage: FC<CollageProps> = async ({ keyword, sortBy, tags }) => {
   const currentUser = await getCurrentUser();
   let orderBy: any = { createdAt: "desc" };
+  const tagsArray = tags ? (Array.isArray(tags) ? tags : [tags]) : [];
+
+  console.log(tags);
 
   switch (sortBy) {
     case "most-popular":
@@ -31,6 +35,7 @@ const Collage: FC<CollageProps> = async ({ keyword, sortBy }) => {
       orderBy = { createdAt: "asc" };
       break;
     default:
+      orderBy = { createdAt: "desc" };
   }
 
   const posts = await db.post.findMany({
@@ -48,13 +53,20 @@ const Collage: FC<CollageProps> = async ({ keyword, sortBy }) => {
               : {},
           ],
         },
+        tags
+          ? {
+              tags: {
+                hasSome: tagsArray,
+              },
+            }
+          : {},
       ],
     },
     orderBy,
     include: { user: true },
   });
 
-  if (!posts.length && (keyword || sortBy)) {
+  if ((!posts || !posts.length) && (keyword || sortBy)) {
     return (
       <EmptyState
         title="No Results"

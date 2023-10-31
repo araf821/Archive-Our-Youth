@@ -9,13 +9,17 @@ export const metadata: Metadata = {
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { keyword?: string; sortBy?: string };
+  searchParams: { keyword?: string; sortBy?: string; tags?: string[] };
 }) {
   await initializeUser();
 
   return (
     <div className="relative">
-      <Collage keyword={searchParams.keyword} sortBy={searchParams.sortBy} />
+      <Collage
+        keyword={searchParams.keyword}
+        sortBy={searchParams.sortBy}
+        tags={searchParams.tags}
+      />
     </div>
   );
 }
