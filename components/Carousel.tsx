@@ -1,7 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
+  ArrowLeftCircle,
   ArrowRight,
+  ArrowRightCircle,
   LogIn,
   SendHorizonal,
   Tv,
@@ -47,7 +49,7 @@ const Carousel = ({}) => {
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={page}
-          className="pointer-events-none absolute px-4 bottom-0 left-0 right-0 top-0 grid place-items-center"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 top-0 grid place-items-center px-4"
           custom={direction}
           variants={variants}
           initial="enter"
@@ -72,20 +74,50 @@ const Carousel = ({}) => {
               <p className="w-fit font-karla text-4xl font-bold text-white ">
                 Our Story
               </p>
-              <p className="text-center text-lg text-white">
-                Note: This is just the first iteration of deployment. Things may
-                and will most likely break!
+              <p className="text-center text-lg font-semibold text-white">
+                Welcome to the Digital Archive on Youth and Planetary Wellbeing!
+                You&rsquo;re invited to contribute to the Archive and/or explore
+                the multimedia and artifacts preserved here.
+              </p>
+              <p className="text-center text-lg font-semibold text-white">
+                The Digital Archive explores dream futures, perspectives on
+                wellbeing, and resources both real and desired that support
+                personal to planetary wellbeing. We welcome youth, youth groups
+                and engaged collectives from all over the world to contribute!
               </p>
             </div>
           )}
 
           {page === 3 && (
-            <div className="pointer-events-auto flex w-full max-w-sm flex-col items-center justify-center gap-6 rounded-sm bg-black/60 px-6 py-12 text-center backdrop-blur-sm">
+            <div className="mx-4 flex max-w-screen-sm flex-col items-center justify-center gap-3 rounded-lg bg-black/30 px-4 py-4 backdrop-blur-sm">
               <p className="w-fit font-karla text-4xl font-bold text-white ">
-                Let&rsquo;s get started!
+                Our Story
+              </p>
+              <p className="text-center text-lg font-semibold text-white">
+                The Digital Archive was launched as part of the international
+                research study: Partnership for Youth and Planetary Wellbeing,
+                led by the Young Lives Research Lab, and 4 Youth Advisory
+                Councils (YACs) in Canada, Chile, Costa Rica and Belize.
+              </p>
+              <p className="text-center text-lg font-semibold text-white">
+                The Archive was launched in the Fall of 2023 by Canada&rsquo;s
+                YAC, but the submission portal remains open for continual
+                submissions.
+              </p>
+            </div>
+          )}
+
+          {page === 4 && (
+            <div className="pointer-events-auto flex w-full max-w-sm flex-col items-center justify-center gap-2 rounded-sm bg-black/60 px-6 py-12 text-center backdrop-blur-sm">
+              <p className="w-fit font-karla text-4xl font-bold text-white ">
+                Let&rsquo;s explore!
+              </p>
+              <p className="text-zinc-300 text-sm">
+                Dive right in and showcase what you want or take a look at what
+                others have posted!
               </p>
 
-              <div className="space-y-4 mt-8 w-full">
+              <div className="mt-4 w-full space-y-4">
                 <>
                   {userId ? (
                     <Link
@@ -117,21 +149,21 @@ const Carousel = ({}) => {
           )}
         </motion.div>
       </AnimatePresence>
-      <div className="max-[]: fixed bottom-20 left-0 right-0 z-10 flex justify-center gap-40 md:bottom-36">
+      <div className="carousel-btn-container z-20 order-last mt-auto space-x-28 md:mb-20 md:space-x-40">
         {page > 1 && (
           <button
             className="next"
             onClick={() => (page === 1 ? null : paginate(-1))}
           >
-            <ArrowLeft className="h-16 w-16 text-white" />
+            <ArrowLeftCircle className="small-on-landscape h-16 w-16 text-white" />
           </button>
         )}
-        {page < 3 && (
+        {page < 4 && (
           <button
             className="prev"
-            onClick={() => (page === 3 ? null : paginate(1))}
+            onClick={() => (page === 4 ? null : paginate(1))}
           >
-            <ArrowRight className="h-16 w-16 text-white" />
+            <ArrowRightCircle className="small-on-landscape h-16 w-16 text-white" />
           </button>
         )}
       </div>

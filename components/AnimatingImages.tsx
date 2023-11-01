@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const images = [
+export const images = [
   "https://utfs.io/f/16cf66ae-25c4-4bd3-8dec-b79cd388dac9-30qgi1.jpg",
   "https://utfs.io/f/f123e1f1-73a4-42b7-b637-5003cea001a4-1zypu.jpg",
   "https://utfs.io/f/e03dd418-ef3f-4970-b489-9c5e779d1400-1spj8u.png",

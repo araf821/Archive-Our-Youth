@@ -150,7 +150,7 @@ const PostCreationForm = () => {
         step > 1 && "hidden"
       }`}
     >
-      <p className="flex flex-col gap-2 font-karla text-6xl font-bold text-zinc-100 md:text-9xl">
+      <p className="flex flex-col gap-2 font-karla text-6xl font-bold text-zinc-100 md:text-7xl lg:text-8xl xl:text-9xl">
         Digital<span>Archive</span>
       </p>
       <p className="text-xl font-semibold text-zinc-300 md:text-2xl">
@@ -160,7 +160,7 @@ const PostCreationForm = () => {
         onClick={onNext}
         type="button"
         size="lg"
-        className="fixed bottom-[20vh] flex gap-x-2 bg-zinc-200 text-zinc-800 transition hover:translate-x-2 hover:bg-white"
+        className="flex gap-x-2 bg-zinc-200 text-zinc-800 transition hover:translate-x-2 hover:bg-white"
       >
         Get Started
         <ArrowRight />
@@ -256,7 +256,7 @@ const PostCreationForm = () => {
           </FormItem>
         )}
       />
-      <p className="text-left text-zinc-400 max-md:text-sm md:text-base">
+      <p className="md:text-left max-md:text-center text-zinc-400 max-md:text-sm md:text-base">
         Note: You will get the chance to add a description for the image, video
         and audio file types.
       </p>
@@ -268,7 +268,7 @@ const PostCreationForm = () => {
       control={form.control}
       name="title"
       render={({ field }) => (
-        <FormItem className="flex h-[40vh] flex-col justify-center space-y-4">
+        <FormItem className="flex flex-col justify-center space-y-4">
           <div className="space-y-2">
             <p className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
               What would you like to call this masterpiece?
@@ -747,7 +747,7 @@ const PostCreationForm = () => {
   );
 
   return (
-    <div className="w-full max-w-screen-md px-4 lg:px-0">
+    <div className="w-full max-w-screen-md px-4 lg:px-8">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           {step === STEPS.WELCOME && introScreen}
@@ -763,12 +763,9 @@ const PostCreationForm = () => {
       </Form>
       {step > 0 && (
         <div
-          className={cn(
-            "absolute inset-x-0 bottom-12 mx-auto mt-8 flex w-32 items-center justify-between md:bottom-32",
-            {
-              "w-full max-w-[350px]": step === STEPS.CONFIRM,
-            },
-          )}
+          className={cn("mx-auto mt-8 flex w-32 items-center justify-between", {
+            "w-full max-w-[350px]": step === STEPS.CONFIRM,
+          })}
         >
           <Button
             type="button"

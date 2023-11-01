@@ -17,8 +17,6 @@ const Collage: FC<CollageProps> = async ({ keyword, sortBy, tags }) => {
   let orderBy: any = { createdAt: "desc" };
   const tagsArray = tags ? (Array.isArray(tags) ? tags : [tags]) : [];
 
-  console.log(tags);
-
   switch (sortBy) {
     case "most-popular":
       orderBy = {

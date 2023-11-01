@@ -184,3 +184,14 @@ audio::-webkit-media-controls-play-button {
     transform: translateX(-10px);
   }
 }
+
+@media (max-height: 650px) {
+  .small-on-landscape {
+    height: 40px;
+    width: 40px;
+  }
+  .carousel-btn-container {
+    margin-bottom: 0;
+    display: block;
+  }
+}

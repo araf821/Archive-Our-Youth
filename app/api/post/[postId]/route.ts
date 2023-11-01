@@ -25,8 +25,6 @@ export async function DELETE(
       },
     });
 
-    console.log(post);
-
     return NextResponse.json(post);
   } catch (error) {
     console.log("POST DELETION ERROR", error);
