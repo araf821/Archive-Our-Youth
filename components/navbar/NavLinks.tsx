@@ -14,10 +14,6 @@ export const navLinks = [
     pathname: "/about",
   },
   {
-    label: "Contact",
-    pathname: "/contact",
-  },
-  {
     label: "Dashboard",
     pathname: "/dashboard",
   },

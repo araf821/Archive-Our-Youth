@@ -1,13 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  ArrowLeft,
   ArrowLeftCircle,
-  ArrowRight,
   ArrowRightCircle,
-  LogIn,
   SendHorizonal,
   Tv,
-  UserPlus,
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -49,7 +45,7 @@ const Carousel = ({}) => {
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={page}
-          className="pointer-events-none absolute bottom-0 left-0 right-0 top-0 grid place-items-center px-4"
+          className="absolute bottom-0 left-0 right-0 top-0 grid place-items-center px-4"
           custom={direction}
           variants={variants}
           initial="enter"
@@ -74,16 +70,21 @@ const Carousel = ({}) => {
               <p className="w-fit font-karla text-4xl font-bold text-white ">
                 Our Story
               </p>
-              <p className="text-center text-lg font-semibold text-white">
-                Welcome to the Digital Archive on Youth and Planetary Wellbeing!
-                You&rsquo;re invited to contribute to the Archive and/or explore
-                the multimedia and artifacts preserved here.
+              <div className="h-2 w-32 bg-rose-500" />
+              <p className="text-center text-lg font-semibold text-zinc-100">
+                Welcome to the{" "}
+                <span className="font-bold text-rose-500">Digital Archive</span>{" "}
+                on Youth and Planetary Wellbeing! You&rsquo;re invited to
+                contribute to the Archive and/or explore the multimedia and
+                artifacts preserved here.
               </p>
-              <p className="text-center text-lg font-semibold text-white">
-                The Digital Archive explores dream futures, perspectives on
-                wellbeing, and resources both real and desired that support
-                personal to planetary wellbeing. We welcome youth, youth groups
-                and engaged collectives from all over the world to contribute!
+              <p className="text-center text-lg font-semibold text-zinc-100">
+                The{" "}
+                <span className="font-bold text-rose-500">Digital Archive</span>{" "}
+                explores dream futures, perspectives on wellbeing, and resources
+                both real and desired that support personal to planetary
+                wellbeing. We welcome youth, youth groups and engaged
+                collectives from all over the world to contribute!
               </p>
             </div>
           )}
@@ -93,13 +94,23 @@ const Carousel = ({}) => {
               <p className="w-fit font-karla text-4xl font-bold text-white ">
                 Our Story
               </p>
-              <p className="text-center text-lg font-semibold text-white">
-                The Digital Archive was launched as part of the international
-                research study: Partnership for Youth and Planetary Wellbeing,
-                led by the Young Lives Research Lab, and 4 Youth Advisory
-                Councils (YACs) in Canada, Chile, Costa Rica and Belize.
+              <div className="h-2 w-32 bg-rose-500" />
+              <p className="text-center text-lg font-semibold text-zinc-100">
+                The{" "}
+                <span className="font-bold text-rose-500">Digital Archive</span>{" "}
+                was launched as part of the international research study:
+                Partnership for Youth and Planetary Wellbeing, led by the{" "}
+                <a
+                  className="font-bold text-blue-400 underline"
+                  href="https://younglivesresearch.org"
+                  target="_blank"
+                >
+                  Young Lives Research Lab
+                </a>
+                , and 4 Youth Advisory Councils (YACs) in Canada, Chile, Costa
+                Rica and Belize.
               </p>
-              <p className="text-center text-lg font-semibold text-white">
+              <p className="text-center text-lg font-semibold text-zinc-100">
                 The Archive was launched in the Fall of 2023 by Canada&rsquo;s
                 YAC, but the submission portal remains open for continual
                 submissions.
@@ -112,7 +123,7 @@ const Carousel = ({}) => {
               <p className="w-fit font-karla text-4xl font-bold text-white ">
                 Let&rsquo;s explore!
               </p>
-              <p className="text-zinc-300 text-sm">
+              <p className="text-sm text-zinc-300">
                 Dive right in and showcase what you want or take a look at what
                 others have posted!
               </p>

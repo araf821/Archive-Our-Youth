@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const SubmitPage = () => {
   return (
-    <div className="relative py-28 grid min-h-[100dvh] place-items-center bg-zinc-900 text-white">
+    <div className="relative flex min-h-[100dvh] items-center justify-center bg-zinc-900 py-12 text-white">
       <BackButton classNames="w-fit fixed left-5 top-5 md:left-12 md:top-12 xl:left-32" />
       <PostCreationForm />
     </div>

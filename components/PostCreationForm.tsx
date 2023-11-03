@@ -27,16 +27,20 @@ import Image from "next/image";
 import { ScrollArea } from "./ui/ScrollArea";
 import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
+import ResearchQuestions from "./inputs/ResearchQuestions";
 
 enum STEPS {
   WELCOME = 0,
-  TYPE = 1,
-  TITLE = 2,
-  CONTENT = 3,
-  DESCRIPTION = 4,
-  TAGS = 5,
-  CONFIRM = 6,
+  QUESTIONS = 1,
+  TYPE = 2,
+  TITLE = 3,
+  CONTENT = 4,
+  DESCRIPTION = 5,
+  TAGS = 6,
+  CONFIRM = 7,
 }
+
+const questionSchema = z.string();
 
 const formSchema = z.object({
   title: z
@@ -72,6 +76,11 @@ const formSchema = z.object({
     .array()
     .min(1, { message: "At least one tag is required." })
     .max(8, { message: "You can only choose up to 8 tags." }),
+  question1: z.string().max(256),
+  question2: z.string().max(256),
+  question3: z.string().max(256),
+  question4: z.string().max(256),
+  question5: z.string().max(256),
 });
 
 const PostCreationForm = () => {
@@ -88,6 +97,11 @@ const PostCreationForm = () => {
       content: "",
       description: "",
       tags: [],
+      question1: "",
+      question2: "",
+      question3: "",
+      question4: "",
+      question5: "",
     },
   });
 
@@ -256,7 +270,7 @@ const PostCreationForm = () => {
           </FormItem>
         )}
       />
-      <p className="md:text-left max-md:text-center text-zinc-400 max-md:text-sm md:text-base">
+      <p className="text-zinc-400 max-md:text-center max-md:text-sm md:text-left md:text-base">
         Note: You will get the chance to add a description for the image, video
         and audio file types.
       </p>
@@ -747,10 +761,11 @@ const PostCreationForm = () => {
   );
 
   return (
-    <div className="w-full max-w-screen-md px-4 lg:px-8">
+    <div className="w-full max-h-[80dvh] max-w-screen-md px-4 lg:px-8">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           {step === STEPS.WELCOME && introScreen}
+          {step === STEPS.QUESTIONS && <ResearchQuestions form={form} />}
           {step === STEPS.TYPE && typeSelectionScreen}
           {step === STEPS.TITLE && titleScreen}
           {step === STEPS.CONTENT && contentScreen}
