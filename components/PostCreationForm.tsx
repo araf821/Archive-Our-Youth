@@ -28,6 +28,7 @@ import { ScrollArea } from "./ui/ScrollArea";
 import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
 import ResearchQuestions from "./inputs/ResearchQuestions";
+import { PostCreationValidator } from "@/lib/validators/post";
 
 enum STEPS {
   WELCOME = 0,
@@ -40,66 +41,25 @@ enum STEPS {
   CONFIRM = 7,
 }
 
-const formSchema = z.object({
-  title: z
-    .string()
-    .min(1, {
-      message: "Title must be between 1 to 64 characters in length.",
-    })
-    .max(64, {
-      message: "Title must be between 1 to 64 characters in length.",
-    }),
-  contentType: z.enum([
-    ContentType.TEXT,
-    ContentType.IMAGE,
-    ContentType.VIDEO,
-    ContentType.AUDIO,
-  ]),
-  content: z
-    .string()
-    .min(5, {
-      message: "Content must be between 5 and 2000 characters in length.",
-    })
-    .max(2000, {
-      message: "Content must be between 5 and 2000 characters in length.",
-    }),
-  description: z
-    .string()
-    .max(2000, {
-      message: "Description must be less than 2000 characters in length",
-    })
-    .optional(),
-  tags: z
-    .string()
-    .array()
-    .min(1, { message: "At least one tag is required." })
-    .max(8, { message: "You can only choose up to 8 tags." }),
-  answer1: z.string().max(1000),
-  answer2: z.string().max(1000),
-  answer3: z.string().max(1000),
-  answer4: z.string().max(1000),
-  answer5: z.string().max(1000),
-});
-
 const PostCreationForm = () => {
   const { userId } = useAuth();
   const router = useRouter();
   const [preview, setPreview] = useState(false);
   const [step, setStep] = useState(STEPS.WELCOME);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof PostCreationValidator>>({
+    resolver: zodResolver(PostCreationValidator),
     defaultValues: {
       title: "",
       contentType: "TEXT",
       content: "",
       description: "",
       tags: [],
-      answer1: "",
-      answer2: "",
-      answer3: "",
-      answer4: "",
-      answer5: "",
+      q1: "",
+      q2: "",
+      q3: "",
+      q4: "",
+      q5: "",
     },
   });
 
@@ -136,14 +96,12 @@ const PostCreationForm = () => {
     [form],
   );
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof PostCreationValidator>) => {
     try {
-      // await axios.post("/api/post", values);
+      await axios.post("/api/post", values);
       toast.success("Your post has been published!");
-      // form.reset();
-      // router.push("/home");
-      console.log(values);
-      
+      form.reset();
+      router.push("/home");
     } catch (error: any) {
       toast.error("Something went wrong.");
       console.log(error);
@@ -351,7 +309,7 @@ const PostCreationForm = () => {
             <FormControl>
               {preview ? (
                 form.getValues().content ? (
-                  <ReactMarkdown className="prose-headings:font-josefin prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                  <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                     {form.getValues().content}
                   </ReactMarkdown>
                 ) : (
@@ -488,7 +446,7 @@ const PostCreationForm = () => {
           <FormControl>
             {preview ? (
               form.getValues().description ? (
-                <ReactMarkdown className="prose-headings:font-josefin prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                   {form.getValues().description || ""}
                 </ReactMarkdown>
               ) : (
@@ -631,7 +589,7 @@ const PostCreationForm = () => {
                 Content
               </p>
               {form.getValues().content ? (
-                <ReactMarkdown className="prose-headings:font-josefin prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                   {form.getValues().content || ""}
                 </ReactMarkdown>
               ) : (
@@ -705,7 +663,7 @@ const PostCreationForm = () => {
               Description (optional)
             </p>
             {form.getValues().description ? (
-              <ReactMarkdown className="prose-headings:font-josefin whitespacepre prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+              <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                 {form.getValues().description || ""}
               </ReactMarkdown>
             ) : (

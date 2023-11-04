@@ -15,11 +15,11 @@ interface ResearchQuestionsProps {
       content: string;
       contentType: "TEXT" | "IMAGE" | "VIDEO" | "AUDIO";
       tags: string[];
-      answer1: string;
-      answer2: string;
-      answer3: string;
-      answer4: string;
-      answer5: string;
+      q1: string;
+      q2: string;
+      q3: string;
+      q4: string;
+      q5: string;
       description?: string | undefined;
     },
     any,
@@ -43,7 +43,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
               What&rsquo;s the future you dream of?
             </AccordionTrigger>
             <FormField
-              name="answer1"
+              name="q1"
               control={form.control}
               render={({ field }) => (
                 <AccordionContent>
@@ -65,7 +65,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
               What does well-being mean to you right now?
             </AccordionTrigger>
             <FormField
-              name="answer2"
+              name="q2"
               control={form.control}
               render={({ field }) => (
                 <AccordionContent>
@@ -87,7 +87,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
               What would you tell your younger or older self?
             </AccordionTrigger>
             <FormField
-              name="answer3"
+              name="q3"
               control={form.control}
               render={({ field }) => (
                 <AccordionContent>
@@ -109,7 +109,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
               What&rsquo;s the future you dream of?
             </AccordionTrigger>
             <FormField
-              name="answer4"
+              name="q4"
               control={form.control}
               render={({ field }) => (
                 <AccordionContent>
@@ -133,7 +133,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
               helpful and of value to you right now?
             </AccordionTrigger>
             <FormField
-              name="answer5"
+              name="q5"
               control={form.control}
               render={({ field }) => (
                 <AccordionContent>
