@@ -15,11 +15,11 @@ interface ResearchQuestionsProps {
       content: string;
       contentType: "TEXT" | "IMAGE" | "VIDEO" | "AUDIO";
       tags: string[];
-      question1: string;
-      question2: string;
-      question3: string;
-      question4: string;
-      question5: string;
+      answer1: string;
+      answer2: string;
+      answer3: string;
+      answer4: string;
+      answer5: string;
       description?: string | undefined;
     },
     any,
@@ -30,26 +30,27 @@ interface ResearchQuestionsProps {
 const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
   return (
     <div className="flex max-w-screen-md flex-col gap-2">
-      <p className="text-xl md:text-2xl">
+      <p className="text-xl text-zinc-300 md:text-2xl">
         What question does your submission answer?{" "}
         <span className="text-zinc-400">(Optional)</span>
       </p>
+      <p className="text-zinc-400 max-md:text-sm">Up to 1000 characters for each question. You do not have to answer them all.</p>
       <hr className="border-zinc-700" />
       <div className="">
         <Accordion className="space-y-2" type="single" collapsible>
           <AccordionItem className="border-zinc-800" value="1">
-            <AccordionTrigger className="text-sm text-zinc-300 md:text-base">
+            <AccordionTrigger className="text-base max-md:text-sm">
               What&rsquo;s the future you dream of?
             </AccordionTrigger>
             <FormField
-              name="question1"
+              name="answer1"
               control={form.control}
               render={({ field }) => (
                 <AccordionContent>
                   <FormControl>
                     <input
                       placeholder="Your answer... (Optional)"
-                      className="w-full rounded-md bg-zinc-800 px-3 py-2 font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-base"
+                      className="w-full rounded-md bg-zinc-900 px-3 py-2 font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-base"
                       type="text"
                       {...field}
                     />
@@ -60,18 +61,18 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
           </AccordionItem>
 
           <AccordionItem className="border-zinc-800" value="2">
-            <AccordionTrigger className="text-sm text-zinc-300 md:text-base">
+            <AccordionTrigger className="text-base max-md:text-sm">
               What does well-being mean to you right now?
             </AccordionTrigger>
             <FormField
-              name="question2"
+              name="answer2"
               control={form.control}
               render={({ field }) => (
                 <AccordionContent>
                   <FormControl>
                     <input
                       placeholder="Your answer... (Optional)"
-                      className="w-full rounded-md bg-zinc-800 px-3 py-2 font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-base"
+                      className="w-full rounded-md bg-zinc-900 px-3 py-2 font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-base"
                       type="text"
                       {...field}
                     />
@@ -82,18 +83,18 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
           </AccordionItem>
 
           <AccordionItem className="border-zinc-800" value="3">
-            <AccordionTrigger className="text-sm text-zinc-300 md:text-base">
+            <AccordionTrigger className="text-base max-md:text-sm">
               What would you tell your younger or older self?
             </AccordionTrigger>
             <FormField
-              name="question3"
+              name="answer3"
               control={form.control}
               render={({ field }) => (
                 <AccordionContent>
                   <FormControl>
                     <input
                       placeholder="Your answer... (Optional)"
-                      className="w-full rounded-md bg-zinc-800 px-3 py-2 font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-base"
+                      className="w-full rounded-md bg-zinc-900 px-3 py-2 font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-base"
                       type="text"
                       {...field}
                     />
@@ -104,18 +105,18 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
           </AccordionItem>
 
           <AccordionItem className="border-zinc-800" value="4">
-            <AccordionTrigger className="text-sm text-zinc-300 md:text-base">
+            <AccordionTrigger className="text-base max-md:text-sm">
               What&rsquo;s the future you dream of?
             </AccordionTrigger>
             <FormField
-              name="question4"
+              name="answer4"
               control={form.control}
               render={({ field }) => (
                 <AccordionContent>
                   <FormControl>
                     <input
                       placeholder="Your answer... (Optional)"
-                      className="w-full rounded-md bg-zinc-800 px-3 py-2 font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-base"
+                      className="w-full rounded-md bg-zinc-900 px-3 py-2 font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-base"
                       type="text"
                       {...field}
                     />
@@ -126,20 +127,20 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
           </AccordionItem>
 
           <AccordionItem className="border-zinc-800" value="5">
-            <AccordionTrigger className="text-sm text-zinc-300 md:text-base">
+            <AccordionTrigger className="text-base max-md:text-sm">
               What groups, initiatives, projects, and resources support your
               wellbeing and the wellbeing of the planet? What more would be
               helpful and of value to you right now?
             </AccordionTrigger>
             <FormField
-              name="question5"
+              name="answer5"
               control={form.control}
               render={({ field }) => (
                 <AccordionContent>
                   <FormControl>
                     <input
                       placeholder="Your answer... (Optional)"
-                      className="w-full rounded-md bg-zinc-800 px-3 py-2 font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-base"
+                      className="w-full rounded-md bg-zinc-900 px-3 py-2 font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-base"
                       type="text"
                       {...field}
                     />

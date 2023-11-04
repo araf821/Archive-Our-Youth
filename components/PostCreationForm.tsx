@@ -40,8 +40,6 @@ enum STEPS {
   CONFIRM = 7,
 }
 
-const questionSchema = z.string();
-
 const formSchema = z.object({
   title: z
     .string()
@@ -76,11 +74,11 @@ const formSchema = z.object({
     .array()
     .min(1, { message: "At least one tag is required." })
     .max(8, { message: "You can only choose up to 8 tags." }),
-  question1: z.string().max(256),
-  question2: z.string().max(256),
-  question3: z.string().max(256),
-  question4: z.string().max(256),
-  question5: z.string().max(256),
+  answer1: z.string().max(1000),
+  answer2: z.string().max(1000),
+  answer3: z.string().max(1000),
+  answer4: z.string().max(1000),
+  answer5: z.string().max(1000),
 });
 
 const PostCreationForm = () => {
@@ -97,11 +95,11 @@ const PostCreationForm = () => {
       content: "",
       description: "",
       tags: [],
-      question1: "",
-      question2: "",
-      question3: "",
-      question4: "",
-      question5: "",
+      answer1: "",
+      answer2: "",
+      answer3: "",
+      answer4: "",
+      answer5: "",
     },
   });
 
@@ -140,10 +138,12 @@ const PostCreationForm = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.post("/api/post", values);
+      // await axios.post("/api/post", values);
       toast.success("Your post has been published!");
-      form.reset();
-      router.push("/home");
+      // form.reset();
+      // router.push("/home");
+      console.log(values);
+      
     } catch (error: any) {
       toast.error("Something went wrong.");
       console.log(error);
@@ -705,7 +705,7 @@ const PostCreationForm = () => {
               Description (optional)
             </p>
             {form.getValues().description ? (
-              <ReactMarkdown className="prose-headings:font-josefin prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+              <ReactMarkdown className="prose-headings:font-josefin whitespacepre prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                 {form.getValues().description || ""}
               </ReactMarkdown>
             ) : (
@@ -761,7 +761,7 @@ const PostCreationForm = () => {
   );
 
   return (
-    <div className="w-full max-h-[80dvh] max-w-screen-md px-4 lg:px-8">
+    <div className="max-h-[80dvh] w-full max-w-screen-md px-4 lg:px-8">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           {step === STEPS.WELCOME && introScreen}
