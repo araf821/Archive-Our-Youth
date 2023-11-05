@@ -35,9 +35,5 @@ export const PostCreationValidator = z.object({
     .array()
     .min(1, { message: "At least one tag is required." })
     .max(8, { message: "You can only choose up to 8 tags." }),
-  q1: z.string().max(1000),
-  q2: z.string().max(1000),
-  q3: z.string().max(1000),
-  q4: z.string().max(1000),
-  q5: z.string().max(1000),
+  researchQuestions: z.string().array().min(0).max(4),
 });
