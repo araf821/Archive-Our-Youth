@@ -8,7 +8,7 @@ const LandingPage = () => {
   return (
     <FadeInContainer>
       <AnimatingImages />
-      <div className="relative grid min-h-[100dvh] place-items-center overflow-hidden">
+      <div className="relative h-[100dvh] flex items-center justify-center overflow-hidden">
         <Carousel />
       </div>
     </FadeInContainer>

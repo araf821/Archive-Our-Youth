@@ -177,7 +177,7 @@ const Carousel = ({}) => {
           {slide === 4 ? slide4 : null}
         </motion.div>
       </AnimatePresence>
-      <div className="carousel-btn-container z-20 order-last mt-auto space-x-28 md:mb-20 md:space-x-40">
+      <div className="z-20 mb-10 mt-auto space-x-28 md:mb-20 md:space-x-40">
         {slide > 1 && (
           <button
             className="next rounded-full bg-black/40 p-1.5 text-zinc-400 transition duration-300 hover:bg-zinc-900 hover:text-white active:scale-90"
