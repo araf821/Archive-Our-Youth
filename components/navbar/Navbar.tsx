@@ -96,7 +96,7 @@ const Navbar = ({ user }: NavbarProps) => {
             </button>
           )}
           {user && (
-            <div className="border-zinc-700 border-2 rounded-full">
+            <div className="rounded-full border-2 border-zinc-700">
               <UserButton afterSignOutUrl="/home" />
             </div>
           )}

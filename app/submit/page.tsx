@@ -33,8 +33,10 @@ const SubmitPage = () => {
             </DialogDescription>
           </DialogHeader>
           <hr className="border-zinc-700" />
-          <div className="flex items-center gap-4">
-            <Button className="text-lg hover:bg-zinc-800">Cancel</Button>
+          <div className="flex items-center justify-between gap-4">
+            <DialogTrigger>
+              <Button className="text-lg hover:bg-zinc-800">Cancel</Button>
+            </DialogTrigger>
             <BackButton label="Go Back" />
           </div>
         </DialogContent>

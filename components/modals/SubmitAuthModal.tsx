@@ -29,7 +29,7 @@ const SubmitAuthModal = () => {
 
         <Link
           href={"/sign-in"}
-          className="w-full rounded-sm bg-rose-500 py-1.5 text-center font-semibold text-white transition hover:bg-opacity-80 md:text-lg"
+          className="w-full rounded-sm bg-zinc-100 py-1.5 text-center font-semibold text-zinc-900 transition hover:bg-opacity-80 md:text-lg"
         >
           <SignInButton afterSignInUrl="/submit">Sign In</SignInButton>
         </Link>

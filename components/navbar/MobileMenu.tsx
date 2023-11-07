@@ -5,13 +5,14 @@ import Link from "next/link";
 import { navLinks } from "./NavLinks";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { SignInButton, SignOutButton, useAuth } from "@clerk/nextjs";
+import { SignInButton, SignOutButton, useAuth, useClerk } from "@clerk/nextjs";
 import { toast } from "sonner";
 interface MobileMenuProps {}
 
 const MobileMenu: FC<MobileMenuProps> = ({}) => {
   const pathname = usePathname();
   const { userId } = useAuth();
+  const { signOut, openSignIn } = useClerk();
 
   return (
     <Sheet>
@@ -66,18 +67,20 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
           </div>
           {userId ? (
             <button
-              onClick={() => toast.success("Signed Out")}
+              onClick={() => {
+                signOut();
+                toast.success("Signed Out");
+              }}
               className="w-full bg-zinc-800 py-3 transition hover:bg-zinc-700"
             >
-              <SheetClose className="w-full">
-                <SignOutButton />
-              </SheetClose>
+              <SheetClose className="w-full">Sign Out</SheetClose>
             </button>
           ) : (
-            <button className="w-full bg-zinc-800 py-3 transition hover:bg-zinc-700">
-              <SheetClose className="w-full">
-                <SignInButton />
-              </SheetClose>
+            <button
+              onClick={() => openSignIn()}
+              className="w-full bg-zinc-800 py-3 transition hover:bg-zinc-700"
+            >
+              <SheetClose className="w-full">Sign In</SheetClose>
             </button>
           )}
         </div>
