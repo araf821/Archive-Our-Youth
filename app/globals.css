@@ -191,3 +191,56 @@ audio::-webkit-media-controls-play-button {
     width: 40px;
   }
 }
+
+.animate-move {
+  animation: moveToEachCorner 5s infinite;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+@keyframes moveToEachCorner {
+  0% {
+    top: 0%;
+    left: 0%;
+  }
+  25% {
+    top: 0%;
+    right: 100%;
+  }
+  50% {
+    top: 100%;
+    /* right: 100%; */
+  }
+  75% {
+    /* top: 100%; */
+    left: 100%;
+  }
+  100% {
+    top: 0%;
+    left: 0%;
+  }
+}
+@media (min-width: 500px) {
+  .grid-cols-custom {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 800px) {
+  .grid-cols-custom {
+    grid-template-columns: repeat(18, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .grid-cols-custom {
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1400px) {
+  .grid-cols-custom {
+    grid-template-columns: repeat(32, minmax(0, 1fr));
+  }
+}

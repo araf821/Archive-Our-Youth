@@ -43,7 +43,7 @@ const Carousel = ({}) => {
   let slide1, slide2, slide3, slide4;
 
   slide1 = (
-    <div className="max-w-screen-sm rounded-lg p-8">
+    <div className="max-w-screen-sm rounded-lg ">
       <p className="z-10 flex select-none flex-col gap-4 py-8 text-center font-karla text-[5rem] font-bold leading-none tracking-tighter text-background text-white opacity-100 md:text-[6rem] lg:text-[7rem]">
         Digital
         <span>Archive</span>

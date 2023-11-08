@@ -1,5 +1,6 @@
 "use client";
 
+import AnimatedGrid from "@/components/AnimatedGrid";
 import AnimatingImages from "@/components/AnimatingImages";
 import Carousel from "@/components/Carousel";
 import FadeInContainer from "@/components/FadeInContainer";
@@ -7,8 +8,8 @@ import FadeInContainer from "@/components/FadeInContainer";
 const LandingPage = () => {
   return (
     <FadeInContainer>
-      <AnimatingImages />
-      <div className="relative h-[100dvh] flex items-center justify-center overflow-hidden">
+      <div className="relative flex h-[100dvh] items-center justify-center overflow-hidden">
+        <AnimatedGrid />
         <Carousel />
       </div>
     </FadeInContainer>
