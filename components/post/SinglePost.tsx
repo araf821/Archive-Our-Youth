@@ -58,7 +58,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
           {post.title}
         </p>
 
-        <ul className="flex flex-wrap gap-2 pt-2">
+        <ul className="flex flex-wrap mt-2 gap-2">
           {post.tags.map((tag, index) => (
             <Tag tag={tag} key={tag} index={index} />
           ))}
@@ -91,6 +91,27 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         </div>
         <hr className="border-zinc-800" />
 
+        {/* Research Question */}
+        {post.researchQuestions.length > 0 ? (
+          <div>
+            <p className="mb-4 font-bold tracking-wide text-zinc-400 max-md:text-sm">
+              This post addresses the following questions:
+            </p>
+            <ul>
+              {post.researchQuestions.map((q) => (
+                <li
+                  className="ml-6 list-disc font-light text-white md:text-lg"
+                  key={q}
+                >
+                  {q}
+                </li>
+              ))}
+            </ul>
+
+            <hr className="mt-4 border-zinc-700" />
+          </div>
+        ) : null}
+
         <div
           className={`${
             post.contentType !== "TEXT" && !post.description && "hidden"
@@ -101,10 +122,10 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
               DESCRIPTION
             </p>
           )}
-          <ReactMarkdown className="prose-headings:font-josefin prose prose-xl mb-8 h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+          <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
             {post.contentType === "TEXT" ? post.postContent : post.description}
           </ReactMarkdown>
-          <hr className="border-zinc-700" />
+          <hr className="mt-4 border-zinc-700" />
         </div>
       </div>
 

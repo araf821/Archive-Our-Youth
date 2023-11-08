@@ -1,5 +1,4 @@
-import { ChangeEvent, FC, FormEvent, useState } from "react";
-import { FormControl, FormField } from "../ui/Form";
+import { ChangeEvent, FC, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 
 interface ResearchQuestionsProps {
@@ -106,7 +105,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
         if (e.target.checked) {
           form.setValue("researchQuestions", [
             ...selected,
-            "What groups, initiatives, projects, and resources support your wellbeing and the wellbeing of the planet? What more would be helpful and of value to you right now? You can share links to websites and socials, videos, photos, etc.",
+            "What groups, initiatives, projects, and resources support your wellbeing and the wellbeing of the planet? What more would be helpful and of value to you right now?",
           ]);
         } else {
           form.setValue(
@@ -114,7 +113,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
             selected.filter(
               (q) =>
                 q !==
-                "What groups, initiatives, projects, and resources support your wellbeing and the wellbeing of the planet? What more would be helpful and of value to you right now? You can share links to websites and socials, videos, photos, etc.",
+                "What groups, initiatives, projects, and resources support your wellbeing and the wellbeing of the planet? What more would be helpful and of value to you right now?",
             ),
           );
         }
@@ -122,21 +121,6 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
 
       default:
     }
-  };
-
-  const onSelect = (question: string) => {
-    form.setValue("researchQuestions", [
-      ...form.getValues("researchQuestions"),
-      question,
-    ]);
-    console.log(form.getValues("researchQuestions"));
-  };
-
-  const onDeselect = (question: string) => {
-    form.setValue(
-      "researchQuestions",
-      form.getValues("researchQuestions").filter((q) => q !== question),
-    );
   };
 
   return (
@@ -203,10 +187,14 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
             onChange={(e) => handleCheckboxChange(e, "q4")}
             className="absolute left-2 top-2.5 h-5 w-5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-red-500 group-hover:bg-zinc-700 group-hover:checked:bg-red-600"
           />
-          What groups, initiatives, projects, and resources support your
-          wellbeing and the wellbeing of the planet? What more would be helpful
-          and of value to you right now? You can share links to websites and
-          socials, videos, photos, etc.
+          <p>
+            What groups, initiatives, projects, and resources support your
+            wellbeing and the wellbeing of the planet? What more would be
+            helpful and of value to you right now?{" "}
+            <span className="text-zinc-400">
+              You can share links to websites and socials, videos, photos, etc.
+            </span>
+          </p>
         </label>
 
         <label

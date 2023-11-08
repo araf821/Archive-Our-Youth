@@ -79,9 +79,9 @@ const Navbar = ({ user }: NavbarProps) => {
           {user ? (
             <Link
               className={cn(
-                "rounded-md bg-zinc-200 px-4 py-1.5 font-bold tracking-widest text-black transition duration-300 hover:bg-rose-500 hover:shadow-[0_0_20px_2px] hover:shadow-rose-500/40",
+                "rounded-md pulse-button bg-zinc-200 px-4 py-1.5 font-bold tracking-widest text-black transition duration-300 hover:bg-rose-500 hover:shadow-[0_0_20px_2px] hover:shadow-rose-500/40",
               )}
-              href={user ? "/submit" : "/sign-in"}
+              href={"/submit"}
             >
               Submit
             </Link>

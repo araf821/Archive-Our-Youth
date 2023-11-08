@@ -7,12 +7,13 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "../ui/Dialog";
-import { SignInButton } from "@clerk/nextjs";
+import { useClerk } from "@clerk/nextjs";
 import Link from "next/link";
 import { X } from "lucide-react";
 
 const SubmitAuthModal = () => {
   const { onClose, type, isOpen } = useModal();
+  const { openSignIn } = useClerk();
 
   const isModalOpen = isOpen && type === "submitAuthModal";
   return (
@@ -27,12 +28,17 @@ const SubmitAuthModal = () => {
           </p>
         </DialogHeader>
 
-        <Link
-          href={"/sign-in"}
+        <button
+          onClick={() => {
+            onClose();
+            openSignIn({
+              afterSignInUrl: "/submit",
+            });
+          }}
           className="w-full rounded-sm bg-zinc-100 py-1.5 text-center font-semibold text-zinc-900 transition hover:bg-opacity-80 md:text-lg"
         >
-          <SignInButton afterSignInUrl="/submit">Sign In</SignInButton>
-        </Link>
+          Sign In
+        </button>
         <hr className="border-zinc-700" />
         <Link
           href="/submit"

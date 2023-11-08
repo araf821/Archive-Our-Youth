@@ -31,9 +31,9 @@ const NavLinks = ({}) => {
             key={link.pathname}
             href={link.pathname}
             className={cn(
-              "rounded-sm px-6 py-1 transition first:rounded-l-full first:rounded-r-[200rem] last:rounded-l-[200rem] last:rounded-r-full hover:bg-rose-300/10",
+              "rounded-sm px-6 py-1 transition first:rounded-l-full first:rounded-r-[200rem] last:rounded-l-[200rem] last:rounded-r-full hover:bg-white/10",
               {
-                "hover:slide-in- bg-gradient-to-tr from-rose-600 to-red-400 text-black shadow-[0_0_20px_2px] shadow-red-500/40 hover:cursor-default":
+                "bg-white hover:bg-white/90 text-black shadow-[0_0_20px_2px] shadow-white/40 hover:cursor-default":
                   pathname === link.pathname,
               },
             )}
