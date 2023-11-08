@@ -192,35 +192,136 @@ audio::-webkit-media-controls-play-button {
   }
 }
 
-.animate-move {
-  animation: moveToEachCorner 5s infinite;
-  position: absolute;
-  top: 0px;
-  left: 0px;
+.blur-custom {
+  filter: blur(5rem);
 }
 
-@keyframes moveToEachCorner {
+@media (min-width: 700px) {
+  .blur-custom {
+    filter: blur(8rem);
+  }
+}
+
+@media (min-width: 1100px) {
+  .blur-custom {
+    filter: blur(12rem);
+  }
+}
+
+.animate-move1 {
+  animation: moveToEachCorner1 linear 5s infinite;
+}
+
+@keyframes moveToEachCorner1 {
   0% {
     top: 0%;
     left: 0%;
+    right: 0%;
+    bottom: 0%;
+    background-color: white;
   }
+  15% {
+    background-color: skyblue;
+  }
+
   25% {
     top: 0%;
-    right: 100%;
+    left: 100%;
+    transform: translateX(-100%);
+    right: 0%;
+    bottom: 0%;
+  }
+  35% {
+    background-color: orangered;
   }
   50% {
     top: 100%;
-    /* right: 100%; */
+    left: 100%;
+    transform: translate(-100%, -100%);
+    right: 0%;
+    bottom: 0%;
+  }
+  65% {
+    background-color: darkorchid;
   }
   75% {
-    /* top: 100%; */
-    left: 100%;
+    top: 100%;
+    transform: translateY(-100%);
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+  }
+  85% {
+    background-color: chocolate;
   }
   100% {
+    background-color: white;
     top: 0%;
     left: 0%;
+    right: 0%;
+    bottom: 0%;
   }
 }
+
+.animate-move2 {
+  animation: moveToEachCorner2 linear 5s infinite;
+}
+
+@keyframes moveToEachCorner2 {
+  0% {
+    top: 100%;
+    left: 100%;
+    transform: translate(-100%);
+    right: 0%;
+    bottom: 0%;
+    background-color: white;
+  }
+  15% {
+    background-color: hotpink;
+  }
+  25% {
+    top: 0%;
+    left: 100%;
+    transform: translateX(-100%);
+    right: 0%;
+    bottom: 0%;
+  }
+  35% {
+    background-color: blue;
+  }
+  50% {
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+  }
+  65% {
+    background-color: brown;
+  }
+  75% {
+    top: 100%;
+    transform: translateY(-100%);
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+  }
+  85% {
+    background-color: bisque;
+  }
+  100% {
+    top: 100%;
+    left: 100%;
+    transform: translate(-100%, -100%);
+    right: 0%;
+    bottom: 0%;
+    background-color: white;
+  }
+}
+
+.grid-cols-custom {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
 @media (min-width: 500px) {
   .grid-cols-custom {
     grid-template-columns: repeat(12, minmax(0, 1fr));
