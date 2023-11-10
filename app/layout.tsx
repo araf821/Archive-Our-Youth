@@ -4,6 +4,7 @@ import { Karla, Nunito } from "next/font/google";
 
 import ModalProvider from "@/components/modals/ModalProvider";
 import { Toaster } from "sonner";
+import { hanken } from "./fonts";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${nunito.className} bg-zinc-900 ${karla.variable}`}>
+        <body className={`${hanken.className} bg-zinc-900 ${karla.variable}`}>
           <Toaster richColors />
           <ModalProvider />
           {children}
