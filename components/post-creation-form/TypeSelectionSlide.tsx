@@ -19,8 +19,8 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
   return (
     <div className="flex flex-col items-center justify-center space-y-10 md:space-y-14">
       <div className="flex">
-        <span className="aspect-square w-8 bg-[#D5222A] md:w-12" />
-        <span className="aspect-square w-8 bg-[#FA322C] md:w-12" />
+        <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
+        <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
       </div>
       <p className="text-center text-xl max-md:max-w-[290px] md:text-2xl">
         What type of content would you like to submit?

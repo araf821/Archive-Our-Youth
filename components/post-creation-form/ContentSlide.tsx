@@ -25,65 +25,71 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
-            <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
-              Text heading idk
-              <hr className="mt-1.5 w-full border-zinc-700" />
-            </FormLabel>
-            <div className="flex gap-1.5">
-              <Button
-                type="button"
-                size="sm"
-                onClick={() => setPreview(false)}
-                className={cn(
-                  "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
-                  {
-                    "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
-                      !preview,
-                  },
-                )}
-              >
-                Write
-              </Button>
-              <Button
-                type="button"
-                size="sm"
-                onClick={() => {
-                  if (form.getValues().content) {
-                    setPreview(true);
-                  }
-                }}
-                className={cn(
-                  "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
-                  {
-                    "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
-                      preview,
-                  },
-                )}
-              >
-                Preview
-              </Button>
+          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
+            <div className="flex">
+              <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
+              <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
             </div>
-            <FormControl>
-              {preview ? (
-                form.getValues().content ? (
-                  <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
-                    {form.getValues().content}
-                  </ReactMarkdown>
+
+            <FormLabel className="text-center text-xl md:text-2xl">
+              What have you got for us?
+            </FormLabel>
+            <div className="flex w-full flex-col gap-2">
+              <div className="mx-auto space-x-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  onClick={() => setPreview(false)}
+                  className={cn(
+                    "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                    {
+                      "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
+                        !preview,
+                    },
+                  )}
+                >
+                  Write
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  onClick={() => {
+                    if (form.getValues().content) {
+                      setPreview(true);
+                    }
+                  }}
+                  className={cn(
+                    "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                    {
+                      "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
+                        preview,
+                    },
+                  )}
+                >
+                  Preview
+                </Button>
+              </div>
+              <FormControl className="min-h-[300px]">
+                {preview ? (
+                  form.getValues().content ? (
+                    <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                      {form.getValues().content}
+                    </ReactMarkdown>
+                  ) : (
+                    <p className="grid h-96 place-items-center">
+                      Nothing to preview
+                    </p>
+                  )
                 ) : (
-                  <p className="grid h-96 place-items-center">
-                    Nothing to preview
-                  </p>
-                )
-              ) : (
-                <textarea
-                  {...field}
-                  placeholder="Placeholder Text"
-                  className="h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
-                />
-              )}
-            </FormControl>
-            <FormMessage />
+                  <textarea
+                    {...field}
+                    placeholder="Placeholder Text"
+                    className="h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
+                  />
+                )}
+              </FormControl>
+              <FormMessage />
+            </div>
           </FormItem>
         )}
       />
@@ -94,10 +100,14 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
-            <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
+          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
+            <div className="flex">
+              <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
+              <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
+            </div>
+
+            <FormLabel className="text-center text-xl md:text-2xl">
               Add an image
-              <hr className="mt-1.5 w-full border-zinc-700" />
             </FormLabel>
             <FormControl>
               <FileUpload
@@ -116,10 +126,13 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
-            <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
+          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
+            <div className="flex">
+              <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
+              <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
+            </div>
+            <FormLabel className="text-center text-xl md:text-2xl">
               Add a video
-              <hr className="mt-1.5 w-full border-zinc-700" />
             </FormLabel>{" "}
             <FormControl>
               <FileUpload
@@ -138,10 +151,14 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
-            <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
+          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
+            <div className="flex">
+              <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
+              <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
+            </div>
+
+            <FormLabel className="text-center text-xl md:text-2xl">
               Add an audio
-              <hr className="mt-1.5 w-full border-zinc-700" />
             </FormLabel>
             <FormControl>
               <FileUpload

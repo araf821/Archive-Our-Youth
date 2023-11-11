@@ -17,7 +17,7 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
   if (value) {
     if (endPoint === "image") {
       return (
-        <div className="relative h-full w-full">
+        <div className="relative aspect-square h-full w-full max-w-[400px]">
           <Image
             src={value}
             alt="uploaded image"

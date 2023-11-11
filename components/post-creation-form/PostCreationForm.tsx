@@ -311,7 +311,7 @@ const PostCreationForm = () => {
   return (
     <div className="max-h-[80dvh] w-full max-w-screen-md px-4 lg:px-8">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="mx-auto" onSubmit={form.handleSubmit(onSubmit)}>
           {step === STEPS.WELCOME && introScreen}
           {step === STEPS.QUESTIONS && <ResearchQuestions form={form} />}
           {step === STEPS.TYPE && (
