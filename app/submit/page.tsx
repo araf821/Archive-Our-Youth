@@ -1,5 +1,5 @@
 import BackButton from "@/components/BackButton";
-import PostCreationForm from "@/components/PostCreationForm";
+import PostCreationForm from "@/components/post-creation-form/PostCreationForm";
 import { Button } from "@/components/ui/Button";
 import {
   Dialog,

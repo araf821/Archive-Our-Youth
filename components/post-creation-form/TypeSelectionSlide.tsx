@@ -6,12 +6,12 @@ import { FormControl, FormField, FormItem } from "../ui/Form";
 import { cn } from "@/lib/utils";
 import { ContentType } from "@prisma/client";
 
-interface PostTypeSelectionProps {
+interface TypeSelectionSlideProps {
   form: PostCreationForm;
   handleTypeChange: (type: ContentType) => void;
 }
 
-const PostTypeSelection: FC<PostTypeSelectionProps> = ({
+const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
   form,
   handleTypeChange,
 }) => {
@@ -101,4 +101,4 @@ const PostTypeSelection: FC<PostTypeSelectionProps> = ({
   );
 };
 
-export default PostTypeSelection;
+export default TypeSelectionSlide;

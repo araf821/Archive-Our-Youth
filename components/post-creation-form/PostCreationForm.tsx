@@ -13,23 +13,26 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/Form";
-import { Button } from "./ui/Button";
+} from "../ui/Form";
+import { Button } from "../ui/Button";
 
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContentType } from "@prisma/client";
 import { cn } from "@/lib/utils";
-import FileUpload from "./FileUpload";
-import MultiSelect from "./MultiSelect";
+import FileUpload from "../FileUpload";
+import MultiSelect from "../MultiSelect";
 import Image from "next/image";
-import { ScrollArea } from "./ui/ScrollArea";
+import { ScrollArea } from "../ui/ScrollArea";
 import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
-import ResearchQuestions from "./inputs/ResearchQuestions";
+import ResearchQuestions from "./ResearchQuestions";
 import { PostCreationValidator } from "@/lib/validators/post";
-import PostTypeSelection from "./inputs/PostTypeSelection";
+import TypeSelectionSlide from "./TypeSelectionSlide";
+import TitleSlide from "./TitleSlide";
+import ContentSlide from "./ContentSlide";
+import DescriptionSlide from "./DescriptionSlide";
 
 enum STEPS {
   WELCOME = 0,
@@ -46,7 +49,6 @@ const PostCreationForm = () => {
   const { userId } = useAuth();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [preview, setPreview] = useState(false);
   const [step, setStep] = useState(STEPS.WELCOME);
 
   const form = useForm<z.infer<typeof PostCreationValidator>>({
@@ -106,13 +108,7 @@ const PostCreationForm = () => {
     }
   };
 
-  let introScreen,
-    typeSelectionScreen,
-    titleScreen,
-    contentScreen,
-    tagsScreen,
-    descriptionScreen,
-    confirmationScreen;
+  let introScreen, tagsScreen, confirmationScreen;
 
   introScreen = (
     <div
@@ -136,331 +132,6 @@ const PostCreationForm = () => {
         <ArrowRight />
       </Button>
     </div>
-  );
-
-  // typeSelectionScreen = (
-  //   <div className="flex flex-col items-center justify-center space-y-8">
-  //     <p className="text-xl md:text-2xl">
-  //       What type of content would you like to submit?
-  //     </p>
-  //     <FormField
-  //       control={form.control}
-  //       name="contentType"
-  //       render={() => (
-  //         <FormItem className="flex items-center justify-center space-y-4 max-md:flex-col md:flex-row md:space-x-6 md:space-y-0 lg:space-x-8">
-  //           <FormControl>
-  //             <button
-  //               type="button"
-  //               onClick={() => handleTypeChange("TEXT")}
-  //               className={cn(
-  //                 "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
-  //                 {
-  //                   "bg-gradient-to-br from-red-400 to-red-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-rose-500/30 duration-200 hover:bg-rose-600 hover:text-zinc-950":
-  //                     contentType === ContentType.TEXT,
-  //                 },
-  //               )}
-  //             >
-  //               {contentType === ContentType.TEXT && (
-  //                 <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-br from-red-400/70 to-rose-700/70 md:top-[60%]" />
-  //               )}
-  //               Text
-  //             </button>
-  //           </FormControl>
-  //           <FormControl>
-  //             <button
-  //               type="button"
-  //               onClick={() => handleTypeChange("IMAGE")}
-  //               className={cn(
-  //                 "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
-  //                 {
-  //                   "bg-gradient-to-br from-lime-400 to-emerald-500 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-lime-500/30 duration-200 hover:text-zinc-950":
-  //                     contentType === ContentType.IMAGE,
-  //                 },
-  //               )}
-  //             >
-  //               {contentType === ContentType.IMAGE && (
-  //                 <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-br from-lime-400/70 to-emerald-600/70 md:top-[60%]" />
-  //               )}
-  //               Image
-  //             </button>
-  //           </FormControl>
-  //           <FormControl>
-  //             <button
-  //               type="button"
-  //               onClick={() => handleTypeChange("VIDEO")}
-  //               className={cn(
-  //                 "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
-  //                 {
-  //                   "bg-gradient-to-br from-teal-400 to-sky-700 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-sky-500/30 duration-200 hover:text-zinc-950":
-  //                     contentType === ContentType.VIDEO,
-  //                 },
-  //               )}
-  //             >
-  //               {contentType === ContentType.VIDEO && (
-  //                 <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-tr from-teal-400/70 to-sky-700/70 md:top-[60%]" />
-  //               )}
-  //               Video
-  //             </button>
-  //           </FormControl>
-  //           <FormControl>
-  //             <button
-  //               type="button"
-  //               onClick={() => handleTypeChange("AUDIO")}
-  //               className={cn(
-  //                 "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
-  //                 {
-  //                   "bg-gradient-to-br from-amber-400 to-orange-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-orange-500/30 duration-200 hover:text-zinc-950":
-  //                     contentType === ContentType.AUDIO,
-  //                 },
-  //               )}
-  //             >
-  //               {contentType === ContentType.AUDIO && (
-  //                 <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-tr from-amber-400/70 to-orange-600/70 md:top-[60%]" />
-  //               )}
-  //               Audio
-  //             </button>
-  //           </FormControl>
-  //         </FormItem>
-  //       )}
-  //     />
-  //     <p className="text-zinc-400 max-md:text-center max-md:text-sm md:text-left md:text-base">
-  //       Note: You will get the chance to add a description for the image, video
-  //       and audio file types.
-  //     </p>
-  //   </div>
-  // );
-
-  titleScreen = (
-    <FormField
-      control={form.control}
-      name="title"
-      render={({ field }) => (
-        <FormItem className="flex flex-col justify-center space-y-4">
-          <div className="space-y-2">
-            <p className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
-              What would you like to call this masterpiece?
-            </p>
-            <hr className="w-full border-zinc-700" />
-          </div>
-          <FormControl>
-            <input
-              placeholder="Title"
-              className="w-full rounded-md bg-zinc-800 px-3 py-2 text-2xl font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-700 md:text-3xl"
-              type="text"
-              {...field}
-            />
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      )}
-    />
-  );
-
-  if (form.getValues().contentType === "TEXT") {
-    contentScreen = (
-      <FormField
-        name="content"
-        control={form.control}
-        render={({ field }) => (
-          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
-            <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
-              Text heading idk
-              <hr className="mt-1.5 w-full border-zinc-700" />
-            </FormLabel>
-            <div className="flex gap-1.5">
-              <Button
-                type="button"
-                size="sm"
-                onClick={() => setPreview(false)}
-                className={cn(
-                  "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
-                  {
-                    "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
-                      !preview,
-                  },
-                )}
-              >
-                Write
-              </Button>
-              <Button
-                type="button"
-                size="sm"
-                onClick={() => {
-                  if (form.getValues().content) {
-                    setPreview(true);
-                  }
-                }}
-                className={cn(
-                  "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
-                  {
-                    "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
-                      preview,
-                  },
-                )}
-              >
-                Preview
-              </Button>
-            </div>
-            <FormControl>
-              {preview ? (
-                form.getValues().content ? (
-                  <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
-                    {form.getValues().content}
-                  </ReactMarkdown>
-                ) : (
-                  <p className="grid h-96 place-items-center">
-                    Nothing to preview
-                  </p>
-                )
-              ) : (
-                <textarea
-                  {...field}
-                  placeholder="Placeholder Text"
-                  className="h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
-                />
-              )}
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-    );
-  } else if (form.getValues().contentType === "IMAGE") {
-    contentScreen = (
-      <FormField
-        name="content"
-        control={form.control}
-        render={({ field }) => (
-          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
-            <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
-              Add an image
-              <hr className="mt-1.5 w-full border-zinc-700" />
-            </FormLabel>
-            <FormControl>
-              <FileUpload
-                endPoint="image"
-                onChange={field.onChange}
-                value={field.value}
-              />
-            </FormControl>
-          </FormItem>
-        )}
-      />
-    );
-  } else if (form.getValues().contentType === "VIDEO") {
-    contentScreen = (
-      <FormField
-        name="content"
-        control={form.control}
-        render={({ field }) => (
-          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
-            <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
-              Add a video
-              <hr className="mt-1.5 w-full border-zinc-700" />
-            </FormLabel>{" "}
-            <FormControl>
-              <FileUpload
-                endPoint="video"
-                onChange={field.onChange}
-                value={field.value}
-              />
-            </FormControl>
-          </FormItem>
-        )}
-      />
-    );
-  } else if (form.getValues().contentType === "AUDIO") {
-    contentScreen = (
-      <FormField
-        name="content"
-        control={form.control}
-        render={({ field }) => (
-          <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
-            <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
-              Add an audio
-              <hr className="mt-1.5 w-full border-zinc-700" />
-            </FormLabel>
-            <FormControl>
-              <FileUpload
-                endPoint="audio"
-                onChange={field.onChange}
-                value={field.value}
-              />
-            </FormControl>
-          </FormItem>
-        )}
-      />
-    );
-  }
-
-  descriptionScreen = (
-    <FormField
-      name="description"
-      control={form.control}
-      render={({ field }) => (
-        <FormItem className="mx-auto flex h-[40vh] max-w-screen-sm flex-col justify-center space-y-4">
-          <FormLabel className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
-            Add a description (optional)
-            <hr className="mt-1.5 w-full border-zinc-700" />
-          </FormLabel>
-          <div className="w-fit space-x-2">
-            <Button
-              type="button"
-              size="sm"
-              onClick={() => setPreview(false)}
-              className={cn(
-                "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
-                {
-                  "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
-                    !preview,
-                },
-              )}
-            >
-              Write
-            </Button>
-            <Button
-              type="button"
-              size="sm"
-              onClick={() => {
-                if (form.getValues().description) {
-                  setPreview(true);
-                }
-              }}
-              className={cn(
-                "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
-                {
-                  "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
-                    preview,
-                },
-              )}
-            >
-              Preview
-            </Button>
-          </div>
-
-          <FormControl>
-            {preview ? (
-              form.getValues().description ? (
-                <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
-                  {form.getValues().description || ""}
-                </ReactMarkdown>
-              ) : (
-                <p className="grid h-96 place-items-center">
-                  Nothing to preview
-                </p>
-              )
-            ) : (
-              <textarea
-                {...field}
-                placeholder="Placeholder Text"
-                className="h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
-              />
-            )}
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      )}
-    />
   );
 
   tagsScreen = (
@@ -721,16 +392,16 @@ const PostCreationForm = () => {
           {step === STEPS.WELCOME && introScreen}
           {step === STEPS.QUESTIONS && <ResearchQuestions form={form} />}
           {step === STEPS.TYPE && (
-            <PostTypeSelection
+            <TypeSelectionSlide
               form={form}
               handleTypeChange={handleTypeChange}
             />
           )}
-          {step === STEPS.TITLE && titleScreen}
-          {step === STEPS.CONTENT && contentScreen}
-          {step === STEPS.DESCRIPTION &&
-            contentType !== "TEXT" &&
-            descriptionScreen}
+          {step === STEPS.TITLE && <TitleSlide form={form} />}
+          {step === STEPS.CONTENT && <ContentSlide form={form} />}
+          {step === STEPS.DESCRIPTION && contentType !== "TEXT" && (
+            <DescriptionSlide form={form} />
+          )}
           {step === STEPS.TAGS && tagsScreen}
           {step === STEPS.CONFIRM && confirmationScreen}
         </form>
