@@ -1,4 +1,4 @@
-import { FC, Fragment } from "react";
+import { FC, Fragment, Suspense } from "react";
 import CollageItem from "./post/CollageItem";
 import { db } from "@/lib/db";
 import EmptyState from "./EmptyState";
@@ -77,11 +77,13 @@ const Collage: FC<CollageProps> = async ({ keyword, sortBy, tags }) => {
   return (
     <FadeInContainer>
       <div className="grid grid-cols-2 items-center overflow-hidden bg-zinc-900 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-        {posts.map((post, index) => (
-          <Fragment key={index}>
-            <CollageItem key={index} post={post} currentUser={currentUser} />
-          </Fragment>
-        ))}
+        <Suspense fallback="Loading...">
+          {posts.map((post, index) => (
+            <Fragment key={index}>
+              <CollageItem key={index} post={post} currentUser={currentUser} />
+            </Fragment>
+          ))}
+        </Suspense>
       </div>
     </FadeInContainer>
   );

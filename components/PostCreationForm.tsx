@@ -541,7 +541,7 @@ const PostCreationForm = () => {
         <p className="text-xl text-zinc-300 md:text-2xl">Review Submission</p>
         {userId ? null : (
           <p className="text-left text-zinc-300 max-md:text-sm md:text-base">
-            Posting <span className="font-bold">anonymously</span>, you will not
+            Posting <span className="font-bold text-rose-500">anonymously</span>, you will not
             be able to delete your post later without contacting us.
           </p>
         )}
