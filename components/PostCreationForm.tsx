@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import axios from "axios";
 
@@ -29,6 +29,7 @@ import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
 import ResearchQuestions from "./inputs/ResearchQuestions";
 import { PostCreationValidator } from "@/lib/validators/post";
+import PostTypeSelection from "./inputs/PostTypeSelection";
 
 enum STEPS {
   WELCOME = 0,
@@ -43,6 +44,7 @@ enum STEPS {
 
 const PostCreationForm = () => {
   const { userId } = useAuth();
+  const searchParams = useSearchParams();
   const router = useRouter();
   const [preview, setPreview] = useState(false);
   const [step, setStep] = useState(STEPS.WELCOME);
@@ -136,100 +138,97 @@ const PostCreationForm = () => {
     </div>
   );
 
-  typeSelectionScreen = (
-    <div className="flex flex-col justify-center space-y-8">
-      <div className="space-y-2">
-        <p className="text-xl text-zinc-300 max-md:text-center md:text-left md:text-2xl">
-          What type of content would you like to submit?
-        </p>
-        <hr className="w-full border-zinc-700" />
-      </div>
-      <FormField
-        control={form.control}
-        name="contentType"
-        render={() => (
-          <FormItem className="flex items-center justify-center space-y-4 max-md:flex-col md:flex-row md:space-x-6 md:space-y-0 lg:space-x-8">
-            <FormControl>
-              <button
-                type="button"
-                onClick={() => handleTypeChange("TEXT")}
-                className={cn(
-                  "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
-                  {
-                    "bg-gradient-to-br from-red-400 to-red-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-rose-500/30 duration-200 hover:bg-rose-600 hover:text-zinc-950":
-                      contentType === ContentType.TEXT,
-                  },
-                )}
-              >
-                {contentType === ContentType.TEXT && (
-                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-br from-red-400/70 to-rose-700/70 md:top-[60%]" />
-                )}
-                Text
-              </button>
-            </FormControl>
-            <FormControl>
-              <button
-                type="button"
-                onClick={() => handleTypeChange("IMAGE")}
-                className={cn(
-                  "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
-                  {
-                    "bg-gradient-to-br from-lime-400 to-emerald-500 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-lime-500/30 duration-200 hover:text-zinc-950":
-                      contentType === ContentType.IMAGE,
-                  },
-                )}
-              >
-                {contentType === ContentType.IMAGE && (
-                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-br from-lime-400/70 to-emerald-600/70 md:top-[60%]" />
-                )}
-                Image
-              </button>
-            </FormControl>
-            <FormControl>
-              <button
-                type="button"
-                onClick={() => handleTypeChange("VIDEO")}
-                className={cn(
-                  "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
-                  {
-                    "bg-gradient-to-br from-teal-400 to-sky-700 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-sky-500/30 duration-200 hover:text-zinc-950":
-                      contentType === ContentType.VIDEO,
-                  },
-                )}
-              >
-                {contentType === ContentType.VIDEO && (
-                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-tr from-teal-400/70 to-sky-700/70 md:top-[60%]" />
-                )}
-                Video
-              </button>
-            </FormControl>
-            <FormControl>
-              <button
-                type="button"
-                onClick={() => handleTypeChange("AUDIO")}
-                className={cn(
-                  "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
-                  {
-                    "bg-gradient-to-br from-amber-400 to-orange-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-orange-500/30 duration-200 hover:text-zinc-950":
-                      contentType === ContentType.AUDIO,
-                  },
-                )}
-              >
-                {contentType === ContentType.AUDIO && (
-                  <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-tr from-amber-400/70 to-orange-600/70 md:top-[60%]" />
-                )}
-                Audio
-              </button>
-            </FormControl>
-          </FormItem>
-        )}
-      />
-      <p className="text-zinc-400 max-md:text-center max-md:text-sm md:text-left md:text-base">
-        Note: You will get the chance to add a description for the image, video
-        and audio file types.
-      </p>
-    </div>
-  );
+  // typeSelectionScreen = (
+  //   <div className="flex flex-col items-center justify-center space-y-8">
+  //     <p className="text-xl md:text-2xl">
+  //       What type of content would you like to submit?
+  //     </p>
+  //     <FormField
+  //       control={form.control}
+  //       name="contentType"
+  //       render={() => (
+  //         <FormItem className="flex items-center justify-center space-y-4 max-md:flex-col md:flex-row md:space-x-6 md:space-y-0 lg:space-x-8">
+  //           <FormControl>
+  //             <button
+  //               type="button"
+  //               onClick={() => handleTypeChange("TEXT")}
+  //               className={cn(
+  //                 "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
+  //                 {
+  //                   "bg-gradient-to-br from-red-400 to-red-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-rose-500/30 duration-200 hover:bg-rose-600 hover:text-zinc-950":
+  //                     contentType === ContentType.TEXT,
+  //                 },
+  //               )}
+  //             >
+  //               {contentType === ContentType.TEXT && (
+  //                 <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-br from-red-400/70 to-rose-700/70 md:top-[60%]" />
+  //               )}
+  //               Text
+  //             </button>
+  //           </FormControl>
+  //           <FormControl>
+  //             <button
+  //               type="button"
+  //               onClick={() => handleTypeChange("IMAGE")}
+  //               className={cn(
+  //                 "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
+  //                 {
+  //                   "bg-gradient-to-br from-lime-400 to-emerald-500 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-lime-500/30 duration-200 hover:text-zinc-950":
+  //                     contentType === ContentType.IMAGE,
+  //                 },
+  //               )}
+  //             >
+  //               {contentType === ContentType.IMAGE && (
+  //                 <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-br from-lime-400/70 to-emerald-600/70 md:top-[60%]" />
+  //               )}
+  //               Image
+  //             </button>
+  //           </FormControl>
+  //           <FormControl>
+  //             <button
+  //               type="button"
+  //               onClick={() => handleTypeChange("VIDEO")}
+  //               className={cn(
+  //                 "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
+  //                 {
+  //                   "bg-gradient-to-br from-teal-400 to-sky-700 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-sky-500/30 duration-200 hover:text-zinc-950":
+  //                     contentType === ContentType.VIDEO,
+  //                 },
+  //               )}
+  //             >
+  //               {contentType === ContentType.VIDEO && (
+  //                 <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-tr from-teal-400/70 to-sky-700/70 md:top-[60%]" />
+  //               )}
+  //               Video
+  //             </button>
+  //           </FormControl>
+  //           <FormControl>
+  //             <button
+  //               type="button"
+  //               onClick={() => handleTypeChange("AUDIO")}
+  //               className={cn(
+  //                 "relative w-40 rounded-xl bg-zinc-800 py-2.5 text-zinc-200 transition hover:bg-zinc-700 hover:text-white md:text-lg",
+  //                 {
+  //                   "bg-gradient-to-br from-amber-400 to-orange-600 font-semibold text-zinc-800 shadow-[0_0_20px_5px] shadow-orange-500/30 duration-200 hover:text-zinc-950":
+  //                     contentType === ContentType.AUDIO,
+  //                 },
+  //               )}
+  //             >
+  //               {contentType === ContentType.AUDIO && (
+  //                 <span className="perspective pointer-events-none absolute left-0 top-[50%] h-full w-full bg-gradient-to-tr from-amber-400/70 to-orange-600/70 md:top-[60%]" />
+  //               )}
+  //               Audio
+  //             </button>
+  //           </FormControl>
+  //         </FormItem>
+  //       )}
+  //     />
+  //     <p className="text-zinc-400 max-md:text-center max-md:text-sm md:text-left md:text-base">
+  //       Note: You will get the chance to add a description for the image, video
+  //       and audio file types.
+  //     </p>
+  //   </div>
+  // );
 
   titleScreen = (
     <FormField
@@ -541,8 +540,9 @@ const PostCreationForm = () => {
         <p className="text-xl text-zinc-300 md:text-2xl">Review Submission</p>
         {userId ? null : (
           <p className="text-left text-zinc-300 max-md:text-sm md:text-base">
-            Posting <span className="font-bold text-rose-500">anonymously</span>, you will not
-            be able to delete your post later without contacting us.
+            Posting <span className="font-bold text-rose-500">anonymously</span>
+            , you will not be able to delete your post later without contacting
+            us.
           </p>
         )}
         <hr className="mt-1.5 w-full border-zinc-700" />
@@ -720,7 +720,12 @@ const PostCreationForm = () => {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           {step === STEPS.WELCOME && introScreen}
           {step === STEPS.QUESTIONS && <ResearchQuestions form={form} />}
-          {step === STEPS.TYPE && typeSelectionScreen}
+          {step === STEPS.TYPE && (
+            <PostTypeSelection
+              form={form}
+              handleTypeChange={handleTypeChange}
+            />
+          )}
           {step === STEPS.TITLE && titleScreen}
           {step === STEPS.CONTENT && contentScreen}
           {step === STEPS.DESCRIPTION &&
