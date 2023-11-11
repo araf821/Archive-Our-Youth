@@ -25,8 +25,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
     q4: false,
     q5: false,
   });
-  console.log(selected);
-
+  
   const handleSelectNone = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       setCheckboxStates({
@@ -124,15 +123,19 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
   };
 
   return (
-    <div className="flex max-w-screen-md flex-col gap-2">
-      <p className="text-xl text-zinc-300 md:text-2xl">
-        What question does your submission answer?{" "}
-        <span className="text-zinc-400">(Optional)</span>
-      </p>
-      <p className="text-zinc-400 max-md:text-sm">
-        This question is for research purposes only.
-      </p>
-      <hr className="border-zinc-700" />
+    <div className="grid max-w-screen-md place-items-center gap-8 max-sm:my-4 md:gap-12">
+      <div className="flex">
+        <span className="aspect-square w-7 bg-[#FFA573] md:w-10" />
+        <span className="aspect-square w-7 bg-[#FD9747] md:w-10" />
+      </div>
+      <div className="text-center max-sm:max-w-[340px]">
+        <p className="text-xl md:text-2xl">
+          What question does your submission answer?
+        </p>
+        <p className="text-zinc-400 max-md:text-sm">
+          This question is for research purposes only.
+        </p>
+      </div>
       <div className="space-y-2">
         <label
           htmlFor="q1"

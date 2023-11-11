@@ -26,8 +26,8 @@ import {
 } from "./ui/select";
 import { cn } from "@/lib/utils";
 import MultiSelect from "./MultiSelect";
-import { allTags } from "./post-creation-form/PostCreationForm";
 import Tag from "./Tag";
+import { allTags } from "./post-creation-form/TagSelectionSlide";
 
 interface FiltersProps {}
 

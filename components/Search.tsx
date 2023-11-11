@@ -8,7 +8,6 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
 } from "./ui/Command";
 import Link from "next/link";
 import { Users } from "lucide-react";

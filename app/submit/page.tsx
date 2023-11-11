@@ -42,7 +42,7 @@ const SubmitPage = () => {
         </DialogContent>
       </Dialog>
 
-      <PostCreationForm />
+    <PostCreationForm />
     </div>
   );
 };
