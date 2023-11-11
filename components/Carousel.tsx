@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { useModal } from "@/hooks/useModal";
+import { Button } from "./ui/Button";
 
 const variants = {
   enter: (direction: number) => {
@@ -52,11 +53,7 @@ const Carousel = ({}) => {
   );
 
   slide2 = (
-    <div className="mx-4 flex max-w-screen-sm flex-col items-center justify-center gap-3 rounded-lg bg-black/40 px-4 py-4 backdrop-blur-sm">
-      <p className="w-fit font-karla text-4xl font-bold text-white ">
-        Our Story
-      </p>
-      <div className="h-2 w-32 bg-rose-500" />
+    <div className="mx-4 flex max-w-screen-sm flex-col items-center justify-center gap-3 rounded-lg bg-black/40 p-4 backdrop-blur-sm md:p-8">
       <p className="text-center text-lg font-semibold text-zinc-100 max-md:text-base">
         Welcome to the{" "}
         <span className="font-bold text-rose-500">Digital Archive</span> on
@@ -70,22 +67,18 @@ const Carousel = ({}) => {
         welcome youth, youth groups and engaged collectives from all over the
         world to contribute!
       </p>
-      <button
+      {/* <button
         onClick={() => onOpen("submitAuthModal")}
         className="group my-2 flex w-full max-w-xs justify-between rounded-sm bg-gradient-to-tr from-red-600 to-rose-500 px-4 py-2 text-white shadow-[0_0_10px] shadow-rose-600/50 transition hover:bg-rose-600 hover:shadow-[0_0_25px_2px] hover:shadow-rose-500/50"
       >
         Submit A Post
         <SendHorizonal className="transition group-hover:translate-x-2" />
-      </button>
+      </button> */}
     </div>
   );
 
   slide3 = (
-    <div className="mx-4 flex max-w-screen-sm flex-col items-center justify-center gap-3 rounded-lg bg-black/40 px-4 py-4 backdrop-blur-sm">
-      <p className="w-fit font-karla text-4xl font-bold text-white ">
-        Our Story
-      </p>
-      <div className="h-2 w-32 bg-rose-500" />
+    <div className="mx-4 flex max-w-screen-sm flex-col items-center justify-center gap-3 rounded-lg bg-black/40 p-4 backdrop-blur-sm md:p-8">
       <p className="text-center text-lg font-semibold text-zinc-100 max-md:text-base">
         The <span className="font-bold text-rose-500">Digital Archive</span> was
         launched as part of the international research study: Partnership for
@@ -104,13 +97,21 @@ const Carousel = ({}) => {
         The Archive was launched in the Fall of 2023 by Canada&rsquo;s YAC, but
         the submission portal remains open for continual submissions.
       </p>
-      <button
+      {/* <button
         onClick={() => onOpen("submitAuthModal")}
         className="group my-2 flex w-full max-w-xs justify-between rounded-sm bg-gradient-to-tr from-red-600 to-rose-500 px-4 py-2 text-white shadow-[0_0_10px] shadow-rose-600/50 transition hover:bg-rose-600 hover:shadow-[0_0_25px_2px] hover:shadow-rose-500/50"
       >
         Submit A Post
         <SendHorizonal className="transition group-hover:translate-x-2" />
-      </button>
+      </button> */}
+
+      <Button
+        onClick={() => onOpen("submitAuthModal")}
+        variant="link"
+        className="text-zinc-100 underline max-md:text-base md:text-lg"
+      >
+        Submit A Post
+      </Button>
     </div>
   );
 

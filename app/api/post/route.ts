@@ -19,10 +19,6 @@ export async function POST(req: Request) {
       researchQuestions,
     } = PostCreationValidator.parse(body);
 
-    if (!user) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
-
     const post = await db.post.create({
       data: {
         title,

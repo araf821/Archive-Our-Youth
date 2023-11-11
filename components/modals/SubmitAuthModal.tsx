@@ -18,12 +18,12 @@ const SubmitAuthModal = () => {
   const isModalOpen = isOpen && type === "submitAuthModal";
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-zinc-800 px-4 py-8 outline-none">
+      <DialogContent className="max-w-md bg-zinc-900 px-4 py-8 outline-none">
         <DialogTrigger className="absolute right-4 top-4">
           <X className="text-zinc-400 transition hover:rotate-90 hover:text-zinc-200" />
         </DialogTrigger>
         <DialogHeader>
-          <p className="text-center text-zinc-400">
+          <p className="text-center md:text-lg text-zinc-300">
             You&apos;re not logged in.
           </p>
         </DialogHeader>
