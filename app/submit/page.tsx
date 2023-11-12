@@ -22,7 +22,7 @@ const SubmitPage = () => {
     <div className="relative flex min-h-[100dvh] items-center justify-center bg-zinc-900 py-12 text-white">
       {/* <BackButton classNames="w-fit fixed left-5 top-5 md:left-12 md:top-12 xl:left-32" /> */}
       <Dialog>
-        <DialogTrigger className="fixed left-5 top-5 w-32 rounded-md bg-zinc-800  px-3 py-1.5 transition hover:bg-zinc-700 md:left-12 md:top-12 xl:left-32">
+        <DialogTrigger className="absolute left-5 top-5 w-32 rounded-md bg-zinc-800  px-3 py-1.5 transition hover:bg-zinc-700 md:left-12 md:top-12 xl:left-32">
           Back
         </DialogTrigger>
         <DialogContent className="max-w-md border-zinc-800 bg-zinc-900 px-4 py-8 text-zinc-200">

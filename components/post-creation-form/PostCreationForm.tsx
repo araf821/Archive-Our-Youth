@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { FormEvent, useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import axios from "axios";
 
@@ -27,6 +27,9 @@ import TitleSlide from "./TitleSlide";
 import ContentSlide from "./ContentSlide";
 import DescriptionSlide from "./DescriptionSlide";
 import TagSelectionSlide from "./TagSelectionSlide";
+import Tag from "../Tag";
+import { Checkbox } from "../ui/checkbox";
+import Link from "next/link";
 
 enum STEPS {
   WELCOME = 0,
@@ -41,9 +44,9 @@ enum STEPS {
 
 const PostCreationForm = () => {
   const { userId } = useAuth();
-  const searchParams = useSearchParams();
   const router = useRouter();
   const [step, setStep] = useState(STEPS.WELCOME);
+  const [consentChecked, setConsentChecked] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof PostCreationValidator>>({
     resolver: zodResolver(PostCreationValidator),
@@ -91,6 +94,10 @@ const PostCreationForm = () => {
   );
 
   const onSubmit = async (values: z.infer<typeof PostCreationValidator>) => {
+    if (!consentChecked) {
+      return toast.error("You must agree to the terms and conditions.");
+    }
+
     try {
       await axios.post("/api/post", values);
       toast.success("Your post has been published!");
@@ -129,7 +136,7 @@ const PostCreationForm = () => {
   );
 
   confirmationScreen = (
-    <ScrollArea className="mx-auto flex h-[60vh] max-w-screen-sm flex-col justify-center space-y-4 overflow-y-auto">
+    <ScrollArea className="mx-auto flex max-w-screen-sm flex-col justify-center space-y-4 overflow-y-auto">
       <div className="pb-4">
         <p className="text-xl text-zinc-300 md:text-2xl">Review Submission</p>
         {userId ? null : (
@@ -160,7 +167,7 @@ const PostCreationForm = () => {
                 Title is missing,{" "}
                 <button
                   onClick={() => setStep(STEPS.TITLE)}
-                  className="normal-case text-blue-400"
+                  className="text-left normal-case text-blue-400"
                 >
                   click here to navigate to the title screen.
                 </button>
@@ -188,7 +195,7 @@ const PostCreationForm = () => {
                   <button
                     onClick={() => setStep(3)}
                     type="button"
-                    className="text-blue-400"
+                    className="text-left text-blue-400"
                   >
                     click here to get back to the content screen.
                   </button>
@@ -203,7 +210,7 @@ const PostCreationForm = () => {
               <button
                 type="button"
                 onClick={() => setStep(STEPS.CONTENT)}
-                className="text-blue-400"
+                className="text-left text-blue-400"
               >
                 click here to go to the upload screen.
               </button>
@@ -264,7 +271,9 @@ const PostCreationForm = () => {
         <div className="py-4">
           <p
             className={cn("pb-2", {
-              "text-rose-600": tags.length < 1 || tags.length > 8,
+              "text-rose-600":
+                (tags.length < 1 || tags.length > 8) &&
+                form.formState.errors.tags,
             })}
           >
             Tag
@@ -275,33 +284,67 @@ const PostCreationForm = () => {
               <button
                 type="button"
                 onClick={() => setStep(STEPS.TAGS)}
-                className="text-blue-400"
+                className="text-left text-blue-400"
               >
                 click here to navigate to the tags screen.
               </button>
             </p>
           )}
-          <div className="flex flex-wrap gap-2 pt-2">
+          <ul className="flex flex-wrap gap-2 pt-2">
             {form.getValues().tags.map((tag, index) => (
-              <li
-                key={tag}
-                className={cn(
-                  "text-bold flex items-center justify-between gap-2 rounded-lg px-3 py-1 text-zinc-900",
-                  {
-                    "border-2 border-rose-500 text-rose-500": index === 0,
-                    "border-2 border-lime-500 text-lime-500": index === 1,
-                    "border-2 border-sky-500 text-sky-500": index === 2,
-                    "border-2 border-amber-500 text-amber-500": index === 3,
-                    "border-2 border-fuchsia-500 text-fuchsia-500": index === 4,
-                    "border-2 border-teal-400 text-teal-400": index === 5,
-                    "border-2 border-red-400 text-red-400": index === 6,
-                    "border-2 border-indigo-400 text-indigo-400": index === 7,
-                  },
-                )}
-              >
-                {tag}
-              </li>
+              <Tag key={tag} index={index} tag={tag} />
             ))}
+          </ul>
+        </div>
+        <div className="py-8">
+          <div className="flex gap-2">
+            <Checkbox
+              id="consent"
+              checked={consentChecked}
+              onCheckedChange={() => {
+                setConsentChecked((prev) => !prev);
+              }}
+              className="h-5 w-5 border border-zinc-500 bg-zinc-700 checked:bg-zinc-500 data-[state=checked]:bg-rose-600"
+            />
+            <label
+              htmlFor="consent"
+              className="space-y-3 font-bold text-zinc-400 max-md:text-sm"
+            >
+              <p>
+                {" "}
+                Click this box if you agree that your submission can be used for
+                research purposes. The Archive will contribute to a better
+                understanding of youth and planetary well-being and will be used
+                to develop future presentations, teaching and/or publications
+                such as social media posts, journal articles, and books.
+              </p>
+
+              <p>All intellectual and creative rights remain yours.</p>
+
+              <p>
+                You have the right to stop participating and delete your
+                submission at any time by signing in and deleting it directly,
+                or by emailing Deborah MacDonald at the Young Lives Research Lab
+                at York University at: dmacd@yorku.ca.
+              </p>
+
+              <p>
+                You have the right to submit anonymously. If you submit
+                anonymously, you can only delete your post by emailing the
+                contact above.
+              </p>
+
+              <p>
+                Please read the full{" "}
+                <Link
+                  href="https://docs.google.com/document/d/185IyM9Cic-vpMK7yqYLXR0s-YfJrhaSY/edit"
+                  target="_blank"
+                  className="text-blue-500 underline"
+                >
+                  consent form here.
+                </Link>
+              </p>
+            </label>
           </div>
         </div>
       </div>
@@ -331,9 +374,12 @@ const PostCreationForm = () => {
       </Form>
       {step > 0 && (
         <div
-          className={cn("mx-auto mt-8 flex w-32 items-center justify-between", {
-            "w-full max-w-[350px]": step === STEPS.CONFIRM,
-          })}
+          className={cn(
+            "mx-auto mt-12 flex w-32 items-center justify-between pb-12",
+            {
+              "w-full max-w-[350px]": step === STEPS.CONFIRM,
+            },
+          )}
         >
           <Button
             type="button"
