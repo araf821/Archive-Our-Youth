@@ -28,7 +28,11 @@ export async function POST(req: Request) {
           contentType === "TEXT" ? "" : description ? description : "",
         tags,
         userId: user?.id,
-        slug: slugify(title) + nanoid(5),
+        slug: slugify(title, {
+          lower: true,
+          replacement: "-",
+          remove: /[:]/g
+        }) + nanoid(5),
         researchQuestions,
       },
     });

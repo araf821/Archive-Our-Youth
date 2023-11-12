@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: SinglePostPageParams) {
 const page: FC<SinglePostPageParams> = async ({ params }) => {
   const post = await db.post.findFirst({
     where: {
-      slug: params.slug,
+      slug: decodeURIComponent(params.slug),
     },
     include: { user: true },
   });
@@ -49,7 +49,7 @@ const page: FC<SinglePostPageParams> = async ({ params }) => {
     return (
       <EmptyState
         title="Post Not Found"
-        description="The post you're looking for does not exist. It may have been taken deleted."
+        description="The post you're looking for does not exist. It may have been taken down."
         link={{ label: "View All Posts", route: "/home" }}
       />
     );
