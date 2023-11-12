@@ -19,7 +19,7 @@ interface SinglePostPageParams {
 export async function generateMetadata({ params }: SinglePostPageParams) {
   const post = await db.post.findFirst({
     where: {
-      slug: params.slug,
+      slug: decodeURIComponent(params.slug),
     },
     select: {
       title: true,

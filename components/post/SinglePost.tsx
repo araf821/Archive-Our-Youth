@@ -58,12 +58,16 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
           {post.title}
         </p>
 
-        <ul className="flex flex-wrap mt-2 gap-2">
-          {post.tags.map((tag, index) => (
-            <Tag tag={tag} key={tag} index={index} />
-          ))}
-        </ul>
-
+        {post.contentType === "TEXT" && (
+          <div className="flex w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">
+            <LikeButton
+              postId={post.id}
+              likes={post.likes}
+              currentUser={currentUser}
+            />
+            <ShareButton link="idk" />
+          </div>
+        )}
         <hr className="border-zinc-800" />
         <div className="-my-1 flex gap-2 text-zinc-300 md:text-lg">
           <div className="relative h-14 w-14 rounded-full">
@@ -128,6 +132,12 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
           <hr className="mt-4 border-zinc-700" />
         </div>
       </div>
+
+      <ul className="flex flex-wrap gap-2">
+        {post.tags.map((tag, index) => (
+          <Tag tag={tag} key={tag} index={index} />
+        ))}
+      </ul>
 
       {/* Comments */}
       <section className="flex flex-col gap-2">
