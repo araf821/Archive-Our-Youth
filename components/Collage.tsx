@@ -78,10 +78,8 @@ const Collage: FC<CollageProps> = async ({ keyword, sortBy, tags }) => {
     <FadeInContainer>
       <div className="grid grid-cols-2 items-center overflow-hidden bg-zinc-900 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         <Suspense fallback="Loading...">
-          {posts.map((post, index) => (
-            <Fragment key={index}>
-              <CollageItem key={index} post={post} currentUser={currentUser} />
-            </Fragment>
+          {posts.map((post) => (
+            <CollageItem key={post.id} post={post} currentUser={currentUser} />
           ))}
         </Suspense>
       </div>
