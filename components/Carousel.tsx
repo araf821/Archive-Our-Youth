@@ -49,7 +49,7 @@ const Carousel = ({}) => {
   slide1 = (
     <div className="max-w-screen-lg rounded-lg ">
       <p
-        className={`${kobata.className} z-10 flex select-none flex-col gap-4 py-8 text-center text-[5rem] leading-none tracking-tighter text-background text-white opacity-100 md:text-[6rem] lg:text-[7rem]`}
+        className={`${kobata.className} after:hidden relative z-10 my-8 flex select-none flex-col gap-4 text-center text-[5rem] leading-none text-background text-white after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-20 after:my-auto after:origin-right after:scale-x-0 after:bg-orange-300 after:transition after:duration-300  hover:after:origin-left hover:after:scale-x-100 md:text-[6rem] lg:text-[7rem]`}
       >
         Archive Our Youth
       </p>

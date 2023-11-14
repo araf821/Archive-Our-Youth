@@ -30,6 +30,7 @@ import TagSelectionSlide from "./TagSelectionSlide";
 import Tag from "../Tag";
 import { Checkbox } from "../ui/checkbox";
 import Link from "next/link";
+import { kobata } from "@/app/fonts";
 
 enum STEPS {
   WELCOME = 0,
@@ -117,8 +118,10 @@ const PostCreationForm = () => {
         step > 1 && "hidden"
       }`}
     >
-      <p className="flex flex-col gap-2 font-karla text-6xl font-bold text-zinc-100 md:text-7xl lg:text-8xl xl:text-9xl">
-        Digital<span>Archive</span>
+      <p
+        className={`${kobata.className} flex flex-col gap-2 font-karla text-6xl font-bold text-zinc-100 md:text-7xl lg:text-8xl xl:text-9xl`}
+      >
+        Archive Our Youth
       </p>
       <p className="text-xl font-semibold text-zinc-300 md:text-2xl">
         Submission Portal
