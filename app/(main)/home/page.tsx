@@ -3,7 +3,7 @@ import { initializeUser } from "@/lib/initializeUser";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Showcase | Digital Archive",
+  title: "The Archive | Archive Our Youth",
 };
 
 export default async function Home({

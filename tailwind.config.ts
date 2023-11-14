@@ -72,6 +72,7 @@ module.exports = {
       },
       fontFamily: {
         karla: ["var(--font-karla)", "serif"],
+        kobata: ["'__Kobata_870a87', '__Kobata_Fallback_870a87'"],
       },
     },
   },

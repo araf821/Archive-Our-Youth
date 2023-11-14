@@ -12,7 +12,7 @@ import {
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Submission Portal | Digital Archive",
+  title: "Submission Portal | Archive Our Youth",
   description:
     "Submit your work to have displayed inside of an archive viewed by thousands of people!",
 };

@@ -12,10 +12,6 @@ interface SinglePostPageParams {
   };
 }
 
-// export const metadata:  = {
-//   title: "Post Page | Digital Archive",
-// };
-
 export async function generateMetadata({ params }: SinglePostPageParams) {
   const post = await db.post.findFirst({
     where: {
@@ -27,11 +23,11 @@ export async function generateMetadata({ params }: SinglePostPageParams) {
   });
 
   if (!post) {
-    return { title: "Post Page | Digital Archive" };
+    return { title: "View Post | Archive Our Youth" };
   }
 
   return {
-    title: post?.title + " | Digital Archive",
+    title: post?.title + " | Archive Our Youth",
   };
 }
 

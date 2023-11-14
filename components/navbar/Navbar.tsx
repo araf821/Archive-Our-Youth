@@ -11,6 +11,7 @@ import { Search } from "lucide-react";
 import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
 import { useModal } from "@/hooks/useModal";
+import { kobata } from "@/app/fonts";
 
 interface NavbarProps {
   user: User | null;
@@ -65,10 +66,10 @@ const Navbar = ({ user }: NavbarProps) => {
       <div className="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 opacity-100 md:px-8 xl:px-12">
         <Link
           href="/"
-          className="flex items-center text-xl font-bold text-zinc-100 transition hover:translate-x-1 md:text-2xl"
+          className={`${kobata.className} flex items-center text-xl text-zinc-100 transition hover:translate-x-1 md:text-2xl`}
         >
-          Digital Collage
-          <span className="ml-2 bg-rose-500 px-1 py-0.5 text-xs font-bold">
+          Archive Our Youth
+          <span className="ml-2 bg-rose-500 px-1 py-0.5 text-xs">
             BETA
           </span>
         </Link>
@@ -79,7 +80,7 @@ const Navbar = ({ user }: NavbarProps) => {
           {user ? (
             <Link
               className={cn(
-                "rounded-md pulse-button bg-zinc-200 px-4 py-1.5 font-bold tracking-widest text-black transition duration-300 hover:bg-rose-500 hover:shadow-[0_0_20px_2px] hover:shadow-rose-500/40",
+                "pulse-button rounded-md bg-zinc-200 px-4 py-1.5 font-bold tracking-widest text-black transition duration-300 hover:bg-rose-500 hover:shadow-[0_0_20px_2px] hover:shadow-rose-500/40",
               )}
               href={"/submit"}
             >

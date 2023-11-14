@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { SignInButton, SignOutButton, useAuth, useClerk } from "@clerk/nextjs";
 import { toast } from "sonner";
+import { kobata } from "@/app/fonts";
 interface MobileMenuProps {}
 
 const MobileMenu: FC<MobileMenuProps> = ({}) => {
@@ -28,9 +29,9 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
         <div className="flex items-center justify-between bg-gradient-to-tr from-red-600 to-rose-500 p-6 pb-6 shadow-[0_2px_10px] shadow-red-500/50 md:text-lg">
           <Link
             href="/"
-            className="font-karla text-xl font-semibold text-white"
+            className={`${kobata.className} font-karla text-xl font-semibold text-white`}
           >
-            Digital Archive
+            Archive Our Youth
           </Link>
           <SheetClose className="text-white">
             <X />
