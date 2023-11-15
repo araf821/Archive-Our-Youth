@@ -17,7 +17,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
 }) => {
   const type = form.watch("contentType");
   return (
-    <div className="flex flex-col items-center justify-center space-y-10 md:space-y-14">
+    <div className="flex flex-col max-sm:my-12 items-center justify-center space-y-10 md:space-y-14">
       <div className="flex">
         <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
         <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />

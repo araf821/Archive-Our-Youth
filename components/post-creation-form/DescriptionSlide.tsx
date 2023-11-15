@@ -23,7 +23,7 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
       name="description"
       control={form.control}
       render={({ field }) => (
-        <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
+        <FormItem className="mx-auto max-sm:mt-12 grid max-w-screen-sm place-items-center gap-8 md:gap-12">
           <div className="flex">
             <span className="aspect-square w-7 bg-[#FFA573] md:w-10" />
             <span className="aspect-square w-7 bg-[#FD9747] md:w-10" />

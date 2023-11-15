@@ -119,7 +119,7 @@ const PostCreationForm = () => {
       }`}
     >
       <p
-        className={`${kobata.className} flex flex-col gap-2 font-karla text-6xl font-bold text-zinc-100 md:text-7xl lg:text-8xl xl:text-9xl`}
+        className={`${kobata.className} flex flex-col gap-2 text-6xl font-bold text-zinc-100 md:text-7xl lg:text-8xl xl:text-9xl`}
       >
         Archive Our Youth
       </p>

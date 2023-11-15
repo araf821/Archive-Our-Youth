@@ -25,7 +25,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
+          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
             <div className="flex">
               <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
               <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
@@ -100,7 +100,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
+          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
             <div className="flex">
               <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
               <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
@@ -126,7 +126,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
+          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
             <div className="flex">
               <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
               <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
@@ -151,7 +151,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
+          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
             <div className="flex">
               <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
               <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />

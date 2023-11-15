@@ -54,7 +54,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         <span className="-mb-3 w-fit rounded-md bg-zinc-700 px-1.5 py-0.5 text-sm text-zinc-300">
           {dateFormat(new Date(post.createdAt).toISOString())}
         </span>
-        <p className="break-words font-karla text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
+        <p className="break-words text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
           {post.title}
         </p>
 

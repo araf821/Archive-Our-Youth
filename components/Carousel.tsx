@@ -49,7 +49,7 @@ const Carousel = ({}) => {
   slide1 = (
     <div className="max-w-screen-lg rounded-lg ">
       <p
-        className={`${kobata.className} after:hidden relative z-10 my-8 flex select-none flex-col gap-4 text-center text-[5rem] leading-none text-background text-white after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-20 after:my-auto after:origin-right after:scale-x-0 after:bg-orange-300 after:transition after:duration-300  hover:after:origin-left hover:after:scale-x-100 md:text-[6rem] lg:text-[7rem]`}
+        className={`${kobata.className} relative z-10 my-8 flex select-none flex-col gap-4 text-center text-[5rem] leading-none text-white after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-20 after:my-auto after:hidden after:origin-right after:scale-x-0 after:bg-rose-600 after:transition after:duration-300 hover:after:origin-left hover:after:scale-x-100 md:text-[6rem] lg:text-[7rem]`}
       >
         Archive Our Youth
       </p>
@@ -59,17 +59,17 @@ const Carousel = ({}) => {
   slide2 = (
     <div className="mx-4 flex max-w-screen-sm flex-col items-center justify-center gap-3 rounded-lg bg-black/40 p-4 backdrop-blur-sm md:p-8">
       <p className="text-center text-lg font-semibold text-zinc-100 max-md:text-base">
-        Welcome to the{" "}
-        <span className="font-bold text-rose-500">Digital Archive</span> on
+        Welcome to{" "}
+        <span className="font-bold text-rose-500">Archive Our Youth</span> on
         Youth and Planetary Wellbeing! You&rsquo;re invited to contribute to the
         Archive and/or explore the multimedia and artifacts preserved here.
       </p>
       <p className="text-center text-lg font-semibold text-zinc-100 max-md:text-base">
-        The <span className="font-bold text-rose-500">Digital Archive</span>{" "}
-        explores dream futures, perspectives on wellbeing, and resources both
-        real and desired that support personal to planetary wellbeing. We
-        welcome youth, youth groups and engaged collectives from all over the
-        world to contribute!
+        The <span className="font-bold text-rose-500">Archive</span> explores
+        dream futures, perspectives on wellbeing, and resources both real and
+        desired that support personal to planetary wellbeing. We welcome youth,
+        youth groups and engaged collectives from all over the world to
+        contribute!
       </p>
     </div>
   );
@@ -77,7 +77,7 @@ const Carousel = ({}) => {
   slide3 = (
     <div className="mx-4 flex max-w-screen-sm flex-col items-center justify-center gap-3 rounded-lg bg-black/40 p-4 backdrop-blur-sm md:p-8">
       <p className="text-center text-lg font-semibold text-zinc-100 max-md:text-base">
-        The <span className="font-bold text-rose-500">Digital Archive</span> was
+        <span className="font-bold text-rose-500">Archive Our Youth</span> was
         launched as part of the international research study: Partnership for
         Youth and Planetary Wellbeing, led by the{" "}
         <a
@@ -109,7 +109,7 @@ const Carousel = ({}) => {
 
   slide4 = (
     <div className="pointer-events-auto flex w-full max-w-sm flex-col items-center justify-center gap-2 rounded-md bg-black/40 px-6 py-12 text-center backdrop-blur-sm">
-      <p className="w-fit font-karla text-4xl font-bold text-white ">
+      <p className="w-fit text-4xl font-bold text-white ">
         Let&rsquo;s explore!
       </p>
       <p className="text-sm text-zinc-300">

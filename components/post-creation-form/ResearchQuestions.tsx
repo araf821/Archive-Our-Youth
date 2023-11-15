@@ -123,7 +123,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
   };
 
   return (
-    <div className="grid max-w-screen-md place-items-center gap-8 max-sm:my-4 md:gap-12">
+    <div className="grid max-w-screen-md place-items-center gap-8 max-sm:my-12 md:gap-12">
       <div className="flex">
         <span className="aspect-square w-7 bg-[#FFA573] md:w-10" />
         <span className="aspect-square w-7 bg-[#FD9747] md:w-10" />

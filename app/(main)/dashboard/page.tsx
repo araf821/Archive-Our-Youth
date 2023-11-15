@@ -50,7 +50,7 @@ const DashboardPage = async () => {
           />
         </div>
         <div className="flex flex-col gap-1.5 ">
-          <p className="font-karla text-xl font-semibold tracking-wider md:text-2xl">
+          <p className="text-xl font-semibold tracking-wider md:text-2xl">
             {currentUser.name}
           </p>
           <p className="text-zinc-400">
