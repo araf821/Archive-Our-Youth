@@ -5,6 +5,7 @@ import Link from "next/link";
 import LikeButton from "../LikeButton";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { X } from "lucide-react";
 
 const PostModal = () => {
   const { onClose, data, type, isOpen } = useModal();
@@ -25,7 +26,13 @@ const PostModal = () => {
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <div className="px-4">
         <DialogContent className="max-h-[80vh] max-w-screen-md border-none bg-transparent text-zinc-100 outline-none">
-          <div className="h-full max-h-[80vh] w-full overflow-hidden overflow-y-auto rounded-sm bg-[#202020] px-4 py-4 pb-8 md:rounded-md md:p-6">
+          <button
+            onClick={() => onClose()}
+            className="absolute right-4 top-4 text-zinc-400 outline-none"
+          >
+            <X className="h-4 w-4" />
+          </button>
+          <div className="h-full max-h-[80vh] w-full overflow-hidden overflow-y-auto rounded-sm bg-[#202020] px-4 py-8 md:rounded-md md:p-6">
             {post.contentType === "IMAGE" && (
               <div className="mx-auto max-w-[500px]">
                 <DynamicImage src={post.postContent} />
@@ -52,24 +59,31 @@ const PostModal = () => {
               </div>
             )}
 
-            <div className="flex w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">
-              <LikeButton
-                postId={post.id}
-                likes={post.likes}
-                currentUser={data.currentUser}
-                modal={true}
-              />
-              <p className="text-zinc-400">
-                {post.user
-                  ? `Posted by ${post.user.name}`
-                  : "Posted Anonymously"}
-                {/* Posted by {post.user?.name || "Anonymous"} */}
+            <div
+              className={`flex flex-col ${
+                post.contentType === "TEXT" ? "flex-col-reverse" : ""
+              }`}
+            >
+              <div className="flex mt-4 w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">
+                <LikeButton
+                  postId={post.id}
+                  likes={post.likes}
+                  currentUser={data.currentUser}
+                  modal={true}
+                />
+                <p className="text-zinc-400">
+                  {post.user
+                    ? `Posted by ${post.user.name}`
+                    : "Posted Anonymously"}
+                  {/* Posted by {post.user?.name || "Anonymous"} */}
+                </p>
+              </div>
+
+              <p className="mt-2 break-words text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
+                {post.title}
               </p>
             </div>
 
-            <p className="mt-2 break-words text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
-              {post.title}
-            </p>
             <div className="mt-4 flex items-center justify-between">
               <button
                 onClick={() => onClose()}

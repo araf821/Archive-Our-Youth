@@ -1,5 +1,8 @@
+"client";
+
 import { useFilters } from "@/hooks/useFilters";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -25,20 +28,41 @@ const NavLinks = ({}) => {
 
   return (
     <div className="items-center gap-4 max-lg:hidden lg:flex">
-      <div className="flex items-center gap-1.5 rounded-full border-2 border-zinc-800 bg-zinc-800 p-2 tracking-wider text-zinc-50">
+      <div className="flex items-center gap-8 tracking-wider text-zinc-50 lg:gap-12">
         {navLinks.map((link) => (
           <Link
             key={link.pathname}
             href={link.pathname}
             className={cn(
-              "rounded-sm px-6 py-1 transition first:rounded-l-full first:rounded-r-[200rem] last:rounded-l-[200rem] last:rounded-r-full hover:bg-white/10",
-              {
-                "bg-white text-black shadow-[0_0_20px_2px] shadow-white/40 hover:cursor-default hover:bg-white/90":
-                  pathname === link.pathname,
-              },
+              "relative py-1",
+              // {
+              //   "bg-white text-black shadow-[0_0_20px_2px] shadow-white/40 hover:cursor-default hover:bg-white/90":
+              //     pathname === link.pathname,
+              // },
             )}
           >
-            {link.label}
+            {/* {pathname !== link.pathname && (
+              <motion.div
+                style={{ borderRadius: 9999 }}
+                layoutId="nav-link-hover"
+                className="absolute inset-0 scale-x-100 transition duration-500 bg-white hover:scale-x-0"
+              />
+            )} */}
+
+            {pathname === link.pathname && (
+              <motion.div
+                layoutId="nav-link"
+                // style={{ borderRadius: 9999 }}
+                className="absolute inset-0 border-b-2 border-white"
+                transition={{
+                  type: "spring",
+                  damping: 10,
+                  stiffness: 125,
+                  duration: 0.3,
+                }}
+              />
+            )}
+            <span className="relative mix-blend-exclusion">{link.label}</span>
           </Link>
         ))}
       </div>
