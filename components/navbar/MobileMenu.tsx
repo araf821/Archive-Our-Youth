@@ -5,7 +5,7 @@ import Link from "next/link";
 import { navLinks } from "./NavLinks";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { SignInButton, SignOutButton, useAuth, useClerk } from "@clerk/nextjs";
+import { useAuth, useClerk } from "@clerk/nextjs";
 import { toast } from "sonner";
 import { kobata } from "@/app/fonts";
 interface MobileMenuProps {}
@@ -23,7 +23,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
         </button>
       </SheetTrigger>
       <SheetContent
-        className="flex h-full flex-col gap-4 bg-zinc-900 p-0"
+        className="flex overflow-y-auto h-full flex-col gap-4 bg-zinc-900 p-0"
         side="right"
       >
         <div className="flex items-center justify-between bg-gradient-to-tr from-red-600 to-rose-500 p-6 pb-6 shadow-[0_2px_10px] shadow-red-500/50 md:text-lg">
@@ -72,14 +72,14 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
                 signOut();
                 toast.success("Signed Out");
               }}
-              className="w-full bg-zinc-800 py-3 transition hover:bg-zinc-700"
+              className="w-full bg-zinc-800 py-3 mt-8 transition hover:bg-zinc-700"
             >
               <SheetClose className="w-full">Sign Out</SheetClose>
             </button>
           ) : (
             <button
               onClick={() => openSignIn()}
-              className="w-full bg-zinc-800 py-3 transition hover:bg-zinc-700"
+              className="w-full bg-zinc-800 py-3 mt-8 transition hover:bg-zinc-700"
             >
               <SheetClose className="w-full">Sign In</SheetClose>
             </button>

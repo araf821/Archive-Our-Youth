@@ -45,7 +45,10 @@ const GridItem = ({}) => {
   );
 
   useEffect(() => {
-    const intervalId = setInterval(changeClasses, 1000);
+    const intervalId = setInterval(
+      changeClasses,
+      Math.random() * (5000 - 1500 + 1) + 1500,
+    );
 
     return () => clearInterval(intervalId);
   }, []);
@@ -60,7 +63,7 @@ const GridItem = ({}) => {
 
   return (
     <div
-      className={`aspect-square w-full transition duration-1000 ${classes}`}
+      className={`aspect-square w-full outline outline-4 outline-zinc-900/50 transition duration-1000 ${classes}`}
     />
   );
 };

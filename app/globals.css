@@ -272,9 +272,7 @@ audio::-webkit-media-controls-play-button {
   0% {
     top: 100%;
     left: 100%;
-    transform: translate(-100%);
-    right: 0%;
-    bottom: 0%;
+    transform: translate(-100%, -100%);
     background-color: white;
   }
   15% {
@@ -284,8 +282,6 @@ audio::-webkit-media-controls-play-button {
     top: 0%;
     left: 100%;
     transform: translateX(-100%);
-    right: 0%;
-    bottom: 0%;
   }
   35% {
     background-color: blue;
@@ -293,18 +289,15 @@ audio::-webkit-media-controls-play-button {
   50% {
     top: 0%;
     left: 0%;
-    right: 0%;
-    bottom: 0%;
+    transform: translate(0);
   }
   65% {
-    background-color: brown;
+    background-color: red;
   }
   75% {
     top: 100%;
     transform: translateY(-100%);
     left: 0%;
-    right: 0%;
-    bottom: 0%;
   }
   85% {
     background-color: bisque;
@@ -313,8 +306,6 @@ audio::-webkit-media-controls-play-button {
     top: 100%;
     left: 100%;
     transform: translate(-100%, -100%);
-    right: 0%;
-    bottom: 0%;
     background-color: white;
   }
 }

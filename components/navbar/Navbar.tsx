@@ -116,9 +116,6 @@ const Navbar = ({ user }: NavbarProps) => {
               <Search className="h-6 w-6 md:h-6 md:w-6" />
             </button>
           )}
-          {/* <button className="transition">
-            <Menu className="h-6 w-6 md:h-6 md:w-6" />
-          </button> */}
           <MobileMenu />
         </div>
       </div>
