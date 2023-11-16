@@ -47,7 +47,7 @@ const GridItem = ({}) => {
   useEffect(() => {
     const intervalId = setInterval(
       changeClasses,
-      Math.random() * (5000 - 1500 + 1) + 1500,
+      Math.random() * (10000 - 5000 + 1) + 5000,
     );
 
     return () => clearInterval(intervalId);

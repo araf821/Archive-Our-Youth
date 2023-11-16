@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import axios from "axios";
@@ -46,7 +46,7 @@ enum STEPS {
 const PostCreationForm = () => {
   const { userId } = useAuth();
   const router = useRouter();
-  const [step, setStep] = useState(STEPS.WELCOME);
+  const [step, setStep] = useState<number>(0);
   const [consentChecked, setConsentChecked] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof PostCreationValidator>>({
@@ -67,21 +67,45 @@ const PostCreationForm = () => {
 
   const onNext = () => {
     setStep((currentStep) => {
-      if (contentType === "TEXT" && step === STEPS.CONTENT) {
+      if (contentType === "TEXT" && currentStep === STEPS.CONTENT) {
         return currentStep + 2;
       }
-      return currentStep + 1;
+      return Math.min(currentStep + 1, 7);
     });
   };
 
   const onBack = () => {
     setStep((currentStep) => {
-      if (contentType === "TEXT" && step === STEPS.TAGS) {
+      if (contentType === "TEXT" && currentStep === STEPS.TAGS) {
         return currentStep - 2;
       }
-      return currentStep - 1;
+      return Math.max(currentStep - 1, 0);
     });
   };
+
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case "ArrowRight":
+          onNext();
+          break;
+        case "ArrowLeft":
+          onBack();
+          break;
+        case " ":
+          onNext();
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [contentType]);
 
   const handleTypeChange = useCallback(
     (type: ContentType) => {
@@ -119,22 +143,27 @@ const PostCreationForm = () => {
       }`}
     >
       <p
-        className={`${kobata.className} flex flex-col gap-2 text-6xl font-bold text-zinc-100 md:text-7xl lg:text-8xl xl:text-9xl`}
+        className={`${kobata.className} text-[4rem] font-semibold text-zinc-100 md:text-[5rem]`}
       >
         Archive Our Youth
       </p>
       <p className="text-xl font-semibold text-zinc-300 md:text-2xl">
         Submission Portal
       </p>
-      <Button
-        onClick={onNext}
-        type="button"
-        size="lg"
-        className="flex gap-x-2 bg-zinc-200 text-zinc-800 transition hover:translate-x-2 hover:bg-white"
-      >
-        Get Started
-        <ArrowRight />
-      </Button>
+      <div className="flex flex-col items-center gap-4">
+        <Button
+          onClick={onNext}
+          type="button"
+          size="lg"
+          className="flex gap-x-2 bg-zinc-200 text-zinc-800 transition hover:translate-x-2 hover:bg-white"
+        >
+          Get Started
+          <ArrowRight />
+        </Button>
+        <p className="text-zinc-400 max-md:hidden">
+          You can also use arrow keys or spacebar to navigate.
+        </p>
+      </div>
     </div>
   );
 

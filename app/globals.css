@@ -210,61 +210,12 @@ audio::-webkit-media-controls-play-button {
 }
 
 .animate-move1 {
-  animation: moveToEachCorner1 linear 5s infinite;
+  animation: moveToEachCorner1 linear 10s infinite;
 }
 
 .neon-text {
-  color: #F86641;
-  text-shadow:
-    0 -10px 70px,
-    0 0 2px,
-    0 0 0.1em #F8664199,
-    0 0 0.05em #F8664199,
-    0 10px 3px #000;
-
-  animation: animate-text-shadow 5s infinite linear;
-}
-
-@keyframes animate-text-shadow {
-  0% {
-    color: #F86641;
-    text-shadow:
-      0 -10px 25px,
-      0 0 2px,
-      0 0 0.1em #F8664199,
-      0 0 0.05em #F8664199,
-      0 10px 3px #000;
-  }
-
-  50% {
-    color: #f8fde9;
-    text-shadow:
-      0 -10px 25px,
-      0 0 2px,
-      0 0 0.1em #f8fde999,
-      0 0 0.05em #f8fde999,
-      0 10px 3px #000;
-  }
-
-  75% {
-    color: #ffc466;
-    text-shadow:
-      0 -10px 25px,
-      0 0 2px,
-      0 0 0.1em #ffc46699,
-      0 0 0.05em #ffc46699,
-      0 10px 3px #000;
-  }
-
-  100% {
-    color: #F86641;
-    text-shadow:
-      0 -10px 25px,
-      0 0 2px,
-      0 0 0.1em #F8664199,
-      0 0 0.05em #F8664199,
-      0 10px 3px #000;
-  }
+  color: #fee;
+  text-shadow: 2px 7px 5px #000;
 }
 
 @keyframes moveToEachCorner1 {
@@ -319,7 +270,7 @@ audio::-webkit-media-controls-play-button {
 }
 
 .animate-move2 {
-  animation: moveToEachCorner2 linear 5s infinite;
+  animation: moveToEachCorner2 linear 10s infinite;
 }
 
 @keyframes moveToEachCorner2 {
