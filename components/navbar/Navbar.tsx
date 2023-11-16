@@ -69,7 +69,7 @@ const Navbar = ({ user }: NavbarProps) => {
           className={`${kobata.className} flex items-center text-xl text-zinc-100 transition hover:translate-x-1 md:text-2xl`}
         >
           Archive Our Youth
-          <span className="ml-2 bg-rose-500 px-1 py-0.5 text-xs">
+          <span className="ml-2 font-sans bg-red-600 px-1 py-0.5 text-xs">
             BETA
           </span>
         </Link>

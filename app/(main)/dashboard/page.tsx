@@ -2,7 +2,12 @@ import UserPostsSection from "@/components/post/UserPostsSection";
 import { dateFormat } from "@/lib/dateFormat";
 import { db } from "@/lib/db";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Dashboard | Archive Our Youth",
+};
 
 const DashboardPage = async () => {
   const { userId } = auth();

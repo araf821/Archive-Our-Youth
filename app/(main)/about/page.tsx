@@ -1,6 +1,12 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us | Archive Our Youth",
+};
+
 const AboutPage = () => {
   return (
-    <div className="mx-auto max-w-screen-md space-y-12 px-6 pt-20 pb-14 text-white">
+    <div className="mx-auto max-w-screen-md space-y-12 px-6 pb-14 pt-20 text-white">
       <div className="space-y-4 text-lg tracking-wide text-zinc-200">
         <h4 className="text-xl font-semibold text-white">About Us</h4>
         <p>
@@ -70,9 +76,3 @@ const AboutPage = () => {
   );
 };
 export default AboutPage;
-
-// <EmptyState
-//   title="Coming Soon"
-//   description="Please check out the other pages while we work on building up this page!"
-//   link={{ label: "View Posts", route: "/home" }}
-// />

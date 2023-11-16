@@ -47,7 +47,10 @@ const PostCreationForm = () => {
   const { userId } = useAuth();
   const router = useRouter();
   const [step, setStep] = useState<number>(0);
-  const [consentChecked, setConsentChecked] = useState<boolean>(false);
+  const [{ checked, error }, setConsentChecked] = useState({
+    checked: false,
+    error: false,
+  });
 
   const form = useForm<z.infer<typeof PostCreationValidator>>({
     resolver: zodResolver(PostCreationValidator),
@@ -119,7 +122,11 @@ const PostCreationForm = () => {
   );
 
   const onSubmit = async (values: z.infer<typeof PostCreationValidator>) => {
-    if (!consentChecked) {
+    if (!checked) {
+      setConsentChecked((prev) => ({
+        ...prev,
+        error: true,
+      }));
       return toast.error("You must agree to the terms and conditions.");
     }
 
@@ -328,15 +335,23 @@ const PostCreationForm = () => {
             ))}
           </ul>
         </div>
-        <div className="py-8">
+        <div className="py-6">
+          {error && (
+            <p className="pb-2 text-red-500">
+              Your consent is required for us to approve your submission.
+            </p>
+          )}
           <div className="flex gap-2">
             <Checkbox
               id="consent"
-              checked={consentChecked}
+              checked={checked}
               onCheckedChange={() => {
-                setConsentChecked((prev) => !prev);
+                setConsentChecked((prev) => ({
+                  checked: !prev.checked,
+                  error: prev.checked ? true : false,
+                }));
               }}
-              className="h-5 w-5 border border-zinc-500 bg-zinc-700 checked:bg-zinc-500 data-[state=checked]:bg-rose-600"
+              className="h-5 w-5 translate-y-1 border border-zinc-500 bg-zinc-700 checked:bg-zinc-500 data-[state=checked]:bg-rose-600"
             />
             <label
               htmlFor="consent"
@@ -357,7 +372,14 @@ const PostCreationForm = () => {
                 You have the right to stop participating and delete your
                 submission at any time by signing in and deleting it directly,
                 or by emailing Deborah MacDonald at the Young Lives Research Lab
-                at York University at: dmacd@yorku.ca.
+                at York University at:{" "}
+                <a
+                  className="text-blue-400 underline"
+                  href="mailto:dmacd@yorku.ca"
+                >
+                  dmacd@yorku.ca
+                </a>
+                .
               </p>
 
               <p>
@@ -371,7 +393,7 @@ const PostCreationForm = () => {
                 <Link
                   href="https://docs.google.com/document/d/185IyM9Cic-vpMK7yqYLXR0s-YfJrhaSY/edit"
                   target="_blank"
-                  className="text-blue-500 underline"
+                  className="text-blue-400 underline"
                 >
                   consent form here.
                 </Link>

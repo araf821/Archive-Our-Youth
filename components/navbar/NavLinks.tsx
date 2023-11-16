@@ -33,22 +33,8 @@ const NavLinks = ({}) => {
           <Link
             key={link.pathname}
             href={link.pathname}
-            className={cn(
-              "relative py-1",
-              // {
-              //   "bg-white text-black shadow-[0_0_20px_2px] shadow-white/40 hover:cursor-default hover:bg-white/90":
-              //     pathname === link.pathname,
-              // },
-            )}
+            className={cn("relative py-1")}
           >
-            {/* {pathname !== link.pathname && (
-              <motion.div
-                style={{ borderRadius: 9999 }}
-                layoutId="nav-link-hover"
-                className="absolute inset-0 scale-x-100 transition duration-500 bg-white hover:scale-x-0"
-              />
-            )} */}
-
             {pathname === link.pathname && (
               <motion.div
                 layoutId="nav-link"
@@ -56,23 +42,21 @@ const NavLinks = ({}) => {
                 className="absolute inset-0 border-b-2 border-white"
                 transition={{
                   type: "spring",
-                  damping: 10,
-                  stiffness: 125,
-                  duration: 0.3,
+                  damping: 15,
+                  duration: 0.2,
                 }}
               />
             )}
             <span className="relative mix-blend-exclusion">{link.label}</span>
           </Link>
         ))}
-      </div>
-      {pathname === "/home" && (
         <button
           className={cn(
             "rounded-full bg-zinc-800 p-3 text-white transition hover:bg-zinc-700 active:scale-90 max-lg:hidden",
             {
               "bg-rose-500 shadow-[0_0_15px_2px] shadow-rose-500/50 hover:bg-rose-600":
                 isOpen,
+              "scale-0": pathname !== "/home",
             },
           )}
           onClick={() => {
@@ -82,7 +66,7 @@ const NavLinks = ({}) => {
         >
           <Search className="h-5 w-5 md:h-6 md:w-6" />
         </button>
-      )}
+      </div>
     </div>
   );
 };
