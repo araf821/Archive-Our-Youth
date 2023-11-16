@@ -47,9 +47,9 @@ const Carousel = ({}) => {
   let slide1, slide2, slide3, slide4;
 
   slide1 = (
-    <div className="max-w-screen-lg rounded-lg ">
+    <div className="max-w-screen-lg">
       <p
-        className={`${kobata.className} relative z-10 my-8 flex select-none flex-col gap-4 text-center text-[5rem] leading-none text-white after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-20 after:my-auto after:hidden after:origin-right after:scale-x-0 after:bg-rose-600 after:transition after:duration-300 hover:after:origin-left hover:after:scale-x-100 md:text-[6rem] lg:text-[7rem]`}
+        className={`${kobata.className} neon-text relative z-10 my-8 flex select-none flex-col gap-4 py-16 text-center text-[5rem] leading-none after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-20 after:my-auto after:hidden after:origin-right after:scale-x-0 after:bg-rose-600 after:transition after:duration-300 hover:after:origin-left hover:after:scale-x-100 sm:px-4 md:px-8 md:text-[6rem] lg:text-[7rem]`}
       >
         Archive Our Youth
       </p>
