@@ -1,3 +1,4 @@
+import EditProfileModal from "@/components/modals/EditProfileModal";
 import UserPostsSection from "@/components/post/UserPostsSection";
 import { dateFormat } from "@/lib/dateFormat";
 import { db } from "@/lib/db";
@@ -8,6 +9,8 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Dashboard | Archive Our Youth",
 };
+
+export const revalidate = 100;
 
 const DashboardPage = async () => {
   const { userId } = auth();
@@ -54,10 +57,16 @@ const DashboardPage = async () => {
             className="rounded-md object-cover"
           />
         </div>
-        <div className="flex flex-col gap-1.5 ">
-          <p className="text-xl font-semibold tracking-wider md:text-2xl">
-            {currentUser.name}
-          </p>
+        <div className="flex w-full flex-col gap-1.5 ">
+          <div className="flex items-center justify-between">
+            <p className="text-xl font-semibold tracking-wider md:text-2xl">
+              {currentUser.name}
+            </p>
+            <EditProfileModal
+              imageUrl={currentUser.imageUrl || ""}
+              name={currentUser.name}
+            />
+          </div>
           <p className="text-zinc-400">
             Member Since:{" "}
             {dateFormat(new Date(currentUser.createdAt).toISOString())}
