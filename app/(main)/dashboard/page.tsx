@@ -46,7 +46,7 @@ const DashboardPage = async () => {
       </div>
 
       <div className="flex gap-4 rounded-md border-2 border-zinc-800 p-2">
-        <div className="relative aspect-square overflow-hidden max-md:w-20 md:w-32">
+        <div className="relative aspect-square h-fit my-auto overflow-hidden max-md:w-20 md:w-32">
           <Image
             src={
               currentUser.imageUrl ||

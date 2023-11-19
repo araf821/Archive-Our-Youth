@@ -17,7 +17,7 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
   if (value) {
     if (endPoint === "image") {
       return (
-        <div className="relative aspect-square h-full w-full max-w-[400px]">
+        <div className="relative bg-zinc-800 aspect-square h-full w-full max-w-[400px]">
           <Image
             src={value}
             alt="uploaded image"
@@ -27,7 +27,7 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
           <button
             onClick={() => onChange("")}
             type="button"
-            className="group absolute -right-2 -top-2 rounded-md bg-zinc-800 p-1 text-white shadow-sm"
+            className="group absolute -right-2 -top-2 rounded-md bg-red-600 p-0.5 text-white shadow-sm"
           >
             <X className="h-5 w-5 transition group-hover:rotate-90" />
           </button>
