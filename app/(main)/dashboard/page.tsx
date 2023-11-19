@@ -41,12 +41,11 @@ const DashboardPage = async () => {
       {/* Header */}
       <div className="flex flex-col gap-2">
         <p className="text-4xl font-semibold md:text-5xl">Dashboard</p>
-        <p className="text-zinc-400 max-md:text-sm">Manage your posts</p>
         <hr className="border-zinc-800" />
       </div>
 
       <div className="flex gap-4 rounded-md border-2 border-zinc-800 p-2">
-        <div className="relative aspect-square h-fit my-auto overflow-hidden max-md:w-20 md:w-32">
+        <div className="relative my-auto aspect-square w-full overflow-hidden max-md:w-20 md:w-32">
           <Image
             src={
               currentUser.imageUrl ||
@@ -54,12 +53,12 @@ const DashboardPage = async () => {
             }
             alt="user profile picture"
             fill
-            className="rounded-md object-cover"
+            className="rounded-md w-full object-cover"
           />
         </div>
         <div className="flex w-full flex-col gap-1.5 ">
           <div className="flex items-center justify-between">
-            <p className="text-xl font-semibold tracking-wider md:text-2xl">
+            <p className="text-lg font-semibold tracking-wider sm:text-xl md:text-2xl">
               {currentUser.name}
             </p>
             <EditProfileModal
@@ -67,11 +66,13 @@ const DashboardPage = async () => {
               name={currentUser.name}
             />
           </div>
-          <p className="text-zinc-400">
+          <p className="text-zinc-400 max-sm:text-sm">
             Member Since:{" "}
             {dateFormat(new Date(currentUser.createdAt).toISOString())}
           </p>
-          <p className="text-zinc-400">Posts: {currentUser._count.posts}</p>
+          <p className="text-zinc-400 max-sm:text-sm">
+            Posts: {currentUser._count.posts}
+          </p>
         </div>
       </div>
       <UserPostsSection userId={currentUser.id} />

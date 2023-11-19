@@ -136,7 +136,11 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
                 Cancel
               </button>
               <button
-                disabled={isLoading}
+                disabled={
+                  isLoading ||
+                  !!form.formState.errors.newImageUrl ||
+                  !!form.formState.errors.newName
+                }
                 className="rounded-md border-2 border-zinc-300 px-3 py-1 text-zinc-100 ring-zinc-300 transition hover:bg-zinc-100 hover:text-zinc-900 focus-visible:ring-4 disabled:opacity-60"
                 type="submit"
               >

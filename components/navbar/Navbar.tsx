@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { User } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { useFilters } from "@/hooks/useFilters";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 import { Search } from "lucide-react";
 import NavLinks from "./NavLinks";
@@ -23,6 +23,7 @@ const Navbar = ({ user }: NavbarProps) => {
   const { isOpen, onOpen, onClose } = useFilters();
   const { onOpen: onOpenModal } = useModal();
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -69,7 +70,7 @@ const Navbar = ({ user }: NavbarProps) => {
           className={`${kobata.className} flex items-center text-xl text-zinc-100 transition hover:translate-x-1 md:text-2xl`}
         >
           Archive Our Youth
-          <span className="ml-2 font-sans bg-red-600 px-1 py-0.5 text-xs">
+          <span className="ml-2 bg-red-600 px-1 py-0.5 font-sans text-xs">
             BETA
           </span>
         </Link>
@@ -77,25 +78,22 @@ const Navbar = ({ user }: NavbarProps) => {
         <NavLinks />
 
         <div className="max-lg:hidden md:items-center md:gap-x-6 lg:flex">
-          {user ? (
-            <Link
-              className={cn(
-                "pulse-button rounded-md bg-zinc-200 px-4 py-1.5 font-bold tracking-widest text-black transition duration-300 hover:bg-rose-500 hover:shadow-[0_0_20px_2px] hover:shadow-rose-500/40",
-              )}
-              href={"/submit"}
-            >
-              Submit
-            </Link>
-          ) : (
-            <button
-              className={cn(
-                "rounded-md bg-zinc-200 px-4 py-1.5 font-bold tracking-widest text-black transition duration-300 hover:bg-rose-500 hover:shadow-[0_0_20px_2px] hover:shadow-rose-500/40",
-              )}
-              onClick={() => onOpenModal("submitAuthModal")}
-            >
-              Submit
-            </button>
-          )}
+          <button
+            className={cn(
+              "group relative px-4 py-1 text-lg font-bold tracking-widest text-white transition duration-300 hover:text-black",
+            )}
+            onClick={() => {
+              if (user) {
+                router.push("/submit");
+              } else {
+                onOpenModal("submitAuthModal");
+              }
+            }}
+          >
+            <span className="absolute inset-x-0 top-0 h-[50%] origin-bottom-right scale-0 rounded-t-sm bg-white transition duration-200 group-hover:scale-100" />
+            <span className="absolute inset-x-0 bottom-0 h-[50%] origin-top-left scale-0 rounded-b-sm bg-white transition duration-200 group-hover:scale-100" />
+            <span className="relative">Submit</span>
+          </button>
           {user && (
             <div className="rounded-full border-2 border-zinc-700">
               <UserButton afterSignOutUrl="/home" />

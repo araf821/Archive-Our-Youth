@@ -22,7 +22,7 @@ export const navLinks = [
   },
 ];
 
-const NavLinks = ({}) => {
+const NavLinks = () => {
   const { isOpen, onOpen, onClose } = useFilters();
   const pathname = usePathname();
 

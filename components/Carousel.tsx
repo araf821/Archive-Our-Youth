@@ -12,6 +12,7 @@ import { useModal } from "@/hooks/useModal";
 import { Button } from "./ui/Button";
 import { useRouter } from "next/navigation";
 import { kobata } from "@/app/fonts";
+import { cn } from "@/lib/utils";
 
 const variants = {
   enter: (direction: number) => {
@@ -49,7 +50,7 @@ const Carousel = ({}) => {
   slide1 = (
     <div className="max-w-screen-lg">
       <p
-        className={`${kobata.className} font-semibold neon-text relative z-10 my-8 flex select-none flex-col gap-4 py-16 text-center text-[5rem] leading-none after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-20 after:my-auto after:hidden after:origin-right after:scale-x-0 after:bg-rose-600 after:transition after:duration-300 hover:after:origin-left hover:after:scale-x-100 sm:px-4 md:px-8 md:text-[6rem] lg:text-[7rem]`}
+        className={`${kobata.className} neon-text relative z-10 my-8 flex select-none flex-col gap-4 py-16 text-center text-[5rem] font-semibold leading-none after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-20 after:my-auto after:hidden after:origin-right after:scale-x-0 after:bg-rose-600 after:transition after:duration-300 hover:after:origin-left hover:after:scale-x-100 sm:px-4 md:px-8 md:text-[6rem] lg:text-[7rem]`}
       >
         Archive Our Youth
       </p>
@@ -94,16 +95,22 @@ const Carousel = ({}) => {
         The Archive was launched in the Fall of 2023 by Canada&rsquo;s YAC, but
         the submission portal remains open for continual submissions.
       </p>
-      <Button
+      <button
+        className={cn(
+          "group relative px-4 py-1 text-lg font-bold tracking-widest text-white transition duration-300 hover:text-black",
+        )}
         onClick={() => {
-          if (!userId) onOpen("submitAuthModal");
-          else router.push("/submit");
+          if (userId) {
+            router.push("/submit");
+          } else {
+            onOpen("submitAuthModal");
+          }
         }}
-        variant="link"
-        className="text-zinc-100 underline max-md:text-base md:text-lg"
       >
-        Submit A Post
-      </Button>
+        <span className="absolute inset-x-0 top-0 h-[50%] origin-bottom-right scale-0 rounded-t-sm bg-white transition duration-200 group-hover:scale-100" />
+        <span className="absolute inset-x-0 bottom-0 h-[50%] origin-top-left scale-0 rounded-b-sm bg-white transition duration-200 group-hover:scale-100" />
+        <span className="relative">Submit</span>
+      </button>
     </div>
   );
 
