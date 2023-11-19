@@ -175,8 +175,8 @@ const PostCreationForm = () => {
   );
 
   confirmationScreen = (
-    <ScrollArea className="mx-auto flex max-w-screen-sm flex-col justify-center space-y-4 overflow-y-auto">
-      <div className="pb-4">
+    <div className="mx-auto flex max-w-screen-sm flex-col justify-center space-y-4">
+      <div className="">
         <p className="text-xl text-zinc-300 md:text-2xl">Review Submission</p>
         {userId ? null : (
           <p className="text-left text-zinc-300 max-md:text-sm md:text-base">
@@ -188,7 +188,16 @@ const PostCreationForm = () => {
         <hr className="mt-1.5 w-full border-zinc-700" />
       </div>
       <div className="divide-y-2 divide-zinc-700 rounded-md border border-zinc-700 px-4">
-        <div className="pb-3 pt-5 capitalize">
+        <div className="py-4">
+          <p>Research Questions</p>
+          <ul className="mt-2 space-y-2 font-semibold">
+            {form.getValues().researchQuestions.map((q) => (
+              <li className="list-disc ml-6" key={q}>{q}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="py-4 capitalize">
           <p className="pb-2">Post Type</p>
           <span className="font-bold">{contentType.toLowerCase()}</span>
         </div>
@@ -402,7 +411,7 @@ const PostCreationForm = () => {
           </div>
         </div>
       </div>
-    </ScrollArea>
+    </div>
   );
 
   return (

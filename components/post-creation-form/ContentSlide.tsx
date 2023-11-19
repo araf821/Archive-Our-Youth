@@ -31,9 +31,9 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
               <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
             </div>
 
-            <FormLabel className="text-center text-xl md:text-2xl">
+            <p className="text-center text-xl md:text-2xl">
               What have you got for us?
-            </FormLabel>
+            </p>
             <div className="flex w-full flex-col gap-2">
               <div className="mx-auto space-x-2">
                 <Button
@@ -106,9 +106,9 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
               <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
             </div>
 
-            <FormLabel className="text-center text-xl md:text-2xl">
+            <p className="text-center text-xl md:text-2xl">
               Add an image
-            </FormLabel>
+            </p>
             <FormControl>
               <FileUpload
                 endPoint="image"

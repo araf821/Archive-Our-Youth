@@ -29,9 +29,9 @@ const TagSelectionSlide: FC<TagSelectionSlideProps> = ({ form }) => {
             <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
           </div>
 
-          <FormLabel className="text-center text-xl md:text-2xl">
+          <p className="text-center text-xl md:text-2xl">
             Pick the tags that best represent your content
-          </FormLabel>
+          </p>
           <div className="space-y-4 w-full">
             <FormControl>
               <MultiSelect

@@ -18,14 +18,17 @@ interface ResearchQuestionsProps {
 
 const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
   const selected = form.watch("researchQuestions");
+
   const [checkboxStates, setCheckboxStates] = useState({
-    q1: false,
-    q2: false,
-    q3: false,
-    q4: false,
-    q5: false,
+    q1: selected.includes("What is the future that you dream of?"),
+    q2: selected.includes("What does well-being mean to you right now?"),
+    q3: selected.includes("What would you tell your younger or older self?"),
+    q4: selected.includes(
+      "What groups, initiatives, projects, and resources support your wellbeing and the wellbeing of the planet? What more would be helpful and of value to you right now?",
+    ),
+    q5: selected.length === 0,
   });
-  
+
   const handleSelectNone = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       setCheckboxStates({
