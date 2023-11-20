@@ -15,6 +15,7 @@ export const PostCreationValidator = z.object({
     ContentType.IMAGE,
     ContentType.VIDEO,
     ContentType.AUDIO,
+    ContentType.PDF,
   ]),
   content: z
     .string()

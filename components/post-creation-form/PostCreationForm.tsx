@@ -8,7 +8,6 @@ import axios from "axios";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Form } from "../ui/Form";
 import { Button } from "../ui/Button";
-import { ScrollArea } from "../ui/ScrollArea";
 import { toast } from "sonner";
 
 import { useForm } from "react-hook-form";
@@ -177,7 +176,7 @@ const PostCreationForm = () => {
   confirmationScreen = (
     <div className="mx-auto flex max-w-screen-sm flex-col justify-center space-y-4">
       <div className="">
-        <p className="text-xl text-zinc-300 md:text-2xl">Review Submission</p>
+        <p className="text-xl text-zinc-100 md:text-2xl">Review Submission</p>
         {userId ? null : (
           <p className="text-left text-zinc-300 max-md:text-sm md:text-base">
             Posting <span className="font-bold text-rose-500">anonymously</span>

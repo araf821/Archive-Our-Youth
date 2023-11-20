@@ -61,10 +61,10 @@ const PostModal = () => {
 
             <div
               className={`flex flex-col ${
-                post.contentType === "TEXT" ? "flex-col-reverse" : ""
+                post.contentType === "TEXT" ? "flex-col-reverse gap-4" : ""
               }`}
             >
-              <div className="flex w-full justify-between rounded-md bg-zinc-800 px-2 max-sm:flex-col gap-1.5 py-1.5">
+              <div className="flex w-full justify-between gap-1.5 rounded-md bg-zinc-800 px-2 py-1.5 max-sm:flex-col">
                 <LikeButton
                   postId={post.id}
                   likes={post.likes}

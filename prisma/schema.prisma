@@ -20,6 +20,7 @@ enum ContentType {
   IMAGE
   AUDIO
   VIDEO
+  PDF
 }
 
 model User {

@@ -10,8 +10,6 @@ export const metadata: Metadata = {
   title: "Dashboard | Archive Our Youth",
 };
 
-export const revalidate = 100;
-
 const DashboardPage = async () => {
   const { userId } = auth();
 

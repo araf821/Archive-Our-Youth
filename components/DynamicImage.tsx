@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { AnimatePresence } from "framer-motion";
 import { Scaling } from "lucide-react";
 import Image from "next/image";
 import { FC, useState } from "react";

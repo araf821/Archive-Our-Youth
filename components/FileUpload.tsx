@@ -1,23 +1,44 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useState } from "react";
 import "@uploadthing/react/styles.css";
 import { UploadDropzone } from "@/lib/uploadthing";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
+import { pdfjs, Document, Page } from "react-pdf";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.js",
+  import.meta.url,
+).toString();
 
 interface FileUploadProps {
   endPoint: "audio" | "image" | "pdf" | "video";
   onChange: (url?: string) => void;
   value: string;
+  classNames?: string;
 }
 
-const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
+const FileUpload: FC<FileUploadProps> = ({
+  endPoint,
+  onChange,
+  value,
+  classNames,
+}) => {
+  // const [numPages, setNumPages] = useState<number>();
+  const [pageNumber, setPageNumber] = useState<number>(1);
+
+  const [numPages, setNumPages] = useState<number>();
+  const [currPage, setCurrPage] = useState<number>(1);
+
   if (value) {
     if (endPoint === "image") {
       return (
-        <div className="relative bg-zinc-800 aspect-square h-full w-full max-w-[400px]">
+        <div className="relative aspect-square h-full w-full max-w-[400px] bg-zinc-800">
           <Image
             src={value}
             alt="uploaded image"
@@ -68,11 +89,50 @@ const FileUpload: FC<FileUploadProps> = ({ endPoint, onChange, value }) => {
         </div>
       );
     }
+
+    if (endPoint === "pdf") {
+      return (
+        <div className="relative rounded-sm">
+          <Document
+            loading={
+              <div className="flex justify-center">
+                <Loader2 className="my-24 h-6 w-6 animate-spin" />
+              </div>
+            }
+            onLoadError={() => {
+              toast.error("Something went wrong.");
+            }}
+            onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+            file={value}
+            className="max-h-full"
+          >
+            <Page
+              pageNumber={currPage}
+              loading={
+                <div className="flex justify-center">
+                  <Loader2 className="my-24 h-6 w-6 animate-spin" />
+                </div>
+              }
+            />
+          </Document>
+          <p className="mt-1">
+            Page {pageNumber} of {numPages}
+          </p>
+          <button
+            onClick={() => onChange("")}
+            type="button"
+            className="group absolute -right-2 -top-2 rounded-md bg-red-600 p-0.5 text-white shadow-sm"
+          >
+            <X className="h-5 w-5 transition group-hover:rotate-90" />
+          </button>
+        </div>
+      );
+    }
   }
 
   return (
     <UploadDropzone
-      className="h-full w-full bg-zinc-800"
+      className={cn("h-full w-full bg-zinc-800", classNames)}
       endpoint={endPoint}
       onClientUploadComplete={(res) => {
         onChange(res?.[0].url);

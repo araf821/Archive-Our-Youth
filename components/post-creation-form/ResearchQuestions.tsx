@@ -1,19 +1,9 @@
+import { PostCreationForm } from "@/lib/types/form";
 import { ChangeEvent, FC, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 
 interface ResearchQuestionsProps {
-  form: UseFormReturn<
-    {
-      title: string;
-      contentType: "TEXT" | "IMAGE" | "VIDEO" | "AUDIO";
-      content: string;
-      tags: string[];
-      researchQuestions: string[];
-      description?: string | undefined;
-    },
-    any,
-    undefined
-  >;
+  form: PostCreationForm;
 }
 
 const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
@@ -132,11 +122,11 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
         <span className="aspect-square w-7 bg-[#FD9747] md:w-10" />
       </div>
       <div className="text-center max-sm:max-w-[340px]">
-        <p className="text-xl md:text-2xl">
+        <p className="balance text-xl md:text-2xl">
           What question does your submission answer?
         </p>
-        <p className="text-zinc-400 max-md:text-sm">
-          This question is for research purposes only.
+        <p className="balance text-zinc-500 max-md:text-sm">
+          This question is for research purposes only. Select all that apply.
         </p>
       </div>
       <div className="space-y-2">

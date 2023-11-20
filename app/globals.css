@@ -77,6 +77,10 @@
   }
 }
 
+.balance {
+  text-wrap: balance;
+}
+
 .perspective {
   transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
   filter: blur(1em);
@@ -341,4 +345,15 @@ audio::-webkit-media-controls-play-button {
   .grid-cols-custom {
     grid-template-columns: repeat(32, minmax(0, 1fr));
   }
+}
+
+/* -------------------------- REACT PDF --------------------------- */
+
+.react-pdf__Page__textContent,
+.react-pdf__Page__annotations {
+  @apply hidden;
+}
+
+.react-pdf__Page__canvas{
+  @apply max-md:max-w-[300px] max-md:max-h-[420px]
 }

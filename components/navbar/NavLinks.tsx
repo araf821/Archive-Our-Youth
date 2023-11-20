@@ -28,13 +28,14 @@ const NavLinks = () => {
 
   return (
     <div className="items-center gap-4 max-lg:hidden lg:flex">
-      <div className="flex items-center gap-8 tracking-wider text-zinc-50 lg:gap-12">
+      <div className="flex items-center gap-8 tracking-wider text-zinc-50 lg:gap-12 xl:gap-16">
         {navLinks.map((link) => (
           <Link
             key={link.pathname}
             href={link.pathname}
-            className={cn("relative py-1")}
+            className={cn("group relative py-1")}
           >
+            <span className="absolute bottom-0 left-0 h-0.5 w-full origin-bottom-left scale-x-0 bg-zinc-500 transition group-hover:scale-x-100" />
             {pathname === link.pathname && (
               <motion.div
                 layoutId="nav-link"
