@@ -1,12 +1,6 @@
 import { PostCreationForm } from "@/lib/types/form";
 import { FC, useState } from "react";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/Form";
+import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
 import { Button } from "../ui/Button";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import FileUpload from "../FileUpload";
@@ -129,9 +123,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
               <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
               <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
             </div>
-            <FormLabel className="text-center text-xl md:text-2xl">
-              Add a video
-            </FormLabel>{" "}
+            <p className="text-center text-xl md:text-2xl">Add a video</p>{" "}
             <FormControl>
               <FileUpload
                 endPoint="video"
@@ -155,9 +147,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
               <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
             </div>
 
-            <FormLabel className="text-center text-xl md:text-2xl">
-              Add an audio
-            </FormLabel>
+            <p className="text-center text-xl md:text-2xl">Add an audio</p>
             <FormControl>
               <FileUpload
                 endPoint="audio"
@@ -181,9 +171,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
               <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
             </div>
 
-            <FormLabel className="text-center text-xl md:text-2xl">
-              Upload a PDF
-            </FormLabel>
+            <p className="text-center text-xl md:text-2xl">Upload a PDF</p>
             <FormControl>
               <FileUpload
                 endPoint="pdf"

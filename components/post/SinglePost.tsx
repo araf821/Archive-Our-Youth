@@ -8,6 +8,8 @@ import LikeButton from "../LikeButton";
 import ShareButton from "../ShareButton";
 import BackButton from "../BackButton";
 import Tag from "../Tag";
+import PDFViewer from "../PDFViewer";
+import Link from "next/link";
 
 interface SinglePostProps {
   currentUser: User | null;
@@ -38,7 +40,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         </div>
       )}
 
-      {post.contentType !== "TEXT" && (
+      {post.contentType !== "TEXT" && post.contentType !== "PDF" && (
         <div className="-mt-8 flex w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">
           <LikeButton
             postId={post.id}
@@ -58,7 +60,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
           {post.title}
         </p>
 
-        {post.contentType === "TEXT" && (
+        {(post.contentType === "TEXT" || post.contentType === "PDF") && (
           <div className="flex w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">
             <LikeButton
               postId={post.id}
@@ -94,6 +96,20 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
           </div>
         </div>
         <hr className="border-zinc-800" />
+
+        {post.contentType === "PDF" && (
+          <div className="space-y-2">
+            <Link
+              href={post.postContent}
+              target="_blank"
+              className="group relative w-fit text-zinc-400 transition hover:text-zinc-100"
+            >
+              View Externally
+              <span className="absolute bottom-0 left-0 h-[1px] w-full origin-bottom-left scale-x-0 bg-zinc-400 transition group-hover:scale-x-100 group-hover:bg-zinc-100" />
+            </Link>
+            <PDFViewer url={post.postContent} />
+          </div>
+        )}
 
         {/* Research Question */}
         {post.researchQuestions.length > 0 ? (

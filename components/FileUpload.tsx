@@ -1,21 +1,16 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC } from "react";
 import "@uploadthing/react/styles.css";
 import { UploadDropzone } from "@/lib/uploadthing";
 import Image from "next/image";
-import { Loader2, X } from "lucide-react";
+import { X } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { pdfjs, Document, Page } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import Link from "next/link";
-
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.js",
-  import.meta.url,
-).toString();
+import PDFViewer from "./PDFViewer";
 
 interface FileUploadProps {
   endPoint: "audio" | "image" | "pdf" | "video";
@@ -30,9 +25,6 @@ const FileUpload: FC<FileUploadProps> = ({
   value,
   classNames,
 }) => {
-  const [numPages, setNumPages] = useState<number>();
-  const [currPage, setCurrPage] = useState<number>(1);
-
   if (value) {
     if (endPoint === "image") {
       return (
@@ -90,59 +82,8 @@ const FileUpload: FC<FileUploadProps> = ({
 
     if (endPoint === "pdf") {
       return (
-        <div className="relative rounded-sm">
-          <Document
-            loading={
-              <div className="flex justify-center">
-                <Loader2 className="my-24 h-6 w-6 animate-spin" />
-              </div>
-            }
-            onLoadError={() => {
-              toast.error("Something went wrong.");
-            }}
-            onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-            file={value}
-            className="max-h-full"
-          >
-            <Page
-              pageNumber={currPage}
-              loading={
-                <div className="flex justify-center">
-                  <Loader2 className="my-24 h-6 w-6 animate-spin" />
-                </div>
-              }
-            />
-          </Document>
-          {!!numPages && (
-            <div className="flex items-center justify-between">
-              <p className="mt-1">
-                Page {currPage} of {numPages}
-              </p>
-              <div className="text-sm text-zinc-400">
-                {currPage > 1 && (
-                  <button
-                    className="transition hover:text-white"
-                    onClick={() => {
-                      setCurrPage((prev) => prev - 1);
-                    }}
-                  >
-                    Previous
-                  </button>
-                )}
-                {currPage > 1 && currPage < numPages && <span> | </span>}
-                {currPage < numPages && (
-                  <button
-                    className="transition hover:text-white"
-                    onClick={() => {
-                      setCurrPage((prev) => prev + 1);
-                    }}
-                  >
-                    Next
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
+        <div className="relative w-full">
+          <PDFViewer url={value} />
           <button
             onClick={() => onChange("")}
             type="button"
