@@ -7,8 +7,6 @@ import Image from "next/image";
 import { X } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
 import Link from "next/link";
 import PDFViewer from "./PDFViewer";
 

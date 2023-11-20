@@ -346,14 +346,3 @@ audio::-webkit-media-controls-play-button {
     grid-template-columns: repeat(32, minmax(0, 1fr));
   }
 }
-
-/* -------------------------- REACT PDF --------------------------- */
-
-.react-pdf__Page__textContent,
-.react-pdf__Page__annotations {
-  @apply hidden;
-}
-
-/* .react-pdf__Page__canvas {
-  @apply max-md:max-h-[630px] max-md:max-w-[450px] max-sm:max-h-[420px] max-sm:max-w-[300px];
-} */
