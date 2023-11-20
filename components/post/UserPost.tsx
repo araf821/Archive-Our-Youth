@@ -46,7 +46,9 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
           </>
         )}
 
-        {post.contentType === "TEXT" && <DashboardPostInfo post={post} />}
+        {(post.contentType === "TEXT" || post.contentType === "PDF") && (
+          <DashboardPostInfo post={post} />
+        )}
 
         {post.contentType === "VIDEO" && (
           <>

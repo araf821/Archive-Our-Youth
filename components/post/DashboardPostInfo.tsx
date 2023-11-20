@@ -1,6 +1,6 @@
 import { dateFormat } from "@/lib/dateFormat";
 import { Post } from "@prisma/client";
-import { ImageIcon, Pen, VideoIcon, Volume2Icon } from "lucide-react";
+import { File, ImageIcon, Pen, VideoIcon, Volume2Icon } from "lucide-react";
 import { FC } from "react";
 import Tag from "../Tag";
 
@@ -18,6 +18,8 @@ const DashboardPostInfo: FC<DashboardPostInfoProps> = ({ post }) => {
         <ImageIcon className="absolute right-1 top-1 h-6 w-6 text-amber-500" />
       ) : post.contentType === "VIDEO" ? (
         <VideoIcon className="absolute right-1 top-1 h-6 w-6 text-fuchsia-400" />
+      ) : post.contentType === "PDF" ? (
+        <File className="absolute right-1 top-1 h-6 w-6 text-rose-400" />
       ) : (
         <Volume2Icon className="absolute right-1 top-1 h-6 w-6 text-lime-400" />
       )}
