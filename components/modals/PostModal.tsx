@@ -5,7 +5,6 @@ import Link from "next/link";
 import LikeButton from "../LikeButton";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { X } from "lucide-react";
 
 const PostModal = () => {
   const { onClose, data, type, isOpen } = useModal();
@@ -33,6 +32,14 @@ const PostModal = () => {
             <X className="h-4 w-4" />
           </button> */}
           <div className="h-full max-h-[80vh] w-full overflow-hidden overflow-y-auto rounded-sm bg-[#202020] px-4 py-4 md:rounded-md md:p-6">
+            <div className="mb-2 w-fit rounded-sm bg-zinc-700 px-2.5 py-1 font-bold max-md:text-sm">
+              {post.contentType === "PDF"
+                ? "PDF File"
+                : post.contentType === "TEXT"
+                ? "Written"
+                : post.contentType}
+            </div>
+
             {post.contentType === "IMAGE" && (
               <div className="mx-auto">
                 <DynamicImage src={post.postContent} />
@@ -61,7 +68,9 @@ const PostModal = () => {
 
             <div
               className={`flex flex-col ${
-                post.contentType === "TEXT" ? "flex-col-reverse gap-4" : ""
+                post.contentType === "TEXT" || post.contentType === "PDF"
+                  ? "flex-col-reverse gap-4"
+                  : ""
               }`}
             >
               <div className="flex w-full justify-between gap-1.5 rounded-md bg-zinc-800 px-2 py-1.5 max-sm:flex-col">
