@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { pdfjs, Document, Page } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
+import Link from "next/link";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -29,9 +30,6 @@ const FileUpload: FC<FileUploadProps> = ({
   value,
   classNames,
 }) => {
-  // const [numPages, setNumPages] = useState<number>();
-  const [pageNumber, setPageNumber] = useState<number>(1);
-
   const [numPages, setNumPages] = useState<number>();
   const [currPage, setCurrPage] = useState<number>(1);
 
@@ -115,9 +113,36 @@ const FileUpload: FC<FileUploadProps> = ({
               }
             />
           </Document>
-          <p className="mt-1">
-            Page {pageNumber} of {numPages}
-          </p>
+          {!!numPages && (
+            <div className="flex items-center justify-between">
+              <p className="mt-1">
+                Page {currPage} of {numPages}
+              </p>
+              <div className="text-sm text-zinc-400">
+                {currPage > 1 && (
+                  <button
+                    className="transition hover:text-white"
+                    onClick={() => {
+                      setCurrPage((prev) => prev - 1);
+                    }}
+                  >
+                    Previous
+                  </button>
+                )}
+                {currPage > 1 && currPage < numPages && <span> | </span>}
+                {currPage < numPages && (
+                  <button
+                    className="transition hover:text-white"
+                    onClick={() => {
+                      setCurrPage((prev) => prev + 1);
+                    }}
+                  >
+                    Next
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
           <button
             onClick={() => onChange("")}
             type="button"
@@ -125,6 +150,14 @@ const FileUpload: FC<FileUploadProps> = ({
           >
             <X className="h-5 w-5 transition group-hover:rotate-90" />
           </button>
+          <Link
+            href={value}
+            target="_blank"
+            className="group relative text-zinc-400 transition hover:text-zinc-100"
+          >
+            View Externally
+            <span className="absolute bottom-0 left-0 h-[1px] w-full origin-bottom-left scale-x-0 bg-zinc-400 transition group-hover:scale-x-100 group-hover:bg-zinc-100" />
+          </Link>
         </div>
       );
     }

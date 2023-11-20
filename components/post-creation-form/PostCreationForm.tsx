@@ -87,6 +87,15 @@ const PostCreationForm = () => {
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
+      const isInputFocused =
+        document.activeElement instanceof HTMLInputElement ||
+        document.activeElement instanceof HTMLTextAreaElement;
+
+      // If an input is focused, don't change steps
+      if (isInputFocused) {
+        return;
+      }
+
       switch (event.key) {
         case "ArrowRight":
           onNext();
@@ -191,7 +200,9 @@ const PostCreationForm = () => {
           <p>Research Questions</p>
           <ul className="mt-2 space-y-2 font-semibold">
             {form.getValues().researchQuestions.map((q) => (
-              <li className="list-disc ml-6" key={q}>{q}</li>
+              <li className="ml-6 list-disc" key={q}>
+                {q}
+              </li>
             ))}
           </ul>
         </div>
@@ -292,6 +303,19 @@ const PostCreationForm = () => {
                     controls
                     className="w-full"
                   />
+                </div>
+              )}
+              {contentType === "PDF" && (
+                <div className="w-full">
+                  <p className="pb-4">PDF</p>
+                  <Link
+                    href={form.getValues().content}
+                    target="_blank"
+                    className="group relative font-semibold text-blue-600 transition hover:text-blue-500"
+                  >
+                    Click to view
+                    <span className="absolute bottom-0 left-0 h-[1px] w-full origin-bottom-left scale-x-0 bg-blue-600 transition group-hover:scale-x-100 group-hover:bg-blue-500" />
+                  </Link>
                 </div>
               )}
             </>
