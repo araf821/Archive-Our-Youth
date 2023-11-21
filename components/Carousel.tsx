@@ -106,9 +106,9 @@ const Carousel = ({}) => {
           }
         }}
       >
-        <span className="absolute opacity-0 inset-x-0 group-hover:opacity-100 top-0 h-[50%] origin-bottom-right scale-0 rounded-t-sm bg-white transition duration-200 group-hover:scale-100" />
-        <span className="absolute inset-x-0 opacity-0 group-hover:opacity-100 bottom-0 h-[50%] origin-top-left scale-0 rounded-b-sm bg-white transition duration-200 group-hover:scale-100" />
-        <span className="relative">Submit</span>
+        <span className="absolute inset-x-0 top-0 h-[55%] origin-bottom-right scale-0 rounded-t-sm bg-white opacity-0 transition duration-200 group-hover:scale-100 group-hover:opacity-100" />
+        <span className="absolute inset-x-0 bottom-0 h-[55%] origin-top-left scale-0 rounded-b-sm bg-white opacity-0 transition duration-200 group-hover:scale-100 group-hover:opacity-100" />
+        <span className="relative">Submit Post</span>
       </button>
     </div>
   );

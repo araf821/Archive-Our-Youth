@@ -73,7 +73,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
           if (option === "") return;
           return (
             <li
-              tabIndex={0}
+              tabIndex={isOpen ? 0 : undefined}
               key={index}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {

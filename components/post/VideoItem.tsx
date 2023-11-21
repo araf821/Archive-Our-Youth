@@ -15,9 +15,9 @@ interface VideoItemProps {
 
 const VideoItem: FC<VideoItemProps> = ({ post, onClick, clicked, onClose }) => {
   return (
-    <div
+    <button
       onClick={onClick}
-      className="group relative grid aspect-square w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800"
+      className="group relative grid aspect-square w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800 outline-none focus-visible:outline focus-visible:z-[9999] focus-visible:outline-4 focus-visible:outline-white"
     >
       <AnimatePresence>
         {!clicked && <Overlay onClose={onClose} />}
@@ -54,7 +54,7 @@ const VideoItem: FC<VideoItemProps> = ({ post, onClick, clicked, onClose }) => {
           />
         )}
       </AnimatePresence> */}
-    </div>
+    </button>
   );
 };
 

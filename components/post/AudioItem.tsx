@@ -13,9 +13,9 @@ interface AudioItemProps {
 
 const AudioItem: FC<AudioItemProps> = ({ onClick, post, clicked, onClose }) => {
   return (
-    <div
+    <button
       onClick={onClick}
-      className="group relative grid aspect-square h-full w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800 bg-zinc-900"
+      className="group relative grid aspect-square h-full w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800 bg-zinc-900 outline-none focus-visible:outline focus-visible:z-[9999] focus-visible:outline-4 focus-visible:outline-white"
     >
       <AnimatePresence>
         {!clicked && <Overlay onClose={onClose} />}
@@ -51,7 +51,7 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post, clicked, onClose }) => {
           </audio>
         </>
       ) : null} */}
-    </div>
+    </button>
   );
 };
 

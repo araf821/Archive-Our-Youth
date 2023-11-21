@@ -57,9 +57,14 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
   }
 
   return (
-    <div
+    <button
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          onOpen("postModal", { post, currentUser });
+        }
+      }}
       onClick={handleClick}
-      className={`group relative aspect-square cursor-pointer overflow-hidden border border-zinc-800 transition duration-500 hover:brightness-125`}
+      className={`group relative aspect-square cursor-pointer overflow-hidden border border-zinc-800 outline-none transition duration-500 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-white`}
     >
       <AnimatePresence>
         {(post.contentType === "TEXT" || post.contentType === "PDF") &&
@@ -113,7 +118,7 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
           </div>
         </div>
       )}
-    </div>
+    </button>
   );
 };
 

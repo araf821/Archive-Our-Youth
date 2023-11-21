@@ -52,7 +52,7 @@ const Overlay: FC<OverlayProps> = ({ onClose }) => {
       animate={{ opacity: 1, transition: { duration: 0.5 } }}
       onClick={onClose}
       className={cn(
-        "absolute left-0 top-0 z-20 h-full w-full",
+        "absolute focus-visible:-outline-offset-8 outline focus-visible:outline-4 outline-white left-0 top-0 z-20 h-full w-full",
         randomBackgroundColor,
       )}
     />

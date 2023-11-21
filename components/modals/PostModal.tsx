@@ -24,13 +24,7 @@ const PostModal = () => {
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <div className="px-4">
-        <DialogContent className="max-h-[80vh] max-w-screen-md border-none bg-transparent text-zinc-100 outline-none">
-          {/* <button
-            onClick={() => onClose()}
-            className="absolute right-4 top-4 text-zinc-400 outline-none"
-          >
-            <X className="h-4 w-4" />
-          </button> */}
+        <DialogContent className="max-h-[90vh] max-w-screen-sm border-none bg-transparent text-zinc-100 outline-none">
           <div className="h-full max-h-[80vh] w-full overflow-hidden overflow-y-auto rounded-sm bg-[#202020] px-4 py-4 md:rounded-md md:p-6">
             <div className="mb-2 w-fit rounded-sm bg-zinc-700 px-2.5 py-1 font-bold max-md:text-sm">
               {post.contentType === "PDF"
