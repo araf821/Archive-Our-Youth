@@ -1,4 +1,4 @@
-import { FC, Fragment, Suspense } from "react";
+import { FC, Suspense } from "react";
 import CollageItem from "./post/CollageItem";
 import { db } from "@/lib/db";
 import EmptyState from "./EmptyState";

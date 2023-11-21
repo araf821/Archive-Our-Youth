@@ -8,5 +8,5 @@ export const EditProfileValidator = z.object({
     .refine((value) => value.trim().length > 3, {
       message: "Name must contain at least three non-whitespace character.",
     }),
-  newImageUrl: z.string().min(1),
+  newImageUrl: z.string().min(1, { message: "A profile picture is required." }),
 });

@@ -80,7 +80,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
         <DialogHeader className="space-y-0">
           <DialogTitle>Edit Profile</DialogTitle>
           <DialogDescription>
-            Change your name or profile picture (coming soon).
+            Change your name or profile picture.
           </DialogDescription>
         </DialogHeader>
         <hr className="-mt-2 border-zinc-700" />
@@ -91,16 +91,16 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
             className="-mt-2 space-y-4"
           >
             <FormField
-              name="newName"
+              name="newImageUrl"
               control={form.control}
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Your name</FormLabel>
+                <FormItem className="mx-auto max-w-[250px] text-center">
+                  <p>Upload a new profile picture</p>
                   <FormControl>
-                    <Input
-                      placeholder="New display name"
-                      value={field.value}
+                    <FileUpload
+                      endPoint="image"
                       onChange={field.onChange}
+                      value={field.value}
                     />
                   </FormControl>
                   <FormMessage />
@@ -109,18 +109,19 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
             />
 
             <FormField
-              name="newImageUrl"
+              name="newName"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Upload a new profile picture</FormLabel>
+                  <p>Your name</p>
                   <FormControl>
-                    <FileUpload
-                      endPoint="image"
-                      onChange={field.onChange}
+                    <Input
+                      placeholder="New display name"
                       value={field.value}
+                      onChange={field.onChange}
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -141,7 +142,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
                   !!form.formState.errors.newImageUrl ||
                   !!form.formState.errors.newName
                 }
-                className="rounded-md border-2 border-zinc-300 px-3 py-1 text-zinc-100 ring-zinc-300 transition hover:bg-zinc-100 hover:text-zinc-900 focus-visible:ring-4 disabled:opacity-60"
+                className="rounded-md border-2 border-zinc-300 px-3 py-1 text-zinc-100 ring-zinc-300 transition hover:bg-zinc-100 hover:text-zinc-900 focus-visible:ring-4 disabled:cursor-not-allowed disabled:opacity-50"
                 type="submit"
               >
                 {isLoading ? (

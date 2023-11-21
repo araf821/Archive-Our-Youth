@@ -197,14 +197,28 @@ const PostCreationForm = () => {
       </div>
       <div className="divide-y-2 divide-zinc-700 rounded-md border border-zinc-700 px-4">
         <div className="py-4">
-          <p>Research Questions</p>
-          <ul className="mt-2 space-y-2 font-semibold">
-            {form.getValues().researchQuestions.map((q) => (
-              <li className="ml-6 list-disc" key={q}>
-                {q}
-              </li>
-            ))}
-          </ul>
+          <p>
+            Research Questions <span className="text-zinc-400">(optional)</span>
+          </p>
+          {form.getValues().researchQuestions.length < 1 ? (
+            <p className="mt-2 text-zinc-400">
+              None selected,{" "}
+              <button
+                onClick={() => setStep(STEPS.QUESTIONS)}
+                className="text-left normal-case text-blue-400"
+              >
+                click here to navigate back here.
+              </button>
+            </p>
+          ) : (
+            <ul className="mt-2 space-y-2 font-semibold">
+              {form.getValues().researchQuestions.map((q) => (
+                <li className="ml-6 list-disc" key={q}>
+                  {q}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         <div className="py-4 capitalize">
@@ -328,7 +342,7 @@ const PostCreationForm = () => {
                 "text-rose-600": form.formState.errors.description,
               })}
             >
-              Description (optional)
+              Description <span className="text-zinc-400">(optional)</span>
             </p>
             {form.getValues().description ? (
               <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
@@ -347,7 +361,7 @@ const PostCreationForm = () => {
                 form.formState.errors.tags,
             })}
           >
-            Tag
+            Tags
           </p>
           {form.getValues().tags.length < 1 && (
             <p className="text-zinc-400">

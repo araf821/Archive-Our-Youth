@@ -21,10 +21,13 @@ export const initializeUser = async () => {
   const newUser = await db.user.create({
     data: {
       userId: authorizedUser.id,
-      name: `${authorizedUser.firstName || "UnknownUser"} ${
-        authorizedUser.lastName || ""
+      name: `${
+        authorizedUser.firstName === null
+          ? "No Name"
+          : authorizedUser.firstName +
+            (authorizedUser.lastName ? " " + authorizedUser.lastName : "")
       }`,
-      imageUrl: authorizedUser.imageUrl,
+      imageUrl: "/placeholder-image.png",
       email: authorizedUser.emailAddresses[0].emailAddress,
     },
   });

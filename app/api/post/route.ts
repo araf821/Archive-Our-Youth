@@ -1,13 +1,13 @@
 import { db } from "@/lib/db";
-import { getCurrentUser } from "@/lib/getCurrentUser";
 import { NextResponse } from "next/server";
 import slugify from "slugify";
 import { nanoid } from "nanoid";
 import { PostCreationValidator } from "@/lib/validators/post";
+import { initializeUser } from "@/lib/initializeUser";
 
 export async function POST(req: Request) {
   try {
-    const user = await getCurrentUser();
+    const user = await initializeUser();
 
     const body = await req.json();
     const {
@@ -28,11 +28,12 @@ export async function POST(req: Request) {
           contentType === "TEXT" ? "" : description ? description : "",
         tags,
         userId: user?.id,
-        slug: slugify(title, {
-          lower: true,
-          replacement: "-",
-          remove: /[:]/g
-        }) + nanoid(5),
+        slug:
+          slugify(title, {
+            lower: true,
+            replacement: "-",
+            remove: /[:]/g,
+          }) + nanoid(5),
         researchQuestions,
       },
     });
