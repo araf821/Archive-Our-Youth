@@ -9,9 +9,11 @@ import { usePathname, useRouter } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 import { Search } from "lucide-react";
 import NavLinks from "./NavLinks";
-import MobileMenu from "./MobileMenu";
+import menu from "/menu.svg";
 import { useModal } from "@/hooks/useModal";
 import { kobata } from "@/app/fonts";
+import Image from "next/image";
+import { useMenu } from "@/hooks/useMenu";
 
 interface NavbarProps {
   user: User | null;
@@ -20,10 +22,12 @@ interface NavbarProps {
 const Navbar = ({ user }: NavbarProps) => {
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>(true);
-  const { isOpen, onOpen, onClose } = useFilters();
-  const { onOpen: onOpenModal } = useModal();
   const pathname = usePathname();
   const router = useRouter();
+
+  const { isOpen, onOpen, onClose } = useFilters();
+  const { onOpen: onOpenModal } = useModal();
+  const { onOpen: openMenu } = useMenu();
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -101,7 +105,7 @@ const Navbar = ({ user }: NavbarProps) => {
           )}
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile menu */}
         <div className="items-center justify-center gap-3 rounded-md bg-zinc-800 p-2 text-white max-lg:flex lg:hidden">
           {pathname === "/home" && (
             <button
@@ -114,7 +118,20 @@ const Navbar = ({ user }: NavbarProps) => {
               <Search className="h-6 w-6 md:h-6 md:w-6" />
             </button>
           )}
-          <MobileMenu />
+          <button onClick={() => openMenu()} className="relative">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="fill-white w-6 h-6"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M4 5C3.44772 5 3 5.44772 3 6C3 6.55228 3.44772 7 4 7H20C20.5523 7 21 6.55228 21 6C21 5.44772 20.5523 5 20 5H4ZM7 12C7 11.4477 7.44772 11 8 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H8C7.44772 13 7 12.5523 7 12ZM13 18C13 17.4477 13.4477 17 14 17H20C20.5523 17 21 17.4477 21 18C21 18.5523 20.5523 19 20 19H14C13.4477 19 13 18.5523 13 18Z"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </nav>

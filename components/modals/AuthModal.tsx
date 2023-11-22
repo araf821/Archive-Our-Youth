@@ -21,7 +21,7 @@ const AuthModal = () => {
             You&apos;re not logged in.
           </p>
           <DialogTitle className="text-center text-2xl text-zinc-100">
-            Welcome back to [appName]
+            Welcome back to Archive Our Youth
           </DialogTitle>
         </DialogHeader>
 
@@ -32,7 +32,7 @@ const AuthModal = () => {
           Sign In
         </Link>
         <hr className="border-zinc-700" />
-        <p className="text-center text-zinc-400">New to [appName]?</p>
+        <p className="text-center text-zinc-400">New to the Archive?</p>
         <Link
           href="/sign-up"
           className="rounded-sm border border-white py-1.5 text-center text-lg font-semibold text-white transition hover:bg-white hover:text-black"
