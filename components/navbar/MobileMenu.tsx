@@ -1,7 +1,5 @@
 import { FC } from "react";
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from "../ui/Sheet";
-import { Menu, X } from "lucide-react";
-import Link from "next/link";
+import { X } from "lucide-react";
 import { navLinks } from "./NavLinks";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
@@ -16,6 +14,9 @@ const sidebarVariants = {
   hidden: {
     y: "-100%",
     opacity: 0,
+    transition: {
+      delay: 0.5,
+    }
   },
   show: {
     y: 0,
@@ -27,13 +28,17 @@ const sidebarVariants = {
 const buttonVariants = (index: number) => ({
   hidden: {
     x: -250,
+    transition: {
+      delay: 0.1 * index,
+      duration: 0.1,
+    },
   },
   show: {
     x: 0,
     opacity: 1,
     transition: {
-      delay: 0.15 + 0.1 * index,
-      duration: 0.2,
+      delay: 0.15 + 0.1 * (index + 1),
+      duration: 0.1,
     },
   },
 });
@@ -71,7 +76,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
         className="flex w-full flex-1 flex-col gap-8 overflow-hidden pt-12"
       >
         <motion.li
-          variants={buttonVariants(1)}
+          variants={buttonVariants(0)}
           animate={isOpen ? "show" : "hidden"}
           className="list-none"
         >
@@ -91,7 +96,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
         </motion.li>
         {navLinks.map((link, index) => (
           <motion.li
-            variants={buttonVariants(index + 2)}
+            variants={buttonVariants(index + 1)}
             animate={isOpen ? "show" : "hidden"}
             className="list-none"
             key={link.label}
@@ -114,7 +119,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
           </motion.li>
         ))}
         <motion.li
-          variants={buttonVariants(5)}
+          variants={buttonVariants(4)}
           animate={isOpen ? "show" : "hidden"}
           className="list-none"
         >
