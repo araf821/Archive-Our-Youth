@@ -35,7 +35,7 @@ const NavLinks = () => {
             href={link.pathname}
             className={cn("group relative py-1")}
           >
-            <span className="absolute bottom-0 left-0 h-0.5 w-full origin-bottom-left scale-x-0 bg-zinc-500 transition group-hover:scale-x-100" />
+            <span className="absolute bottom-0 left-0 h-0.5 w-full duration-300 scale-x-0 bg-zinc-500 transition group-hover:scale-x-100" />
             {pathname === link.pathname && (
               <motion.div
                 layoutId="nav-link"

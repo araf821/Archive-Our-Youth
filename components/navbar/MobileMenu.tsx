@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { navLinks } from "./NavLinks";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAuth, useClerk } from "@clerk/nextjs";
 import { useMenu } from "@/hooks/useMenu";
 import { kobata } from "@/app/fonts";
@@ -26,6 +26,7 @@ const sidebarVariants = {
 const MobileMenu: FC<MobileMenuProps> = ({}) => {
   const { isOpen, onClose } = useMenu();
   const pathname = usePathname();
+  const router = useRouter();
   const { userId } = useAuth();
   const { signOut, openSignIn } = useClerk();
 
@@ -64,11 +65,29 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
           </Link>
         ))}
         {userId ? (
-          <button className="w-fit text-3xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white">
+          <button
+            onClick={() =>
+              signOut(() => {
+                onClose();
+                router.push("/home");
+              })
+            }
+            className="w-fit text-3xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white"
+          >
             Sign Out
           </button>
         ) : (
-          <button className="w-fit text-3xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white">
+          <button
+            onClick={() => {
+              onClose();
+              openSignIn({
+                appearance: {
+                  elements: { modalContent: { paddingTop: 20 } },
+                },
+              });
+            }}
+            className="w-fit text-3xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white"
+          >
             Sign In
           </button>
         )}

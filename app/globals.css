@@ -346,3 +346,69 @@ audio::-webkit-media-controls-play-button {
     grid-template-columns: repeat(32, minmax(0, 1fr));
   }
 }
+
+/*  ------------------------ CLERK STYLES --------------------------- */
+
+.cl-modalContent {
+  @apply mt-20;
+}
+
+.cl-card {
+  @apply border-zinc-700 bg-[#1c1c1c] shadow-xl shadow-blue-500/10;
+}
+
+.cl-modalCloseButton {
+  @apply text-zinc-200;
+}
+
+.cl-headerTitle {
+  @apply text-zinc-100;
+}
+
+.cl-headerSubtitle {
+  @apply text-zinc-400;
+}
+
+.cl-socialButtons {
+  @apply rounded-sm bg-zinc-800;
+}
+
+.cl-socialButtonsBlockButtonArrow {
+  @apply text-zinc-100;
+}
+
+.cl-internal-16pk7q8 {
+  @apply tracking-wide text-zinc-100;
+}
+
+.cl-dividerLine {
+  @apply bg-zinc-400;
+}
+
+.cl-dividerText {
+  @apply text-zinc-400;
+}
+
+.cl-formFieldLabel {
+  @apply text-zinc-100;
+}
+
+.cl-formFieldInput {
+  @apply border-zinc-700 bg-zinc-800 text-zinc-100;
+}
+
+.cl-formButtonPrimary {
+  @apply bg-blue-600 py-1 text-base font-semibold text-white hover:bg-blue-700 focus:border-none;
+}
+
+.cl-footerActionText {
+  @apply text-zinc-400;
+}
+
+.cl-footerActionLink {
+  @apply text-blue-500;
+}
+
+.cl-formFieldInputShowPasswordButton {
+  @apply bg-zinc-600 text-white hover:text-zinc-200;
+}
