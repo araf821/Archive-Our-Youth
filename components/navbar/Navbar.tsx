@@ -9,10 +9,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 import { Search } from "lucide-react";
 import NavLinks from "./NavLinks";
-import menu from "/menu.svg";
 import { useModal } from "@/hooks/useModal";
 import { kobata } from "@/app/fonts";
-import Image from "next/image";
 import { useMenu } from "@/hooks/useMenu";
 
 interface NavbarProps {

@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
 import { Metadata } from "next";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Dashboard | Archive Our Youth",
@@ -14,7 +15,7 @@ const DashboardPage = async () => {
   const { userId } = auth();
 
   if (!userId) {
-    return redirectToSignIn();
+    return redirectToSignIn({ returnBackUrl: "/home" });
   }
 
   const currentUser = await db.user.findUnique({
@@ -31,7 +32,7 @@ const DashboardPage = async () => {
   });
 
   if (!currentUser) {
-    return redirectToSignIn();
+    return redirect("/home");
   }
 
   return (
@@ -51,7 +52,7 @@ const DashboardPage = async () => {
             }
             alt="user profile picture"
             fill
-            className="rounded-md w-full object-cover"
+            className="w-full rounded-md object-cover"
           />
         </div>
         <div className="flex w-full flex-col gap-1.5 ">
