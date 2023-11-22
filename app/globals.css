@@ -350,10 +350,10 @@ audio::-webkit-media-controls-play-button {
 /*  ------------------------ CLERK STYLES --------------------------- */
 
 .cl-modalContent {
-  @apply mt-20;
+  @apply my-auto;
 }
 
-.cl-card {
+.cl-signIn-start {
   @apply border-zinc-700 bg-[#1c1c1c] shadow-xl shadow-blue-500/10;
 }
 
