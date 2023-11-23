@@ -76,7 +76,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
       <DialogTrigger>
         <Edit2 className="h-4 w-4 focus:outline-none md:h-5 md:w-5" />
       </DialogTrigger>
-      <DialogContent className="max-w-xl bg-zinc-900 px-4 py-4 text-zinc-100">
+      <DialogContent className="max-w-lg bg-zinc-900 px-4 py-6 text-zinc-100">
         <DialogHeader className="space-y-0">
           <DialogTitle>Edit Profile</DialogTitle>
           <DialogDescription>

@@ -9,9 +9,11 @@ import { ContentType } from "@prisma/client";
 interface TypeSelectionSlideProps {
   form: PostCreationForm;
   handleTypeChange: (type: ContentType) => void;
+  nextStep: () => void;
 }
 
 const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
+  nextStep,
   form,
   handleTypeChange,
 }) => {
@@ -30,11 +32,14 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
               <FormControl>
                 <button
                   type="button"
-                  onClick={() => handleTypeChange("TEXT")}
+                  onClick={() => {
+                    nextStep();
+                    handleTypeChange("TEXT");
+                  }}
                   className={cn(
-                    "w-36 border-2 border-[#D5222A] bg-transparent py-2 transition hover:scale-105 active:scale-95",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:scale-105 active:scale-95",
                     {
-                      "bg-[#D5222A] shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
+                      "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "TEXT",
                     },
                   )}
@@ -45,11 +50,14 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
               <FormControl>
                 <button
                   type="button"
-                  onClick={() => handleTypeChange("IMAGE")}
+                  onClick={() => {
+                    nextStep();
+                    handleTypeChange("IMAGE");
+                  }}
                   className={cn(
-                    "w-36 border-2 border-[#D5222A] bg-transparent py-2 transition hover:scale-105 active:scale-95",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:scale-105 active:scale-95",
                     {
-                      "bg-[#D5222A] shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
+                      "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "IMAGE",
                     },
                   )}
@@ -60,11 +68,14 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
               <FormControl>
                 <button
                   type="button"
-                  onClick={() => handleTypeChange("VIDEO")}
+                  onClick={() => {
+                    nextStep();
+                    handleTypeChange("VIDEO");
+                  }}
                   className={cn(
-                    "w-36 border-2 border-[#D5222A] bg-transparent py-2 transition hover:scale-105 active:scale-95",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:scale-105 active:scale-95",
                     {
-                      "bg-[#D5222A] shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
+                      "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "VIDEO",
                     },
                   )}
@@ -78,11 +89,14 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
               <FormControl>
                 <button
                   type="button"
-                  onClick={() => handleTypeChange("AUDIO")}
+                  onClick={() => {
+                    nextStep();
+                    handleTypeChange("AUDIO");
+                  }}
                   className={cn(
-                    "w-36 border-2 border-[#D5222A] bg-transparent py-2 transition hover:scale-105 active:scale-95",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:scale-105 active:scale-95",
                     {
-                      "bg-[#D5222A] shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
+                      "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "AUDIO",
                     },
                   )}
@@ -93,11 +107,14 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
               <FormControl>
                 <button
                   type="button"
-                  onClick={() => handleTypeChange("PDF")}
+                  onClick={() => {
+                    nextStep();
+                    handleTypeChange("PDF");
+                  }}
                   className={cn(
-                    "w-36 border-2 border-[#D5222A] bg-transparent py-2 transition hover:scale-105 active:scale-95",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:scale-105 active:scale-95",
                     {
-                      "bg-[#D5222A] shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
+                      "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "PDF",
                     },
                   )}

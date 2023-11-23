@@ -49,7 +49,7 @@ const Carousel = ({}) => {
   slide1 = (
     <div className="max-w-screen-lg">
       <p
-        className={`${kobata.className} neon-text relative z-10 my-8 flex select-none flex-col gap-4 py-16 text-center text-[5rem] font-semibold leading-none after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-20 after:my-auto after:hidden after:origin-right after:scale-x-0 after:bg-rose-600 after:transition after:duration-300 hover:after:origin-left hover:after:scale-x-100 sm:px-4 md:px-8 md:text-[6rem] lg:text-[7rem]`}
+        className={`${kobata.className} neon-text relative z-10 my-8 flex select-none flex-col gap-4 py-16 text-center text-[5rem] font-semibold leading-none after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-20 after:my-auto after:hidden after:origin-right after:scale-x-0 after:bg-green-600 after:transition after:duration-300 hover:after:origin-left hover:after:scale-x-100 sm:px-4 md:px-8 md:text-[6rem] lg:text-[7rem]`}
       >
         Archive Our Youth
       </p>
@@ -60,12 +60,12 @@ const Carousel = ({}) => {
     <div className="mx-4 flex max-w-screen-sm flex-col items-center justify-center gap-3 rounded-lg bg-black/40 p-4 backdrop-blur-sm md:p-8">
       <p className="text-center text-lg font-semibold text-zinc-100 max-md:text-base">
         Welcome to{" "}
-        <span className="font-bold text-rose-500">Archive Our Youth</span> on
+        <span className="font-bold text-green-500">Archive Our Youth</span> on
         Youth and Planetary Wellbeing! You&rsquo;re invited to contribute to the
         Archive and/or explore the multimedia and artifacts preserved here.
       </p>
       <p className="text-center text-lg font-semibold text-zinc-100 max-md:text-base">
-        The <span className="font-bold text-rose-500">Archive</span> explores
+        The <span className="font-bold text-green-500">Archive</span> explores
         dream futures, perspectives on wellbeing, and resources both real and
         desired that support personal to planetary wellbeing. We welcome youth,
         youth groups and engaged collectives from all over the world to
@@ -77,7 +77,7 @@ const Carousel = ({}) => {
   slide3 = (
     <div className="mx-4 flex max-w-screen-sm flex-col items-center justify-center gap-3 rounded-lg bg-black/40 p-4 backdrop-blur-sm md:p-8">
       <p className="text-center text-lg font-semibold text-zinc-100 max-md:text-base">
-        <span className="font-bold text-rose-500">Archive Our Youth</span> was
+        <span className="font-bold text-green-500">Archive Our Youth</span> was
         launched as part of the international research study: Partnership for
         Youth and Planetary Wellbeing, led by the{" "}
         <a

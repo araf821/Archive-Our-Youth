@@ -135,7 +135,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
             id="q1"
             checked={checkboxStates.q1}
             onChange={(e) => handleCheckboxChange(e, "q1")}
-            className="absolute left-2 top-2.5 h-5 w-5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-red-500 group-hover:bg-zinc-700 group-hover:checked:bg-red-600"
+            className="absolute left-2 top-2.5 h-5 w-5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-green-500 group-hover:bg-zinc-700 group-hover:checked:bg-green-600"
           />
           What&rsquo;s the future that you dream of?
         </label>
@@ -149,7 +149,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
             id="q2"
             checked={checkboxStates.q2}
             onChange={(e) => handleCheckboxChange(e, "q2")}
-            className="absolute left-2 top-2.5 h-5 w-5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-red-500 group-hover:bg-zinc-700 group-hover:checked:bg-red-600"
+            className="absolute left-2 top-2.5 h-5 w-5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-green-500 group-hover:bg-zinc-700 group-hover:checked:bg-green-600"
           />
           What does well-being mean to you right now?
         </label>
@@ -163,7 +163,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
             id="q3"
             checked={checkboxStates.q3}
             onChange={(e) => handleCheckboxChange(e, "q3")}
-            className="absolute left-2 top-2.5 h-5 w-5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-red-500 group-hover:bg-zinc-700 group-hover:checked:bg-red-600"
+            className="absolute left-2 top-2.5 h-5 w-5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-green-500 group-hover:bg-zinc-700 group-hover:checked:bg-green-600"
           />
           What would you tell your younger or older self?
         </label>
@@ -177,7 +177,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
             id="q4"
             checked={checkboxStates.q4}
             onChange={(e) => handleCheckboxChange(e, "q4")}
-            className="absolute left-2 top-2.5 h-5 w-5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-red-500 group-hover:bg-zinc-700 group-hover:checked:bg-red-600"
+            className="absolute left-2 top-2.5 h-5 w-5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-green-500 group-hover:bg-zinc-700 group-hover:checked:bg-green-600"
           />
           <p>
             What groups, initiatives, projects, and resources support your
@@ -198,7 +198,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
             id="q5"
             checked={checkboxStates.q5}
             onChange={(e) => handleSelectNone(e)}
-            className="absolute left-2 top-2.5 h-5 w-5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-red-500 group-hover:bg-zinc-700 group-hover:checked:bg-red-600"
+            className="absolute left-2 top-2.5 h-5 w-5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-green-500 group-hover:bg-zinc-700 group-hover:checked:bg-green-600"
           />
           None of the above
         </label>

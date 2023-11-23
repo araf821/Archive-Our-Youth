@@ -73,7 +73,7 @@ const Navbar = ({ user }: NavbarProps) => {
           className={`${kobata.className} flex items-center text-xl text-zinc-100 transition hover:translate-x-1 md:text-2xl`}
         >
           Archive Our Youth
-          <span className="ml-2 bg-red-600 px-1 py-0.5 font-sans text-xs">
+          <span className="ml-2 bg-green-600 px-1 py-0.5 font-sans text-xs">
             BETA
           </span>
         </Link>
@@ -113,7 +113,7 @@ const Navbar = ({ user }: NavbarProps) => {
         <div className="items-center justify-center gap-3 rounded-md bg-zinc-800 p-2 text-white max-lg:flex lg:hidden">
           {pathname === "/home" && (
             <button
-              className={cn("transition", { "text-rose-500": isOpen })}
+              className={cn("transition", { "text-green-600": isOpen })}
               onClick={() => {
                 if (isOpen) onClose();
                 else onOpen();

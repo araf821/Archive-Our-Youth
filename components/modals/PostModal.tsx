@@ -96,7 +96,7 @@ const PostModal = () => {
               </button>
               <Link
                 href={`/post/${post.slug}`}
-                className="w-32 rounded-md bg-rose-600 px-2.5 py-1.5 text-center font-bold text-white transition duration-300 hover:bg-rose-700 hover:shadow-[0_0_15px_8px] hover:shadow-red-500/10"
+                className="w-32 rounded-md bg-green-500 px-2.5 py-1.5 text-center font-bold text-zinc-900 transition duration-300 hover:bg-green-600 hover:shadow-[0_0_15px_8px] hover:shadow-green-500/20"
               >
                 View Post
               </Link>

@@ -39,18 +39,6 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post, clicked, onClose }) => {
         <span className="text-sm">Click to Expand</span>
         <span className="text-sm">{post.user?.name || "Anonymous"}</span>
       </div>
-
-      {/* {isHovered ? (
-        <>
-          <div className="absolute right-2 top-2 text-zinc-400 transition group-hover:animate-pulse group-hover:text-zinc-100">
-            <Volume1 className="h-8 w-8 md:h-12 md:w-12" />
-          </div>
-          <audio className="absolute md:block" autoPlay loop>
-            <source src={post.postContent} type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        </>
-      ) : null} */}
     </button>
   );
 };

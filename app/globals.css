@@ -86,14 +86,6 @@
   filter: blur(1em);
 }
 
-audio::-webkit-media-controls-panel {
-  @apply rounded-full bg-gradient-to-br from-rose-700 to-orange-500 outline -outline-offset-2 outline-rose-800;
-}
-
-audio::-webkit-media-controls-play-button {
-  @apply rounded-full fill-white transition hover:bg-red-700;
-}
-
 .moving-bg {
   background: linear-gradient(-45deg, orange, #27272a, red);
   background-size: 600% 600%;
@@ -149,7 +141,7 @@ audio::-webkit-media-controls-play-button {
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3) inset;
 }
 .loader:after {
-  box-shadow: 0 2px 0 #ff3d00 inset;
+  box-shadow: 0 2px 0 #22c55e inset;
   animation: rotate 2s linear infinite;
 }
 

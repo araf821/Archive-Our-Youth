@@ -207,7 +207,7 @@ const PostCreationForm = () => {
                 onClick={() => setStep(STEPS.QUESTIONS)}
                 className="text-left normal-case text-blue-400"
               >
-                click here to navigate back here.
+                click here to navigate back.
               </button>
             </p>
           ) : (
@@ -459,6 +459,7 @@ const PostCreationForm = () => {
           {step === STEPS.TYPE && (
             <TypeSelectionSlide
               form={form}
+              nextStep={onNext}
               handleTypeChange={handleTypeChange}
             />
           )}

@@ -81,7 +81,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
         </button>
         <Link
           href={`/post/${post.slug}`}
-          className="flex items-center gap-2 rounded-md bg-rose-500 px-2 py-1 text-center font-semibold tracking-wide text-zinc-900 transition duration-200 hover:bg-rose-600"
+          className="flex items-center gap-2 rounded-md bg-green-500 px-2 py-1 text-center font-semibold tracking-wide text-zinc-900 transition duration-200 hover:bg-green-600"
         >
           View Post
           <ArrowRight className="h-5 w-5" />

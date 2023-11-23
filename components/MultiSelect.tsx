@@ -88,7 +88,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
               className={cn(
                 "cursor-pointer list-none px-3 py-2.5 transition focus-visible:outline-none",
                 {
-                  "bg-rose-500 text-white hover:bg-opacity-80 focus-visible:opacity-75":
+                  "bg-green-600 text-white hover:bg-opacity-80 focus-visible:opacity-75":
                     isSelected(option),
                   "hover:bg-zinc-700 focus-visible:bg-zinc-700":
                     !isSelected(option),

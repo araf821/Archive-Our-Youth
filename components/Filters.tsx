@@ -104,7 +104,7 @@ const Filters: FC<FiltersProps> = ({}) => {
       initial={{ height: 0, opacity: 0 }}
       variants={filterVariants}
       animate={isOpen ? "visible" : "hidden"}
-      className="mx-auto border-b border-zinc-800 max-w-screen-md px-4 text-zinc-100"
+      className="mx-auto max-w-screen-md border-b border-zinc-800 px-4 text-zinc-100"
     >
       <div className="flex flex-col gap-4 py-8">
         <p className="text-2xl font-light md:text-3xl">Search</p>
@@ -235,7 +235,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                 Reset
                 <RefreshCcw className="ml-2 h-4 w-4" />
               </Button>
-              <Button className="w-fit bg-rose-500 hover:bg-red-600">
+              <Button className="w-fit font-semibold bg-green-500 hover:bg-green-600">
                 Search
               </Button>
             </div>
