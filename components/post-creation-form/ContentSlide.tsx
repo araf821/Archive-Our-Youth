@@ -20,11 +20,6 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         control={form.control}
         render={({ field }) => (
           <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
-            <div className="flex">
-              <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
-              <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
-            </div>
-
             <p className="text-center text-xl md:text-2xl">
               What have you got for us?
             </p>
@@ -95,11 +90,6 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         control={form.control}
         render={({ field }) => (
           <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
-            <div className="flex">
-              <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
-              <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
-            </div>
-
             <p className="text-center text-xl md:text-2xl">Add an image</p>
             <FormControl>
               <FileUpload
@@ -119,10 +109,6 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         control={form.control}
         render={({ field }) => (
           <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
-            <div className="flex">
-              <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
-              <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
-            </div>
             <p className="text-center text-xl md:text-2xl">Add a video</p>{" "}
             <FormControl>
               <FileUpload
@@ -142,10 +128,6 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         control={form.control}
         render={({ field }) => (
           <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
-            <div className="flex">
-              <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
-              <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
-            </div>
 
             <p className="text-center text-xl md:text-2xl">Add an audio</p>
             <FormControl>
@@ -166,10 +148,6 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         control={form.control}
         render={({ field }) => (
           <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
-            <div className="flex">
-              <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
-              <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
-            </div>
 
             <p className="text-center text-xl md:text-2xl">Upload a PDF</p>
             <FormControl>

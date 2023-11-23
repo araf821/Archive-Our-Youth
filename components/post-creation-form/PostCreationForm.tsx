@@ -183,7 +183,7 @@ const PostCreationForm = () => {
   );
 
   confirmationScreen = (
-    <div className="mx-auto flex max-w-screen-sm flex-col justify-center space-y-4">
+    <div className="mx-auto flex max-w-screen-sm flex-col justify-center space-y-4 pb-8">
       <div className="">
         <p className="text-xl text-zinc-100 md:text-2xl">Review Submission</p>
         {userId ? null : (
@@ -397,14 +397,13 @@ const PostCreationForm = () => {
                   error: prev.checked ? true : false,
                 }));
               }}
-              className="h-5 w-5 translate-y-1 border border-zinc-500 bg-zinc-700 checked:bg-zinc-500 data-[state=checked]:bg-rose-600"
+              className="h-5 w-5 translate-y-1 border border-zinc-500 bg-zinc-700 checked:bg-zinc-500 data-[state=checked]:bg-green-500"
             />
             <label
               htmlFor="consent"
-              className="space-y-3 font-bold text-zinc-400 max-md:text-sm"
+              className="space-y-3 text-zinc-100 max-md:text-sm"
             >
               <p>
-                {" "}
                 Click this box if you agree that your submission can be used for
                 research purposes. The Archive will contribute to a better
                 understanding of youth and planetary well-being and will be used
@@ -452,7 +451,7 @@ const PostCreationForm = () => {
   );
 
   return (
-    <div className="max-h-[80dvh] w-full max-w-screen-md px-4 lg:px-8">
+    <div className="max-h-[80dvh] w-full max-w-screen-md px-6 lg:px-10">
       <Form {...form}>
         <form className="mx-auto" onSubmit={form.handleSubmit(onSubmit)}>
           {step === STEPS.WELCOME && introScreen}

@@ -48,7 +48,7 @@ const NavLinks = () => {
                 }}
               />
             )}
-            <span className="relative mix-blend-exclusion">{link.label}</span>
+            <span className="relative transition">{link.label}</span>
           </Link>
         ))}
         <button

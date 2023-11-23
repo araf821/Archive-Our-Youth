@@ -24,10 +24,6 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
       control={form.control}
       render={({ field }) => (
         <FormItem className="mx-auto max-sm:mt-12 grid max-w-screen-sm place-items-center gap-8 md:gap-12">
-          <div className="flex">
-            <span className="aspect-square w-7 bg-[#FFA573] md:w-10" />
-            <span className="aspect-square w-7 bg-[#FD9747] md:w-10" />
-          </div>
           <FormLabel className="text-center text-xl md:text-2xl">
             Add a description <span className="text-zinc-400">(optional)</span>
           </FormLabel>

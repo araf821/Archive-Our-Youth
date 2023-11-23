@@ -24,11 +24,6 @@ const TagSelectionSlide: FC<TagSelectionSlideProps> = ({ form }) => {
       name="tags"
       render={() => (
         <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
-          <div className="flex">
-            <span className="aspect-square w-7 bg-[#D5222A] md:w-10" />
-            <span className="aspect-square w-7 bg-[#FA322C] md:w-10" />
-          </div>
-
           <p className="text-center text-xl md:text-2xl">
             Pick the tags that best represent your content
           </p>

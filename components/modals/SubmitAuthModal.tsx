@@ -7,13 +7,12 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "../ui/Dialog";
-import { useClerk } from "@clerk/nextjs";
+import { redirectToSignIn } from "@clerk/nextjs";
 import Link from "next/link";
 import { X } from "lucide-react";
 
 const SubmitAuthModal = () => {
   const { onClose, type, isOpen } = useModal();
-  const { openSignIn } = useClerk();
 
   const isModalOpen = isOpen && type === "submitAuthModal";
   return (
@@ -23,7 +22,7 @@ const SubmitAuthModal = () => {
           <X className="text-zinc-400 transition hover:rotate-90 hover:text-zinc-200" />
         </DialogTrigger>
         <DialogHeader>
-          <p className="text-center md:text-lg text-zinc-300">
+          <p className="text-center text-zinc-300 md:text-lg">
             You&apos;re not logged in.
           </p>
         </DialogHeader>
@@ -31,9 +30,7 @@ const SubmitAuthModal = () => {
         <button
           onClick={() => {
             onClose();
-            openSignIn({
-              afterSignInUrl: "/submit",
-            });
+            return redirectToSignIn({ returnBackUrl: "/submit" });
           }}
           className="w-full rounded-sm bg-zinc-100 py-1.5 text-center font-semibold text-zinc-900 transition hover:bg-opacity-80 md:text-lg"
         >

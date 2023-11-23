@@ -12,6 +12,7 @@ import NavLinks from "./NavLinks";
 import { useModal } from "@/hooks/useModal";
 import { kobata } from "@/app/fonts";
 import { useMenu } from "@/hooks/useMenu";
+import { motion } from "framer-motion";
 
 interface NavbarProps {
   user: User | null;
@@ -82,7 +83,10 @@ const Navbar = ({ user }: NavbarProps) => {
         <div className="max-lg:hidden md:items-center md:gap-x-6 lg:flex">
           <button
             className={cn(
-              "group relative px-4 py-1 text-lg font-bold tracking-widest text-white transition duration-300 hover:text-black",
+              "group relative px-4 py-1 text-lg font-bold tracking-widest text-white transition duration-300",
+              {
+                "text-green-500 hover:text-green-500": pathname === "/submit",
+              },
             )}
             onClick={() => {
               if (user) {
@@ -92,9 +96,11 @@ const Navbar = ({ user }: NavbarProps) => {
               }
             }}
           >
-            <span className="absolute inset-x-0 top-0 h-[50%] origin-bottom-right scale-0 rounded-t-sm bg-white transition duration-200 group-hover:scale-100" />
-            <span className="absolute inset-x-0 bottom-0 h-[50%] origin-top-left scale-0 rounded-b-sm bg-white transition duration-200 group-hover:scale-100" />
-            <span className="relative">Submit</span>
+            {/* <span className="absolute inset-x-0 top-0 h-[50%] origin-bottom-right scale-0 rounded-t-sm bg-white transition duration-200 group-hover:scale-100" />
+            <span className="absolute inset-x-0 bottom-0 h-[50%] origin-top-left scale-0 rounded-b-sm bg-white transition duration-200 group-hover:scale-100" /> */}
+            <span className="relative transition-all group-hover:tracking-[4px]">
+              Submit
+            </span>
           </button>
           {user && (
             <div className="rounded-full border-2 border-zinc-700">
@@ -121,7 +127,7 @@ const Navbar = ({ user }: NavbarProps) => {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="fill-white w-6 h-6"
+              className="h-6 w-6 fill-white"
             >
               <path
                 fill-rule="evenodd"

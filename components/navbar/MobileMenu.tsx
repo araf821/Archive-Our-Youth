@@ -16,7 +16,7 @@ const sidebarVariants = {
     opacity: 0,
     transition: {
       delay: 0.5,
-    }
+    },
   },
   show: {
     y: 0,
@@ -89,7 +89,12 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
               onClose();
               router.push("/submit");
             }}
-            className="w-fit text-3xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white"
+            className={cn(
+              "w-fit text-3xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white",
+              {
+                "text-green-500 hover:text-green-500": pathname === "/submit",
+              },
+            )}
           >
             Submit A Post
           </button>

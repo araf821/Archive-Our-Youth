@@ -117,10 +117,6 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
 
   return (
     <div className="grid max-w-screen-md place-items-center gap-8 max-sm:my-12 md:gap-12">
-      <div className="flex">
-        <span className="aspect-square w-7 bg-[#FFA573] md:w-10" />
-        <span className="aspect-square w-7 bg-[#FD9747] md:w-10" />
-      </div>
       <div className="text-center max-sm:max-w-[340px]">
         <p className="balance text-xl md:text-2xl">
           What question does your submission answer?
