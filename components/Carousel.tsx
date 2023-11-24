@@ -97,7 +97,7 @@ const Carousel = ({}) => {
       </p>
       <button
         className={cn(
-          "group relative px-4 py-1 text-lg font-bold tracking-widest text-black transition duration-300 bg-green-500",
+          "group relative bg-green-500 px-4 py-1 text-lg font-bold tracking-widest text-black transition duration-300",
         )}
         onClick={() => {
           if (userId) {
@@ -146,35 +146,6 @@ const Carousel = ({}) => {
           Submit A Post
         </button>
       </div>
-
-      {/* <div className="mt-4 w-full space-y-4">
-        <>
-          {userId ? (
-            <Link
-              href="/submit"
-              className="group flex w-full justify-between rounded-sm bg-gradient-to-tr from-red-600 to-rose-500 px-4 py-2 text-white shadow-[0_0_10px] shadow-rose-600/50 transition hover:bg-rose-600 hover:shadow-[0_0_25px_2px] hover:shadow-rose-500/50"
-            >
-              Submit A Post
-              <SendHorizonal className="transition group-hover:translate-x-2" />
-            </Link>
-          ) : (
-            <button
-              onClick={() => onOpen("submitAuthModal")}
-              className="group flex w-full justify-between rounded-sm bg-gradient-to-tr from-red-600 to-rose-500 px-4 py-2 font-semibold text-white shadow-[0_0_10px] shadow-rose-600/50 transition hover:bg-rose-600 hover:shadow-[0_0_25px_2px] hover:shadow-rose-500/50"
-            >
-              Submit A Post
-              <SendHorizonal className="transition group-hover:translate-x-2" />
-            </button>
-          )}
-          <Link
-            href="/home"
-            className="group flex w-full justify-between rounded-sm border border-white px-4 py-2 font-semibold text-white transition hover:bg-zinc-100 hover:text-black"
-          >
-            View All Submissions
-            <Tv className="transition group-hover:translate-x-2" />
-          </Link>
-        </>
-      </div> */}
     </div>
   );
 

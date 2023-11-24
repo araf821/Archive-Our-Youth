@@ -34,15 +34,15 @@ const ShareModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-zinc-800 px-4 py-4 outline-none">
+      <DialogContent className="max-w-md bg-zinc-900 border-zinc-800 px-4 py-4 outline-none">
         <DialogHeader>
-          <DialogTitle className="text-2xl text-zinc-100">
+          <DialogTitle className="text-xl text-zinc-100 md:text-2xl">
             Share this post
           </DialogTitle>
         </DialogHeader>
-        <hr className="border-zinc-700" />
+        <hr className="border-zinc-800" />
 
-        <div className="flex items-center justify-between gap-2 break-words rounded-sm bg-zinc-900 px-4 py-3.5 text-white">
+        <div className="flex items-center justify-between gap-2 break-words rounded-sm bg-zinc-800 px-4 py-3.5 text-white">
           <p>{`${window.location.origin}${pathname}`}</p>
           <div className="flex items-center gap-2">
             <div className="h-8 border-l-[1px] border-zinc-700" />
@@ -50,7 +50,7 @@ const ShareModal = () => {
               onClick={() => handleCopy(`${window.location.origin}${pathname}`)}
               disabled={clicked}
             >
-              {clicked ? <Check /> : <Copy />}
+              {clicked ? <Check className="text-green-500" /> : <Copy />}
             </button>
           </div>
         </div>

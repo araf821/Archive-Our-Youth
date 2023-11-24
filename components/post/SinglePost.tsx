@@ -10,6 +10,7 @@ import BackButton from "../BackButton";
 import Tag from "../Tag";
 import PDFViewer from "../PDFViewer";
 import Link from "next/link";
+import AnonymousPostInfo from "../AnonymousPostInfo";
 
 interface SinglePostProps {
   currentUser: User | null;
@@ -18,7 +19,7 @@ interface SinglePostProps {
 
 const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
   return (
-    <section className="my-8 flex flex-col gap-6 px-4">
+    <section className="mb-8 mt-28 flex flex-col gap-6 px-4">
       <BackButton />
 
       {post.contentType === "IMAGE" && <DynamicImage src={post.postContent} />}
@@ -84,8 +85,13 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
             />
           </div>
           <div className="flex flex-col gap-0.5">
-            <p className="font-semibold tracking-wide">
-              {post.user?.name || "Posted Anonymously"}
+            <p className="flex items-center gap-2 font-semibold tracking-wide">
+              {post.user?.name || (
+                <>
+                  Posted Anonymously
+                  <AnonymousPostInfo />
+                </>
+              )}
             </p>
             {post.user ? (
               <p className="text-base font-normal text-zinc-400">
