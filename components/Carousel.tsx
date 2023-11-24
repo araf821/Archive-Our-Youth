@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeftCircle,
   ArrowRightCircle,
+  Eye,
   SendHorizonal,
   Tv,
 } from "lucide-react";
@@ -49,7 +50,7 @@ const Carousel = ({}) => {
   slide1 = (
     <div className="max-w-screen-lg">
       <p
-        className={`${kobata.className} neon-text relative z-10 my-8 flex select-none flex-col gap-4 py-16 text-center text-[5rem] font-semibold leading-none after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-20 after:my-auto after:hidden after:origin-right after:scale-x-0 after:bg-green-600 after:transition after:duration-300 hover:after:origin-left hover:after:scale-x-100 sm:px-4 md:px-8 md:text-[6rem] lg:text-[7rem]`}
+        className={`${kobata.className} neon-text relative z-10 my-8 flex select-none flex-col gap-4 py-16 text-center text-[5rem] font-semibold leading-none text-white after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-20 after:my-auto after:hidden after:origin-right after:scale-x-0 after:bg-green-600 after:transition after:duration-300 hover:after:origin-left hover:after:scale-x-100 sm:px-4 md:px-8 md:text-[6rem] lg:text-[7rem]`}
       >
         Archive Our Youth
       </p>
@@ -96,7 +97,7 @@ const Carousel = ({}) => {
       </p>
       <button
         className={cn(
-          "group relative px-4 py-1 text-lg font-bold tracking-widest text-white transition duration-300 hover:text-black",
+          "group relative px-4 py-1 text-lg font-bold tracking-widest text-black transition duration-300 bg-green-500",
         )}
         onClick={() => {
           if (userId) {
@@ -106,24 +107,47 @@ const Carousel = ({}) => {
           }
         }}
       >
-        <span className="absolute inset-x-0 top-0 h-[55%] origin-bottom-right scale-0 rounded-t-sm bg-white opacity-0 transition duration-200 group-hover:scale-100 group-hover:opacity-100" />
-        <span className="absolute inset-x-0 bottom-0 h-[55%] origin-top-left scale-0 rounded-b-sm bg-white opacity-0 transition duration-200 group-hover:scale-100 group-hover:opacity-100" />
-        <span className="relative">Submit Post</span>
+        Create New Post
       </button>
     </div>
   );
 
   slide4 = (
-    <div className="pointer-events-auto flex w-full max-w-sm flex-col items-center justify-center gap-2 rounded-md bg-black/40 px-6 py-12 text-center backdrop-blur-sm">
-      <p className="w-fit text-4xl font-bold text-white ">
-        Let&rsquo;s explore!
+    <div className="pointer-events-auto flex w-full flex-col items-center justify-center gap-10 text-center">
+      <p
+        className={cn(
+          "neon-text text-6xl font-semibold uppercase tracking-widest text-white md:text-7xl lg:text-8xl",
+          kobata.className,
+        )}
+      >
+        WELCOME
       </p>
-      <p className="text-sm text-zinc-300">
-        Dive right in and showcase what you want or take a look at what others
-        have posted!
+      <p className="-mt-6 font-bold text-white [text-shadow:0px_0px_2px_black] md:text-lg">
+        Let&rsquo;s dive in!
       </p>
 
-      <div className="mt-4 w-full space-y-4">
+      <div className="flex w-full max-w-lg items-center max-md:flex-col max-md:gap-4 md:justify-between">
+        <button
+          onClick={() => router.push("/home")}
+          className="w-52 rounded-[80px] bg-white px-4 py-2 font-bold text-zinc-800 shadow-[0_0_4px_black] transition-all duration-200 hover:scale-110 hover:rounded-sm hover:bg-green-400 active:scale-90 md:text-lg"
+        >
+          View Submissions
+        </button>
+        <button
+          onClick={() => {
+            if (!userId) {
+              onOpen("submitAuthModal");
+            } else {
+              router.push("/submit");
+            }
+          }}
+          className="w-52 rounded-[80px] bg-white px-4 py-2 font-bold text-zinc-800 shadow-[0_0_4px_black] transition-all duration-200 hover:scale-110 hover:rounded-sm hover:bg-green-400 active:scale-90 md:text-lg"
+        >
+          Submit A Post
+        </button>
+      </div>
+
+      {/* <div className="mt-4 w-full space-y-4">
         <>
           {userId ? (
             <Link
@@ -150,7 +174,7 @@ const Carousel = ({}) => {
             <Tv className="transition group-hover:translate-x-2" />
           </Link>
         </>
-      </div>
+      </div> */}
     </div>
   );
 
