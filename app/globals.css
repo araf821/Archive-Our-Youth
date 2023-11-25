@@ -352,7 +352,9 @@
   @apply my-auto;
 }
 
-.cl-signIn-start {
+.cl-signIn-start,
+.cl-signUp-start,
+.cl-card {
   @apply border-zinc-700 bg-[#1c1c1c] shadow-xl shadow-blue-500/10;
 }
 
@@ -400,7 +402,8 @@
   @apply bg-blue-600 py-1 text-base font-semibold text-white hover:bg-blue-700 focus:border-none;
 }
 
-.cl-footerActionText {
+.cl-footerActionText,
+.cl-internal-fqx4fd {
   @apply text-zinc-400;
 }
 
@@ -410,4 +413,40 @@
 
 .cl-formFieldInputShowPasswordButton {
   @apply bg-zinc-600 text-white hover:text-zinc-200;
+}
+
+.cl-userPreviewMainIdentifier {
+  @apply font-semibold text-white;
+}
+
+.cl-userPreviewSecondaryIdentifier,
+.cl-profileSectionTitleText,
+.cl-internal-3vf5mz,
+.cl-internal-1b63r8w {
+  @apply text-zinc-300;
+}
+
+.cl-userButtonPopoverActionButtonText,
+.cl-internal-wkkub3,
+.cl-navbarButton,
+.cl-internal-of57g,
+.cl-breadcrumbsItem {
+  @apply text-white;
+}
+
+.cl-userButtonPopoverActionButton {
+  @apply hover:bg-zinc-800;
+}
+
+.cl-userButtonPopoverActionButtonIcon,
+.cl-avatarImageActionsUpload {
+  @apply text-green-600;
+}
+
+.cl-internal-1xg0u4s {
+  @apply border-b-zinc-700;
+}
+
+.cl-badge {
+  @apply bg-green-500 pt-1 text-black;
 }
