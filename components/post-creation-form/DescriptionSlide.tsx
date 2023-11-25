@@ -1,15 +1,10 @@
 import { PostCreationForm } from "@/lib/types/form";
 import { FC, useState } from "react";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/Form";
+import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
 import { Button } from "../ui/Button";
 import { cn } from "@/lib/utils";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { ExternalLink } from "lucide-react";
 
 interface DescriptionSlideProps {
   form: PostCreationForm;
@@ -23,10 +18,10 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
       name="description"
       control={form.control}
       render={({ field }) => (
-        <FormItem className="mx-auto max-sm:mt-12 grid max-w-screen-sm place-items-center gap-8 md:gap-12">
-          <FormLabel className="text-center text-xl md:text-2xl">
+        <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
+          <p className="text-center text-xl md:text-2xl">
             Add a description <span className="text-zinc-400">(optional)</span>
-          </FormLabel>
+          </p>
           <div className="flex w-full flex-col gap-2">
             <div className="mx-auto space-x-2">
               <Button
@@ -77,11 +72,19 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
               ) : (
                 <textarea
                   {...field}
-                  placeholder="Placeholder Text"
+                  placeholder="Describe your content..."
                   className="h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
                 />
               )}
             </FormControl>
+            <a
+              href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
+              target="_blank"
+              className="flex w-fit items-center gap-1 text-zinc-400 underline underline-offset-2 transition duration-200 hover:text-blue-500"
+            >
+              *Markdown is supported!
+              <ExternalLink className="h-4 w-4" />
+            </a>
             <FormMessage />
           </div>
         </FormItem>

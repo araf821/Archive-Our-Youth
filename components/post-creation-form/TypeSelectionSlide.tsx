@@ -37,7 +37,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     handleTypeChange("TEXT");
                   }}
                   className={cn(
-                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:scale-105 active:scale-95",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50 duration-300",
                     {
                       "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "TEXT",
@@ -55,7 +55,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     handleTypeChange("IMAGE");
                   }}
                   className={cn(
-                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:scale-105 active:scale-95",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50 duration-300",
                     {
                       "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "IMAGE",
@@ -73,7 +73,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     handleTypeChange("VIDEO");
                   }}
                   className={cn(
-                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:scale-105 active:scale-95",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50 duration-300",
                     {
                       "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "VIDEO",
@@ -94,7 +94,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     handleTypeChange("AUDIO");
                   }}
                   className={cn(
-                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:scale-105 active:scale-95",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50 duration-300",
                     {
                       "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "AUDIO",
@@ -112,7 +112,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     handleTypeChange("PDF");
                   }}
                   className={cn(
-                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:scale-105 active:scale-95",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50 duration-300",
                     {
                       "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "PDF",

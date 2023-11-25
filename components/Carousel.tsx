@@ -1,18 +1,12 @@
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  ArrowLeftCircle,
-  ArrowRightCircle,
-  Eye,
-  SendHorizonal,
-  Tv,
-} from "lucide-react";
-import Link from "next/link";
+import { ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { useModal } from "@/hooks/useModal";
 import { useRouter } from "next/navigation";
 import { kobata } from "@/app/fonts";
 import { cn } from "@/lib/utils";
+import WelcomeText from "./WelcomeText";
 
 const variants = {
   enter: (direction: number) => {
@@ -96,18 +90,16 @@ const Carousel = ({}) => {
         the submission portal remains open for continual submissions.
       </p>
       <button
-        className={cn(
-          "group relative bg-green-500 px-4 py-1 text-lg font-bold tracking-widest text-black transition duration-300",
-        )}
         onClick={() => {
-          if (userId) {
-            router.push("/submit");
-          } else {
+          if (!userId) {
             onOpen("submitAuthModal");
+          } else {
+            router.push("/submit");
           }
         }}
+        className="relative w-full mt-2 rounded-md border-2 border-green-500 bg-green-500/20 px-4 py-2 font-semibold text-green-500 shadow-[inset_0_0_10px] shadow-green-500 backdrop-blur-sm transition [text-shadow:0_0_4px_black] before:absolute before:inset-0 before:transition before:duration-200 before:content-[''] before:hover:shadow-[0_0_20px_2px] before:hover:shadow-green-500/75 md:text-lg"
       >
-        Create New Post
+        Submit A Post
       </button>
     </div>
   );
@@ -122,14 +114,15 @@ const Carousel = ({}) => {
       >
         WELCOME
       </p>
-      <p className="-mt-6 font-bold text-white [text-shadow:0px_0px_2px_black] md:text-lg">
-        Let&rsquo;s dive in!
-      </p>
+      {/* <WelcomeText /> */}
+      {/* <p className="-mt-6 font-bold text-white [text-shadow:0px_0px_2px_black] md:text-lg">
+        Let&rsquo;s <span className="text-green-500">dive</span> in!
+      </p> */}
 
-      <div className="flex w-full max-w-lg items-center max-md:flex-col max-md:gap-4 md:justify-between">
+      <div className="flex w-full max-w-xl items-center max-md:flex-col max-md:gap-4 md:justify-between">
         <button
           onClick={() => router.push("/home")}
-          className="w-52 rounded-[80px] bg-white px-4 py-2 font-bold text-zinc-800 shadow-[0_0_4px_black] transition-all duration-200 hover:scale-110 hover:rounded-sm hover:bg-green-400 active:scale-90 md:text-lg"
+          className="relative w-64 rounded-md border-2 border-white bg-white/20 px-4 py-2 font-semibold text-white shadow-[inset_0_0_10px] shadow-white backdrop-blur-md transition [text-shadow:0_0_4px_black] before:absolute before:inset-0 before:transition before:duration-200 before:content-[''] before:hover:shadow-[0_0_20px_2px] md:text-lg"
         >
           View Submissions
         </button>
@@ -141,7 +134,7 @@ const Carousel = ({}) => {
               router.push("/submit");
             }
           }}
-          className="w-52 rounded-[80px] bg-white px-4 py-2 font-bold text-zinc-800 shadow-[0_0_4px_black] transition-all duration-200 hover:scale-110 hover:rounded-sm hover:bg-green-400 active:scale-90 md:text-lg"
+          className="relative w-64 rounded-md border-2 border-green-500 bg-green-500/20 px-4 py-2 font-semibold text-green-500 shadow-[inset_0_0_10px] shadow-green-500 backdrop-blur-sm transition [text-shadow:0_0_4px_black] before:absolute before:inset-0 before:transition before:duration-200 before:content-[''] before:hover:shadow-[0_0_20px_2px] before:hover:shadow-green-500/75 md:text-lg"
         >
           Submit A Post
         </button>

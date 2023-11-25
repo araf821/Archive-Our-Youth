@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About Us | Archive Our Youth",
@@ -71,6 +72,24 @@ const AboutPage = () => {
           quality education that transcends formal schooling through integrated,
           holistic, land-based, culturally relevant and youth-centred education.
         </p>
+        <div className="flex items-center gap-8">
+          <div className="relative mx-auto aspect-square w-full max-w-[300px]">
+            <Image
+              src="/ylrl-logo.svg"
+              alt="ylrl logo"
+              fill
+              className="object-contain"
+            />
+          </div>
+          <div className="relative mx-auto aspect-square w-full max-w-[300px]">
+            <Image
+              src="/york-logo.svg"
+              alt="york logo"
+              fill
+              className="object-contain"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

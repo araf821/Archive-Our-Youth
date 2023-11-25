@@ -5,6 +5,7 @@ import { Button } from "../ui/Button";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import FileUpload from "../FileUpload";
 import { cn } from "@/lib/utils";
+import { ExternalLink } from "lucide-react";
 
 interface ContentSlideProps {
   form: PostCreationForm;
@@ -77,6 +78,14 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                   />
                 )}
               </FormControl>
+              <a
+                href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
+                target="_blank"
+                className="flex w-fit items-center gap-1 text-zinc-400 underline underline-offset-2 transition duration-200 hover:text-blue-500"
+              >
+                *Markdown is supported!
+                <ExternalLink className="h-4 w-4" />
+              </a>
               <FormMessage />
             </div>
           </FormItem>
@@ -93,6 +102,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
             <p className="text-center text-xl md:text-2xl">Add an image</p>
             <FormControl>
               <FileUpload
+                classNames="aspect-video"
                 endPoint="image"
                 onChange={field.onChange}
                 value={field.value}
@@ -112,6 +122,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
             <p className="text-center text-xl md:text-2xl">Add a video</p>{" "}
             <FormControl>
               <FileUpload
+                classNames="aspect-video"
                 endPoint="video"
                 onChange={field.onChange}
                 value={field.value}
@@ -128,10 +139,10 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         control={form.control}
         render={({ field }) => (
           <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
-
             <p className="text-center text-xl md:text-2xl">Add an audio</p>
             <FormControl>
               <FileUpload
+                classNames="max-w-[400px]"
                 endPoint="audio"
                 onChange={field.onChange}
                 value={field.value}
@@ -148,7 +159,6 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         control={form.control}
         render={({ field }) => (
           <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
-
             <p className="text-center text-xl md:text-2xl">Upload a PDF</p>
             <FormControl>
               <FileUpload

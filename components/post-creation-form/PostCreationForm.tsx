@@ -30,6 +30,7 @@ import Tag from "../Tag";
 import { Checkbox } from "../ui/checkbox";
 import Link from "next/link";
 import { kobata } from "@/app/fonts";
+import { AnimatePresence, motion } from "framer-motion";
 
 enum STEPS {
   WELCOME = 0,
@@ -381,71 +382,83 @@ const PostCreationForm = () => {
             ))}
           </ul>
         </div>
-        <div className="py-6">
-          {error && (
-            <p className="pb-2 text-red-500">
-              Your consent is required for us to approve your submission.
-            </p>
-          )}
-          <div className="flex gap-2">
-            <Checkbox
-              id="consent"
-              checked={checked}
-              onCheckedChange={() => {
-                setConsentChecked((prev) => ({
-                  checked: !prev.checked,
-                  error: prev.checked ? true : false,
-                }));
-              }}
-              className="h-5 w-5 translate-y-1 border border-zinc-500 bg-zinc-700 checked:bg-zinc-500 data-[state=checked]:bg-green-500"
-            />
-            <label
-              htmlFor="consent"
-              className="space-y-3 text-zinc-100 max-md:text-sm"
-            >
-              <p>
-                Click this box if you agree that your submission can be used for
-                research purposes. The Archive will contribute to a better
-                understanding of youth and planetary well-being and will be used
-                to develop future presentations, teaching and/or publications
-                such as social media posts, journal articles, and books.
-              </p>
+        <AnimatePresence>
+          <motion.div className="py-6">
+            {error ? (
+              <motion.p
+                initial={{ height: 0 }}
+                exit={{ height: "auto" }}
+                animate={{
+                  height: "auto",
+                }}
+                className="text-red-500"
+              >
+                {error
+                  ? "Your consent is required for us to approve your submission."
+                  : ""}
+              </motion.p>
+            ) : null}
+            <div className="flex gap-2">
+              <Checkbox
+                id="consent"
+                checked={checked}
+                onCheckedChange={() => {
+                  setConsentChecked((prev) => ({
+                    checked: !prev.checked,
+                    error: prev.checked ? true : false,
+                  }));
+                }}
+                className="h-5 w-5 translate-y-1 border border-zinc-500 bg-zinc-700 checked:bg-zinc-600 data-[state=checked]:bg-green-600"
+              />
+              <label
+                htmlFor="consent"
+                className="space-y-3 text-zinc-100 max-md:text-sm"
+              >
+                <p>
+                  Click this box if you agree that your submission can be used
+                  for research purposes. The Archive will contribute to a better
+                  understanding of youth and planetary well-being and will be
+                  used to develop future presentations, teaching and/or
+                  publications such as social media posts, journal articles, and
+                  books.
+                </p>
 
-              <p>All intellectual and creative rights remain yours.</p>
+                <p>All intellectual and creative rights remain yours.</p>
 
-              <p>
-                You have the right to stop participating and delete your
-                submission at any time by signing in and deleting it directly,
-                or by emailing Deborah MacDonald at the Young Lives Research Lab
-                at York University at:{" "}
-                <a
-                  className="text-blue-400 underline"
-                  href="mailto:dmacd@yorku.ca"
-                >
-                  dmacd@yorku.ca
-                </a>
-                .
-              </p>
+                <p>
+                  You have the right to stop participating and delete your
+                  submission at any time by signing in and deleting it directly,
+                  or by emailing Deborah MacDonald at the Young Lives Research
+                  Lab at York University at:{" "}
+                  <a
+                    className="text-blue-400 underline"
+                    href="mailto:dmacd@yorku.ca"
+                  >
+                    dmacd@yorku.ca
+                  </a>
+                  .
+                </p>
 
-              <p>
-                You have the right to submit anonymously. If you submit
-                anonymously, you can only delete your post by emailing the
-                contact above.
-              </p>
+                <p>
+                  You have the right to submit anonymously. If you submit
+                  anonymously, you can only delete your post by emailing the
+                  contact above.
+                </p>
 
-              <p>
-                Please read the full{" "}
-                <Link
-                  href="https://docs.google.com/document/d/185IyM9Cic-vpMK7yqYLXR0s-YfJrhaSY/edit"
-                  target="_blank"
-                  className="text-blue-400 underline"
-                >
-                  consent form here.
-                </Link>
-              </p>
-            </label>
-          </div>
-        </div>
+                <p>
+                  Please read the full{" "}
+                  <Link
+                    href="https://docs.google.com/document/d/185IyM9Cic-vpMK7yqYLXR0s-YfJrhaSY/edit"
+                    target="_blank"
+                    className="text-blue-400 underline"
+                  >
+                    consent form here.
+                  </Link>
+                </p>
+              </label>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );

@@ -103,12 +103,12 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
             ) : (
               <Pen className="fill-blue-400 text-blue-400 transition group-hover:fill-blue-500 group-hover:text-blue-500 md:h-10 md:w-10" />
             )}
-            <p className="text-lg md:text-2xl lg:hidden">
+            <p className="text-lg md:text-xl lg:hidden">
               {post.title.length > 24
                 ? post.title.slice(0, 24) + "..."
                 : post.title}
             </p>{" "}
-            <p className="text-lg max-lg:hidden md:text-2xl lg:block">
+            <p className="text-lg max-lg:hidden md:text-xl lg:block">
               {post.title.length > 50
                 ? post.title.slice(0, 50) + "..."
                 : post.title}
