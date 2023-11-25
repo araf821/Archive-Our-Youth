@@ -5,6 +5,7 @@ import Link from "next/link";
 import LikeButton from "../LikeButton";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { ScrollArea } from "../ui/ScrollArea";
 
 const PostModal = () => {
   const { onClose, data, type, isOpen } = useModal();
@@ -25,7 +26,7 @@ const PostModal = () => {
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <div className="px-4">
         <DialogContent className="max-h-[90vh] max-w-screen-sm border-none bg-transparent text-zinc-100 outline-none">
-          <div className="h-full max-h-[80vh] w-full overflow-hidden overflow-y-auto rounded-sm bg-[#202020] px-4 py-4 md:rounded-md md:p-6">
+          <div className="h-full w-full rounded-sm bg-[#202020] px-4 py-4 md:rounded-md md:p-6">
             <div className="mb-2 w-fit rounded-sm bg-zinc-700 px-2.5 py-1 font-bold max-md:text-sm">
               {post.contentType === "PDF"
                 ? "PDF File"
