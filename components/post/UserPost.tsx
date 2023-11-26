@@ -34,7 +34,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
       >
         {post.contentType === "IMAGE" && (
           <>
-            <div className="relative aspect-[4/3] w-full md:max-w-[300px]">
+            <div className="relative border border-zinc-700 aspect-[4/3] w-full md:max-w-[300px]">
               <Image
                 src={post.postContent}
                 alt="post image"
@@ -52,7 +52,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
 
         {post.contentType === "VIDEO" && (
           <>
-            <div className="relative aspect-video max-h-[40vh] w-full rounded-md md:max-w-[300px]">
+            <div className="relative border border-zinc-700 aspect-video max-h-[40vh] w-full rounded-md md:max-w-[300px]">
               <video
                 src={`${post.postContent}#t=15`}
                 className="h-full w-full "

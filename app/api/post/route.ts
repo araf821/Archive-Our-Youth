@@ -40,7 +40,7 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json(post);
+    return NextResponse.json({ slug: post.slug });
   } catch (error) {
     console.log("POST CREATION ERROR: ", error);
     return new NextResponse("Internal Error", { status: 500 });

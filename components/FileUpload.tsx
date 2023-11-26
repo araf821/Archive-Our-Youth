@@ -65,12 +65,12 @@ const FileUpload: FC<FileUploadProps> = ({
 
     if (endPoint === "audio") {
       return (
-        <div className="w-full space-y-8 pt-4">
+        <div className="w-full space-y-2 text-center">
           <audio src={value} controls className="w-full" />
           <button
             onClick={() => onChange("")}
             type="button"
-            className="rounded-md bg-zinc-800 px-3 py-2 text-zinc-300 transition hover:bg-zinc-700 max-md:text-sm md:text-base"
+            className="rounded-sm bg-zinc-800 px-2.5 py-1.5 text-zinc-300 transition duration-200 hover:bg-zinc-700 hover:text-zinc-100 max-md:text-sm"
           >
             Remove selected audio
           </button>

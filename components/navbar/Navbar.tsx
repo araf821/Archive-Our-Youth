@@ -12,7 +12,6 @@ import NavLinks from "./NavLinks";
 import { useModal } from "@/hooks/useModal";
 import { kobata } from "@/app/fonts";
 import { useMenu } from "@/hooks/useMenu";
-import { motion } from "framer-motion";
 
 interface NavbarProps {
   user: User | null;
@@ -83,7 +82,7 @@ const Navbar = ({ user }: NavbarProps) => {
         <div className="max-lg:hidden md:items-center md:gap-x-6 lg:flex">
           <button
             className={cn(
-              "group relative w-28 px-4 py-1 text-lg font-bold tracking-widest text-white transition duration-300",
+              "group relative w-28 text-lg font-semibold tracking-widest text-white transition duration-300 hover:text-green-300",
               {
                 "text-green-500 hover:text-green-500": pathname === "/submit",
               },
@@ -98,9 +97,7 @@ const Navbar = ({ user }: NavbarProps) => {
           >
             {/* <span className="absolute inset-x-0 top-0 h-[50%] origin-bottom-right scale-0 rounded-t-sm bg-white transition duration-200 group-hover:scale-100" />
             <span className="absolute inset-x-0 bottom-0 h-[50%] origin-top-left scale-0 rounded-b-sm bg-white transition duration-200 group-hover:scale-100" /> */}
-            <span className="w-12 transition-all group-hover:tracking-[4px]">
-              Submit
-            </span>
+            Submit
           </button>
           {user && (
             <div className="rounded-full border-2 border-zinc-700">

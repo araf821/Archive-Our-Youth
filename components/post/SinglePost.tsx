@@ -28,7 +28,6 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
       {post.contentType === "VIDEO" && (
         <div className="relative my-4 aspect-video w-full overflow-hidden">
           <video
-            autoPlay
             src={post.postContent}
             className="h-full w-full"
             controls

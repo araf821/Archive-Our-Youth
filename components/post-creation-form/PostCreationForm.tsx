@@ -150,10 +150,10 @@ const PostCreationForm = () => {
     }
 
     try {
-      await axios.post("/api/post", values);
+      const response = await axios.post("/api/post", values);
       toast.success("Your post has been published!");
       form.reset();
-      router.push("/home");
+      router.push(`/post/${response.data.slug}`);
     } catch (error: any) {
       toast.error("Something went wrong.");
       console.log(error);
