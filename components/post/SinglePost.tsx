@@ -18,6 +18,8 @@ interface SinglePostProps {
 }
 
 const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
+  console.log(post);
+
   return (
     <section className="mb-8 mt-28 flex flex-col gap-6 px-4">
       <BackButton />
@@ -54,12 +56,16 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
 
       {/* Post Info */}
       <div className="flex flex-col gap-4">
-        <span className="-mb-3 w-fit rounded-md bg-zinc-700 px-1.5 py-0.5 text-sm text-zinc-300">
+        <span className="-mb-2 w-fit rounded-md bg-zinc-700 px-1.5 py-0.5 text-sm text-zinc-300">
           {dateFormat(new Date(post.createdAt).toISOString())}
         </span>
         <p className="break-words text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
           {post.title}
         </p>
+
+        {post.contentType !== "VIDEO" && post.thumbnail && (
+          <DynamicImage src={post.thumbnail} classNames="my-0" />
+        )}
 
         {(post.contentType === "TEXT" || post.contentType === "PDF") && (
           <div className="flex w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">

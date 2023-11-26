@@ -17,13 +17,18 @@ export async function POST(req: Request) {
       description,
       tags,
       researchQuestions,
+      thumbnail,
     } = PostCreationValidator.parse(body);
+
+    console.log(body);
+    
 
     const post = await db.post.create({
       data: {
         title,
         contentType,
         postContent: content,
+        thumbnail,
         description:
           contentType === "TEXT" ? "" : description ? description : "",
         tags,

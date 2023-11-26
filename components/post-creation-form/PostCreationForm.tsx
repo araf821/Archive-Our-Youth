@@ -31,6 +31,7 @@ import { Checkbox } from "../ui/checkbox";
 import Link from "next/link";
 import { kobata } from "@/app/fonts";
 import { AnimatePresence, motion } from "framer-motion";
+import ThumbnailSlide from "./ThumbnailSlide";
 
 enum STEPS {
   WELCOME = 0,
@@ -487,6 +488,7 @@ const PostCreationForm = () => {
           )}
           {step === STEPS.TITLE && <TitleSlide form={form} />}
           {step === STEPS.CONTENT && <ContentSlide form={form} />}
+          {step === STEPS.THUMBNAIL && <ThumbnailSlide form={form} />}
           {step === STEPS.DESCRIPTION && contentType !== "TEXT" && (
             <DescriptionSlide form={form} />
           )}

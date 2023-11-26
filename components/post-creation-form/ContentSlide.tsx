@@ -102,7 +102,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
             <p className="text-center text-xl md:text-2xl">Add an image</p>
             <FormControl>
               <FileUpload
-                classNames="aspect-video"
+                classNames="aspect-video max-w-[500px]"
                 endPoint="image"
                 onChange={field.onChange}
                 value={field.value}

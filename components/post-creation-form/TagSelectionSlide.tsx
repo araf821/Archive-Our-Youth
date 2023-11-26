@@ -24,10 +24,15 @@ const TagSelectionSlide: FC<TagSelectionSlideProps> = ({ form }) => {
       name="tags"
       render={() => (
         <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
-          <p className="text-center text-xl md:text-2xl">
-            Pick the tags that best represent your content
-          </p>
-          <div className="space-y-4 w-full">
+          <div className="text-center">
+            <p className="text-xl balance md:text-2xl">
+              Pick the tags that best represent your content
+            </p>
+            <p className="text-zinc-400 balance">
+              Relevant tags lead your posts to the right people!
+            </p>
+          </div>
+          <div className="w-full space-y-4">
             <FormControl>
               <MultiSelect
                 maxSelection={8}
