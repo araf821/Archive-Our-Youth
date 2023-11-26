@@ -359,7 +359,7 @@ const PostCreationForm = () => {
         {contentType !== "IMAGE" && (
           <div className="space-y-2 py-4">
             <p>
-              Cover Image <span className="text-zinc-400">(optional)</span>
+              Thumbnail <span className="text-zinc-400">(optional)</span>
             </p>
             {form.getValues("thumbnail") ? (
               <div className="relative aspect-video w-full">
@@ -372,7 +372,7 @@ const PostCreationForm = () => {
               </div>
             ) : (
               <p className="text-zinc-400">
-                Cover image was not added,{" "}
+                Thumbnail was not added,{" "}
                 <button
                   type="button"
                   onClick={() => setStep(STEPS.THUMBNAIL)}

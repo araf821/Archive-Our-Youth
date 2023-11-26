@@ -62,9 +62,9 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
           {post.title}
         </p>
 
-        {post.contentType !== "VIDEO" && post.thumbnail && (
+        {/* {post.contentType !== "VIDEO" && post.thumbnail && (
           <DynamicImage src={post.thumbnail} classNames="my-0" />
-        )}
+        )} */}
 
         {(post.contentType === "TEXT" || post.contentType === "PDF") && (
           <div className="flex w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">

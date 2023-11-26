@@ -6,7 +6,7 @@ import Image from "next/image";
 import { FC, useState } from "react";
 import VideoItem from "./VideoItem";
 import AudioItem from "./AudioItem";
-import { File, Pen } from "lucide-react";
+import { Divide, File, Pen } from "lucide-react";
 import Overlay from "../Overlay";
 import { AnimatePresence } from "framer-motion";
 
@@ -18,7 +18,7 @@ interface CollageItemProps {
 const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
   const { onOpen } = useModal();
   const [clicked, setClicked] = useState(
-    post.contentType === "IMAGE" ? true : false,
+    post.contentType === "IMAGE" ? true : post.thumbnail ? true : false,
   );
 
   const onClose = () => {
@@ -68,8 +68,16 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
     >
       <AnimatePresence>
         {(post.contentType === "TEXT" || post.contentType === "PDF") &&
+          !post.thumbnail &&
           !clicked && <Overlay onClose={onClose} />}
       </AnimatePresence>
+      {post.thumbnail && (
+        <div className="absolute inset-0">
+          <div className="relative aspect-square">
+            <Image src={post.thumbnail} alt="post thumbnail" fill />
+          </div>
+        </div>
+      )}
       {post.contentType === "PDF" && (
         <div className="absolute left-0 top-0 z-20 rounded-br-md bg-black/75 p-1.5 text-zinc-100 max-sm:text-xs sm:text-sm">
           <File className="h-4 w-4 md:h-5 md:w-5" />
@@ -95,7 +103,7 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
         </>
       )}
 
-      {(post.contentType === "TEXT" || post.contentType === "PDF") && (
+      {!post.thumbnail && (post.contentType === "TEXT" || post.contentType === "PDF") && (
         <div className="flex h-full w-full flex-col items-center justify-center gap-2 overflow-hidden p-2 text-zinc-100">
           <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
             {post.contentType === "PDF" ? (

@@ -15,11 +15,9 @@ const ThumbnailSlide: FC<ThumbnailSlideProps> = ({ form }) => {
       render={({ field }) => (
         <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
           <div className="">
-            <p className="text-center text-xl md:text-2xl">Add a cover image</p>
+            <p className="text-center text-xl md:text-2xl">Add a thumbnail</p>
             <p className="max-w-[500px] text-center text-zinc-400">
-              Optional but recommended. This image will be used as your
-              thumbnail and will be present at the top on your post page, unless
-              the post type is Image or Video.
+              Optional but recommended.
             </p>
           </div>
           <FormControl className="mx-auto">
