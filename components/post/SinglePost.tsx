@@ -18,7 +18,6 @@ interface SinglePostProps {
 }
 
 const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
-  console.log(post);
 
   return (
     <section className="mb-8 mt-28 flex flex-col gap-6 px-4">

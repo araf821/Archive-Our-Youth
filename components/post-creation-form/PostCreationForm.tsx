@@ -239,7 +239,7 @@ const PostCreationForm = () => {
         <div className="py-4 capitalize">
           <p
             className={cn("pb-2", {
-              "text-rose-600": form.formState.errors.title,
+              "text-red-500": !!form.formState.errors.title,
             })}
           >
             Title
@@ -263,7 +263,7 @@ const PostCreationForm = () => {
             <>
               <p
                 className={cn("pb-2", {
-                  "text-rose-600": form.formState.errors.content,
+                  "text-red-500": form.formState.errors.content,
                 })}
               >
                 Content
@@ -287,21 +287,31 @@ const PostCreationForm = () => {
             </>
           )}
           {contentType !== "TEXT" && !form.getValues().content ? (
-            <p className="text-zinc-400">
-              <span className="capitalize">{contentType.toLowerCase()}</span>{" "}
-              not added yet,{" "}
-              <button
-                type="button"
-                onClick={() => setStep(STEPS.CONTENT)}
-                className="text-left text-blue-400"
+            <>
+              <p
+                className={cn("", {
+                  "text-red-500": form.formState.errors.content,
+                })}
               >
-                click here to go to the upload screen.
-              </button>
-            </p>
+                Uploaded Content
+              </p>
+              <p className="text-zinc-400">
+                <span className="capitalize">{contentType.toLowerCase()}</span>{" "}
+                not added yet,{" "}
+                <button
+                  type="button"
+                  onClick={() => setStep(STEPS.CONTENT)}
+                  className="text-left text-blue-400"
+                >
+                  click here to go to the upload screen.
+                </button>
+              </p>
+            </>
           ) : (
             <>
               {contentType === "IMAGE" && (
                 <div className="relative aspect-video w-full">
+                  <p className="pb-4">Uploaded Content</p>
                   <Image
                     fill
                     src={form.getValues().content}
@@ -346,11 +356,39 @@ const PostCreationForm = () => {
             </>
           )}
         </div>
+        {contentType !== "IMAGE" && (
+          <div className="space-y-2 py-4">
+            <p>
+              Cover Image <span className="text-zinc-400">(optional)</span>
+            </p>
+            {form.getValues("thumbnail") ? (
+              <div className="relative aspect-video w-full">
+                <Image
+                  fill
+                  src={form.getValues().thumbnail || "/failed-to-load.webp"}
+                  className="object-contain"
+                  alt="post image"
+                />
+              </div>
+            ) : (
+              <p className="text-zinc-400">
+                Cover image was not added,{" "}
+                <button
+                  type="button"
+                  onClick={() => setStep(STEPS.THUMBNAIL)}
+                  className="text-left text-blue-400"
+                >
+                  click here to go to the upload screen.
+                </button>
+              </p>
+            )}
+          </div>
+        )}
         {contentType !== "TEXT" && (
           <div className="py-4">
             <p
               className={cn("pb-2", {
-                "text-rose-600": form.formState.errors.description,
+                "text-red-500": form.formState.errors.description,
               })}
             >
               Description <span className="text-zinc-400">(optional)</span>
@@ -367,7 +405,7 @@ const PostCreationForm = () => {
         <div className="py-4">
           <p
             className={cn("pb-2", {
-              "text-rose-600":
+              "text-red-500":
                 (tags.length < 1 || tags.length > 8) &&
                 form.formState.errors.tags,
             })}

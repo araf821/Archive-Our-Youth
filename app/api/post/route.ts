@@ -20,9 +20,6 @@ export async function POST(req: Request) {
       thumbnail,
     } = PostCreationValidator.parse(body);
 
-    console.log(body);
-    
-
     const post = await db.post.create({
       data: {
         title,
