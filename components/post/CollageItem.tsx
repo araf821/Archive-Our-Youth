@@ -72,11 +72,16 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
           !clicked && <Overlay onClose={onClose} />}
       </AnimatePresence>
       {post.thumbnail && (
-        <div className="absolute inset-0">
-          <div className="relative aspect-square">
-            <Image src={post.thumbnail} alt="post thumbnail" fill />
+        <>
+          <div className="absolute inset-0">
+            <div className="relative aspect-square">
+              <Image src={post.thumbnail} alt="post thumbnail" fill />
+            </div>
           </div>
-        </div>
+          <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/75 px-1.5 py-0.5 text-zinc-200 max-md:text-sm">
+            {post.user?.name || "Anonymous"}
+          </span>
+        </>
       )}
       {post.contentType === "PDF" && (
         <div className="absolute left-0 top-0 z-20 rounded-br-md bg-black/75 p-1.5 text-zinc-100 max-sm:text-xs sm:text-sm">

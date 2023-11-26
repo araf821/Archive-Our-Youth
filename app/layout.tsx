@@ -5,6 +5,7 @@ import { Karla, Nunito, Poppins } from "next/font/google";
 import ModalProvider from "@/components/modals/ModalProvider";
 import { Toaster } from "sonner";
 import SidebarProvider from "@/components/navbar/SidebarProvider";
+import { Metadata } from "next";
 
 const nunito = Poppins({
   subsets: ["latin"],
@@ -17,10 +18,16 @@ const karla = Karla({
   variable: "--font-karla",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Archive Our Youth",
   description:
     "Explore a global showcase of written, visual, and vocal artistry on Archive Our Youth. Join creators from around the world as they share their talents. Discover captivating stories, striking visuals, and powerful voices. Welcome to a diverse community of creativity.",
+  icons: [
+    {
+      url: "/ylrl-logo.svg",
+      href: "/ylrl-logo.svg",
+    },
+  ],
 };
 
 export default function RootLayout({
