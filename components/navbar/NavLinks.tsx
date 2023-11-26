@@ -35,12 +35,12 @@ const NavLinks = () => {
             href={link.pathname}
             className={cn("group relative py-1")}
           >
-            <span className="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-zinc-500 transition duration-300 group-hover:scale-x-100" />
+            <span className="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-green-800 transition duration-300 group-hover:scale-x-100" />
             {pathname === link.pathname && (
               <motion.div
                 layoutId="nav-link"
                 // style={{ borderRadius: 9999 }}
-                className="absolute inset-0 border-b-2 border-white"
+                className="absolute inset-0 border-b-2 border-green-500"
                 transition={{
                   type: "spring",
                   damping: 15,

@@ -70,7 +70,7 @@ const Navbar = ({ user }: NavbarProps) => {
       <div className="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 opacity-100 md:px-8 xl:px-12">
         <Link
           href="/"
-          className={`${kobata.className} flex items-center text-xl text-zinc-100 transition hover:translate-x-1 md:text-2xl`}
+          className={`${kobata.className} flex items-center text-xl text-zinc-100 transition duration-1000 hover:scale-110 md:text-2xl`}
         >
           Archive Our Youth
           <span className="ml-2 bg-green-600 px-1 py-0.5 font-sans text-xs">

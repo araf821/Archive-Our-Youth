@@ -1,12 +1,15 @@
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Karla, Nunito } from "next/font/google";
+import { Karla, Nunito, Poppins } from "next/font/google";
 
 import ModalProvider from "@/components/modals/ModalProvider";
 import { Toaster } from "sonner";
 import SidebarProvider from "@/components/navbar/SidebarProvider";
 
-const nunito = Nunito({ subsets: ["latin"] });
+const nunito = Poppins({
+  subsets: ["latin"],
+  weight: ["200", "400", "500", "600", "700", "800"],
+});
 
 const karla = Karla({
   subsets: ["latin"],

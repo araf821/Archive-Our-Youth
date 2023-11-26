@@ -11,17 +11,27 @@ interface DashboardPostInfoProps {
 const DashboardPostInfo: FC<DashboardPostInfoProps> = ({ post }) => {
   return (
     <div className="relative flex w-full flex-col gap-2">
-      <p className="break-words pr-8 text-xl md:text-2xl">{post.title}</p>
+      <p className="break-words text-xl pr-16 md:text-2xl">{post.title}</p>
       {post.contentType === "TEXT" ? (
-        <Pen className="absolute right-1 top-1 h-5 w-5 text-teal-500" />
+        <span className="absolute max-md:text-xs text-sm right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-teal-500">
+          Written
+        </span>
       ) : post.contentType === "IMAGE" ? (
-        <ImageIcon className="absolute right-1 top-1 h-6 w-6 text-amber-500" />
+        <span className="absolute max-md:text-xs text-sm right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-amber-500">
+          Image
+        </span>
       ) : post.contentType === "VIDEO" ? (
-        <VideoIcon className="absolute right-1 top-1 h-6 w-6 text-fuchsia-400" />
+        <span className="absolute max-md:text-xs text-sm right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-fuchsia-500">
+          Video
+        </span>
       ) : post.contentType === "PDF" ? (
-        <File className="absolute right-1 top-1 h-6 w-6 text-rose-400" />
+        <span className="absolute max-md:text-xs text-sm right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-rose-500">
+          PDF
+        </span>
       ) : (
-        <Volume2Icon className="absolute right-1 top-1 h-6 w-6 text-lime-400" />
+        <span className="absolute max-md:text-xs text-sm right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-lime-500">
+          Audio
+        </span>
       )}
       <p className="text-zinc-400">
         Date Published: {dateFormat(new Date(post.createdAt).toISOString())}

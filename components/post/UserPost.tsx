@@ -75,13 +75,14 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
       <div className="flex items-center justify-between pb-2">
         <button
           onClick={() => onOpen("deletePostModal", { postWithoutUser: post })}
-          className="flex items-center gap-2 rounded-md px-2 py-1 text-center tracking-wide text-zinc-400 transition hover:bg-red-600 hover:text-white"
+          className="flex items-center font-semibold gap-1 rounded-md px-2 py-1 text-center tracking-wide text-zinc-400 transition hover:bg-red-600 hover:text-white"
         >
-          <Trash className="h-5 w-5" /> Delete Post
+          Delete Post
+          <Trash className="h-5 w-5 pb-0.5" />
         </button>
         <Link
           href={`/post/${post.slug}`}
-          className="flex items-center gap-2 rounded-md bg-green-500 px-2 py-1 text-center font-semibold tracking-wide text-zinc-900 transition duration-200 hover:bg-green-600"
+          className="flex items-center gap-1 rounded-md bg-green-500 px-2 py-1 text-center font-semibold tracking-wide text-zinc-900 transition duration-200 hover:bg-green-600"
         >
           View Post
           <ArrowRight className="h-5 w-5" />

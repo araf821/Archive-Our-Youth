@@ -103,29 +103,30 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
         </>
       )}
 
-      {!post.thumbnail && (post.contentType === "TEXT" || post.contentType === "PDF") && (
-        <div className="flex h-full w-full flex-col items-center justify-center gap-2 overflow-hidden p-2 text-zinc-100">
-          <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
-            {post.contentType === "PDF" ? (
-              <File className="fill-amber-400 text-amber-400 transition group-hover:fill-amber-500 group-hover:text-amber-500 md:h-10 md:w-10" />
-            ) : (
-              <Pen className="fill-blue-400 text-blue-400 transition group-hover:fill-blue-500 group-hover:text-blue-500 md:h-10 md:w-10" />
-            )}
-            <p className="text-lg md:text-xl lg:hidden">
-              {post.title.length > 24
-                ? post.title.slice(0, 24) + "..."
-                : post.title}
-            </p>{" "}
-            <p className="text-lg max-lg:hidden md:text-xl lg:block">
-              {post.title.length > 50
-                ? post.title.slice(0, 50) + "..."
-                : post.title}
-            </p>{" "}
-            <span className="text-sm">Click to Expand</span>
-            <span className="text-sm">{post.user?.name || "Anonymous"}</span>
+      {!post.thumbnail &&
+        (post.contentType === "TEXT" || post.contentType === "PDF") && (
+          <div className="flex h-full w-full flex-col items-center justify-center gap-2 overflow-hidden p-2 text-zinc-100">
+            <div className="flex flex-col items-center justify-center gap-2 p-3 text-center text-zinc-400 transition duration-300 group-hover:text-zinc-100">
+              {post.contentType === "PDF" ? (
+                <File className="fill-amber-400 text-amber-400 transition group-hover:fill-amber-500 group-hover:text-amber-500 md:h-10 md:w-10" />
+              ) : (
+                <Pen className="fill-blue-400 text-blue-400 transition group-hover:fill-blue-500 group-hover:text-blue-500 md:h-10 md:w-10" />
+              )}
+              <p className="text-lg md:text-xl lg:hidden">
+                {post.title.length > 24
+                  ? post.title.slice(0, 24) + "..."
+                  : post.title}
+              </p>{" "}
+              <p className="text-lg max-lg:hidden md:text-xl lg:block">
+                {post.title.length > 50
+                  ? post.title.slice(0, 50) + "..."
+                  : post.title}
+              </p>{" "}
+              <span className="text-sm">Click to Expand</span>
+              <span className="text-sm">{post.user?.name || "Anonymous"}</span>
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </button>
   );
 };
