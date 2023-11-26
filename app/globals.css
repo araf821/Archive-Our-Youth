@@ -366,7 +366,8 @@
   @apply text-zinc-100;
 }
 
-.cl-headerSubtitle {
+.cl-headerSubtitle,
+.cl-formFieldSuccessText {
   @apply text-zinc-400;
 }
 

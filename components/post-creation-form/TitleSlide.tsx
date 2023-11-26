@@ -1,9 +1,9 @@
-import { PostCreationForm } from "@/lib/types/form";
+import { TPostCreationForm } from "@/lib/types/form";
 import { FC } from "react";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
 
 interface TitleSlideProps {
-  form: PostCreationForm;
+  form: TPostCreationForm;
 }
 
 const TitleSlide: FC<TitleSlideProps> = ({ form }) => {

@@ -34,7 +34,7 @@ const ShareModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-zinc-900 border-zinc-800 px-4 py-4 outline-none">
+      <DialogContent className="max-w-md bg-zinc-900 sm:px-4 border-zinc-800 px-4 py-4 outline-none">
         <DialogHeader>
           <DialogTitle className="text-xl text-zinc-100 md:text-2xl">
             Share this post

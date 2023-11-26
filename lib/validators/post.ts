@@ -17,20 +17,15 @@ export const PostCreationValidator = z.object({
     ContentType.AUDIO,
     ContentType.PDF,
   ]),
-  content: z
+  content: z.string().min(5).max(2000),
+  thumbnail: z
     .string()
-    .min(5, {
-      message: "Content must be between 5 and 2000 characters in length.",
-    })
-    .max(2000, {
-      message: "Content must be between 5 and 2000 characters in length.",
-    }),
-  description: z
-    .string()
-    .max(2000, {
-      message: "Description must be less than 2000 characters in length",
+    .max(512, {
+      message:
+        "Sorry, this image cannot be uploaded. Link character limit exceeded.",
     })
     .optional(),
+  description: z.string().max(2000).optional(),
   tags: z
     .string()
     .array()

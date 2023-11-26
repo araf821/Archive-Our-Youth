@@ -46,6 +46,7 @@ model Post {
   likes       Int      @default(0)
 
   contentType ContentType
+  thumbnail   String?
   postContent String
 
   createdAt DateTime @default(now())

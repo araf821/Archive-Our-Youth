@@ -1,4 +1,4 @@
-import { PostCreationForm } from "@/lib/types/form";
+import { TPostCreationForm } from "@/lib/types/form";
 import { RefreshCcw, X } from "lucide-react";
 import { FC } from "react";
 import {
@@ -12,7 +12,7 @@ import MultiSelect from "../MultiSelect";
 import { cn } from "@/lib/utils";
 
 interface TagSelectionSlideProps {
-  form: PostCreationForm;
+  form: TPostCreationForm;
 }
 
 const TagSelectionSlide: FC<TagSelectionSlideProps> = ({ form }) => {

@@ -1,9 +1,8 @@
-import { PostCreationForm } from "@/lib/types/form";
+import { TPostCreationForm } from "@/lib/types/form";
 import { ChangeEvent, FC, useState } from "react";
-import { UseFormReturn } from "react-hook-form";
 
 interface ResearchQuestionsProps {
-  form: PostCreationForm;
+  form: TPostCreationForm;
 }
 
 const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {

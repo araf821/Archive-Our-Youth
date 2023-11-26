@@ -38,9 +38,10 @@ enum STEPS {
   TYPE = 2,
   TITLE = 3,
   CONTENT = 4,
-  DESCRIPTION = 5,
-  TAGS = 6,
-  CONFIRM = 7,
+  THUMBNAIL = 5,
+  DESCRIPTION = 6,
+  TAGS = 7,
+  CONFIRM = 8,
 }
 
 const PostCreationForm = () => {
@@ -58,9 +59,11 @@ const PostCreationForm = () => {
       title: "",
       contentType: "TEXT",
       content: "",
+      thumbnail: "",
       description: "",
       tags: [],
       researchQuestions: [],
+      location: "",
     },
   });
 
@@ -70,16 +73,22 @@ const PostCreationForm = () => {
 
   const onNext = () => {
     setStep((currentStep) => {
-      if (contentType === "TEXT" && currentStep === STEPS.CONTENT) {
+      if (contentType === "TEXT" && currentStep === STEPS.THUMBNAIL) {
         return currentStep + 2;
       }
-      return Math.min(currentStep + 1, 7);
+      if (contentType === "IMAGE" && currentStep == STEPS.CONTENT) {
+        return currentStep + 2;
+      }
+      return Math.min(currentStep + 1, 8);
     });
   };
 
   const onBack = () => {
     setStep((currentStep) => {
       if (contentType === "TEXT" && currentStep === STEPS.TAGS) {
+        return currentStep - 2;
+      }
+      if (contentType === "IMAGE" && currentStep == STEPS.DESCRIPTION) {
         return currentStep - 2;
       }
       return Math.max(currentStep - 1, 0);

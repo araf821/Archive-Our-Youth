@@ -1,4 +1,4 @@
-import { PostCreationForm } from "@/lib/types/form";
+import { TPostCreationForm } from "@/lib/types/form";
 import { FC, useState } from "react";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
 import { Button } from "../ui/Button";
@@ -7,7 +7,7 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { ExternalLink } from "lucide-react";
 
 interface DescriptionSlideProps {
-  form: PostCreationForm;
+  form: TPostCreationForm;
 }
 
 const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
@@ -80,9 +80,9 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
             <a
               href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
               target="_blank"
-              className="flex w-fit items-center gap-1 text-zinc-400 underline underline-offset-2 transition duration-200 hover:text-blue-500"
+              className="flex w-fit items-center gap-1 text-zinc-400 transition duration-200 hover:text-blue-500"
             >
-              *Markdown is supported!
+              Markdown is supported!
               <ExternalLink className="h-4 w-4" />
             </a>
             <FormMessage />

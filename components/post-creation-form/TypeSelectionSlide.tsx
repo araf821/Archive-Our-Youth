@@ -1,13 +1,13 @@
 "use client";
 
-import { PostCreationForm } from "@/lib/types/form";
+import { TPostCreationForm } from "@/lib/types/form";
 import { FC } from "react";
 import { FormControl, FormField, FormItem } from "../ui/Form";
 import { cn } from "@/lib/utils";
 import { ContentType } from "@prisma/client";
 
 interface TypeSelectionSlideProps {
-  form: PostCreationForm;
+  form: TPostCreationForm;
   handleTypeChange: (type: ContentType) => void;
   nextStep: () => void;
 }
