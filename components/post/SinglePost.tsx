@@ -11,6 +11,10 @@ import Tag from "../Tag";
 import PDFViewer from "../PDFViewer";
 import Link from "next/link";
 import AnonymousPostInfo from "../AnonymousPostInfo";
+import { cn } from "@/lib/utils";
+import { openSans } from "@/app/fonts";
+import { Button, buttonVariants } from "../ui/Button";
+import { Edit2 } from "lucide-react";
 
 interface SinglePostProps {
   currentUser: User | null;
@@ -18,20 +22,26 @@ interface SinglePostProps {
 }
 
 const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
-
   return (
     <section className="mb-8 mt-28 flex flex-col gap-6 px-4">
-      <BackButton />
+      <div className="flex items-center justify-between">
+        <BackButton />
+        {post.userId === currentUser?.id && (
+          <Link
+            href={`/post/${post.slug}/edit`}
+            className={cn(buttonVariants({ variant: "outline" }))}
+          >
+            Edit Post
+            <Edit2 className="ml-2 h-4 w-4" />
+          </Link>
+        )}
+      </div>
 
       {post.contentType === "IMAGE" && <DynamicImage src={post.postContent} />}
 
       {post.contentType === "VIDEO" && (
         <div className="relative my-4 aspect-video w-full overflow-hidden">
-          <video
-            src={post.postContent}
-            className="h-full w-full"
-            controls
-          />
+          <video src={post.postContent} className="h-full w-full" controls />
         </div>
       )}
 
@@ -60,10 +70,6 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         <p className="break-words text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
           {post.title}
         </p>
-
-        {/* {post.contentType !== "VIDEO" && post.thumbnail && (
-          <DynamicImage src={post.thumbnail} classNames="my-0" />
-        )} */}
 
         {(post.contentType === "TEXT" || post.contentType === "PDF") && (
           <div className="flex w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">
@@ -147,23 +153,23 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
             post.contentType !== "TEXT" && !post.description && "hidden"
           }`}
         >
-          {post.contentType !== "TEXT" && (
-            <p className="mb-4 text-sm font-semibold text-zinc-400">
-              DESCRIPTION
-            </p>
-          )}
-          <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+          <ReactMarkdown
+            className={cn(
+              "prose-sm h-full max-w-full overflow-y-auto break-words rounded-md text-start tracking-wide text-zinc-50 md:prose-base xl:prose-lg prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md",
+              openSans.className,
+            )}
+          >
             {post.contentType === "TEXT" ? post.postContent : post.description}
           </ReactMarkdown>
-          <hr className="mt-4 border-zinc-700" />
         </div>
-      </div>
 
-      <ul className="flex flex-wrap gap-2">
-        {post.tags.map((tag, index) => (
-          <Tag tag={tag} key={tag} index={index} />
-        ))}
-      </ul>
+        <hr className="border-zinc-700" />
+        <ul className="flex flex-wrap gap-2">
+          {post.tags.map((tag, index) => (
+            <Tag tag={tag} key={tag} index={index} />
+          ))}
+        </ul>
+      </div>
 
       {/* Comments */}
       <section className="flex flex-col gap-2">

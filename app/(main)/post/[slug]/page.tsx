@@ -3,7 +3,6 @@ import PageTransitionContainer from "@/components/PageTransitionContainer";
 import SinglePost from "@/components/post/SinglePost";
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
-import { notFound } from "next/navigation";
 import { FC } from "react";
 
 interface SinglePostPageParams {
