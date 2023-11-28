@@ -17,29 +17,28 @@ import { ExternalLink, RefreshCcw, X } from "lucide-react";
 import MultiSelect from "../MultiSelect";
 import { allTags } from "../post-creation-form/TagSelectionSlide";
 import { z } from "zod";
+import { PostEditValidator } from "@/lib/validators/post";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface EditPostProps {
   post: Post;
 }
 
-const formSchema = z.object({
-  content: z.string().min(3).max(2048),
-  tags: z.string().array().min(1),
-});
-
 const EditPost: FC<EditPostProps> = ({ post }) => {
   const [preview, setPreview] = useState(false);
 
   const form = useForm({
+    resolver: zodResolver(PostEditValidator),
     defaultValues: {
       content: post.postContent,
       tags: post.tags,
+      description: post.description,
     },
   });
 
   const tags = form.watch("tags");
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: z.infer<typeof PostEditValidator>) => {
     console.log(values);
   };
 
@@ -121,7 +120,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                     <a
                       href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
                       target="_blank"
-                      className="flex w-fit items-center gap-1 text-zinc-400 transition duration-200 hover:text-blue-500"
+                      className="flex w-fit items-center gap-1 text-xs text-zinc-400 transition duration-200 hover:text-blue-500 sm:text-sm"
                     >
                       Markdown is supported!
                       <ExternalLink className="h-4 w-4" />
@@ -133,11 +132,90 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
             </div>
           )}
 
+          {post.contentType !== "TEXT" && (
+            <div>
+              <p className="mt-6 text-zinc-400 max-sm:text-sm">DESCRIPTION</p>
+              <FormField
+                name="description"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className="mt-2">
+                    <div className="mx-auto space-x-2">
+                      <Button
+                        type="button"
+                        size="sm"
+                        onClick={() => setPreview(false)}
+                        className={cn(
+                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                          {
+                            "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
+                              !preview,
+                          },
+                        )}
+                      >
+                        Write
+                      </Button>
+                      <Button
+                        type="button"
+                        size="sm"
+                        onClick={() => {
+                          if (form.getValues().content) {
+                            setPreview(true);
+                          }
+                        }}
+                        className={cn(
+                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                          {
+                            "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
+                              preview,
+                          },
+                        )}
+                      >
+                        Preview
+                      </Button>
+                    </div>
+                    <FormControl className="w-full">
+                      {preview ? (
+                        form.getValues().content ? (
+                          <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                            {form.getValues().content}
+                          </ReactMarkdown>
+                        ) : (
+                          <p className="grid h-96 place-items-center">
+                            Nothing to preview
+                          </p>
+                        )
+                      ) : (
+                        <textarea
+                          {...field}
+                          placeholder="Optional description for your post..."
+                          className="h-[400px] resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
+                        />
+                      )}
+                    </FormControl>
+                    <a
+                      href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
+                      target="_blank"
+                      className="flex w-fit items-center gap-1 text-xs text-zinc-400 transition duration-200 hover:text-blue-500 sm:text-sm"
+                    >
+                      Markdown is supported!
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          )}
+
+          <hr className="mt-4 border-zinc-700" />
+
           <FormField
             control={form.control}
             name="tags"
             render={() => (
-              <FormItem className="mt-6 w-full space-y-4">
+              <FormItem className="mt-6 w-full">
+                <p className="text-zinc-400 max-md:text-sm">TAGS</p>
                 <FormControl>
                   <MultiSelect
                     maxSelection={8}
@@ -149,7 +227,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                   />
                 </FormControl>
                 {tags.length < 1 && <FormMessage />}
-                <ul className="flex flex-wrap gap-4 text-white">
+                <ul className="flex flex-wrap gap-4 pt-2 text-white">
                   {form.getValues().tags.map((tag, index) => (
                     <li
                       key={tag}
@@ -189,7 +267,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                     <button
                       type="button"
                       onClick={() => form.setValue("tags", [])}
-                      className="flex w-fit items-center gap-2 rounded-sm px-3 py-2 text-white transition hover:bg-zinc-800 max-md:text-sm md:text-base"
+                      className="flex w-fit items-center gap-2 rounded-sm bg-zinc-800 px-3 py-2 text-white transition hover:bg-zinc-700 max-md:text-sm md:text-base"
                     >
                       Reset
                       <RefreshCcw size={16} />

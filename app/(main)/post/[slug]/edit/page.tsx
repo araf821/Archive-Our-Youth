@@ -44,12 +44,12 @@ const page: FC<pageProps> = async ({ params }) => {
   }
 
   return (
-    <div className="mx-auto pb-12 mt-28 max-w-screen-md px-4 text-zinc-50 sm:px-8">
+    <div className="mx-auto pb-16 mt-28 max-w-screen-md px-4 text-zinc-50 sm:px-8">
       <BackButton />
 
       <div
         className={cn(
-          "mt-6 flex w-full items-center rounded-lg border border-amber-500 min-h-[70px] h-full text-amber-500 md:text-lg",
+          "mt-8 flex w-full items-center rounded-lg border border-amber-500 min-h-[70px] h-full text-amber-500 md:text-lg",
         )}
       >
         <div className="px-4">
