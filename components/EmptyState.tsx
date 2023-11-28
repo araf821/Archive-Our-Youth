@@ -1,3 +1,4 @@
+import { openSans } from "@/app/fonts";
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";
@@ -27,9 +28,16 @@ const EmptyState: FC<EmptyStateProps> = ({
         classNames,
       )}
     >
-      <div className="m-4 flex w-full max-w-screen-sm flex-col gap-4 rounded-md border-2 border-zinc-800 px-4 py-8">
-        <p className="text-4xl font-bold text-white">{title}</p>
-        <p className="text-lg font-light text-zinc-400">{description}</p>
+      <div className="m-4 flex w-full max-w-screen-sm flex-col gap-4 rounded-md border-2 border-amber-500 px-4 py-8">
+        <p className="text-4xl font-semibold text-amber-500 max-md:text-3xl">
+          {title}
+        </p>
+        {description && (
+          <p className="font balance text-amber-500/75 md:text-lg">
+            {description}
+          </p>
+        )}
+
         {link && (
           <Link
             href={link.route}
