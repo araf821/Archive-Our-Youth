@@ -27,7 +27,12 @@ const VideoItem: FC<VideoItemProps> = ({ post, onClick, clicked, onClose }) => {
         <>
           <div className="absolute inset-0">
             <div className="relative aspect-square">
-              <Image src={post.thumbnail} alt="post thumbnail" fill />
+              <Image
+                src={post.thumbnail}
+                alt="post thumbnail"
+                className="object-cover"
+                fill
+              />
             </div>
           </div>
           <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/75 px-1.5 py-0.5 text-zinc-200 max-md:text-sm">

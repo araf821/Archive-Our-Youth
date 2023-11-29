@@ -24,7 +24,12 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post, clicked, onClose }) => {
       {post.thumbnail && (
         <div className="absolute inset-0">
           <div className="relative aspect-square">
-            <Image src={post.thumbnail} alt="post thumbnail" fill />
+            <Image
+              src={post.thumbnail}
+              alt="post thumbnail"
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
       )}

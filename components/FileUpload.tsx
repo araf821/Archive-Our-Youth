@@ -24,7 +24,7 @@ const FileUpload: FC<FileUploadProps> = ({
   classNames,
 }) => {
   if (value) {
-    if (endPoint === "image") {
+    if (endPoint === "image" || endPoint === "thumbnail") {
       return (
         <div className="relative aspect-square h-full w-full max-w-[400px] bg-zinc-800">
           <Image

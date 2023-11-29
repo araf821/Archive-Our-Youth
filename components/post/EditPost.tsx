@@ -20,6 +20,9 @@ import { z } from "zod";
 import { PostEditValidator } from "@/lib/validators/post";
 import { zodResolver } from "@hookform/resolvers/zod";
 import FileUpload from "../FileUpload";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 interface EditPostProps {
   post: Post;
@@ -27,6 +30,8 @@ interface EditPostProps {
 
 const EditPost: FC<EditPostProps> = ({ post }) => {
   const [preview, setPreview] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(PostEditValidator),
@@ -40,8 +45,18 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
 
   const tags = form.watch("tags");
 
-  const onSubmit = (values: z.infer<typeof PostEditValidator>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof PostEditValidator>) => {
+    try {
+      setIsLoading(true);
+      await axios.put(`/api/post/${post.id}`, values);
+      toast.success("Post updated successfully!");
+      router.push(`/post/${post.slug}`);
+    } catch (error) {
+      toast.error("Something went wrong.");
+      console.log("Post update error", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -158,9 +173,10 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
             </div>
           )}
 
+          {/* -------------------- AUDIO CONTENT ----------------------- */}
           {post.contentType === "AUDIO" && (
             <div>
-              <p className="text-zinc-400 pb-1 max-sm:text-sm">AUDIO</p>
+              <p className="pb-1 text-zinc-400 max-sm:text-sm">AUDIO</p>
               <FormField
                 name="content"
                 control={form.control}
@@ -170,6 +186,52 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                       <FileUpload
                         classNames="aspect-square"
                         endPoint="audio"
+                        onChange={field.onChange}
+                        value={field.value}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+          )}
+
+          {/* -------------------- VIDEO CONTENT ----------------------- */}
+          {post.contentType === "VIDEO" && (
+            <div>
+              <p className="text-zinc-400 max-sm:text-sm">VIDEO</p>
+              <FormField
+                name="content"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className="">
+                    <FormControl>
+                      <FileUpload
+                        classNames="aspect-video"
+                        endPoint="video"
+                        onChange={field.onChange}
+                        value={field.value}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+          )}
+
+          {/* -------------------- PDF CONTENT ----------------------- */}
+          {post.contentType === "PDF" && (
+            <div>
+              <p className="text-zinc-400 max-sm:text-sm">VIDEO</p>
+              <FormField
+                name="content"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className="">
+                    <FormControl>
+                      <FileUpload
+                        classNames="aspect-[3/4]"
+                        endPoint="pdf"
                         onChange={field.onChange}
                         value={field.value}
                       />
@@ -346,10 +408,14 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
           </div>
 
           <div className="mt-6 flex items-center gap-4">
-            <Button type="button" className="bg-zinc-800 hover:bg-zinc-700">
+            <Button
+              type="button"
+              disabled={isLoading}
+              className="bg-zinc-800 hover:bg-zinc-700"
+            >
               Cancel
             </Button>
-            <Button type="submit" variant="outline">
+            <Button type="submit" disabled={isLoading} variant="outline">
               Confirm Changes
             </Button>
           </div>
