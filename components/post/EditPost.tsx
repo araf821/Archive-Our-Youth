@@ -74,7 +74,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
       <Form {...form}>
         <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
           {/* -------------------- THUMBNAIL ----------------------- */}
-          {post.contentType !== "TEXT" && (
+          {post.contentType !== "IMAGE" && (
             <div>
               <p className="text-zinc-400 max-sm:text-sm">THUMBNAIL</p>
               <FormField
