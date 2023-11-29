@@ -56,7 +56,7 @@ const SubmitAuthModal = () => {
         </p>
         <button
           onClick={() => {
-            router.push("/sign-in");
+            router.push("/sign-up");
           }}
           className="mb-2 rounded-sm border border-white py-1.5 text-center text-lg font-semibold text-white transition duration-200 hover:shadow-[inset_0_0_10px] hover:shadow-white/60"
         >

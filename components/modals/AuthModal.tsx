@@ -1,44 +1,57 @@
 "use client";
 
 import { useModal } from "@/hooks/useModal";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/Dialog";
 import {
-  RedirectToSignIn,
-  SignInButton,
-  redirectToSignIn,
-} from "@clerk/nextjs";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/Dialog";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { X } from "lucide-react";
 
 const AuthModal = () => {
   const { onClose, type, isOpen } = useModal();
+  const router = useRouter();
 
   const isModalOpen = isOpen && type === "authModal";
+
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-zinc-800 px-4 py-8 outline-none">
+      <DialogContent className="max-w-md bg-zinc-900 p-4 outline-none md:py-6">
+        <DialogTrigger className="absolute right-4 top-4">
+          <X className="text-zinc-400 transition hover:rotate-90 hover:text-zinc-200" />
+        </DialogTrigger>
         <DialogHeader>
-          <p className="text-center text-zinc-400">
-            You&apos;re not logged in.
+          <p className="text-xl font-semibold text-zinc-100 md:text-2xl">
+            You&rsquo;re not logged in.
           </p>
-          <DialogTitle className="text-center text-2xl text-zinc-100">
-            Welcome back to Archive Our Youth
-          </DialogTitle>
         </DialogHeader>
 
-        <Link
-          href={"sign-in"}
-          className="w-full rounded-sm bg-rose-500 py-1.5 text-center font-semibold transition hover:bg-opacity-80 md:text-lg"
+        <hr className="border-zinc-700" />
+        <button
+          onClick={() => {
+            router.push("/sign-in");
+          }}
+          className="mt-1 w-full rounded-sm bg-green-500 py-1.5 text-center font-semibold text-zinc-950 transition duration-200 hover:bg-green-600 md:text-lg"
         >
           Sign In
-        </Link>
-        <hr className="border-zinc-700" />
-        <p className="text-center text-zinc-400">New to the Archive?</p>
-        <Link
-          href="/sign-up"
-          className="rounded-sm border border-white py-1.5 text-center text-lg font-semibold text-white transition hover:bg-white hover:text-black"
+        </button>
+        <hr className="border-zinc-800" />
+
+        <p className="text-center font-semibold text-zinc-300 md:text-lg">
+          New to the Archive?
+        </p>
+        <button
+          onClick={() => {
+            router.push("/sign-up");
+          }}
+          className="mb-2 rounded-sm border border-white py-1.5 text-center text-lg font-semibold text-white transition duration-200 hover:shadow-[inset_0_0_10px] hover:shadow-white/60"
         >
-          Sign Up
-        </Link>
+          Create New Account
+        </button>
       </DialogContent>
     </Dialog>
   );

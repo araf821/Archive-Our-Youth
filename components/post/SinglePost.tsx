@@ -161,6 +161,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
           >
             {post.contentType === "TEXT" ? post.postContent : post.description}
           </ReactMarkdown>
+          <hr className="mt-4 mb-2 border-zinc-800" />
         </div>
 
         {/* <hr className="border-zinc-700" /> */}
