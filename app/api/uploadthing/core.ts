@@ -9,6 +9,12 @@ export const ourFileRouter = {
     })
     .onUploadComplete(() => {}),
 
+  thumbnail: f({ image: { maxFileSize: "2MB", maxFileCount: 1 } })
+    .onUploadError(() => {
+      return;
+    })
+    .onUploadComplete(() => {}),
+
   video: f({
     video: { maxFileSize: "32MB", maxFileCount: 1 },
   })

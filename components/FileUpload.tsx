@@ -11,7 +11,7 @@ import Link from "next/link";
 import PDFViewer from "./PDFViewer";
 
 interface FileUploadProps {
-  endPoint: "audio" | "image" | "pdf" | "video";
+  endPoint: "audio" | "image" | "pdf" | "video" | "thumbnail";
   onChange: (url?: string) => void;
   value: string;
   classNames?: string;

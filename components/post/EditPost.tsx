@@ -19,6 +19,7 @@ import { allTags } from "../post-creation-form/TagSelectionSlide";
 import { z } from "zod";
 import { PostEditValidator } from "@/lib/validators/post";
 import { zodResolver } from "@hookform/resolvers/zod";
+import FileUpload from "../FileUpload";
 
 interface EditPostProps {
   post: Post;
@@ -33,6 +34,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
       content: post.postContent,
       tags: post.tags,
       description: post.description,
+      thumbnail: post.thumbnail || "",
     },
   });
 
@@ -55,7 +57,31 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+          {/* -------------------- THUMBNAIL ----------------------- */}
+          {post.contentType !== "TEXT" && (
+            <div>
+              <p className="text-zinc-400 max-sm:text-sm">THUMBNAIL</p>
+              <FormField
+                name="thumbnail"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className="">
+                    <FormControl>
+                      <FileUpload
+                        classNames="aspect-square max-sm:max-w-[250px] max-w-[300px]"
+                        endPoint="thumbnail"
+                        onChange={field.onChange}
+                        value={field.value}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+          )}
+
+          {/* -------------------- TEXT CONTENT ----------------------- */}
           {post.contentType === "TEXT" && (
             <div>
               <p className="text-zinc-400 max-sm:text-sm">CONTENT</p>
@@ -132,9 +158,32 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
             </div>
           )}
 
+          {post.contentType === "AUDIO" && (
+            <div>
+              <p className="text-zinc-400 pb-1 max-sm:text-sm">AUDIO</p>
+              <FormField
+                name="content"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className="">
+                    <FormControl>
+                      <FileUpload
+                        classNames="aspect-square"
+                        endPoint="audio"
+                        onChange={field.onChange}
+                        value={field.value}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+          )}
+
+          {/* -------------------- DESCRIPTION ----------------------- */}
           {post.contentType !== "TEXT" && (
             <div>
-              <p className="mt-6 text-zinc-400 max-sm:text-sm">DESCRIPTION</p>
+              <p className="text-zinc-400 max-sm:text-sm">DESCRIPTION</p>
               <FormField
                 name="description"
                 control={form.control}
@@ -176,13 +225,13 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                     </div>
                     <FormControl className="w-full">
                       {preview ? (
-                        form.getValues().content ? (
+                        form.getValues().description ? (
                           <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
-                            {form.getValues().content}
+                            {form.getValues().description}
                           </ReactMarkdown>
                         ) : (
-                          <p className="grid h-96 place-items-center">
-                            Nothing to preview
+                          <p className="grid h-96 place-items-center text-zinc-400">
+                            Nothing to preview yet
                           </p>
                         )
                       ) : (
@@ -279,13 +328,20 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
           />
 
           <div className="mt-6 border-y border-zinc-700">
-            <p className="py-4">
-              flex w-fit items-center gap-2 rounded-sm px-3 py-2 text-white
-              transition hover:bg-zinc-800 max-md:text-sm md:text-base flex
-              w-fit items-center gap-2 rounded-sm px-3 py-2 text-white
-              transition hover:bg-zinc-800 max-md:text-sm md:text-base flex
-              w-fit items-center gap-2 rounded-sm px-3 py-2 text-white
-              transition hover:bg-zinc-800 max-md:text-sm md:text-base
+            <p className="py-4 text-neutral-400 max-md:text-sm">
+              Note: Some fields on this form are intentionally non-editable to
+              prevent misuse or unintended alterations. If you require changes
+              to information not available for editing on this form, please
+              contact us at{" "}
+              <a
+                className="text-blue-400 underline"
+                href="mailto:dmacd@yorku.ca"
+              >
+                dmacd@yorku.ca
+              </a>{" "}
+              with the details of the requested modifications. We appreciate
+              your understanding and cooperation in maintaining the accuracy and
+              integrity of our data.
             </p>
           </div>
 

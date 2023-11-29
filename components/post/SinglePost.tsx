@@ -13,7 +13,7 @@ import Link from "next/link";
 import AnonymousPostInfo from "../AnonymousPostInfo";
 import { cn } from "@/lib/utils";
 import { openSans } from "@/app/fonts";
-import { Button, buttonVariants } from "../ui/Button";
+import { buttonVariants } from "../ui/Button";
 import { Edit2 } from "lucide-react";
 
 interface SinglePostProps {
@@ -26,7 +26,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
     <section className="mb-8 mt-28 flex flex-col gap-6 px-4">
       <div className="flex items-center justify-between">
         <BackButton />
-        {/* {post.userId === currentUser?.id && (
+        {post.userId === currentUser?.id && (
           <Link
             href={`/post/${post.slug}/edit`}
             className={cn(buttonVariants({ variant: "outline" }))}
@@ -34,7 +34,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
             Edit Post
             <Edit2 className="ml-2 h-4 w-4" />
           </Link>
-        )} */}
+        )}
       </div>
 
       {post.contentType === "IMAGE" && <DynamicImage src={post.postContent} />}

@@ -43,4 +43,11 @@ export const PostEditValidator = z.object({
     .array()
     .min(1, { message: "At least one tag is required." })
     .max(8, { message: "You can only choose up to 8 tags." }),
+  thumbnail: z
+    .string()
+    .max(512, {
+      message:
+        "Sorry, this image cannot be uploaded. Link character limit exceeded.",
+    })
+    .optional(),
 });
