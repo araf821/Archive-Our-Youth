@@ -40,7 +40,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
       {post.contentType === "IMAGE" && <DynamicImage src={post.postContent} />}
 
       {post.contentType === "VIDEO" && (
-        <div className="relative my-4 aspect-video w-full overflow-hidden">
+        <div className="relative my-4 border border-zinc-800 aspect-video w-full overflow-hidden">
           <video src={post.postContent} className="h-full w-full" controls />
         </div>
       )}

@@ -41,7 +41,7 @@ const AuthModal = () => {
         </button>
         <hr className="border-zinc-800" />
 
-        <p className="text-center font-semibold text-zinc-300 md:text-lg">
+        <p className="text-center font-semibold text-zinc-300 max-md:text-sm">
           New to the Archive?
         </p>
         <button

@@ -51,7 +51,7 @@ const SubmitAuthModal = () => {
         </p>
         <hr className="border-zinc-700" />
 
-        <p className="text-center font-semibold text-zinc-200 md:text-lg">
+        <p className="text-center font-semibold text-zinc-200 max-md:text-sm">
           New to the Archive?
         </p>
         <button

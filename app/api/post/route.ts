@@ -35,7 +35,9 @@ export async function POST(req: Request) {
             lower: true,
             replacement: "-",
             remove: /[:]/g,
-          }) + nanoid(5),
+          }) +
+          "-" +
+          nanoid(5),
         researchQuestions,
       },
     });

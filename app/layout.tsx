@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     "Explore a global showcase of written, visual, and vocal artistry on Archive Our Youth. Join creators from around the world as they share their talents. Discover captivating stories, striking visuals, and powerful voices. Welcome to a diverse community of creativity.",
   icons: [
     {
-      url: "/ylrl-logo.svg",
-      href: "/ylrl-logo.svg",
+      url: "/aoy.svg",
+      href: "/aoy.svg",
     },
   ],
 };
