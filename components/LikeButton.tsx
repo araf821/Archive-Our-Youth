@@ -59,10 +59,10 @@ const LikeButton: FC<LikeButtonProps> = ({
     <button
       disabled={isLoading}
       onClick={handleClick}
-      className="flex items-center gap-1.5 text-zinc-400 outline-white transition hover:text-zinc-100 focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-75"
+      className="flex items-center gap-1.5 text-zinc-400 outline-white transition hover:text-zinc-100 focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-75 max-md:text-sm"
     >
       <Heart
-        className={cn("h-5 w-5", {
+        className={cn("h-4 w-4 md:h-5 md:w-5", {
           "fill-rose-500 text-rose-500": liked,
         })}
       />{" "}

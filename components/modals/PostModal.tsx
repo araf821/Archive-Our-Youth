@@ -71,14 +71,14 @@ const PostModal = () => {
                   : ""
               }`}
             >
-              <div className="flex w-full justify-between gap-1.5 rounded-md bg-zinc-800 px-2 py-1.5 max-sm:flex-col">
+              <div className="flex w-full justify-between gap-1.5 rounded-md bg-zinc-800 px-2 py-1.5">
                 <LikeButton
                   postId={post.id}
                   likes={post.likes}
                   currentUser={data.currentUser}
                   modal={true}
                 />
-                <p className="text-zinc-400">
+                <p className="text-zinc-400 max-md:text-sm">
                   {post.user
                     ? `Posted by ${post.user.name}`
                     : "Posted Anonymously"}

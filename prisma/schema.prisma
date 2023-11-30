@@ -48,6 +48,7 @@ model Post {
   contentType ContentType
   thumbnail   String?
   postContent String
+  location    String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

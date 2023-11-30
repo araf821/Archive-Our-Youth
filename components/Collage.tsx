@@ -10,19 +10,18 @@ interface CollageProps {
   keyword?: string;
   sortBy?: string;
   tags?: string;
-  countries?: string;
+  country?: string;
 }
 
 const Collage: FC<CollageProps> = async ({
   keyword,
-  countries,
+  country,
   sortBy,
   tags,
 }) => {
   const currentUser = await getCurrentUser();
   let orderBy: any = { createdAt: "desc" };
   const tagsArray = tags ? tags.split(",") : [];
-  const countriesArray = countries ? countries.split(",") : [];
 
   switch (sortBy) {
     case "most-popular":
@@ -52,6 +51,14 @@ const Collage: FC<CollageProps> = async ({
               ? {
                   title: {
                     contains: keyword,
+                    mode: "insensitive",
+                  },
+                }
+              : {},
+            country
+              ? {
+                  location: {
+                    equals: country,
                     mode: "insensitive",
                   },
                 }

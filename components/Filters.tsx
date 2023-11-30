@@ -67,9 +67,11 @@ const Filters: FC<FiltersProps> = ({}) => {
   });
 
   const tags = form.watch("tags");
-  const countries = form.watch("location");
+  const country = form.watch("location");
 
   const handleSearch = (values: z.infer<typeof formSchema>) => {
+    console.log(values);
+
     let currentQuery = {};
 
     if (searchParams) {
@@ -81,6 +83,7 @@ const Filters: FC<FiltersProps> = ({}) => {
       keyword: values.keyword || null,
       sortBy: values.sortBy || null,
       tags: values.tags.length ? values.tags.join(",") : null,
+      country: values.location || null,
     };
 
     const url = qs.stringifyUrl(
@@ -229,64 +232,35 @@ const Filters: FC<FiltersProps> = ({}) => {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Find By Country</FormLabel>
+                  <FormLabel>Country</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger className="border-none bg-zinc-800 py-5 text-zinc-100 outline-none">
-                        <SelectValue placeholder="Sort by..." />
+                        <SelectValue
+                          className="placeholder-zinc-400"
+                          placeholder="Select a country"
+                        />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent className="max-h-[400px] rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
-                      {allCountries.map((country) => (
+                      {allCountries.map((c) => (
                         <SelectItem
-                          className={cn("py-3 focus:bg-zinc-700 hover:bg-zinc-700", {
-                            "bg-zinc-900 focus:bg-zinc-900":
-                              form.getValues().location ===
-                              country.toLowerCase(),
-                          })}
-                          key={country}
-                          value={country.toLowerCase()}
+                          className={cn(
+                            "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
+                            {
+                              "bg-zinc-900 focus:bg-zinc-900":
+                                country === c.toLowerCase(),
+                            },
+                          )}
+                          key={c}
+                          value={c.toLowerCase()}
                         >
-                          {country}
+                          {c}
                         </SelectItem>
                       ))}
-                      {/* <SelectItem
-                        className={cn("py-3 hover:bg-zinc-700", {
-                          "bg-zinc-900": form.getValues().sortBy === "latest",
-                        })}
-                        value="latest"
-                      >
-                        Latest Posts
-                      </SelectItem>
-                      <SelectItem
-                        className={cn("py-2 hover:bg-zinc-700", {
-                          "bg-zinc-900": form.getValues().sortBy === "oldest",
-                        })}
-                        value="oldest"
-                      >
-                        Oldest Posts
-                      </SelectItem>
-                      <SelectItem
-                        className={cn("py-2 hover:bg-zinc-700", {
-                          "bg-zinc-900":
-                            form.getValues().sortBy === "most-popular",
-                        })}
-                        value="most-popular"
-                      >
-                        Most Popular
-                      </SelectItem>
-                      <SelectItem
-                        className={cn("py-2 hover:bg-zinc-700", {
-                          "bg-zinc-900":
-                            form.getValues().sortBy === "least-popular",
-                        })}
-                        value="least-popular"
-                      >
-                        Least Popular
-                      </SelectItem> */}
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -328,7 +302,7 @@ const allCountries = [
   "Andorra",
   "Angola",
   "Anguilla",
-  "Antigua &amp; Barbuda",
+  "Antigua & Barbuda",
   "Argentina",
   "Armenia",
   "Aruba",
@@ -346,7 +320,7 @@ const allCountries = [
   "Bermuda",
   "Bhutan",
   "Bolivia",
-  "Bosnia &amp; Herzegovina",
+  "Bosnia & Herzegovina",
   "Botswana",
   "Brazil",
   "British Virgin Islands",
@@ -356,6 +330,7 @@ const allCountries = [
   "Burundi",
   "Cambodia",
   "Cameroon",
+  "Canada",
   "Cape Verde",
   "Cayman Islands",
   "Chad",
@@ -477,7 +452,7 @@ const allCountries = [
   "Romania",
   "Russia",
   "Rwanda",
-  "Saint Pierre &amp; Miquelon",
+  "Saint Pierre & Miquelon",
   "Samoa",
   "San Marino",
   "Satellite",
@@ -493,7 +468,7 @@ const allCountries = [
   "South Korea",
   "Spain",
   "Sri Lanka",
-  "St Kitts &amp; Nevis",
+  "St Kitts & Nevis",
   "St Lucia",
   "St Vincent",
   "St. Lucia",
@@ -510,11 +485,11 @@ const allCountries = [
   "Timor L'Este",
   "Togo",
   "Tonga",
-  "Trinidad &amp; Tobago",
+  "Trinidad & Tobago",
   "Tunisia",
   "Turkey",
   "Turkmenistan",
-  "Turks &amp; Caicos",
+  "Turks & Caicos",
   "Uganda",
   "Ukraine",
   "United Arab Emirates",

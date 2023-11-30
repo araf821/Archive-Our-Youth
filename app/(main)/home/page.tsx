@@ -9,7 +9,12 @@ export const metadata: Metadata = {
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { keyword?: string; sortBy?: string; tags?: string[] };
+  searchParams: {
+    keyword?: string;
+    sortBy?: string;
+    tags?: string;
+    country?: string;
+  };
 }) {
   await initializeUser();
 
@@ -19,6 +24,7 @@ export default async function Home({
         keyword={searchParams.keyword}
         sortBy={searchParams.sortBy}
         tags={searchParams.tags}
+        country={searchParams.country}
       />
     </div>
   );
