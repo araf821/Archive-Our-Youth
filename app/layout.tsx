@@ -38,7 +38,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${nunito.className} bg-zinc-900 ${karla.variable}`}>
+        <body
+          className={`${nunito.className} min-h-[100dvh] bg-zinc-900 selection:bg-green-500 selection:text-black ${karla.variable}`}
+        >
           <Toaster richColors />
           <ModalProvider />
           <SidebarProvider />

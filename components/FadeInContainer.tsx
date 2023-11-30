@@ -13,7 +13,7 @@ const FadeInContainer: FC<FadeInContainerProps> = ({ children }) => {
       initial={{ opacity: 0 }}
       whileInView={{
         opacity: 1,
-        transition: { duration: 0.75 },
+        transition: { duration: 1 },
       }}
     >
       {children}
