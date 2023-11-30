@@ -42,7 +42,8 @@ enum STEPS {
   THUMBNAIL = 5,
   DESCRIPTION = 6,
   TAGS = 7,
-  CONFIRM = 8,
+  LOCATION = 8,
+  CONFIRM = 9,
 }
 
 const PostCreationForm = () => {
@@ -80,7 +81,7 @@ const PostCreationForm = () => {
       if (contentType === "IMAGE" && currentStep == STEPS.CONTENT) {
         return currentStep + 2;
       }
-      return Math.min(currentStep + 1, 8);
+      return Math.min(currentStep + 1, 9);
     });
   };
 
@@ -222,7 +223,7 @@ const PostCreationForm = () => {
               </button>
             </p>
           ) : (
-            <ul className="mt-2 space-y-2 font-semibold">
+            <ul className="mt-2 space-y-2 text-zinc-300">
               {form.getValues().researchQuestions.map((q) => (
                 <li className="ml-6 list-disc" key={q}>
                   {q}

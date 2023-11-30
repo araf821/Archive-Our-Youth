@@ -16,15 +16,17 @@ const TitleSlide: FC<TitleSlideProps> = ({ form }) => {
           <p className="text-center text-xl md:text-2xl">
             What would you like to call this masterpiece?
           </p>
-          <FormControl>
-            <input
-              placeholder="Title"
-              className="w-full bg-zinc-800 px-3 py-2 text-2xl font-semibold focus:outline-none focus:outline-2 focus:outline-zinc-300 md:text-3xl"
-              type="text"
-              {...field}
-            />
-          </FormControl>
-          <FormMessage />
+          <div className="space-y-1">
+            <FormControl>
+              <input
+                placeholder="Title"
+                className="w-full bg-zinc-800 px-3 py-2 text-2xl focus:outline-none focus:outline-2 focus:outline-zinc-300 md:text-3xl"
+                type="text"
+                {...field}
+              />
+            </FormControl>
+            <FormMessage />
+          </div>
         </FormItem>
       )}
     />

@@ -25,7 +25,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
       onChange(selectedOptions.filter((val) => val !== option));
     } else {
       if (selectedOptions.length >= maxSelection) {
-        toast.error(`Up to ${maxSelection} tags allowed.`);
+        toast.error(`Select up to ${maxSelection}.`);
         return;
       }
 
@@ -66,10 +66,10 @@ const MultiSelect: FC<MultiSelectProps> = ({
         onBlur={() => setIsOpen(false)}
         className={`${
           isOpen ? "scale-y-100" : "scale-y-0"
-        } absolute left-0 top-[110%] z-10 max-h-72 w-full origin-top-left divide-y-[1px] divide-zinc-700 overflow-y-auto rounded-md border border-zinc-700 bg-zinc-800 text-zinc-100 transition duration-200 ease-out`}
+        } absolute left-0 top-[110%] z-[9999] max-h-72 w-full origin-top-left divide-y-[1px] divide-zinc-700 overflow-y-auto rounded-md border border-zinc-700 bg-zinc-800 text-zinc-100 transition duration-200 ease-out`}
       >
         {[input, ...options].map((option, index) => {
-          if (!option.includes(input)) return;
+          if (!option.toLowerCase().includes(input.toLowerCase())) return;
           if (option === "") return;
           return (
             <li
@@ -86,7 +86,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
                 setIsOpen(false);
               }}
               className={cn(
-                "cursor-pointer list-none px-3 py-2.5 transition focus-visible:outline-none",
+                "z-[9999] cursor-pointer list-none px-3 py-2.5 transition focus-visible:outline-none",
                 {
                   "bg-green-600 text-white hover:bg-opacity-80 focus-visible:opacity-75":
                     isSelected(option),

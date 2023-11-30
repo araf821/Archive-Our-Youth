@@ -9,13 +9,20 @@ import FadeInContainer from "./FadeInContainer";
 interface CollageProps {
   keyword?: string;
   sortBy?: string;
-  tags?: string[];
+  tags?: string;
+  countries?: string;
 }
 
-const Collage: FC<CollageProps> = async ({ keyword, sortBy, tags }) => {
+const Collage: FC<CollageProps> = async ({
+  keyword,
+  countries,
+  sortBy,
+  tags,
+}) => {
   const currentUser = await getCurrentUser();
   let orderBy: any = { createdAt: "desc" };
-  const tagsArray = tags ? (Array.isArray(tags) ? tags : [tags]) : [];
+  const tagsArray = tags ? tags.split(",") : [];
+  const countriesArray = countries ? countries.split(",") : [];
 
   switch (sortBy) {
     case "most-popular":
