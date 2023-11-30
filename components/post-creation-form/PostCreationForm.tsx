@@ -32,6 +32,7 @@ import Link from "next/link";
 import { kobata } from "@/app/fonts";
 import { AnimatePresence, motion } from "framer-motion";
 import ThumbnailSlide from "./ThumbnailSlide";
+import LocationSelection from "./LocationSelection";
 
 enum STEPS {
   WELCOME = 0,
@@ -65,7 +66,7 @@ const PostCreationForm = () => {
       description: "",
       tags: [],
       researchQuestions: [],
-      location: "",
+      location: "canada",
     },
   });
 
@@ -532,6 +533,7 @@ const PostCreationForm = () => {
             <DescriptionSlide form={form} />
           )}
           {step === STEPS.TAGS && <TagSelectionSlide form={form} />}
+          {step === STEPS.LOCATION && <LocationSelection form={form} />}
           {step === STEPS.CONFIRM && confirmationScreen}
         </form>
       </Form>

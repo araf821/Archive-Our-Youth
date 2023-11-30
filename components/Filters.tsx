@@ -295,7 +295,7 @@ const Filters: FC<FiltersProps> = ({}) => {
 
 export default Filters;
 
-const allCountries = [
+export const allCountries = [
   "Afghanistan",
   "Albania",
   "Algeria",
