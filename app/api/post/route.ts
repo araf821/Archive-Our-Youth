@@ -18,6 +18,7 @@ export async function POST(req: Request) {
       tags,
       researchQuestions,
       thumbnail,
+      location,
     } = PostCreationValidator.parse(body);
 
     const post = await db.post.create({

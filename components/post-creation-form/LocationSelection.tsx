@@ -1,8 +1,6 @@
 import { TPostCreationForm } from "@/lib/types/form";
-import { RefreshCcw, X } from "lucide-react";
 import { FC } from "react";
-import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
-import MultiSelect from "../MultiSelect";
+import { FormControl, FormField, FormItem } from "../ui/Form";
 import { cn } from "@/lib/utils";
 import {
   Select,
