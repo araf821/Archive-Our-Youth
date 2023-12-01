@@ -40,7 +40,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
       {post.contentType === "IMAGE" && <DynamicImage src={post.postContent} />}
 
       {post.contentType === "VIDEO" && (
-        <div className="relative my-4 border border-zinc-800 aspect-video w-full overflow-hidden">
+        <div className="relative my-4 aspect-video w-full overflow-hidden border border-zinc-800">
           <video src={post.postContent} className="h-full w-full" controls />
         </div>
       )}
@@ -161,7 +161,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
           >
             {post.contentType === "TEXT" ? post.postContent : post.description}
           </ReactMarkdown>
-          <hr className="mt-4 mb-2 border-zinc-800" />
+          <hr className="mb-2 mt-4 border-zinc-800" />
         </div>
 
         {/* <hr className="border-zinc-700" /> */}

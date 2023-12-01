@@ -165,38 +165,92 @@ const PostCreationForm = () => {
   let introScreen, confirmationScreen;
 
   introScreen = (
-    <div
-      className={`flex max-w-screen-lg flex-col items-center justify-center gap-12 text-center ${
-        step > 1 && "hidden"
-      }`}
-    >
+    // <div
+    //   className={`flex max-w-screen-lg gap-2 flex-col items-center justify-center text-center ${
+    //     step > 1 && "hidden"
+    //   }`}
+    // >
+    //   <p
+    //     className={`${kobata.className} leading-[4.5rem] text-[4rem] font-semibold text-zinc-100 md:text-[5rem]`}
+    //   >
+    //     Archive Our Youth
+    //   </p>
+    //   <p className="text-xl font-light text-zinc-100 md:text-2xl">
+    //     Submission Portal
+    //   </p>
+    //   <div className="pt-8 flex flex-col items-center gap-4">
+    //     <Button
+    //       onClick={onNext}
+    //       type="button"
+    //       size="lg"
+    //       className="flex gap-x-2 rounded-2xl border-2 border-white text-zinc-50 transition hover:translate-x-2 hover:bg-white hover:text-zinc-800"
+    //     >
+    //       <span className="pl-2">Get Started</span>
+    //       <ArrowRight className="h-5 w-5" />
+    //     </Button>
+    //     <p className="text-zinc-400 max-md:hidden">
+    //       You can use arrow keys or spacebar to navigate.
+    //     </p>
+    //   </div>
+    // </div>
+
+    <div className="flex max-w-screen-md flex-col gap-8 pb-8">
       <p
-        className={`${kobata.className} text-[4rem] font-semibold text-zinc-100 md:text-[5rem]`}
+        className={`${kobata.className} s text-6xl font-semibold leading-[4.5rem] max-md:text-5xl max-sm:text-4xl`}
       >
         Archive Our Youth
       </p>
-      <p className="text-xl font-semibold text-zinc-300 md:text-2xl">
-        Submission Portal
+
+      <p className="leading-6 tracking-widest text-zinc-300 max-md:text-sm">
+        Welcome to{" "}
+        <span className={`font-semibold ${kobata.className}`}>
+          Archive Our Youth
+        </span>{" "}
+        on Youth and Planetary Wellbeing! You&apos;re invited to contribute to
+        the Archive and/or explore the multimedia and artifacts preserved here.
+        The Digital Archive explores dream futures, perspectives on wellbeing,
+        and resources both real and desired that support personal to planetary
+        wellbeing. We welcome youth, youth groups and engaged collectives from
+        all over the world to contribute!
       </p>
-      <div className="flex flex-col items-center gap-4">
-        <Button
-          onClick={onNext}
-          type="button"
-          size="lg"
-          className="flex gap-x-2 bg-zinc-200 text-zinc-800 transition hover:translate-x-2 hover:bg-white"
+
+      <p className="leading-6 tracking-widest text-zinc-300 max-md:text-sm">
+        Archive Our Youth was launched as part of the international research
+        study: Partnership for Youth and Planetary Wellbeing, led by the{" "}
+        <a
+          target="_blank"
+          className="text-green-500 underline underline-offset-4"
+          href="https://www.younglivesresearch.org/"
         >
-          Get Started
-          <ArrowRight />
-        </Button>
-        <p className="text-zinc-400 max-md:hidden">
-          You can also use arrow keys or spacebar to navigate.
-        </p>
-      </div>
+          Young Lives Research Lab
+        </a>
+        , and 4 Youth Advisory Councils (YACs) in Canada, Chile, Costa Rica and
+        Belize.
+      </p>
+      <p className="leading-6 tracking-widest text-zinc-300 max-md:text-sm">
+        The Archive was launched in the Fall of 2023 by Canada&apos;s YAC, but
+        the submission portal remains open for continual submissions.
+      </p>
+
+      <Button
+        onClick={onNext}
+        type="button"
+        size="lg"
+        variant="outline"
+        className="w-fit border-2"
+        // className="flex w-fit gap-x-2 rounded-2xl border-2 border-white text-zinc-50 transition hover:translate-x-2 hover:bg-white hover:text-zinc-800"
+      >
+        <span className="pl-2">Get Started</span>
+        <ArrowRight className="h-5 w-5" />
+      </Button>
+      <p className="text-zinc-400 max-md:hidden">
+        You can use arrow keys or spacebar to navigate.
+      </p>
     </div>
   );
 
   confirmationScreen = (
-    <div className="mx-auto flex max-w-screen-sm flex-col justify-center space-y-4 pb-8">
+    <div className="mx-auto flex max-w-screen-sm flex-col justify-center space-y-4">
       <div className="">
         <p className="text-xl text-zinc-100 md:text-2xl">Review Submission</p>
         {userId ? null : (
@@ -550,7 +604,7 @@ const PostCreationForm = () => {
       {step > 0 && (
         <div
           className={cn(
-            "mx-auto mt-12 flex w-32 items-center justify-between pb-12",
+            "mx-auto mt-12 flex w-32 items-center justify-between pb-4",
             {
               "w-full max-w-[350px]": step === STEPS.CONFIRM,
             },

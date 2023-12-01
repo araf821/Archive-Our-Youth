@@ -36,7 +36,7 @@ const FileUpload: FC<FileUploadProps> = ({
           <button
             onClick={() => onChange("")}
             type="button"
-            className="group absolute -right-2 -top-2 rounded-md bg-red-600 p-0.5 text-white shadow-sm"
+            className="group absolute -right-2 -top-2 rounded-md bg-amber-500 text-black shadow-sm"
           >
             <X className="h-5 w-5 transition group-hover:rotate-90" />
           </button>
@@ -46,7 +46,7 @@ const FileUpload: FC<FileUploadProps> = ({
 
     if (endPoint === "video") {
       return (
-        <div className="relative aspect-video max-h-[40vh] w-full">
+        <div className="relative border border-zinc-800 aspect-video max-h-[40vh] w-full">
           <video
             src={value}
             controls
@@ -104,7 +104,7 @@ const FileUpload: FC<FileUploadProps> = ({
 
   return (
     <UploadDropzone
-      className={cn("h-full w-full bg-zinc-800", classNames)}
+      className={cn("h-full max-w-[20px] bg-zinc-800", classNames)}
       endpoint={endPoint}
       onClientUploadComplete={(res) => {
         onChange(res?.[0].url);

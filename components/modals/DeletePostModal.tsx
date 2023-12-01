@@ -1,11 +1,17 @@
 "use client";
 
 import { useModal } from "@/hooks/useModal";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/Dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/Dialog";
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import { toast } from "sonner";
 
 const DeletePostModal = () => {
@@ -35,7 +41,10 @@ const DeletePostModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md space-y-4 bg-zinc-800 px-4 py-8 outline-none">
+      <DialogContent className="max-w-md space-y-4 bg-zinc-900 px-4 py-8 outline-none">
+        <DialogTrigger className="absolute right-2 top-2  transition hover:rotate-90">
+          <X className="text-zinc-500 max-md:h-5 max-md:w-5" />
+        </DialogTrigger>
         <DialogHeader>
           <DialogTitle className="text-center text-2xl text-zinc-200">
             Are you sure you want to delete{" "}
@@ -43,22 +52,22 @@ const DeletePostModal = () => {
               {postWithoutUser?.title}?
             </span>
           </DialogTitle>
-          <p className="mx-auto pt-4 text-white">
+          <p className="mx-auto pt-4 text-zinc-300">
             The post will be deleted{" "}
-            <span className="text-red-500">permanently</span>.
+            <span className="text-amber-500">permanently</span>.
           </p>
         </DialogHeader>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <button
             onClick={onClose}
-            className="rounded-md border border-rose-500 py-2 text-rose-500 transition hover:border-rose-700 hover:text-rose-700 md:text-lg"
+            className="rounded-md py-2 text-zinc-400 transition hover:bg-zinc-800 hover:text-white md:text-lg"
           >
             Cancel
           </button>
           <button
             disabled={isLoading}
             onClick={handleDelete}
-            className="rounded-md bg-rose-500 py-2 text-black transition hover:bg-rose-700 md:text-lg"
+            className="rounded-md bg-amber-500 py-2 text-black transition hover:bg-amber-600 md:text-lg"
           >
             {isLoading ? (
               <Loader2 className="mx-auto animate-spin" />

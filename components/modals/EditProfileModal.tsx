@@ -27,6 +27,7 @@ import {
   FormMessage,
 } from "../ui/Form";
 import FileUpload from "../FileUpload";
+import { Button } from "../ui/Button";
 
 interface EditProfileModalProps {
   name: string;
@@ -112,7 +113,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
               name="newName"
               control={form.control}
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="space-y-0.5">
                   <p>Your name</p>
                   <FormControl>
                     <Input
@@ -129,20 +130,20 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
             <hr className="border-zinc-700" />
 
             <div className="flex items-center gap-4">
-              <button
+              <Button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="rounded-md px-3 py-1 text-zinc-400 transition hover:bg-zinc-800 md:text-lg"
+                variant='ghost'
               >
                 Cancel
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="outline"
                 disabled={
                   isLoading ||
                   !!form.formState.errors.newImageUrl ||
                   !!form.formState.errors.newName
                 }
-                className="rounded-md border-2 border-zinc-300 px-3 py-1 text-zinc-100 ring-zinc-300 transition hover:bg-zinc-100 hover:text-zinc-900 focus-visible:ring-4 disabled:cursor-not-allowed disabled:opacity-50"
                 type="submit"
               >
                 {isLoading ? (
@@ -150,7 +151,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
                 ) : (
                   "Submit"
                 )}
-              </button>
+              </Button>
             </div>
           </form>
         </Form>

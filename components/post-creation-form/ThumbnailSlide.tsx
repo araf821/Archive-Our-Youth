@@ -22,7 +22,7 @@ const ThumbnailSlide: FC<ThumbnailSlideProps> = ({ form }) => {
           </div>
           <FormControl className="mx-auto">
             <FileUpload
-              classNames="aspect-video max-w-[500px]"
+              classNames="aspect-video"
               endPoint="image"
               onChange={field.onChange}
               value={field.value || ""}

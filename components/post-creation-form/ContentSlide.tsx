@@ -102,7 +102,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
             <p className="text-center text-xl md:text-2xl">Add an image</p>
             <FormControl>
               <FileUpload
-                classNames="aspect-video max-w-[500px]"
+                classNames="aspect-video"
                 endPoint="image"
                 onChange={field.onChange}
                 value={field.value}
@@ -122,7 +122,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
             <p className="text-center text-xl md:text-2xl">Add a video</p>{" "}
             <FormControl>
               <FileUpload
-                classNames="aspect-video max-w-[500px]"
+                classNames="aspect-video md:max-w-md"
                 endPoint="video"
                 onChange={field.onChange}
                 value={field.value}
@@ -142,7 +142,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
             <p className="text-center text-xl md:text-2xl">Add an audio</p>
             <FormControl>
               <FileUpload
-                classNames="max-w-[400px]"
+                classNames="aspect-video"
                 endPoint="audio"
                 onChange={field.onChange}
                 value={field.value}
