@@ -44,7 +44,7 @@ const page: FC<pageProps> = async ({ params }) => {
   }
 
   return (
-    <div className="mx-auto mt-28 max-w-screen-md px-4 pb-16 text-zinc-50 sm:px-8">
+    <div className="mx-auto pt-8 max-w-screen-md px-4 pb-16 text-zinc-50 sm:px-8">
       <BackButton />
 
       <div

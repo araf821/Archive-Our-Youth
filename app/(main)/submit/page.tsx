@@ -12,7 +12,7 @@ const SubmitPage = async () => {
   await initializeUser();
 
   return (
-    <div className="grid min-h-[100dvh] pt-24 place-items-center text-white">
+    <div className="flex min-h-[calc(100dvh-80px)] pt-8 items-center justify-center text-white">
       <PostCreationForm />
     </div>
   );

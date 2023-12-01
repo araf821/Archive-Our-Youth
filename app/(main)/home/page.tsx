@@ -19,7 +19,7 @@ export default async function Home({
   await initializeUser();
 
   return (
-    <div className="relative pt-20">
+    <div className="relative">
       <Collage
         keyword={searchParams.keyword}
         sortBy={searchParams.sortBy}

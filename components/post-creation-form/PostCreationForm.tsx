@@ -432,89 +432,99 @@ const PostCreationForm = () => {
             ))}
           </ul>
         </div>
-        <AnimatePresence>
-          <motion.div className="py-6">
+
+        <div className="py-4">
+          <p>Posting from</p>
+          <p className="pt-2 font-semibold capitalize tracking-wider">
+            {form.getValues("location")}
+          </p>
+        </div>
+        <motion.div className="py-6">
+          <AnimatePresence>
             {error ? (
               <motion.p
-                initial={{ height: 0 }}
-                exit={{ height: "auto" }}
+                initial={{ height: 0, opacity: 0 }}
+                exit={{
+                  height: 0,
+                  opacity: 0,
+                  transition: { duration: 0.1 },
+                }}
                 animate={{
                   height: "auto",
+                  opacity: 1,
+                  transition: { duration: 0.2 },
                 }}
                 className="text-red-500"
               >
-                {error
-                  ? "Your consent is required for us to approve your submission."
-                  : ""}
+                Your consent is required for us to approve your submission.
               </motion.p>
             ) : null}
-            <div className="flex gap-2">
-              <Checkbox
-                id="consent"
-                checked={checked}
-                onCheckedChange={() => {
-                  setConsentChecked((prev) => ({
-                    checked: !prev.checked,
-                    error: prev.checked ? true : false,
-                  }));
-                }}
-                className="h-5 w-5 translate-y-1 border border-zinc-500 bg-zinc-700 checked:bg-zinc-600 data-[state=checked]:bg-green-600"
-              />
-              <label
-                htmlFor="consent"
-                className="space-y-3 text-zinc-100 max-md:text-sm"
-              >
-                <p>
-                  Click this box if you agree that your submission can be used
-                  for research purposes. The Archive will contribute to a better
-                  understanding of youth and planetary well-being and will be
-                  used to develop future presentations, teaching and/or
-                  publications such as social media posts, journal articles, and
-                  books.
-                </p>
+          </AnimatePresence>
+          <div className="flex gap-2">
+            <Checkbox
+              id="consent"
+              checked={checked}
+              onCheckedChange={() => {
+                setConsentChecked((prev) => ({
+                  checked: !prev.checked,
+                  error: prev.checked ? true : false,
+                }));
+              }}
+              className="h-5 w-5 translate-y-1 border border-zinc-500 bg-zinc-700 checked:bg-zinc-600 data-[state=checked]:bg-green-600"
+            />
+            <label
+              htmlFor="consent"
+              className="space-y-3 text-zinc-100 max-md:text-sm"
+            >
+              <p>
+                Click this box if you agree that your submission can be used for
+                research purposes. The Archive will contribute to a better
+                understanding of youth and planetary well-being and will be used
+                to develop future presentations, teaching and/or publications
+                such as social media posts, journal articles, and books.
+              </p>
 
-                <p>All intellectual and creative rights remain yours.</p>
+              <p>All intellectual and creative rights remain yours.</p>
 
-                <p>
-                  You have the right to stop participating and delete your
-                  submission at any time by signing in and deleting it directly,
-                  or by emailing Deborah MacDonald at the Young Lives Research
-                  Lab at York University at:{" "}
-                  <a
-                    className="text-blue-400 underline"
-                    href="mailto:dmacd@yorku.ca"
-                  >
-                    dmacd@yorku.ca
-                  </a>
-                  .
-                </p>
+              <p>
+                You have the right to stop participating and delete your
+                submission at any time by signing in and deleting it directly,
+                or by emailing Deborah MacDonald at the Young Lives Research Lab
+                at York University at:{" "}
+                <a
+                  className="text-blue-400 underline"
+                  href="mailto:dmacd@yorku.ca"
+                >
+                  dmacd@yorku.ca
+                </a>
+                .
+              </p>
 
-                <p>
-                  You have the right to submit anonymously. If you submit
-                  anonymously, you can only delete your post by emailing the
-                  contact above.
-                </p>
+              <p>
+                You have the right to submit anonymously. If you submit
+                anonymously, you can only delete your post by emailing the
+                contact above.
+              </p>
 
-                <p>
-                  Please read the full{" "}
-                  <Link
-                    href="https://docs.google.com/document/d/185IyM9Cic-vpMK7yqYLXR0s-YfJrhaSY/edit"
-                    target="_blank"
-                    className="text-blue-400 underline"
-                  >
-                    consent form here.
-                  </Link>
-                </p>
-              </label>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+              <p>
+                Please read the full{" "}
+                <Link
+                  href="https://docs.google.com/document/d/185IyM9Cic-vpMK7yqYLXR0s-YfJrhaSY/edit"
+                  target="_blank"
+                  className="text-blue-400 underline"
+                >
+                  consent form here.
+                </Link>
+              </p>
+            </label>
+          </div>
+        </motion.div>
       </div>
     </div>
   );
 
   return (
-    <div className="max-h-[80dvh] w-full max-w-screen-md px-6 lg:px-10">
+    <div className="w-full max-w-screen-md px-6 lg:px-10">
       <Form {...form}>
         <form className="mx-auto" onSubmit={form.handleSubmit(onSubmit)}>
           {step === STEPS.WELCOME && introScreen}

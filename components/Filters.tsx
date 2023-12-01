@@ -112,7 +112,7 @@ const Filters: FC<FiltersProps> = ({}) => {
       animate={isOpen ? "visible" : "hidden"}
       className="mx-auto max-w-screen-md border-b border-zinc-800 px-4 text-zinc-100"
     >
-      <div className="flex flex-col gap-4 py-8">
+      <div className="flex flex-col gap-4 pt-6 pb-10">
         <p className="text-2xl font-light md:text-3xl">Search</p>
         <hr className="-mt-3 border-zinc-700" />
 
@@ -220,6 +220,12 @@ const Filters: FC<FiltersProps> = ({}) => {
                           onDelete={onDeleteTag}
                         />
                       ))}
+                      <button
+                        onClick={() => form.setValue("tags", [])}
+                        className="my-auto h-full rounded-md bg-zinc-800 px-3 py-1.5 text-zinc-300 transition duration-200 hover:bg-zinc-700 hover:text-zinc-100"
+                      >
+                        Clear
+                      </button>
                     </div>
                   )}
                   <div className=""></div>

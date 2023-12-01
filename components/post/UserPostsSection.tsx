@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
 import { db } from "@/lib/db";
-import UserPost from "./UserPost";
 import DynamicUserPosts from "./DynamicUserPosts";
 
 interface UserPostsSectionProps {

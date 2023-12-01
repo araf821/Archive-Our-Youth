@@ -36,10 +36,10 @@ const DashboardPage = async () => {
   }
 
   return (
-    <div className="mx-auto max-w-screen-md space-y-4 px-4 pt-28 text-zinc-100 lg:px-0">
+    <div className="mx-auto max-w-screen-md space-y-4 px-4 pt-8 text-zinc-100 lg:px-0">
       {/* Header */}
       <div className="flex flex-col gap-2">
-        <p className="text-4xl font-semibold md:text-5xl">Dashboard</p>
+        <p className="text-4xl font-medium md:text-5xl">Dashboard</p>
         <hr className="border-zinc-800" />
       </div>
 

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const AboutPage = () => {
   return (
-    <div className="mx-auto max-w-screen-md space-y-12 px-6 pb-14 pt-28 text-white">
+    <div className="mx-auto max-w-screen-md space-y-12 px-6 pb-14 pt-8 text-white">
       <div className="space-y-4 text-lg tracking-wide text-zinc-200">
         <h4 className="text-xl font-semibold text-white">About Us</h4>
         <p>

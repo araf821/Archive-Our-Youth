@@ -23,7 +23,7 @@ interface SinglePostProps {
 
 const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
   return (
-    <section className="mb-8 mt-28 flex flex-col gap-6 px-4">
+    <section className="mb-8 mt-8 flex flex-col gap-6 px-4">
       <div className="flex items-center justify-between">
         <BackButton />
         {post.userId === currentUser?.id && (
