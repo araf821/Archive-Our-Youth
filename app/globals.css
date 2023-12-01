@@ -95,7 +95,7 @@
 }
 
 .moving-bg {
-  background: linear-gradient(-45deg, orange, #27272a, red);
+  background: linear-gradient(-45deg, rgb(4, 168, 197), #f7f7f7, rgb(13, 205, 48));
   background-size: 600% 600%;
   animation: gradient 10s ease infinite;
 }

@@ -409,6 +409,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
 
           <div className="mt-6 flex items-center gap-4">
             <Button
+              onClick={() => router.back()}
               type="button"
               disabled={isLoading}
               className="bg-zinc-800 hover:bg-zinc-700"

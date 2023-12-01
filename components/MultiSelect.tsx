@@ -21,6 +21,8 @@ const MultiSelect: FC<MultiSelectProps> = ({
   const [input, setInput] = useState("");
 
   function selectOption(option: string) {
+    if (option === "") return;
+
     if (selectedOptions?.includes(option)) {
       onChange(selectedOptions.filter((val) => val !== option));
     } else {
