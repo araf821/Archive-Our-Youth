@@ -16,7 +16,7 @@ const DynamicImage: FC<DynamicImageProps> = ({ src, classNames }) => {
 
   return (
     <div
-      className={cn("relative my-4 aspect-[4/3] overflow-hidden", classNames)}
+      className={cn("relative aspect-[4/3] overflow-hidden", classNames)}
     >
       <Image
         fill

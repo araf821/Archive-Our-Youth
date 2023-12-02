@@ -14,7 +14,7 @@ import AnonymousPostInfo from "../AnonymousPostInfo";
 import { cn } from "@/lib/utils";
 import { openSans } from "@/app/fonts";
 import { buttonVariants } from "../ui/Button";
-import { Edit2 } from "lucide-react";
+import { Edit2, MapPin } from "lucide-react";
 
 interface SinglePostProps {
   currentUser: User | null;
@@ -40,7 +40,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
       {post.contentType === "IMAGE" && <DynamicImage src={post.postContent} />}
 
       {post.contentType === "VIDEO" && (
-        <div className="relative my-4 aspect-video w-full overflow-hidden border border-zinc-800">
+        <div className="relative aspect-video w-full overflow-hidden border border-zinc-800">
           <video src={post.postContent} className="h-full w-full" controls />
         </div>
       )}
@@ -52,7 +52,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
       )}
 
       {post.contentType !== "TEXT" && post.contentType !== "PDF" && (
-        <div className="-mt-8 flex w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">
+        <div className="flex w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">
           <LikeButton
             postId={post.id}
             likes={post.likes}
@@ -64,15 +64,19 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
 
       {/* Post Info */}
       <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-2">
-          <span className="-mb-2 w-fit rounded-md bg-zinc-800 px-1.5 py-0.5 text-sm text-zinc-300">
-            {dateFormat(new Date(post.createdAt).toISOString())}
-          </span>
-          <span>{post.location}</span>
-        </div>
         <p className="break-words text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
           {post.title}
         </p>
+
+        <div className="flex items-center justify-between gap-2">
+          <span className="w-fit rounded-md bg-zinc-800 px-1.5 py-0.5 text-sm text-zinc-400">
+            {dateFormat(new Date(post.createdAt).toISOString())}
+          </span>
+          <span className="flex items-center gap-1 rounded-md bg-zinc-800 px-1.5 py-0.5 text-sm capitalize text-zinc-400">
+            <MapPin className="h-3.5 w-3.5" />
+            {post.location}
+          </span>
+        </div>
 
         {(post.contentType === "TEXT" || post.contentType === "PDF") && (
           <div className="flex w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">

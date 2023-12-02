@@ -39,7 +39,7 @@ const PostModal = () => {
             )}
 
             {post.contentType === "IMAGE" && (
-              <div className="mx-auto">
+              <div className="pb-4">
                 <DynamicImage src={post.postContent} />
               </div>
             )}
