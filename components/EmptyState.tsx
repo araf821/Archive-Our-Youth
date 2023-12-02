@@ -1,4 +1,3 @@
-import { openSans } from "@/app/fonts";
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";

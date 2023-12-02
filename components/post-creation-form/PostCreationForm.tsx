@@ -196,7 +196,7 @@ const PostCreationForm = () => {
 
     <div className="flex max-w-screen-md flex-col gap-8 pb-8">
       <p
-        className={`${kobata.className} s text-6xl font-semibold leading-[4.5rem] max-md:text-5xl max-sm:text-4xl`}
+        className={`${kobata.className} text-6xl font-semibold leading-[4.5rem] max-md:text-5xl max-sm:text-4xl`}
       >
         Archive Our Youth
       </p>

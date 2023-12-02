@@ -27,6 +27,7 @@ export async function POST(req: Request) {
         contentType,
         postContent: content,
         thumbnail,
+        location,
         description:
           contentType === "TEXT" ? "" : description ? description : "",
         tags,

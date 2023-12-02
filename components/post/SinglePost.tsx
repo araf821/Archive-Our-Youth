@@ -64,9 +64,12 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
 
       {/* Post Info */}
       <div className="flex flex-col gap-4">
-        <span className="-mb-2 w-fit rounded-md bg-zinc-700 px-1.5 py-0.5 text-sm text-zinc-300">
-          {dateFormat(new Date(post.createdAt).toISOString())}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="-mb-2 w-fit rounded-md bg-zinc-800 px-1.5 py-0.5 text-sm text-zinc-300">
+            {dateFormat(new Date(post.createdAt).toISOString())}
+          </span>
+          <span>{post.location}</span>
+        </div>
         <p className="break-words text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
           {post.title}
         </p>
