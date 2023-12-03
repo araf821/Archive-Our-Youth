@@ -2,12 +2,15 @@
 
 import { openSans } from "@/app/fonts";
 import { cn } from "@/lib/utils";
-import { User } from "@prisma/client";
 import { Heart, Reply } from "lucide-react";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useState } from "react";
+import ReplySection from "./ReplySection";
+import { motion } from "framer-motion";
 
 interface CommentProps {
+  index?: number;
+  reply?: boolean;
   comment: {
     id: number;
     content: string;
@@ -21,9 +24,19 @@ interface CommentProps {
   };
 }
 
-const Comment: FC<CommentProps> = ({ comment }) => {
+const Comment: FC<CommentProps> = ({ comment, index = 0, reply }) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="flex items-center gap-4 py-4 text-zinc-100 max-md:gap-2">
+    <motion.div
+      viewport={{ once: true }}
+      initial={{ opacity: 0, x: -200 }}
+      whileInView={{
+        opacity: 1,
+        x: 0,
+      }}
+      className="flex items-center gap-4 py-4 text-zinc-100 max-md:gap-2"
+    >
       <div className="flex h-full flex-col items-center gap-1 self-start">
         <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full md:h-12 md:w-12">
           <Image src={comment.user.imageUrl} alt="user profile picture" fill />
@@ -52,15 +65,25 @@ const Comment: FC<CommentProps> = ({ comment }) => {
             <span className="sr-only">like button</span>
           </button>
           <p className="font-semibold">{comment.likeCount} likes</p>
-          <span className="mx-1">•</span>
-          <button className="transition duration-200 hover:text-green-500 max-md:text-sm">
-            <span className="sr-only">reply button</span>
-            <Reply strokeWidth={3} className="h-4 w-4 pb-1 md:h-5 md:w-5" />
-          </button>
-          <p className="font-semibold">{comment.replyCount} replies</p>
+          {!reply && (
+            <>
+              <span className="mx-1">•</span>
+              <button className="transition duration-200 hover:text-green-500 max-md:text-sm">
+                <span className="sr-only">reply button</span>
+                <Reply strokeWidth={3} className="h-4 w-4 pb-1 md:h-5 md:w-5" />
+              </button>
+              <button
+                onClick={() => setOpen((open) => !open)}
+                className="font-semibold"
+              >
+                {comment.replyCount} replies
+              </button>
+            </>
+          )}
         </div>
+        {open && <ReplySection commentId={comment.id.toString()} />}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

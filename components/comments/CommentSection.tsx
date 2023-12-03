@@ -15,7 +15,7 @@ const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
   // const comments = await db.post.findUnique({
   //   where: {
-  //     id: postId,
+  //     postId,
   //   },
   //   select: {
   //     comments: {
@@ -36,8 +36,15 @@ const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
       {user ? (
         <CommentInput user={user} postId={postId} />
       ) : (
-        <p>
-          Please <Link href="/sign-in">Sign In</Link> to leave a comment.
+        <p className="pb-2 font-medium text-zinc-300 md:text-lg">
+          Please{" "}
+          <Link
+            href="/sign-in"
+            className="text-green-500 underline underline-offset-2"
+          >
+            Sign In
+          </Link>{" "}
+          to leave a comment.
         </p>
       )}
 
@@ -60,7 +67,7 @@ const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
 
 export default CommentSection;
 
-const comments = [
+export const comments = [
   {
     id: 0,
     content:
