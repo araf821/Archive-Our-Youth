@@ -6,6 +6,8 @@ import { Comment as CommentModel, User } from "@prisma/client";
 import CommentInput from "./CommentInput";
 import { useRouter } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { delay } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 
 interface ReplySectionProps {
   user: User | null;
@@ -25,8 +27,10 @@ const ReplySection: FC<ReplySectionProps> = ({
   const [comments, setComments] = useState<
     (CommentModel & { user: User; _count: { replies: number } })[]
   >([]);
+  const [isFetching, setIsFetching] = useState(false);
 
   const fetchComments = async (): Promise<void> => {
+    setIsFetching(true);
     try {
       const url = queryString.stringifyUrl({
         url: "/api/comment",
@@ -40,6 +44,8 @@ const ReplySection: FC<ReplySectionProps> = ({
       setComments(response.data);
     } catch (error) {
       console.error("Error fetching comments:", error);
+    } finally {
+      setIsFetching(false);
     }
   };
 
@@ -57,16 +63,23 @@ const ReplySection: FC<ReplySectionProps> = ({
           refresh={() => fetchComments()}
         />
       </div>
-      <div className="-mb-4 mt-2 divide-y divide-zinc-800 border-t border-t-zinc-800">
-        {comments.map((comment, index) => (
-          <Comment
-            key={comment.id}
-            user={null}
-            reply={true}
-            comment={comment}
-          />
-        ))}
-      </div>
+      {isFetching && (
+        <div className="py-12">
+          <Loader2 className="mx-auto h-8 w-8 animate-spin text-zinc-300" />
+        </div>
+      )}
+      {comments.length > 0 ? (
+        <div className="-mb-4 mt-2 divide-y divide-zinc-800 border-t border-t-zinc-800">
+          {comments.map((comment, index) => (
+            <Comment
+              key={comment.id}
+              user={null}
+              reply={true}
+              comment={comment}
+            />
+          ))}
+        </div>
+      ) : null}
     </>
   );
 };

@@ -10,8 +10,6 @@ interface CommentSectionProps {
   user: User | null;
 }
 
-const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-
 const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
   const currentPost = await db.post.findUnique({
     where: {

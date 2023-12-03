@@ -2,9 +2,9 @@
 
 import { openSans } from "@/app/fonts";
 import { cn } from "@/lib/utils";
-import { Heart, Reply } from "lucide-react";
+import { Heart, Loader2, Reply } from "lucide-react";
 import Image from "next/image";
-import { FC, useState } from "react";
+import { FC, Suspense, useState } from "react";
 import ReplySection from "./ReplySection";
 import { motion } from "framer-motion";
 import CommentInput from "./CommentInput";
