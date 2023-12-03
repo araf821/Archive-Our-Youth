@@ -1,8 +1,9 @@
 import { db } from "@/lib/db";
-import { Comment, User } from "@prisma/client";
+import { User } from "@prisma/client";
 import Link from "next/link";
 import { FC } from "react";
 import CommentInput from "./CommentInput";
+import Comment from "./Comment";
 
 interface CommentSectionProps {
   postId: string;
@@ -42,7 +43,17 @@ const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
 
       <hr className="border-zinc-700" />
 
-      {comments.length > 20 ? null : <p className="text-zinc-300 xl:text-lg font-medium tracking-wide">Be the first to leave a comment!</p>}
+      {comments.length > 0 ? (
+        <div className="divide-y divide-zinc-800">
+          {comments.map((comment) => (
+            <Comment key={comment.id} comment={comment} />
+          ))}
+        </div>
+      ) : (
+        <p className="font-medium tracking-wide text-zinc-300 xl:text-lg">
+          Be the first to leave a comment!
+        </p>
+      )}
     </section>
   );
 };
@@ -51,7 +62,8 @@ export default CommentSection;
 
 const comments = [
   {
-    content: "hello",
+    id: 0,
+    content: "weet apple pie tiramisu carrot cake. Marzipan marshmallow croissant tootsie roll lollipop. Cupcake lemon drops bear claw gummies. Jelly bear claw gummi bears lollipop cotton candy gummi bears chocolate bar cake cookie. Cupcake muffin danish muffin cookie gummies. Jelly beans tiramisu pudding. Toffee soufflé chocolate cake pastry brownie. Oat cake halvah sweet roll cotton candy croissant lollipop. Macaroon tiramisu chocolate bar candy candy carrot cake jelly sweet. Gummies crois",
     date: "1h ago",
     user: {
       name: "Minnie",
@@ -59,7 +71,8 @@ const comments = [
     },
   },
   {
-    content: "hello",
+    id: 1,
+    content: "weet apple pie tiramisu carrot cake. Marzipan marshmallow croissant tootsie roll lollipop. Cupcake lemon drops bear claw gummies. Jelly bear claw gummi bears lollipop cotton candy gummi bears chocolate bar cake cookie. Cupcake muffin danish muffin cookie gummies. Jelly beans tiramisu pudding. Toffee soufflé chocolate cake pastry brownie. Oat cake halvah sweet roll cotton candy croissant lollipop. Macaroon tiramisu chocolate bar candy candy carrot cake jelly sweet. Gummies crois",
     date: "1h ago",
     user: {
       name: "Minnie",
@@ -67,7 +80,8 @@ const comments = [
     },
   },
   {
-    content: "hello",
+    id: 2,
+    content: "weet apple pie tiramisu carrot cake. Marzipan marshmallow croissant tootsie roll lollipop. Cupcake lemon drops bear claw gummies. Jelly bear claw gummi bears lollipop cotton candy gummi bears chocolate bar cake cookie. Cupcake muffin danish muffin cookie gummies. Jelly beans tiramisu pudding. Toffee soufflé chocolate cake pastry brownie. Oat cake halvah sweet roll cotton candy croissant lollipop. Macaroon tiramisu chocolate bar candy candy carrot cake jelly sweet. Gummies crois",
     date: "1h ago",
     user: {
       name: "Minnie",
@@ -75,7 +89,8 @@ const comments = [
     },
   },
   {
-    content: "hello",
+    id: 3,
+    content: "weet apple pie tiramisu carrot cake. Marzipan marshmallow croissant tootsie roll lollipop. Cupcake lemon drops bear claw gummies. Jelly bear claw gummi bears lollipop cotton candy gummi bears chocolate bar cake cookie. Cupcake muffin danish muffin cookie gummies. Jelly beans tiramisu pudding. Toffee soufflé chocolate cake pastry brownie. Oat cake halvah sweet roll cotton candy croissant lollipop. Macaroon tiramisu chocolate bar candy candy carrot cake jelly sweet. Gummies crois",
     date: "1h ago",
     user: {
       name: "Minnie",
@@ -83,7 +98,8 @@ const comments = [
     },
   },
   {
-    content: "hello",
+    id: 4,
+    content: "weet apple pie tiramisu carrot cake. Marzipan marshmallow croissant tootsie roll lollipop. Cupcake lemon drops bear claw gummies. Jelly bear claw gummi bears lollipop cotton candy gummi bears chocolate bar cake cookie. Cupcake muffin danish muffin cookie gummies. Jelly beans tiramisu pudding. Toffee soufflé chocolate cake pastry brownie. Oat cake halvah sweet roll cotton candy croissant lollipop. Macaroon tiramisu chocolate bar candy candy carrot cake jelly sweet. Gummies crois",
     date: "1h ago",
     user: {
       name: "Minnie",
