@@ -13,18 +13,30 @@ interface CommentSectionProps {
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
-  // const comments = await db.post.findUnique({
-  //   where: {
-  //     postId,
-  //   },
-  //   select: {
-  //     comments: {
-  //       include: {
-  //         user: true,
-  //       },
-  //     },
-  //   },
-  // });
+  const currentPost = await db.post.findUnique({
+    where: {
+      id: postId,
+    },
+    select: {
+      comments: {
+        where: {
+          isReply: false,
+        },
+        include: {
+          user: true,
+          _count: {
+            select: {
+              replies: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!currentPost) return null;
+
+  console.log(currentPost.comments.length);
 
   return (
     <section className="flex flex-col gap-4">
@@ -50,10 +62,10 @@ const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
 
       <hr className="border-zinc-700" />
 
-      {comments.length > 0 ? (
-        <div className="divide-y divide-zinc-800">
-          {comments.map((comment) => (
-            <Comment key={comment.id} comment={comment} />
+      {currentPost.comments.length > 0 ? (
+        <div className="divide-y divide-zinc-700">
+          {currentPost.comments.map((comment) => (
+            <Comment key={comment.id} comment={comment} user={user} />
           ))}
         </div>
       ) : (

@@ -7,17 +7,20 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const currentUser = await getCurrentUser();
+    console.log(body);
 
     if (!currentUser) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const { content, postId } = CommentValidator.parse(body);
+    const { content, postId, replyToId, isReply } = CommentValidator.parse(body);
 
     await db.comment.create({
       data: {
         content,
         postId,
+        replyToId,
+        isReply,
         userId: currentUser.id,
       },
     });

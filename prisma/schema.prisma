@@ -75,6 +75,7 @@ model Comment {
   likes     Int      @default(0)
 
   replyToId String?   @db.ObjectId
+  isReply   Boolean   @default(false)
   replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   replies   Comment[] @relation("ReplyTo")
 }

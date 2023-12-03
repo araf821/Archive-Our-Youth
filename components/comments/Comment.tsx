@@ -7,25 +7,18 @@ import Image from "next/image";
 import { FC, useState } from "react";
 import ReplySection from "./ReplySection";
 import { motion } from "framer-motion";
+import CommentInput from "./CommentInput";
+import { User, Comment as CommentModel } from "@prisma/client";
 
 interface CommentProps {
-  index?: number;
   reply?: boolean;
-  comment: {
-    id: number;
-    content: string;
-    date: string;
-    likeCount: number;
-    replyCount: number;
-    user: {
-      name: string;
-      imageUrl: string;
-    };
-  };
+  user: User | null;
+  comment: CommentModel & { user: User; _count: { replies: number } };
 }
 
-const Comment: FC<CommentProps> = ({ comment, index = 0, reply }) => {
-  const [open, setOpen] = useState(false);
+const Comment: FC<CommentProps> = ({ comment, reply, user }) => {
+  const [openReplyInput, setOpenReplyInput] = useState(false);
+  const [openReplySection, setOpenReplySection] = useState(false);
 
   return (
     <motion.div
@@ -35,11 +28,15 @@ const Comment: FC<CommentProps> = ({ comment, index = 0, reply }) => {
         opacity: 1,
         x: 0,
       }}
-      className="flex items-center gap-4 py-4 text-zinc-100 max-md:gap-2"
+      className="flex items-center gap-4 py-6 text-zinc-100 max-md:gap-2"
     >
       <div className="flex h-full flex-col items-center gap-1 self-start">
         <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full md:h-12 md:w-12">
-          <Image src={comment.user.imageUrl} alt="user profile picture" fill />
+          <Image
+            src={comment.user.imageUrl || "/placeholder-image.png"}
+            alt="user profile picture"
+            fill
+          />
         </div>
         {/* <div className="h-full w-1 bg-zinc-300" /> */}
       </div>
@@ -48,7 +45,7 @@ const Comment: FC<CommentProps> = ({ comment, index = 0, reply }) => {
           {comment.user.name}
           <span className="mx-1 text-zinc-500">•</span>
           <span className="text-xs text-zinc-500 md:text-sm">
-            {comment.date}
+            {comment.createdAt.toISOString()}
           </span>
         </p>
         <p
@@ -64,24 +61,40 @@ const Comment: FC<CommentProps> = ({ comment, index = 0, reply }) => {
             <Heart strokeWidth={3} className="h-4 w-4 pb-0.5 md:h-5 md:w-5" />
             <span className="sr-only">like button</span>
           </button>
-          <p className="font-semibold">{comment.likeCount} likes</p>
+          <p className="font-semibold">{comment.likes} likes</p>
           {!reply && (
             <>
               <span className="mx-1">•</span>
-              <button className="transition duration-200 hover:text-green-500 max-md:text-sm">
+              <button
+                onClick={() => setOpenReplyInput((open) => !open)}
+                className="transition duration-200 hover:text-green-500 max-md:text-sm"
+              >
                 <span className="sr-only">reply button</span>
                 <Reply strokeWidth={3} className="h-4 w-4 pb-1 md:h-5 md:w-5" />
               </button>
               <button
-                onClick={() => setOpen((open) => !open)}
+                onClick={() => {
+                  if (comment._count.replies > 0) {
+                    setOpenReplySection((open) => !open);
+                  }
+                }}
                 className="font-semibold"
               >
-                {comment.replyCount} replies
+                {comment._count.replies} replies
               </button>
             </>
           )}
         </div>
-        {open && <ReplySection commentId={comment.id.toString()} />}
+        {openReplyInput && (
+          <div className="pt-4">
+            <CommentInput
+              postId={"123"}
+              user={user}
+              replyToId={comment.id.toString()}
+            />
+          </div>
+        )}
+        {openReplySection && <ReplySection commentId={comment.id.toString()} />}
       </div>
     </motion.div>
   );

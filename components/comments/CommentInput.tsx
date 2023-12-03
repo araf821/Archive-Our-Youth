@@ -10,13 +10,15 @@ import { FC, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "../ui/Button";
 import { CommentValidator } from "@/lib/validators/comment";
+import Link from "next/link";
 
 interface CommentInputProps {
-  user: User;
+  user: User | null;
   postId: string;
+  replyToId?: string;
 }
 
-const CommentInput: FC<CommentInputProps> = ({ user, postId }) => {
+const CommentInput: FC<CommentInputProps> = ({ user, postId, replyToId }) => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -24,12 +26,18 @@ const CommentInput: FC<CommentInputProps> = ({ user, postId }) => {
   const onSubmit = async () => {
     try {
       setIsLoading(true);
-      const validatedInput = CommentValidator.parse({ content: input, postId });
+      const validatedInput = CommentValidator.parse({
+        content: input,
+        postId,
+        replyToId,
+      });
       await axios.post("/api/comment", {
         content: validatedInput.content,
         postId: postId,
+        replyToId: replyToId,
+        isReply: replyToId ? true : false,
       });
-      toast.success("Thanks for your comment!");
+      toast.success("Thanks for your contribution!");
       router.refresh();
     } catch (error) {
       console.log(error);
@@ -38,6 +46,21 @@ const CommentInput: FC<CommentInputProps> = ({ user, postId }) => {
       setIsLoading(false);
     }
   };
+
+  if (!user) {
+    return (
+      <p className="mt-2 text-zinc-400 max-md:text-sm">
+        Please{" "}
+        <Link
+          href="/sign-in"
+          className="text-green-500 underline underline-offset-2"
+        >
+          sign in
+        </Link>{" "}
+        to leave a reply.
+      </p>
+    );
+  }
 
   return (
     <div className="flex items-center gap-2 text-zinc-200 md:gap-4">
