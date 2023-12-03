@@ -1,9 +1,10 @@
 import EmptyState from "@/components/EmptyState";
 import PageTransitionContainer from "@/components/PageTransitionContainer";
+import CommentSection from "@/components/comments/CommentSection";
 import SinglePost from "@/components/post/SinglePost";
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
-import { FC } from "react";
+import { FC, Suspense } from "react";
 
 interface SinglePostPageParams {
   params: {
@@ -35,7 +36,7 @@ const page: FC<SinglePostPageParams> = async ({ params }) => {
     where: {
       slug: decodeURIComponent(params.slug),
     },
-    include: { user: true },
+    include: { user: true, comments: { include: { user: true } } },
   });
 
   const currentUser = await getCurrentUser();
@@ -51,9 +52,14 @@ const page: FC<SinglePostPageParams> = async ({ params }) => {
   }
 
   return (
-    <main className="mx-auto w-full max-w-screen-md">
+    <main className="mx-auto w-full max-w-screen-md px-4 pb-12">
       <PageTransitionContainer>
         <SinglePost currentUser={currentUser} post={post} />
+        <Suspense
+          fallback={<div className="mx-auto text-4xl text-white">Loading</div>}
+        >
+          <CommentSection user={currentUser} postId={post.id} />
+        </Suspense>
       </PageTransitionContainer>
     </main>
   );

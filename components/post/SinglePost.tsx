@@ -1,4 +1,4 @@
-import { Post, User } from "@prisma/client";
+import { Comment, Post, User } from "@prisma/client";
 import { FC } from "react";
 import DynamicImage from "../DynamicImage";
 import { dateFormat } from "@/lib/dateFormat";
@@ -18,12 +18,12 @@ import { Edit2, MapPin } from "lucide-react";
 
 interface SinglePostProps {
   currentUser: User | null;
-  post: Post & { user: User | null };
+  post: Post & { user: User | null; comments: (Comment & { user: User })[] };
 }
 
 const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
   return (
-    <section className="mb-8 mt-8 flex flex-col gap-6 px-4">
+    <section className="mb-8 mt-8 flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <BackButton />
         {post.userId === currentUser?.id && (
@@ -175,12 +175,6 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
           ))}
         </ul>
       </div>
-
-      {/* Comments */}
-      <section className="flex flex-col gap-2">
-        <p className="text-zinc-100 md:text-lg">Comments</p>
-        <p className="text-zinc-400">Coming Soon</p>
-      </section>
     </section>
   );
 };
