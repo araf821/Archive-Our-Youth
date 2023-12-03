@@ -70,8 +70,6 @@ const Filters: FC<FiltersProps> = ({}) => {
   const country = form.watch("location");
 
   const handleSearch = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-
     let currentQuery = {};
 
     if (searchParams) {

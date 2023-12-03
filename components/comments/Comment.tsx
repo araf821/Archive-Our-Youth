@@ -2,24 +2,55 @@
 
 import { openSans } from "@/app/fonts";
 import { cn } from "@/lib/utils";
-import { Heart, Loader2, Reply } from "lucide-react";
+import { Heart, Reply, Trash } from "lucide-react";
 import Image from "next/image";
-import { FC, Suspense, useState } from "react";
+import { FC, useState } from "react";
 import ReplySection from "./ReplySection";
 import { motion } from "framer-motion";
-import CommentInput from "./CommentInput";
 import { User, Comment as CommentModel } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import axios from "axios";
+import queryString from "query-string";
 
 interface CommentProps {
   reply?: boolean;
   user: User | null;
   comment: CommentModel & { user: User; _count: { replies: number } };
+  refresh?: () => void;
 }
 
-const Comment: FC<CommentProps> = ({ comment, reply, user }) => {
+const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+
+  const onLike = async () => {
+    toast("Feature Coming Soon!");
+    // try {
+    //   await axios.put("/api/comment/like", { commentId: comment.id });
+    // } catch (error) {
+    //   console.error(error);
+    //   toast.error("Something went wrong.");
+    // }
+  };
+
+  const deleteComment = async () => {
+    try {
+      const url = queryString.stringifyUrl({
+        url: "/api/comment",
+        query: {
+          commentId: comment.id,
+        },
+      });
+      await axios.delete(url);
+      toast.success("Deleted your comment!");
+      router.refresh();
+      refresh ? refresh() : null;
+    } catch (error) {
+      console.error("COMMENT DELETE ERROR", error);
+      toast.error("Something went wrong.");
+    }
+  };
 
   return (
     <motion.div
@@ -56,11 +87,16 @@ const Comment: FC<CommentProps> = ({ comment, reply, user }) => {
           {comment.content}
         </p>
         <div className="mt-2 flex items-center gap-2 text-zinc-400">
-          <button className="transition duration-200 hover:text-red-500 max-md:text-sm">
+          <button
+            onClick={onLike}
+            className="flex items-center gap-1 transition duration-200 hover:text-red-500 max-md:text-sm"
+          >
             <Heart strokeWidth={3} className="h-4 w-4 pb-0.5 md:h-5 md:w-5" />
             <span className="sr-only">like button</span>
+            <span className="font-semibold max-sm:text-sm">
+              {comment.likes} likes
+            </span>
           </button>
-          <p className="font-semibold max-sm:text-sm">{comment.likes} likes</p>
           {!reply && (
             <>
               <span className="mx-1">•</span>
@@ -74,10 +110,21 @@ const Comment: FC<CommentProps> = ({ comment, reply, user }) => {
               </button>
             </>
           )}
+          {comment.userId === user?.id && (
+            <>
+              <span className="mx-1">•</span>
+              <button
+                onClick={deleteComment}
+                className="flex gap-1 transition duration-200 hover:text-rose-500 max-md:text-sm"
+              >
+                <span className="sr-only">delete button</span>
+                <Trash strokeWidth={3} className="h-4 w-4 md:h-5 md:w-5" />
+              </button>
+            </>
+          )}
         </div>
         {open && (
           <ReplySection
-            refresh={() => router.refresh()}
             postId={comment.postId}
             user={user}
             replyToId={comment.id}

@@ -4,9 +4,6 @@ import axios from "axios";
 import queryString from "query-string";
 import { Comment as CommentModel, User } from "@prisma/client";
 import CommentInput from "./CommentInput";
-import { useRouter } from "next/navigation";
-import { revalidatePath } from "next/cache";
-import { delay } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
 interface ReplySectionProps {
@@ -14,7 +11,6 @@ interface ReplySectionProps {
   replyToId: string;
   postId: string;
   commentId: string;
-  refresh: () => void;
 }
 
 const ReplySection: FC<ReplySectionProps> = ({
@@ -22,7 +18,6 @@ const ReplySection: FC<ReplySectionProps> = ({
   postId,
   replyToId,
   user,
-  refresh,
 }) => {
   const [comments, setComments] = useState<
     (CommentModel & { user: User; _count: { replies: number } })[]
@@ -70,12 +65,13 @@ const ReplySection: FC<ReplySectionProps> = ({
       )}
       {comments.length > 0 ? (
         <div className="-mb-4 mt-2 divide-y divide-zinc-800 border-t border-t-zinc-800">
-          {comments.map((comment, index) => (
+          {comments.map((comment) => (
             <Comment
               key={comment.id}
-              user={null}
+              user={user}
               reply={true}
               comment={comment}
+              refresh={() => fetchComments()}
             />
           ))}
         </div>

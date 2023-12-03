@@ -20,6 +20,9 @@ const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
         where: {
           isReply: false,
         },
+        orderBy: {
+          createdAt: "desc",
+        },
         include: {
           user: true,
           _count: {
@@ -33,8 +36,6 @@ const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
   });
 
   if (!currentPost) return null;
-
-  console.log(currentPost.comments.length);
 
   return (
     <section className="flex flex-col gap-4">
@@ -76,66 +77,3 @@ const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
 };
 
 export default CommentSection;
-
-export const comments = [
-  {
-    id: 0,
-    content:
-      "weet apple pie tiramisu carrot cake. Marzipan marshmallow croissant tootsie roll lollipop. Cupcake lemon drops bear claw gummies. Jelly bear claw gummi bears lollipop cotton candy gummi bears chocolate bar cake cookie. Cupcake muffin danish muffin cookie gummies. Jelly beans tiramisu pudding. Toffee soufflé chocolate cake pastry brownie. Oat cake halvah sweet roll cotton candy croissant lollipop. Macaroon tiramisu chocolate bar candy candy carrot cake jelly sweet. Gummies crois",
-    date: "1h ago",
-    likeCount: 5,
-    replyCount: 5,
-    user: {
-      name: "Minnie",
-      imageUrl: "/placeholder-image.png",
-    },
-  },
-  {
-    id: 1,
-    content:
-      "weet apple pie tiramisu carrot cake. Marzipan marshmallow croissant tootsie roll lollipop. Cupcake lemon drops bear claw gummies. Jelly bear claw gummi bears lollipop cotton candy gummi bears chocolate bar cake cookie. Cupcake muffin danish muffin cookie gummies. Jelly beans tiramisu pudding. Toffee soufflé chocolate cake pastry brownie. Oat cake halvah sweet roll cotton candy croissant lollipop. Macaroon tiramisu chocolate bar candy candy carrot cake jelly sweet. Gummies crois",
-    date: "1h ago",
-    likeCount: 5,
-    replyCount: 5,
-    user: {
-      name: "Minnie",
-      imageUrl: "/placeholder-image.png",
-    },
-  },
-  {
-    id: 2,
-    content:
-      "weet apple pie tiramisu carrot cake. Marzipan marshmallow croissant tootsie roll lollipop. Cupcake lemon drops bear claw gummies. Jelly bear claw gummi bears lollipop cotton candy gummi bears chocolate bar cake cookie. Cupcake muffin danish muffin cookie gummies. Jelly beans tiramisu pudding. Toffee soufflé chocolate cake pastry brownie. Oat cake halvah sweet roll cotton candy croissant lollipop. Macaroon tiramisu chocolate bar candy candy carrot cake jelly sweet. Gummies crois",
-    date: "1h ago",
-    likeCount: 5,
-    replyCount: 5,
-    user: {
-      name: "Minnie",
-      imageUrl: "/placeholder-image.png",
-    },
-  },
-  {
-    id: 3,
-    content:
-      "weet apple pie tiramisu carrot cake. Marzipan marshmallow croissant tootsie roll lollipop. Cupcake lemon drops bear claw gummies. Jelly bear claw gummi bears lollipop cotton candy gummi bears chocolate bar cake cookie. Cupcake muffin danish muffin cookie gummies. Jelly beans tiramisu pudding. Toffee soufflé chocolate cake pastry brownie. Oat cake halvah sweet roll cotton candy croissant lollipop. Macaroon tiramisu chocolate bar candy candy carrot cake jelly sweet. Gummies crois",
-    date: "1h ago",
-    likeCount: 5,
-    replyCount: 5,
-    user: {
-      name: "Minnie",
-      imageUrl: "/placeholder-image.png",
-    },
-  },
-  {
-    id: 4,
-    content:
-      "weet apple pie tiramisu carrot cake. Marzipan marshmallow croissant tootsie roll lollipop. Cupcake lemon drops bear claw gummies. Jelly bear claw gummi bears lollipop cotton candy gummi bears chocolate bar cake cookie. Cupcake muffin danish muffin cookie gummies. Jelly beans tiramisu pudding. Toffee soufflé chocolate cake pastry brownie. Oat cake halvah sweet roll cotton candy croissant lollipop. Macaroon tiramisu chocolate bar candy candy carrot cake jelly sweet. Gummies crois",
-    date: "1h ago",
-    likeCount: 5,
-    replyCount: 5,
-    user: {
-      name: "Minnie",
-      imageUrl: "/placeholder-image.png",
-    },
-  },
-];
