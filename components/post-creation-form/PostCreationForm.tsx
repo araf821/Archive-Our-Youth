@@ -238,13 +238,12 @@ const PostCreationForm = () => {
         size="lg"
         variant="outline"
         className="w-fit border-2"
-        // className="flex w-fit gap-x-2 rounded-2xl border-2 border-white text-zinc-50 transition hover:translate-x-2 hover:bg-white hover:text-zinc-800"
       >
-        <span className="pl-2">Get Started</span>
+        <span className="pl-1">Get Started</span>
         <ArrowRight className="h-5 w-5" />
       </Button>
       <p className="text-zinc-400 max-md:hidden">
-        You can use arrow keys or spacebar to navigate.
+        You can use arrow keys or the space bar to navigate.
       </p>
     </div>
   );

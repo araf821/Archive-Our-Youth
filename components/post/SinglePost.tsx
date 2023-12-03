@@ -92,10 +92,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         <div className="-my-1 flex gap-2 text-zinc-300 md:text-lg">
           <div className="relative h-14 w-14 rounded-full">
             <Image
-              src={
-                post.user?.imageUrl ||
-                "https://utfs.io/f/611b7606-d2ed-4c74-aaff-7a4d5c66d365-9w6i5v.jpg"
-              }
+              src={post.user?.imageUrl || "/placeholder-image.png"}
               fill
               alt=""
               className="rounded-lg object-cover"

@@ -48,9 +48,18 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
   const onSubmit = async (values: z.infer<typeof PostEditValidator>) => {
     try {
       setIsLoading(true);
-      await axios.put(`/api/post/${post.id}`, values);
-      toast.success("Post updated successfully!");
-      router.push(`/post/${post.slug}`);
+      if (
+        values.content === post.postContent &&
+        values.description === post.description &&
+        values.tags.toString() == post.tags.toString() &&
+        values.thumbnail === post.thumbnail
+      ) {
+        toast.error("No changes have been made.");
+      } else {
+        await axios.put(`/api/post/${post.id}`, values);
+        toast.success("Post updated successfully!");
+        router.push(`/post/${post.slug}`);
+      }
     } catch (error) {
       toast.error("Something went wrong.");
       console.log("Post update error", error);
