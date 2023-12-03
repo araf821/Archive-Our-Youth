@@ -33,9 +33,10 @@ model User {
   updatedAt DateTime @updatedAt
   role      UserType @default(MEMBER)
 
-  posts        Post[]
-  likedPostIds String[]  @db.ObjectId
-  comments     Comment[]
+  posts         Post[]
+  likedPostIds  String[]  @db.ObjectId
+  likedComments String[]  @db.ObjectId
+  comments      Comment[]
 }
 
 model Post {
@@ -71,6 +72,7 @@ model Comment {
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId    String   @db.ObjectId
   deleted   Boolean  @default(false)
+  likes     Int      @default(0)
 
   replyToId String?   @db.ObjectId
   replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
