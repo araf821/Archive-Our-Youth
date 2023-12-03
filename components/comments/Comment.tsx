@@ -9,6 +9,7 @@ import ReplySection from "./ReplySection";
 import { motion } from "framer-motion";
 import CommentInput from "./CommentInput";
 import { User, Comment as CommentModel } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 interface CommentProps {
   reply?: boolean;
@@ -17,8 +18,8 @@ interface CommentProps {
 }
 
 const Comment: FC<CommentProps> = ({ comment, reply, user }) => {
-  const [openReplyInput, setOpenReplyInput] = useState(false);
-  const [openReplySection, setOpenReplySection] = useState(false);
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <motion.div
@@ -44,9 +45,7 @@ const Comment: FC<CommentProps> = ({ comment, reply, user }) => {
         <p className="flex items-center gap-1.5 break-words md:text-lg">
           {comment.user.name}
           <span className="mx-1 text-zinc-500">•</span>
-          <span className="text-xs text-zinc-500 md:text-sm">
-            {comment.createdAt.toISOString()}
-          </span>
+          <span className="text-xs text-zinc-500 md:text-sm">date</span>
         </p>
         <p
           className={cn(
@@ -61,40 +60,30 @@ const Comment: FC<CommentProps> = ({ comment, reply, user }) => {
             <Heart strokeWidth={3} className="h-4 w-4 pb-0.5 md:h-5 md:w-5" />
             <span className="sr-only">like button</span>
           </button>
-          <p className="font-semibold">{comment.likes} likes</p>
+          <p className="font-semibold max-sm:text-sm">{comment.likes} likes</p>
           {!reply && (
             <>
               <span className="mx-1">•</span>
               <button
-                onClick={() => setOpenReplyInput((open) => !open)}
-                className="transition duration-200 hover:text-green-500 max-md:text-sm"
+                onClick={() => setOpen((open) => !open)}
+                className="flex gap-1 transition duration-200 hover:text-green-500 max-md:text-sm"
               >
                 <span className="sr-only">reply button</span>
-                <Reply strokeWidth={3} className="h-4 w-4 pb-1 md:h-5 md:w-5" />
-              </button>
-              <button
-                onClick={() => {
-                  if (comment._count.replies > 0) {
-                    setOpenReplySection((open) => !open);
-                  }
-                }}
-                className="font-semibold"
-              >
+                <Reply strokeWidth={3} className="h-4 w-4 md:h-5 md:w-5" />
                 {comment._count.replies} replies
               </button>
             </>
           )}
         </div>
-        {openReplyInput && (
-          <div className="pt-4">
-            <CommentInput
-              postId={"123"}
-              user={user}
-              replyToId={comment.id.toString()}
-            />
-          </div>
+        {open && (
+          <ReplySection
+            refresh={() => router.refresh()}
+            postId={comment.postId}
+            user={user}
+            replyToId={comment.id}
+            commentId={comment.id.toString()}
+          />
         )}
-        {openReplySection && <ReplySection commentId={comment.id.toString()} />}
       </div>
     </motion.div>
   );

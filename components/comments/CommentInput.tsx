@@ -16,9 +16,15 @@ interface CommentInputProps {
   user: User | null;
   postId: string;
   replyToId?: string;
+  refresh?: () => void;
 }
 
-const CommentInput: FC<CommentInputProps> = ({ user, postId, replyToId }) => {
+const CommentInput: FC<CommentInputProps> = ({
+  user,
+  postId,
+  replyToId,
+  refresh,
+}) => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -39,6 +45,7 @@ const CommentInput: FC<CommentInputProps> = ({ user, postId, replyToId }) => {
       });
       toast.success("Thanks for your contribution!");
       router.refresh();
+      refresh ? refresh() : null;
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong. Comment could not be added.");
