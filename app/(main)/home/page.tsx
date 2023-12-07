@@ -1,6 +1,7 @@
 import Collage from "@/components/Collage";
 import { initializeUser } from "@/lib/initializeUser";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "The Archive | Archive Our Youth",
@@ -20,12 +21,14 @@ export default async function Home({
 
   return (
     <div className="relative">
-      <Collage
-        keyword={searchParams.keyword}
-        sortBy={searchParams.sortBy}
-        tags={searchParams.tags}
-        country={searchParams.country}
-      />
+      <Suspense fallback={Collage.Skeleton}>
+        <Collage
+          keyword={searchParams.keyword}
+          sortBy={searchParams.sortBy}
+          tags={searchParams.tags}
+          country={searchParams.country}
+        />
+      </Suspense>
     </div>
   );
 }
