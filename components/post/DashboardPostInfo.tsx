@@ -1,6 +1,5 @@
 import { dateFormat } from "@/lib/dateFormat";
 import { Post } from "@prisma/client";
-import { File, ImageIcon, Pen, VideoIcon, Volume2Icon } from "lucide-react";
 import { FC } from "react";
 import Tag from "../Tag";
 
