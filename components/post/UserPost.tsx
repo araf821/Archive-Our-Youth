@@ -19,7 +19,9 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
 
   return (
     <motion.div
-      animate={{ opacity: 1 }}
+      viewport={{ once: true }}
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
       exit={{ opacity: 0, x: -500, transition: { duration: 0.5 } }}
       key={post.id}
       className="flex flex-col gap-4 rounded-sm border border-zinc-700 bg-zinc-800 p-2"
