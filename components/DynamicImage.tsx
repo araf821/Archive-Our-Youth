@@ -15,12 +15,11 @@ const DynamicImage: FC<DynamicImageProps> = ({ src, classNames }) => {
   const [contained, setContained] = useState(false);
 
   return (
-    <div
-      className={cn("relative aspect-[4/3] overflow-hidden", classNames)}
-    >
+    <div className={cn("relative aspect-[4/3] overflow-hidden", classNames)}>
       <Image
         fill
         src={src}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 50vw"
         alt="post image"
         className={`rounded-sm ${
           contained ? "object-contain" : "object-cover"

@@ -31,6 +31,7 @@ const LandingPage = () => {
               alt="ylrl logo"
               fill
               className="object-contain"
+              sizes="(max-width: 768px) 150px, 250px"
             />
           </div>
           <div className="relative mx-auto aspect-video w-full max-w-[250px]">
@@ -39,6 +40,7 @@ const LandingPage = () => {
               alt="york logo"
               fill
               className="object-contain"
+              sizes="(max-width: 768px) 150px, 25vw"
             />
           </div>
         </div>

@@ -75,7 +75,13 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
         <>
           <div className="absolute inset-0">
             <div className="relative aspect-square">
-              <Image src={post.thumbnail} alt="post thumbnail" fill className="object-cover" />
+              <Image
+                src={post.thumbnail}
+                alt="post thumbnail"
+                sizes="(max-width: 768px) 75vw, (max-width: 1200px) 50vw, 30vw"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
           <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/75 px-1.5 py-0.5 text-zinc-200 max-md:text-sm">
