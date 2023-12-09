@@ -13,6 +13,7 @@ export default authMiddleware({
     "/submit",
     "/api/post",
     "/api/uploadthing",
+    "/api/comment",
   ],
 });
 
