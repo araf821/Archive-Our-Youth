@@ -45,8 +45,13 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ slug: post.slug });
-  } catch (error) {
+  } catch (error: any) {
     console.log("POST CREATION ERROR: ", error);
+
+    if (error.code === "P2002") {
+      return new NextResponse("Internal Error", { status: 409 });
+    }
+
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

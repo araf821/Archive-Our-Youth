@@ -157,43 +157,18 @@ const PostCreationForm = () => {
       form.reset();
       router.push(`/post/${response.data.slug}`);
     } catch (error: any) {
-      toast.error("Something went wrong.");
-      console.log(error);
+      if (error.response.status === 409) {
+        toast.error("You already have a post with this title.");
+      } else {
+        toast.error("Something went wrong.");
+      }
+      console.error(error);
     }
   };
 
   let introScreen, confirmationScreen;
 
   introScreen = (
-    // <div
-    //   className={`flex max-w-screen-lg gap-2 flex-col items-center justify-center text-center ${
-    //     step > 1 && "hidden"
-    //   }`}
-    // >
-    //   <p
-    //     className={`${kobata.className} leading-[4.5rem] text-[4rem] font-semibold text-zinc-100 md:text-[5rem]`}
-    //   >
-    //     Archive Our Youth
-    //   </p>
-    //   <p className="text-xl font-light text-zinc-100 md:text-2xl">
-    //     Submission Portal
-    //   </p>
-    //   <div className="pt-8 flex flex-col items-center gap-4">
-    //     <Button
-    //       onClick={onNext}
-    //       type="button"
-    //       size="lg"
-    //       className="flex gap-x-2 rounded-2xl border-2 border-white text-zinc-50 transition hover:translate-x-2 hover:bg-white hover:text-zinc-800"
-    //     >
-    //       <span className="pl-2">Get Started</span>
-    //       <ArrowRight className="h-5 w-5" />
-    //     </Button>
-    //     <p className="text-zinc-400 max-md:hidden">
-    //       You can use arrow keys or spacebar to navigate.
-    //     </p>
-    //   </div>
-    // </div>
-
     <div className="flex max-w-screen-md flex-col gap-8 pb-8">
       <p
         className={`${kobata.className} text-6xl font-semibold leading-[4.5rem] max-md:text-5xl max-sm:text-4xl`}
