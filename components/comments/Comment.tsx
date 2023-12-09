@@ -115,7 +115,7 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
               </button>
             </>
           )}
-          {comment.userId === user?.id && (
+          {!comment.deleted && comment.userId === user?.id && (
             <>
               <span className="mx-1">•</span>
               <button
