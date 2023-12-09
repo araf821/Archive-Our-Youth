@@ -68,6 +68,7 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
             src={comment.user.imageUrl || "/placeholder-image.png"}
             alt="user profile picture"
             fill
+            sizes="50px"
           />
         </div>
         {/* <div className="h-full w-1 bg-zinc-300" /> */}
@@ -84,7 +85,11 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
             openSans.className,
           )}
         >
-          {comment.content}
+          {comment.deleted ? (
+            <span className="font-bold text-zinc-400">[deleted]</span>
+          ) : (
+            comment.content
+          )}
         </p>
         <div className="mt-2 flex items-center gap-2 text-zinc-400">
           <button

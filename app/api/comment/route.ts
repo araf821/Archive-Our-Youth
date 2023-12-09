@@ -81,18 +81,37 @@ export async function DELETE(req: Request) {
         id: commentId,
         userId: user.id,
       },
+      include: {
+        _count: {
+          select: {
+            replies: true,
+          },
+        },
+      },
     });
 
     if (!comment) {
       return new NextResponse("Comment Not Found", { status: 404 });
     }
 
-    await db.comment.delete({
-      where: {
-        userId: user.id,
-        id: commentId,
-      },
-    });
+    if (comment._count.replies > 0) {
+      await db.comment.update({
+        where: {
+          userId: user.id,
+          id: commentId,
+        },
+        data: {
+          deleted: true,
+        },
+      });
+    } else {
+      await db.comment.delete({
+        where: {
+          userId: user.id,
+          id: commentId,
+        },
+      });
+    }
 
     return NextResponse.json("Comment deleted successfully.", { status: 200 });
   } catch (error) {

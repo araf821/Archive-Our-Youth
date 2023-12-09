@@ -46,6 +46,7 @@ const CommentInput: FC<CommentInputProps> = ({
       toast.success("Thanks for your contribution!");
       router.refresh();
       refresh ? refresh() : null;
+      setInput("");
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong. Comment could not be added.");
@@ -76,6 +77,7 @@ const CommentInput: FC<CommentInputProps> = ({
           src={user.imageUrl || "/placeholder-image.png"}
           alt="user profile picture"
           fill
+          sizes="50px"
           className="object-cover"
         />
       </div>

@@ -61,7 +61,7 @@ const Navbar = ({ user }: NavbarProps) => {
   return (
     <nav
       className={cn(
-        "z-40 w-full border-b border-zinc-800 bg-zinc-900 h-20 transition duration-300 hover:opacity-100",
+        "z-40 h-20 w-full border-b border-zinc-800 bg-zinc-900 transition duration-300 hover:opacity-100",
         {
           "translate-y-0": visible,
         },
@@ -114,6 +114,7 @@ const Navbar = ({ user }: NavbarProps) => {
                 src="/placeholder-image.png"
                 alt="avatar"
                 className="object-cover"
+                sizes="50px"
               />
             </button>
           )}
