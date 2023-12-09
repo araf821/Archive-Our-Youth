@@ -55,7 +55,9 @@ const Overlay: FC<OverlayProps> = ({ onClose }) => {
         "absolute focus-visible:-outline-offset-8 outline focus-visible:outline-4 outline-white left-0 top-0 z-20 h-full w-full",
         randomBackgroundColor,
       )}
-    />
+    >
+      <span className="sr-only">overlay</span>
+    </motion.button>
   );
 };
 

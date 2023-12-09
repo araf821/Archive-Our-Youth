@@ -73,9 +73,6 @@ const Navbar = ({ user }: NavbarProps) => {
           className={`${kobata.className} flex items-center text-xl text-zinc-100 transition duration-200 hover:scale-110 md:text-2xl`}
         >
           Archive Our Youth
-          <span className="ml-2 bg-green-600 px-1 py-0.5 font-sans text-xs">
-            BETA
-          </span>
         </Link>
 
         <NavLinks />
@@ -109,6 +106,7 @@ const Navbar = ({ user }: NavbarProps) => {
               onClick={() => onOpenModal("authModal")}
               className="relative aspect-square w-8 overflow-hidden rounded-full"
             >
+              <span className="sr-only">profile picture</span>
               <Image
                 fill
                 src="/placeholder-image.png"
@@ -130,10 +128,12 @@ const Navbar = ({ user }: NavbarProps) => {
                 else onOpen();
               }}
             >
+              <span className="sr-only">search</span>
               <Search className="h-6 w-6 md:h-6 md:w-6" />
             </button>
           )}
           <button onClick={() => openMenu()} className="relative">
+            <span className="sr-only">side menu</span>
             <svg
               viewBox="0 0 24 24"
               fill="none"

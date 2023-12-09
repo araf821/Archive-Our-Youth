@@ -75,6 +75,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogTrigger>
+        <span className="sr-only">edit button</span>
         <Edit2 className="h-4 w-4 focus:outline-none md:h-5 md:w-5" />
       </DialogTrigger>
       <DialogContent className="max-w-lg bg-zinc-900 px-4 py-6 text-zinc-100">
@@ -133,7 +134,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
               <Button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                variant='ghost'
+                variant="ghost"
               >
                 Cancel
               </Button>

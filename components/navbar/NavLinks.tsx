@@ -65,6 +65,7 @@ const NavLinks = () => {
             else onOpen();
           }}
         >
+          <span className="sr-only">search button</span>
           <Search className="h-5 w-5 md:h-6 md:w-6" />
         </button>
       </div>

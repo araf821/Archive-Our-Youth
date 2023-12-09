@@ -52,6 +52,7 @@ const DashboardPage = async () => {
             }
             alt="user profile picture"
             fill
+            sizes="150px"
             className="w-full rounded-md object-cover"
           />
         </div>

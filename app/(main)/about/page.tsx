@@ -78,6 +78,7 @@ const AboutPage = () => {
               src="/ylrl-logo.svg"
               alt="ylrl logo"
               fill
+              sizes="50vw, (min-width: 768px) 25vw"
               className="object-contain"
             />
           </div>
@@ -86,6 +87,7 @@ const AboutPage = () => {
               src="/york-logo.svg"
               alt="york logo"
               fill
+              sizes="50vw, (min-width: 768px) 25vw"
               className="object-contain"
             />
           </div>

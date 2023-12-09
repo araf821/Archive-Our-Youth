@@ -209,7 +209,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                   />
                   <FormMessage />
                   {!!tags.length && (
-                    <div className="flex flex-wrap gap-4 pt-2">
+                    <ul className="flex flex-wrap gap-4 pt-2">
                       {tags.map((tag, index) => (
                         <Tag
                           key={tag}
@@ -224,7 +224,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                       >
                         Clear
                       </button>
-                    </div>
+                    </ul>
                   )}
                   <div className=""></div>
                 </FormItem>

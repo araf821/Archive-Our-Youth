@@ -68,10 +68,11 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
           className="text-zinc-300 transition hover:scale-110 hover:text-white active:scale-90"
           onClick={onClose}
         >
+          <span className="sr-only">close menu button</span>
           <X className="sm:h-8 sm:w-8 md:h-10 md:w-10" />
         </button>
       </div>
-      <motion.div
+      <motion.ul
         animate
         className="flex w-full flex-1 flex-col gap-8 overflow-hidden pt-12"
       >
@@ -156,7 +157,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
             </button>
           )}
         </motion.li>
-      </motion.div>
+      </motion.ul>
       <p className={`${kobata.className} pb-8 text-2xl text-white`}>
         Archive Our Youth
       </p>

@@ -14,14 +14,14 @@ const Tag: FC<TagProps> = ({ small, tag, index, onDelete }) => {
     <li
       key={tag}
       className={cn(
-        "text-bold flex w-fit items-center justify-between gap-2 rounded-lg px-3 py-1 text-zinc-900",
+        "text-bold capitalize flex w-fit items-center justify-between gap-2 rounded-lg px-3 py-1 text-zinc-900",
         {
-          "border-2 border-rose-500 text-rose-500": index === 0,
-          "border-2 border-lime-500 text-lime-500": index === 1,
-          "border-2 border-sky-500 text-sky-500": index === 2,
-          "border-2 border-amber-500 text-amber-500": index === 3,
-          "border-2 border-fuchsia-500 text-fuchsia-500": index === 4,
-          "border-2 border-teal-400 text-teal-400": index === 5,
+          "border-2 border-green-400 text-green-400": index === 0,
+          "border-2 border-rose-400 text-rose-400": index === 1,
+          "border-2 border-blue-400 text-blue-400": index === 2,
+          "border-2 border-amber-400 text-amber-400": index === 3,
+          "border-2 border-fuchsia-400 text-fuchsia-400": index === 4,
+          "border-2 border-sky-400 text-sky-400": index === 5,
           "border-2 border-red-400 text-red-400": index === 6,
           "border-2 border-indigo-400 text-indigo-400": index === 7,
           "border px-2 py-1 text-sm": small,
