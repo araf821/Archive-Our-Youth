@@ -28,7 +28,7 @@ const NavLinks = () => {
 
   return (
     <div className="items-center gap-4 max-lg:hidden lg:flex">
-      <div className="flex items-center gap-8 tracking-wider text-zinc-50 lg:gap-12 xl:gap-16">
+      <div className="flex items-center gap-8 tracking-wider text-zinc-50 lg:gap-12 xl:gap-14">
         {navLinks.map((link) => (
           <Link
             key={link.pathname}
@@ -53,7 +53,7 @@ const NavLinks = () => {
         ))}
         <button
           className={cn(
-            "rounded-full bg-zinc-800 p-3 text-white transition hover:bg-zinc-700 active:scale-90 max-lg:hidden",
+            "rounded-full bg-zinc-800 p-2 -translate-y-1 text-white transition hover:bg-zinc-700 active:scale-90 max-lg:hidden",
             {
               "bg-green-500 shadow-[0_0_15px_2px] shadow-green-500/50 hover:bg-green-600":
                 isOpen,

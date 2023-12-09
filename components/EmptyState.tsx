@@ -40,7 +40,7 @@ const EmptyState: FC<EmptyStateProps> = ({
         {link && (
           <Link
             href={link.route}
-            className="mx-auto flex w-fit flex-none items-center gap-2 rounded-sm bg-zinc-800 px-3 py-2 text-white transition duration-200 hover:bg-zinc-700"
+            className="mx-auto flex w-fit flex-none items-center gap-2 rounded-sm px-3 py-2 text-white transition duration-200 hover:bg-zinc-800"
           >
             {link.label}
             {link.icon && <link.icon size={16} />}

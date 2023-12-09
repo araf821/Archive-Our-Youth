@@ -110,7 +110,7 @@ const Filters: FC<FiltersProps> = ({}) => {
       animate={isOpen ? "visible" : "hidden"}
       className="mx-auto max-w-screen-md border-b border-zinc-800 px-4 text-zinc-100"
     >
-      <div className="flex flex-col gap-4 pt-6 pb-10">
+      <div className="flex flex-col gap-4 pb-10 pt-6">
         <p className="text-2xl font-light md:text-3xl">Search</p>
         <hr className="-mt-3 border-zinc-700" />
 
@@ -271,6 +271,8 @@ const Filters: FC<FiltersProps> = ({}) => {
                 </FormItem>
               )}
             />
+
+            <hr className="border-zinc-700 my-2" />
 
             <div className="flex gap-4">
               <Button

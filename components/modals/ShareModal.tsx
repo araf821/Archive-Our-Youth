@@ -34,25 +34,33 @@ const ShareModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md bg-zinc-900 sm:px-4 border-zinc-800 px-4 py-4 outline-none">
+      <DialogContent className="max-w-md border-zinc-800 bg-zinc-900 px-4 py-4 outline-none">
         <DialogHeader>
-          <DialogTitle className="text-xl text-zinc-100 md:text-2xl">
+          <DialogTitle className="text-xl md:text-center text-zinc-100 md:text-2xl">
             Share this post
           </DialogTitle>
         </DialogHeader>
-        <hr className="border-zinc-800" />
+        <hr className="border-zinc-700" />
 
-        <div className="flex items-center justify-between gap-2 break-words rounded-sm bg-zinc-800 px-4 py-3.5 text-white">
-          <p>{`${window.location.origin}${pathname}`}</p>
-          <div className="flex items-center gap-2">
-            <div className="h-8 border-l-[1px] border-zinc-700" />
-            <button
-              onClick={() => handleCopy(`${window.location.origin}${pathname}`)}
-              disabled={clicked}
-            >
-              {clicked ? <Check className="text-green-500" /> : <Copy />}
-            </button>
-          </div>
+        <div className="flex flex-col gap-2 overflow-x-hidden">
+          <p className="break-words rounded-sm bg-zinc-800 px-2 py-1 text-green-500 max-md:text-sm">{`${window.location.origin}${pathname}`}</p>
+          <button
+            onClick={() => handleCopy(`${window.location.origin}${pathname}`)}
+            disabled={clicked}
+            className="w-fit mx-auto rounded-sm p-1.5 px-2 text-zinc-300 transition hover:bg-zinc-800"
+          >
+            {clicked ? (
+              <p className="flex items-center gap-1.5 text-green-500">
+                <Check className="h-4 w-4 text-green-500 md:h-5 md:w-5" />
+                Copy
+              </p>
+            ) : (
+              <p className="flex items-center gap-1.5">
+                <Copy className="h-4 w-4 md:h-5 md:w-5" />
+                Copy
+              </p>
+            )}
+          </button>
         </div>
       </DialogContent>
     </Dialog>

@@ -79,7 +79,7 @@ const Collage = async ({ keyword, country, sortBy, tags }: CollageProps) => {
       <EmptyState
         title="No Results"
         description="No posts match the search criteria."
-        link={{ label: "Clear Search", route: "/home", icon: RefreshCcw }}
+        link={{ label: "Clear search", route: "/home", icon: RefreshCcw }}
       />
     );
   }
