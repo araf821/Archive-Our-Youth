@@ -1,7 +1,7 @@
 "use client";
 
 import { openSans } from "@/app/fonts";
-import { cn } from "@/lib/utils";
+import { cn, formatDateString } from "@/lib/utils";
 import { Heart, Reply, Trash } from "lucide-react";
 import Image from "next/image";
 import { FC, useState } from "react";
@@ -77,7 +77,9 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
         <p className="flex items-center gap-1.5 break-words md:text-lg">
           {comment.user.name}
           <span className="mx-1 text-zinc-500">•</span>
-          <span className="text-xs text-zinc-500 md:text-sm">date</span>
+          <span className="text-xs text-zinc-500 md:text-sm">
+            {formatDateString(comment.createdAt.toString())}
+          </span>
         </p>
         <p
           className={cn(

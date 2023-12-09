@@ -62,13 +62,13 @@ const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
       <hr className="border-zinc-700" />
 
       {currentPost.comments.length > 0 ? (
-        <div className="divide-y divide-zinc-700">
+        <div className="-mt-2 divide-y divide-zinc-700">
           {currentPost.comments.map((comment) => (
             <Comment key={comment.id} comment={comment} user={user} />
           ))}
         </div>
       ) : (
-        <p className="font-medium tracking-wide text-zinc-300 xl:text-lg">
+        <p className="text-center font-medium pt-4 tracking-wide text-zinc-300 xl:text-lg">
           Be the first to leave a comment!
         </p>
       )}

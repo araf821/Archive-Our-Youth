@@ -160,7 +160,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         >
           <ReactMarkdown
             className={cn(
-              "prose-sm h-full max-w-full overflow-y-auto break-words rounded-md text-start tracking-wide text-zinc-50 md:prose-base xl:prose-lg prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md",
+              "prose-sm h-full max-w-full overflow-y-auto break-words rounded-md text-start tracking-wide text-zinc-50 md:prose-base xl:prose-lg prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-ol:list-decimal prose-ul:list-disc prose-img:rounded-md",
               openSans.className,
             )}
           >
