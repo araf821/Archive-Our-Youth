@@ -110,7 +110,7 @@ const FileUpload: FC<FileUploadProps> = ({
         onChange(res?.[0].url);
       }}
       onUploadError={(error: Error) => {
-        console.log(error);
+        console.error(error);
 
         if (error.message.includes("maximum allowed size")) {
           toast.error(

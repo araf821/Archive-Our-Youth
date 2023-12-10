@@ -49,7 +49,7 @@ const LikeButton: FC<LikeButtonProps> = ({
     } catch (error) {
       setLiked((liked) => !liked);
       toast.error("Something went wrong.");
-      console.log(error);
+      console.error(error);
     } finally {
       setIsLoading(false);
     }

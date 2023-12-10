@@ -70,11 +70,11 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
         },
       });
       await axios.delete(url);
-      toast.success("Deleted your comment!");
+      toast.success("Comment deleted!");
       router.refresh();
       refresh ? refresh() : null;
     } catch (error) {
-      console.error("COMMENT DELETE ERROR", error);
+      console.error("COMMENT DELETION ERROR", error);
       toast.error("Something went wrong.");
     }
   };
@@ -121,25 +121,27 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
           )}
         </p>
         <div className="mt-2 flex items-center gap-2 text-zinc-400">
-          <button
-            disabled={isLoading}
-            onClick={onLike}
-            className="flex items-center gap-1 transition duration-200 hover:text-red-500 max-md:text-sm"
-          >
-            <Heart
-              strokeWidth={3}
-              className={cn("h-4 w-4 pb-0.5 md:h-5 md:w-5", {
-                "fill-red-500 text-red-500": likeState.alreadyLiked,
-              })}
-            />
-            <span className="sr-only">like button</span>
-            <span className="font-semibold max-sm:text-sm">
-              {likeState.likes} likes
-            </span>
-          </button>
+          {!comment.deleted && (
+            <button
+              disabled={isLoading}
+              onClick={onLike}
+              className="flex items-center gap-1 transition duration-200 hover:text-red-500 max-md:text-sm"
+            >
+              <Heart
+                strokeWidth={3}
+                className={cn("h-4 w-4 pb-0.5 md:h-5 md:w-5", {
+                  "fill-red-500 text-red-500": likeState.alreadyLiked,
+                })}
+              />
+              <span className="sr-only">like button</span>
+              <span className="font-semibold max-sm:text-sm">
+                {likeState.likes} likes
+              </span>
+            </button>
+          )}
           {!reply && (
             <>
-              <span className="mx-1">•</span>
+              {!comment.deleted && <span className="mx-1">•</span>}{" "}
               <button
                 onClick={() => setOpen((open) => !open)}
                 className="flex gap-1 transition duration-200 hover:text-green-500 max-md:text-sm"
@@ -152,7 +154,7 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
           )}
           {!comment.deleted && comment.userId === user?.id && (
             <>
-              <span className="mx-1">•</span>
+              {!comment.deleted && <span className="mx-1">•</span>}
               <button
                 onClick={deleteComment}
                 className="flex gap-1 transition duration-200 hover:text-rose-500 max-md:text-sm"

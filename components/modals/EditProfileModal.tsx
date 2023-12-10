@@ -61,7 +61,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
       router.refresh();
       setIsOpen(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       if (error instanceof ZodError) {
         toast.error("Validation error.");
       } else {
