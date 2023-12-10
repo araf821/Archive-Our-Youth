@@ -53,7 +53,7 @@ const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
             href="/sign-in"
             className="text-green-500 underline underline-offset-2"
           >
-            Sign In
+            sign in
           </Link>{" "}
           to leave a comment.
         </p>

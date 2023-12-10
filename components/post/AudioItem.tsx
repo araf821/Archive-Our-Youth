@@ -16,6 +16,7 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post, clicked, onClose }) => {
   return (
     <button
       onClick={onClick}
+      aria-label="post modal button"
       className="group relative grid aspect-square h-full w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800 bg-zinc-900 outline-none focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-white"
     >
       <AnimatePresence>
@@ -28,6 +29,7 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post, clicked, onClose }) => {
               src={post.thumbnail}
               alt="post thumbnail"
               fill
+              sizes="(max-width: 768px) 75vw, (max-width: 1200px) 50vw, 30vw"
               className="object-cover"
             />
           </div>

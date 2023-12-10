@@ -53,7 +53,7 @@ const NavLinks = () => {
         ))}
         <button
           className={cn(
-            "rounded-full bg-zinc-800 p-2 -translate-y-1 text-white transition hover:bg-zinc-700 active:scale-90 max-lg:hidden",
+            "rounded-full bg-zinc-800 p-2 -translate-x-4 text-white transition hover:bg-zinc-700 active:scale-90 max-lg:hidden",
             {
               "bg-green-500 shadow-[0_0_15px_2px] shadow-green-500/50 hover:bg-green-600":
                 isOpen,

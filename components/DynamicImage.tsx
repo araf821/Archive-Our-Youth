@@ -15,7 +15,12 @@ const DynamicImage: FC<DynamicImageProps> = ({ src, classNames }) => {
   const [contained, setContained] = useState(false);
 
   return (
-    <div className={cn("relative aspect-[4/3] overflow-hidden", classNames)}>
+    <div
+      className={cn(
+        "relative aspect-[4/3] overflow-hidden rounded-sm border border-zinc-700",
+        classNames,
+      )}
+    >
       <Image
         fill
         src={src}

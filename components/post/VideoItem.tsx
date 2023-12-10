@@ -18,6 +18,7 @@ const VideoItem: FC<VideoItemProps> = ({ post, onClick, clicked, onClose }) => {
   return (
     <button
       onClick={onClick}
+      aria-label="post modal button"
       className="group relative grid aspect-square w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800 outline-none focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-white"
     >
       <AnimatePresence>
@@ -32,6 +33,7 @@ const VideoItem: FC<VideoItemProps> = ({ post, onClick, clicked, onClose }) => {
                 alt="post thumbnail"
                 className="object-cover"
                 fill
+                sizes="(max-width: 768px) 75vw, (max-width: 1200px) 50vw, 30vw"
               />
             </div>
           </div>
