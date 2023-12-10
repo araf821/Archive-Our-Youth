@@ -1,6 +1,5 @@
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
-import { Comment } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 export async function PUT(req: Request) {
@@ -28,7 +27,7 @@ export async function PUT(req: Request) {
       },
       data: {
         likedComments: alreadyLiked
-          ? user.likedPostIds.filter((id) => id !== commentId)
+          ? user.likedComments.filter((id) => id !== commentId)
           : [...user.likedComments, commentId],
       },
     });

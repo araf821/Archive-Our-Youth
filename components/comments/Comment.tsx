@@ -27,27 +27,28 @@ interface CommentProps {
 
 const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [likeState, setLikeState] = useState({
     likes: comment.likes,
     alreadyLiked: user?.likedComments.includes(comment.id),
   });
+
   const { onOpen } = useModal();
   const router = useRouter();
 
   const onLike = async () => {
-    // toast("Feature Coming Soon!");
     if (!user) {
       return onOpen("authModal");
     }
 
     try {
+      setIsLoading(true);
       setLikeState((prev) => ({
         alreadyLiked: !prev.alreadyLiked,
         likes: prev.alreadyLiked ? prev.likes - 1 : prev.likes + 1,
       }));
 
       await axios.put("/api/comment/like", { commentId: comment.id });
-      // router.refresh();
     } catch (error) {
       setLikeState((prev) => ({
         alreadyLiked: !prev.alreadyLiked,
@@ -55,6 +56,8 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
       }));
       console.error(error);
       toast.error("Something went wrong.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -119,6 +122,7 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
         </p>
         <div className="mt-2 flex items-center gap-2 text-zinc-400">
           <button
+            disabled={isLoading}
             onClick={onLike}
             className="flex items-center gap-1 transition duration-200 hover:text-red-500 max-md:text-sm"
           >
