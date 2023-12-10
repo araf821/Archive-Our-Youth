@@ -4,7 +4,11 @@ import { openSans } from "@/app/fonts";
 import { cn, formatDateString } from "@/lib/utils";
 import { Heart, Reply, Trash } from "lucide-react";
 import Image from "next/image";
-import { FC, useState } from "react";
+import {
+  FC,
+  experimental_useOptimistic as useOptimistic,
+  useState,
+} from "react";
 import ReplySection from "./ReplySection";
 import { motion } from "framer-motion";
 import { User, Comment as CommentModel } from "@prisma/client";
@@ -12,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import axios from "axios";
 import queryString from "query-string";
+import { useModal } from "@/hooks/useModal";
 
 interface CommentProps {
   reply?: boolean;
@@ -22,16 +27,35 @@ interface CommentProps {
 
 const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
   const [open, setOpen] = useState(false);
+  const [likeState, setLikeState] = useState({
+    likes: comment.likes,
+    alreadyLiked: user?.likedComments.includes(comment.id),
+  });
+  const { onOpen } = useModal();
   const router = useRouter();
 
   const onLike = async () => {
-    toast("Feature Coming Soon!");
-    // try {
-    //   await axios.put("/api/comment/like", { commentId: comment.id });
-    // } catch (error) {
-    //   console.error(error);
-    //   toast.error("Something went wrong.");
-    // }
+    // toast("Feature Coming Soon!");
+    if (!user) {
+      return onOpen("authModal");
+    }
+
+    try {
+      setLikeState((prev) => ({
+        alreadyLiked: !prev.alreadyLiked,
+        likes: prev.alreadyLiked ? prev.likes - 1 : prev.likes + 1,
+      }));
+
+      await axios.put("/api/comment/like", { commentId: comment.id });
+      // router.refresh();
+    } catch (error) {
+      setLikeState((prev) => ({
+        alreadyLiked: !prev.alreadyLiked,
+        likes: prev.alreadyLiked ? prev.likes - 1 : prev.likes + 1,
+      }));
+      console.error(error);
+      toast.error("Something went wrong.");
+    }
   };
 
   const deleteComment = async () => {
@@ -98,10 +122,15 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
             onClick={onLike}
             className="flex items-center gap-1 transition duration-200 hover:text-red-500 max-md:text-sm"
           >
-            <Heart strokeWidth={3} className="h-4 w-4 pb-0.5 md:h-5 md:w-5" />
+            <Heart
+              strokeWidth={3}
+              className={cn("h-4 w-4 pb-0.5 md:h-5 md:w-5", {
+                "fill-red-500 text-red-500": likeState.alreadyLiked,
+              })}
+            />
             <span className="sr-only">like button</span>
             <span className="font-semibold max-sm:text-sm">
-              {comment.likes} likes
+              {likeState.likes} likes
             </span>
           </button>
           {!reply && (

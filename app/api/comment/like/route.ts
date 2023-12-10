@@ -21,49 +21,34 @@ export async function PUT(req: Request) {
     }
 
     let alreadyLiked = user.likedComments.includes(commentId);
-    let comment: Comment;
 
-    if (alreadyLiked) {
-      await db.user.update({
-        where: {
-          id: user.id,
-        },
-        data: {
-          likedComments: user.likedPostIds.filter((id) => id !== commentId),
-        },
-      });
+    await db.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        likedComments: alreadyLiked
+          ? user.likedPostIds.filter((id) => id !== commentId)
+          : [...user.likedComments, commentId],
+      },
+    });
 
-      comment = await db.comment.update({
-        where: {
-          id: commentId,
-        },
-        data: {
-          likes: (currentComment.likes || 0) - 1,
-        },
-        include: { user: true },
-      });
-    } else {
-      await db.user.update({
-        where: {
-          id: user.id,
-        },
-        data: {
-          likedComments: [...user.likedPostIds, commentId],
-        },
-      });
+    await db.comment.update({
+      where: {
+        id: commentId,
+      },
+      data: {
+        likes: alreadyLiked
+          ? currentComment.likes === 0
+            ? 0
+            : currentComment.likes - 1
+          : currentComment.likes + 1,
+      },
+    });
 
-      comment = await db.comment.update({
-        where: {
-          id: commentId,
-        },
-        data: {
-          likes: (currentComment.likes || 0) + 1,
-        },
-        include: { user: true },
-      });
-    }
-
-    return NextResponse.json(comment);
+    return NextResponse.json(alreadyLiked ? "Like - 1" : "Like + 1", {
+      status: 200,
+    });
   } catch (error) {
     console.error("POST LIKE ERROR", error);
     return new NextResponse("Internal Error", { status: 200 });
