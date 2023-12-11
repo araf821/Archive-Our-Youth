@@ -3,8 +3,11 @@ import UserPostsSection from "@/components/post/UserPostsSection";
 import { dateFormat } from "@/lib/dateFormat";
 import { db } from "@/lib/db";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
+import { UserType } from "@prisma/client";
+import { ArrowUpRight } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
@@ -39,12 +42,23 @@ const DashboardPage = async () => {
     <div className="mx-auto max-w-screen-md space-y-4 px-4 pt-8 text-zinc-100 lg:px-0">
       {/* Header */}
       <div className="flex flex-col gap-2">
-        <p className="text-4xl font-medium md:text-5xl">Dashboard</p>
+        <div className="flex gap-2 max-md:flex-col md:items-center md:justify-between">
+          <p className="text-4xl font-medium md:text-5xl">Dashboard</p>
+          {currentUser.role === UserType.ADMIN && (
+            <Link
+              href={"/dashboard/admin"}
+              className="flex w-fit items-center gap-1.5 rounded-sm bg-gradient-to-tr from-lime-400 group via-emerald-500 to-green-600 px-3 py-1.5 font-semibold tracking-wider text-black"
+            >
+              Admin Dashboard
+              <ArrowUpRight className="max-lg:h-5 max-lg:w-5 rotate-45 group-hover:rotate-0 transition" />
+            </Link>
+          )}
+        </div>
         <hr className="border-zinc-800" />
       </div>
 
       <div className="flex gap-4 rounded-md border-2 border-zinc-800 p-2">
-        <div className="relative w-20 aspect-square overflow-hidden md:w-32">
+        <div className="relative aspect-square w-20 overflow-hidden md:w-32">
           <Image
             src={
               currentUser.imageUrl ||
@@ -53,7 +67,7 @@ const DashboardPage = async () => {
             alt="user profile picture"
             fill
             sizes="150px"
-            className="rounded-md aspect-square w-full object-cover"
+            className="aspect-square w-full rounded-md object-cover"
           />
         </div>
         <div className="flex w-full flex-col gap-1.5 ">
