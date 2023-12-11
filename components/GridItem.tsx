@@ -35,13 +35,20 @@ const colors = [
   "bg-[#344860]",
 ];
 
+const transparentColors = ["bg-transparent", "bg-slate-900/30"];
+
 const GridItem = ({}) => {
   const [isTransparent, setIsTransparent] = useState(Math.random() < 0.9);
 
-  const randomIndex = Math.floor(Math.random() * colors.length);
+  const randomGridColor = Math.floor(Math.random() * colors.length);
+  const randomTransparentColor = Math.floor(
+    Math.random() * transparentColors.length,
+  );
 
   const [classes, setClasses] = useState(
-    isTransparent ? "bg-transparent" : colors[randomIndex],
+    isTransparent
+      ? transparentColors[randomTransparentColor]
+      : colors[randomGridColor],
   );
 
   useEffect(() => {
@@ -56,7 +63,7 @@ const GridItem = ({}) => {
   function changeClasses() {
     const shouldBecomeTransparent = Math.random() < 0.9;
     setClasses(
-      shouldBecomeTransparent ? "bg-transparent" : colors[randomIndex],
+      shouldBecomeTransparent ? "bg-transparent" : colors[randomGridColor],
     );
     setIsTransparent(shouldBecomeTransparent);
   }

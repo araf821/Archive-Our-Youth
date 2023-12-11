@@ -170,7 +170,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         </div>
 
         {/* <hr className="border-zinc-700" /> */}
-        <ul className="flex flex-wrap gap-2">
+        <ul className="flex -mb-4 flex-wrap gap-2">
           {post.tags.map((tag, index) => (
             <Tag tag={tag} key={tag} index={index} />
           ))}

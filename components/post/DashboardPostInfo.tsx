@@ -10,25 +10,25 @@ interface DashboardPostInfoProps {
 const DashboardPostInfo: FC<DashboardPostInfoProps> = ({ post }) => {
   return (
     <div className="relative flex w-full flex-col gap-2">
-      <p className="break-words text-xl pr-16 md:text-2xl">{post.title}</p>
+      <p className="break-words pr-16 text-xl md:text-2xl">{post.title}</p>
       {post.contentType === "TEXT" ? (
-        <span className="absolute max-md:text-xs text-sm right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-teal-500">
+        <span className="absolute right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-sm text-teal-500 max-md:text-xs">
           Written
         </span>
       ) : post.contentType === "IMAGE" ? (
-        <span className="absolute max-md:text-xs text-sm right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-amber-500">
+        <span className="absolute right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-sm text-amber-500 max-md:text-xs">
           Image
         </span>
       ) : post.contentType === "VIDEO" ? (
-        <span className="absolute max-md:text-xs text-sm right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-fuchsia-500">
+        <span className="absolute right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-sm text-fuchsia-500 max-md:text-xs">
           Video
         </span>
       ) : post.contentType === "PDF" ? (
-        <span className="absolute max-md:text-xs text-sm right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-rose-500">
+        <span className="absolute right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-sm text-rose-500 max-md:text-xs">
           PDF
         </span>
       ) : (
-        <span className="absolute max-md:text-xs text-sm right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-lime-500">
+        <span className="absolute right-0 top-0 bg-zinc-900 px-1.5 py-0.5 text-sm text-lime-500 max-md:text-xs">
           Audio
         </span>
       )}
@@ -36,12 +36,15 @@ const DashboardPostInfo: FC<DashboardPostInfoProps> = ({ post }) => {
         Date Published: {dateFormat(new Date(post.createdAt).toISOString())}
       </p>
       <p className="flex-1 text-zinc-400">Likes: {post.likes}</p>
-      <ul className="flex flex-wrap items-center gap-2.5">
-        <span className="text-zinc-400">Tags</span>
-        {post.tags.map((tag, index) => {
-          return <Tag key={tag} small index={index} tag={tag} />;
-        })}
-      </ul>
+
+      <div className="flex items-center gap-2">
+        <span className="self-start text-zinc-400">Tags</span>
+        <ul className="flex flex-wrap items-center gap-2.5">
+          {post.tags.map((tag, index) => {
+            return <Tag key={tag} small index={index} tag={tag} />;
+          })}
+        </ul>
+      </div>
     </div>
   );
 };

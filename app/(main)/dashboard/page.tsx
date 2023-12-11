@@ -44,7 +44,7 @@ const DashboardPage = async () => {
       </div>
 
       <div className="flex gap-4 rounded-md border-2 border-zinc-800 p-2">
-        <div className="relative my-auto aspect-square w-full overflow-hidden max-md:w-20 md:w-32">
+        <div className="relative w-20 aspect-square overflow-hidden md:w-32">
           <Image
             src={
               currentUser.imageUrl ||
@@ -53,7 +53,7 @@ const DashboardPage = async () => {
             alt="user profile picture"
             fill
             sizes="150px"
-            className="w-full rounded-md object-cover"
+            className="rounded-md aspect-square w-full object-cover"
           />
         </div>
         <div className="flex w-full flex-col gap-1.5 ">
