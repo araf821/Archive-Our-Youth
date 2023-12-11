@@ -44,6 +44,7 @@ const page: FC<SinglePostPageParams> = async ({ params }) => {
   if (!post) {
     return (
       <EmptyState
+        image="/404.svg"
         title="Post Not Found"
         description="The post you're looking for does not exist. It may have been taken down."
         link={{ label: "View All Posts", route: "/home" }}

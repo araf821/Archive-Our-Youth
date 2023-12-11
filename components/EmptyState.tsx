@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -12,6 +13,7 @@ interface EmptyStateProps {
     route: string;
     icon?: LucideIcon;
   };
+  image?: string;
 }
 
 const EmptyState: FC<EmptyStateProps> = ({
@@ -19,6 +21,7 @@ const EmptyState: FC<EmptyStateProps> = ({
   description,
   classNames,
   link,
+  image,
 }) => {
   return (
     <section
@@ -27,12 +30,23 @@ const EmptyState: FC<EmptyStateProps> = ({
         classNames,
       )}
     >
-      <div className="m-4 flex w-full max-w-screen-sm flex-col gap-4 rounded-md border-2 border-amber-500 px-4 py-8">
-        <p className="text-4xl font-semibold text-amber-500 max-md:text-3xl">
+      <div className="m-4 flex w-full max-w-screen-sm flex-col gap-4 rounded-md border-2 border-green-500 px-4 py-8">
+        {image && (
+          <div className="relative mx-auto aspect-square w-full max-w-[200px]">
+            <Image
+              src={image}
+              alt=""
+              fill
+              className="object-cover mix-blend-lighten"
+            />
+          </div>
+        )}
+
+        <p className="text-4xl font-semibold text-green-500 max-md:text-3xl">
           {title}
         </p>
         {description && (
-          <p className="font balance text-amber-500/75 md:text-lg">
+          <p className="font balance text-green-500/75 md:text-lg">
             {description}
           </p>
         )}

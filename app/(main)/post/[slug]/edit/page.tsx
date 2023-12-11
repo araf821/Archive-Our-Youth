@@ -32,6 +32,7 @@ const page: FC<pageProps> = async ({ params }) => {
   if (!post) {
     return (
       <EmptyState
+        image="/404.svg"
         title="Post Not Found"
         description="This post may have been taken down."
         link={{ label: "Back Home", route: "/home" }}
@@ -44,7 +45,7 @@ const page: FC<pageProps> = async ({ params }) => {
   }
 
   return (
-    <div className="mx-auto pt-8 max-w-screen-md px-4 pb-16 text-zinc-50 sm:px-8">
+    <div className="mx-auto max-w-screen-md px-4 pb-16 pt-8 text-zinc-50 sm:px-8">
       <BackButton />
 
       <div

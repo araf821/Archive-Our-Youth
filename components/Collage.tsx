@@ -77,8 +77,9 @@ const Collage = async ({ keyword, country, sortBy, tags }: CollageProps) => {
   if ((!posts || !posts.length) && (keyword || sortBy)) {
     return (
       <EmptyState
-        title="No Results"
-        description="No posts match the search criteria."
+        title="No Posts Found"
+        description="No results match the search criteria."
+        image="/404.svg"
         link={{ label: "Clear search", route: "/home", icon: RefreshCcw }}
       />
     );
