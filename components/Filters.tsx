@@ -108,10 +108,10 @@ const Filters: FC<FiltersProps> = ({}) => {
       initial={{ height: 0, opacity: 0 }}
       variants={filterVariants}
       animate={isOpen ? "visible" : "hidden"}
-      className="mx-auto max-w-screen-md border-b border-zinc-800 px-4 text-zinc-100"
+      className="border-b border-zinc-700 px-4 text-zinc-100"
     >
-      <div className="flex flex-col gap-4 pb-10 pt-6">
-        <p className="text-2xl font-light md:text-3xl">Search</p>
+      <div className="mx-auto flex max-w-screen-md flex-col gap-4 pb-8 pt-6">
+        <p className="text-2xl font-medium md:text-3xl">Search & Filter</p>
         <hr className="-mt-3 border-zinc-700" />
 
         <Form {...form}>
@@ -119,160 +119,164 @@ const Filters: FC<FiltersProps> = ({}) => {
             onSubmit={form.handleSubmit(handleSearch)}
             className="flex flex-col gap-6"
           >
-            <FormField
-              name="keyword"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Search by Title</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      type="text"
-                      placeholder="Title"
-                      className="border-none bg-zinc-800 px-3 py-2 outline-none focus-visible:outline-zinc-700"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              name="sortBy"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Sort By</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
+            <div className="flex gap-4 max-md:flex-col">
+              <FormField
+                name="keyword"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className="w-full md:w-[70%]">
+                    <FormLabel>Search by Title</FormLabel>
                     <FormControl>
-                      <SelectTrigger className="border-none bg-zinc-800 py-5 text-zinc-100 outline-none">
-                        <SelectValue placeholder="Sort by..." />
-                      </SelectTrigger>
+                      <Input
+                        {...field}
+                        type="text"
+                        placeholder="Title"
+                        className="border-none bg-zinc-800 px-3 py-2 outline-none focus-visible:outline-zinc-700"
+                      />
                     </FormControl>
-                    <SelectContent className="rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
-                      <SelectItem
-                        className={cn("py-3 hover:bg-zinc-700", {
-                          "bg-zinc-900": form.getValues().sortBy === "latest",
-                        })}
-                        value="latest"
-                      >
-                        Latest Posts
-                      </SelectItem>
-                      <SelectItem
-                        className={cn("py-2 hover:bg-zinc-700", {
-                          "bg-zinc-900": form.getValues().sortBy === "oldest",
-                        })}
-                        value="oldest"
-                      >
-                        Oldest Posts
-                      </SelectItem>
-                      <SelectItem
-                        className={cn("py-2 hover:bg-zinc-700", {
-                          "bg-zinc-900":
-                            form.getValues().sortBy === "most-popular",
-                        })}
-                        value="most-popular"
-                      >
-                        Most Popular
-                      </SelectItem>
-                      <SelectItem
-                        className={cn("py-2 hover:bg-zinc-700", {
-                          "bg-zinc-900":
-                            form.getValues().sortBy === "least-popular",
-                        })}
-                        value="least-popular"
-                      >
-                        Least Popular
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              name="tags"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem className="z-40">
-                  <FormLabel>Tags</FormLabel>
-                  <MultiSelect
-                    onChange={field.onChange}
-                    maxSelection={5}
-                    options={allTags}
-                    selectedOptions={tags}
-                  />
-                  <FormMessage />
-                  {!!tags.length && (
-                    <ul className="flex flex-wrap gap-4 pt-2">
-                      {tags.map((tag, index) => (
-                        <Tag
-                          key={tag}
-                          tag={tag}
-                          index={index}
-                          onDelete={onDeleteTag}
-                        />
-                      ))}
-                      <button
-                        onClick={() => form.setValue("tags", [])}
-                        className="my-auto h-full rounded-md bg-zinc-800 px-3 py-1.5 text-zinc-300 transition duration-200 hover:bg-zinc-700 hover:text-zinc-100"
-                      >
-                        Clear
-                      </button>
-                    </ul>
-                  )}
-                  <div className=""></div>
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              name="location"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Country</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger className="border-none bg-zinc-800 py-5 text-zinc-100 outline-none">
-                        <SelectValue
-                          className="placeholder-zinc-400"
-                          placeholder="Select a country"
-                        />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent className="max-h-[400px] rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
-                      {allCountries.map((c) => (
+              <FormField
+                name="sortBy"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className="w-full md:w-[30%]">
+                    <FormLabel>Sort By</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger className="border-none bg-zinc-800 py-5 text-zinc-100 outline-none">
+                          <SelectValue placeholder="Sort by..." />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className="rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
                         <SelectItem
-                          className={cn(
-                            "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
-                            {
-                              "bg-zinc-900 focus:bg-zinc-900":
-                                country === c.toLowerCase(),
-                            },
-                          )}
-                          key={c}
-                          value={c.toLowerCase()}
+                          className={cn("py-3 hover:bg-zinc-700", {
+                            "bg-zinc-900": form.getValues().sortBy === "latest",
+                          })}
+                          value="latest"
                         >
-                          {c}
+                          Latest Posts
                         </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                        <SelectItem
+                          className={cn("py-2 hover:bg-zinc-700", {
+                            "bg-zinc-900": form.getValues().sortBy === "oldest",
+                          })}
+                          value="oldest"
+                        >
+                          Oldest Posts
+                        </SelectItem>
+                        <SelectItem
+                          className={cn("py-2 hover:bg-zinc-700", {
+                            "bg-zinc-900":
+                              form.getValues().sortBy === "most-popular",
+                          })}
+                          value="most-popular"
+                        >
+                          Most Popular
+                        </SelectItem>
+                        <SelectItem
+                          className={cn("py-2 hover:bg-zinc-700", {
+                            "bg-zinc-900":
+                              form.getValues().sortBy === "least-popular",
+                          })}
+                          value="least-popular"
+                        >
+                          Least Popular
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-            <hr className="border-zinc-700 my-2" />
+            <div className="flex gap-4 max-md:flex-col">
+              <FormField
+                name="tags"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className="z-40 w-full md:w-[70%]">
+                    <FormLabel>Tags</FormLabel>
+                    <MultiSelect
+                      onChange={field.onChange}
+                      maxSelection={5}
+                      options={allTags}
+                      selectedOptions={tags}
+                    />
+                    <FormMessage />
+                    {!!tags.length && (
+                      <ul className="flex flex-wrap gap-4 pt-2">
+                        {tags.map((tag, index) => (
+                          <Tag
+                            key={tag}
+                            tag={tag}
+                            index={index}
+                            onDelete={onDeleteTag}
+                          />
+                        ))}
+                        <button
+                          onClick={() => form.setValue("tags", [])}
+                          className="my-auto h-full rounded-md bg-zinc-800 px-3 py-1.5 text-zinc-300 transition duration-200 hover:bg-zinc-700 hover:text-zinc-100"
+                        >
+                          Clear
+                        </button>
+                      </ul>
+                    )}
+                    <div className=""></div>
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                name="location"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className="w-full md:w-[30%]">
+                    <FormLabel>Country</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger className="border-none bg-zinc-800 py-5 text-zinc-100 outline-none">
+                          <SelectValue
+                            className="placeholder-zinc-400"
+                            placeholder="Select a country"
+                          />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className="max-h-[400px] rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
+                        {allCountries.map((c) => (
+                          <SelectItem
+                            className={cn(
+                              "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
+                              {
+                                "bg-zinc-900 focus:bg-zinc-900":
+                                  country === c.toLowerCase(),
+                              },
+                            )}
+                            key={c}
+                            value={c.toLowerCase()}
+                          >
+                            {c}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <hr className="border-zinc-700" />
 
             <div className="flex gap-4">
               <Button
@@ -288,7 +292,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                 Reset
                 <RefreshCcw className="ml-2 h-4 w-4" />
               </Button>
-              <Button className="w-fit bg-green-500 font-semibold hover:bg-green-600">
+              <Button className="w-fit text-black bg-green-500 tracking-wider hover:bg-green-600">
                 Search
               </Button>
             </div>
