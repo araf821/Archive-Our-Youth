@@ -141,7 +141,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                           {...field}
                           type="text"
                           placeholder="Title"
-                          className="border-none bg-zinc-800 px-3 py-2 outline-none focus-visible:outline-zinc-700"
+                          className="border border-zinc-700 bg-zinc-800 morph-inner px-4 py-3 outline-none focus-visible:outline-zinc-700"
                         />
                       </FormControl>
                       <FormMessage />
@@ -160,7 +160,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger className="border-none bg-zinc-800 py-5 text-zinc-100 outline-none">
+                          <SelectTrigger className="border border-zinc-700 morph-sm bg-zinc-800 py-5 text-zinc-100 outline-none">
                             <SelectValue placeholder="Sort by..." />
                           </SelectTrigger>
                         </FormControl>
@@ -257,7 +257,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger className="border-none bg-zinc-800 py-5 text-zinc-100 outline-none">
+                          <SelectTrigger className="border border-zinc-700 morph-sm bg-zinc-800 py-5 text-zinc-100 outline-none">
                             <SelectValue
                               className="placeholder-zinc-400"
                               placeholder="Select a country"
@@ -299,12 +299,12 @@ const Filters: FC<FiltersProps> = ({}) => {
                     router.push("/home");
                   }}
                   type="button"
-                  className="w-fit bg-zinc-900 hover:bg-zinc-800"
+                  className="w-fit bg-zinc-800 border border-zinc-700 morph-sm hover:bg-zinc-800"
                 >
                   Reset
                   <RefreshCcw className="ml-2 h-4 w-4" />
                 </Button>
-                <Button className="w-fit bg-green-500 tracking-wider text-black hover:bg-green-600">
+                <Button className="w-fit morph-md bg-green-500 tracking-wider text-black hover:bg-green-600">
                   Search
                 </Button>
               </div>

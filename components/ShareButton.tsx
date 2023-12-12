@@ -14,7 +14,7 @@ const ShareButton: FC<ShareButtonProps> = ({}) => {
   return (
     <button
       onClick={() => onOpen("shareModal")}
-      className="flex items-center gap-1 text-emerald-500"
+      className="flex items-center gap-1 text-zinc-300 transition duration-200 hover:text-green-500"
     >
       <Share className="h-5 w-5" /> Share
     </button>

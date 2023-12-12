@@ -29,7 +29,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         {post.userId === currentUser?.id && (
           <Link
             href={`/post/${post.slug}/edit`}
-            className={cn(buttonVariants({ variant: "outline" }))}
+            className={cn("morph-md", buttonVariants({ variant: "outline" }))}
           >
             Edit Post
             <Edit2 className="ml-2 h-4 w-4" />
@@ -52,7 +52,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
       )}
 
       {post.contentType !== "TEXT" && post.contentType !== "PDF" && (
-        <div className="flex w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">
+        <div className="morph-md flex w-full items-center justify-between rounded-md border border-zinc-800 bg-zinc-800 px-2 py-1.5">
           <LikeButton
             postId={post.id}
             likes={post.likes}
@@ -79,7 +79,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         </div>
 
         {(post.contentType === "TEXT" || post.contentType === "PDF") && (
-          <div className="flex w-full items-center justify-between rounded-md bg-zinc-800 px-2 py-1.5">
+          <div className="morph-md flex w-full items-center justify-between rounded-md border border-zinc-800 bg-zinc-800 px-2 py-1.5">
             <LikeButton
               postId={post.id}
               likes={post.likes}

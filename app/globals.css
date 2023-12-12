@@ -121,8 +121,17 @@
     4px 4px 7px #09090be9,
     6px 6px 12px #09090bb5,
     -2px -2px 4px #3f3f46df,
-    -4px -4px 9px #3f3f469a,
+    -4px -4px 7px #3f3f469a,
     inset -6px -6px 10px #3f3f4664;
+}
+
+.morph-inner {
+  box-shadow:
+    inset 4px 4px 7px #09090b79,
+    inset 6px 6px 12px #09090b2b,
+    inset -2px -2px 4px #3f3f46df,
+    inset -4px -4px 9px #3f3f469a,
+    -4px -4px 6px rgb(37, 37, 41);
 }
 
 /* .neo-green:hover {

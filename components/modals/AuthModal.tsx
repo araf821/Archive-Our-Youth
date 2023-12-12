@@ -35,7 +35,7 @@ const AuthModal = () => {
           onClick={() => {
             router.push("/sign-in");
           }}
-          className="mt-1 w-full rounded-sm bg-green-500 py-1.5 text-center font-semibold text-zinc-950 transition duration-200 hover:bg-green-600 md:text-lg"
+          className="mt-1 w-full rounded-sm  morph-md bg-green-500 py-1.5 text-center font-semibold text-zinc-950 transition duration-200 hover:bg-green-600 md:text-lg"
         >
           Sign In
         </button>
@@ -48,7 +48,7 @@ const AuthModal = () => {
           onClick={() => {
             router.push("/sign-up");
           }}
-          className="mb-2 rounded-sm border border-white py-1.5 text-center text-lg font-semibold text-white transition duration-200 hover:shadow-[inset_0_0_10px] hover:shadow-white/60"
+          className="mb-2 rounded-sm border border-white py-1.5 text-center text-lg font-semibold text-white transition duration-200 morph-md"
         >
           Create New Account
         </button>

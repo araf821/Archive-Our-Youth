@@ -91,18 +91,18 @@ const CommentInput: FC<CommentInputProps> = ({
             openSans.className,
           )}
         />
-        <div className="flex items-center justify-between gap-2">
-          <p className="self-start text-sm text-zinc-400">
-            Posting as {user.name}
-          </p>
+        <div className="flex items-center gap-2 pt-2">
           <Button
             onClick={onSubmit}
             disabled={isLoading}
-            variant="outline"
+            className="morph-sm text-zinc-200 hover:text-green-500 hover:bg-zinc-800 border-zinc-800 bg-zinc-800"
             size="sm"
           >
             Post
           </Button>
+          <p className="text-sm text-zinc-400">
+            Posting as {user.name}
+          </p>
         </div>
       </div>
     </div>

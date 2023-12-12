@@ -588,7 +588,7 @@ const PostCreationForm = () => {
             type="button"
             onClick={onBack}
             variant="link"
-            className="px-0 text-zinc-400 hover:scale-105 hover:text-zinc-200"
+            className="morph-sm border border-zinc-700 rounded-lg bg-zinc-800 p-2 text-zinc-400 hover:scale-105 hover:text-zinc-200"
           >
             <ArrowLeft />
           </Button>
@@ -601,7 +601,7 @@ const PostCreationForm = () => {
                 !!form.formState.errors.title ||
                 !!form.formState.errors.description
               }
-              className="rounded-md bg-zinc-800 px-3 py-2 transition hover:bg-zinc-700 disabled:opacity-70 disabled:hover:bg-zinc-800"
+              className="morph-md rounded-md bg-zinc-800 px-3 py-2 transition hover:bg-zinc-700 disabled:opacity-70 disabled:hover:bg-zinc-800"
               onClick={form.handleSubmit(onSubmit)}
             >
               {!!form.formState.errors.content ||
@@ -616,7 +616,7 @@ const PostCreationForm = () => {
               type="button"
               onClick={onNext}
               variant="link"
-              className="px-0 text-zinc-400 hover:scale-105 hover:text-zinc-200"
+              className="morph-sm border border-zinc-700 rounded-lg bg-zinc-800 p-2 text-zinc-400 hover:scale-105 hover:text-zinc-200"
             >
               <ArrowRight />
             </Button>

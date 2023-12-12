@@ -7,8 +7,9 @@ export const metadata: Metadata = {
 
 const AboutPage = () => {
   return (
-    <div className="mx-auto max-w-screen-md space-y-12 px-6 pb-14 pt-8 text-white md:space-y-4">
-      <div className="group space-y-4 border-2 border-transparent text-lg tracking-wide text-zinc-200 transition duration-300 md:rounded-t-2xl md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/10">
+    <div className="relative mx-auto max-w-screen-md space-y-12 px-6 pb-14 pt-8 text-white md:space-y-4">
+      <span className="max-md:hidden absolute left-0 top-0 h-80 w-80 bg-green-500/20 blur-3xl"></span>
+      <div className="group relative space-y-4 border-2 border-transparent bg-opacity-75 text-lg tracking-wide text-zinc-200 transition duration-300 md:rounded-t-2xl md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/10">
         <h4 className="text-xl font-semibold text-white transition duration-200 md:group-hover:text-green-500">
           About Us
         </h4>
@@ -34,7 +35,7 @@ const AboutPage = () => {
         </p>
       </div>
 
-      <div className="group space-y-4 border-2 border-transparent text-lg tracking-wide text-zinc-200 duration-300 md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/20">
+      <div className="group relative space-y-4 border-2 border-transparent bg-opacity-75 text-lg tracking-wide text-zinc-200 duration-300 md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/20">
         <h4 className="text-xl font-semibold text-white transition duration-200 md:group-hover:text-green-500">
           Youth Advisory Committee
         </h4>
@@ -60,7 +61,7 @@ const AboutPage = () => {
         </p>
       </div>
 
-      <div className="group space-y-4 border-2 border-transparent text-lg tracking-wide text-zinc-200 duration-300 md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/20">
+      <div className="group relative space-y-4 border-2 border-transparent bg-opacity-75 text-lg tracking-wide text-zinc-200 duration-300 md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/20">
         <h4 className="text-xl font-semibold text-white transition duration-200 md:group-hover:text-green-500">
           Young Lives Research Lab
         </h4>

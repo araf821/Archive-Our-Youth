@@ -16,7 +16,7 @@ const BackButton: FC<BackButtonProps> = ({ classNames, label }) => {
     <button
       onClick={() => router.back()}
       className={cn(
-        "w-32 rounded-md bg-zinc-800 text-white px-4 py-2 transition-colors duration-300 hover:bg-zinc-700",
+        "morph-sm w-32 rounded-lg border border-zinc-800 bg-zinc-800 px-4 py-2 tracking-widest text-white transition-colors duration-300",
         classNames,
       )}
     >

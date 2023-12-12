@@ -54,7 +54,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
         type="text"
         placeholder="Select Tags"
         onChange={(e) => setInput(e.target.value)}
-        className="w-full rounded-sm bg-zinc-800 px-3 py-2 placeholder-zinc-200 outline-zinc-700 focus:border-none focus:outline-none max-md:text-sm"
+        className="morph-inner text-sm w-full rounded-sm bg-zinc-800 px-4 py-3 placeholder-zinc-200 outline-zinc-700 focus:border-none focus:outline-none max-md:text-xs"
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();

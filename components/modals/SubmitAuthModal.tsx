@@ -35,13 +35,13 @@ const SubmitAuthModal = () => {
           onClick={() => {
             router.push("/sign-in");
           }}
-          className="mt-1 w-full rounded-sm bg-green-500 py-1.5 text-center font-semibold text-zinc-950 transition duration-200 hover:bg-green-600 md:text-lg"
+          className="mt-1 w-full rounded-sm bg-green-500 py-1.5 text-center font-semibold text-zinc-950 transition morph-md duration-200 hover:bg-green-600 md:text-lg"
         >
           Sign In
         </button>
         <Link
           href="/submit"
-          className="rounded-sm border border-green-500 py-1.5 text-center text-lg font-semibold text-green-500 transition duration-200 hover:shadow-[inset_0_0_10px] hover:shadow-green-500"
+          className="rounded-sm border border-green-500 py-1.5 text-center text-lg font-semibold text-green-500 transition duration-200 morph-md"
         >
           Continue as guest
         </Link>
@@ -58,7 +58,7 @@ const SubmitAuthModal = () => {
           onClick={() => {
             router.push("/sign-up");
           }}
-          className="mb-2 rounded-sm border border-white py-1.5 text-center text-lg font-semibold text-white transition duration-200 hover:shadow-[inset_0_0_10px] hover:shadow-white/60"
+          className="mb-2 rounded-sm border border-white py-1.5 text-center text-lg font-semibold text-white transition duration-200 morph-md"
         >
           Create New Account
         </button>

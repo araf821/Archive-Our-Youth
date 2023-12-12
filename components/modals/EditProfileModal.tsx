@@ -135,6 +135,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
                 type="button"
                 onClick={() => setIsOpen(false)}
                 variant="ghost"
+                className="bg-zinc-800 morph-md"
               >
                 Cancel
               </Button>

@@ -23,7 +23,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
       whileInView={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
       exit={{ opacity: 0, x: -500, transition: { duration: 0.5 } }}
       key={post.id}
-      className="relative flex flex-col gap-4 overflow-hidden rounded-lg border border-zinc-900 bg-gradient-to-br from-[#222222]/75 via-zinc-800/75 to-zinc-950/75 p-4 morph-lg transition duration-300 hover:border-green-500 hover:bg-zinc-900 hover:shadow-green-500/10"
+      className="relative flex flex-col gap-4 overflow-hidden rounded-lg border border-zinc-700 bg-gradient-to-br from-[#222222]/75 via-zinc-800/75 to-zinc-950/75 p-4 morph-lg transition duration-300 hover:border-green-500 hover:bg-zinc-900 hover:shadow-green-500/10"
     >
       <span className="absolute bottom-0 right-0 h-20 w-20 bg-green-500/50 blur-3xl transition"></span>
       <div

@@ -60,14 +60,14 @@ const DeletePostModal = () => {
         <div className="flex flex-col gap-4">
           <button
             onClick={onClose}
-            className="rounded-md py-2 text-zinc-400 transition hover:bg-zinc-800 hover:text-white md:text-lg"
+            className="morph-md rounded-md border border-zinc-700 bg-zinc-800 py-2 tracking-wider text-white transition hover:bg-zinc-800 md:text-lg"
           >
             Cancel
           </button>
           <button
             disabled={isLoading}
             onClick={handleDelete}
-            className="rounded-md bg-amber-500 py-2 text-black transition hover:bg-amber-600 md:text-lg"
+            className="rounded-md morph-md bg-amber-500 py-2 text-black transition hover:bg-amber-600 md:text-lg"
           >
             {isLoading ? (
               <Loader2 className="mx-auto animate-spin" />

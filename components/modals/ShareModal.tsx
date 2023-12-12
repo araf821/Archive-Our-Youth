@@ -36,18 +36,18 @@ const ShareModal = () => {
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md border-zinc-800 bg-zinc-900 px-4 py-4 outline-none">
         <DialogHeader>
-          <DialogTitle className="text-xl md:text-center text-zinc-100 md:text-2xl">
+          <DialogTitle className="text-xl text-zinc-100 md:text-center md:text-2xl">
             Share this post
           </DialogTitle>
         </DialogHeader>
         <hr className="border-zinc-700" />
 
-        <div className="flex flex-col gap-2 overflow-x-hidden">
+        <div className="flex flex-col gap-4 overflow-x-hidden">
           <p className="break-words rounded-sm bg-zinc-800 px-2 py-1 text-green-500 max-md:text-sm">{`${window.location.origin}${pathname}`}</p>
           <button
             onClick={() => handleCopy(`${window.location.origin}${pathname}`)}
             disabled={clicked}
-            className="w-fit mx-auto rounded-sm p-1.5 px-2 text-zinc-300 transition hover:bg-zinc-800"
+            className="morph-md mx-auto w-fit rounded-sm border border-zinc-800 bg-zinc-800 p-1.5 px-2 text-zinc-300 transition hover:bg-zinc-800"
           >
             {clicked ? (
               <p className="flex items-center gap-1.5 text-green-500">
