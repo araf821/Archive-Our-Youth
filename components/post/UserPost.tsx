@@ -24,7 +24,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
       whileInView={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
       exit={{ opacity: 0, x: -500, transition: { duration: 0.5 } }}
       key={post.id}
-      className="flex flex-col gap-4 hover:border-green-500 transition duration-300 rounded-md border border-zinc-700 bg-[#1e1e1e] hover:bg-zinc-900 p-4 shadow-xl hover:shadow-green-500/10"
+      className="flex flex-col gap-4 rounded-md border border-zinc-700 bg-[#1e1e1e] p-4 shadow-xl transition duration-300 hover:border-green-500 hover:bg-zinc-900 hover:shadow-green-500/10"
     >
       <div
         className={cn("flex max-md:flex-col max-md:gap-2 md:gap-4", {

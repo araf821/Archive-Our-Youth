@@ -31,8 +31,8 @@ const MultiSelect: FC<MultiSelectProps> = ({
         return;
       }
 
-      if (option.length > 16) {
-        toast.error("Tags must be less than 15 characters long.");
+      if (option.length > 21) {
+        toast.error("Tags must be less than 21 characters long.");
         return;
       }
 
