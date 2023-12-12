@@ -7,9 +7,11 @@ export const metadata: Metadata = {
 
 const AboutPage = () => {
   return (
-    <div className="mx-auto max-w-screen-md space-y-12 md:space-y-2 px-6 pb-14 pt-8 text-white">
-      <div className="space-y-4 group text-lg tracking-wide text-zinc-200 md:rounded-t-2xl md:bg-[#222222] md:p-4 md:hover:shadow-green-500/10 border-2 border-transparent md:hover:border-green-500/20 transition duration-300 md:hover:shadow-[0_0_25px]">
-        <h4 className="text-xl font-semibold md:group-hover:text-green-500 transition duration-200 text-white">About Us</h4>
+    <div className="mx-auto max-w-screen-md space-y-12 px-6 pb-14 pt-8 text-white md:space-y-4">
+      <div className="group space-y-4 border-2 border-transparent text-lg tracking-wide text-zinc-200 transition duration-300 md:rounded-t-2xl md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/10">
+        <h4 className="text-xl font-semibold text-white transition duration-200 md:group-hover:text-green-500">
+          About Us
+        </h4>
         <p>
           Our Archive is a dynamic hub dedicated to exploring dream futures,
           various perspectives on wellbeing, and both existing and desired
@@ -32,8 +34,8 @@ const AboutPage = () => {
         </p>
       </div>
 
-      <div className="space-y-4 group text-lg tracking-wide text-zinc-200 md:bg-[#222222] md:p-4 md:hover:shadow-green-500/20 10 border-2 border-transparent md:hover:border-green-500/20 duration-300 md:hover:shadow-[0_0_25px]">
-        <h4 className="text-xl font-semibold md:group-hover:text-green-500 transition duration-200 text-white">
+      <div className="group space-y-4 border-2 border-transparent text-lg tracking-wide text-zinc-200 duration-300 md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/20">
+        <h4 className="text-xl font-semibold text-white transition duration-200 md:group-hover:text-green-500">
           Youth Advisory Committee
         </h4>
         <p>
@@ -58,8 +60,8 @@ const AboutPage = () => {
         </p>
       </div>
 
-      <div className="space-y-4 group text-lg tracking-wide text-zinc-200 md:bg-[#222222] md:p-4 md:hover:shadow-green-500/20 10 border-2 border-transparent md:hover:border-green-500/20 duration-300 md:hover:shadow-[0_0_25px]">
-        <h4 className="text-xl font-semibold md:group-hover:text-green-500 transition duration-200 text-white">
+      <div className="group space-y-4 border-2 border-transparent text-lg tracking-wide text-zinc-200 duration-300 md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/20">
+        <h4 className="text-xl font-semibold text-white transition duration-200 md:group-hover:text-green-500">
           Young Lives Research Lab
         </h4>
         <p>
@@ -73,8 +75,8 @@ const AboutPage = () => {
           holistic, land-based, culturally relevant and youth-centred education.
         </p>
       </div>
-      
-      <div className="flex items-center gap-8 md:rounded-b-2xl md:bg-[#222222] md:p-4 md:hover:shadow-green-500/20 10 border-2 border-transparent md:hover:border-green-500/20 duration-300 md:hover:shadow-[0_0_25px]">
+
+      <div className="flex items-center gap-8 border-2 border-transparent duration-300 md:rounded-b-2xl md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/20">
         <div className="relative mx-auto aspect-square w-full max-w-[300px]">
           <Image
             src="/ylrl-logo.svg"

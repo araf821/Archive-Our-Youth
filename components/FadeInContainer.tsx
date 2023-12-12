@@ -15,6 +15,7 @@ const FadeInContainer: FC<FadeInContainerProps> = ({ children }) => {
         opacity: 1,
         transition: { duration: 1 },
       }}
+      viewport={{ once: true }}
     >
       {children}
     </motion.div>

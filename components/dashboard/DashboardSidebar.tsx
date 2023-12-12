@@ -39,7 +39,7 @@ const DashboardSidebar: FC<DashboardSidebarProps> = ({ currentUser }) => {
           </div>
           <p className="text-zinc-400 max-sm:text-sm">
             Member Since:{" "}
-            {dateFormat(new Date(currentUser.createdAt).toISOString())}
+            {dateFormat(new Date(currentUser.createdAt).toISOString()) || ""}
           </p>
           <p className="text-zinc-400 max-sm:text-sm">
             Posts: {currentUser._count.posts}

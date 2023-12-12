@@ -9,7 +9,7 @@ const LandingPage = () => {
   return (
     <div>
       <AnimatedGrid />
-      <div className="mx-auto overflow-y-hidden flex h-[100dvh] w-full max-w-screen-xl flex-col items-center justify-center px-4 text-center">
+      <div className="mx-auto flex h-[100dvh] w-full max-w-screen-xl flex-col items-center justify-center overflow-y-hidden px-4 text-center">
         <div className="mt-16 flex flex-1 flex-col items-center justify-center">
           <FadeInY distance={-200}>
             <p

@@ -51,8 +51,9 @@ const Overlay: FC<OverlayProps> = ({ onClose }) => {
       exit={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.5 } }}
       onClick={onClose}
+      aria-label="overlay button"
       className={cn(
-        "absolute focus-visible:-outline-offset-8 outline focus-visible:outline-4 outline-white left-0 top-0 z-20 h-full w-full",
+        "absolute left-0 top-0 z-20 h-full w-full outline outline-white focus-visible:outline-4 focus-visible:-outline-offset-8",
         randomBackgroundColor,
       )}
     >

@@ -31,7 +31,9 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
           "md:flex-row":
             post.contentType === "VIDEO" || post.contentType === "IMAGE",
           "flex-col":
-            post.contentType === "TEXT" || post.contentType === "AUDIO",
+            post.contentType === "TEXT" ||
+            post.contentType === "AUDIO" ||
+            post.contentType === "PDF",
         })}
       >
         {post.contentType === "IMAGE" && (
