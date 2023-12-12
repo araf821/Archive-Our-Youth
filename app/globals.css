@@ -77,6 +77,23 @@
   }
 }
 
+.neo-green {
+  background: linear-gradient(135deg, #22c55e8f, #22c55ed2);
+  box-shadow:
+    -6px -6px 8px #22c55e60,
+    -6px -6px 10px #22c55e24,
+    6px 6px 14px rgba(255, 255, 255, 0.2),
+    6px 6px 10px rgba(255, 255, 255, 0.1);
+}
+
+.neo-green:hover {
+  box-shadow:
+    -2px -2px 6px #22c55e60,
+    -2px -2px 8px #22c55e24,
+    2px 2px 10px rgba(255, 255, 255, 0.2),
+    2px 2px 8px rgba(255, 255, 255, 0.1);
+}
+
 .balance {
   text-wrap: balance;
 }
@@ -95,7 +112,12 @@
 }
 
 .moving-bg {
-  background: linear-gradient(-45deg, rgb(4, 168, 197), #f7f7f7, rgb(13, 205, 48));
+  background: linear-gradient(
+    -45deg,
+    rgb(4, 168, 197),
+    #f7f7f7,
+    rgb(13, 205, 48)
+  );
   background-size: 600% 600%;
   animation: gradient 10s ease infinite;
 }
