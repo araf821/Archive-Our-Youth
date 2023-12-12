@@ -14,7 +14,7 @@ interface DashboardSidebarProps {
 const DashboardSidebar: FC<DashboardSidebarProps> = ({ currentUser }) => {
   return (
     <SidebarMotion>
-      <div className="flex h-fit gap-4 rounded-md border-2 border-zinc-800 p-2 transition duration-300 hover:scale-[1.02] hover:border-green-500 hover:shadow-2xl hover:shadow-green-700/30 max-[450px]:flex-col lg:flex-col">
+      <div className="flex morph-md h-fit gap-4 rounded-md border-2 border-zinc-800 p-2 transition duration-300 hover:scale-[1.02] hover:border-green-500 hover:shadow-2xl hover:shadow-green-700/30 max-[450px]:flex-col lg:flex-col">
         <div className="relative aspect-square w-40 overflow-hidden max-[450px]:w-full min-[450px]:h-40 lg:h-full lg:w-full">
           <Image
             src={
@@ -27,7 +27,7 @@ const DashboardSidebar: FC<DashboardSidebarProps> = ({ currentUser }) => {
             className="aspect-square w-full rounded-md object-cover"
           />
         </div>
-        <div className="flex w-full flex-col gap-1.5 pb-2">
+        <div className="px-2 flex w-full flex-col gap-1.5 pb-2">
           <div className="flex items-center justify-between">
             <p className="text-lg font-semibold tracking-wider sm:text-xl md:text-2xl">
               {currentUser.name}

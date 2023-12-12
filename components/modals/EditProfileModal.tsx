@@ -74,7 +74,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
 
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
-      <DialogTrigger className="text-zinc-400 transition duration-200 hover:-rotate-90 hover:text-green-500">
+      <DialogTrigger className="text-zinc-400 transition duration-500 hover:text-green-500 bg-zinc-800 morph-sm p-1.5 rounded-lg border border-zinc-900">
         <span className="sr-only">edit button</span>
         <Edit2 className="h-4 w-4 focus:outline-none md:h-5 md:w-5" />
       </DialogTrigger>

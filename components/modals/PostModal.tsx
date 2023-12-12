@@ -30,17 +30,21 @@ const PostModal = () => {
         <div className="flex items-center justify-between">
           <button
             onClick={() => onClose()}
-            className="w-fit max-w-[128px] rounded-md px-2.5 py-1.5 text-sm text-zinc-400 transition hover:bg-zinc-800 hover:text-zinc-100 max-md:text-xs"
+            className="w-fit max-w-[128px] rounded-md p-1 morph-sm text-sm text-zinc-400 transition hover:text-zinc-100 max-md:text-xs"
           >
             <span className="sr-only">close modal</span>
             <X />
           </button>
-          <Link
-            href={`/post/${post.slug}`}
-            className="w-full max-w-[128px] rounded-md bg-green-500 px-2.5 py-1.5 text-center font-semibold text-zinc-900 transition duration-300 hover:bg-green-600 hover:shadow-[0_0_15px_8px] hover:shadow-green-500/20 max-md:text-sm"
-          >
-            View Post
-          </Link>
+          <div className="relative">
+            <span className="absolute inset-0 translate-x-1 translate-y-1 rounded-md bg-green-800"></span>
+            <Link
+              prefetch={false}
+              href={`/post/${post.slug}`}
+              className="relative z-10 flex rounded-md bg-green-500 px-2 py-1 text-center font-medium tracking-wide text-zinc-950 transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-green-600 active:translate-x-1 active:translate-y-1"
+            >
+              View Post
+            </Link>
+          </div>
         </div>
 
         <hr className="border-zinc-700" />
@@ -80,14 +84,14 @@ const PostModal = () => {
               : ""
           }`}
         >
-          <div className="flex w-full justify-between gap-2.5 rounded-md bg-zinc-800 px-2 py-1.5">
+          <div className="flex morph-md border border-zinc-800 w-full justify-between gap-2.5 rounded-md bg-zinc-800 px-2 py-1.5">
             <LikeButton
               postId={post.id}
               likes={post.likes}
               currentUser={data.currentUser}
               modal={true}
             />
-            <p className="text-zinc-400 max-md:text-sm truncate max-sm:text-xs">
+            <p className="truncate text-zinc-400 max-md:text-sm max-sm:text-xs">
               {post.user ? `Posted by ${post.user.name}` : "Posted Anonymously"}
               {/* Posted by {post.user?.name || "Anonymous"} */}
             </p>

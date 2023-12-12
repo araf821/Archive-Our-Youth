@@ -16,7 +16,7 @@ const DynamicUserPosts: FC<DynamicUserPostsProps> = ({ posts }) => {
         {posts.map((post) => (
           <Fragment key={post.id}>
             <UserPost post={post} />
-            <hr className="border-zinc-800" />
+            <hr className="my-2 border-zinc-800" />
           </Fragment>
         ))}
       </AnimatePresence>

@@ -85,6 +85,46 @@
     4px 4px 10px rgba(255, 255, 255, 0.025);
 }
 
+.morph-lg {
+  box-shadow:
+    4px 4px 8px #09090be9,
+    6px 6px 15px #09090bb5,
+    8px 8px 30px #09090b7a,
+    -2px -2px 4px #3f3f46df,
+    -4px -4px 12px #3f3f469a,
+    -6px -6px 30px #3f3f4664,
+    inset -6px -6px 20px #3f3f4664;
+}
+
+.morph-lg:hover {
+  box-shadow:
+    4px 4px 8px #09090be9,
+    6px 6px 15px #09090bb5,
+    8px 8px 30px #09090b7a,
+    -2px -2px 4px #3f3f46df,
+    -4px -4px 12px #3f3f469a,
+    -6px -6px 30px #3f3f4664,
+    inset -6px -6px 20px #3f3f4664;
+}
+
+.morph-md {
+  box-shadow:
+    4px 4px 8px #09090be9,
+    6px 6px 15px #09090bb5,
+    -2px -2px 4px #3f3f46df,
+    -4px -4px 12px #3f3f469a,
+    inset -6px -6px 15px #3f3f4664;
+}
+
+.morph-sm {
+  box-shadow:
+    4px 4px 7px #09090be9,
+    6px 6px 12px #09090bb5,
+    -2px -2px 4px #3f3f46df,
+    -4px -4px 9px #3f3f469a,
+    inset -6px -6px 10px #3f3f4664;
+}
+
 /* .neo-green:hover {
   box-shadow:
     -2px -2px 6px #22c55e60,
