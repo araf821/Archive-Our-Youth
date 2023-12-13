@@ -29,6 +29,7 @@ import MultiSelect from "./MultiSelect";
 import Tag from "./Tag";
 import { allTags } from "./post-creation-form/TagSelectionSlide";
 import Image from "next/image";
+import { allCountries, postTypes, researchQuestions } from "@/lib/constants";
 
 interface FiltersProps {}
 
@@ -49,6 +50,8 @@ const formSchema = z.object({
   sortBy: z.string().optional(),
   tags: z.string().array().max(5),
   location: z.string().optional(),
+  question: z.string().optional(),
+  postType: z.string().optional(),
 });
 
 const Filters: FC<FiltersProps> = ({}) => {
@@ -112,12 +115,12 @@ const Filters: FC<FiltersProps> = ({}) => {
       className="border-b border-zinc-700 px-4 text-zinc-100"
     >
       <div className="mx-auto flex max-w-screen-lg flex-row-reverse gap-8">
-        <div className="relative aspect-square w-full max-w-[250px] max-lg:hidden">
+        <div className="relative aspect-square w-full max-w-[300px] max-lg:hidden">
           <Image
             src={"/search.svg"}
             alt=""
             fill
-            className="object-cover mix-blend-lighten"
+            className="object-contain mix-blend-lighten"
           />
         </div>
         <div className="mx-auto flex w-full max-w-screen-md flex-col gap-4 pb-8 pt-6">
@@ -129,7 +132,7 @@ const Filters: FC<FiltersProps> = ({}) => {
               onSubmit={form.handleSubmit(handleSearch)}
               className="flex flex-col gap-6"
             >
-              <div className="flex gap-4 max-md:flex-col">
+              <div className="flex gap-6 max-md:flex-col">
                 <FormField
                   name="keyword"
                   control={form.control}
@@ -141,7 +144,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                           {...field}
                           type="text"
                           placeholder="Title"
-                          className="border border-zinc-700 bg-zinc-800 morph-inner px-4 py-3 outline-none focus-visible:outline-zinc-700"
+                          className="morph-inner border border-zinc-700 bg-zinc-800 px-4 py-3 outline-none focus-visible:outline-zinc-700"
                         />
                       </FormControl>
                       <FormMessage />
@@ -160,7 +163,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger className="border border-zinc-700 morph-sm bg-zinc-800 py-5 text-zinc-100 outline-none">
+                          <SelectTrigger className="morph-sm border border-zinc-700 bg-zinc-800 py-5 text-zinc-100 outline-none">
                             <SelectValue placeholder="Sort by..." />
                           </SelectTrigger>
                         </FormControl>
@@ -209,19 +212,21 @@ const Filters: FC<FiltersProps> = ({}) => {
                 />
               </div>
 
-              <div className="flex gap-4 max-md:flex-col">
+              <div className="flex gap-6 max-md:flex-col">
                 <FormField
                   name="tags"
                   control={form.control}
                   render={({ field }) => (
-                    <FormItem className="z-40 w-full md:w-[70%]">
-                      <FormLabel>Tags</FormLabel>
-                      <MultiSelect
-                        onChange={field.onChange}
-                        maxSelection={5}
-                        options={allTags}
-                        selectedOptions={tags}
-                      />
+                    <FormItem className="z-40 w-full space-y-0 md:w-[70%]">
+                      <p className="mb-2 text-sm font-medium">Tags</p>
+                      <FormControl className="pt-2">
+                        <MultiSelect
+                          onChange={field.onChange}
+                          maxSelection={5}
+                          options={allTags}
+                          selectedOptions={tags}
+                        />
+                      </FormControl>
                       <FormMessage />
                       {!!tags.length && (
                         <ul className="flex flex-wrap gap-4 pt-2">
@@ -257,7 +262,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger className="border border-zinc-700 morph-sm bg-zinc-800 py-5 text-zinc-100 outline-none">
+                          <SelectTrigger className="morph-sm border border-zinc-700 bg-zinc-800 py-5 text-zinc-100 outline-none">
                             <SelectValue
                               className="placeholder-zinc-400"
                               placeholder="Select a country"
@@ -288,6 +293,90 @@ const Filters: FC<FiltersProps> = ({}) => {
                 />
               </div>
 
+              <div className="flex gap-6 max-md:flex-col">
+                <FormField
+                  name="question"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem className="w-full md:w-[70%]">
+                      <FormLabel>Research Question</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger className="morph-sm h-fit border border-zinc-700 bg-zinc-800 text-zinc-100 outline-none">
+                            <SelectValue
+                              className="placeholder-zinc-400"
+                              placeholder="Search by a question"
+                            />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className="max-h-[400px] max-w-[510px] rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
+                          {researchQuestions.map((question) => (
+                            <SelectItem
+                              className={cn(
+                                "py-3hover:bg-zinc-700 focus:bg-zinc-700",
+                                {
+                                  "bg-zinc-900 focus:bg-zinc-900":
+                                    country === question.toLowerCase(),
+                                },
+                              )}
+                              key={question}
+                              value={question.toLowerCase()}
+                            >
+                              {question}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  name="postType"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem className="w-full md:w-[30%]">
+                      <FormLabel>Post Type</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger className="morph-sm border border-zinc-700 bg-zinc-800 py-5 text-zinc-100 outline-none">
+                            <SelectValue
+                              className="placeholder-zinc-400"
+                              placeholder="Select a media"
+                            />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className="max-h-[400px] rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
+                          {postTypes.map((type) => (
+                            <SelectItem
+                              className={cn(
+                                "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
+                                {
+                                  "bg-zinc-900 focus:bg-zinc-900":
+                                    country === type.toLowerCase(),
+                                },
+                              )}
+                              key={type}
+                              value={type.toLowerCase()}
+                            >
+                              {type}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
               <hr className="border-zinc-700" />
 
               <div className="flex gap-4">
@@ -299,12 +388,12 @@ const Filters: FC<FiltersProps> = ({}) => {
                     router.push("/home");
                   }}
                   type="button"
-                  className="w-fit bg-zinc-800 border border-zinc-700 morph-sm hover:bg-zinc-800"
+                  className="morph-sm w-fit border border-zinc-700 bg-zinc-800 hover:bg-zinc-800"
                 >
                   Reset
                   <RefreshCcw className="ml-2 h-4 w-4" />
                 </Button>
-                <Button className="w-fit morph-md bg-green-500 tracking-wider text-black hover:bg-green-600">
+                <Button className="morph-md w-fit bg-green-500 tracking-wider text-black hover:bg-green-600">
                   Search
                 </Button>
               </div>
@@ -317,212 +406,3 @@ const Filters: FC<FiltersProps> = ({}) => {
 };
 
 export default Filters;
-
-export const allCountries = [
-  "Afghanistan",
-  "Albania",
-  "Algeria",
-  "Andorra",
-  "Angola",
-  "Anguilla",
-  "Antigua & Barbuda",
-  "Argentina",
-  "Armenia",
-  "Aruba",
-  "Australia",
-  "Austria",
-  "Azerbaijan",
-  "Bahamas",
-  "Bahrain",
-  "Bangladesh",
-  "Barbados",
-  "Belarus",
-  "Belgium",
-  "Belize",
-  "Benin",
-  "Bermuda",
-  "Bhutan",
-  "Bolivia",
-  "Bosnia & Herzegovina",
-  "Botswana",
-  "Brazil",
-  "British Virgin Islands",
-  "Brunei",
-  "Bulgaria",
-  "Burkina Faso",
-  "Burundi",
-  "Cambodia",
-  "Cameroon",
-  "Canada",
-  "Cape Verde",
-  "Cayman Islands",
-  "Chad",
-  "Chile",
-  "China",
-  "Colombia",
-  "Congo",
-  "Cook Islands",
-  "Costa Rica",
-  "Cote D Ivoire",
-  "Croatia",
-  "Cruise Ship",
-  "Cuba",
-  "Cyprus",
-  "Czech Republic",
-  "Denmark",
-  "Djibouti",
-  "Dominica",
-  "Dominican Republic",
-  "Ecuador",
-  "Egypt",
-  "El Salvador",
-  "Equatorial Guinea",
-  "Estonia",
-  "Ethiopia",
-  "Falkland Islands",
-  "Faroe Islands",
-  "Fiji",
-  "Finland",
-  "France",
-  "French Polynesia",
-  "French West Indies",
-  "Gabon",
-  "Gambia",
-  "Georgia",
-  "Germany",
-  "Ghana",
-  "Gibraltar",
-  "Greece",
-  "Greenland",
-  "Grenada",
-  "Guam",
-  "Guatemala",
-  "Guernsey",
-  "Guinea",
-  "Guinea Bissau",
-  "Guyana",
-  "Haiti",
-  "Honduras",
-  "Hong Kong",
-  "Hungary",
-  "Iceland",
-  "India",
-  "Indonesia",
-  "Iran",
-  "Iraq",
-  "Ireland",
-  "Isle of Man",
-  "Israel",
-  "Italy",
-  "Jamaica",
-  "Japan",
-  "Jersey",
-  "Jordan",
-  "Kazakhstan",
-  "Kenya",
-  "Kuwait",
-  "Kyrgyz Republic",
-  "Laos",
-  "Latvia",
-  "Lebanon",
-  "Lesotho",
-  "Liberia",
-  "Libya",
-  "Liechtenstein",
-  "Lithuania",
-  "Luxembourg",
-  "Macau",
-  "Macedonia",
-  "Madagascar",
-  "Malawi",
-  "Malaysia",
-  "Maldives",
-  "Mali",
-  "Malta",
-  "Mauritania",
-  "Mauritius",
-  "Mexico",
-  "Moldova",
-  "Monaco",
-  "Mongolia",
-  "Montenegro",
-  "Montserrat",
-  "Morocco",
-  "Mozambique",
-  "Namibia",
-  "Nepal",
-  "Netherlands",
-  "Netherlands Antilles",
-  "New Caledonia",
-  "New Zealand",
-  "Nicaragua",
-  "Niger",
-  "Nigeria",
-  "Norway",
-  "Oman",
-  "Pakistan",
-  "Palestine",
-  "Panama",
-  "Papua New Guinea",
-  "Paraguay",
-  "Peru",
-  "Philippines",
-  "Poland",
-  "Portugal",
-  "Puerto Rico",
-  "Qatar",
-  "Reunion",
-  "Romania",
-  "Russia",
-  "Rwanda",
-  "Saint Pierre & Miquelon",
-  "Samoa",
-  "San Marino",
-  "Satellite",
-  "Saudi Arabia",
-  "Senegal",
-  "Serbia",
-  "Seychelles",
-  "Sierra Leone",
-  "Singapore",
-  "Slovakia",
-  "Slovenia",
-  "South Africa",
-  "South Korea",
-  "Spain",
-  "Sri Lanka",
-  "St Kitts & Nevis",
-  "St Lucia",
-  "St Vincent",
-  "St. Lucia",
-  "Sudan",
-  "Suriname",
-  "Swaziland",
-  "Sweden",
-  "Switzerland",
-  "Syria",
-  "Taiwan",
-  "Tajikistan",
-  "Tanzania",
-  "Thailand",
-  "Timor L'Este",
-  "Togo",
-  "Tonga",
-  "Trinidad & Tobago",
-  "Tunisia",
-  "Turkey",
-  "Turkmenistan",
-  "Turks & Caicos",
-  "Uganda",
-  "Ukraine",
-  "United Arab Emirates",
-  "United Kingdom",
-  "Uruguay",
-  "Uzbekistan",
-  "Venezuela",
-  "Vietnam",
-  "Virgin Islands (US)",
-  "Yemen",
-  "Zambia",
-  "Zimbabwe",
-];
