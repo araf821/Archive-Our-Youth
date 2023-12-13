@@ -98,11 +98,11 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
+          <FormItem className="mx-auto flex items-center max-w-screen-sm flex-col gap-8 max-sm:mt-12 md:gap-12">
             <p className="text-center text-xl md:text-2xl">Add an image</p>
             <FormControl>
               <FileUpload
-                classNames="aspect-video"
+                classNames="aspect-[4/3]"
                 endPoint="image"
                 onChange={field.onChange}
                 value={field.value}
@@ -118,11 +118,11 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
+          <FormItem className="mx-auto flex max-w-screen-sm flex-col gap-8 max-sm:mt-12 md:gap-12">
             <p className="text-center text-xl md:text-2xl">Add a video</p>{" "}
             <FormControl>
               <FileUpload
-                classNames="aspect-video md:max-w-md"
+                classNames="aspect-video"
                 endPoint="video"
                 onChange={field.onChange}
                 value={field.value}
@@ -138,7 +138,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
+          <FormItem className="mx-auto flex max-w-screen-sm flex-col gap-8 max-sm:mt-12 md:gap-12">
             <p className="text-center text-xl md:text-2xl">Add an audio</p>
             <FormControl>
               <FileUpload

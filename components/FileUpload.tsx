@@ -26,7 +26,12 @@ const FileUpload: FC<FileUploadProps> = ({
   if (value) {
     if (endPoint === "image" || endPoint === "thumbnail") {
       return (
-        <div className="relative aspect-square h-full w-full rounded-sm border border-zinc-700 bg-zinc-800">
+        <div
+          className={cn(
+            "relative aspect-square h-full w-full rounded-sm border border-zinc-700 bg-zinc-800",
+            classNames,
+          )}
+        >
           <Image
             src={value}
             alt="uploaded image"
@@ -104,7 +109,10 @@ const FileUpload: FC<FileUploadProps> = ({
 
   return (
     <UploadDropzone
-      className={cn("h-full w-full bg-zinc-800", classNames)}
+      className={cn(
+        "morph-md h-full w-full border-2 border-zinc-700 bg-zinc-800",
+        classNames,
+      )}
       endpoint={endPoint}
       onClientUploadComplete={(res) => {
         onChange(res?.[0].url);

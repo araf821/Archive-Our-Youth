@@ -32,7 +32,7 @@ const LocationSelection: FC<LocationSelectionProps> = ({ form }) => {
           <div className="w-full space-y-4">
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
-                <SelectTrigger className="border-none bg-zinc-800 py-5 text-zinc-100 outline-none">
+                <SelectTrigger className="morph-md border border-zinc-700 bg-zinc-800 py-5 text-zinc-100 outline-none">
                   <SelectValue
                     className="placeholder-zinc-400"
                     placeholder="Select a country"

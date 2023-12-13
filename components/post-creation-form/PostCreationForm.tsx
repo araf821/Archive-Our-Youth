@@ -578,7 +578,7 @@ const PostCreationForm = () => {
       {step > 0 && (
         <div
           className={cn(
-            "mx-auto mt-12 flex w-32 items-center justify-between pb-4",
+            "mx-auto mt-12 flex w-48 items-center justify-between pb-4",
             {
               "w-full max-w-[350px]": step === STEPS.CONFIRM,
             },
@@ -588,7 +588,7 @@ const PostCreationForm = () => {
             type="button"
             onClick={onBack}
             variant="link"
-            className="morph-sm border border-zinc-700 rounded-lg bg-zinc-800 p-2 text-zinc-400 hover:scale-105 hover:text-zinc-200"
+            className="morph-md border border-zinc-700 rounded-lg bg-zinc-800 p-2 text-zinc-400 hover:scale-105 hover:text-zinc-200"
           >
             <ArrowLeft />
           </Button>
@@ -616,7 +616,7 @@ const PostCreationForm = () => {
               type="button"
               onClick={onNext}
               variant="link"
-              className="morph-sm border border-zinc-700 rounded-lg bg-zinc-800 p-2 text-zinc-400 hover:scale-105 hover:text-zinc-200"
+              className="morph-md border border-zinc-700 rounded-lg bg-zinc-800 p-2 text-zinc-400 hover:scale-105 hover:text-zinc-200"
             >
               <ArrowRight />
             </Button>

@@ -58,7 +58,7 @@ const Overlay: FC<OverlayProps> = ({ onClose }) => {
       )}
     >
       <span className="sr-only">overlay</span>
-      <span className="font-medium opacity-0 mix-blend-darken transition duration-300 group-hover:opacity-30">
+      <span className="font-medium opacity-0 mix-blend-darken transition duration-1000 group-hover:opacity-30">
         Click To Reveal
       </span>
     </motion.button>

@@ -109,12 +109,15 @@
 }
 
 .morph-md {
-  box-shadow:
+  /* box-shadow:
     4px 4px 8px #09090be9,
     6px 6px 15px #09090bb5,
-    -2px -2px 4px #333333df,
-    -4px -4px 12px #3333339a,
-    inset -6px -6px 15px #33333364;
+    -2px -2px 4px #333333,
+    -4px -4px 12px #333333,
+    inset -6px -6px 15px #333333; */
+  box-shadow:
+    20px 20px 50px #151515,
+    -20px -20px 50px #272727;
 }
 
 .morph-sm {
@@ -128,11 +131,8 @@
 
 .morph-inner {
   box-shadow:
-    inset 4px 4px 7px #09090b79,
-    inset 6px 6px 12px #09090b2b,
-    inset -2px -2px 4px #333333df,
-    inset -4px -4px 9px #3333339a,
-    -4px -4px 6px rgb(37, 37, 41);
+    inset 10px 10px 20px #202020,
+    inset -10px -10px 20px #272727;
 }
 
 .balance {
@@ -153,7 +153,7 @@
 }
 
 .repeating-bg {
-  background: linear-gradient(to bottom, #171717 0%, #202020 40%, #1c1c1c 150%);
+  background: linear-gradient(to bottom, #171717 0%, #1e1e1e 40%, #171717 150%);
   background-blend-mode: multiply;
 }
 
