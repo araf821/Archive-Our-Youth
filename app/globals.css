@@ -90,10 +90,10 @@
     4px 4px 8px #09090be9,
     6px 6px 15px #09090bb5,
     8px 8px 30px #09090b7a,
-    -2px -2px 4px #3f3f46df,
-    -4px -4px 12px #3f3f469a,
-    -6px -6px 30px #3f3f4664,
-    inset -6px -6px 20px #3f3f4664;
+    -2px -2px 4px #333333df,
+    -4px -4px 12px #3333339a,
+    -6px -6px 30px #33333364,
+    inset -6px -6px 20px #33333364;
 }
 
 .morph-lg:hover {
@@ -101,36 +101,37 @@
     4px 4px 8px #09090be9,
     6px 6px 15px #09090bb5,
     8px 8px 30px #09090b7a,
-    -2px -2px 4px #3f3f46df,
-    -4px -4px 12px #3f3f469a,
-    -6px -6px 30px #3f3f4664,
-    inset -6px -6px 20px #3f3f4664;
+    -2px -2px 4px #333333df,
+    -4px -4px 12px #3333339a,
+    -6px -6px 30px #33333364,
+    -6px -6px 50px #33333333,
+    inset -6px -6px 20px #33333364;
 }
 
 .morph-md {
   box-shadow:
     4px 4px 8px #09090be9,
     6px 6px 15px #09090bb5,
-    -2px -2px 4px #3f3f46df,
-    -4px -4px 12px #3f3f469a,
-    inset -6px -6px 15px #3f3f4664;
+    -2px -2px 4px #333333df,
+    -4px -4px 12px #3333339a,
+    inset -6px -6px 15px #33333364;
 }
 
 .morph-sm {
   box-shadow:
     4px 4px 7px #09090be9,
     6px 6px 12px #09090bb5,
-    -2px -2px 4px #3f3f46df,
-    -4px -4px 7px #3f3f469a,
-    inset -6px -6px 10px #3f3f4664;
+    -2px -2px 4px #333333df,
+    -4px -4px 7px #3333339a,
+    inset -6px -6px 10px #33333364;
 }
 
 .morph-inner {
   box-shadow:
     inset 4px 4px 7px #09090b79,
     inset 6px 6px 12px #09090b2b,
-    inset -2px -2px 4px #3f3f46df,
-    inset -4px -4px 9px #3f3f469a,
+    inset -2px -2px 4px #333333df,
+    inset -4px -4px 9px #3333339a,
     -4px -4px 6px rgb(37, 37, 41);
 }
 

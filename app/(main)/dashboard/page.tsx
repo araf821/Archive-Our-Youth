@@ -13,7 +13,7 @@ const DashboardPage = async () => {
   const { userId } = auth();
 
   if (!userId) {
-    return redirectToSignIn({ returnBackUrl: "/home" });
+    return redirectToSignIn();
   }
 
   const currentUser = await db.user.findUnique({
