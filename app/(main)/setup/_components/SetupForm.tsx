@@ -8,6 +8,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/Form";
 import { Input } from "@/components/ui/input";
 import { UserSetupValidator } from "@/lib/validators/user-setup";
@@ -75,6 +76,7 @@ const SetupForm: FC<SetupFormProps> = ({ user }) => {
                   value={field.value}
                 />
               </FormControl>
+              <FormMessage className="text-center" />
             </FormItem>
           )}
         />
@@ -94,6 +96,7 @@ const SetupForm: FC<SetupFormProps> = ({ user }) => {
                   className="morph-inner"
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
