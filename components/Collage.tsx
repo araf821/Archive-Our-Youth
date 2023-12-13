@@ -6,15 +6,25 @@ import { RefreshCcw } from "lucide-react";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import FadeInContainer from "./FadeInContainer";
 import { Skeleton } from "./ui/skeleton";
+import { ContentType } from "@prisma/client";
 
 interface CollageProps {
   keyword?: string;
   sortBy?: string;
   tags?: string;
   country?: string;
+  postType?: ContentType | "ANY";
+  question?: string;
 }
 
-const Collage = async ({ keyword, country, sortBy, tags }: CollageProps) => {
+const Collage = async ({
+  keyword,
+  country,
+  sortBy,
+  tags,
+  postType,
+  question,
+}: CollageProps) => {
   const currentUser = await getCurrentUser();
   let orderBy: any = { createdAt: "desc" };
   const tagsArray = tags ? tags.split(",") : [];
@@ -61,10 +71,24 @@ const Collage = async ({ keyword, country, sortBy, tags }: CollageProps) => {
               : {},
           ],
         },
+        postType && postType !== "ANY"
+          ? {
+              contentType: {
+                equals: postType,
+              },
+            }
+          : {},
         tags
           ? {
               tags: {
                 hasSome: tagsArray,
+              },
+            }
+          : {},
+        question && question !== "any"
+          ? {
+              researchQuestions: {
+                hasSome: [question],
               },
             }
           : {},

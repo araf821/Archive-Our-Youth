@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { allCountries } from "../Filters";
+import { allCountries } from "@/lib/constants";
 
 interface LocationSelectionProps {
   form: TPostCreationForm;

@@ -30,6 +30,7 @@ import Tag from "./Tag";
 import { allTags } from "./post-creation-form/TagSelectionSlide";
 import Image from "next/image";
 import { allCountries, postTypes, researchQuestions } from "@/lib/constants";
+import { ContentType } from "@prisma/client";
 
 interface FiltersProps {}
 
@@ -51,7 +52,17 @@ const formSchema = z.object({
   tags: z.string().array().max(5),
   location: z.string().optional(),
   question: z.string().optional(),
-  postType: z.string().optional(),
+  postType: z
+    .enum([
+      ContentType.TEXT,
+      ContentType.IMAGE,
+      ContentType.VIDEO,
+      ContentType.AUDIO,
+      ContentType.PDF,
+      "ANY",
+    ])
+    .nullable()
+    .optional(),
 });
 
 const Filters: FC<FiltersProps> = ({}) => {
@@ -67,6 +78,8 @@ const Filters: FC<FiltersProps> = ({}) => {
       tags: [],
       sortBy: "latest",
       location: "",
+      postType: null,
+      question: "",
     },
   });
 
@@ -86,6 +99,8 @@ const Filters: FC<FiltersProps> = ({}) => {
       sortBy: values.sortBy || null,
       tags: values.tags.length ? values.tags.join(",") : null,
       country: values.location || null,
+      postType: values.postType === "ANY" ? null : values.postType || null,
+      question: values.question === "any" ? null : values.question || null,
     };
 
     const url = qs.stringifyUrl(
@@ -313,17 +328,29 @@ const Filters: FC<FiltersProps> = ({}) => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent className="max-h-[400px] max-w-[510px] rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
+                          <SelectItem
+                            className={cn(
+                              "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
+                              {
+                                "bg-zinc-900 focus:bg-zinc-900":
+                                  form.getValues().question === "any",
+                              },
+                            )}
+                            value={"any"}
+                          >
+                            Any
+                          </SelectItem>
                           {researchQuestions.map((question) => (
                             <SelectItem
                               className={cn(
-                                "py-3hover:bg-zinc-700 focus:bg-zinc-700",
+                                "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
                                 {
                                   "bg-zinc-900 focus:bg-zinc-900":
-                                    country === question.toLowerCase(),
+                                    form.getValues().question === question,
                                 },
                               )}
                               key={question}
-                              value={question.toLowerCase()}
+                              value={question}
                             >
                               {question}
                             </SelectItem>
@@ -343,7 +370,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                       <FormLabel>Post Type</FormLabel>
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        defaultValue={field.value || ""}
                       >
                         <FormControl>
                           <SelectTrigger className="morph-sm border border-zinc-700 bg-zinc-800 py-5 text-zinc-100 outline-none">
@@ -354,17 +381,30 @@ const Filters: FC<FiltersProps> = ({}) => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent className="max-h-[400px] rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
+                          <SelectItem
+                            className={cn(
+                              "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
+                              {
+                                "bg-zinc-900 focus:bg-zinc-900":
+                                  form.getValues().postType === "ANY",
+                              },
+                            )}
+                            value={"ANY"}
+                          >
+                            Any
+                          </SelectItem>
                           {postTypes.map((type) => (
                             <SelectItem
                               className={cn(
                                 "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
                                 {
                                   "bg-zinc-900 focus:bg-zinc-900":
-                                    country === type.toLowerCase(),
+                                    form.getValues().postType ===
+                                    type.toUpperCase(),
                                 },
                               )}
                               key={type}
-                              value={type.toLowerCase()}
+                              value={type.toUpperCase()}
                             >
                               {type}
                             </SelectItem>

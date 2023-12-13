@@ -1,5 +1,6 @@
 import Collage from "@/components/Collage";
 import { initializeUser } from "@/lib/initializeUser";
+import { ContentType } from "@prisma/client";
 import { Metadata } from "next";
 import { Suspense } from "react";
 
@@ -15,6 +16,8 @@ export default async function Home({
     sortBy?: string;
     tags?: string;
     country?: string;
+    postType?: ContentType;
+    question?: string;
   };
 }) {
   await initializeUser();
@@ -27,6 +30,8 @@ export default async function Home({
           sortBy={searchParams.sortBy}
           tags={searchParams.tags}
           country={searchParams.country}
+          postType={searchParams.postType}
+          question={searchParams.question}
         />
       </Suspense>
     </div>
