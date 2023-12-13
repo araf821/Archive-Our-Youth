@@ -424,8 +424,6 @@ const Filters: FC<FiltersProps> = ({}) => {
                   onClick={() => {
                     form.reset();
                     onClose();
-                    form.setValue("sortBy", "latest");
-                    router.push("/home");
                   }}
                   type="button"
                   className="morph-sm w-fit border border-zinc-700 bg-zinc-800 hover:bg-zinc-800"

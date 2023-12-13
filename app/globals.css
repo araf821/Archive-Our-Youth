@@ -135,14 +135,6 @@
     -4px -4px 6px rgb(37, 37, 41);
 }
 
-/* .neo-green:hover {
-  box-shadow:
-    -2px -2px 6px #22c55e60,
-    -2px -2px 8px #22c55e24,
-    2px 2px 10px rgba(255, 255, 255, 0.2),
-    2px 2px 8px rgba(255, 255, 255, 0.1);
-} */
-
 .balance {
   text-wrap: balance;
 }
@@ -158,6 +150,11 @@
     0px 0px 50px theme("colors.green.400"),
     0px 0px 90px theme("colors.green.400"),
     0px 0px 150px theme("colors.green.600");
+}
+
+.repeating-bg {
+  background: linear-gradient(to bottom, #171717 0%, #202020 40%, #1c1c1c 150%);
+  background-blend-mode: multiply;
 }
 
 .moving-bg {

@@ -32,7 +32,7 @@ const UserPostsSection: FC<UserPostsSectionProps> = async ({ userId }) => {
         <FadeInContainer>
           <div className="text-zinc-400 md:text-lg">
             <p>Looks like you have not published any posts yet.</p>
-            <Link href="/submit" prefetch={false} className="text-blue-400">
+            <Link href="/submit" prefetch={false} className="text-green-500">
               Make a new submission
             </Link>
           </div>

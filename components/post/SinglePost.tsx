@@ -24,7 +24,7 @@ interface SinglePostProps {
 const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
   return (
     <section className="mb-8 mt-8 flex flex-col gap-6">
-      <div className="flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between">
         <BackButton />
         {post.userId === currentUser?.id && (
           <Link
@@ -52,7 +52,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
       )}
 
       {post.contentType !== "TEXT" && post.contentType !== "PDF" && (
-        <div className="morph-md flex w-full items-center justify-between rounded-md border border-zinc-800 bg-zinc-800 px-2 py-1.5">
+        <div className="flex w-full items-center justify-between rounded-md border border-zinc-800 bg-zinc-800 px-2 py-1.5">
           <LikeButton
             postId={post.id}
             likes={post.likes}
@@ -64,7 +64,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
 
       {/* Post Info */}
       <div className="flex flex-col gap-4">
-        <p className="break-words text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl ">
+        <p className="break-words pb-2 text-3xl font-semibold tracking-wide text-zinc-100 sm:text-4xl md:text-5xl">
           {post.title}
         </p>
 
@@ -79,7 +79,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         </div>
 
         {(post.contentType === "TEXT" || post.contentType === "PDF") && (
-          <div className="morph-md flex w-full items-center justify-between rounded-md border border-zinc-800 bg-zinc-800 px-2 py-1.5">
+          <div className="flex w-full items-center justify-between rounded-md border border-zinc-800 bg-zinc-800 px-2 py-1.5">
             <LikeButton
               postId={post.id}
               likes={post.likes}

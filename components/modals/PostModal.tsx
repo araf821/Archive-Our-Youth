@@ -26,7 +26,7 @@ const PostModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="w-full max-w-screen-sm rounded-sm border border-zinc-700 bg-[#202020] p-4 text-zinc-100 outline-none max-md:w-[95%] md:rounded-md md:p-6">
+      <DialogContent className="shadow-[0_0_20px_5px_black] w-full max-w-screen-sm rounded-sm border border-zinc-700 bg-[#202020] p-4 text-zinc-100 outline-none max-md:w-[95%] md:rounded-md md:p-6">
         <div className="flex items-center justify-between">
           <button
             onClick={() => onClose()}
@@ -84,7 +84,7 @@ const PostModal = () => {
               : ""
           }`}
         >
-          <div className="flex morph-md border border-zinc-800 w-full justify-between gap-2.5 rounded-md bg-zinc-800 px-2 py-1.5">
+          <div className="flex border border-zinc-800 w-full justify-between gap-2.5 rounded-md bg-zinc-800 px-2 py-1.5">
             <LikeButton
               postId={post.id}
               likes={post.likes}

@@ -53,14 +53,18 @@ const page: FC<SinglePostPageParams> = async ({ params }) => {
   }
 
   return (
-    <main className="mx-auto w-full max-w-screen-md px-4 pb-12">
+    <main className="px-4 pb-12">
       <PageTransitionContainer>
-        <SinglePost currentUser={currentUser} post={post} />
-        <Suspense
-          fallback={<div className="mx-auto text-4xl text-white">Loading</div>}
-        >
-          <CommentSection user={currentUser} postId={post.id} />
-        </Suspense>
+        <div className="mx-auto w-full max-w-screen-md ">
+          <SinglePost currentUser={currentUser} post={post} />
+          <Suspense
+            fallback={
+              <div className="mx-auto text-4xl text-white">Loading</div>
+            }
+          >
+            <CommentSection user={currentUser} postId={post.id} />
+          </Suspense>
+        </div>
       </PageTransitionContainer>
     </main>
   );

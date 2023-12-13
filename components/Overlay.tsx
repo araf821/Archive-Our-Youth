@@ -53,11 +53,14 @@ const Overlay: FC<OverlayProps> = ({ onClose }) => {
       onClick={onClose}
       aria-label="overlay button"
       className={cn(
-        "absolute left-0 top-0 z-20 h-full w-full outline outline-white focus-visible:outline-4 focus-visible:-outline-offset-8",
+        "group absolute left-0 top-0 z-20 h-full w-full outline outline-white focus-visible:outline-4 transition hover:opacity-20 focus-visible:-outline-offset-8",
         randomBackgroundColor,
       )}
     >
       <span className="sr-only">overlay</span>
+      <span className="font-medium opacity-0 mix-blend-darken transition duration-300 group-hover:opacity-30">
+        Click To Reveal
+      </span>
     </motion.button>
   );
 };

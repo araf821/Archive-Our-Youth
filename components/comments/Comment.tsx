@@ -96,6 +96,7 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
             alt="user profile picture"
             fill
             sizes="50px"
+            className="object-cover"
           />
         </div>
         {/* <div className="h-full w-1 bg-zinc-300" /> */}
