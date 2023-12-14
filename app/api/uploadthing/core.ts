@@ -3,7 +3,7 @@ import { createUploadthing, type FileRouter } from "uploadthing/next";
 const f = createUploadthing();
 
 export const ourFileRouter = {
-  image: f({ image: { maxFileSize: "4MB", maxFileCount: 1 } })
+  image: f({ image: { maxFileSize: "8MB", maxFileCount: 1 } })
     .onUploadError(() => {
       return;
     })
@@ -16,7 +16,7 @@ export const ourFileRouter = {
     .onUploadComplete(() => {}),
 
   video: f({
-    video: { maxFileSize: "32MB", maxFileCount: 1 },
+    video: { maxFileSize: "256MB", maxFileCount: 1 },
   })
     .onUploadError(() => {
       return;
@@ -24,14 +24,14 @@ export const ourFileRouter = {
     .onUploadComplete(() => {}),
 
   audio: f({
-    audio: { maxFileSize: "16MB", maxFileCount: 1 },
+    audio: { maxFileSize: "32MB", maxFileCount: 1 },
   })
     .onUploadError(() => {
       return;
     })
     .onUploadComplete(() => {}),
 
-  pdf: f({ pdf: { maxFileCount: 1, maxFileSize: "2MB" } })
+  pdf: f({ pdf: { maxFileCount: 1, maxFileSize: "4MB" } })
     .onUploadError(() => {
       return;
     })
