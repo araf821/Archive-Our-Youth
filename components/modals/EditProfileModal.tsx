@@ -23,7 +23,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "../ui/Form";
 import FileUpload from "../FileUpload";
@@ -32,9 +31,16 @@ import { Button } from "../ui/Button";
 interface EditProfileModalProps {
   name: string;
   imageUrl: string;
+  asChild: boolean;
+  children: React.ReactNode;
 }
 
-const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
+const EditProfileModal: FC<EditProfileModalProps> = ({
+  imageUrl,
+  name,
+  asChild,
+  children,
+}) => {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -74,9 +80,11 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
 
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
-      <DialogTrigger className="text-zinc-400 transition duration-500 hover:text-green-500 bg-zinc-800 morph-sm p-1.5 rounded-lg border border-zinc-900">
-        <span className="sr-only">edit button</span>
-        <Edit2 className="h-4 w-4 focus:outline-none md:h-5 md:w-5" />
+      <DialogTrigger
+        asChild
+        className="morph-sm rounded-lg border border-zinc-900 bg-zinc-800 p-1.5 text-zinc-400 transition duration-500 hover:text-green-500"
+      >
+        {children}
       </DialogTrigger>
       <DialogContent className="max-w-lg bg-zinc-900 px-4 py-6 text-zinc-100">
         <DialogHeader className="space-y-0">
@@ -135,7 +143,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({ imageUrl, name }) => {
                 type="button"
                 onClick={() => setIsOpen(false)}
                 variant="ghost"
-                className="bg-zinc-800 morph-md"
+                className="morph-md bg-zinc-800"
               >
                 Cancel
               </Button>

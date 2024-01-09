@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import Comment from "./Comment";
 import axios from "axios";
 import queryString from "query-string";
@@ -24,7 +24,7 @@ const ReplySection: FC<ReplySectionProps> = ({
   >([]);
   const [isFetching, setIsFetching] = useState(false);
 
-  const fetchComments = async (): Promise<void> => {
+  const fetchComments = useCallback(async (): Promise<void> => {
     setIsFetching(true);
     try {
       const url = queryString.stringifyUrl({
@@ -42,11 +42,11 @@ const ReplySection: FC<ReplySectionProps> = ({
     } finally {
       setIsFetching(false);
     }
-  };
+  }, [commentId]);
 
   useEffect(() => {
     fetchComments();
-  }, [commentId]);
+  }, [commentId, fetchComments]);
 
   return (
     <>

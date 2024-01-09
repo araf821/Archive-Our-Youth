@@ -33,7 +33,7 @@ const AuthModal = () => {
           onClick={() => {
             router.push("/sign-in");
           }}
-          className="morph-md mt-1 w-full  rounded-sm bg-green-500 py-1.5 text-center font-semibold text-zinc-950 transition duration-200 hover:bg-green-600 md:text-lg"
+          className="morph-sm mt-1 w-full  rounded-sm bg-green-500 py-1.5 text-center font-semibold text-zinc-950 transition duration-200 hover:bg-green-600 md:text-lg"
         >
           Sign In
         </button>
