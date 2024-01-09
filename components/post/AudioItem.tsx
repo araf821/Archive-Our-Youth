@@ -30,7 +30,7 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post, clicked, onClose }) => {
               src={post.thumbnail}
               alt="post thumbnail"
               fill
-              sizes="(max-width: 768px) 75vw, (max-width: 1200px) 50vw, 30vw"
+              sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 25vw"
               className="object-cover"
             />
           </div>

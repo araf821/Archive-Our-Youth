@@ -34,7 +34,7 @@ const VideoItem: FC<VideoItemProps> = ({ post, onClick, clicked, onClose }) => {
                 alt="post thumbnail"
                 className="object-cover"
                 fill
-                sizes="(max-width: 768px) 75vw, (max-width: 1200px) 50vw, 30vw"
+                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 25vw"
               />
             </div>
           </div>
