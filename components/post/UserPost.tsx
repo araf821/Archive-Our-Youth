@@ -33,7 +33,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
       }}
       exit={{ opacity: 0, x: -500, transition: { duration: 0.5 } }}
     >
-      <div className="morph-lg relative flex flex-col gap-4 overflow-hidden rounded-lg border border-zinc-700 bg-gradient-to-br from-[#222222]/75 via-zinc-800/75 to-zinc-950/75 p-4 transition duration-300 hover:border-green-500 hover:bg-zinc-900 hover:shadow-green-500/10">
+      <div className="morph-lg relative flex flex-col gap-4 overflow-hidden rounded-lg border border-transparent bg-gradient-to-br from-[#222222]/75 via-zinc-800/75 to-zinc-950/75 p-4 transition duration-300 hover:border-green-500 hover:bg-zinc-900 hover:shadow-green-500/10">
         <span className="absolute bottom-0 right-0 h-20 w-20 bg-green-500/50 blur-3xl transition"></span>
         <div
           className={cn("flex max-md:flex-col max-md:gap-2 md:gap-4", {

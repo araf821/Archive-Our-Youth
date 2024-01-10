@@ -71,10 +71,13 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-zinc-200;
     color-scheme: dark;
-    /* overflow-y: scroll; */
   }
+}
+
+.tabs::-webkit-scrollbar {
+  height: 8px; /* or 'thin', for a slimmer scrollbar */
 }
 
 .neo {
