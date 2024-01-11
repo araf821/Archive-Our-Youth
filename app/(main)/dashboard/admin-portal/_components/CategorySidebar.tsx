@@ -14,15 +14,15 @@ const CategorySidebar = ({}: CategorySidebarProps) => {
   return (
     <>
       {/* Mobile */}
-      <div className="md:hidden">mobile</div>
+      <div className="px-4 md:hidden">Mobile Select Component</div>
 
       {/* Desktop */}
-      <ul className="h-fit w-[225px] space-y-2 rounded-lg bg-[#252525] p-2.5 text-zinc-300 max-md:hidden">
+      <ul className="h-fit w-[225px] space-y-3 rounded-lg bg-[#252525] p-2.5 text-zinc-300 max-md:hidden">
         <li>
           <button
             onClick={() => router.push("/dashboard/admin-portal/home")}
             className={cn(
-              "w-full rounded-lg bg-[#2F2F2F] p-1.5 text-center font-medium tracking-wider transition hover:text-green-500 lg:text-lg",
+              "w-full rounded-lg bg-[#2F2F2F] p-1.5 text-center font-semibold tracking-wider transition hover:text-green-500 lg:text-lg",
               { "text-green-500": pathname.includes("home") },
             )}
           >
@@ -33,7 +33,7 @@ const CategorySidebar = ({}: CategorySidebarProps) => {
           <button
             onClick={() => router.push("/dashboard/admin-portal/users")}
             className={cn(
-              "w-full rounded-lg bg-[#2F2F2F] p-1.5 text-center font-medium tracking-wider transition hover:text-green-500 lg:text-lg",
+              "w-full rounded-lg bg-[#2F2F2F] p-1.5 text-center font-semibold tracking-wider transition hover:text-green-500 lg:text-lg",
               { "text-green-500": pathname.includes("users") },
             )}
           >
@@ -44,7 +44,7 @@ const CategorySidebar = ({}: CategorySidebarProps) => {
           <button
             onClick={() => router.push("/dashboard/admin-portal/posts")}
             className={cn(
-              "w-full rounded-lg bg-[#2F2F2F] p-1.5 text-center font-medium tracking-wider transition hover:text-green-500 lg:text-lg",
+              "w-full rounded-lg bg-[#2F2F2F] p-1.5 text-center font-semibold tracking-wider transition hover:text-green-500 lg:text-lg",
               { "text-green-500": pathname.includes("posts") },
             )}
           >
@@ -55,7 +55,7 @@ const CategorySidebar = ({}: CategorySidebarProps) => {
           <button
             onClick={() => router.push("/dashboard/admin-portal/comments")}
             className={cn(
-              "w-full rounded-lg bg-[#2F2F2F] p-1.5 text-center font-medium tracking-wider transition hover:text-green-500 lg:text-lg",
+              "w-full rounded-lg bg-[#2F2F2F] p-1.5 text-center font-semibold tracking-wider transition hover:text-green-500 lg:text-lg",
               { "text-green-500": pathname.includes("comments") },
             )}
           >
@@ -66,7 +66,7 @@ const CategorySidebar = ({}: CategorySidebarProps) => {
           <button
             onClick={() => router.push("/dashboard/admin-portal/logs")}
             className={cn(
-              "w-full rounded-lg bg-[#2F2F2F] p-1.5 text-center font-medium tracking-wider transition hover:text-green-500 lg:text-lg",
+              "w-full rounded-lg bg-[#2F2F2F] p-1.5 text-center font-semibold tracking-wider transition hover:text-green-500 lg:text-lg",
               { "text-green-500": pathname.includes("logs") },
             )}
           >
