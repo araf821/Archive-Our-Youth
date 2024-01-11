@@ -1,48 +1,9 @@
-import { db } from "@/lib/db";
+import { getStats } from "@/actions/stats";
 
 interface StatsProps {}
 
 const Stats = async ({}: StatsProps) => {
-  const userCount = await db.user.count();
-  const postCount = await db.post.count();
-  const commentCount = await db.comment.count();
-
-  const textPosts = await db.post.count({
-    where: {
-      contentType: "TEXT",
-    },
-  });
-  const videoPosts = await db.post.count({
-    where: {
-      contentType: "VIDEO",
-    },
-  });
-  const audioPosts = await db.post.count({
-    where: {
-      contentType: "AUDIO",
-    },
-  });
-  const pdfPosts = await db.post.count({
-    where: {
-      contentType: "PDF",
-    },
-  });
-  const imagePosts = await db.post.count({
-    where: {
-      contentType: "IMAGE",
-    },
-  });
-
-  const admins = await db.user.count({
-    where: {
-      role: "ADMIN",
-    },
-  });
-  const members = await db.user.count({
-    where: {
-      role: "MEMBER",
-    },
-  });
+  const stats = await getStats();
 
   return (
     <>
@@ -53,17 +14,17 @@ const Stats = async ({}: StatsProps) => {
         <ul className="grid gap-4 sm:grid-cols-2">
           <li className="rounded-lg bg-[#252525] px-5 py-4">
             <p className="text-lg font-semibold tracking-wider md:text-xl">
-              {userCount} Users
+              {stats.userCount} Users
             </p>
           </li>
           <li className="rounded-lg bg-[#252525] px-5 py-4">
             <p className="text-lg font-semibold tracking-wider md:text-xl">
-              {postCount} Posts
+              {stats.postCount} Posts
             </p>
           </li>
           <li className="rounded-lg bg-[#252525] px-5 py-4">
             <p className="text-lg font-semibold tracking-wider md:text-xl">
-              {commentCount} Comments
+              {stats.commentCount} Comments
             </p>
           </li>
           <li className="rounded-lg bg-[#252525] px-5 py-4">
@@ -82,27 +43,27 @@ const Stats = async ({}: StatsProps) => {
         <ul className="grid gap-4 sm:grid-cols-2">
           <li className="rounded-lg bg-[#252525] px-5 py-4">
             <p className="text-lg font-semibold tracking-wider md:text-xl">
-              {imagePosts} IMAGE Posts
+              {stats.imagePosts} IMAGE Posts
             </p>
           </li>
           <li className="rounded-lg bg-[#252525] px-5 py-4">
             <p className="text-lg font-semibold tracking-wider md:text-xl">
-              {videoPosts} VIDEO Posts
+              {stats.videoPosts} VIDEO Posts
             </p>
           </li>
           <li className="rounded-lg bg-[#252525] px-5 py-4">
             <p className="text-lg font-semibold tracking-wider md:text-xl">
-              {audioPosts} AUDIO Posts
+              {stats.audioPosts} AUDIO Posts
             </p>
           </li>
           <li className="rounded-lg bg-[#252525] px-5 py-4">
             <p className="text-lg font-semibold tracking-wider md:text-xl">
-              {textPosts} TEXT Posts
+              {stats.textPosts} TEXT Posts
             </p>
           </li>
           <li className="rounded-lg bg-[#252525] px-5 py-4">
             <p className="text-lg font-semibold tracking-wider md:text-xl">
-              {pdfPosts} PDF Posts
+              {stats.pdfPosts} PDF Posts
             </p>
           </li>
         </ul>
@@ -115,12 +76,12 @@ const Stats = async ({}: StatsProps) => {
         <ul className="grid gap-4 sm:grid-cols-2">
           <li className="rounded-lg bg-[#252525] px-5 py-4">
             <p className="text-lg font-semibold tracking-wider md:text-xl">
-              {admins} Admins
+              {stats.admins} Admins
             </p>
           </li>
           <li className="rounded-lg bg-[#252525] px-5 py-4">
             <p className="text-lg font-semibold tracking-wider md:text-xl">
-              {members} Members
+              {stats.members} Members
             </p>
           </li>
         </ul>

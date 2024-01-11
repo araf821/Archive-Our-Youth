@@ -5,7 +5,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const formatDateString = (dateInString: string) => {
+export const formatDateString = (
+  dateInString: string,
+  options: { hideTime?: boolean; hideMonth?: boolean },
+) => {
   const months = [
     "Jan",
     "Feb",
@@ -33,7 +36,15 @@ export const formatDateString = (dateInString: string) => {
   const day = dateObj.getDate();
   const year = dateObj.getFullYear();
 
-  const formattedDate = `${formattedHours}:${formattedMinutes} ${ampm} | ${month} ${day}, ${year}`;
+  let formattedDate = "";
+
+  if (!options.hideMonth && !options.hideTime) {
+    formattedDate = `${formattedHours}:${formattedMinutes} ${ampm} | ${month} ${day}, ${year}`;
+  } else if (options.hideMonth && !options.hideTime) {
+    formattedDate = `${formattedHours}:${formattedMinutes} ${ampm}`;
+  } else if (options.hideTime && !options.hideMonth) {
+    formattedDate = `${month} ${day}, ${year}`;
+  }
 
   return formattedDate;
 };
