@@ -76,10 +76,6 @@
   }
 }
 
-.tabs::-webkit-scrollbar {
-  height: 8px; /* or 'thin', for a slimmer scrollbar */
-}
-
 .neo {
   box-shadow:
     -4px -4px 8px #14141431,
