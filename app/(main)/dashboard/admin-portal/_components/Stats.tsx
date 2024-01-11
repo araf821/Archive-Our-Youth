@@ -33,6 +33,17 @@ const Stats = async ({}: StatsProps) => {
     },
   });
 
+  const admins = await db.user.count({
+    where: {
+      role: "ADMIN",
+    },
+  });
+  const members = await db.user.count({
+    where: {
+      role: "MEMBER",
+    },
+  });
+
   return (
     <>
       <div>
@@ -92,6 +103,24 @@ const Stats = async ({}: StatsProps) => {
           <li className="rounded-lg bg-[#252525] px-5 py-4">
             <p className="text-lg font-semibold tracking-wider md:text-xl">
               {pdfPosts} PDF Posts
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <div className="mb-12">
+        <p className="mb-4 mt-6 w-fit rounded-md bg-green-500 px-3 py-1 text-sm font-semibold tracking-widest text-black">
+          Users
+        </p>
+        <ul className="grid gap-4 sm:grid-cols-2">
+          <li className="rounded-lg bg-[#252525] px-5 py-4">
+            <p className="text-lg font-semibold tracking-wider md:text-xl">
+              {admins} Admins
+            </p>
+          </li>
+          <li className="rounded-lg bg-[#252525] px-5 py-4">
+            <p className="text-lg font-semibold tracking-wider md:text-xl">
+              {members} Members
             </p>
           </li>
         </ul>

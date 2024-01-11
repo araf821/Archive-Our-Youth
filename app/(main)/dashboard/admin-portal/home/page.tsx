@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Stats from "../_components/Stats";
-import { AdminPortalContentSkeleton } from "../layout";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const AdminStatsPage = () => {
   return (
@@ -16,3 +16,17 @@ const AdminStatsPage = () => {
   );
 };
 export default AdminStatsPage;
+
+export const AdminPortalContentSkeleton = () => {
+  return (
+    <div className="mt-4 w-full space-y-4">
+      <div className="flex gap-4">
+        <Skeleton className="h-20 w-full md:h-32" />
+        <Skeleton className="h-20 w-full md:h-32" />
+      </div>
+      <Skeleton className="h-20 w-full md:h-32" />
+      <Skeleton className="h-20 w-full md:h-32" />
+      <Skeleton className="h-20 w-full md:h-32" />
+    </div>
+  );
+};

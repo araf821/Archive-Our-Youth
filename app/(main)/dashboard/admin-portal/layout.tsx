@@ -1,11 +1,10 @@
-import SignOutButton from "@/components/SignOutButton";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { ShieldCheck } from "lucide-react";
 import { redirect } from "next/navigation";
 import CategorySidebar from "./_components/CategorySidebar";
 import { Suspense } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
 import Banner from "./_components/Banner";
+import { AdminPortalContentSkeleton } from "./home/page";
 
 interface AdminPortalLayoutProps {
   children: React.ReactNode;
@@ -29,7 +28,7 @@ const AdminPortalLayout = async ({ children }: AdminPortalLayoutProps) => {
         <p className="mt-1 text-zinc-400 max-md:text-sm">
           Manage and moderate the Archive to your heart&apos;s content!
         </p>
-        <hr className="mt-2 border-zinc-700" />
+        <hr className="mt-2 border-zinc-700 pb-4" />
 
         {/* Banner */}
         <Banner user={currentUser} />
@@ -49,17 +48,3 @@ const AdminPortalLayout = async ({ children }: AdminPortalLayoutProps) => {
 };
 
 export default AdminPortalLayout;
-
-export const AdminPortalContentSkeleton = () => {
-  return (
-    <div className="mt-4 w-full space-y-4">
-      <div className="flex gap-4">
-        <Skeleton className="h-20 w-full md:h-32" />
-        <Skeleton className="h-20 w-full md:h-32" />
-      </div>
-      <Skeleton className="h-20 w-full md:h-32" />
-      <Skeleton className="h-20 w-full md:h-32" />
-      <Skeleton className="h-20 w-full md:h-32" />
-    </div>
-  );
-};
