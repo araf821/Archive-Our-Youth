@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export const formatDateString = (
   dateInString: string,
-  options: { hideTime?: boolean; hideMonth?: boolean },
+  options?: { hideTime?: boolean; hideMonth?: boolean },
 ) => {
   const months = [
     "Jan",
@@ -38,7 +38,7 @@ export const formatDateString = (
 
   let formattedDate = "";
 
-  if (!options.hideMonth && !options.hideTime) {
+  if (!options?.hideMonth && !options?.hideTime) {
     formattedDate = `${formattedHours}:${formattedMinutes} ${ampm} | ${month} ${day}, ${year}`;
   } else if (options.hideMonth && !options.hideTime) {
     formattedDate = `${formattedHours}:${formattedMinutes} ${ampm}`;

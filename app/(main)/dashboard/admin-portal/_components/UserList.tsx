@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { cn, formatDateString } from "@/lib/utils";
 import Image from "next/image";
+import UserDropdown from "./UserDropdown";
 
 interface UserListProps {}
 
@@ -25,7 +26,7 @@ const UserList = async ({}: UserListProps) => {
             </div>
             <div className="">
               <p>{user.name}</p>
-              <p>
+              <p className="text-xs text-zinc-400 md:text-sm">
                 Joined{" "}
                 {formatDateString(user.createdAt.toISOString(), {
                   hideTime: true,
@@ -42,6 +43,8 @@ const UserList = async ({}: UserListProps) => {
           >
             {user.role}
           </p>
+
+          <UserDropdown />
         </li>
       ))}
     </ul>
