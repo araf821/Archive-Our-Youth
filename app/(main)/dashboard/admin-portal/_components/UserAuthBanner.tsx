@@ -6,11 +6,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useState } from "react";
 
-interface BannerProps {
+interface UserAuthBannerProps {
   user: User;
 }
 
-const Banner = ({ user }: BannerProps) => {
+const UserAuthBanner = ({ user }: UserAuthBannerProps) => {
   const [closed, setClosed] = useState(false);
 
   return (
@@ -48,4 +48,4 @@ const Banner = ({ user }: BannerProps) => {
     </AnimatePresence>
   );
 };
-export default Banner;
+export default UserAuthBanner;

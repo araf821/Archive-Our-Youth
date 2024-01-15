@@ -3,8 +3,8 @@ import { ShieldCheck } from "lucide-react";
 import { redirect } from "next/navigation";
 import CategorySidebar from "./_components/CategorySidebar";
 import { Suspense } from "react";
-import Banner from "./_components/Banner";
 import { AdminPortalContentSkeleton } from "./home/page";
+import UserAuthBanner from "./_components/UserAuthBanner";
 
 interface AdminPortalLayoutProps {
   children: React.ReactNode;
@@ -31,7 +31,7 @@ const AdminPortalLayout = async ({ children }: AdminPortalLayoutProps) => {
         <hr className="mt-2 border-zinc-700 pb-4" />
 
         {/* Banner */}
-        <Banner user={currentUser} />
+        <UserAuthBanner user={currentUser} />
       </div>
 
       {/* Content */}

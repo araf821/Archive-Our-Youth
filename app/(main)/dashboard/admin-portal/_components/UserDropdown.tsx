@@ -1,6 +1,5 @@
 "use client";
 
-import { Dialog, DialogTrigger } from "@/components/ui/Dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,21 +8,20 @@ import {
 } from "@/components/ui/DropdownMenu";
 import { MoreVertical } from "lucide-react";
 import { useState } from "react";
-import MoreInformationModal from "./user/MoreInformationModal";
+import MoreInformationModal from "./user/ManageUserModal";
+import { User } from "@prisma/client";
+import Link from "next/link";
 
-interface UserDropdownProps {}
+interface UserDropdownProps {
+  user: User;
+}
 
-const UserDropdown = ({}: UserDropdownProps) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isMoreInfoOpen, setIsMoreInfoOpen] = useState(false);
+const UserDropdown = ({ user }: UserDropdownProps) => {
+  // const [isMoreInfoOpen, setIsMoreInfoOpen] = useState(false);
   const [isManageOpen, setIsManageOpen] = useState(false);
 
   return (
-    <DropdownMenu
-      modal={false}
-      // open={isDropdownOpen}
-      // onOpenChange={setIsDropdownOpen}
-    >
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <button className="">
           <MoreVertical />
@@ -38,12 +36,12 @@ const UserDropdown = ({}: UserDropdownProps) => {
           className="justify-center"
           asChild
         >
-          <button
-            onClick={() => setIsMoreInfoOpen(true)}
+          <Link
+            href={`users/${user.id}`}
             className="w-full cursor-pointer tracking-widest focus-visible:outline-zinc-500"
           >
             More Information
-          </button>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className="justify-center">
           <button
@@ -54,10 +52,11 @@ const UserDropdown = ({}: UserDropdownProps) => {
           </button>
         </DropdownMenuItem>
       </DropdownMenuContent>
-      <MoreInformationModal
+      {/* <MoreInformationModal
+        user={user}
         open={isMoreInfoOpen}
         onOpenChange={setIsMoreInfoOpen}
-      />
+      /> */}
     </DropdownMenu>
   );
 };

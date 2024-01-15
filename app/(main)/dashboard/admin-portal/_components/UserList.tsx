@@ -44,7 +44,7 @@ const UserList = async ({}: UserListProps) => {
             {user.role}
           </p>
 
-          <UserDropdown />
+          <UserDropdown user={user} />
         </li>
       ))}
     </ul>
