@@ -7,7 +7,6 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "../ui/Dialog";
-import { useClerk } from "@clerk/nextjs";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -15,7 +14,6 @@ import { useRouter } from "next/navigation";
 const SubmitAuthModal = () => {
   const { onClose, type, isOpen } = useModal();
   const router = useRouter();
-  const { openSignIn } = useClerk();
 
   const isModalOpen = isOpen && type === "submitAuthModal";
   return (

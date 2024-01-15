@@ -6,6 +6,7 @@ import AuthModal from "./AuthModal";
 import ShareModal from "./ShareModal";
 import DeletePostModal from "./DeletePostModal";
 import SubmitAuthModal from "./SubmitAuthModal";
+import MoreInformationModal from "@/app/(main)/dashboard/admin-portal/_components/user/MoreInformationModal";
 
 const ModalProvider = ({}) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -24,7 +25,8 @@ const ModalProvider = ({}) => {
       <AuthModal />
       <ShareModal />
       <DeletePostModal />
-      <SubmitAuthModal/>
+      <SubmitAuthModal />
+      <MoreInformationModal />
     </>
   );
 };

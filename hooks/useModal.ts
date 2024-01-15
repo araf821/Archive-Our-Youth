@@ -2,6 +2,7 @@ import { Post, User } from "@prisma/client";
 import { create } from "zustand";
 
 export type ModalType =
+  | "userMoreInformationModal"
   | "postModal"
   | "authModal"
   | "shareModal"
