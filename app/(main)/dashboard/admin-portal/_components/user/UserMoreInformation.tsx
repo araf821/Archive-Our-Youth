@@ -38,7 +38,7 @@ const UserMoreInformation = async ({ userId }: UserMoreInformationProps) => {
   }
 
   return (
-    <div className="mb-8 border-b-2 border-zinc-700 pb-4 pt-8">
+    <div className="border-b-2 border-zinc-700 pb-4 pt-8">
       <div className="space-y-1">
         <h3 className="text-xl font-medium md:text-2xl">
           More Information on user.name

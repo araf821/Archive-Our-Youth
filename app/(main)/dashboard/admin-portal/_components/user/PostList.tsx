@@ -21,9 +21,10 @@ const PostList = async ({ userId }: PostListProps) => {
   }
 
   return (
-    <div>
-      <h2 className="pb-6 text-lg font-medium md:text-xl">User&apos;s Posts</h2>
-      <div className="space-y-6 divide-y divide-zinc-700">
+    <div className="pt-6">
+      <h2 className="text-lg font-medium md:text-xl">User&apos;s Posts</h2>
+      <hr className="mt-2 border-zinc-700" />
+      <div className="mt-6 space-y-6 divide-y divide-zinc-700">
         {posts.map((post) => (
           <div key={post.id} className="pt-6 first:pt-0">
             <UserPost post={post} />

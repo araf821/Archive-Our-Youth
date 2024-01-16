@@ -21,7 +21,7 @@ import { useModal } from "@/hooks/useModal";
 interface CommentProps {
   reply?: boolean;
   user: User | null;
-  comment: CommentModel & { user: User; _count: { replies: number } };
+  comment: CommentModel & { user?: User; _count?: { replies: number } };
   refresh?: () => void;
 }
 
@@ -92,7 +92,7 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
       <div className="flex h-full flex-col items-center gap-1 self-start">
         <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full md:h-12 md:w-12">
           <Image
-            src={comment.user.imageUrl || "/placeholder-image.png"}
+            src={comment.user?.imageUrl || "/placeholder-image.png"}
             alt="user profile picture"
             fill
             sizes="50px"
@@ -103,7 +103,7 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
       </div>
       <div className="flex flex-1 flex-col gap-1">
         <p className="flex items-center gap-1.5 break-words md:text-lg">
-          {comment.user.name}
+          {comment.user?.name}
           <span className="mx-1 text-zinc-500">•</span>
           <span className="text-xs text-zinc-500 md:text-sm">
             {formatDateString(comment.createdAt.toString())}
@@ -149,7 +149,7 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
               >
                 <span className="sr-only">reply button</span>
                 <Reply strokeWidth={3} className="h-4 w-4 md:h-5 md:w-5" />
-                {comment._count.replies} replies
+                {comment._count?.replies} replies
               </button>
             </>
           )}
