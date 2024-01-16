@@ -7,7 +7,6 @@ interface CategorySidebarProps {}
 
 const CategorySidebar = ({}: CategorySidebarProps) => {
   const pathname = usePathname();
-  console.log(pathname);
 
   const router = useRouter();
 

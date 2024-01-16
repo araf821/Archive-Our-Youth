@@ -26,7 +26,6 @@ const ModalProvider = ({}) => {
       <ShareModal />
       <DeletePostModal />
       <SubmitAuthModal />
-      <MoreInformationModal />
     </>
   );
 };

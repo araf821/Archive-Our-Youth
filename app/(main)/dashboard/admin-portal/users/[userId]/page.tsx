@@ -1,5 +1,5 @@
 import BackButton from "@/components/BackButton";
-import React from "react";
+import React, { Suspense } from "react";
 import UserMoreInformation from "../../_components/user/UserMoreInformation";
 
 interface SingleUserPageProps {
@@ -10,9 +10,11 @@ interface SingleUserPageProps {
 
 const SingleUserPage = ({ params }: SingleUserPageProps) => {
   return (
-    <div>
+    <div className="px-4">
       <BackButton classNames="morph-none bg-[#252525]" />
-      <UserMoreInformation userId={params.userId} />
+      <Suspense fallback={<UserMoreInformation.Skeleton />}>
+        <UserMoreInformation userId={params.userId} />
+      </Suspense>
     </div>
   );
 };
