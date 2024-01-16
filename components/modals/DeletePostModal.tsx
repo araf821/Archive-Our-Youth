@@ -22,7 +22,6 @@ const DeletePostModal = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const isModalOpen = isOpen && type === "deletePostModal";
-  // if (!postWithoutUser) onClose();
 
   const handleDelete = async () => {
     setIsLoading(true);
@@ -46,7 +45,7 @@ const DeletePostModal = () => {
           <X className="text-zinc-500 max-md:h-5 max-md:w-5" />
         </DialogTrigger>
         <DialogHeader>
-          <DialogTitle className="text-center text-2xl text-zinc-200">
+          <DialogTitle className="text-center text-2xl font-normal text-zinc-200">
             Are you sure you want to delete{" "}
             <span className="font-bold text-white">
               {postWithoutUser?.title}?
@@ -67,7 +66,7 @@ const DeletePostModal = () => {
           <button
             disabled={isLoading}
             onClick={handleDelete}
-            className="rounded-md morph-md bg-amber-500 py-2 text-black transition hover:bg-amber-600 md:text-lg"
+            className="morph-md rounded-md bg-amber-500 py-2 text-black transition hover:bg-amber-600 md:text-lg"
           >
             {isLoading ? (
               <Loader2 className="mx-auto animate-spin" />

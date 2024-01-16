@@ -1,6 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { dateFormat } from "@/lib/dateFormat";
 import { db } from "@/lib/db";
+import Image from "next/image";
 
 interface UserMoreInformationProps {
   userId: string;
@@ -12,6 +13,14 @@ const UserMoreInformation = async ({ userId }: UserMoreInformationProps) => {
     user = await db.user.findUnique({
       where: {
         id: userId,
+      },
+      include: {
+        _count: {
+          select: {
+            comments: true,
+            posts: true,
+          },
+        },
       },
     });
   } catch (error) {
@@ -29,7 +38,7 @@ const UserMoreInformation = async ({ userId }: UserMoreInformationProps) => {
   }
 
   return (
-    <div className="py-8">
+    <div className="mb-8 border-b-2 border-zinc-700 pb-4 pt-8">
       <div className="space-y-1">
         <h3 className="text-xl font-medium md:text-2xl">
           More Information on user.name
@@ -39,7 +48,18 @@ const UserMoreInformation = async ({ userId }: UserMoreInformationProps) => {
         </p>
         <hr className="border-zinc-700" />
       </div>
-      <div className="mt-6 flex flex-col gap-2.5 divide-y-2 divide-zinc-700">
+
+      <div className="relative my-6 aspect-square w-20 overflow-hidden rounded-lg bg-black">
+        <Image
+          src={user.imageUrl || ""}
+          alt="user profile picture"
+          fill
+          className="object-cover"
+          sizes="80px"
+        />
+      </div>
+
+      <div className="flex flex-col gap-2.5 divide-y-2 divide-zinc-700">
         <div className="flex items-center justify-between gap-8">
           <p className="self-start tracking-wider text-zinc-400 max-md:text-sm">
             Name
@@ -71,6 +91,24 @@ const UserMoreInformation = async ({ userId }: UserMoreInformationProps) => {
             useremail@gmail.com
           </p>
         </div>
+
+        <div className="flex items-center justify-between gap-8 pt-2.5">
+          <p className="self-start tracking-wider text-zinc-400 max-md:text-sm">
+            Posts
+          </p>
+          <p className="font-medium tracking-wide text-white">
+            {user._count.posts}
+          </p>
+        </div>
+
+        <div className="flex items-center justify-between gap-8 pt-2.5">
+          <p className="self-start tracking-wider text-zinc-400 max-md:text-sm">
+            Comments
+          </p>
+          <p className="font-medium tracking-wide text-white">
+            {user._count.comments}
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -81,6 +119,7 @@ export default UserMoreInformation;
 UserMoreInformation.Skeleton = function UserInfoSkeleton() {
   return (
     <div className="mt-6 flex flex-col gap-2.5">
+      <Skeleton className="h-20 w-20" />
       <Skeleton className="h-8 w-[60%] max-md:w-full" />
       <Skeleton className="h-2 w-[40%] max-md:w-[80%]" />
       <Skeleton className="mt-4 h-12 w-full" />
