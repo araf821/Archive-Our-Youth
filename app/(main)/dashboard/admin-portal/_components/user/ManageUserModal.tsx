@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
 import {
   Dialog,
   DialogContent,
@@ -8,7 +9,9 @@ import {
   DialogTitle,
 } from "@/components/ui/Dialog";
 import { User } from "@prisma/client";
+import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
+import { toast } from "sonner";
 
 interface ManageUserModalProps {
   user: User;
@@ -29,12 +32,32 @@ const ManageUserModal = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-screen-sm rounded-2xl border-zinc-800 bg-[#252525] py-6 shadow-md focus:outline-none">
         <DialogHeader>
-          <DialogTitle>More Information on {user.name}</DialogTitle>
+          <DialogTitle>
+            Manager User <b className="tracking-wider">{user.name}</b>
+          </DialogTitle>
           <DialogDescription>
-            View the latest activity from this user.
+            Manage this user&apos;s activity or account.
           </DialogDescription>
         </DialogHeader>
         <hr className="border-zinc-700" />
+
+        <div className="flex w-full gap-4 max-sm:flex-col max-sm:px-4">
+          <Button
+            onClick={() => toast("Feature coming soon.")}
+            variant="destructive"
+            className="w-full"
+          >
+            DELETE THIS USER
+          </Button>
+          <Button asChild variant="outline" className="w-full">
+            <Link
+              className="w-full"
+              href={`/dashboard/admin-portal/users/${user.id}`}
+            >
+              View User Info
+            </Link>
+          </Button>
+        </div>
       </DialogContent>
     </Dialog>
   );

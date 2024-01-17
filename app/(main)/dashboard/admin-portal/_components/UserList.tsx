@@ -13,9 +13,9 @@ const UserList = async ({}: UserListProps) => {
       {users.map((user) => (
         <li
           key={user.id}
-          className="flex items-center justify-between gap-4 bg-[#2f2f2f] px-4 py-3"
+          className="grid grid-cols-4 items-center gap-4 bg-[#2f2f2f] px-4 py-3"
         >
-          <div className="flex items-center gap-2">
+          <div className="col-span-2 flex items-center gap-2">
             <div className="relative aspect-square w-12 overflow-hidden rounded-md">
               <Image
                 src={user.imageUrl || ""}
@@ -37,7 +37,7 @@ const UserList = async ({}: UserListProps) => {
 
           <p
             className={cn(
-              "text-sm font-semibold tracking-wider",
+              "text-center text-sm font-semibold tracking-wider max-sm:text-xs",
               user.role === "ADMIN" ? "text-green-500" : "text-blue-500",
             )}
           >

@@ -91,8 +91,7 @@
     8px 8px 30px #09090b7a,
     -2px -2px 4px #333333df,
     -4px -4px 12px #3333339a,
-    -6px -6px 30px #33333364,
-    inset -6px -6px 20px #33333364;
+    -6px -6px 30px #33333364;
 }
 
 .morph-lg:hover {
@@ -103,17 +102,10 @@
     -2px -2px 4px #333333df,
     -4px -4px 12px #3333339a,
     -6px -6px 30px #33333364,
-    -6px -6px 50px #33333333,
-    inset -6px -6px 20px #33333364;
+    -6px -6px 50px #33333333;
 }
 
 .morph-md {
-  /* box-shadow:
-    4px 4px 8px #09090be9,
-    6px 6px 15px #09090bb5,
-    -2px -2px 4px #333333,
-    -4px -4px 12px #333333,
-    inset -6px -6px 15px #333333; */
   box-shadow:
     20px 20px 50px #151515,
     -20px -20px 50px #272727;
@@ -121,11 +113,10 @@
 
 .morph-sm {
   box-shadow:
-    4px 4px 7px #09090be9,
-    6px 6px 12px #09090bb5,
+    4px 4px 7px #09090b1f,
+    6px 6px 12px #09090b5b,
     -2px -2px 4px #333333df,
-    -4px -4px 7px #3333339a,
-    inset -6px -6px 10px #33333364;
+    -4px -4px 7px #3333339a;
 }
 
 .morph-none {

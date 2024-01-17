@@ -11,6 +11,7 @@ import { useState } from "react";
 import MoreInformationModal from "./user/ManageUserModal";
 import { User } from "@prisma/client";
 import Link from "next/link";
+import ManageUserModal from "./user/ManageUserModal";
 
 interface UserDropdownProps {
   user: User;
@@ -23,7 +24,7 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <button className="">
+        <button className="ml-auto">
           <MoreVertical />
         </button>
       </DropdownMenuTrigger>
@@ -33,30 +34,28 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
       >
         <DropdownMenuItem
           onSelect={(e) => e.preventDefault()}
-          className="justify-center"
+          className="focus:ring-none justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2"
           asChild
         >
           <Link
             href={`users/${user.id}`}
-            className="w-full cursor-pointer tracking-widest focus-visible:outline-zinc-500"
+            className="w-full cursor-pointer tracking-widest outline-none"
           >
             More Information
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem className="justify-center">
-          <button
-            onClick={() => setIsManageOpen(true)}
-            className="w-full cursor-pointer tracking-widest"
-          >
-            Manage User
-          </button>
+        <DropdownMenuItem
+          onClick={() => setIsManageOpen(true)}
+          className="w-full cursor-pointer justify-center tracking-widest focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        >
+          Manage
         </DropdownMenuItem>
       </DropdownMenuContent>
-      {/* <MoreInformationModal
+      <ManageUserModal
+        open={isManageOpen}
+        onOpenChange={setIsManageOpen}
         user={user}
-        open={isMoreInfoOpen}
-        onOpenChange={setIsMoreInfoOpen}
-      /> */}
+      />
     </DropdownMenu>
   );
 };
