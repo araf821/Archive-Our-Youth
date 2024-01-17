@@ -6,7 +6,11 @@ import UserDropdown from "./UserDropdown";
 interface UserListProps {}
 
 const UserList = async ({}: UserListProps) => {
-  const users = await db.user.findMany();
+  const users = await db.user.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 
   return (
     <ul className="my-4 space-y-2">

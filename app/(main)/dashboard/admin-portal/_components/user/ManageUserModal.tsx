@@ -10,8 +10,9 @@ import {
 } from "@/components/ui/Dialog";
 import { User } from "@prisma/client";
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
-import { toast } from "sonner";
+import { Dispatch, SetStateAction, useState } from "react";
+import ConfirmDeletion from "./ConfirmDeletion";
+import { cn } from "@/lib/utils";
 
 interface ManageUserModalProps {
   user: User;
@@ -24,6 +25,8 @@ const ManageUserModal = ({
   open,
   onOpenChange,
 }: ManageUserModalProps) => {
+  const [isDeleting, setIsDeleting] = useState(false);
+
   if (!user) {
     return null;
   }
@@ -32,32 +35,42 @@ const ManageUserModal = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-screen-sm rounded-2xl border-zinc-800 bg-[#252525] py-6 shadow-md focus:outline-none">
         <DialogHeader>
-          <DialogTitle>
-            Manager User <b className="tracking-wider">{user.name}</b>
+          <DialogTitle className={cn(isDeleting && "text-rose-500")}>
+            {isDeleting ? "Delete User" : "Manager User"}{" "}
+            <b className="tracking-wider">&quot;{user.name}&quot;</b>
           </DialogTitle>
           <DialogDescription>
-            Manage this user&apos;s activity or account.
+            {isDeleting
+              ? "This action cannot be undone."
+              : "Manage this user's activity or account."}
           </DialogDescription>
         </DialogHeader>
         <hr className="border-zinc-700" />
 
-        <div className="flex w-full gap-4 max-sm:flex-col max-sm:px-4">
-          <Button
-            onClick={() => toast("Feature coming soon.")}
-            variant="destructive"
-            className="w-full"
-          >
-            DELETE THIS USER
-          </Button>
-          <Button asChild variant="outline" className="w-full">
-            <Link
+        {isDeleting ? (
+          <ConfirmDeletion
+            cancel={() => setIsDeleting(false)}
+            userId={user.id}
+          />
+        ) : (
+          <div className="flex w-full gap-4 max-sm:flex-col max-sm:px-4">
+            <Button
+              onClick={() => setIsDeleting(true)}
+              variant="destructive"
               className="w-full"
-              href={`/dashboard/admin-portal/users/${user.id}`}
             >
-              View User Info
-            </Link>
-          </Button>
-        </div>
+              Delete This User
+            </Button>
+            <Button asChild variant="outline" className="w-full">
+              <Link
+                className="w-full"
+                href={`/dashboard/admin-portal/users/${user.id}`}
+              >
+                View User Info
+              </Link>
+            </Button>
+          </div>
+        )}
       </DialogContent>
     </Dialog>
   );
