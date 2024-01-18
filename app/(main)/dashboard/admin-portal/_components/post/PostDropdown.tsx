@@ -6,12 +6,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
+import { Post, User } from "@prisma/client";
 import { MoreVertical } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
+import ManagePostModal from "./ManagePostModal";
 
-interface PostDropdownProps {}
+interface PostDropdownProps {
+  post: Post & { user: User | null; _count: { comments: number } };
+}
 
-const PostDropdown = ({}: PostDropdownProps) => {
+const PostDropdown = ({ post }: PostDropdownProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
@@ -29,14 +36,14 @@ const PostDropdown = ({}: PostDropdownProps) => {
           asChild
         >
           <Link
-            href={`/post/`}
+            href={`/post/${post.slug}`}
             className="w-full cursor-pointer tracking-widest outline-none"
           >
             View Post
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem
-          onClick={() => {}}
+          onClick={() => setIsOpen(true)}
           className="w-full cursor-pointer justify-center tracking-widest focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
           Manage Post
@@ -47,6 +54,7 @@ const PostDropdown = ({}: PostDropdownProps) => {
         onOpenChange={setIsManageOpen}
         user={user}
       /> */}
+      <ManagePostModal isOpen={isOpen} onOpenChange={setIsOpen} post={post} />
     </DropdownMenu>
   );
 };

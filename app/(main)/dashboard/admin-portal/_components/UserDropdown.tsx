@@ -17,7 +17,6 @@ interface UserDropdownProps {
 }
 
 const UserDropdown = ({ user }: UserDropdownProps) => {
-  // const [isMoreInfoOpen, setIsMoreInfoOpen] = useState(false);
   const [isManageOpen, setIsManageOpen] = useState(false);
 
   return (

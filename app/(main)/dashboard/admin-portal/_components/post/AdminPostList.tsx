@@ -7,6 +7,11 @@ const AdminPostList = async ({}: AdminPostListProps) => {
   const posts = await db.post.findMany({
     include: {
       user: true,
+      _count: {
+        select: {
+          comments: true,
+        },
+      },
     },
   });
 

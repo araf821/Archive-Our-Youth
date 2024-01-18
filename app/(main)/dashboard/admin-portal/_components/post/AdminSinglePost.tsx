@@ -5,7 +5,7 @@ import Image from "next/image";
 import PostDropdown from "./PostDropdown";
 
 interface AdminSinglePostProps {
-  post: Post & { user: User | null };
+  post: Post & { user: User | null; _count: { comments: number } };
 }
 
 const AdminSinglePost = ({ post }: AdminSinglePostProps) => {
@@ -42,7 +42,7 @@ const AdminSinglePost = ({ post }: AdminSinglePostProps) => {
       >
         {post.contentType}
       </p>
-      <PostDropdown />
+      <PostDropdown post={post} />
     </div>
   );
 };
