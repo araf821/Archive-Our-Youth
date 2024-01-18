@@ -2,15 +2,21 @@ import { deleteUser } from "@/actions/deleteUser";
 import { Button } from "@/components/ui/Button";
 import { Label } from "@/components/ui/Label";
 import { Input } from "@/components/ui/input";
+import Image from "next/image";
 import { useState } from "react";
 import { toast } from "sonner";
 
 interface ConfirmDeletionProps {
   cancel: () => void;
   userId: string;
+  imageUrl: string;
 }
 
-const ConfirmDeletion = ({ cancel, userId }: ConfirmDeletionProps) => {
+const ConfirmDeletion = ({
+  cancel,
+  userId,
+  imageUrl,
+}: ConfirmDeletionProps) => {
   const [confirmationString, setConfirmationString] = useState("");
 
   const onDelete = async () => {
@@ -30,7 +36,15 @@ const ConfirmDeletion = ({ cancel, userId }: ConfirmDeletionProps) => {
   };
 
   return (
-    <div className="px-4">
+    <div className="max-md:px-4">
+      <div className="relative mx-auto my-6 aspect-square w-20 md:w-32">
+        <Image
+          src={imageUrl}
+          alt="user profile picture"
+          fill
+          className="rounded-lg object-cover"
+        />
+      </div>
       <p className="mt-8 text-center text-zinc-300 md:text-lg">
         Are you sure you want to delete this user?
       </p>
