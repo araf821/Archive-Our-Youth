@@ -1,12 +1,13 @@
 import Comment from "@/components/comments/Comment";
+import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 
-interface CommentListProps {
+interface UserCommentListProps {
   userId: string;
 }
 
-const CommentList = async ({ userId }: CommentListProps) => {
+const UserCommentList = async ({ userId }: UserCommentListProps) => {
   const user = await getCurrentUser();
   const comments = await db.comment.findMany({
     where: {
@@ -37,4 +38,14 @@ const CommentList = async ({ userId }: CommentListProps) => {
   );
 };
 
-export default CommentList;
+export default UserCommentList;
+
+UserCommentList.Skeleton = function UserCommentListSkeleton() {
+  return (
+    <div className="my-8 flex flex-col gap-6">
+      <Skeleton className="h-36 rounded-none" />
+      <Skeleton className="h-36 rounded-none" />
+      <Skeleton className="h-36 rounded-none" />
+    </div>
+  );
+};

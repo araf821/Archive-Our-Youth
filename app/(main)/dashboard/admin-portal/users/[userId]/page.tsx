@@ -2,7 +2,7 @@ import BackButton from "@/components/BackButton";
 import React, { Suspense } from "react";
 import UserMoreInformation from "../../_components/user/UserMoreInformation";
 import PostList from "../../_components/user/PostList";
-import CommentList from "../../_components/user/CommentList";
+import UserCommentList from "../../_components/user/UserCommentList";
 
 interface SingleUserPageProps {
   params: {
@@ -21,7 +21,9 @@ const SingleUserPage = ({ params }: SingleUserPageProps) => {
         <PostList userId={params.userId} />
       </Suspense>
 
-      <CommentList userId={params.userId} />
+      <Suspense fallback={<UserCommentList.Skeleton />}>
+        <UserCommentList userId={params.userId} />
+      </Suspense>
     </div>
   );
 };

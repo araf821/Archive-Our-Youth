@@ -33,7 +33,7 @@ const ManageUserModal = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-screen-sm rounded-2xl border-zinc-700 bg-[#252525] py-6 shadow-md focus:outline-none">
+      <DialogContent className="max-w-screen-sm rounded-2xl border-zinc-700 bg-[#1c1c1c] py-6 shadow-md focus:outline-none">
         <DialogHeader>
           <DialogTitle className={cn(isDeleting && "text-rose-500")}>
             {isDeleting ? "Delete User" : "Manager User"}{" "}

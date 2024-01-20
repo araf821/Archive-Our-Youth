@@ -28,7 +28,7 @@ const ManagePostModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-screen-md bg-zinc-900 py-6 outline-none">
+      <DialogContent className="max-w-screen-md bg-[#1c1c1c] py-6 outline-none">
         <DialogHeader>
           <DialogTitle>Manage &quot;{post.title}&quot;</DialogTitle>
           <DialogDescription>
@@ -99,8 +99,10 @@ const ManagePostModal = ({
               >
                 Delete Post
               </Button>
-              <Button variant={"outline"} className="w-full">
-                View Full Post
+              <Button asChild variant={"outline"} className="w-full">
+                <Link className="w-full" href={`/post/${post.slug}`}>
+                  View Full Post
+                </Link>
               </Button>
             </div>
           </>

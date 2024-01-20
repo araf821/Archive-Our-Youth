@@ -1,6 +1,5 @@
 import { db } from "@/lib/db";
 import AdminSinglePost from "./AdminSinglePost";
-import { delay } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface AdminPostListProps {}

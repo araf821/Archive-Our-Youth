@@ -1,9 +1,22 @@
-import { delay } from "@/lib/utils";
+import { Suspense } from "react";
+import CommentList from "../_components/comment/CommentList";
 
-interface pageProps {}
+interface AdminPortalCommentsPageProps {}
 
-const page = async ({}: pageProps) => {
-  return <div>page</div>;
+const AdminPortalCommentsPage = async ({}: AdminPortalCommentsPageProps) => {
+  return (
+    <div className="mb-8 overflow-hidden bg-[#252525] md:rounded-xl">
+      <div className="w-fit bg-[#2f2f2f] px-4 py-2.5 text-center lg:px-8">
+        <p className="font-semibold tracking-wider text-green-500 md:text-lg">
+          Manage Comments
+        </p>
+      </div>
+      <hr className="border-[#2f2f2f]" />
+      <Suspense fallback={null}>
+        <CommentList />
+      </Suspense>
+    </div>
+  );
 };
 
-export default page;
+export default AdminPortalCommentsPage;
