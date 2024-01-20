@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import UserList from "../_components/UserList";
 
 interface UsersPageProps {}
@@ -11,7 +12,9 @@ const UsersPage = async ({}: UsersPageProps) => {
         </p>
       </div>
       <hr className="border-[#2f2f2f]" />
-      <UserList />
+      <Suspense fallback={<UserList.Skeleton />}>
+        <UserList />
+      </Suspense>
     </div>
   );
 };

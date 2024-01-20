@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { cn, formatDateString } from "@/lib/utils";
 import Image from "next/image";
 import UserDropdown from "./UserDropdown";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface UserListProps {}
 
@@ -56,3 +57,19 @@ const UserList = async ({}: UserListProps) => {
 };
 
 export default UserList;
+
+UserList.Skeleton = function UserListSkeleton() {
+  return (
+    <div className="mt-4 flex flex-col gap-2.5">
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+    </div>
+  );
+};

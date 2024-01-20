@@ -1,5 +1,7 @@
 import { db } from "@/lib/db";
 import AdminSinglePost from "./AdminSinglePost";
+import { delay } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface AdminPostListProps {}
 
@@ -29,3 +31,19 @@ const AdminPostList = async ({}: AdminPostListProps) => {
 };
 
 export default AdminPostList;
+
+AdminPostList.Skeleton = function PostListSkeleton() {
+  return (
+    <div className="mt-4 flex flex-col gap-2.5">
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+    </div>
+  );
+};

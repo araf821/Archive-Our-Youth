@@ -32,17 +32,23 @@ const CommentInput: FC<CommentInputProps> = ({
   const onSubmit = async () => {
     try {
       setIsLoading(true);
-      const validatedInput = CommentValidator.parse({
+      const validatedInput = CommentValidator.safeParse({
         content: input,
         postId,
         replyToId,
       });
+
+      if (!validatedInput.success) {
+        return toast.error("Comment cannot be empty.");
+      }
+
       await axios.post("/api/comment", {
-        content: validatedInput.content,
+        content: validatedInput.data.content,
         postId: postId,
         replyToId: replyToId,
         isReply: replyToId ? true : false,
       });
+
       toast.success("Thanks for your contribution!");
       router.refresh();
       refresh ? refresh() : null;
@@ -95,14 +101,12 @@ const CommentInput: FC<CommentInputProps> = ({
           <Button
             onClick={onSubmit}
             disabled={isLoading}
-            className="morph-sm text-zinc-200 hover:text-green-500 hover:bg-zinc-800 border-zinc-800 bg-zinc-800"
+            className="morph-sm border-zinc-800 bg-zinc-800 text-zinc-200 hover:bg-zinc-800 hover:text-green-500"
             size="sm"
           >
             Post
           </Button>
-          <p className="text-sm text-zinc-400">
-            Posting as {user.name}
-          </p>
+          <p className="text-sm text-zinc-400">Posting as {user.name}</p>
         </div>
       </div>
     </div>
