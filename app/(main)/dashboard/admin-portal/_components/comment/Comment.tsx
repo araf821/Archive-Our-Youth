@@ -6,7 +6,7 @@ import Image from "next/image";
 import { formatDateString } from "@/lib/utils";
 
 interface CommentProps {
-  comment: Comment & { user: User; post: Post };
+  comment: Comment & { user: User; post: Post; _count: { replies: number } };
 }
 
 const Comment = ({ comment }: CommentProps) => {
@@ -33,15 +33,16 @@ const Comment = ({ comment }: CommentProps) => {
           </div>
         </div>
 
-        <CommentDropdown />
+        <CommentDropdown id={comment.id} content={comment.content} />
       </div>
 
       <p className="mt-2.5 text-zinc-400">Likes: {comment.likes}</p>
+      <p className="text-zinc-400">Replies: {comment._count.replies}</p>
       <p className="flex items-center gap-1 text-sm text-zinc-400 md:text-base">
         Posted under:
         <Link
           className="flex items-center gap-1 font-medium tracking-wider text-zinc-200"
-          href={""}
+          href={`/post/${comment.post.slug}`}
         >
           {comment.post.title}
           <ExternalLink className="h-4 w-4" />

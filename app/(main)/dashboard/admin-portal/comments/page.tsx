@@ -12,7 +12,7 @@ const AdminPortalCommentsPage = async ({}: AdminPortalCommentsPageProps) => {
         </p>
       </div>
       <hr className="border-[#2f2f2f]" />
-      <Suspense fallback={null}>
+      <Suspense fallback={<CommentList.Skeleton />}>
         <CommentList />
       </Suspense>
     </div>

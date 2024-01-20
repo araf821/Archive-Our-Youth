@@ -1,10 +1,6 @@
 import { db } from "@/lib/db";
-import { formatDateString } from "@/lib/utils";
-import Image from "next/image";
-import CommentDropdown from "./CommentDropdown";
-import Link from "next/link";
-import { ExternalLink } from "lucide-react";
 import Comment from "./Comment";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface CommentListProps {}
 
@@ -17,6 +13,11 @@ const CommentList = async ({}: CommentListProps) => {
     include: {
       user: true,
       post: true,
+      _count: {
+        select: {
+          replies: true,
+        },
+      },
     },
     orderBy: {
       createdAt: "desc",
@@ -33,3 +34,14 @@ const CommentList = async ({}: CommentListProps) => {
 };
 
 export default CommentList;
+
+CommentList.Skeleton = function CommentListSkeleton() {
+  return (
+    <div className="my-4 flex flex-col gap-2.5">
+      <Skeleton className="h-40 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-40 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-40 rounded-none bg-[#2f2f2f]" />
+      <Skeleton className="h-40 rounded-none bg-[#2f2f2f]" />
+    </div>
+  );
+};

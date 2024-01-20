@@ -8,10 +8,17 @@ import {
 } from "@/components/ui/DropdownMenu";
 import { MoreVertical } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
+import DeleteCommentModal from "./DeleteCommentModal";
 
-interface CommentDropdownProps {}
+interface CommentDropdownProps {
+  id: string;
+  content: string;
+}
 
-const CommentDropdown = ({}: CommentDropdownProps) => {
+const CommentDropdown = ({ content, id }: CommentDropdownProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
@@ -24,7 +31,6 @@ const CommentDropdown = ({}: CommentDropdownProps) => {
         align="end"
       >
         <DropdownMenuItem
-          onSelect={(e) => e.preventDefault()}
           className="focus:ring-none justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2"
           asChild
         >
@@ -32,10 +38,24 @@ const CommentDropdown = ({}: CommentDropdownProps) => {
             href={``}
             className="w-full cursor-pointer tracking-widest outline-none"
           >
-            More Information
+            View Post
           </Link>
         </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => setIsModalOpen(true)}
+          className="focus:ring-none w-full cursor-pointer justify-center tracking-widest outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2"
+        >
+          Delete Comment
+        </DropdownMenuItem>
       </DropdownMenuContent>
+      <DeleteCommentModal
+        isOpen={isModalOpen}
+        onOpenChange={() => setIsModalOpen(false)}
+        comment={{
+          id,
+          content,
+        }}
+      />
     </DropdownMenu>
   );
 };
