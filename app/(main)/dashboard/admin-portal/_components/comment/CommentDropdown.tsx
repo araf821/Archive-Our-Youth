@@ -14,9 +14,10 @@ import DeleteCommentModal from "./DeleteCommentModal";
 interface CommentDropdownProps {
   id: string;
   content: string;
+  postSlug: string;
 }
 
-const CommentDropdown = ({ content, id }: CommentDropdownProps) => {
+const CommentDropdown = ({ content, id, postSlug }: CommentDropdownProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -35,7 +36,7 @@ const CommentDropdown = ({ content, id }: CommentDropdownProps) => {
           asChild
         >
           <Link
-            href={``}
+            href={`/post/${postSlug}`}
             className="w-full cursor-pointer tracking-widest outline-none"
           >
             View Post

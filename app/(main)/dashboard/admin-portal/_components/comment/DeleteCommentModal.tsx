@@ -1,3 +1,4 @@
+import { deleteComment } from "@/actions/deleteComment";
 import { Button } from "@/components/ui/Button";
 import {
   Dialog,
@@ -12,6 +13,7 @@ import { Post, User } from "@prisma/client";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { useState, useTransition } from "react";
+import { toast } from "sonner";
 
 interface DeleteCommentModalProps {
   comment: {
@@ -30,7 +32,22 @@ const DeleteCommentModal = ({
   const [value, setValue] = useState("");
   const [isPending, startTransition] = useTransition();
 
-  const onDelete = async () => {};
+  const onDelete = async () => {
+    startTransition(async () => {
+      await deleteComment(comment.id, value)
+        .then((data) => {
+          if (data.success) {
+            onOpenChange();
+            return toast.success(data.success);
+          }
+
+          return toast.error(data.error);
+        })
+        .catch(() => {
+          toast.error("Something went wrong.");
+        });
+    });
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -59,6 +76,7 @@ const DeleteCommentModal = ({
             className="-mt-1"
             type="text"
             value={value}
+            disabled={isPending}
             onChange={(e) => setValue(e.target.value)}
           />
           <div className="flex gap-1 max-md:flex-col md:gap-4">
@@ -66,6 +84,7 @@ const DeleteCommentModal = ({
               onClick={() => onOpenChange()}
               variant={"ghost"}
               className="mt-2 w-full"
+              disabled={isPending}
             >
               Cancel
             </Button>
@@ -73,7 +92,7 @@ const DeleteCommentModal = ({
               onClick={onDelete}
               variant={"destructive"}
               className="mt-2 w-full"
-              disabled={value !== comment.id.slice(0, 7)}
+              disabled={isPending || value !== comment.id.slice(0, 7)}
             >
               Delete Comment
             </Button>

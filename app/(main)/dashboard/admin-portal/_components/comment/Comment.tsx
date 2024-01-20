@@ -33,7 +33,11 @@ const Comment = ({ comment }: CommentProps) => {
           </div>
         </div>
 
-        <CommentDropdown id={comment.id} content={comment.content} />
+        <CommentDropdown
+          id={comment.id}
+          content={comment.content}
+          postSlug={comment.post.slug}
+        />
       </div>
 
       <p className="mt-2.5 text-zinc-400">Likes: {comment.likes}</p>
