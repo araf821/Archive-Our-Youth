@@ -7,16 +7,22 @@ interface PostListProps {
 }
 
 const PostList = async ({ userId }: PostListProps) => {
-  const posts = await db.post.findMany({
-    where: {
-      userId,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  let posts;
 
-  if (!posts.length) {
+  try {
+    posts = await db.post.findMany({
+      where: {
+        userId,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+  } catch (error) {
+    posts = null;
+  }
+
+  if (!posts?.length) {
     return null;
   }
 

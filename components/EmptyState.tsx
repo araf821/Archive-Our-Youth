@@ -3,6 +3,7 @@ import { LucideIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
+import { Button } from "./ui/Button";
 
 interface EmptyStateProps {
   title?: string;
@@ -11,6 +12,11 @@ interface EmptyStateProps {
   link?: {
     label: string;
     route: string;
+    icon?: LucideIcon;
+  };
+  onClick?: {
+    label: string;
+    action: () => void;
     icon?: LucideIcon;
   };
   image?: string;
@@ -22,6 +28,7 @@ const EmptyState: FC<EmptyStateProps> = ({
   classNames,
   link,
   image,
+  onClick,
 }) => {
   return (
     <section
@@ -59,6 +66,16 @@ const EmptyState: FC<EmptyStateProps> = ({
             {link.label}
             {link.icon && <link.icon size={16} />}
           </Link>
+        )}
+
+        {onClick && (
+          <Button
+            onClick={() => onClick.action()}
+            className="mx-auto flex w-fit flex-none items-center gap-2 rounded-sm px-3 py-2 text-white transition duration-200 hover:bg-zinc-800"
+          >
+            {onClick.label}
+            {onClick.icon && <onClick.icon size={16} />}
+          </Button>
         )}
       </div>
     </section>

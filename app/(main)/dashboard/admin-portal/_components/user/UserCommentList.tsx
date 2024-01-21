@@ -1,6 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/lib/db";
-import { getCurrentUser } from "@/lib/getCurrentUser";
 import Comment from "../comment/Comment";
 
 interface UserCommentListProps {
@@ -8,26 +7,30 @@ interface UserCommentListProps {
 }
 
 const UserCommentList = async ({ userId }: UserCommentListProps) => {
-  const user = await getCurrentUser();
-  const comments = await db.comment.findMany({
-    where: {
-      userId,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-    include: {
-      user: true,
-      post: true,
-      _count: {
-        select: {
-          replies: true,
+  let comments;
+  try {
+    comments = await db.comment.findMany({
+      where: {
+        userId,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+      include: {
+        user: true,
+        post: true,
+        _count: {
+          select: {
+            replies: true,
+          },
         },
       },
-    },
-  });
+    });
+  } catch (error) {
+    comments = null;
+  }
 
-  if (!comments.length) {
+  if (!comments?.length) {
     return null;
   }
 

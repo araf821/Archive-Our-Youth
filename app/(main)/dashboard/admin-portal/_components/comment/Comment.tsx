@@ -47,18 +47,22 @@ const Comment = ({ comment, userPage }: CommentProps) => {
         />
       </div>
 
-      <p className="mt-2.5 text-zinc-400">Likes: {comment.likes}</p>
+      <p className="mt-2.5 text-zinc-400 max-md:text-sm">
+        Likes: {comment.likes}
+      </p>
       {!comment.isReply && (
-        <p className="text-zinc-400">Replies: {comment._count.replies}</p>
+        <p className="text-zinc-400 max-md:text-sm">
+          Replies: {comment._count.replies}
+        </p>
       )}
-      <p className="flex items-center gap-1 text-sm text-zinc-400 md:text-base">
+      <p className="flex items-start gap-1 text-sm text-zinc-400 md:text-base">
         Posted under:
         <Link
           className="flex items-center gap-1 font-medium tracking-wider text-zinc-200"
           href={`/post/${comment.post.slug}`}
         >
           {comment.post.title}
-          <ExternalLink className="h-4 w-4" />
+          <ExternalLink className="h-4 w-4 shrink-0" />
         </Link>
       </p>
 

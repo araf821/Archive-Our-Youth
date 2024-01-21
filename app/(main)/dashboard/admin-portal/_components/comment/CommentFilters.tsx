@@ -14,7 +14,7 @@ const CommentFilters = ({}: CommentFiltersProps) => {
       <button
         onClick={() => router.push("comments")}
         className={cn(
-          "rounded-xl bg-[#2f2f2f] px-3 py-1.5 font-medium uppercase tracking-wider transition hover:bg-zinc-700 active:scale-90 max-md:text-sm",
+          "rounded-xl bg-[#2f2f2f] px-3 py-1.5 font-medium uppercase tracking-wider transition hover:bg-zinc-700 active:scale-90 max-md:text-sm max-[500px]:col-span-2",
           searchParams.get("type") === null &&
             "bg-green-500 text-black hover:bg-green-500",
         )}
@@ -34,7 +34,7 @@ const CommentFilters = ({}: CommentFiltersProps) => {
       <button
         onClick={() => router.push("?type=deleted")}
         className={cn(
-          "rounded-xl bg-[#2f2f2f] px-3 py-1.5 font-medium uppercase tracking-wider  transition hover:bg-zinc-700 active:scale-90 max-md:text-sm max-[500px]:col-span-2",
+          "rounded-xl bg-[#2f2f2f] px-3 py-1.5 font-medium uppercase tracking-wider  transition hover:bg-zinc-700 active:scale-90 max-md:text-sm",
           searchParams.get("type") === "deleted" &&
             "bg-green-500 text-black hover:bg-green-500",
         )}

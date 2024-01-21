@@ -5,7 +5,6 @@ import Link from "next/link";
 import LikeButton from "../LikeButton";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { ScrollArea } from "../ui/ScrollArea";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 
@@ -26,11 +25,11 @@ const PostModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="shadow-[0_0_20px_5px_black] w-full max-w-screen-sm rounded-sm border border-zinc-700 bg-[#202020] p-4 text-zinc-100 outline-none max-md:w-[95%] md:rounded-md md:p-6">
+      <DialogContent className="w-full max-w-screen-sm rounded-sm border border-zinc-700 bg-[#202020] p-4 text-zinc-100 shadow-[0_0_20px_5px_black] outline-none max-md:w-[95%] md:rounded-md md:p-6">
         <div className="flex items-center justify-between">
           <button
             onClick={() => onClose()}
-            className="w-fit max-w-[128px] rounded-md p-1 morph-sm text-sm text-zinc-400 transition hover:text-zinc-100 max-md:text-xs"
+            className="morph-sm w-fit max-w-[128px] rounded-md p-1 text-sm text-zinc-400 transition hover:text-zinc-100 max-md:text-xs"
           >
             <span className="sr-only">close modal</span>
             <X />
@@ -84,7 +83,7 @@ const PostModal = () => {
               : ""
           }`}
         >
-          <div className="flex border border-zinc-800 w-full justify-between gap-2.5 rounded-md bg-zinc-800 px-2 py-1.5">
+          <div className="flex w-full justify-between gap-2.5 rounded-md border border-zinc-800 bg-zinc-800 px-2 py-1.5">
             <LikeButton
               postId={post.id}
               likes={post.likes}

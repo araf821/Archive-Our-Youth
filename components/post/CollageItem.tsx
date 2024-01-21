@@ -6,7 +6,7 @@ import Image from "next/image";
 import { FC, useState } from "react";
 import VideoItem from "./VideoItem";
 import AudioItem from "./AudioItem";
-import { Divide, File, Pen } from "lucide-react";
+import { File, Pen } from "lucide-react";
 import Overlay from "../Overlay";
 import { AnimatePresence } from "framer-motion";
 
