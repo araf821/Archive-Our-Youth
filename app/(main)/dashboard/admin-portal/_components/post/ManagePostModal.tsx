@@ -10,13 +10,13 @@ import { dateFormat } from "@/lib/dateFormat";
 import { Post, User } from "@prisma/client";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import ConfirmDeletion from "./ConfirmDeletion";
 
 interface ManagePostModalProps {
   post: Post & { user: User | null; _count: { comments: number } };
   isOpen: boolean;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
+  onOpenChange: () => void;
 }
 
 const ManagePostModal = ({

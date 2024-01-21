@@ -16,6 +16,7 @@ interface CommentDropdownProps {
   userId: string;
   content: string;
   postSlug: string;
+  deleted?: boolean;
 }
 
 const CommentDropdown = ({
@@ -23,6 +24,7 @@ const CommentDropdown = ({
   id,
   userId,
   postSlug,
+  deleted,
 }: CommentDropdownProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -59,12 +61,14 @@ const CommentDropdown = ({
             View Post
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setIsModalOpen(true)}
-          className="focus:ring-none w-full cursor-pointer justify-center tracking-widest outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2"
-        >
-          Delete Comment
-        </DropdownMenuItem>
+        {!deleted && (
+          <DropdownMenuItem
+            onClick={() => setIsModalOpen(true)}
+            className="focus:ring-none w-full cursor-pointer justify-center tracking-widest outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2"
+          >
+            Delete Comment
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
       <DeleteCommentModal
         isOpen={isModalOpen}

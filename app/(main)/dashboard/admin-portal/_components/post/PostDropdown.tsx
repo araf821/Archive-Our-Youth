@@ -49,12 +49,11 @@ const PostDropdown = ({ post }: PostDropdownProps) => {
           Manage Post
         </DropdownMenuItem>
       </DropdownMenuContent>
-      {/* <ManageUserModal
-        open={isManageOpen}
-        onOpenChange={setIsManageOpen}
-        user={user}
-      /> */}
-      <ManagePostModal isOpen={isOpen} onOpenChange={setIsOpen} post={post} />
+      <ManagePostModal
+        isOpen={isOpen}
+        onOpenChange={() => setIsOpen(false)}
+        post={post}
+      />
     </DropdownMenu>
   );
 };

@@ -43,11 +43,14 @@ const Comment = ({ comment, userPage }: CommentProps) => {
           userId={comment.user.id}
           content={comment.content}
           postSlug={comment.post.slug}
+          deleted={comment.deleted}
         />
       </div>
 
       <p className="mt-2.5 text-zinc-400">Likes: {comment.likes}</p>
-      <p className="text-zinc-400">Replies: {comment._count.replies}</p>
+      {!comment.isReply && (
+        <p className="text-zinc-400">Replies: {comment._count.replies}</p>
+      )}
       <p className="flex items-center gap-1 text-sm text-zinc-400 md:text-base">
         Posted under:
         <Link
@@ -59,6 +62,11 @@ const Comment = ({ comment, userPage }: CommentProps) => {
         </Link>
       </p>
 
+      {comment.deleted && (
+        <p className="-mb-4 mt-2 text-red-600 max-md:text-sm">
+          Deleted Comment:
+        </p>
+      )}
       <div className="mt-4 whitespace-pre-line rounded-sm bg-[#212121] p-2 max-md:text-sm md:p-3">
         {comment.content}
       </div>

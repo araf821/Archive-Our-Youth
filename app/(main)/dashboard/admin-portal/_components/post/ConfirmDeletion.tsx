@@ -26,6 +26,7 @@ const ConfirmDeletion = ({
         .then((data) => {
           if (data.success) {
             toast.success(data.success);
+            cancel();
           }
 
           if (data.error) {
@@ -33,7 +34,6 @@ const ConfirmDeletion = ({
           }
 
           setConfirmationString("");
-          cancel();
         })
         .catch(() => {
           toast.error("Something went wrong.");

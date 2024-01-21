@@ -4,11 +4,7 @@ import { openSans } from "@/app/fonts";
 import { cn, formatDateString } from "@/lib/utils";
 import { Heart, Reply, Trash } from "lucide-react";
 import Image from "next/image";
-import {
-  FC,
-  experimental_useOptimistic as useOptimistic,
-  useState,
-} from "react";
+import { FC, useState } from "react";
 import ReplySection from "./ReplySection";
 import { motion } from "framer-motion";
 import { User, Comment as CommentModel } from "@prisma/client";
