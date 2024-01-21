@@ -79,7 +79,7 @@ const DeleteCommentModal = ({
             disabled={isPending}
             onChange={(e) => setValue(e.target.value)}
           />
-          <div className="flex gap-1 max-md:flex-col md:gap-4">
+          <div className="flex gap-4 max-md:flex-col max-md:gap-2">
             <Button
               onClick={() => onOpenChange()}
               variant={"ghost"}

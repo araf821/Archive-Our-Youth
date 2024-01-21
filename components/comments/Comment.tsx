@@ -21,7 +21,7 @@ import { useModal } from "@/hooks/useModal";
 interface CommentProps {
   reply?: boolean;
   user: User | null;
-  comment: CommentModel & { user?: User; _count?: { replies: number } };
+  comment: CommentModel & { user: User; _count?: { replies: number } };
   refresh?: () => void;
 }
 
@@ -149,7 +149,7 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
               >
                 <span className="sr-only">reply button</span>
                 <Reply strokeWidth={3} className="h-4 w-4 md:h-5 md:w-5" />
-                {comment._count?.replies} replies
+                {comment._count?.replies || 0} replies
               </button>
             </>
           )}

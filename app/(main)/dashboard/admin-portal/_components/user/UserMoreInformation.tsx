@@ -64,7 +64,7 @@ const UserMoreInformation = async ({ userId }: UserMoreInformationProps) => {
           <p className="self-start tracking-wider text-zinc-400 max-md:text-sm">
             Name
           </p>
-          <p className="font-medium tracking-wide text-white">NameOfTheUser</p>
+          <p className="font-medium tracking-wide text-white">{user.name}</p>
         </div>
 
         <div className="flex items-center justify-between gap-8 pt-2.5">
@@ -87,9 +87,7 @@ const UserMoreInformation = async ({ userId }: UserMoreInformationProps) => {
           <p className="self-start tracking-wider text-zinc-400 max-md:text-sm">
             Email
           </p>
-          <p className="font-medium tracking-wide text-white">
-            useremail@gmail.com
-          </p>
+          <p className="font-medium tracking-wide text-white">{user.email}</p>
         </div>
 
         <div className="flex items-center justify-between gap-8 pt-2.5">

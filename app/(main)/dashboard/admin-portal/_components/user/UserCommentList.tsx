@@ -1,7 +1,7 @@
-import Comment from "@/components/comments/Comment";
 import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
+import Comment from "../comment/Comment";
 
 interface UserCommentListProps {
   userId: string;
@@ -18,6 +18,12 @@ const UserCommentList = async ({ userId }: UserCommentListProps) => {
     },
     include: {
       user: true,
+      post: true,
+      _count: {
+        select: {
+          replies: true,
+        },
+      },
     },
   });
 
@@ -31,9 +37,11 @@ const UserCommentList = async ({ userId }: UserCommentListProps) => {
         User&apos;s Comments
       </h2>
       <hr className="mt-2 border-zinc-700" />
-      {comments.map((comment) => (
-        <Comment comment={comment} key={comment.id} user={user} />
-      ))}
+      <ul className="mt-6 space-y-6">
+        {comments.map((comment) => (
+          <Comment key={comment.id} comment={comment} userPage />
+        ))}
+      </ul>
     </div>
   );
 };

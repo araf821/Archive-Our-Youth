@@ -16,7 +16,7 @@ const CategorySidebar = ({}: CategorySidebarProps) => {
       <div className="px-4 md:hidden">Mobile Select Component</div>
 
       {/* Desktop */}
-      <ul className="h-fit w-[225px] space-y-3 rounded-lg bg-[#252525] p-2.5 text-zinc-300 max-md:hidden">
+      <ul className="sticky top-12 h-fit w-[225px] space-y-3 rounded-lg bg-[#252525] p-2.5 text-zinc-300 max-md:hidden">
         <li>
           <button
             onClick={() => router.push("/dashboard/admin-portal/home")}

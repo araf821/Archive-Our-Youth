@@ -14,13 +14,18 @@ const SingleUserPage = ({ params }: SingleUserPageProps) => {
   return (
     <div className="px-4 pb-12">
       <BackButton classNames="morph-none bg-[#252525]" />
+
+      {/* Basic user info */}
       <Suspense fallback={<UserMoreInformation.Skeleton />}>
         <UserMoreInformation userId={params.userId} />
       </Suspense>
+
+      {/* List of user's posts */}
       <Suspense fallback={<PostList.Skeleton />}>
         <PostList userId={params.userId} />
       </Suspense>
 
+      {/* List of user's comments */}
       <Suspense fallback={<UserCommentList.Skeleton />}>
         <UserCommentList userId={params.userId} />
       </Suspense>

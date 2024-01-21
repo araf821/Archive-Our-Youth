@@ -3,15 +3,20 @@ import CommentDropdown from "./CommentDropdown";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
-import { formatDateString } from "@/lib/utils";
+import { cn, formatDateString } from "@/lib/utils";
 
 interface CommentProps {
+  userPage?: boolean;
   comment: Comment & { user: User; post: Post; _count: { replies: number } };
 }
 
-const Comment = ({ comment }: CommentProps) => {
+const Comment = ({ comment, userPage }: CommentProps) => {
   return (
-    <li className="bg-[#2f2f2f] p-4">
+    <li
+      className={cn("bg-[#2f2f2f] p-4", {
+        "rounded-md shadow-2xl": userPage,
+      })}
+    >
       <div className="flex items-center justify-between gap-8">
         <div className="flex items-center gap-2">
           <div className="relative aspect-square w-12 overflow-hidden rounded-md">
@@ -35,6 +40,7 @@ const Comment = ({ comment }: CommentProps) => {
 
         <CommentDropdown
           id={comment.id}
+          userId={comment.user.id}
           content={comment.content}
           postSlug={comment.post.slug}
         />
