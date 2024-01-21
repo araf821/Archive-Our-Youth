@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import CommentList from "../_components/comment/CommentList";
+import CommentFilters from "../_components/comment/CommentFilters";
 
 interface AdminPortalCommentsPageProps {}
 
@@ -12,6 +13,9 @@ const AdminPortalCommentsPage = async ({}: AdminPortalCommentsPageProps) => {
         </p>
       </div>
       <hr className="border-[#2f2f2f]" />
+
+      <CommentFilters />
+
       <Suspense fallback={<CommentList.Skeleton />}>
         <CommentList />
       </Suspense>
