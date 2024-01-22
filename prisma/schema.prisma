@@ -81,3 +81,29 @@ model Comment {
   replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   replies   Comment[] @relation("ReplyTo")
 }
+
+enum LOG_TYPE {
+  USER
+  COMMENT
+  POST
+}
+
+enum ACTION_TYPE {
+  CREATE
+  DELETE
+  UPDATE
+}
+
+model Log {
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  logType     LOG_TYPE
+  actionType  ACTION_TYPE
+  description String
+
+  // user who triggered this log
+  userId   String
+  userImg  String
+  userName String
+
+  createdAt DateTime @default(now())
+}
