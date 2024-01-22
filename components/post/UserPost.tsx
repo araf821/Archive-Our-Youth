@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { Post } from "@prisma/client";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useState } from "react";
 import DashboardPostInfo from "./DashboardPostInfo";
 import { ArrowRight, Trash } from "lucide-react";
 import Link from "next/link";
@@ -16,6 +16,8 @@ interface UserPostProps {
 
 const UserPost: FC<UserPostProps> = ({ post }) => {
   const { onOpen } = useModal();
+  const [error, setError] = useState(false);
+
   return (
     <motion.div
       viewport={{ once: true }}
@@ -49,9 +51,11 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
             <>
               <div className="relative aspect-[4/3] w-full border border-zinc-700 md:max-w-[300px]">
                 <Image
-                  src={post.postContent}
+                  src={error ? "/placeholder_post_image.svg" : post.postContent}
                   alt="post image"
                   fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 300px"
+                  onError={() => setError(true)}
                   className="rounded-sm object-cover"
                 />
               </div>

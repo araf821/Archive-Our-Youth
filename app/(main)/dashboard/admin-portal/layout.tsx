@@ -14,7 +14,7 @@ const AdminPortalLayout = async ({ children }: AdminPortalLayoutProps) => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser || currentUser.role === "MEMBER") {
-    redirect("/home");
+    return redirect("/dashboard");
   }
 
   return (

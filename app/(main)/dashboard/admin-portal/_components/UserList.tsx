@@ -23,7 +23,7 @@ const UserList = async ({}: UserListProps) => {
           <div className="col-span-2 flex items-center gap-2">
             <div className="relative aspect-square w-12 overflow-hidden rounded-md">
               <Image
-                src={user.imageUrl || ""}
+                src={user.imageUrl || "/placeholder-image.png"}
                 alt="user image"
                 fill
                 sizes="48px"

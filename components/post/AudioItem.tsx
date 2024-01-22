@@ -1,7 +1,7 @@
 import { Post, User } from "@prisma/client";
 import { AnimatePresence } from "framer-motion";
 import { Volume2 } from "lucide-react";
-import { FC } from "react";
+import { FC, useState } from "react";
 import Overlay from "../Overlay";
 import Image from "next/image";
 
@@ -13,6 +13,8 @@ interface AudioItemProps {
 }
 
 const AudioItem: FC<AudioItemProps> = ({ onClick, post, clicked, onClose }) => {
+  const [error, setError] = useState(false);
+
   return (
     <button
       onClick={onClick}
@@ -27,10 +29,11 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post, clicked, onClose }) => {
         <div className="absolute inset-0">
           <div className="relative aspect-square">
             <Image
-              src={post.thumbnail}
+              src={error ? "/placeholder_post_image.svg" : post.thumbnail}
               alt="post thumbnail"
               fill
               loading="eager"
+              onError={() => setError(true)}
               sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 25vw"
               className="object-cover"
             />

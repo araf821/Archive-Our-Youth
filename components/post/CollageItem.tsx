@@ -16,6 +16,7 @@ interface CollageItemProps {
 }
 
 const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
+  const [onError, setOnError] = useState(false);
   const { onOpen } = useModal();
   const [clicked, setClicked] = useState(
     post.contentType === "IMAGE" ? true : post.thumbnail ? true : false,
@@ -106,10 +107,11 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
       {post.contentType === "IMAGE" && (
         <>
           <Image
-            src={post.postContent}
-            alt="collage item"
+            src={onError ? "/placeholder_post_image.svg" : post.postContent}
+            alt="post image"
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 25vw"
             fill
+            onError={() => setOnError(true)}
             className="object-cover"
           />
           <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/75 px-1.5 py-0.5 text-zinc-200 max-md:text-sm">
