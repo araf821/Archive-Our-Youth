@@ -105,5 +105,7 @@ model Log {
   userImg  String
   userName String
 
+  entityId String? // the id of whatever was created/updated/deleted
+
   createdAt DateTime @default(now())
 }

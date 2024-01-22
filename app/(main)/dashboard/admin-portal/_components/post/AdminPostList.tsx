@@ -14,6 +14,9 @@ const AdminPostList = async ({}: AdminPostListProps) => {
         },
       },
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   if (!posts) {
