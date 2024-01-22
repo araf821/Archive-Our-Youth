@@ -16,6 +16,13 @@ export const deleteUser = async (
     };
   }
 
+  if (userId === user.id) {
+    return {
+      error:
+        "Cannot delete yourself. Please email araf821@my.yorku.ca for this action.",
+    };
+  }
+
   const userToDelete = await db.user.findUnique({
     where: {
       id: userId,
