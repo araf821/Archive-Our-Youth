@@ -82,6 +82,7 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
                 alt="post thumbnail"
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 25vw"
                 fill
+                loading="eager"
                 className="object-cover"
               />
             </div>

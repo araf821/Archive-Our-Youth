@@ -36,6 +36,7 @@ const LandingPage = () => {
               src="/ylrl-logo.svg"
               alt="ylrl logo"
               fill
+              loading="eager"
               className="object-contain"
               sizes="(max-width: 768px) 150px, 250px"
             />
@@ -45,6 +46,7 @@ const LandingPage = () => {
               src="/york-logo.svg"
               alt="york logo"
               fill
+              loading="eager"
               className="object-contain"
               sizes="(max-width: 768px) 150px, 25vw"
             />

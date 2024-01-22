@@ -24,6 +24,7 @@ const Comment = ({ comment, userPage }: CommentProps) => {
               src={comment.user.imageUrl || "/placeholder-image.png"}
               alt="user image"
               fill
+              sizes="48px"
               className="object-cover"
             />
           </div>

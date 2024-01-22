@@ -26,6 +26,7 @@ const UserList = async ({}: UserListProps) => {
                 src={user.imageUrl || ""}
                 alt="user image"
                 fill
+                sizes="48px"
                 className="object-cover"
               />
             </div>

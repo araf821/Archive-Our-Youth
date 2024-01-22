@@ -16,11 +16,12 @@ const AdminSinglePost = ({ post }: AdminSinglePostProps) => {
           <Image
             src={
               post.contentType === "IMAGE"
-                ? post.postContent
+                ? post.postContent || "/placeholder_post_image.svg"
                 : post.thumbnail || "/placeholder_post_image.svg"
             }
-            alt="user image"
+            alt="post thumbnail"
             fill
+            sizes="48px"
             className="shrink-0 object-cover"
           />
         </div>
