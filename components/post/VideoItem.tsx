@@ -35,7 +35,6 @@ const VideoItem: FC<VideoItemProps> = ({ post, onClick, clicked, onClose }) => {
                 className="object-cover"
                 fill
                 onError={() => setError(true)}
-                loading="eager"
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 25vw"
               />
             </div>

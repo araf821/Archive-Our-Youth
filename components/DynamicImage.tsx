@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Scaling } from "lucide-react";
+import { Loader2, Scaling } from "lucide-react";
 import Image from "next/image";
 import { FC, useState } from "react";
 
@@ -11,6 +11,7 @@ interface DynamicImageProps {
 }
 
 const DynamicImage: FC<DynamicImageProps> = ({ src, classNames }) => {
+  const [loading, setLoading] = useState(true);
   const [contained, setContained] = useState(false);
   const [onError, setOnError] = useState(false);
 
@@ -18,14 +19,23 @@ const DynamicImage: FC<DynamicImageProps> = ({ src, classNames }) => {
     <div
       className={cn(
         "relative aspect-[4/3] overflow-hidden rounded-sm border border-zinc-700",
+        { "bg-zinc-800": loading },
         classNames,
       )}
     >
+      {loading && (
+        <Loader2 className="absolute left-2 top-2 z-10 animate-spin" />
+      )}
       <Image
         fill
+        onLoad={(e) => {
+          console.log("done loading");
+
+          setLoading(false);
+        }}
         onError={() => setOnError(true)}
         src={onError ? "/placeholder_post_image.svg" : src}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 50vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 766px"
         alt="post image"
         className={`rounded-sm ${
           contained ? "object-contain" : "object-cover"

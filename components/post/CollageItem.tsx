@@ -79,11 +79,11 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
           <div className="absolute inset-0">
             <div className="relative aspect-square">
               <Image
-                src={post.thumbnail}
                 alt="post thumbnail"
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 25vw"
                 fill
-                loading="eager"
+                onError={() => setOnError(true)}
+                src={onError ? "/placeholder_post_image.svg" : post.thumbnail}
                 className="object-cover"
               />
             </div>
