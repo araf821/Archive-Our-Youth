@@ -94,7 +94,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
             <Image
               src={post.user?.imageUrl || "/placeholder-image.png"}
               fill
-              alt="poster profile picture"
+              alt="author"
               sizes="50px"
               className="rounded-lg object-cover"
             />

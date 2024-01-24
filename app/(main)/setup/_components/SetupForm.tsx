@@ -93,7 +93,7 @@ const SetupForm: FC<SetupFormProps> = ({ user }) => {
                   {...field}
                   placeholder="Your name"
                   type="text"
-                  className="morph-inner"
+                  className="morph-sm"
                 />
               </FormControl>
               <FormMessage />

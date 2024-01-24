@@ -21,7 +21,7 @@ const AnonymousPostInfo: FC<AnonymousPostInfoProps> = ({}) => {
       <DialogTrigger className="text-zinc-400 transition duration-300 hover:text-green-500">
         <Info className="h-4 w-4 md:h-5 md:w-5" />
       </DialogTrigger>
-      <DialogContent className="max-w-lg border border-zinc-800 bg-zinc-900 p-4 text-zinc-100">
+      <DialogContent className="max-w-lg border border-zinc-800 bg-zinc-900 p-4 text-zinc-100 md:py-8">
         <button
           className="absolute right-2 top-2 text-zinc-400 transition-colors hover:text-zinc-100"
           onClick={() => setIsOpen(false)}

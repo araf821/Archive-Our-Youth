@@ -74,7 +74,7 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
                 <textarea
                   {...field}
                   placeholder="Describe your content..."
-                  className="h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
+                  className="morph-sm mt-2 h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
                 />
               )}
             </FormControl>

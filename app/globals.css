@@ -115,18 +115,12 @@
   box-shadow:
     4px 4px 7px #09090b1f,
     6px 6px 12px #09090b5b,
-    -2px -2px 4px #333333df,
-    -4px -4px 7px #3333339a;
+    -2px -2px 4px #333333aa,
+    -4px -4px 7px #3333331a;
 }
 
 .morph-none {
   box-shadow: none;
-}
-
-.morph-inner {
-  box-shadow:
-    inset 10px 10px 20px #202020,
-    inset -10px -10px 20px #272727;
 }
 
 .balance {

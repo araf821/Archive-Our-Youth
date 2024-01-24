@@ -159,7 +159,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                           {...field}
                           type="text"
                           placeholder="Title"
-                          className="morph-inner border border-zinc-700 bg-zinc-800 px-4 py-3 outline-none focus-visible:outline-zinc-700"
+                          className="morph-sm border border-zinc-700 bg-zinc-800 px-4 py-3 outline-none focus-visible:outline-zinc-700"
                         />
                       </FormControl>
                       <FormMessage />

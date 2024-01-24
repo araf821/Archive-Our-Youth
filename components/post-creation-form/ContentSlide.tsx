@@ -74,7 +74,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                   <textarea
                     {...field}
                     placeholder="Placeholder Text"
-                    className="h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
+                    className="morph-sm mt-2 h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
                   />
                 )}
               </FormControl>
@@ -98,7 +98,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex items-center max-w-screen-sm flex-col gap-8 max-sm:mt-12 md:gap-12">
+          <FormItem className="mx-auto flex max-w-screen-sm flex-col items-center gap-8 max-sm:mt-12 md:gap-12">
             <p className="text-center text-xl md:text-2xl">Add an image</p>
             <FormControl>
               <FileUpload

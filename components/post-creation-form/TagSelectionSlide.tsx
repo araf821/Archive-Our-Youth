@@ -1,12 +1,7 @@
 import { TPostCreationForm } from "@/lib/types/form";
 import { RefreshCcw, X } from "lucide-react";
 import { FC } from "react";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "../ui/Form";
+import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
 import MultiSelect from "../MultiSelect";
 import { cn } from "@/lib/utils";
 
@@ -24,10 +19,10 @@ const TagSelectionSlide: FC<TagSelectionSlideProps> = ({ form }) => {
       render={() => (
         <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
           <div className="text-center">
-            <p className="text-xl balance md:text-2xl">
+            <p className="balance text-xl md:text-2xl">
               Pick the tags that best represent your content
             </p>
-            <p className="text-zinc-400 balance">
+            <p className="balance text-zinc-400">
               Relevant tags lead your posts to the right people!
             </p>
           </div>

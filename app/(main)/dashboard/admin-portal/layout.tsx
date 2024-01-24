@@ -28,14 +28,14 @@ const AdminPortalLayout = async ({ children }: AdminPortalLayoutProps) => {
         <p className="mt-1 text-zinc-400 max-md:text-sm">
           Manage and moderate the Archive to your heart&apos;s content!
         </p>
-        <hr className="mt-2 border-zinc-700 pb-4" />
+        <hr className="mt-2 border-zinc-700" />
 
         {/* Banner */}
         <UserAuthBanner user={currentUser} />
       </div>
 
       {/* Content */}
-      <section className="mt-6 flex justify-between gap-4 max-md:flex-col md:gap-6 md:px-4">
+      <section className="mt-4 flex justify-between gap-4 max-md:flex-col md:gap-6 md:px-4">
         <CategorySidebar />
         <div className="flex-1">
           <Suspense fallback={<AdminPortalContentSkeleton />}>
