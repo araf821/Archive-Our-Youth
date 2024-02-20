@@ -1,9 +1,6 @@
 import { db } from "@/lib/db";
-import { cache } from "react";
 
-export const revalidate = 3000;
-
-export const getStats = cache(async () => {
+export const getStats = async () => {
   const userCount = await db.user.count();
   const postCount = await db.post.count();
   const commentCount = await db.comment.count();
@@ -57,4 +54,4 @@ export const getStats = cache(async () => {
     admins,
     members,
   };
-});
+};

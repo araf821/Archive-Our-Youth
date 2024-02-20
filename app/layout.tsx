@@ -39,7 +39,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${nunito.className} min-h-[100dvh] bg-zinc-900 selection:bg-green-500 selection:text-black ${karla.variable}`}
+          className={`${nunito.className} min-h-[100dvh] bg-zinc-900 antialiased selection:bg-green-500 selection:text-black ${karla.variable}`}
         >
           <Toaster richColors position="bottom-center" />
           <ModalProvider />

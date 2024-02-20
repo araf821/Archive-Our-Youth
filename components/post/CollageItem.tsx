@@ -8,7 +8,6 @@ import VideoItem from "./VideoItem";
 import AudioItem from "./AudioItem";
 import { File, Pen } from "lucide-react";
 import Overlay from "../Overlay";
-import { AnimatePresence } from "framer-motion";
 
 interface CollageItemProps {
   post: Post & { user: User | null };
@@ -69,11 +68,9 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
       className={`group relative aspect-square cursor-pointer overflow-hidden border border-zinc-800 outline-none transition duration-500 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-white`}
     >
       <span className="sr-only">post modal button</span>
-      <AnimatePresence>
-        {(post.contentType === "TEXT" || post.contentType === "PDF") &&
-          !post.thumbnail &&
-          !clicked && <Overlay onClose={onClose} />}
-      </AnimatePresence>
+      {(post.contentType === "TEXT" || post.contentType === "PDF") &&
+        !post.thumbnail &&
+        !clicked && <Overlay onClose={onClose} />}
       {post.thumbnail && (
         <>
           <div className="absolute inset-0">

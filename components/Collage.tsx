@@ -110,7 +110,7 @@ const Collage = async ({
 
   return (
     <FadeInContainer>
-      <div className="grid grid-cols-2 items-center overflow-hidden bg-zinc-900 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+      <div className="grid grid-cols-2 items-center overflow-hidden sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {posts.map((post) => (
           <CollageItem key={post.id} post={post} currentUser={currentUser} />
         ))}
@@ -122,7 +122,7 @@ const Collage = async ({
 export default Collage;
 
 Collage.Skeleton = (
-  <div className="grid grid-cols-2 items-center gap-2 overflow-hidden bg-zinc-900 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+  <div className="grid grid-cols-2 items-center gap-2 overflow-hidden sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
     {Array.from({ length: 15 }).map((value, index) => (
       <Skeleton key={index} className="aspect-square w-full rounded-none" />
     ))}

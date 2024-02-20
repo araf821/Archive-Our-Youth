@@ -7,10 +7,10 @@ interface layoutProps {
 
 const layout: FC<layoutProps> = ({ children }) => {
   return (
-    <div>
+    <>
       <FiltersProvider />
       {children}
-    </div>
+    </>
   );
 };
 

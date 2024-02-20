@@ -1,15 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FC } from "react";
 
-interface PageTransitionContainerProps {
+interface templateProps {
   children: React.ReactNode;
 }
 
-const PageTransitionContainer: FC<PageTransitionContainerProps> = ({
-  children,
-}) => {
+const template = ({ children }: templateProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.3, origin: "top" }}
@@ -25,4 +22,4 @@ const PageTransitionContainer: FC<PageTransitionContainerProps> = ({
   );
 };
 
-export default PageTransitionContainer;
+export default template;

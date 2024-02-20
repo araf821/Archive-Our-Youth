@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface CategorySidebarProps {}
 
@@ -19,7 +19,7 @@ const CategorySidebar = ({}: CategorySidebarProps) => {
       <ul className="sticky top-12 h-fit w-[225px] space-y-3 rounded-lg bg-[#252525] p-2.5 text-zinc-300 max-md:hidden">
         <li>
           <button
-            onClick={() => router.push("/dashboard/admin-portal/home")}
+            onClick={() => router.push("/dashboard/admin-portal/stats")}
             className={cn(
               "w-full rounded-lg bg-[#2F2F2F] p-1.5 text-center font-semibold tracking-wider transition hover:text-green-500 lg:text-lg",
               { "text-green-500": pathname.includes("home") },

@@ -1,5 +1,4 @@
 import EmptyState from "@/components/EmptyState";
-import PageTransitionContainer from "@/components/PageTransitionContainer";
 import CommentSection from "@/components/comments/CommentSection";
 import SinglePost from "@/components/post/SinglePost";
 import { db } from "@/lib/db";
@@ -54,18 +53,14 @@ const page: FC<SinglePostPageParams> = async ({ params }) => {
 
   return (
     <main className="px-4 pb-12">
-      <PageTransitionContainer>
-        <div className="mx-auto w-full max-w-screen-md ">
-          <SinglePost currentUser={currentUser} post={post} />
-          <Suspense
-            fallback={
-              <div className="mx-auto text-4xl text-white">Loading</div>
-            }
-          >
-            <CommentSection user={currentUser} postId={post.id} />
-          </Suspense>
-        </div>
-      </PageTransitionContainer>
+      <div className="mx-auto w-full max-w-screen-md ">
+        <SinglePost currentUser={currentUser} post={post} />
+        <Suspense
+          fallback={<div className="mx-auto text-4xl text-white">Loading</div>}
+        >
+          <CommentSection user={currentUser} postId={post.id} />
+        </Suspense>
+      </div>
     </main>
   );
 };

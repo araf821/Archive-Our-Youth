@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Dashboard | Archive Our Youth",
@@ -44,7 +45,9 @@ const DashboardPage = async () => {
       </div>
 
       {/* Posts */}
-      <UserPostsSection userId={currentUser.id} />
+      <Suspense fallback={<UserPostsSection.Skeleton />}>
+        <UserPostsSection userId={currentUser.id} />
+      </Suspense>
     </div>
   );
 };

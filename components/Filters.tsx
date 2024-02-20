@@ -284,7 +284,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                             />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="max-h-[400px] rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
+                        <SelectContent className="max-h-[400px] overflow-y-auto rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
                           {allCountries.map((c) => (
                             <SelectItem
                               className={cn(
