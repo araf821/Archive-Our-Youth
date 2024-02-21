@@ -4,13 +4,14 @@ import Link from "next/link";
 import { FC } from "react";
 import CommentInput from "./CommentInput";
 import Comment from "./Comment";
+import { Skeleton } from "../ui/skeleton";
 
 interface CommentSectionProps {
   postId: string;
   user: User | null;
 }
 
-const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
+const CommentSection = async ({ postId, user }: CommentSectionProps) => {
   const currentPost = await db.post.findUnique({
     where: {
       id: postId,
@@ -68,7 +69,7 @@ const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
           ))}
         </div>
       ) : (
-        <p className="text-center font-medium pt-4 tracking-wide text-zinc-300 xl:text-lg">
+        <p className="pt-4 text-center font-medium tracking-wide text-zinc-300 xl:text-lg">
           Be the first to leave a comment!
         </p>
       )}
@@ -77,3 +78,50 @@ const CommentSection: FC<CommentSectionProps> = async ({ postId, user }) => {
 };
 
 export default CommentSection;
+
+CommentSection.Skeleton = function CommentSectionSkeleton() {
+  return (
+    <div className="space-y-4 pt-4">
+      <Skeleton className="h-6 w-1/3" />
+
+      <Skeleton className="h-px w-full" />
+      <div className="flex gap-2 md:gap-4">
+        <Skeleton className="aspect-square w-6 self-start rounded-full md:w-8" />
+        <div className="flex-1 space-y-2">
+          <Skeleton className="h-3 w-1/3" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-1/4" />
+        </div>
+      </div>
+      <Skeleton className="h-px w-full" />
+
+      <Skeleton className="h-px w-full" />
+      <div className="flex gap-2 md:gap-4">
+        <Skeleton className="aspect-square w-6 self-start rounded-full md:w-8" />
+        <div className="flex-1 space-y-2">
+          <Skeleton className="h-3 w-1/3" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-1/4" />
+        </div>
+      </div>
+      <Skeleton className="h-px w-full" />
+
+      <Skeleton className="h-px w-full" />
+      <div className="flex gap-2 md:gap-4">
+        <Skeleton className="aspect-square w-6 self-start rounded-full md:w-8" />
+        <div className="flex-1 space-y-2">
+          <Skeleton className="h-3 w-1/3" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-1/4" />
+        </div>
+      </div>
+      <Skeleton className="h-px w-full" />
+    </div>
+  );
+};

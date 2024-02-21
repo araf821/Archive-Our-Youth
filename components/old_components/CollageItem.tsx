@@ -70,7 +70,7 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
       <span className="sr-only">post modal button</span>
       {(post.contentType === "TEXT" || post.contentType === "PDF") &&
         !post.thumbnail &&
-        !clicked && <Overlay onClose={onClose} />}
+        !clicked && <Overlay />}
       {post.thumbnail && (
         <>
           <div className="absolute inset-0">

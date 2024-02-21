@@ -91,7 +91,6 @@ const PostModal = () => {
             />
             <p className="truncate text-zinc-400 max-md:text-sm max-sm:text-xs">
               {post.user ? `Posted by ${post.user.name}` : "Posted Anonymously"}
-              {/* Posted by {post.user?.name || "Anonymous"} */}
             </p>
           </div>
 

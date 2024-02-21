@@ -55,9 +55,7 @@ const page: FC<SinglePostPageParams> = async ({ params }) => {
     <main className="px-4 pb-12">
       <div className="mx-auto w-full max-w-screen-md ">
         <SinglePost currentUser={currentUser} post={post} />
-        <Suspense
-          fallback={<div className="mx-auto text-4xl text-white">Loading</div>}
-        >
+        <Suspense fallback={<CommentSection.Skeleton />}>
           <CommentSection user={currentUser} postId={post.id} />
         </Suspense>
       </div>
