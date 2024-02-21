@@ -38,30 +38,35 @@ const backgroundColors = [
 ];
 
 interface OverlayProps {
-  onClose: () => void;
+  // onClose: () => void;
 }
 
-const Overlay: FC<OverlayProps> = ({ onClose }) => {
+const Overlay: FC<OverlayProps> = (
+  {
+    // onClose
+  },
+) => {
   const randomIndex = Math.floor(Math.random() * backgroundColors.length);
   const randomBackgroundColor = backgroundColors[randomIndex];
 
   return (
-    <motion.button
-      initial={{ opacity: 0 }}
-      exit={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 0.5 } }}
-      onClick={onClose}
-      aria-label="overlay button"
-      className={cn(
-        "group absolute left-0 top-0 z-20 h-full w-full outline outline-white focus-visible:outline-4 transition hover:opacity-20 focus-visible:-outline-offset-8",
-        randomBackgroundColor,
-      )}
-    >
-      <span className="sr-only">overlay</span>
-      <span className="font-medium opacity-0 mix-blend-darken transition duration-1000 group-hover:opacity-30">
-        Click To Reveal
-      </span>
-    </motion.button>
+    // <motion.button
+    //   initial={{ opacity: 0 }}
+    //   exit={{ opacity: 0 }}
+    //   animate={{ opacity: 1, transition: { duration: 0.5 } }}
+    //   onClick={onClose}
+    //   aria-label="overlay button"
+    //   className={cn(
+    //     "group absolute left-0 top-0 z-20 h-full w-full outline outline-white transition hover:opacity-20 focus-visible:outline-4 focus-visible:-outline-offset-8",
+    //     randomBackgroundColor,
+    //   )}
+    // >
+    //   <span className="sr-only">overlay</span>
+    //   <span className="font-medium opacity-0 mix-blend-darken transition duration-1000 group-hover:opacity-30">
+    //     Click To Reveal
+    //   </span>
+    // </motion.button>
+    <span className={cn("absolute inset-0", randomBackgroundColor)} />
   );
 };
 

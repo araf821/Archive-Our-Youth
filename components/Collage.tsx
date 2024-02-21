@@ -1,4 +1,3 @@
-import CollageItem from "./post/CollageItem";
 import { db } from "@/lib/db";
 import EmptyState from "./EmptyState";
 import { RefreshCcw } from "lucide-react";
@@ -6,6 +5,8 @@ import { getCurrentUser } from "@/lib/getCurrentUser";
 import FadeInContainer from "./FadeInContainer";
 import { Skeleton } from "./ui/skeleton";
 import { ContentType } from "@prisma/client";
+import PostModal from "./post/PostModal";
+import PostModalTriggerContent from "./post/PostModalTriggerContent";
 
 interface CollageProps {
   keyword?: string;
@@ -110,9 +111,14 @@ const Collage = async ({
 
   return (
     <FadeInContainer>
-      <div className="grid grid-cols-2 items-center overflow-hidden sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+      <div className="grid grid-cols-2 items-center gap-[2px] overflow-hidden sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {posts.map((post) => (
-          <CollageItem key={post.id} post={post} currentUser={currentUser} />
+          // <CollageItem key={post.id} post={post} currentUser={currentUser} />
+          <PostModal key={post.id} post={post} currentUser={currentUser}>
+            <button className="border- group relative aspect-square cursor-pointer overflow-hidden border-zinc-800 outline-none transition duration-500 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-green-600">
+              <PostModalTriggerContent post={post} currentUser={currentUser} />
+            </button>
+          </PostModal>
         ))}
       </div>
     </FadeInContainer>
