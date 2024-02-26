@@ -14,7 +14,7 @@ const AnimatedGrid: FC<AnimatedGridProps> = ({}) => {
       <span className="animate-move1 blur-custom absolute -z-20 h-[10%] w-[10%] md:h-20 md:w-20 lg:h-40 lg:w-40" />
       <span className="animate-move2 blur-custom absolute -z-20 h-[10%] w-[10%] md:h-20 md:w-20 lg:h-40 lg:w-40" />
       <div className="grid-cols-custom relative grid gap-1">
-        {grid.map((item, index) => (
+        {grid.map((_, index) => (
           <GridItem key={index} />
         ))}
       </div>
