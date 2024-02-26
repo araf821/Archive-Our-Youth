@@ -11,6 +11,7 @@ export default authMiddleware({
     "/api/post",
     "/api/uploadthing",
     "/api/comment",
+    "/api/posts",
   ],
 });
 
