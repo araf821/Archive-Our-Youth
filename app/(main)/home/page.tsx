@@ -1,4 +1,4 @@
-import Collage from "@/components/Collage";
+import Collage from "@/components/post/Collage";
 import { initializeUser } from "@/lib/initializeUser";
 import { ContentType } from "@prisma/client";
 import { Metadata } from "next";
