@@ -5,7 +5,6 @@ import LandingPageClient from "@/components/LandingPageClient";
 import Image from "next/image";
 import { kobata } from "../fonts";
 import FadeInY from "@/components/FadeInY";
-import { Fragment } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 

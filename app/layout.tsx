@@ -1,11 +1,8 @@
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Karla, Poppins } from "next/font/google";
-
-import ModalProvider from "@/components/modals/ModalProvider";
-import { Toaster } from "sonner";
-import SidebarProvider from "@/components/navbar/SidebarProvider";
 import { Metadata } from "next";
+import Providers from "@/components/Providers";
 
 const nunito = Poppins({
   subsets: ["latin"],
@@ -41,10 +38,7 @@ export default function RootLayout({
         <body
           className={`${nunito.className} min-h-[100dvh] bg-zinc-900 antialiased selection:bg-green-500 selection:text-black ${karla.variable}`}
         >
-          <Toaster richColors position="bottom-center" />
-          <ModalProvider />
-          <SidebarProvider />
-          {children}
+          <Providers>{children}</Providers>
         </body>
       </html>
     </ClerkProvider>
