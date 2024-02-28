@@ -1,9 +1,13 @@
 import { Suspense } from "react";
 import UserList from "../_components/UserList";
 
-interface UsersPageProps {}
+interface UsersPageProps {
+  searchParams: {
+    page: string;
+  };
+}
 
-const UsersPage = async ({}: UsersPageProps) => {
+const UsersPage = async ({ searchParams }: UsersPageProps) => {
   return (
     <div className="mb-8 overflow-hidden bg-[#252525] md:rounded-xl">
       <div className="w-fit bg-[#2f2f2f] px-4 py-2.5 text-center lg:px-8">
@@ -13,7 +17,7 @@ const UsersPage = async ({}: UsersPageProps) => {
       </div>
       <hr className="border-[#2f2f2f]" />
       <Suspense fallback={<UserList.Skeleton />}>
-        <UserList />
+        <UserList page={parseInt(searchParams.page ?? 1)} />
       </Suspense>
     </div>
   );
