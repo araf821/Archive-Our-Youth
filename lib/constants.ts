@@ -7,6 +7,29 @@ export const researchQuestions = [
 
 export const postTypes = ["Text", "Image", "Video", "Audio", "PDF"];
 
+export const adminNavItems = [
+  {
+    label: "Stats",
+    pathname: "/dashboard/admin-portal/stats",
+  },
+  {
+    label: "Users",
+    pathname: "/dashboard/admin-portal/users",
+  },
+  {
+    label: "Posts",
+    pathname: "/dashboard/admin-portal/posts",
+  },
+  {
+    label: "Comments",
+    pathname: "/dashboard/admin-portal/comments",
+  },
+  {
+    label: "Logs",
+    pathname: "/dashboard/admin-portal/logs",
+  },
+];
+
 export const allCountries = [
   "Afghanistan",
   "Albania",

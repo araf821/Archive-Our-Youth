@@ -51,7 +51,7 @@ const DeleteCommentModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-screen-sm bg-[#1c1c1c] py-6 outline-none">
+      <DialogContent className="max-w-screen-sm bg-[#1c1c1c] px-4 py-6 outline-none">
         <DialogHeader>
           <DialogTitle>Delete Comment</DialogTitle>
           <DialogDescription>
@@ -68,7 +68,7 @@ const DeleteCommentModal = ({
           </p>
         </div>
 
-        <div className="mt-2.5 flex flex-col gap-1 max-md:px-4 md:gap-2">
+        <div className="mt-2.5 flex flex-col gap-1 md:gap-2">
           <p className="select-none">
             Type this in to confirm: {comment.id.slice(0, 7)}
           </p>
