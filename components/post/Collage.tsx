@@ -95,7 +95,7 @@ const Collage = async ({
     },
     orderBy,
     include: { user: true },
-    take: 10,
+    take: 20,
   });
 
   if ((!posts || !posts.length) && (keyword || sortBy)) {
@@ -120,7 +120,7 @@ export default Collage;
 
 Collage.Skeleton = (
   <div className="grid grid-cols-2 items-center gap-2 overflow-hidden sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-    {Array.from({ length: 15 }).map((value, index) => (
+    {Array.from({ length: 15 }).map((_, index) => (
       <Skeleton key={index} className="aspect-square w-full rounded-none" />
     ))}
   </div>

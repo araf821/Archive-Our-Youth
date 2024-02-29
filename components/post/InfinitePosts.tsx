@@ -14,11 +14,13 @@ interface InfinitePostsProps {
   initialPosts: (Post & { user: User | null })[];
   currentUser: User | null;
 }
-const FETCH_LIMIT = 10;
+const FETCH_LIMIT = 20;
 
 const InfinitePosts = ({ initialPosts, currentUser }: InfinitePostsProps) => {
   const lastPostRef = useRef<HTMLButtonElement>(null);
+
   const searchParams = useSearchParams();
+
   const keyword = searchParams.get("keyword");
   const sortBy = searchParams.get("sortBy");
   const tags = searchParams.get("tags");
@@ -57,8 +59,8 @@ const InfinitePosts = ({ initialPosts, currentUser }: InfinitePostsProps) => {
         return data as (Post & { user: User | null })[];
       },
       getNextPageParam: (lastPage, pages) => {
-        const nextPage = lastPage.length === 10 ? pages.length + 1 : undefined;
-
+        const nextPage =
+          lastPage.length === FETCH_LIMIT ? pages.length + 1 : undefined;
         return nextPage;
       },
       initialData: { pages: [initialPosts], pageParams: [1] },
@@ -75,10 +77,10 @@ const InfinitePosts = ({ initialPosts, currentUser }: InfinitePostsProps) => {
   return (
     <div className="grid grid-cols-2 items-center gap-[2px] overflow-hidden sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
       {posts.map((post, index) => {
-        if (index === posts.length - 1) {
+        if (index === posts.length - 2) {
           return (
             <>
-              {hasNextPage && <span ref={ref} />}
+              {hasNextPage && !isFetchingNextPage && <span ref={ref} />}
               <PostModal key={post.id} post={post} currentUser={currentUser}>
                 <button className="group relative aspect-square cursor-pointer overflow-hidden border-zinc-800 outline-none transition duration-500 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-green-600">
                   <PostModalTriggerContent
@@ -99,17 +101,10 @@ const InfinitePosts = ({ initialPosts, currentUser }: InfinitePostsProps) => {
           </PostModal>
         );
       })}
-      {Array(10).map((_, index) => (
-        <li
-          key={index}
-          className="aspect-square w-40 animate-pulse bg-zinc-800"
-        >
-          asdf
-        </li>
-      ))}
-
       {isFetchingNextPage && (
         <>
+          <Skeleton className="aspect-square animate-pulse" />
+          <Skeleton className="aspect-square animate-pulse" />
           <Skeleton className="aspect-square animate-pulse" />
           <Skeleton className="aspect-square animate-pulse" />
           <Skeleton className="aspect-square animate-pulse" />
