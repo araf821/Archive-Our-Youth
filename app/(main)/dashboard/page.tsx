@@ -10,7 +10,11 @@ export const metadata: Metadata = {
   title: "Dashboard | Archive Our Youth",
 };
 
-const DashboardPage = async () => {
+const DashboardPage = async ({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) => {
   const { userId } = auth();
 
   if (!userId) {
@@ -46,7 +50,10 @@ const DashboardPage = async () => {
 
       {/* Posts */}
       <Suspense fallback={<UserPostsSection.Skeleton />}>
-        <UserPostsSection userId={currentUser.id} />
+        <UserPostsSection
+          userId={currentUser.id}
+          page={parseInt(searchParams.page ?? "1")}
+        />
       </Suspense>
     </div>
   );

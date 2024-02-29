@@ -21,21 +21,16 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
   return (
     <motion.div
       viewport={{ once: true }}
-      initial={{ opacity: 0, y: 100 }}
+      initial={{ opacity: 0 }}
       whileInView={{
         opacity: 1,
-        y: 0,
         transition: {
-          duration: 0.2,
-          delay: 0.1,
-          type: "spring",
-          damping: 20,
-          stiffness: 200,
+          duration: 0.5,
         },
       }}
       exit={{ opacity: 0, x: -500, transition: { duration: 0.5 } }}
     >
-      <div className="relative flex flex-col gap-4 overflow-hidden rounded-lg bg-gradient-to-br from-[#222222]/75 via-zinc-800/75 to-zinc-950/75 p-4 shadow-[2px_2px_16px] shadow-green-500/10 outline-none transition-all duration-300 hover:border-green-500 hover:bg-zinc-900 hover:shadow-green-500/10 hover:outline hover:outline-green-500">
+      <div className="relative flex flex-col gap-4 overflow-hidden rounded-lg bg-gradient-to-br from-[#222222]/75 via-zinc-800/75 to-zinc-950/75 p-4 shadow-[2px_2px_16px] shadow-black/50 outline-none transition-all duration-300 hover:bg-zinc-900 hover:shadow-[2px_2px_24px] hover:shadow-black hover:outline">
         <span className="absolute bottom-0 right-0 h-20 w-20 bg-green-500/50 blur-3xl transition"></span>
         <div
           className={cn("flex max-md:flex-col max-md:gap-2 md:gap-4", {

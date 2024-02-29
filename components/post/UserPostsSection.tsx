@@ -3,12 +3,18 @@ import { db } from "@/lib/db";
 import DynamicUserPosts from "./DynamicUserPosts";
 import FadeInContainer from "../FadeInContainer";
 import { Skeleton } from "../ui/skeleton";
+import UserPost from "./UserPost";
+import LoadMoreButton from "./LoadMoreButton";
 
 interface UserPostsSectionProps {
   userId: string;
+  page?: number;
 }
 
-const UserPostsSection = async ({ userId }: UserPostsSectionProps) => {
+const UserPostsSection = async ({
+  userId,
+  page = 1,
+}: UserPostsSectionProps) => {
   const posts = await db.post.findMany({
     where: {
       userId,
@@ -16,15 +22,19 @@ const UserPostsSection = async ({ userId }: UserPostsSectionProps) => {
     orderBy: {
       createdAt: "desc",
     },
+    take: page * 5,
   });
+
+  const totalPosts = await db.post.count({ where: { userId } });
+  const hasMore = page * 5 < totalPosts;
 
   return (
     <div className="group space-y-4 lg:col-span-4 lg:pl-4">
       <FadeInContainer>
         <div className="flex flex-col gap-2 max-lg:pt-8">
           <p className="text-2xl md:text-3xl lg:text-4xl">Your Posts</p>
-          <div className="relative h-[1px] w-full bg-zinc-700">
-            <span className="absolute inset-0 h-[1px] w-full scale-x-0 bg-gradient-to-r from-lime-500 via-green-500 to-lime-500 transition duration-500 group-hover:scale-x-100"></span>
+          <div className="relative h-[2px] w-full bg-zinc-800">
+            <span className="absolute inset-0 h-[2px] w-full scale-x-0 bg-gradient-to-r from-lime-500 via-green-500 to-lime-500 transition duration-500 group-hover:scale-x-100"></span>
           </div>
         </div>
       </FadeInContainer>
@@ -38,7 +48,13 @@ const UserPostsSection = async ({ userId }: UserPostsSectionProps) => {
           </div>
         </FadeInContainer>
       ) : (
-        <DynamicUserPosts posts={posts} />
+        // <DynamicUserPosts posts={posts} />
+        <div className="flex flex-col gap-8 pb-8 md:pb-16">
+          {posts.map((post) => (
+            <UserPost key={post.id} post={post} />
+          ))}
+          {hasMore && <LoadMoreButton page={page} hasMore={hasMore} />}
+        </div>
       )}
     </div>
   );

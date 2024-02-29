@@ -1,5 +1,3 @@
-"use client";
-
 import { Post } from "@prisma/client";
 import { FC, Fragment } from "react";
 import UserPost from "./UserPost";

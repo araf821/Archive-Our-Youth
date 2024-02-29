@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import UserList from "../_components/UserList";
 
 interface UsersPageProps {
@@ -16,9 +15,7 @@ const UsersPage = async ({ searchParams }: UsersPageProps) => {
         </p>
       </div>
       <hr className="border-[#2f2f2f]" />
-      <Suspense fallback={<UserList.Skeleton />}>
-        <UserList page={parseInt(searchParams.page ?? 1)} />
-      </Suspense>
+      <UserList page={parseInt(searchParams.page ?? 1)} />
     </div>
   );
 };
