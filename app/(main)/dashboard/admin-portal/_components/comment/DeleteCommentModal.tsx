@@ -1,5 +1,4 @@
 import { deleteComment } from "@/actions/deleteComment";
-import { Button } from "@/components/ui/Button";
 import {
   Dialog,
   DialogContent,
@@ -7,11 +6,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/Dialog";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { dateFormat } from "@/lib/dateFormat";
-import { Post, User } from "@prisma/client";
-import { ExternalLink } from "lucide-react";
-import Link from "next/link";
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
 

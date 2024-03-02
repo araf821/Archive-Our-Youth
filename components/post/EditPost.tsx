@@ -10,7 +10,7 @@ import {
   FormItem,
   FormMessage,
 } from "../ui/Form";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { ExternalLink, RefreshCcw, X } from "lucide-react";
@@ -387,7 +387,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                     <button
                       type="button"
                       onClick={() => form.setValue("tags", [])}
-                      className="flex w-fit items-center gap-2 rounded-sm bg-zinc-800 px-3 py-2 text-white transition morph-sm border border-zinc-700 max-md:text-sm md:text-base"
+                      className="morph-sm flex w-fit items-center gap-2 rounded-sm border border-zinc-700 bg-zinc-800 px-3 py-2 text-white transition max-md:text-sm md:text-base"
                     >
                       Reset
                       <RefreshCcw size={16} />
@@ -421,7 +421,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
               onClick={() => router.back()}
               type="button"
               disabled={isLoading}
-              className="bg-zinc-800 morph-md hover:bg-zinc-800"
+              className="morph-md bg-zinc-800 hover:bg-zinc-800"
             >
               Cancel
             </Button>

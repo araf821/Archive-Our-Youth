@@ -3,7 +3,7 @@ import { LucideIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-import { Button } from "./ui/Button";
+import { Button } from "./ui/button";
 
 interface EmptyStateProps {
   title?: string;

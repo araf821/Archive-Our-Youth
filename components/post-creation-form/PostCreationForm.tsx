@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import axios from "axios";
 
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Form } from "../ui/Form";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import { toast } from "sonner";
 
 import { useForm } from "react-hook-form";
@@ -33,6 +33,14 @@ import { kobata } from "@/app/fonts";
 import { AnimatePresence, motion } from "framer-motion";
 import ThumbnailSlide from "./ThumbnailSlide";
 import LocationSelection from "./LocationSelection";
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel";
 
 enum STEPS {
   WELCOME = 0,
@@ -50,7 +58,8 @@ enum STEPS {
 const PostCreationForm = () => {
   const { userId } = useAuth();
   const router = useRouter();
-  const [step, setStep] = useState<number>(0);
+  const [api, setApi] = useState<CarouselApi>();
+
   const [{ checked, error }, setConsentChecked] = useState({
     checked: false,
     error: false,
@@ -74,31 +83,9 @@ const PostCreationForm = () => {
   const contentType = form.watch("contentType");
   const tags = form.watch("tags");
 
-  const onNext = () => {
-    setStep((currentStep) => {
-      if (contentType === "TEXT" && currentStep === STEPS.THUMBNAIL) {
-        return currentStep + 2;
-      }
-      if (contentType === "IMAGE" && currentStep == STEPS.CONTENT) {
-        return currentStep + 2;
-      }
-      return Math.min(currentStep + 1, 9);
-    });
-  };
-
-  const onBack = () => {
-    setStep((currentStep) => {
-      if (contentType === "TEXT" && currentStep === STEPS.TAGS) {
-        return currentStep - 2;
-      }
-      if (contentType === "IMAGE" && currentStep == STEPS.DESCRIPTION) {
-        return currentStep - 2;
-      }
-      return Math.max(currentStep - 1, 0);
-    });
-  };
-
   useEffect(() => {
+    if (!api) return;
+
     const handleKeyPress = (event: KeyboardEvent) => {
       const isInputFocused =
         document.activeElement instanceof HTMLInputElement ||
@@ -111,13 +98,12 @@ const PostCreationForm = () => {
 
       switch (event.key) {
         case "ArrowRight":
-          onNext();
+          event.preventDefault();
+          api?.scrollNext();
           break;
         case "ArrowLeft":
-          onBack();
-          break;
-        case " ":
-          onNext();
+          event.preventDefault();
+          api?.scrollPrev();
           break;
         default:
           break;
@@ -129,7 +115,7 @@ const PostCreationForm = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [contentType]);
+  }, [api, contentType]);
 
   const handleTypeChange = useCallback(
     (type: ContentType) => {
@@ -169,7 +155,7 @@ const PostCreationForm = () => {
   let introScreen, confirmationScreen;
 
   introScreen = (
-    <div className="flex max-w-screen-md flex-col gap-8 pb-8">
+    <div className="flex w-full flex-col gap-8">
       <p
         className={`${kobata.className} text-6xl font-semibold leading-[4.5rem] max-md:text-5xl max-sm:text-4xl`}
       >
@@ -208,7 +194,7 @@ const PostCreationForm = () => {
       </p>
 
       <Button
-        onClick={onNext}
+        onClick={() => api?.scrollNext()}
         type="button"
         size="lg"
         variant="outline"
@@ -218,14 +204,17 @@ const PostCreationForm = () => {
         <ArrowRight className="h-5 w-5" />
       </Button>
       <p className="text-zinc-400 max-md:hidden">
-        You can use arrow keys or the space bar to navigate.
+        You can use arrow keys to navigate.
+      </p>
+      <p className="text-zinc-400 md:hidden">
+        Swipe left or right to navigate.
       </p>
     </div>
   );
 
   confirmationScreen = (
     <div className="mx-auto flex max-w-screen-sm flex-col justify-center space-y-4">
-      <div className="">
+      <div>
         <p className="text-xl text-zinc-100 md:text-2xl">Review Submission</p>
         {userId ? null : (
           <p className="text-left text-zinc-300 max-md:text-sm md:text-base">
@@ -236,7 +225,7 @@ const PostCreationForm = () => {
         )}
         <hr className="mt-1.5 w-full border-zinc-700" />
       </div>
-      <div className="divide-y-2 divide-zinc-700 rounded-md border border-zinc-700 px-4">
+      <div className="max-h-[60dvh] divide-y-2 divide-zinc-700 overflow-y-auto rounded-md border border-zinc-700 px-4">
         <div className="py-4">
           <p>
             Research Questions <span className="text-zinc-400">(optional)</span>
@@ -245,7 +234,7 @@ const PostCreationForm = () => {
             <p className="mt-2 text-zinc-400">
               None selected,{" "}
               <button
-                onClick={() => setStep(STEPS.QUESTIONS)}
+                onClick={() => api?.scrollTo(1)}
                 className="text-left normal-case text-blue-400"
               >
                 click here to navigate back.
@@ -279,7 +268,7 @@ const PostCreationForm = () => {
               <p className="font-normal normal-case text-zinc-400">
                 Title is missing,{" "}
                 <button
-                  onClick={() => setStep(STEPS.TITLE)}
+                  onClick={() => api?.scrollTo(3)}
                   className="text-left normal-case text-blue-400"
                 >
                   click here to navigate to the title screen.
@@ -306,7 +295,7 @@ const PostCreationForm = () => {
                 <p className="text-zinc-400">
                   No text to preview,{" "}
                   <button
-                    onClick={() => setStep(3)}
+                    onClick={() => api?.scrollTo(4)}
                     type="button"
                     className="text-left text-blue-400"
                   >
@@ -330,7 +319,7 @@ const PostCreationForm = () => {
                 not added yet,{" "}
                 <button
                   type="button"
-                  onClick={() => setStep(STEPS.CONTENT)}
+                  onClick={() => api?.scrollTo(4)}
                   className="text-left text-blue-400"
                 >
                   click here to go to the upload screen.
@@ -405,7 +394,7 @@ const PostCreationForm = () => {
                 Thumbnail was not added,{" "}
                 <button
                   type="button"
-                  onClick={() => setStep(STEPS.THUMBNAIL)}
+                  onClick={() => api?.scrollTo(5)}
                   className="text-left text-blue-400"
                 >
                   click here to go to the upload screen.
@@ -428,7 +417,16 @@ const PostCreationForm = () => {
                 {form.getValues().description || ""}
               </ReactMarkdown>
             ) : (
-              <p className="text-zinc-400">Description was not added</p>
+              <p className="text-zinc-400">
+                Description was not added,{" "}
+                <button
+                  type="button"
+                  onClick={() => api?.scrollTo(6)}
+                  className="text-left text-blue-400"
+                >
+                  click to navigate back.
+                </button>
+              </p>
             )}
           </div>
         )}
@@ -447,7 +445,9 @@ const PostCreationForm = () => {
               At least one tag is required,{" "}
               <button
                 type="button"
-                onClick={() => setStep(STEPS.TAGS)}
+                onClick={() => {
+                  contentType === "TEXT" ? api?.scrollTo(6) : api?.scrollTo(7);
+                }}
                 className="text-left text-blue-400"
               >
                 click here to navigate to the tags screen.
@@ -548,82 +548,79 @@ const PostCreationForm = () => {
           </div>
         </motion.div>
       </div>
+      <button
+        disabled={
+          isLoading ||
+          !!form.formState.errors.content ||
+          !!form.formState.errors.contentType ||
+          !!form.formState.errors.title ||
+          !!form.formState.errors.description
+        }
+        className="morph-md rounded-md bg-zinc-800 px-3 py-2 transition hover:bg-zinc-700 disabled:opacity-70 disabled:hover:bg-zinc-800"
+        onClick={form.handleSubmit(onSubmit)}
+      >
+        {!!form.formState.errors.content ||
+        !!form.formState.errors.contentType ||
+        !!form.formState.errors.title ||
+        !!form.formState.errors.description
+          ? "Form Incomplete"
+          : "Submit Post"}
+      </button>
     </div>
   );
 
   return (
-    <div className="w-full max-w-screen-md px-6 lg:px-10">
+    <Carousel setApi={setApi} className="w-full max-w-screen-md px-4">
       <Form {...form}>
         <form className="mx-auto" onSubmit={form.handleSubmit(onSubmit)}>
-          {step === STEPS.WELCOME && introScreen}
-          {step === STEPS.QUESTIONS && <ResearchQuestions form={form} />}
-          {step === STEPS.TYPE && (
-            <TypeSelectionSlide
-              form={form}
-              nextStep={onNext}
-              handleTypeChange={handleTypeChange}
-            />
-          )}
-          {step === STEPS.TITLE && <TitleSlide form={form} />}
-          {step === STEPS.CONTENT && <ContentSlide form={form} />}
-          {step === STEPS.THUMBNAIL && <ThumbnailSlide form={form} />}
-          {step === STEPS.DESCRIPTION && contentType !== "TEXT" && (
-            <DescriptionSlide form={form} />
-          )}
-          {step === STEPS.TAGS && <TagSelectionSlide form={form} />}
-          {step === STEPS.LOCATION && <LocationSelection form={form} />}
-          {step === STEPS.CONFIRM && confirmationScreen}
+          <CarouselContent className="">
+            <CarouselItem>{introScreen}</CarouselItem>
+
+            <CarouselItem>
+              <ResearchQuestions form={form} />
+            </CarouselItem>
+
+            <CarouselItem>
+              <TypeSelectionSlide
+                form={form}
+                nextStep={() => api?.scrollNext()}
+                handleTypeChange={handleTypeChange}
+              />
+            </CarouselItem>
+
+            <CarouselItem>
+              <TitleSlide form={form} />
+            </CarouselItem>
+
+            <CarouselItem>
+              <ContentSlide form={form} />
+            </CarouselItem>
+
+            <CarouselItem>
+              <ThumbnailSlide form={form} />
+            </CarouselItem>
+
+            {contentType !== "TEXT" && (
+              <CarouselItem>
+                <DescriptionSlide form={form} />
+              </CarouselItem>
+            )}
+
+            <CarouselItem>
+              <TagSelectionSlide form={form} />
+            </CarouselItem>
+
+            <CarouselItem>
+              <LocationSelection form={form} />
+            </CarouselItem>
+
+            <CarouselItem>{confirmationScreen}</CarouselItem>
+          </CarouselContent>
         </form>
       </Form>
-      {step > 0 && (
-        <div
-          className={cn(
-            "mx-auto mt-12 flex w-48 items-center justify-between pb-4",
-            {
-              "w-full max-w-[350px]": step === STEPS.CONFIRM,
-            },
-          )}
-        >
-          <Button
-            type="button"
-            onClick={onBack}
-            variant="link"
-            className="morph-md border border-zinc-700 rounded-lg bg-zinc-800 p-2 text-zinc-400 hover:scale-105 hover:text-zinc-200"
-          >
-            <ArrowLeft />
-          </Button>
-          {step === STEPS.CONFIRM ? (
-            <button
-              disabled={
-                isLoading ||
-                !!form.formState.errors.content ||
-                !!form.formState.errors.contentType ||
-                !!form.formState.errors.title ||
-                !!form.formState.errors.description
-              }
-              className="morph-md rounded-md bg-zinc-800 px-3 py-2 transition hover:bg-zinc-700 disabled:opacity-70 disabled:hover:bg-zinc-800"
-              onClick={form.handleSubmit(onSubmit)}
-            >
-              {!!form.formState.errors.content ||
-              !!form.formState.errors.contentType ||
-              !!form.formState.errors.title ||
-              !!form.formState.errors.description
-                ? "Form Incomplete"
-                : "Submit Post"}
-            </button>
-          ) : (
-            <Button
-              type="button"
-              onClick={onNext}
-              variant="link"
-              className="morph-md border border-zinc-700 rounded-lg bg-zinc-800 p-2 text-zinc-400 hover:scale-105 hover:text-zinc-200"
-            >
-              <ArrowRight />
-            </Button>
-          )}
-        </div>
-      )}
-    </div>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
   );
 };
 

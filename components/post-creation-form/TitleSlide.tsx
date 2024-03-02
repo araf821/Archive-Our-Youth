@@ -12,7 +12,7 @@ const TitleSlide: FC<TitleSlideProps> = ({ form }) => {
       control={form.control}
       name="title"
       render={({ field }) => (
-        <FormItem className="flex flex-col items-center justify-center space-y-10 md:space-y-14">
+        <FormItem className="flex w-full flex-col items-center justify-center space-y-10 px-2 md:space-y-14">
           <p className="text-center text-xl md:text-2xl">
             What would you like to call this masterpiece?
           </p>

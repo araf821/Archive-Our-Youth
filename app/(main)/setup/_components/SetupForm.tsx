@@ -1,7 +1,7 @@
 "use client";
 
 import FileUpload from "@/components/FileUpload";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,

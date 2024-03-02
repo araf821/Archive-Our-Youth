@@ -6,7 +6,6 @@ import { useModal } from "@/hooks/useModal";
 import { useRouter } from "next/navigation";
 import { kobata } from "@/app/fonts";
 import { cn } from "@/lib/utils";
-import WelcomeText from "./WelcomeText";
 
 const variants = {
   enter: (direction: number) => {
@@ -97,7 +96,7 @@ const Carousel = ({}) => {
             router.push("/submit");
           }
         }}
-        className="relative w-full mt-2 rounded-md border-2 border-green-500 bg-green-500/20 px-4 py-2 font-semibold text-green-500 shadow-[inset_0_0_10px] shadow-green-500 backdrop-blur-sm transition [text-shadow:0_0_4px_black] before:absolute before:inset-0 before:transition before:duration-200 before:content-[''] before:hover:shadow-[0_0_20px_2px] before:hover:shadow-green-500/75 md:text-lg"
+        className="relative mt-2 w-full rounded-md border-2 border-green-500 bg-green-500/20 px-4 py-2 font-semibold text-green-500 shadow-[inset_0_0_10px] shadow-green-500 backdrop-blur-sm transition [text-shadow:0_0_4px_black] before:absolute before:inset-0 before:transition before:duration-200 before:content-[''] before:hover:shadow-[0_0_20px_2px] before:hover:shadow-green-500/75 md:text-lg"
       >
         Submit A Post
       </button>

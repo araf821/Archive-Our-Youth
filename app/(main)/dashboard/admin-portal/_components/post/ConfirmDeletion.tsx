@@ -1,5 +1,5 @@
 import { deletePost } from "@/actions/deletePost";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/Label";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";

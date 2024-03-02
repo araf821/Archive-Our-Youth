@@ -26,7 +26,7 @@ import {
   FormMessage,
 } from "../ui/Form";
 import FileUpload from "../FileUpload";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 
 interface EditProfileModalProps {
   name: string;

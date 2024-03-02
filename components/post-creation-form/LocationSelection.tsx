@@ -23,7 +23,7 @@ const LocationSelection: FC<LocationSelectionProps> = ({ form }) => {
       control={form.control}
       name="location"
       render={({ field }) => (
-        <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
+        <FormItem className="mx-auto grid w-full max-w-screen-sm place-items-center gap-8 md:gap-12">
           <div className="text-center">
             <p className="balance text-xl md:text-2xl">
               Where are you posting from?

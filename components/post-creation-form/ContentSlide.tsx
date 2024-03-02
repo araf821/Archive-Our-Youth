@@ -1,11 +1,12 @@
 import { TPostCreationForm } from "@/lib/types/form";
 import { FC, useState } from "react";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import FileUpload from "../FileUpload";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 interface ContentSlideProps {
   form: TPostCreationForm;
@@ -20,7 +21,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
+          <FormItem className="mx-auto grid w-full max-w-screen-sm place-items-center gap-8 md:gap-12">
             <p className="text-center text-xl md:text-2xl">
               What have you got for us?
             </p>
@@ -44,9 +45,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                   type="button"
                   size="sm"
                   onClick={() => {
-                    if (form.getValues().content) {
-                      setPreview(true);
-                    }
+                    setPreview(true);
                   }}
                   className={cn(
                     "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
@@ -59,33 +58,33 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                   Preview
                 </Button>
               </div>
-              <FormControl className="min-h-[300px]">
+              <FormControl className="min-h-[200px]">
                 {preview ? (
                   form.getValues().content ? (
                     <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                       {form.getValues().content}
                     </ReactMarkdown>
                   ) : (
-                    <p className="grid h-96 place-items-center">
+                    <p className="grid h-40 place-items-center rounded-lg border border-zinc-700 bg-zinc-800">
                       Nothing to preview
                     </p>
                   )
                 ) : (
                   <textarea
                     {...field}
-                    placeholder="Placeholder Text"
-                    className="morph-sm mt-2 h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
+                    placeholder="What's on your mind?!"
+                    className="morph-sm mt-2 h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-zinc-50 outline-none focus:outline-none md:text-lg"
                   />
                 )}
               </FormControl>
-              <a
+              <Link
                 href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
                 target="_blank"
-                className="flex w-fit items-center gap-1 text-zinc-400 transition duration-200 hover:text-blue-500"
+                className="flex w-fit items-center gap-1 text-zinc-400 transition hover:text-blue-400 max-md:mx-auto"
               >
                 Markdown is supported!
                 <ExternalLink className="h-4 w-4" />
-              </a>
+              </Link>
               <FormMessage />
             </div>
           </FormItem>
@@ -98,7 +97,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex max-w-screen-sm flex-col items-center gap-8 max-sm:mt-12 md:gap-12">
+          <FormItem className="mx-auto flex w-full max-w-screen-sm flex-col items-center gap-8 max-sm:mt-12 md:gap-12">
             <p className="text-center text-xl md:text-2xl">Add an image</p>
             <FormControl>
               <FileUpload
@@ -118,7 +117,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex max-w-screen-sm flex-col gap-8 max-sm:mt-12 md:gap-12">
+          <FormItem className="mx-auto flex w-full max-w-screen-sm flex-col gap-8 max-sm:mt-12 md:gap-12">
             <p className="text-center text-xl md:text-2xl">Add a video</p>{" "}
             <FormControl>
               <FileUpload
@@ -138,7 +137,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex max-w-screen-sm flex-col gap-8 max-sm:mt-12 md:gap-12">
+          <FormItem className="mx-auto flex w-full max-w-screen-sm flex-col gap-8 max-sm:mt-12 md:gap-12">
             <p className="text-center text-xl md:text-2xl">Add an audio</p>
             <FormControl>
               <FileUpload
@@ -158,7 +157,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
+          <FormItem className="mx-auto grid w-full max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
             <p className="text-center text-xl md:text-2xl">Upload a PDF</p>
             <FormControl>
               <FileUpload

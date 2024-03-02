@@ -19,10 +19,8 @@ const TagSelectionSlide: FC<TagSelectionSlideProps> = ({ form }) => {
       render={() => (
         <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
           <div className="text-center">
-            <p className="balance text-xl md:text-2xl">
-              Pick the tags that best represent your content
-            </p>
-            <p className="balance text-zinc-400">
+            <p className="balance text-xl md:text-2xl">Add some tags</p>
+            <p className="balance text-sm text-zinc-400 max-md:text-xs">
               Relevant tags lead your posts to the right people!
             </p>
           </div>

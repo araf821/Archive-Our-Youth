@@ -12,7 +12,7 @@ const SubmitPage = async () => {
   await initializeUser();
 
   return (
-    <div className="flex min-h-[calc(100dvh-80px)] items-center justify-center py-8 text-white">
+    <div className="flex min-h-[calc(100dvh-80px)] items-center justify-center overflow-x-hidden py-8 text-white md:py-12 lg:pt-16">
       <PostCreationForm />
     </div>
   );

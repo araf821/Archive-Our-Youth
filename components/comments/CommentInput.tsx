@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 import { toast } from "sonner";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import { CommentValidator } from "@/lib/validators/comment";
 import Link from "next/link";
 

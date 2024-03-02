@@ -13,7 +13,7 @@ import Link from "next/link";
 import AnonymousPostInfo from "../AnonymousPostInfo";
 import { cn } from "@/lib/utils";
 import { openSans } from "@/app/fonts";
-import { buttonVariants } from "../ui/Button";
+import { buttonVariants } from "../ui/button";
 import { Edit2, MapPin } from "lucide-react";
 
 interface SinglePostProps {

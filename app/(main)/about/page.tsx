@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About Us | Archive Our Youth",
@@ -78,7 +79,11 @@ const AboutPage = () => {
       </div>
 
       <div className="flex items-center gap-8 border-2 border-transparent duration-300 md:rounded-b-2xl md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/20">
-        <div className="relative mx-auto aspect-square w-full max-w-[300px]">
+        <Link
+          href="https://www.younglivesresearch.org"
+          target="_blank"
+          className="relative mx-auto aspect-square w-full max-w-[300px]"
+        >
           <Image
             src="/ylrl-logo.svg"
             alt="ylrl logo"
@@ -86,8 +91,12 @@ const AboutPage = () => {
             sizes="50vw, (min-width: 768px) 25vw"
             className="object-contain"
           />
-        </div>
-        <div className="relative mx-auto aspect-square w-full max-w-[300px]">
+        </Link>
+        <Link
+          href="https://www.yorku.ca/edu"
+          target="_blank"
+          className="relative mx-auto aspect-square w-full max-w-[300px]"
+        >
           <Image
             src="/york-logo.svg"
             alt="york logo"
@@ -95,7 +104,7 @@ const AboutPage = () => {
             sizes="50vw, (min-width: 768px) 25vw"
             className="object-contain"
           />
-        </div>
+        </Link>
       </div>
     </div>
   );

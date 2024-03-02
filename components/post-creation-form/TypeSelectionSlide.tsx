@@ -19,7 +19,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
 }) => {
   const type = form.watch("contentType");
   return (
-    <div className="flex flex-col items-center justify-center space-y-10 max-sm:my-12 md:space-y-14">
+    <div className="flex w-full flex-col items-center justify-center space-y-10 md:space-y-14">
       <p className="text-center text-xl max-md:max-w-[290px] md:text-2xl">
         What type of content would you like to submit?
       </p>
@@ -37,7 +37,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     handleTypeChange("TEXT");
                   }}
                   className={cn(
-                    "w-36 morph-sm border-2 border-green-600 bg-transparent py-2 transition hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50 duration-300",
+                    "morph-sm w-36 border-2 border-green-600 bg-transparent py-2 transition duration-200 hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50",
                     {
                       "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "TEXT",
@@ -55,7 +55,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     handleTypeChange("IMAGE");
                   }}
                   className={cn(
-                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50 duration-300",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition duration-200 hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50",
                     {
                       "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "IMAGE",
@@ -73,7 +73,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     handleTypeChange("VIDEO");
                   }}
                   className={cn(
-                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50 duration-300",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition duration-200 hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50",
                     {
                       "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "VIDEO",
@@ -94,7 +94,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     handleTypeChange("AUDIO");
                   }}
                   className={cn(
-                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50 duration-300",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition duration-200 hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50",
                     {
                       "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "AUDIO",
@@ -112,7 +112,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     handleTypeChange("PDF");
                   }}
                   className={cn(
-                    "w-36 border-2 border-green-600 bg-transparent py-2 transition hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50 duration-300",
+                    "w-36 border-2 border-green-600 bg-transparent py-2 transition duration-200 hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50",
                     {
                       "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
                         type === "PDF",

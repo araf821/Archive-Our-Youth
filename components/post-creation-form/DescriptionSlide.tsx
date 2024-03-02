@@ -1,7 +1,7 @@
 import { TPostCreationForm } from "@/lib/types/form";
 import { FC, useState } from "react";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { ExternalLink } from "lucide-react";
@@ -18,10 +18,10 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
       name="description"
       control={form.control}
       render={({ field }) => (
-        <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
+        <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
           <div className="text-center">
             <p className="text-xl md:text-2xl">Add a description</p>
-            <p className="text-zinc-400">Optional</p>
+            <p className="text-sm text-zinc-400">Optional</p>
           </div>
           <div className="flex w-full flex-col gap-2">
             <div className="mx-auto space-x-2">
@@ -43,9 +43,7 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
                 type="button"
                 size="sm"
                 onClick={() => {
-                  if (form.getValues().description) {
-                    setPreview(true);
-                  }
+                  setPreview(true);
                 }}
                 className={cn(
                   "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
@@ -59,15 +57,15 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
               </Button>
             </div>
 
-            <FormControl className="min-h-[300px] ">
+            <FormControl className="min-h-[150px]">
               {preview ? (
                 form.getValues().description ? (
                   <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                     {form.getValues().description || ""}
                   </ReactMarkdown>
                 ) : (
-                  <p className="grid h-96 place-items-center">
-                    Nothing to preview
+                  <p className="grid h-40 place-items-center rounded-lg border border-zinc-700 bg-zinc-800 px-4 text-center">
+                    A preview of what the finished product will look like.
                   </p>
                 )
               ) : (

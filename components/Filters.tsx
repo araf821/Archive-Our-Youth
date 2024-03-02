@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { FC } from "react";
 import qs from "query-string";
 import { Input } from "./ui/input";
-import { Button } from "./ui/Button";
+import { Button } from "./ui/button";
 import {
   Form,
   FormControl,

@@ -115,13 +115,14 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
   };
 
   return (
-    <div className="grid max-w-screen-md place-items-center gap-8 max-sm:my-12 md:gap-12">
+    <div className="grid max-w-screen-md place-items-center gap-8 md:gap-12">
       <div className="text-center max-sm:max-w-[340px]">
         <p className="balance text-xl md:text-2xl">
           What question does your submission answer?
         </p>
         <p className="balance text-zinc-500 max-md:text-sm">
-          This question is for research purposes only. Select all that apply.
+          This question is for research purposes only.{" "}
+          <span className="font-semibold">Select all that apply.</span>
         </p>
       </div>
       <div className="space-y-2">
