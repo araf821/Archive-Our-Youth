@@ -28,18 +28,22 @@ const AdminSinglePost = ({ post }: AdminSinglePostProps) => {
         <div className="truncate">
           <p className="truncate tracking-wide">{post.title}</p>
           <p className="text-sm font-light text-zinc-400">
-            Published on {dateFormat(post.createdAt.toISOString())}
+            <span className="max-sm:hidden">Published on </span>
+            {dateFormat(post.createdAt.toISOString())}
           </p>
         </div>
       </div>
       <p
-        className={cn("text-center font-semibold", {
-          "text-pink-400": post.contentType === "VIDEO",
-          "text-yellow-400": post.contentType === "IMAGE",
-          "text-red-400": post.contentType === "AUDIO",
-          "text-emerald-400": post.contentType === "PDF",
-          "text-sky-400": post.contentType === "TEXT",
-        })}
+        className={cn(
+          "text-center text-xs font-semibold sm:text-sm md:text-base",
+          {
+            "text-pink-400": post.contentType === "VIDEO",
+            "text-yellow-400": post.contentType === "IMAGE",
+            "text-red-400": post.contentType === "AUDIO",
+            "text-emerald-400": post.contentType === "PDF",
+            "text-sky-400": post.contentType === "TEXT",
+          },
+        )}
       >
         {post.contentType}
       </p>

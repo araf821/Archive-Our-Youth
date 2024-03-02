@@ -7,6 +7,8 @@ export const researchQuestions = [
 
 export const postTypes = ["Text", "Image", "Video", "Audio", "PDF"];
 
+export const FETCH_POSTS_MAX = 15;
+
 export const adminNavItems = [
   {
     label: "Stats",

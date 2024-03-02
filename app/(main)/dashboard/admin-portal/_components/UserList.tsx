@@ -6,9 +6,9 @@ import UserDropdown from "./UserDropdown";
 import { Skeleton } from "@/components/ui/skeleton";
 import Pagination from "./Pagination";
 import { useCallback, useEffect, useState } from "react";
-import { fetchUsers } from "@/actions/fetchUsers";
 import { User } from "@prisma/client";
 import { toast } from "sonner";
+import { fetchUsers } from "@/actions/admin/fetchUsers";
 interface UserListProps {
   page?: number;
 }

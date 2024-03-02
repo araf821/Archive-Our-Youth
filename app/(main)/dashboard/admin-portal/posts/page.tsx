@@ -1,9 +1,13 @@
 import AdminPostList from "../_components/post/AdminPostList";
 import { Suspense } from "react";
 
-interface pageProps {}
+interface pageProps {
+  searchParams: {
+    page: string;
+  };
+}
 
-const page = async ({}: pageProps) => {
+const page = async ({ searchParams }: pageProps) => {
   return (
     <div className="mb-16 overflow-hidden bg-[#252525] md:rounded-xl">
       <div className="w-fit bg-[#2f2f2f] px-4 py-2.5 text-center lg:px-8">
@@ -13,7 +17,7 @@ const page = async ({}: pageProps) => {
       </div>
       <hr className="border-[#2f2f2f]" />
       <Suspense fallback={<AdminPostList.Skeleton />}>
-        <AdminPostList />
+        <AdminPostList page={parseInt(searchParams.page || "1")} />
       </Suspense>
     </div>
   );
