@@ -1,22 +1,65 @@
+"use client";
+
 import AdminSinglePost from "./AdminSinglePost";
 import { Skeleton } from "@/components/ui/skeleton";
 import Pagination from "../Pagination";
-import { fetchPosts } from "@/actions/admin/fetchPosts";
 import { FETCH_POSTS_MAX } from "@/lib/constants";
+import { useCallback, useEffect, useState } from "react";
+import { fetchPosts } from "@/actions/admin/fetchPosts";
+import { toast } from "sonner";
+import { Post, User } from "@prisma/client";
 
 interface AdminPostListProps {
   page?: number;
 }
 
-const AdminPostList = async ({ page = 1 }: AdminPostListProps) => {
-  const {
-    data: posts,
-    hasNextPage,
-    totalPages,
-  } = await fetchPosts(FETCH_POSTS_MAX, (page - 1) * FETCH_POSTS_MAX);
+const AdminPostList = ({ page = 1 }: AdminPostListProps) => {
+  const [posts, setPosts] = useState<
+    (Post & { user: User | null; _count: { comments: number } })[]
+  >([]);
+  const [hasNextPage, setHasNextPage] = useState(false);
+  const [totalPages, setTotalPages] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
-  if (!posts) {
-    return null;
+  const fetch = useCallback(async () => {
+    setIsLoading(true);
+
+    try {
+      const data = await fetchPosts(
+        FETCH_POSTS_MAX,
+        (page - 1) * FETCH_POSTS_MAX,
+      );
+      setPosts(data.data);
+      setHasNextPage(data.hasNextPage);
+      setTotalPages(data.totalPages);
+    } catch (error) {
+      toast.error("Could not fetch posts at this time.");
+    } finally {
+      setIsLoading(false);
+    }
+  }, [page]);
+
+  useEffect(() => {
+    fetch();
+  }, [fetch]);
+
+  if (isLoading) {
+    return (
+      <div className="mt-4 flex flex-col gap-2.5">
+        <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+        <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+        <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+        <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+        <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+        <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+        <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+        <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+        <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+        <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+        <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+        <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
+      </div>
+    );
   }
 
   return (
@@ -36,22 +79,3 @@ const AdminPostList = async ({ page = 1 }: AdminPostListProps) => {
 };
 
 export default AdminPostList;
-
-AdminPostList.Skeleton = function PostListSkeleton() {
-  return (
-    <div className="mt-4 flex flex-col gap-2.5">
-      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
-      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
-      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
-      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
-      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
-      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
-      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
-      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
-      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
-      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
-      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
-      <Skeleton className="h-14 rounded-none bg-[#2f2f2f]" />
-    </div>
-  );
-};

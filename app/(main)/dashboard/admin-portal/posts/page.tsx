@@ -16,9 +16,7 @@ const page = async ({ searchParams }: pageProps) => {
         </p>
       </div>
       <hr className="border-[#2f2f2f]" />
-      <Suspense fallback={<AdminPostList.Skeleton />}>
-        <AdminPostList page={parseInt(searchParams.page || "1")} />
-      </Suspense>
+      <AdminPostList page={parseInt(searchParams.page || "1")} />
     </div>
   );
 };

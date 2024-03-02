@@ -17,12 +17,15 @@ const Pagination = ({
   return (
     <div
       className={cn(
-        "flex items-center justify-between gap-2 bg-[#2f2f2f]",
+        "flex items-center justify-between gap-2 bg-[#2f2f2f] font-medium max-md:text-sm",
         className,
       )}
     >
       <Link
-        className="px-3.5 py-2.5 transition hover:bg-zinc-800"
+        className={cn(
+          "px-3.5 py-2.5 transition hover:bg-zinc-800",
+          page < 2 && "pointer-events-none opacity-50",
+        )}
         href={`?page=${page > 1 ? page - 1 : 1}`}
       >
         Previous
@@ -31,7 +34,10 @@ const Pagination = ({
         {page} / {totalPages}
       </p>
       <Link
-        className="px-3.5 py-2.5 transition hover:bg-zinc-800"
+        className={cn(
+          "px-3.5 py-2.5 transition hover:bg-zinc-800",
+          !hasNextPage && "pointer-events-none opacity-50",
+        )}
         href={`?page=${hasNextPage ? page + 1 : page}`}
       >
         Next

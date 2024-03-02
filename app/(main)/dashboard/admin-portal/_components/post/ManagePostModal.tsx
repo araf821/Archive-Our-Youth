@@ -29,7 +29,7 @@ const ManagePostModal = ({
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-screen-md bg-[#1c1c1c] py-6 outline-none">
-        <DialogHeader>
+        <DialogHeader className="max-md:px-4">
           <DialogTitle>Manage &quot;{post.title}&quot;</DialogTitle>
           <DialogDescription>
             Manage this post, its author, comments, or delete it.

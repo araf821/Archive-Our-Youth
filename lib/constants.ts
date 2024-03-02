@@ -7,7 +7,9 @@ export const researchQuestions = [
 
 export const postTypes = ["Text", "Image", "Video", "Audio", "PDF"];
 
+// Admin pagination variables
 export const FETCH_POSTS_MAX = 15;
+export const FETCH_USERS_MAX = 15;
 
 export const adminNavItems = [
   {

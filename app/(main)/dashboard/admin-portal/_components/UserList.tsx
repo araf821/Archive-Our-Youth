@@ -9,6 +9,7 @@ import { useCallback, useEffect, useState } from "react";
 import { User } from "@prisma/client";
 import { toast } from "sonner";
 import { fetchUsers } from "@/actions/admin/fetchUsers";
+import { FETCH_USERS_MAX } from "@/lib/constants";
 interface UserListProps {
   page?: number;
 }
@@ -23,7 +24,10 @@ const UserList = ({ page = 1 }: UserListProps) => {
     setIsLoading(true);
 
     try {
-      const data = await fetchUsers(10, (page - 1) * 10);
+      const data = await fetchUsers(
+        FETCH_USERS_MAX,
+        (page - 1) * FETCH_USERS_MAX,
+      );
       setUsers(data.data);
       setHasNextPage(data.hasNextPage);
       setTotalPages(data.totalPages);

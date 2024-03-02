@@ -7,7 +7,7 @@ interface AdminPortalLayoutProps {
 
 const AdminPortalLayout = async ({ children }: AdminPortalLayoutProps) => {
   return (
-    <div className="mx-auto mt-16 max-w-screen-lg">
+    <div className="mx-auto mt-8 max-w-screen-lg md:mt-12 lg:mt-16">
       <div className="px-4">
         {/* Header */}
         <h1 className="flex items-center gap-2 text-3xl font-medium text-green-500 md:text-4xl">
