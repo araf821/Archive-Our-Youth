@@ -16,7 +16,7 @@ const TitleSlide: FC<TitleSlideProps> = ({ form }) => {
           <p className="text-center text-xl md:text-2xl">
             What would you like to call this masterpiece?
           </p>
-          <div className="space-y-1">
+          <div className="w-full space-y-1">
             <FormControl>
               <input
                 placeholder="Title"

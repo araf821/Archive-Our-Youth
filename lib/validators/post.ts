@@ -17,15 +17,21 @@ export const PostCreationValidator = z.object({
     ContentType.AUDIO,
     ContentType.PDF,
   ]),
-  content: z.string().min(5).max(2000),
+  content: z
+    .string()
+    .min(32, { message: "Must contain at least 32 characters." })
+    .max(2048, { message: "Must be less than 2048 characters." }),
   thumbnail: z
     .string()
     .max(512, {
       message:
-        "Sorry, this image cannot be uploaded. Link character limit exceeded.",
+        "Sorry, this image could not be uploaded. Link character limit exceeded.",
     })
     .optional(),
-  description: z.string().max(2000).optional(),
+  description: z
+    .string()
+    .max(2048, { message: "Must be less than 2048 characters." })
+    .optional(),
   tags: z
     .string()
     .array()
@@ -47,7 +53,7 @@ export const PostEditValidator = z.object({
     .string()
     .max(512, {
       message:
-        "Sorry, this image cannot be uploaded. Link character limit exceeded.",
+        "Sorry, this image could not be uploaded. Link character limit exceeded.",
     })
     .optional(),
 });
