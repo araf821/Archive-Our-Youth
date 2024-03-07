@@ -44,6 +44,7 @@ const SetupForm: FC<SetupFormProps> = ({ user }) => {
       await axios.put("/api/user/setup", values);
       toast.success("You're good to go!");
       router.push("/home");
+      router.refresh();
     } catch (error) {
       console.error(error);
       toast.error(

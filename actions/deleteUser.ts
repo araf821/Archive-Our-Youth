@@ -35,6 +35,12 @@ export const deleteUser = async (
     };
   }
 
+  // if (userToDelete.role === "ADMIN") {
+  //   return {
+  //     error: "Cannot delete an admin. Please contact araf821@my.yorku.ca.",
+  //   };
+  // }
+
   if (userToDelete.id.slice(0, 7) !== confirmationString) {
     return {
       error: "Confirmation code did not match.",

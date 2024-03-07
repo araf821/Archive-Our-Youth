@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Pagination from "../Pagination";
 import { FETCH_POSTS_MAX } from "@/lib/constants";
 import { useCallback, useEffect, useState } from "react";
-import { fetchPosts } from "@/actions/admin/fetchPosts";
+import { fetchPosts } from "@/actions/admin-fetch/fetchPosts";
 import { toast } from "sonner";
 import { Post, User } from "@prisma/client";
 

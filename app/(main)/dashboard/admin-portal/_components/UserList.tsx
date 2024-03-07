@@ -8,7 +8,7 @@ import Pagination from "./Pagination";
 import { useCallback, useEffect, useState } from "react";
 import { User } from "@prisma/client";
 import { toast } from "sonner";
-import { fetchUsers } from "@/actions/admin/fetchUsers";
+import { fetchUsers } from "@/actions/admin-fetch/fetchUsers";
 import { FETCH_USERS_MAX } from "@/lib/constants";
 interface UserListProps {
   page?: number;

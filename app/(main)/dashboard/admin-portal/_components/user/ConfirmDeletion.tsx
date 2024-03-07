@@ -48,7 +48,7 @@ const ConfirmDeletion = ({
       <p className="mt-8 text-center text-zinc-300 md:text-lg">
         Are you sure you want to delete this user?
       </p>
-      <p className="mb-12 text-center text-zinc-400 max-md:text-sm">
+      <p className="mb-12 text-center font-semibold text-red-700 max-md:text-sm">
         You cannot undo this action!
       </p>
 

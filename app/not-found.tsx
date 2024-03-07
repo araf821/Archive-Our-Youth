@@ -4,7 +4,7 @@ const NotFoundPage = () => {
   return (
     <EmptyState
       classNames="h-[100dvh]"
-      description="Could not find the resource you are looking for."
+      description="Could not find the page/resource you are looking for."
       link={{ label: "Back to Home", route: "/home" }}
     />
   );

@@ -10,7 +10,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Toaster richColors position="bottom-center" />
+      <Toaster richColors position="bottom-center" theme="dark" />
       <ModalProvider />
       <SidebarProvider />
       {children}

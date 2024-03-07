@@ -8,11 +8,20 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/Dialog";
-import { User } from "@prisma/client";
+import { User, UserType } from "@prisma/client";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useState } from "react";
 import ConfirmDeletion from "./ConfirmDeletion";
 import { cn } from "@/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
+import { updateUserRole } from "@/actions/update-user";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface ManageUserModalProps {
   user: User;
@@ -26,10 +35,7 @@ const ManageUserModal = ({
   onOpenChange,
 }: ManageUserModalProps) => {
   const [isDeleting, setIsDeleting] = useState(false);
-
-  if (!user) {
-    return null;
-  }
+  const [currentRole, setCurrentRole] = useState(user.role);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -47,12 +53,65 @@ const ManageUserModal = ({
         </DialogHeader>
         <hr className="border-zinc-700" />
 
+        <div className="grid grid-cols-2 items-center justify-between gap-8 max-md:px-4 sm:grid-cols-3">
+          <p className="w-full text-zinc-200 sm:col-span-2">Current Role</p>
+          <Select
+            disabled={user.role === "ADMIN"}
+            value={currentRole}
+            onValueChange={(value) => setCurrentRole(value as UserType)}
+          >
+            <SelectTrigger className="bg-zinc-800 font-medium">
+              {currentRole}
+            </SelectTrigger>
+            <SelectContent className="border-zinc-700 bg-zinc-800 text-zinc-200">
+              <SelectItem value={UserType.MEMBER}>MEMBER</SelectItem>
+              <SelectItem value={UserType.ADMIN}>ADMIN</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <hr className="border-zinc-700 max-md:px-4" />
+
         {isDeleting ? (
           <ConfirmDeletion
             cancel={() => setIsDeleting(false)}
             userId={user.id}
             imageUrl={user.imageUrl!}
           />
+        ) : currentRole !== user.role ? (
+          <>
+            <p className="font-medium text-red-500 max-md:text-sm">
+              You have unsaved changes.
+            </p>
+            <div className="flex w-full gap-4 max-sm:flex-col max-sm:px-4">
+              <Button
+                onClick={() => setCurrentRole(user.role)}
+                variant="ghost"
+                className="w-full"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={async () => {
+                  await updateUserRole(currentRole, user.id)
+                    .then((data) => {
+                      if (data.error) toast.error(data.error);
+                      if (data.success) {
+                        onOpenChange(false);
+                        toast.success(data.success);
+                      }
+                    })
+                    .catch(() => {
+                      toast.error("Something went wrong.");
+                    });
+                }}
+                variant="outline"
+                className="w-full"
+              >
+                Save Changes
+              </Button>
+            </div>
+          </>
         ) : (
           <div className="flex w-full gap-4 max-sm:flex-col max-sm:px-4">
             <Button
