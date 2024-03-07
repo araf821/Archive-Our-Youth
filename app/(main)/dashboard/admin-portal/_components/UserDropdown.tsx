@@ -51,7 +51,7 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
       </DropdownMenuContent>
       <ManageUserModal
         open={isManageOpen}
-        onOpenChange={setIsManageOpen}
+        onOpenChange={() => setIsManageOpen(false)}
         user={user}
       />
     </DropdownMenu>

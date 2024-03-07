@@ -3,7 +3,6 @@
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { clerkClient } from "@clerk/nextjs";
-import { revalidatePath } from "next/cache";
 
 export const deleteUser = async (
   userId: string,
@@ -35,11 +34,11 @@ export const deleteUser = async (
     };
   }
 
-  // if (userToDelete.role === "ADMIN") {
-  //   return {
-  //     error: "Cannot delete an admin. Please contact araf821@my.yorku.ca.",
-  //   };
-  // }
+  if (userToDelete.role === "ADMIN") {
+    return {
+      error: "Cannot delete an admin. Please contact araf821@my.yorku.ca.",
+    };
+  }
 
   if (userToDelete.id.slice(0, 7) !== confirmationString) {
     return {
@@ -62,8 +61,7 @@ export const deleteUser = async (
     },
   });
 
-  revalidatePath("/dashboard/admin-portal/users");
   return {
-    success: "User has been deleted.",
+    success: "User has been deleted! Refresh for changes.",
   };
 };

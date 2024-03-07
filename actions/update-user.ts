@@ -41,6 +41,6 @@ export const updateUserRole = async (role: UserType, userId: string) => {
   });
 
   return {
-    success: `Role for ${userToUpdate.name} was changed to ${role}. Refresh to see new changes!`,
+    success: `${userToUpdate.name}'s role is now ${role}! Refresh for changes.`,
   };
 };

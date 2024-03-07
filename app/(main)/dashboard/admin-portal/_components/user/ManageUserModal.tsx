@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/Dialog";
 import { User, UserType } from "@prisma/client";
 import Link from "next/link";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import ConfirmDeletion from "./ConfirmDeletion";
 import { cn } from "@/lib/utils";
 import {
@@ -21,12 +21,11 @@ import {
 } from "@/components/ui/select";
 import { updateUserRole } from "@/actions/update-user";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 
 interface ManageUserModalProps {
   user: User;
   open: boolean;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
+  onOpenChange: () => void;
 }
 
 const ManageUserModal = ({
@@ -97,7 +96,7 @@ const ManageUserModal = ({
                     .then((data) => {
                       if (data.error) toast.error(data.error);
                       if (data.success) {
-                        onOpenChange(false);
+                        onOpenChange();
                         toast.success(data.success);
                       }
                     })

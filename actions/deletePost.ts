@@ -2,7 +2,6 @@
 
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
-import { revalidatePath } from "next/cache";
 
 export const deletePost = async (
   postId: string,
@@ -39,8 +38,7 @@ export const deletePost = async (
     },
   });
 
-  revalidatePath("/dashboard/admin-portal/posts");
   return {
-    success: "Post has been deleted.",
+    success: "Post has been deleted! Refresh for changes.",
   };
 };
