@@ -78,7 +78,7 @@ const CommentInput: FC<CommentInputProps> = ({
 
   return (
     <div className="flex items-center gap-2 text-zinc-200 md:gap-4">
-      <div className="relative h-8 w-8 self-start overflow-hidden rounded-full md:h-12 md:w-12">
+      <div className="relative h-8 w-8 shrink-0 self-start overflow-hidden rounded-full md:h-12 md:w-12">
         <Image
           src={user.imageUrl || "/placeholder-image.png"}
           alt="user profile picture"

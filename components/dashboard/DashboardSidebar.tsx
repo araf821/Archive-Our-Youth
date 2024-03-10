@@ -13,7 +13,7 @@ interface DashboardSidebarProps {
 const DashboardSidebar: FC<DashboardSidebarProps> = ({ currentUser }) => {
   return (
     <div className="morph-lg flex h-fit gap-4 rounded-md border-2 border-zinc-700 p-2 transition duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black max-[450px]:flex-col lg:sticky lg:top-8 lg:flex-col">
-      <div className="relative aspect-square w-40 overflow-hidden max-[450px]:w-full min-[450px]:h-40 lg:h-full lg:w-full">
+      <div className="relative aspect-square w-40 shrink-0 overflow-hidden max-[450px]:w-full min-[450px]:h-40 lg:h-full lg:w-full">
         <Image
           src={
             currentUser.imageUrl ||

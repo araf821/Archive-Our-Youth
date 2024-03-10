@@ -1,7 +1,6 @@
 import { db } from "@/lib/db";
 import { User } from "@prisma/client";
 import Link from "next/link";
-import { FC } from "react";
 import CommentInput from "./CommentInput";
 import Comment from "./Comment";
 import { Skeleton } from "../ui/skeleton";

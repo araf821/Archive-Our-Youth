@@ -77,6 +77,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                   />
                 )}
               </FormControl>
+              <FormMessage />
               <Link
                 href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
                 target="_blank"
@@ -85,7 +86,6 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                 Markdown is supported!
                 <ExternalLink className="h-4 w-4" />
               </Link>
-              <FormMessage />
             </div>
           </FormItem>
         )}

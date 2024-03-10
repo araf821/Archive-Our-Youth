@@ -90,7 +90,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         )}
         <hr className="border-zinc-800" />
         <div className="-my-1 flex gap-2 text-zinc-300 md:text-lg">
-          <div className="relative h-14 w-14 rounded-full">
+          <div className="relative h-14 w-14 shrink-0 rounded-full">
             <Image
               src={post.user?.imageUrl || "/placeholder-image.png"}
               fill
@@ -109,7 +109,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
               )}
             </p>
             {post.user ? (
-              <p className="text-base font-normal text-zinc-400">
+              <p className="text-sm font-normal text-zinc-400 md:text-base">
                 Member Since:{" "}
                 {dateFormat(new Date(post.user.createdAt).toISOString())}
               </p>

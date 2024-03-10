@@ -98,9 +98,9 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
         {/* <div className="h-full w-1 bg-zinc-300" /> */}
       </div>
       <div className="flex flex-1 flex-col gap-1">
-        <p className="flex items-center gap-1.5 break-words md:text-lg">
+        <p className="max-xs:flex-col-reverse xs:items-center flex gap-1.5 break-words font-medium max-md:text-sm md:text-lg">
           {comment.user?.name}
-          <span className="mx-1 text-zinc-500">•</span>
+          <span className="max-xs:hidden mx-1 text-zinc-500">•</span>
           <span className="text-xs text-zinc-500 md:text-sm">
             {formatDateString(comment.createdAt.toString())}
           </span>
