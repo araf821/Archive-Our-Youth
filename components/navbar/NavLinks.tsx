@@ -13,8 +13,12 @@ export const navLinks = [
     pathname: "/home",
   },
   {
-    label: "About Us",
+    label: "About",
     pathname: "/about",
+  },
+  {
+    label: "Contact",
+    pathname: "/contact",
   },
   {
     label: "Dashboard",
@@ -53,7 +57,7 @@ const NavLinks = () => {
         ))}
         <button
           className={cn(
-            "rounded-xl morph-sm bg-zinc-800 p-2 -translate-x-4 text-white transition hover:bg-zinc-700 active:scale-90 max-lg:hidden",
+            "morph-sm -translate-x-4 rounded-xl bg-zinc-800 p-2 text-white transition hover:bg-zinc-700 active:scale-90 max-lg:hidden",
             {
               "bg-green-500 shadow-[0_0_15px_2px] shadow-green-500/50 hover:bg-green-600":
                 isOpen,

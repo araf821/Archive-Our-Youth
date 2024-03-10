@@ -74,7 +74,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
       </div>
       <motion.ul
         animate
-        className="flex w-full flex-1 flex-col gap-8 overflow-hidden pt-12"
+        className="flex w-full flex-1 flex-col gap-8 overflow-y-auto pb-12 pt-12"
       >
         <motion.li
           variants={buttonVariants(0)}
