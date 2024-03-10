@@ -42,19 +42,6 @@ import {
   CarouselPrevious,
 } from "../ui/carousel";
 
-enum STEPS {
-  WELCOME = 0,
-  QUESTIONS = 1,
-  TYPE = 2,
-  TITLE = 3,
-  CONTENT = 4,
-  THUMBNAIL = 5,
-  DESCRIPTION = 6,
-  TAGS = 7,
-  LOCATION = 8,
-  CONFIRM = 9,
-}
-
 const PostCreationForm = () => {
   const { userId } = useAuth();
   const router = useRouter();
@@ -234,6 +221,7 @@ const PostCreationForm = () => {
             <p className="mt-2 text-zinc-400">
               None selected,{" "}
               <button
+                type="button"
                 onClick={() => api?.scrollTo(1)}
                 className="text-left normal-case text-blue-400"
               >
@@ -268,6 +256,7 @@ const PostCreationForm = () => {
               <p className="font-normal normal-case text-zinc-400">
                 Title is missing,{" "}
                 <button
+                  type="button"
                   onClick={() => api?.scrollTo(3)}
                   className="text-left normal-case text-blue-400"
                 >
