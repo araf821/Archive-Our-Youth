@@ -4,6 +4,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import ModalProvider from "./modals/ModalProvider";
 import { Toaster } from "sonner";
 import SidebarProvider from "./navbar/SidebarProvider";
+import { NextUIProvider } from "@nextui-org/react";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   const queryClient = new QueryClient();
@@ -13,7 +14,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
       <Toaster richColors position="bottom-center" theme="dark" />
       <ModalProvider />
       <SidebarProvider />
-      {children}
+      <NextUIProvider>{children}</NextUIProvider>
     </QueryClientProvider>
   );
 };

@@ -81,24 +81,13 @@ const InfinitePosts = ({ initialPosts, currentUser }: InfinitePostsProps) => {
           return (
             <>
               {hasNextPage && !isFetchingNextPage && <span ref={ref} />}
-              <PostModal key={post.id} post={post} currentUser={currentUser}>
-                <button className="group relative aspect-square cursor-pointer overflow-hidden border-zinc-800 outline-none transition duration-500 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-green-600">
-                  <PostModalTriggerContent
-                    post={post}
-                    currentUser={currentUser}
-                  />
-                </button>
-              </PostModal>
+              <PostModal key={post.id} post={post} currentUser={currentUser} />
             </>
           );
         }
 
         return (
-          <PostModal key={post.id} post={post} currentUser={currentUser}>
-            <button className="group relative aspect-square cursor-pointer overflow-hidden border-zinc-800 outline-none transition duration-500 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-green-600">
-              <PostModalTriggerContent post={post} currentUser={currentUser} />
-            </button>
-          </PostModal>
+          <PostModal key={post.id} post={post} currentUser={currentUser} />
         );
       })}
       {isFetchingNextPage && (

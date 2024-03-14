@@ -8,9 +8,10 @@ import { FC, useState } from "react";
 interface DynamicImageProps {
   src: string;
   classNames?: string;
+  modal?: boolean;
 }
 
-const DynamicImage: FC<DynamicImageProps> = ({ src, classNames }) => {
+const DynamicImage: FC<DynamicImageProps> = ({ src, classNames, modal }) => {
   const [loading, setLoading] = useState(true);
   const [contained, setContained] = useState(false);
   const [onError, setOnError] = useState(false);
@@ -35,7 +36,11 @@ const DynamicImage: FC<DynamicImageProps> = ({ src, classNames }) => {
         }}
         onError={() => setOnError(true)}
         src={onError ? "/placeholder_post_image.svg" : src}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 766px"
+        sizes={
+          modal
+            ? "(max-width: 400px) 90vw, 512px"
+            : "(max-width: 768px) 90vw, (max-width: 1200px) 766px"
+        }
         alt="post image"
         className={`rounded-sm ${
           contained ? "object-contain" : "object-cover"
