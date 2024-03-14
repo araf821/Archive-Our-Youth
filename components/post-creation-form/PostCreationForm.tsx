@@ -251,7 +251,12 @@ const PostCreationForm = () => {
           >
             Title
           </p>
-          <span className="font-bold">
+          {!!form.formState.errors.title && (
+            <p className="pb-2 text-sm font-medium text-red-500/80 max-md:text-xs">
+              {form.formState.errors.title.message}
+            </p>
+          )}
+          <span className="break-words font-bold">
             {form.getValues().title || (
               <p className="font-normal normal-case text-zinc-400">
                 Title is missing,{" "}
@@ -271,11 +276,16 @@ const PostCreationForm = () => {
             <>
               <p
                 className={cn("pb-2", {
-                  "text-red-500": form.formState.errors.content,
+                  "text-red-500": !!form.formState.errors.content,
                 })}
               >
                 Content
               </p>
+              {!!form.formState.errors.content && (
+                <p className="pb-2 text-sm font-medium text-red-500/80 max-md:text-xs">
+                  {form.formState.errors.content.message}
+                </p>
+              )}
               {form.getValues().content ? (
                 <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                   {form.getValues().content || ""}
@@ -396,11 +406,16 @@ const PostCreationForm = () => {
           <div className="py-4">
             <p
               className={cn("pb-2", {
-                "text-red-500": form.formState.errors.description,
+                "text-red-500": !!form.formState.errors.description,
               })}
             >
               Description <span className="text-zinc-400">(optional)</span>
             </p>
+            {!!form.formState.errors.description && (
+              <p className="pb-2 text-sm font-medium text-red-500/80 max-md:text-xs">
+                {form.formState.errors.description.message}
+              </p>
+            )}
             {form.getValues().description ? (
               <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                 {form.getValues().description || ""}
