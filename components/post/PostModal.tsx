@@ -30,13 +30,13 @@ const PostModal = ({ post, currentUser }: PostModalProps) => {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         placement="center"
-        scrollBehavior="outside"
+        scrollBehavior="normal"
         hideCloseButton
         classNames={{
           backdrop: "backdrop-blur-md bg-black/20",
         }}
       >
-        <ModalContent className="w-full max-w-lg rounded-md border-2 border-zinc-800 bg-[#18181b] p-4 text-zinc-100 shadow-[0_0_20px_5px_black] md:rounded-lg md:p-6">
+        <ModalContent className="my-auto w-full max-w-lg rounded-md border-2 border-zinc-800 bg-[#18181b] p-4 text-zinc-100 shadow-[0_0_20px_5px_black] md:my-auto md:rounded-lg md:p-6">
           {(onClose) => (
             <>
               <div className="flex items-center justify-between">
