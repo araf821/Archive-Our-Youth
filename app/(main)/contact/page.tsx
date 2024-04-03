@@ -1,7 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
+import { EmailTemplate } from "./_components/EmailTemplate";
 
 const ContactPage = () => {
+  if (true) {
+    return (
+      <EmailTemplate
+        email="araf.ahmed200@gmail.com"
+        message="
+    lorem ipsum dolor sit amet consectetur adipiscing elit sodales mattis nec,
+    posuere purus purus, euismod luctus nisl nisl, euismod luctus nisl nisl,
+    euismod luctus nisl nisl, euismod luctus nisl nisl, euismod luctus nisl nisl,
+    euismod luctus nisl nisl
+    "
+      />
+    );
+  }
+
   return (
     <div className="mx-auto max-w-screen-md px-4 py-12 sm:px-8 md:py-20">
       <h1 className="pb-4 text-center text-2xl font-medium md:pb-8 md:text-3xl">

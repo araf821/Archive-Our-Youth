@@ -1,0 +1,11 @@
+.container {
+  @apply bg-zinc-900 p-4 text-zinc-100 md:p-8;
+}
+
+.heading {
+  @apply text-xs font-semibold md:text-sm;
+}
+
+.message {
+  @apply whitespace-pre-line text-sm text-zinc-200 md:text-base;
+}
