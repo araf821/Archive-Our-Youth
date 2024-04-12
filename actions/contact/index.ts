@@ -1,6 +1,6 @@
 "use server";
 
-import { ContactFormValidator } from "@/lib/validators/contact";
+import { ContactFormValidator, ContactType } from "@/lib/validators/contact";
 import { z } from "zod";
 import { Resend } from "resend";
 import { EmailTemplate } from "@/app/(main)/contact/_components/EmailTemplate";
@@ -12,22 +12,34 @@ export const contact = async (values: z.infer<typeof ContactFormValidator>) => {
 
   if (!validatedFields.success) {
     return {
-      error: "Invalid fields provided omg.",
+      error: "Invalid fields provided.",
       validationError: validatedFields.error,
     };
   }
 
-  const data = await resend.emails.send({
-    from: `Archive Our Youth - From <${validatedFields.data.email}>`,
-    to: ["araf.ahmed200@gmail.com"],
-    subject: "Hello world",
-    react: EmailTemplate({
-      email: validatedFields.data.email,
-      message: validatedFields.data.message,
-    }),
-  });
+  const toEmail =
+    validatedFields.data.contactType === ContactType.GENERAL
+      ? "araf.ahmed200@gmail.com"
+      : "araf.ahmed200@gmail.com";
 
-  console.log(data);
+  const data = await resend.emails
+    .send({
+      from: `Archive Our Youth - From <onboarding@resend.dev>`,
+      to: [toEmail],
+      subject:
+        validatedFields.data.contactType === ContactType.GENERAL
+          ? "General Enquiry"
+          : "Technical Enquiry",
+      react: EmailTemplate({
+        email: validatedFields.data.email,
+        message: validatedFields.data.message,
+        subject:
+          validatedFields.data.contactType === ContactType.GENERAL
+            ? "General Enquiry"
+            : "Technical Enquiry",
+      }),
+    })
+    .catch((e) => console.error("Email not sent!", e));
 
   return { success: "Email sent successfully!" };
 };
