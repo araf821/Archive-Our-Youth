@@ -9,37 +9,33 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const contact = async (values: z.infer<typeof ContactFormValidator>) => {
   const validatedFields = ContactFormValidator.safeParse(values);
-
   if (!validatedFields.success) {
     return {
       error: "Invalid fields provided.",
       validationError: validatedFields.error,
     };
   }
-
   const toEmail =
     validatedFields.data.contactType === ContactType.GENERAL
       ? "araf.ahmed200@gmail.com"
       : "araf.ahmed200@gmail.com";
-
-  const data = await resend.emails
+  await resend.emails
     .send({
       from: `Archive Our Youth - From <onboarding@resend.dev>`,
       to: [toEmail],
       subject:
         validatedFields.data.contactType === ContactType.GENERAL
-          ? "General Enquiry"
-          : "Technical Enquiry",
+          ? "Message from Archive Our Youth - General Inquiry"
+          : "Message from Archive Our Youth - Technical Inquiry",
       react: EmailTemplate({
         email: validatedFields.data.email,
         message: validatedFields.data.message,
         subject:
           validatedFields.data.contactType === ContactType.GENERAL
-            ? "General Enquiry"
-            : "Technical Enquiry",
+            ? "General"
+            : "Technical",
       }),
     })
     .catch((e) => console.error("Email not sent!", e));
-
   return { success: "Email sent successfully!" };
 };

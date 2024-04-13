@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -8,8 +10,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/Form";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -17,14 +17,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
 import { ContactFormValidator, ContactType } from "@/lib/validators/contact";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { contact } from "@/actions/contact";
+import { toast } from "sonner";
 
 type Props = {};
 
 const ContactForm = ({}: Props) => {
+  const [isPending, startTransition] = useTransition();
+
   const form = useForm<z.infer<typeof ContactFormValidator>>({
     resolver: zodResolver(ContactFormValidator),
     defaultValues: {
@@ -36,6 +42,17 @@ const ContactForm = ({}: Props) => {
 
   const onSubmit = async (values: z.infer<typeof ContactFormValidator>) => {
     console.log(values);
+
+    startTransition(async () => {
+      await contact(values)
+        .then(() => {
+          console.log("sent");
+          toast.success("Email sent successfully!");
+        })
+        .catch(() => {
+          toast.error("Something went wrong. Please try again later.");
+        });
+    });
   };
 
   return (
@@ -53,6 +70,7 @@ const ContactForm = ({}: Props) => {
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
+                  disabled={isPending}
                 >
                   <SelectTrigger className="morph-sm bg-zinc-800 focus:outline-none focus:outline-zinc-500">
                     <SelectValue className="text-zinc-50">
@@ -81,8 +99,9 @@ const ContactForm = ({}: Props) => {
               <FormLabel className="md:text-base">Email</FormLabel>
               <FormControl>
                 <Input
-                  type="email"
                   {...field}
+                  type="email"
+                  disabled={isPending}
                   placeholder="username@email.com"
                   className="morph-sm text-base"
                 />
@@ -100,8 +119,9 @@ const ContactForm = ({}: Props) => {
               <FormLabel className="md:text-base">Message</FormLabel>
               <textarea
                 {...field}
+                disabled={isPending}
                 placeholder="Your message..."
-                className="morph-sm min-h-[180px] w-full rounded-md bg-zinc-800 px-2.5 py-2 outline-none focus:outline focus:outline-zinc-700"
+                className="morph-sm min-h-[180px] w-full rounded-md bg-zinc-800 px-2.5 py-2 outline-none focus:outline focus:outline-zinc-700 disabled:pointer-events-none disabled:opacity-50"
               />
               <FormMessage />
             </FormItem>

@@ -55,8 +55,8 @@ export const EmailTemplate = ({
           {email}
         </Link>
       </Text>
-      <Text className="mt-4 text-center text-xs font-medium text-zinc-400">
-        Subject
+      <Text className="mb-0 mt-4 text-center text-xs font-medium text-zinc-400">
+        Inquiry Type
       </Text>
       <Text className="my-0 text-center text-zinc-200">{subject}</Text>
       <Text className="mt-4 whitespace-pre-line break-words text-zinc-100">
