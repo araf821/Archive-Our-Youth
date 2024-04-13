@@ -1,18 +1,12 @@
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Karla, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { Metadata } from "next";
 import Providers from "@/components/Providers";
 
-const nunito = Poppins({
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["200", "400", "500", "600", "700", "800"],
-});
-
-const karla = Karla({
-  subsets: ["latin"],
-  weight: ["200", "400", "600", "800"],
-  variable: "--font-karla",
 });
 
 export const metadata: Metadata = {
@@ -36,7 +30,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${nunito.className} min-h-[100dvh] bg-zinc-900 antialiased selection:bg-green-500 selection:text-black ${karla.variable}`}
+          className={`${poppins.className} min-h-[100dvh] bg-zinc-900 antialiased selection:bg-green-500 selection:text-black`}
         >
           <Providers>{children}</Providers>
         </body>

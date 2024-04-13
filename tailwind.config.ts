@@ -75,7 +75,6 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        karla: ["var(--font-karla)", "serif"],
         kobata: ["'__Kobata_870a87', '__Kobata_Fallback_870a87'"],
       },
     },

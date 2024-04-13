@@ -1,15 +1,15 @@
 import { z } from "zod";
 
-export enum ContactType {
-  GENERAL,
-  TECH,
-}
+export const ContactType = {
+  GENERAL: "GENERAL",
+  TECH: "TECH",
+};
 
 export const ContactFormValidator = z.object({
   email: z.string().email({
     message: "Must be a valid email address.",
   }),
-  contactType: z.nativeEnum(ContactType),
+  contactType: z.enum([ContactType.GENERAL, ContactType.TECH]),
   message: z
     .string()
     .min(21, {
