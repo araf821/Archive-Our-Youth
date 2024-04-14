@@ -10,14 +10,12 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export const contact = async (values: z.infer<typeof ContactFormValidator>) => {
   const validatedFields = ContactFormValidator.safeParse(values);
   if (!validatedFields.success) {
-    return {
-      error: "Invalid fields provided.",
-      validationError: validatedFields.error,
-    };
+    throw new TypeError("Bad Request");
   }
+
   const toEmail =
     validatedFields.data.contactType === ContactType.GENERAL
-      ? "araf.ahmed200@gmail.com"
+      ? "younglives@edu.yorku.ca"
       : "araf.ahmed200@gmail.com";
   await resend.emails
     .send({
@@ -36,6 +34,10 @@ export const contact = async (values: z.infer<typeof ContactFormValidator>) => {
             : "Technical",
       }),
     })
-    .catch((e) => console.error("Email not sent!", e));
-  return { success: "Email sent successfully!" };
+    .catch((e) => {
+      console.error("Email not sent!", e);
+      throw new Error("Email not sent!");
+    });
+
+  return;
 };

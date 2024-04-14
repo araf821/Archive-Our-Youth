@@ -1,15 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
-import styles from "./email.module.css";
 import {
-  Column,
-  Container,
-  Head,
-  Heading,
   Hr,
-  Html,
   Img,
   Link,
-  Row,
   Section,
   Tailwind,
   Text,
@@ -49,8 +41,8 @@ export const EmailTemplate = ({
       </Text>
       <Text className="my-0 text-center text-base">
         <Link
-          className="text-blue-500 underline underline-offset-4"
           href={`mailto:${email}`}
+          className="text-sm font-medium text-green-400 underline underline-offset-4"
         >
           {email}
         </Link>
@@ -60,7 +52,7 @@ export const EmailTemplate = ({
       </Text>
       <Text className="my-0 text-center text-zinc-200">{subject}</Text>
       <Text className="mt-4 whitespace-pre-line break-words text-zinc-100">
-        <span className="font-light text-zinc-300">Message: </span>
+        <span className="font-semibold text-zinc-400">Message: </span>
         {message}
       </Text>
       <Hr className="my-4 border-4 border-zinc-800" />
@@ -69,7 +61,7 @@ export const EmailTemplate = ({
         <span className="mr-2">•</span>
         <span>Manage Preferences</span>
       </Text> */}
-      <Text className="text-center text-xl font-semibold text-green-500">
+      <Text className="mb-0 pb-0 text-center text-xl font-semibold text-green-500">
         <Link className="text-green-500" href="https://archiveouryouth.ca">
           Archive Our Youth
         </Link>

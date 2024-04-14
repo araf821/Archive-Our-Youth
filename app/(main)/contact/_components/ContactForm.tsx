@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Form,
@@ -20,16 +20,31 @@ import {
 
 import { ContactFormValidator, ContactType } from "@/lib/validators/contact";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { contact } from "@/actions/contact";
 import { toast } from "sonner";
+import Link from "next/link";
+import { Loader2 } from "lucide-react";
 
 type Props = {};
 
 const ContactForm = ({}: Props) => {
   const [isPending, startTransition] = useTransition();
+  const [emailSent, setEmailSent] = useState(() => {
+    const now = new Date().getTime();
+    const sentMessageTime = localStorage.getItem("sentMessageTime");
+    if (!sentMessageTime) return false;
+
+    if (now - parseInt(sentMessageTime) > 1 * 60 * 60 * 1000) {
+      // Delete the local storage after 1 hour
+      localStorage.removeItem("sentMessageTime");
+      return false;
+    } else {
+      return true;
+    }
+  });
 
   const form = useForm<z.infer<typeof ContactFormValidator>>({
     resolver: zodResolver(ContactFormValidator),
@@ -41,19 +56,65 @@ const ContactForm = ({}: Props) => {
   });
 
   const onSubmit = async (values: z.infer<typeof ContactFormValidator>) => {
-    console.log(values);
-
     startTransition(async () => {
       await contact(values)
         .then(() => {
-          console.log("sent");
           toast.success("Email sent successfully!");
+          setEmailSent(true);
+          localStorage.setItem(
+            "sentMessageTime",
+            new Date().getTime().toString(),
+          );
         })
-        .catch(() => {
+        .catch((e: Error) => {
+          if (e.message === "Bad Request") {
+            toast.error("Invalid fields provided!");
+            return;
+          }
+
+          if (e.message === "Email not sent!") {
+            toast.error(
+              "Email could not be sent due to a server error. Try again later.",
+            );
+            return;
+          }
+
           toast.error("Something went wrong. Please try again later.");
         });
     });
   };
+
+  if (emailSent) {
+    return (
+      <div className="mt-6 rounded-sm bg-zinc-800 px-3 py-4">
+        <h3 className="mb-2.5 text-lg font-medium md:text-xl">
+          We&apos;ve received your message!
+        </h3>
+        <p className="mb-6 text-zinc-400 max-md:text-sm">
+          We&apos;ll get back to you as soon as possible. Please wait a little
+          while if you would like to send another message. If this is urgent,
+          contact{" "}
+          <Link
+            href={"mailto:younglives@edu.yorku.ca"}
+            className="text-green-500 underline underline-offset-4"
+          >
+            younglives@edu.yorku.ca
+          </Link>
+          .
+        </p>
+
+        <Link
+          className={buttonVariants({
+            variant: "ghost",
+            className: "bg-[#2f2f2f] hover:bg-zinc-700",
+          })}
+          href={"/home"}
+        >
+          Back Home
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <Form {...form}>
@@ -74,7 +135,9 @@ const ContactForm = ({}: Props) => {
                 >
                   <SelectTrigger className="morph-sm bg-zinc-800 focus:outline-none focus:outline-zinc-500">
                     <SelectValue className="text-zinc-50">
-                      {field.value}
+                      {field.value === ContactType.GENERAL
+                        ? "General"
+                        : "Technical"}
                     </SelectValue>
                   </SelectTrigger>
                   <SelectContent className="border-zinc-700 bg-zinc-800 text-zinc-50">
@@ -128,7 +191,8 @@ const ContactForm = ({}: Props) => {
           )}
         />
 
-        <Button variant="outline" className="mt-6 w-full">
+        <Button variant="outline" className="mt-6 w-full" disabled={isPending}>
+          {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Submit
         </Button>
       </form>
