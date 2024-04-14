@@ -30,8 +30,6 @@ const DynamicImage: FC<DynamicImageProps> = ({ src, classNames, modal }) => {
       <Image
         fill
         onLoad={(e) => {
-          console.log("done loading");
-
           setLoading(false);
         }}
         onError={() => setOnError(true)}

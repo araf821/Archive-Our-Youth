@@ -62,7 +62,6 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
       }
     } catch (error) {
       toast.error("Something went wrong.");
-      console.log("Post update error", error);
     } finally {
       setIsLoading(false);
     }
