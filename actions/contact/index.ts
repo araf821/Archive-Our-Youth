@@ -15,7 +15,7 @@ export const contact = async (values: z.infer<typeof ContactFormValidator>) => {
 
   const toEmail =
     validatedFields.data.contactType === ContactType.GENERAL
-      ? "younglives@edu.yorku.ca"
+      ? "araf.ahmed200@gmail.com"
       : "araf.ahmed200@gmail.com";
   await resend.emails
     .send({
