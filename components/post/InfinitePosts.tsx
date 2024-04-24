@@ -2,7 +2,6 @@
 
 import { Post, User } from "@prisma/client";
 import PostModal from "./PostModal";
-import PostModalTriggerContent from "./PostModalTriggerContent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useIntersection } from "@mantine/hooks";
 import axios from "axios";
@@ -14,7 +13,7 @@ interface InfinitePostsProps {
   initialPosts: (Post & { user: User | null })[];
   currentUser: User | null;
 }
-const FETCH_LIMIT = 20;
+const FETCH_LIMIT = 33;
 
 const InfinitePosts = ({ initialPosts, currentUser }: InfinitePostsProps) => {
   const lastPostRef = useRef<HTMLButtonElement>(null);

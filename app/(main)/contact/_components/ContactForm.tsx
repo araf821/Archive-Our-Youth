@@ -20,7 +20,7 @@ import {
 
 import { ContactFormValidator, ContactType } from "@/lib/validators/contact";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { contact } from "@/actions/contact";
@@ -31,6 +31,7 @@ import { Loader2 } from "lucide-react";
 type Props = {};
 
 const ContactForm = ({}: Props) => {
+  const [isMounted, setIsMounted] = useState(false);
   const [isPending, startTransition] = useTransition();
   const [emailSent, setEmailSent] = useState(() => {
     const now = new Date().getTime();
@@ -54,6 +55,12 @@ const ContactForm = ({}: Props) => {
       message: "",
     },
   });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMounted(true);
+    }
+  }, []);
 
   const onSubmit = async (values: z.infer<typeof ContactFormValidator>) => {
     startTransition(async () => {
@@ -83,6 +90,8 @@ const ContactForm = ({}: Props) => {
         });
     });
   };
+
+  if (!isMounted) return null;
 
   if (emailSent) {
     return (

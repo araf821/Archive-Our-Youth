@@ -5,6 +5,7 @@ import Overlay from "../Overlay";
 import { useState } from "react";
 import Image from "next/image";
 import { File, Pen, Video, Volume2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface PostModalTriggerContentProps {
   post: Post & { user: User | null };
@@ -13,6 +14,7 @@ interface PostModalTriggerContentProps {
 
 const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
   const [onError, setOnError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <>
@@ -44,7 +46,7 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
           <div className="absolute inset-0">
             <div className="relative aspect-square">
               <Image
-                alt="error placeholder"
+                alt="thumbnail"
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 25vw"
                 fill
                 onError={() => setOnError(true)}
@@ -62,14 +64,24 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
       {post.contentType === "IMAGE" && (
         <>
           <Image
-            src={onError ? "/placeholder_post_image.svg" : post.postContent}
             alt="post image"
+            src={onError ? "/placeholder_post_image.svg" : post.postContent}
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 25vw"
             fill
+            onLoad={() => setIsLoading(false)}
             onError={() => setOnError(true)}
-            className="object-cover"
+            className={cn("object-cover", isLoading && "opacity-0")}
           />
-          <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/75 px-1.5 py-0.5 text-zinc-200 max-md:text-sm">
+          {isLoading && (
+            <Image
+              src={post.postContent}
+              sizes="24px"
+              fill
+              className="object-cover blur-lg"
+              alt="idk"
+            />
+          )}
+          <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/75 px-1.5 py-0.5 text-sm text-zinc-200">
             {post.user?.name || "Anonymous"}
           </span>
         </>

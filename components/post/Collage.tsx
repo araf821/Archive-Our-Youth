@@ -109,11 +109,7 @@ const Collage = async ({
     );
   }
 
-  return (
-    <FadeInContainer>
-      <InfinitePosts initialPosts={posts} currentUser={currentUser} />
-    </FadeInContainer>
-  );
+  return <InfinitePosts initialPosts={posts} currentUser={currentUser} />;
 };
 
 export default Collage;
