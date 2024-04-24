@@ -6,13 +6,13 @@ import { User } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { useFilters } from "@/hooks/useFilters";
 import { usePathname, useRouter } from "next/navigation";
-import { UserButton } from "@clerk/nextjs";
 import { Search } from "lucide-react";
 import NavLinks from "./NavLinks";
 import { useModal } from "@/hooks/useModal";
 import { kobata } from "@/app/fonts";
 import { useMenu } from "@/hooks/useMenu";
 import Image from "next/image";
+import UserDropdown from "../UserDropdown";
 
 interface NavbarProps {
   user: User | null;
@@ -61,7 +61,7 @@ const Navbar = ({ user }: NavbarProps) => {
   return (
     <nav
       className={cn(
-        "z-40 h-20 w-full shadow-[0_4px_20px_black] border-b border-zinc-800 bg-zinc-900 transition duration-300 hover:opacity-100",
+        "z-40 h-20 w-full border-b border-zinc-800 bg-zinc-900 shadow-[0_4px_20px_black] transition duration-300 hover:opacity-100",
         {
           "translate-y-0": visible,
         },
@@ -80,7 +80,7 @@ const Navbar = ({ user }: NavbarProps) => {
         <div className="max-lg:hidden md:items-center md:gap-x-6 lg:flex">
           <button
             className={cn(
-              "group relative text-lg font-semibold tracking-widest text-white transition duration-300 hover:text-green-300",
+              "group relative text-lg font-medium tracking-wide text-white transition-all duration-300 hover:text-green-500 lg:hover:tracking-widest",
               {
                 "text-green-500 hover:text-green-500": pathname === "/submit",
               },
@@ -93,14 +93,10 @@ const Navbar = ({ user }: NavbarProps) => {
               }
             }}
           >
-            {/* <span className="absolute inset-x-0 top-0 h-[50%] origin-bottom-right scale-0 rounded-t-sm bg-white transition duration-200 group-hover:scale-100" />
-            <span className="absolute inset-x-0 bottom-0 h-[50%] origin-top-left scale-0 rounded-b-sm bg-white transition duration-200 group-hover:scale-100" /> */}
             Submit
           </button>
           {user ? (
-            <div className="rounded-full border-2 border-zinc-700">
-              <UserButton afterSignOutUrl="/home" />
-            </div>
+            <UserDropdown user={user} />
           ) : (
             <button
               onClick={() => onOpenModal("authModal")}

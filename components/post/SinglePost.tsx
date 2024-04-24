@@ -135,21 +135,18 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         {/* Research Question */}
         {post.researchQuestions.length > 0 ? (
           <div>
-            <p className="mb-4 font-bold tracking-wide text-zinc-400 max-md:text-sm">
+            <p className="mb-4 font-medium tracking-wide text-zinc-400 max-md:text-sm">
               This post addresses the following questions:
             </p>
             <ul>
               {post.researchQuestions.map((q) => (
-                <li
-                  className="ml-6 list-disc font-light text-white md:text-lg"
-                  key={q}
-                >
+                <li className="ml-6 list-disc text-white md:text-lg" key={q}>
                   {q}
                 </li>
               ))}
             </ul>
 
-            <hr className="mt-4 border-zinc-700" />
+            <hr className="mt-4 border-zinc-800" />
           </div>
         ) : null}
 
