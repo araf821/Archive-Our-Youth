@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { db } from "@/lib/db";
-import DynamicUserPosts from "./DynamicUserPosts";
 import FadeInContainer from "../FadeInContainer";
 import { Skeleton } from "../ui/skeleton";
 import UserPost from "./UserPost";
@@ -48,7 +47,6 @@ const UserPostsSection = async ({
           </div>
         </FadeInContainer>
       ) : (
-        // <DynamicUserPosts posts={posts} />
         <div className="flex flex-col gap-8 pb-8 md:pb-16">
           {posts.map((post) => (
             <UserPost key={post.id} post={post} />

@@ -16,20 +16,11 @@ interface UserPostProps {
 
 const UserPost: FC<UserPostProps> = ({ post }) => {
   const { onOpen } = useModal();
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
   return (
-    <motion.div
-      viewport={{ once: true }}
-      initial={{ opacity: 0 }}
-      whileInView={{
-        opacity: 1,
-        transition: {
-          duration: 0.5,
-        },
-      }}
-      exit={{ opacity: 0, x: -500, transition: { duration: 0.5 } }}
-    >
+    <motion.div>
       <div className="relative flex flex-col gap-4 overflow-hidden rounded-lg bg-gradient-to-br from-[#222222]/75 via-zinc-800/75 to-zinc-950/75 p-4 shadow-[2px_2px_16px] shadow-black/50 outline-none transition-all duration-300 hover:bg-zinc-900 hover:shadow-[2px_2px_24px] hover:shadow-black hover:outline">
         <span className="absolute bottom-0 right-0 h-20 w-20 bg-green-500/50 blur-3xl transition"></span>
         <div
@@ -44,15 +35,30 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
         >
           {post.contentType === "IMAGE" && (
             <>
-              <div className="relative aspect-[4/3] w-full border border-zinc-700 md:max-w-[300px]">
+              <div className="relative aspect-[4/3] w-full overflow-hidden border border-zinc-700 md:max-w-[300px]">
                 <Image
                   src={error ? "/placeholder_post_image.svg" : post.postContent}
                   alt="post image"
                   fill
                   sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 300px"
+                  onLoad={() => setIsLoading(false)}
                   onError={() => setError(true)}
-                  className="rounded-sm object-cover"
+                  className={cn(
+                    "rounded-sm object-cover",
+                    isLoading && "opacity-0",
+                  )}
                 />
+                {isLoading && (
+                  <Image
+                    alt="blur"
+                    src={
+                      error ? "/placeholder_post_image.svg" : post.postContent
+                    }
+                    fill
+                    sizes="24px"
+                    className="rounded-sm object-cover blur-lg"
+                  />
+                )}
               </div>
               <DashboardPostInfo post={post} />
             </>

@@ -30,7 +30,6 @@ const DashboardSidebar: FC<DashboardSidebarProps> = ({ currentUser }) => {
           <p className="text-lg font-semibold tracking-wider sm:text-xl md:text-2xl">
             {currentUser.name}
           </p>
-
           <EditProfileModal
             imageUrl={currentUser.imageUrl || ""}
             name={currentUser.name}
@@ -42,23 +41,23 @@ const DashboardSidebar: FC<DashboardSidebarProps> = ({ currentUser }) => {
             </button>
           </EditProfileModal>
         </div>
-        <p className="text-zinc-400 max-sm:text-sm">
-          Member Since:{" "}
-          {dateFormat(new Date(currentUser.createdAt).toISOString()) || ""}
-        </p>
-        <p className="text-zinc-400 max-sm:text-sm">
-          Posts: {currentUser._count.posts}
-        </p>
+        <div className="mb-2 lg:mb-4">
+          <p className="text-zinc-400 max-sm:text-sm">
+            Member Since:{" "}
+            {dateFormat(new Date(currentUser.createdAt).toISOString()) || ""}
+          </p>
+          <p className="text-zinc-400 max-sm:text-sm">
+            Posts: {currentUser._count.posts}
+          </p>
+        </div>
         {currentUser.role === UserType.ADMIN && (
-          <>
-            <Link
-              href={"/dashboard/admin-portal/stats"}
-              className="group flex w-full items-center justify-between gap-1.5 rounded-sm bg-gradient-to-tr from-lime-400 via-emerald-500 to-green-600 px-3 py-1.5 font-semibold tracking-wider text-black min-[450px]:w-fit lg:hidden lg:w-full"
-            >
-              Admin Portal
-              <ArrowUpRight className="rotate-45 transition group-hover:rotate-0 max-lg:h-5 max-lg:w-5" />
-            </Link>
-          </>
+          <Link
+            href={"/dashboard/admin-portal/stats"}
+            className="group flex w-full items-center justify-between gap-1.5 rounded-sm bg-gradient-to-tr from-lime-400 via-emerald-500 to-green-600 px-3 py-1.5 font-semibold tracking-wider text-black min-[450px]:w-fit lg:hidden lg:w-full"
+          >
+            Admin Portal
+            <ArrowUpRight className="rotate-45 transition group-hover:rotate-0 max-lg:h-5 max-lg:w-5" />
+          </Link>
         )}
       </div>
     </div>

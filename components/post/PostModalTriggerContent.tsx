@@ -50,9 +50,19 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 25vw"
                 fill
                 onError={() => setOnError(true)}
+                onLoad={() => setIsLoading(false)}
                 src={onError ? "/placeholder_post_image.svg" : post.thumbnail}
                 className="object-cover"
               />
+              {isLoading && (
+                <Image
+                  src={post.thumbnail}
+                  sizes="24px"
+                  fill
+                  className="object-cover blur-lg"
+                  alt="blur"
+                />
+              )}
             </div>
           </div>
           <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/75 px-1.5 py-0.5 text-zinc-200 max-md:text-sm">
@@ -78,7 +88,7 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
               sizes="24px"
               fill
               className="object-cover blur-lg"
-              alt="idk"
+              alt="blur"
             />
           )}
           <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/75 px-1.5 py-0.5 text-sm text-zinc-200">
