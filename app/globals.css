@@ -411,7 +411,7 @@
 .cl-signIn-start,
 .cl-signUp-start,
 .cl-card {
-  @apply border-zinc-700 bg-[#1c1c1c] shadow-xl shadow-blue-500/10;
+  @apply border-zinc-700 bg-[#1c1c1c] shadow-xl shadow-green-500/10;
 }
 
 .cl-modalCloseButton {
@@ -443,12 +443,32 @@
   @apply bg-zinc-400;
 }
 
-.cl-dividerText {
-  @apply text-zinc-400;
+.cl-dividerText,
+.cl-alertText,
+.cl-alert {
+  @apply border-zinc-700 text-zinc-400;
 }
 
+.cl-identityPreviewText {
+  @apply text-zinc-300;
+}
+
+.cl-internal-gofy8m,
+.cl-internal-17bz5n6 {
+  @apply text-zinc-200;
+}
+
+.cl-otpCodeFieldInput,
 .cl-formFieldLabel {
-  @apply text-zinc-100;
+  @apply border-b-green-700 text-zinc-100 focus:border-b-green-500;
+}
+
+.cl-identityPreview {
+  @apply border-zinc-700;
+}
+
+.cl-formFieldInfoText__password {
+  @apply text-zinc-400;
 }
 
 .cl-formFieldInput {
@@ -456,7 +476,7 @@
 }
 
 .cl-formButtonPrimary {
-  @apply bg-blue-600 py-1 text-base font-semibold text-white hover:bg-blue-700 focus:border-none;
+  @apply bg-green-600 py-1 text-base font-semibold text-white hover:bg-green-600 focus:border-none;
 }
 
 .cl-footerActionText,
@@ -464,8 +484,15 @@
   @apply text-zinc-400;
 }
 
-.cl-footerActionLink {
-  @apply text-blue-500;
+.cl-footerActionLink,
+.cl-formResendCodeLink,
+.cl-headerBackLink,
+.cl-headerBackIcon {
+  @apply text-green-500 hover:text-green-400;
+}
+
+.cl-internal-b3fm6y {
+  @apply bg-green-500 text-black;
 }
 
 .cl-formFieldInputShowPasswordButton {
@@ -496,7 +523,8 @@
 }
 
 .cl-userButtonPopoverActionButtonIcon,
-.cl-avatarImageActionsUpload {
+.cl-avatarImageActionsUpload,
+.cl-internal-lb49to {
   @apply text-green-600;
 }
 
