@@ -43,7 +43,6 @@ const NavLinks = () => {
             {pathname === link.pathname && (
               <motion.div
                 layoutId="nav-link"
-                // style={{ borderRadius: 9999 }}
                 className="absolute inset-0 border-b-2 border-green-500"
                 transition={{
                   type: "spring",
@@ -52,7 +51,9 @@ const NavLinks = () => {
                 }}
               />
             )}
-            <span className="relative transition">{link.label}</span>
+            <span className="relative font-medium transition">
+              {link.label}
+            </span>
           </Link>
         ))}
         <button

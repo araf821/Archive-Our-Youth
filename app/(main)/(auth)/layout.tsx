@@ -1,5 +1,7 @@
 import { kobata } from "@/app/fonts";
+import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
+import { ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
 
 type Props = {
   children: React.ReactNode;
@@ -28,7 +30,26 @@ const layout = ({ children }: Props) => {
             and start sharing your vision!
           </p>
         </div>
-        {children}
+        <ClerkLoading>
+          <div className="flex aspect-[4/5] max-h-[500px] flex-col justify-center gap-1 rounded-xl border border-zinc-700 bg-zinc-900 p-8 max-lg:w-full lg:w-[400px]">
+            <Skeleton className="h-8 w-60" />
+            <Skeleton className="h-4 w-full" />
+
+            <Skeleton className="mt-4 h-12 w-full" />
+            <hr className="my-4 border-t-2 border-t-zinc-800" />
+
+            <Skeleton className="h-2 w-20" />
+            <Skeleton className="h-12 w-full" />
+
+            <Skeleton className="mt-4 h-2 w-20" />
+            <Skeleton className="h-12 w-full" />
+
+            <Skeleton className="mt-4 h-14 w-full" />
+
+            <Skeleton className="h-2 w-16" />
+          </div>
+        </ClerkLoading>
+        <ClerkLoaded>{children}</ClerkLoaded>
       </main>
       <div className="fixed inset-0 bg-gradient-to-b from-zinc-900 via-green-800/10 to-zinc-950"></div>
     </div>

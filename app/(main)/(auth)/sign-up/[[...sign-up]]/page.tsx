@@ -1,4 +1,5 @@
-import { SignUp } from "@clerk/nextjs";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ClerkLoaded, ClerkLoading, SignUp } from "@clerk/nextjs";
 
 const RegisterPage = () => {
   return <SignUp />;
