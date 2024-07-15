@@ -12,7 +12,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Archive Our Youth",
   description:
-    "Explore a global showcase of written, visual, and vocal artistry on Archive Our Youth. Join creators from around the world as they share their talents. Discover captivating stories, striking visuals, and powerful voices. Welcome to a diverse community of creativity.",
+    "Explore a global showcase of written, visual, and vocal artistry on Archive Our Youth. Join youth from around the world as they share their moments and experiences. Discover captivating stories, striking visuals, and powerful voices. Welcome to a diverse community of creativity.",
   icons: [
     {
       url: "/AOY.svg",
