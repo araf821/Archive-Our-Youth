@@ -15,19 +15,12 @@ export const siteConfig = {
     "mental health",
     "youth voices",
   ],
-  icons: {
-    icon: {
-      rel: "icon",
-      url: "/favicon.ico",
-      type: "image/x-icon",
+  icons: [
+    {
+      url: "/AOY.svg",
+      href: "/AOY.svg",
     },
-    shortcut: [
-      {
-        url: "/favicon.ico",
-        type: "image/x-icon",
-      },
-    ],
-  },
+  ],
   openGraph: {
     url: "https://archiveouryouth.ca",
     type: "website",

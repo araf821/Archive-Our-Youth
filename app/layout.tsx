@@ -3,6 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Poppins } from "next/font/google";
 import { Metadata } from "next";
 import Providers from "@/components/Providers";
+import { siteConfig } from "@/lib/config/site";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -10,15 +11,16 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Archive Our Youth",
-  description:
-    "Explore a global showcase of written, visual, and vocal artistry on Archive Our Youth. Join youth from around the world as they share their moments and experiences. Discover captivating stories, striking visuals, and powerful voices. Welcome to a diverse community of creativity.",
-  icons: [
-    {
-      url: "/AOY.svg",
-      href: "/AOY.svg",
-    },
-  ],
+  title: {
+    default: "Archive Our Youth",
+    template: "%s | Archive Our Youth",
+  },
+  description: siteConfig.description,
+  icons: siteConfig.icons,
+  metadataBase: new URL("https://archiveouryouth.ca"),
+  applicationName: "Archive Our Youth",
+  openGraph: siteConfig.openGraph,
+  twitter: siteConfig.twitter,
 };
 
 export default function RootLayout({
