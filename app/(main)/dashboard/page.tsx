@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Dashboard | Archive Our Youth",
+  title: "Dashboard",
 };
 
 const DashboardPage = async ({

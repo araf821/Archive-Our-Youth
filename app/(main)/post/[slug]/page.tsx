@@ -22,11 +22,11 @@ export async function generateMetadata({ params }: SinglePostPageParams) {
   });
 
   if (!post) {
-    return { title: "View Post | Archive Our Youth" };
+    return { title: "Post" };
   }
 
   return {
-    title: post?.title + " | Archive Our Youth",
+    title: post.title,
   };
 }
 

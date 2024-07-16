@@ -1,5 +1,9 @@
-import { Skeleton } from "@/components/ui/skeleton";
-import { ClerkLoaded, ClerkLoading, SignUp } from "@clerk/nextjs";
+import { SignUp } from "@clerk/nextjs";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sign Up",
+};
 
 const RegisterPage = () => {
   return <SignUp />;

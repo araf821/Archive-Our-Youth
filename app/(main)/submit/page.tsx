@@ -3,7 +3,7 @@ import { initializeUser } from "@/lib/initializeUser";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Submission Portal | Archive Our Youth",
+  title: "Submit",
   description:
     "Submit your work to have displayed inside of an archive viewed by thousands of people!",
 };

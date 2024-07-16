@@ -2,6 +2,7 @@ import { kobata } from "@/app/fonts";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
+import { Metadata } from "next";
 
 type Props = {
   children: React.ReactNode;
