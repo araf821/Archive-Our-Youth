@@ -36,10 +36,10 @@ export async function POST(req: Request) {
           slugify(title, {
             lower: true,
             replacement: "-",
-            remove: /[:]/g,
-          }) +
+            remove: /[^a-zA-Z0-9\s]/g,
+          }).toLowerCase() +
           "-" +
-          nanoid(5),
+          nanoid(),
         researchQuestions,
       },
     });
