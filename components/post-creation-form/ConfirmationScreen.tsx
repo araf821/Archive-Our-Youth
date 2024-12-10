@@ -33,6 +33,11 @@ export const ConfirmationScreen = ({
 
   return (
     <div className="mx-auto flex max-w-screen-sm flex-col justify-center space-y-4">
+      {form.formState.errors.researchQuestions && (
+        <p className="text-sm text-rose-500">
+          {form.formState.errors.researchQuestions.message}
+        </p>
+      )}
       <div>
         <p className="text-xl text-zinc-100 md:text-2xl">Review Submission</p>
         {userId ? null : (
