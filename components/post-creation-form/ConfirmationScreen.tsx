@@ -7,8 +7,8 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Tag from "@/components/Tag";
 import { CarouselApi } from "@/components/ui/carousel";
-import { ConsentForm } from "./ConsentForm";
 import { useAuth } from "@clerk/nextjs";
+import { ConsentForm } from "./ConsentForm";
 
 interface ConfirmationScreenProps {
   form: UseFormReturn<z.infer<typeof PostCreationValidator>>;

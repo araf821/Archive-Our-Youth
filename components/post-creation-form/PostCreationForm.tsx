@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
 import {
   Carousel,
@@ -13,9 +12,8 @@ import {
 } from "../ui/carousel";
 import { Form } from "../ui/Form";
 
-// Components
-import { IntroScreen } from "./components/IntroScreen";
-import { ConfirmationScreen } from "./components/ConfirmationScreen";
+import { IntroScreen } from "./IntroScreen";
+import { ConfirmationScreen } from "./ConfirmationScreen";
 import ResearchQuestions from "./ResearchQuestions";
 import TypeSelectionSlide from "./TypeSelectionSlide";
 import TitleSlide from "./TitleSlide";
@@ -49,7 +47,7 @@ const PostCreationForm = () => {
         ...prev,
         error: true,
       }));
-      toast.error(result.error);
+      toast.error(result.error || "Something went wrong.");
       return;
     }
 
@@ -57,7 +55,7 @@ const PostCreationForm = () => {
   };
 
   const handleConsentChange = (checked: boolean) => {
-    setConsentChecked((prev) => ({
+    setConsentChecked(() => ({
       checked,
       error: checked ? false : true,
     }));
