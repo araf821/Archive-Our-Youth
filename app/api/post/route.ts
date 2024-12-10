@@ -39,7 +39,7 @@ export async function POST(req: Request) {
             remove: /[^a-zA-Z0-9\s]/g,
           }).toLowerCase() +
           "-" +
-          nanoid(),
+          nanoid().slice(0, 5),
         researchQuestions,
       },
     });

@@ -116,7 +116,6 @@ const PostCreationForm = () => {
                 checked={checked}
                 error={error}
                 onCheckedChange={handleConsentChange}
-                onSubmit={handleSubmit}
               />
             </CarouselItem>
           </CarouselContent>

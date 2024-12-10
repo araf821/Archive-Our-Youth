@@ -17,7 +17,6 @@ interface ConfirmationScreenProps {
   checked: boolean;
   error: boolean;
   onCheckedChange: (checked: boolean) => void;
-  onSubmit: () => void;
 }
 
 export const ConfirmationScreen = ({
@@ -27,7 +26,6 @@ export const ConfirmationScreen = ({
   checked,
   error,
   onCheckedChange,
-  onSubmit,
 }: ConfirmationScreenProps) => {
   const { userId } = useAuth();
   const contentType = form.watch("contentType");
@@ -319,6 +317,7 @@ export const ConfirmationScreen = ({
       </div>
 
       <button
+        type="submit"
         disabled={
           isLoading ||
           !!form.formState.errors.content ||
@@ -327,7 +326,6 @@ export const ConfirmationScreen = ({
           !!form.formState.errors.description
         }
         className="morph-md rounded-md bg-zinc-800 px-3 py-2 transition hover:bg-zinc-700 disabled:opacity-70 disabled:hover:bg-zinc-800"
-        onClick={onSubmit}
       >
         {!!form.formState.errors.content ||
         !!form.formState.errors.contentType ||

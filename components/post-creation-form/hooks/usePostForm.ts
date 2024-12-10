@@ -5,7 +5,6 @@ import { PostCreationValidator } from "@/lib/validators/post";
 import { ContentType } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { toast } from "sonner";
 import { useCallback } from "react";
 
 export const usePostForm = () => {
