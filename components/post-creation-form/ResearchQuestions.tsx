@@ -10,35 +10,27 @@ interface ResearchQuestion {
 const RESEARCH_QUESTIONS: ResearchQuestion[] = [
   {
     id: "q1",
-    text: "What are challenges or barriers to wellbeing? Personal, in your community, globally.",
+    text: "Challenges or barriers",
   },
   {
     id: "q2",
-    text: "How does digital technology impact your wellbeing?",
+    text: "What wellbeing means to you",
   },
   {
     id: "q3",
-    text: "What are your personal, family, or community wellbeing practices/habits/routines?",
+    text: "The impact of digital technology",
   },
   {
     id: "q4",
-    text: "What do you wish existed to support the wellbeing of young people and/or the planet?",
+    text: "Practices, habits, and routines",
   },
   {
     id: "q5",
-    text: "What is the future that you dream of?",
+    text: "The future (fears, hopes, or dreams)",
   },
   {
     id: "q6",
-    text: "What does well-being mean to you?",
-  },
-  {
-    id: "q7",
-    text: "What would you tell your younger or older self?",
-  },
-  {
-    id: "q8",
-    text: "What groups, initiatives, projects, and resources support your wellbeing and the wellbeing of the planet?",
+    text: "Resources or groups that support wellbeing",
   },
 ];
 
@@ -105,14 +97,14 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
     <div className="grid max-w-screen-md place-items-center gap-8 md:gap-12">
       <div className="text-center max-sm:max-w-[340px]">
         <p className="balance text-xl md:text-2xl">
-          What question does your submission answer?
+          How does your post explore wellbeing?
         </p>
         <p className="balance text-zinc-500 max-md:text-sm">
-          This question is for research purposes only.{" "}
-          <span className="font-semibold">Select all that apply.</span>
+          Wellbeing: Personal. Family. Community. Planetary. Other.{" "}
+          <span className="font-semibold">(Choose all that apply)</span>
         </p>
       </div>
-      <div className="space-y-2">
+      <div className="w-full space-y-2">
         {RESEARCH_QUESTIONS.map((question) => (
           <label
             key={question.id}
