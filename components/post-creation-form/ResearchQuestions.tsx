@@ -18,7 +18,7 @@ const RESEARCH_QUESTIONS: ResearchQuestion[] = [
   },
   {
     id: "q3",
-    text: "The impact of digital technology",
+    text: "Advice to my older or younger self",
   },
   {
     id: "q4",
@@ -26,10 +26,14 @@ const RESEARCH_QUESTIONS: ResearchQuestion[] = [
   },
   {
     id: "q5",
-    text: "The future (fears, hopes, or dreams)",
+    text: "The impact of digital technology",
   },
   {
     id: "q6",
+    text: "The future (fears, hopes, or dreams)",
+  },
+  {
+    id: "q7",
     text: "Resources or groups that support wellbeing",
   },
 ];

@@ -23,7 +23,7 @@ const PostContent: FC<PostContentProps> = ({
       {researchQuestions.length > 0 && (
         <div>
           <p className="mb-4 font-medium tracking-wide text-zinc-400 max-md:text-sm">
-            This post addresses the following questions:
+            This post explores the following areas of wellbeing:
           </p>
           <ul>
             {researchQuestions.map((q) => (
