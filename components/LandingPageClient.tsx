@@ -1,7 +1,7 @@
 "use client";
 
 import { useModal } from "@/hooks/useModal";
-import { useAuth } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { FC, useEffect, useState } from "react";
 import FadeInX from "./FadeInX";
@@ -13,7 +13,7 @@ import FadeInY from "./FadeInY";
 interface LandingPageClientProps {}
 
 const LandingPageClient: FC<LandingPageClientProps> = ({}) => {
-  const { userId } = useAuth();
+  const { user } = useUser();
   const { onOpen } = useModal();
   const [isMounted, setIsMounted] = useState(false);
 
@@ -56,7 +56,7 @@ const LandingPageClient: FC<LandingPageClientProps> = ({}) => {
             <Link className="relative block" href="/submit">
               <button
                 onClick={(e) => {
-                  if (!userId) {
+                  if (user) {
                     e.preventDefault();
                     onOpen("submitAuthModal");
                   }

@@ -403,7 +403,7 @@
 }
 
 /*  ------------------------ CLERK STYLES --------------------------- */
-
+/* 
 .cl-modalContent {
   @apply my-auto;
 }
@@ -534,4 +534,4 @@
 
 .cl-badge {
   @apply bg-green-500 pt-1 text-black;
-}
+} */

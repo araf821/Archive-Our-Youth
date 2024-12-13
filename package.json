@@ -15,7 +15,8 @@
     "os": false
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.30.1",
+    "@clerk/nextjs": "^6.9.5",
+    "@clerk/themes": "^2.2.3",
     "@hookform/resolvers": "^3.3.0",
     "@mantine/hooks": "^7.5.3",
     "@nextui-org/react": "^2.2.10",
