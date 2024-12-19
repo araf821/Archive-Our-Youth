@@ -4,12 +4,13 @@ import { useModal } from "@/hooks/useModal";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "../ui/Dialog";
 import axios from "axios";
-import { useState } from "react";
+import { useTransition, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, X } from "lucide-react";
 import { toast } from "sonner";
@@ -19,23 +20,28 @@ const DeletePostModal = () => {
   const { postWithoutUser } = data;
 
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
 
   const isModalOpen = isOpen && type === "deletePostModal";
 
-  const handleDelete = async () => {
-    setIsLoading(true);
+  const handleDelete = () => {
+    setConfirmingDelete(true);
+  };
 
-    try {
-      await axios.delete(`/api/post/${postWithoutUser?.id}`);
-      toast.success("Post deleted");
-      router.refresh();
-      onClose();
-    } catch (error) {
-      toast.error("Something went wrong");
-    } finally {
-      setIsLoading(false);
-    }
+  const handleConfirmDelete = () => {
+    startTransition(async () => {
+      try {
+        await axios.delete(`/api/post/${postWithoutUser?.id}`);
+        toast.success("Post deleted");
+        router.refresh();
+        onClose();
+      } catch (error) {
+        toast.error("Something went wrong");
+      } finally {
+        setConfirmingDelete(false);
+      }
+    });
   };
 
   return (
@@ -45,36 +51,53 @@ const DeletePostModal = () => {
           <X className="text-zinc-500 max-md:h-5 max-md:w-5" />
         </DialogTrigger>
         <DialogHeader>
-          <DialogTitle className="text-center text-2xl font-normal text-zinc-200">
+          <DialogTitle className="font-normal text-zinc-200">
             Are you sure you want to delete{" "}
             <span className="font-bold text-white">
               {postWithoutUser?.title}?
             </span>
           </DialogTitle>
-          <p className="mx-auto pt-4 text-zinc-300">
-            The post will be deleted{" "}
-            <span className="text-amber-500">permanently</span>.
-          </p>
+          <DialogDescription className="text-zinc-300">
+            {confirmingDelete ? (
+              "This action cannot be undone."
+            ) : (
+              <>
+                The post will be deleted{" "}
+                <span className="text-amber-500">permanently</span>.
+              </>
+            )}
+          </DialogDescription>
         </DialogHeader>
-        <div className="flex flex-col gap-4">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            confirmingDelete ? handleConfirmDelete() : handleDelete();
+          }}
+          className="flex flex-col gap-4"
+        >
           <button
+            type="button"
             onClick={onClose}
-            className="morph-md rounded-md border border-zinc-700 bg-zinc-800 py-2 tracking-wider text-white transition hover:bg-zinc-800 md:text-lg"
+            className="rounded-md border border-zinc-700/50 bg-zinc-900 py-2 tracking-wider text-white transition hover:bg-zinc-800"
           >
             Cancel
           </button>
           <button
-            disabled={isLoading}
-            onClick={handleDelete}
-            className="morph-md rounded-md bg-amber-500 py-2 text-black transition hover:bg-amber-600 md:text-lg"
+            type="submit"
+            disabled={isPending}
+            className={`rounded-md bg-amber-500 py-2 font-medium text-black transition hover:bg-amber-600 ${
+              confirmingDelete ? "bg-red-500 hover:bg-red-600" : ""
+            }`}
           >
-            {isLoading ? (
+            {isPending ? (
               <Loader2 className="mx-auto animate-spin" />
+            ) : confirmingDelete ? (
+              "Confirm Delete"
             ) : (
               "Delete Post"
             )}
           </button>
-        </div>
+        </form>
       </DialogContent>
     </Dialog>
   );

@@ -2,17 +2,22 @@ import { currentUser } from "@clerk/nextjs/server";
 import { db } from "./db";
 
 export const getCurrentUser = async () => {
-  const signedInUser = await currentUser();
+  try {
+    const authorizedUser = await currentUser();
 
-  if (!signedInUser) {
+    if (!authorizedUser) {
+      return null;
+    }
+
+    const user = await db.user.findUnique({
+      where: {
+        userId: authorizedUser.id,
+      },
+    });
+
+    return user;
+  } catch (error) {
+    console.error("Error fetching current user:", error);
     return null;
   }
-
-  const user = await db.user.findUnique({
-    where: {
-      userId: signedInUser.id,
-    },
-  });
-
-  return user;
 };
