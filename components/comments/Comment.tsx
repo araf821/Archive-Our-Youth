@@ -98,9 +98,9 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
         {/* <div className="h-full w-1 bg-zinc-300" /> */}
       </div>
       <div className="flex flex-1 flex-col gap-1">
-        <p className="max-xs:flex-col-reverse xs:items-center flex gap-1.5 break-words font-medium max-md:text-sm md:text-lg">
+        <p className="flex gap-1.5 break-words font-medium max-md:text-sm max-xs:flex-col-reverse xs:items-center md:text-lg">
           {comment.user?.name}
-          <span className="max-xs:hidden mx-1 text-zinc-500">•</span>
+          <span className="mx-1 text-zinc-500 max-xs:hidden">•</span>
           <span className="text-xs text-zinc-500 md:text-sm">
             {formatDateString(comment.createdAt.toString())}
           </span>
@@ -126,7 +126,7 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
             >
               <Heart
                 strokeWidth={3}
-                className={cn("h-4 w-4 pb-0.5 md:h-5 md:w-5", {
+                className={cn("size-4 pb-0.5 md:h-5 md:w-5", {
                   "fill-red-500 text-red-500": likeState.alreadyLiked,
                 })}
               />
@@ -144,7 +144,7 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
                 className="flex gap-1 transition duration-200 hover:text-green-500 max-md:text-sm"
               >
                 <span className="sr-only">reply button</span>
-                <Reply strokeWidth={3} className="h-4 w-4 md:h-5 md:w-5" />
+                <Reply strokeWidth={3} className="size-4 md:h-5 md:w-5" />
                 {comment._count?.replies || 0} replies
               </button>
             </>
@@ -157,7 +157,7 @@ const Comment: FC<CommentProps> = ({ comment, reply, user, refresh }) => {
                 className="flex gap-1 transition duration-200 hover:text-rose-500 max-md:text-sm"
               >
                 <span className="sr-only">delete button</span>
-                <Trash strokeWidth={3} className="h-4 w-4 md:h-5 md:w-5" />
+                <Trash strokeWidth={3} className="size-4 md:h-5 md:w-5" />
               </button>
             </>
           )}

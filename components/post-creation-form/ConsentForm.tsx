@@ -40,7 +40,7 @@ export const ConsentForm = ({
           id="consent"
           checked={checked}
           onCheckedChange={(checked) => onCheckedChange(checked as boolean)}
-          className="h-5 w-5 translate-y-1 border border-zinc-500 bg-zinc-700 checked:bg-zinc-600 data-[state=checked]:bg-green-600"
+          className="size-5 translate-y-1 border border-zinc-500 bg-zinc-700 checked:bg-zinc-600 data-[state=checked]:bg-green-600"
         />
         <label
           htmlFor="consent"

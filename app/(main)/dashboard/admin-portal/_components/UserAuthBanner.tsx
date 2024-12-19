@@ -34,7 +34,7 @@ const UserAuthBanner = ({ user }: UserAuthBannerProps) => {
         onClick={() => setClosed(true)}
         className="mr-2 mt-2 self-start text-zinc-400 transition duration-200 hover:text-white"
       >
-        <X className="h-5 w-5" />
+        <X className="size-5" />
       </button>
     </div>
   );

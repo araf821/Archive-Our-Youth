@@ -429,7 +429,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                   className="morph-sm w-fit border border-zinc-700 bg-zinc-800 hover:bg-zinc-800"
                 >
                   Reset
-                  <RefreshCcw className="ml-2 h-4 w-4" />
+                  <RefreshCcw className="size-4 ml-2" />
                 </Button>
                 <Button className="morph-md w-fit bg-green-500 tracking-wider text-black hover:bg-green-600">
                   Search

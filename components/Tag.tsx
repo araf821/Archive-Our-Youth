@@ -14,7 +14,7 @@ const Tag: FC<TagProps> = ({ small, tag, index, onDelete }) => {
     <li
       key={tag}
       className={cn(
-        "text-bold capitalize flex w-fit items-center justify-between gap-2 rounded-lg px-3 py-1 text-zinc-900",
+        "text-bold flex w-fit items-center justify-between gap-2 rounded-lg px-3 py-1 capitalize text-zinc-900",
         {
           "border-2 border-green-400 text-green-400": index === 0,
           "border-2 border-rose-400 text-rose-400": index === 1,
@@ -31,7 +31,7 @@ const Tag: FC<TagProps> = ({ small, tag, index, onDelete }) => {
       {tag}
       {onDelete && (
         <button type="button" onClick={() => onDelete(tag)}>
-          <X className="h-4 w-4" />
+          <X className="size-4" />
         </button>
       )}
     </li>

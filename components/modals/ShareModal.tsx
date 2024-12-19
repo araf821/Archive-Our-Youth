@@ -51,12 +51,12 @@ const ShareModal = () => {
           >
             {clicked ? (
               <p className="flex items-center gap-1.5 text-green-500">
-                <Check className="h-4 w-4 text-green-500 md:h-5 md:w-5" />
+                <Check className="size-4 text-green-500 md:h-5 md:w-5" />
                 Copy
               </p>
             ) : (
               <p className="flex items-center gap-1.5">
-                <Copy className="h-4 w-4 md:h-5 md:w-5" />
+                <Copy className="size-4 md:h-5 md:w-5" />
                 Copy
               </p>
             )}

@@ -12,7 +12,6 @@ import { useModal } from "@/hooks/useModal";
 import { kobata } from "@/app/fonts";
 import { useMenu } from "@/hooks/useMenu";
 import Image from "next/image";
-import UserDropdown from "../UserDropdown";
 import { UserButton } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 
@@ -132,7 +131,7 @@ const Navbar = ({ user }: NavbarProps) => {
               }}
             >
               <span className="sr-only">search</span>
-              <Search className="h-6 w-6 md:h-6 md:w-6" />
+              <Search className="size-5" />
             </button>
           )}
           <button onClick={() => openMenu()} className="relative">
@@ -141,7 +140,7 @@ const Navbar = ({ user }: NavbarProps) => {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 fill-white"
+              className="size-6 fill-white"
             >
               <path
                 fillRule="evenodd"

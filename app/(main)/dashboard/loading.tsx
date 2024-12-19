@@ -17,7 +17,7 @@ const loading: FC<loadingProps> = ({}) => {
             <Skeleton className="h-2 w-36 md:h-4" />
           </div>
         </div>
-        <Skeleton className="absolute right-2 top-2 h-4 w-4 md:h-8 md:w-8" />
+        <Skeleton className="size-4 absolute right-2 top-2 md:h-8 md:w-8" />
       </div>
       <div className="mt-8 flex flex-col gap-4">
         <Skeleton className="h-12 w-full max-w-[275px]" />

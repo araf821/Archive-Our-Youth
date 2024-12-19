@@ -63,7 +63,7 @@ const Comment = ({ comment, userPage }: CommentProps) => {
           href={`/post/${comment.post.slug}`}
         >
           {comment.post.title}
-          <ExternalLink className="h-4 w-4 shrink-0" />
+          <ExternalLink className="size-4 shrink-0" />
         </Link>
       </p>
 

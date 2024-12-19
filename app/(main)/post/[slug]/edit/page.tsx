@@ -54,7 +54,7 @@ const page: FC<pageProps> = async ({ params }) => {
         )}
       >
         <div className="px-4">
-          <Edit2 className="h-4 w-4 md:h-5 md:w-5" />
+          <Edit2 className="size-4 md:h-5 md:w-5" />
         </div>
         <div className="h-full min-h-[70px] w-[1px] bg-amber-500" />
         <div className="ml-4 flex flex-col">

@@ -41,7 +41,7 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post, clicked, onClose }) => {
       )}
       <div className="absolute left-0 top-20 z-10 h-12 w-[700px] translate-x-full rotate-45 bg-white/10 blur-xl brightness-200 transition duration-700 group-hover:-translate-x-full md:duration-500" />
       <div className="absolute left-0 top-0 z-20 rounded-br-md bg-black/75 p-1.5 text-zinc-100 max-sm:text-xs sm:text-sm">
-        <Volume2 className="h-4 w-4 md:h-5 md:w-5" />
+        <Volume2 className="size-4 md:h-5 md:w-5" />
       </div>
       {!post.thumbnail && (
         <>

@@ -60,7 +60,7 @@ const ManagePostModal = ({
                   >
                     <p>{post.user.name}</p>
                     <button>
-                      <ExternalLink className="h-4 w-4" />
+                      <ExternalLink className="size-4" />
                     </button>
                   </Link>
                 ) : (
@@ -86,7 +86,7 @@ const ManagePostModal = ({
                   className="flex items-center gap-2"
                 >
                   <p>{post._count.comments}</p>
-                  <ExternalLink className="h-4 w-4" />
+                  <ExternalLink className="size-4" />
                 </Link>
               </div>
             </div>

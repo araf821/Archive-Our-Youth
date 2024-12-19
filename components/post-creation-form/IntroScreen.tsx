@@ -56,7 +56,7 @@ export const IntroScreen = ({ api }: IntroScreenProps) => {
         className="w-fit border-2"
       >
         <span className="pl-1">Get Started</span>
-        <ArrowRight className="h-5 w-5" />
+        <ArrowRight className="size-5" />
       </Button>
 
       <p className="text-zinc-400 max-md:hidden">

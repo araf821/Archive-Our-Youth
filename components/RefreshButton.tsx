@@ -13,7 +13,7 @@ const RefreshButton = ({ className }: RefreshButtonProps) => {
       <span className="sr-only">refresh</span>
       <ListRestart
         className={cn(
-          "h-5 w-5 text-zinc-500 transition hover:text-zinc-200 md:h-6 md:w-6",
+          "size-5 text-zinc-500 transition hover:text-zinc-200 md:h-6 md:w-6",
           className,
         )}
       />

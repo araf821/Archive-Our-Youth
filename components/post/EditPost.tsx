@@ -172,7 +172,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                       className="flex w-fit items-center gap-1 text-xs text-zinc-400 transition duration-200 hover:text-blue-500 sm:text-sm"
                     >
                       Markdown is supported!
-                      <ExternalLink className="h-4 w-4" />
+                      <ExternalLink className="size-4" />
                     </a>
                     <FormMessage />
                   </FormItem>
@@ -318,7 +318,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                       className="flex w-fit items-center gap-1 text-xs text-zinc-400 transition duration-200 hover:text-blue-500 sm:text-sm"
                     >
                       Markdown is supported!
-                      <ExternalLink className="h-4 w-4" />
+                      <ExternalLink className="size-4" />
                     </a>
                     <FormMessage />
                   </FormItem>

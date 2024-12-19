@@ -201,7 +201,7 @@ const ContactForm = ({}: Props) => {
         />
 
         <Button variant="outline" className="mt-6 w-full" disabled={isPending}>
-          {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {isPending && <Loader2 className="size-4 mr-2 animate-spin" />}
           Submit
         </Button>
       </form>

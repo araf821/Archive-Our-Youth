@@ -84,7 +84,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                 className="flex w-fit items-center gap-1 text-zinc-400 transition hover:text-blue-400 max-md:mx-auto"
               >
                 Markdown is supported!
-                <ExternalLink className="h-4 w-4" />
+                <ExternalLink className="size-4" />
               </Link>
             </div>
           </FormItem>
