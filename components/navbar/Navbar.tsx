@@ -13,6 +13,8 @@ import { kobata } from "@/app/fonts";
 import { useMenu } from "@/hooks/useMenu";
 import Image from "next/image";
 import UserDropdown from "../UserDropdown";
+import { UserButton } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 interface NavbarProps {
   user: User | null;
@@ -70,7 +72,7 @@ const Navbar = ({ user }: NavbarProps) => {
       <div className="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 opacity-100 md:px-8 xl:px-12">
         <Link
           href="/"
-          className={`${kobata.className} flex items-center text-xl text-zinc-100 transition duration-200 md:text-2xl`}
+          className={`${kobata.className} flex items-center text-lg text-zinc-100 transition duration-200 md:text-xl`}
         >
           Archive Our Youth
         </Link>
@@ -80,7 +82,7 @@ const Navbar = ({ user }: NavbarProps) => {
         <div className="max-lg:hidden md:items-center md:gap-x-6 lg:flex">
           <button
             className={cn(
-              "group relative text-lg font-medium tracking-wide text-white transition-all duration-300 hover:text-green-500 lg:hover:tracking-widest",
+              "group relative font-medium tracking-wide text-white transition-all duration-300 hover:text-green-500 lg:hover:tracking-widest",
               {
                 "text-green-500 hover:text-green-500": pathname === "/submit",
               },
@@ -96,7 +98,12 @@ const Navbar = ({ user }: NavbarProps) => {
             Submit
           </button>
           {user ? (
-            <UserDropdown user={user} />
+            // <UserDropdown user={user} />
+            <UserButton
+              appearance={{
+                baseTheme: dark,
+              }}
+            />
           ) : (
             <button
               onClick={() => onOpenModal("authModal")}

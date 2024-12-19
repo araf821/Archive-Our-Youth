@@ -37,7 +37,7 @@ const NavLinks = () => {
           <Link
             key={link.pathname}
             href={link.pathname}
-            className={cn("group relative py-1")}
+            className={cn("group relative py-1 text-sm")}
           >
             <span className="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-green-800 transition duration-300 group-hover:scale-x-100" />
             {pathname === link.pathname && (

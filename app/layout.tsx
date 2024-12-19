@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import { Metadata } from "next";
 import Providers from "@/components/Providers";
 import { siteConfig } from "@/lib/config/site";
+import { dark } from "@clerk/themes";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -29,7 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html lang="en">
         <body
           className={`${poppins.className} min-h-[100dvh] bg-zinc-900 antialiased selection:bg-green-500 selection:text-black`}
