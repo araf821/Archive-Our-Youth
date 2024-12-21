@@ -120,7 +120,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
               id={question.id}
               checked={checkboxStates[question.id]}
               onChange={(e) => handleCheckboxChange(e, question)}
-              className="absolute left-2 top-2.5 h-5 w-5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-green-500 group-hover:bg-zinc-700 group-hover:checked:bg-green-600"
+              className="size-5 absolute left-2 top-2.5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-green-500 group-hover:bg-zinc-700 group-hover:checked:bg-green-600"
             />
             <div>
               {question.text}
@@ -142,7 +142,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
             id="none"
             checked={checkboxStates.none}
             onChange={handleSelectNone}
-            className="absolute left-2 top-2.5 h-5 w-5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-green-500 group-hover:bg-zinc-700 group-hover:checked:bg-green-600"
+            className="size-5 absolute left-2 top-2.5 appearance-none rounded-md border-2 border-zinc-600 bg-zinc-900 fill-pink-400 transition checked:border-zinc-900 checked:bg-green-500 group-hover:bg-zinc-700 group-hover:checked:bg-green-600"
           />
           None of the above
         </label>

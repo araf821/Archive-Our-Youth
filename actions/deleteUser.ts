@@ -1,8 +1,8 @@
 "use server";
 
+import { clerkClient } from "@/lib/clerk";
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
-import { clerkClient } from "@clerk/nextjs";
 
 export const deleteUser = async (
   userId: string,
@@ -48,18 +48,17 @@ export const deleteUser = async (
 
   try {
     await clerkClient.users.deleteUser(userToDelete.userId);
+    await db.user.delete({
+      where: {
+        id: userToDelete.id,
+      },
+    });
   } catch (error) {
-    console.error("Clerk user deletion error", error);
+    console.error("ERROR DELETING USER", error);
     return {
-      error: "Clerk failed to delete this user.",
+      error: "Failed to delete user. Please try again later.",
     };
   }
-
-  await db.user.delete({
-    where: {
-      id: userToDelete.id,
-    },
-  });
 
   return {
     success: "User has been deleted! Refresh for changes.",

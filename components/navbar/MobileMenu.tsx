@@ -91,7 +91,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
               router.push("/submit");
             }}
             className={cn(
-              "w-fit text-3xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white",
+              "w-fit text-2xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white",
               {
                 "text-green-500 hover:text-green-500": pathname === "/submit",
               },
@@ -113,7 +113,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
                 router.push(link.pathname);
               }}
               className={cn(
-                "w-fit text-3xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white",
+                "w-fit text-2xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white",
                 {
                   "text-green-500 hover:text-green-500":
                     pathname === link.pathname,
@@ -137,7 +137,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
                   router.push("/home");
                 })
               }
-              className="w-fit text-3xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white"
+              className="w-fit text-2xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white"
             >
               Sign Out
             </button>

@@ -43,7 +43,7 @@ const FileUpload: FC<FileUploadProps> = ({
             type="button"
             className="morph-sm group absolute -right-2 -top-2 rounded-md border border-zinc-800 bg-zinc-900 text-zinc-300 hover:text-red-500"
           >
-            <X className="h-6 w-6 transition group-hover:rotate-90" />
+            <X className="size-6 transition group-hover:rotate-90" />
           </button>
         </div>
       );
@@ -62,7 +62,7 @@ const FileUpload: FC<FileUploadProps> = ({
             type="button"
             className="morph-sm group absolute -right-2 -top-2 rounded-md border border-zinc-800 bg-zinc-900 text-zinc-300 hover:text-red-500"
           >
-            <X className="h-5 w-5 transition group-hover:rotate-90" />
+            <X className="size-5 transition group-hover:rotate-90" />
           </button>
         </div>
       );
@@ -92,7 +92,7 @@ const FileUpload: FC<FileUploadProps> = ({
             type="button"
             className="morph-sm group absolute -right-2 -top-2 rounded-md border border-zinc-800 bg-zinc-900 text-zinc-300 hover:text-red-500"
           >
-            <X className="h-5 w-5 transition group-hover:rotate-90" />
+            <X className="size-5 transition group-hover:rotate-90" />
           </button>
           <Link
             href={value}

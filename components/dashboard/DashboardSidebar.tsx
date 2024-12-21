@@ -37,7 +37,7 @@ const DashboardSidebar: FC<DashboardSidebarProps> = ({ currentUser }) => {
           >
             <button>
               <span className="sr-only">edit button</span>
-              <Edit2 className="h-4 w-4 focus:outline-none md:h-5 md:w-5" />
+              <Edit2 className="size-4 focus:outline-none md:h-5 md:w-5" />
             </button>
           </EditProfileModal>
         </div>

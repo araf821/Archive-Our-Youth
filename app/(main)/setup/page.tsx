@@ -1,15 +1,15 @@
 import { kobata } from "@/app/fonts";
 import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
-import { currentUser, redirectToSignUp } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import SetupForm from "./_components/SetupForm";
+import { currentUser } from "@clerk/nextjs/server";
 
 const page = async ({}) => {
   const clerkUser = await currentUser();
 
-  if (!clerkUser?.id) {
-    return redirectToSignUp({ returnBackUrl: "/setup" });
+  if (!clerkUser) {
+    return redirect("/sign-up");
   }
 
   const user = await db.user.findUnique({

@@ -56,7 +56,7 @@ export default function DynamicImage({
       {loading && (
         <div className="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center">
           {loadingComponent || (
-            <Loader2 className="h-6 w-6 animate-spin text-zinc-400" />
+            <Loader2 className="size-6 animate-spin text-zinc-400" />
           )}
         </div>
       )}
@@ -87,7 +87,7 @@ export default function DynamicImage({
           <span className="sr-only">
             {contained ? "Switch to cover mode" : "Switch to contain mode"}
           </span>
-          <Scaling className="h-4 w-4 translate-x-2 text-zinc-50 transition-transform group-active:scale-90 md:h-5 md:w-5 md:translate-x-2.5" />
+          <Scaling className="size-4 translate-x-2 text-zinc-50 transition-transform group-active:scale-90 md:h-5 md:w-5 md:translate-x-2.5" />
         </button>
       )}
     </div>

@@ -16,7 +16,7 @@ const AboutPage = () => {
         </h4>
         <p>
           Our Archive is a dynamic hub dedicated to exploring dream futures,
-          various perspectives on wellbeing, and both existing and desired
+          various perspectives on wellbeing, and both exist`ing and desired
           resources that promote personal and planetary wellbeing. We extend an
           open invitation to youth, youth groups, and engaged collectives
           worldwide to actively contribute to this repository of knowledge.

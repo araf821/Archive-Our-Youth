@@ -1,21 +1,21 @@
 import { db } from "@/lib/db";
 import { UserSetupValidator } from "@/lib/validators/user-setup";
-import { auth } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export async function PUT(req: Request) {
   try {
-    const { userId } = auth();
+    const authorizedUser = await currentUser();
     const body = await req.json();
     const { imageUrl, name } = UserSetupValidator.parse(body);
 
-    if (!userId) {
+    if (!authorizedUser) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
     await db.user.update({
       where: {
-        userId,
+        userId: authorizedUser.id,
       },
       data: {
         name,

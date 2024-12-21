@@ -96,7 +96,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
             className="morph-md flex items-center gap-1 rounded-xl border border-zinc-900 p-2 text-center font-semibold tracking-wide text-zinc-400 transition hover:bg-amber-500 hover:text-black"
           >
             <span className="sr-only">Delete Post</span>
-            <Trash strokeWidth={3} className="h-5 w-5" />
+            <Trash strokeWidth={3} className="size-5" />
           </button>
           <div className="relative">
             <span className="absolute inset-0 translate-x-1 translate-y-1 rounded-md bg-green-800"></span>
@@ -105,7 +105,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
               className="relative z-10 flex items-center gap-1 rounded-md bg-green-500 px-2 py-1 text-center font-medium tracking-wide text-zinc-950 transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-green-600 active:translate-x-1 active:translate-y-1"
             >
               View Post
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className="size-5" />
             </Link>
           </div>
         </div>

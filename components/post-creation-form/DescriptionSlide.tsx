@@ -82,7 +82,7 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
               className="flex w-fit items-center gap-1 text-zinc-400 transition duration-200 hover:text-blue-500"
             >
               Markdown is supported!
-              <ExternalLink className="h-4 w-4" />
+              <ExternalLink className="size-4" />
             </a>
             <FormMessage />
           </div>

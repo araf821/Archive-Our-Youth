@@ -19,7 +19,7 @@ export default function PostModalHeader({
         className="rounded-md p-1.5 text-zinc-400 transition-colors hover:bg-zinc-800/80 hover:text-zinc-100"
       >
         <span className="sr-only">close modal</span>
-        <X className="h-5 w-5" />
+        <X className="size-5" />
       </button>
       <div className="relative">
         <span className="absolute inset-0 translate-x-1 translate-y-1 rounded-md bg-green-800/90"></span>

@@ -19,22 +19,24 @@ const AnonymousPostInfo: FC<AnonymousPostInfoProps> = ({}) => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger className="text-zinc-400 transition duration-300 hover:text-green-500">
-        <Info className="h-4 w-4 md:h-5 md:w-5" />
+        <Info className="size-4 md:h-5 md:w-5" />
       </DialogTrigger>
-      <DialogContent className="max-w-lg border border-zinc-800 bg-zinc-900 p-4 text-zinc-100 md:py-8">
+      <DialogContent className="max-w-lg border border-zinc-800 bg-zinc-900 p-4 text-zinc-100 md:p-8">
         <button
           className="absolute right-2 top-2 text-zinc-400 transition-colors hover:text-zinc-100"
           onClick={() => setIsOpen(false)}
         >
-          <X className="h-4 w-4 md:h-5 md:w-5" />
+          <X className="size-4 md:h-5 md:w-5" />
         </button>
         <DialogHeader>
           <DialogTitle>About anonymous posts</DialogTitle>
         </DialogHeader>
         <hr className="border-zinc-800" />
-        <div className="flex flex-col gap-3 text-lg text-zinc-200">
-          <p>This submission was made without signing in.</p>
-          <p className="text-base leading-5 text-zinc-400">
+        <div className="flex flex-col gap-3">
+          <p className="text-zinc-200  md:text-lg">
+            This submission was made without signing in.
+          </p>
+          <p className="leading-5 text-zinc-400 max-md:text-sm">
             If this is your post and you would like for it to be taken down,
             please reach out to us by emailing Deborah MacDonald at the Young
             Lives Research Lab at York University at:{" "}
@@ -47,13 +49,13 @@ const AnonymousPostInfo: FC<AnonymousPostInfoProps> = ({}) => {
             </Link>
             .
           </p>
-          <p className="text-base leading-5 text-zinc-400">
+          <p className="leading-5 text-zinc-400 max-md:text-sm">
             We will get back to you as soon possible if we require any further
             details from your end.
           </p>
           <Link
             href="mailto:dmacd@yorku.ca"
-            className="mt-2 w-fit rounded-md border-2 border-red-600 px-2 py-1 text-base font-semibold text-red-500 transition hover:bg-red-600 hover:text-white"
+            className="mt-2 w-fit rounded-md border border-red-600 bg-red-500/25 px-3 py-2 font-medium text-red-100 transition hover:bg-red-600 hover:text-white max-md:text-sm"
             target="_blank"
           >
             Request Deletion

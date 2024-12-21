@@ -37,7 +37,7 @@ const NavLinks = () => {
           <Link
             key={link.pathname}
             href={link.pathname}
-            className={cn("group relative py-1")}
+            className={cn("group relative py-1 text-sm")}
           >
             <span className="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-green-800 transition duration-300 group-hover:scale-x-100" />
             {pathname === link.pathname && (
@@ -58,7 +58,7 @@ const NavLinks = () => {
         ))}
         <button
           className={cn(
-            "morph-sm -translate-x-4 rounded-xl bg-zinc-800 p-2 text-white transition hover:bg-zinc-700 active:scale-90 max-lg:hidden",
+            "-translate-x-4 rounded-xl bg-zinc-800 p-2 text-white transition hover:bg-zinc-700 active:scale-90 max-lg:hidden",
             {
               "bg-green-500 shadow-[0_0_15px_2px] shadow-green-500/50 hover:bg-green-600":
                 isOpen,
@@ -71,7 +71,7 @@ const NavLinks = () => {
           }}
         >
           <span className="sr-only">search button</span>
-          <Search className="h-5 w-5 md:h-6 md:w-6" />
+          <Search className="size-5" />
         </button>
       </div>
     </div>

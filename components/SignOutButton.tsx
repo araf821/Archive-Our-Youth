@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { SignOutButton as SignOut } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 
@@ -9,14 +8,9 @@ interface SignOutButtonProps {
   signOutUrl?: string;
 }
 
-const SignOutButton = ({
-  className,
-  signOutUrl = "/home",
-}: SignOutButtonProps) => {
-  const router = useRouter();
-
+const SignOutButton = ({ className }: SignOutButtonProps) => {
   return (
-    <SignOut signOutCallback={() => router.push(signOutUrl)}>
+    <SignOut>
       <button
         className={cn("font-medium transition hover:text-zinc-200", className)}
       >

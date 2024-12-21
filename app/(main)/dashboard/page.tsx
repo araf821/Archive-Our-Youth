@@ -1,7 +1,7 @@
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import UserPostsSection from "@/components/post/UserPostsSection";
 import { db } from "@/lib/db";
-import { auth, redirectToSignIn } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
@@ -15,15 +15,15 @@ const DashboardPage = async ({
 }: {
   searchParams: { page?: string };
 }) => {
-  const { userId } = auth();
+  const user = await currentUser();
 
-  if (!userId) {
-    return redirectToSignIn();
+  if (!user) {
+    return redirect("/sign-in");
   }
 
-  const currentUser = await db.user.findUnique({
+  const dbUser = await db.user.findUnique({
     where: {
-      userId,
+      userId: user.id,
     },
     include: {
       _count: {
@@ -34,7 +34,7 @@ const DashboardPage = async ({
     },
   });
 
-  if (!currentUser) {
+  if (!dbUser) {
     return redirect("/home");
   }
 
@@ -45,13 +45,13 @@ const DashboardPage = async ({
         <p className="text-4xl font-medium md:text-5xl lg:hidden">Dashboard</p>
         <hr className="mb-4 mt-2 border-zinc-700 lg:hidden" />
 
-        <DashboardSidebar currentUser={currentUser} />
+        <DashboardSidebar currentUser={dbUser} />
       </div>
 
       {/* Posts */}
       <Suspense fallback={<UserPostsSection.Skeleton />}>
         <UserPostsSection
-          userId={currentUser.id}
+          userId={dbUser.id}
           page={parseInt(searchParams.page ?? "1")}
         />
       </Suspense>
