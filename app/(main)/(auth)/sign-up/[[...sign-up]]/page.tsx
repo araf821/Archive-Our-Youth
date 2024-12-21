@@ -1,4 +1,4 @@
-import { SignUp } from "@clerk/nextjs";
+import { ClerkLoaded, ClerkLoading, SignUp } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Metadata } from "next";
 
@@ -8,11 +8,16 @@ export const metadata: Metadata = {
 
 const RegisterPage = () => {
   return (
-    <SignUp
-      appearance={{
-        baseTheme: dark,
-      }}
-    />
+    <>
+      <ClerkLoading />
+      <ClerkLoaded>
+        <SignUp
+          appearance={{
+            baseTheme: dark,
+          }}
+        />
+      </ClerkLoaded>
+    </>
   );
 };
 export default RegisterPage;
