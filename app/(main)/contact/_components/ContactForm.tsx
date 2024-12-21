@@ -23,7 +23,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { contact } from "@/actions/contact";
 import { toast } from "sonner";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
@@ -33,19 +32,20 @@ type Props = {};
 const ContactForm = ({}: Props) => {
   const [isMounted, setIsMounted] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const [emailSent, setEmailSent] = useState(() => {
+  const [emailSent, setEmailSent] = useState(false);
+
+  useEffect(() => {
     const now = new Date().getTime();
     const sentMessageTime = localStorage.getItem("sentMessageTime");
-    if (!sentMessageTime) return false;
+    if (!sentMessageTime) return;
 
     if (now - parseInt(sentMessageTime) > 1 * 60 * 60 * 1000) {
       // Delete the local storage after 1 hour
       localStorage.removeItem("sentMessageTime");
-      return false;
     } else {
-      return true;
+      setEmailSent(true);
     }
-  });
+  }, []);
 
   const form = useForm<z.infer<typeof ContactFormValidator>>({
     resolver: zodResolver(ContactFormValidator),
@@ -64,30 +64,37 @@ const ContactForm = ({}: Props) => {
 
   const onSubmit = async (values: z.infer<typeof ContactFormValidator>) => {
     startTransition(async () => {
-      await contact(values)
-        .then(() => {
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        });
+
+        if (response.ok) {
           toast.success("Email sent successfully!");
           setEmailSent(true);
           localStorage.setItem(
             "sentMessageTime",
             new Date().getTime().toString(),
           );
-        })
-        .catch((e: Error) => {
-          if (e.message === "Bad Request") {
+        } else {
+          const errorData = await response.json();
+          if (errorData.message === "Bad Request") {
             toast.error("Invalid fields provided!");
-            return;
-          }
-
-          if (e.message === "Email not sent!") {
+          } else if (errorData.message === "Email not sent!") {
             toast.error(
               "Email could not be sent due to a server error. Try again later.",
             );
-            return;
+          } else {
+            toast.error("Something went wrong. Please try again later.");
           }
-
-          toast.error("Something went wrong. Please try again later.");
-        });
+        }
+      } catch (error) {
+        toast.error("Something went wrong. Please try again later.");
+      }
     });
   };
 
@@ -201,7 +208,7 @@ const ContactForm = ({}: Props) => {
         />
 
         <Button variant="outline" className="mt-6 w-full" disabled={isPending}>
-          {isPending && <Loader2 className="size-4 mr-2 animate-spin" />}
+          {isPending && <Loader2 className="mr-2 size-4 animate-spin" />}
           Submit
         </Button>
       </form>
