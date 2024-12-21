@@ -1,7 +1,6 @@
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import UserPostsSection from "@/components/post/UserPostsSection";
 import { db } from "@/lib/db";
-import { useUser } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";

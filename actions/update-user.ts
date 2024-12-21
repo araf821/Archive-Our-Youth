@@ -3,7 +3,6 @@
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { UserType } from "@prisma/client";
-import { revalidatePath } from "next/cache";
 
 export const updateUserRole = async (role: UserType, userId: string) => {
   const user = await getCurrentUser();
