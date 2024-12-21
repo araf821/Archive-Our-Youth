@@ -12,18 +12,15 @@ import { useModal } from "@/hooks/useModal";
 import { kobata } from "@/app/fonts";
 import { useMenu } from "@/hooks/useMenu";
 import Image from "next/image";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 
-interface NavbarProps {
-  user: User | null;
-}
-
-const Navbar = ({ user }: NavbarProps) => {
+const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>(true);
   const pathname = usePathname();
   const router = useRouter();
+  const { user } = useUser();
 
   const { isOpen, onOpen, onClose } = useFilters();
   const { onOpen: onOpenModal } = useModal();
