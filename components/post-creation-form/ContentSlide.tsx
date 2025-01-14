@@ -7,6 +7,7 @@ import FileUpload from "../FileUpload";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { isYouTubeUrl } from "@/lib/utils";
 
 interface ContentSlideProps {
   form: TPostCreationForm;
@@ -14,6 +15,9 @@ interface ContentSlideProps {
 
 const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
   const [preview, setPreview] = useState(false);
+  const [videoSourceType, setVideoSourceType] = useState<"file" | "url">(
+    "file",
+  );
 
   if (form.getValues().contentType === "TEXT") {
     return (
@@ -118,14 +122,50 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         control={form.control}
         render={({ field }) => (
           <FormItem className="mx-auto flex w-full max-w-screen-sm flex-col gap-8 max-sm:mt-12 md:gap-12">
-            <p className="text-center text-xl md:text-2xl">Add a video</p>{" "}
+            <p className="text-center text-xl md:text-2xl">Add a video</p>
+            <div className="flex justify-center gap-2">
+              <Button
+                type="button"
+                variant={videoSourceType === "file" ? "default" : "secondary"}
+                onClick={() => setVideoSourceType("file")}
+              >
+                Upload Video
+              </Button>
+              <Button
+                type="button"
+                variant={videoSourceType === "url" ? "default" : "secondary"}
+                onClick={() => setVideoSourceType("url")}
+              >
+                YouTube URL
+              </Button>
+            </div>
             <FormControl>
-              <FileUpload
-                classNames="aspect-video"
-                endPoint="video"
-                onChange={field.onChange}
-                value={field.value}
-              />
+              {videoSourceType === "file" ? (
+                <FileUpload
+                  classNames="aspect-video"
+                  endPoint="video"
+                  onChange={field.onChange}
+                  value={field.value}
+                />
+              ) : (
+                <div className="space-y-2">
+                  <input
+                    {...field}
+                    type="url"
+                    placeholder="Enter YouTube video URL"
+                    className="w-full rounded-md border border-zinc-700 bg-zinc-800 p-2 text-zinc-50 focus:outline-none focus:ring-2 focus:ring-lime-500"
+                    onChange={(e) => {
+                      const url = e.target.value;
+                      if (isYouTubeUrl(url)) {
+                        field.onChange(url);
+                      }
+                    }}
+                  />
+                  <p className="text-sm text-zinc-400">
+                    Paste a valid YouTube video URL
+                  </p>
+                </div>
+              )}
             </FormControl>
           </FormItem>
         )}

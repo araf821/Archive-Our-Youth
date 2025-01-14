@@ -2,6 +2,7 @@
 
 import { Post } from "@prisma/client";
 import DynamicImage from "../DynamicImage";
+import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
 
 interface PostModalMediaProps {
   post: Post;
@@ -27,7 +28,18 @@ export default function PostModalMedia({ post }: PostModalMediaProps) {
   if (post.contentType === "VIDEO") {
     return (
       <div className="relative aspect-video w-full overflow-hidden border border-zinc-800">
-        <video src={post.postContent} className="h-full w-full" controls />
+        {isYouTubeUrl(post.postContent) ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${getYouTubeVideoId(
+              post.postContent,
+            )}`}
+            className="h-full w-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <video src={post.postContent} className="h-full w-full" controls />
+        )}
       </div>
     );
   }

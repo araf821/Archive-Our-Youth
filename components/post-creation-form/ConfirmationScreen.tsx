@@ -178,13 +178,31 @@ export const ConfirmationScreen = ({
                 </div>
               )}
               {contentType === "VIDEO" && (
-                <div className="relative aspect-video ">
+                <div className="relative aspect-video">
                   <p className="pb-4">Uploaded Content</p>
-                  <video
-                    src={form.getValues().content}
-                    className="object-cover"
-                    controls
-                  />
+                  {form.getValues().content.startsWith("http") ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${
+                        form
+                          .getValues()
+                          .content.includes("youtube.com/watch?v=")
+                          ? form
+                              .getValues()
+                              .content.split("v=")[1]
+                              .split("&")[0]
+                          : form.getValues().content.split("/").pop()
+                      }`}
+                      className="h-full w-full rounded-md"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <video
+                      src={form.getValues().content}
+                      className="object-cover"
+                      controls
+                    />
+                  )}
                 </div>
               )}
               {contentType === "AUDIO" && (
