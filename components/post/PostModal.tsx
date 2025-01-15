@@ -35,12 +35,12 @@ const PostModal = ({ post, currentUser }: PostModalProps) => {
           base: "border-0",
         }}
       >
-        <ModalContent className="my-auto w-full max-w-lg rounded-md border-2 border-zinc-800 bg-[#18181b] p-4 text-zinc-100 shadow-[0_0_20px_5px_black] md:my-auto md:rounded-lg md:p-6">
+        <ModalContent className="my-auto w-full max-w-lg rounded-md border-2 border-border-dark bg-[#18181b] p-4 text-zinc-100 shadow-[0_0_20px_5px_black] md:my-auto md:rounded-lg md:p-6">
           {(onClose) => (
             <div className="flex flex-col gap-4">
               <PostModalHeader onClose={onClose} slug={post.slug} />
 
-              <hr className="rounded-full border-t-2 border-zinc-800" />
+              <hr className="rounded-full border-t-2 border-border-dark" />
 
               <PostModalMedia post={post} />
               <PostModalInfo post={post} currentUser={currentUser} />

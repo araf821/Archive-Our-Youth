@@ -28,7 +28,7 @@ const UserPostsSection = async ({
   const hasMore = page * 5 < totalPosts;
 
   return (
-    <div className="group space-y-4 lg:col-span-4 lg:pl-4">
+    <div className="group space-y-4 lg:col-span-3 lg:pl-4">
       <FadeInContainer>
         <div className="flex flex-col gap-2 max-lg:pt-8">
           <p className="text-2xl md:text-3xl lg:text-4xl">Your Posts</p>

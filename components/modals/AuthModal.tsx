@@ -36,10 +36,10 @@ const AuthModal = () => {
         >
           Sign In
         </Link>
-        <hr className="border-zinc-800" />
+        <hr className="border-border-dark" />
 
         <div className="flex w-full flex-col space-y-1">
-          <p className="text-center text-muted-foreground max-md:text-sm">
+          <p className="text-muted-foreground text-center max-md:text-sm">
             New to the Archive?
           </p>
           <Link

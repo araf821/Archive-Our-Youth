@@ -16,7 +16,7 @@ const PostMedia: FC<PostMediaProps> = ({ contentType, postContent }) => {
 
   if (contentType === "VIDEO") {
     return (
-      <div className="relative aspect-video w-full overflow-hidden border border-zinc-800">
+      <div className="relative aspect-video w-full overflow-hidden border border-border-dark">
         {isYouTubeUrl(postContent) ? (
           <iframe
             src={`https://www.youtube.com/embed/${getYouTubeVideoId(

@@ -101,7 +101,7 @@ const CommentInput: FC<CommentInputProps> = ({
           <Button
             onClick={onSubmit}
             disabled={isLoading}
-            className="morph-sm border-zinc-800 bg-zinc-800 text-zinc-200 hover:bg-zinc-800 hover:text-green-500"
+            className="morph-sm border-border-dark bg-zinc-800 text-zinc-200 hover:bg-zinc-800 hover:text-green-500"
             size="sm"
           >
             Post

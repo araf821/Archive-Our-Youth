@@ -40,7 +40,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
         />
       )}
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-6">
         <PostTitle
           title={post.title}
           createdAt={post.createdAt}
@@ -55,7 +55,7 @@ const SinglePost: FC<SinglePostProps> = ({ post, currentUser }) => {
           />
         )}
 
-        <hr className="border-zinc-800" />
+        <hr className="border-border-dark" />
 
         <PostAuthor user={post.user} />
 

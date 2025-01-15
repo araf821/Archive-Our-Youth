@@ -22,17 +22,20 @@ const PostContent: FC<PostContentProps> = ({
     <>
       {researchQuestions.length > 0 && (
         <div>
-          <p className="mb-4 font-medium tracking-wide text-zinc-400 max-md:text-sm">
+          <p className="mb-4 text-sm font-medium tracking-wide text-text-muted max-md:text-xs">
             This post explores the following areas of wellbeing:
           </p>
           <ul>
             {researchQuestions.map((q) => (
-              <li className="ml-6 list-disc text-white md:text-lg" key={q}>
+              <li
+                className="ml-6 list-disc font-medium text-text-primary max-md:text-sm"
+                key={q}
+              >
                 {q}
               </li>
             ))}
           </ul>
-          <hr className="mt-4 border-zinc-800" />
+          <hr className="mt-6 border-border-dark" />
         </div>
       )}
 
@@ -47,7 +50,7 @@ const PostContent: FC<PostContentProps> = ({
             {content}
           </ReactMarkdown>
         )}
-        <hr className="mb-2 mt-4 border-zinc-800" />
+        <hr className="mb-2 mt-6 border-border-dark" />
       </div>
     </>
   );

@@ -23,7 +23,7 @@ const loading: FC<loadingProps> = ({}) => {
         </div>
 
         <Skeleton className="h-12 w-40" />
-        <hr className="border-zinc-800" />
+        <hr className="border-border-dark" />
         <Skeleton className="h-3 w-full md:h-5 md:max-w-[400px]" />
       </div>
     </div>

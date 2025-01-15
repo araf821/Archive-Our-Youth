@@ -37,7 +37,7 @@ const PostAuthor: FC<PostAuthorProps> = ({ user }) => {
           ) : null}
         </div>
       </div>
-      <hr className="border-zinc-800" />
+      <hr className="border-border-dark" />
     </>
   );
 };

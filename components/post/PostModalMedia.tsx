@@ -27,7 +27,7 @@ export default function PostModalMedia({ post }: PostModalMediaProps) {
 
   if (post.contentType === "VIDEO") {
     return (
-      <div className="relative aspect-video w-full overflow-hidden border border-zinc-800">
+      <div className="relative aspect-video w-full overflow-hidden border border-border-dark">
         {isYouTubeUrl(post.postContent) ? (
           <iframe
             src={`https://www.youtube.com/embed/${getYouTubeVideoId(

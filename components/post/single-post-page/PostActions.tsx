@@ -18,7 +18,7 @@ const PostActions: FC<PostActionsProps> = ({
 }) => {
   return (
     <div
-      className={`flex w-full items-center justify-between rounded-md border border-zinc-800 bg-zinc-800 px-2 py-1.5 ${className}`}
+      className={`flex w-full items-center justify-between rounded-md border border-border-dark bg-zinc-800 px-2 py-1.5 ${className}`}
     >
       <LikeButton postId={postId} likes={likeCount} currentUser={currentUser} />
       <ShareButton link="idk" />

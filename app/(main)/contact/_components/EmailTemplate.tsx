@@ -19,7 +19,7 @@ export const EmailTemplate = ({
   subject,
 }: EmailTemplateProps) => (
   <Tailwind>
-    <div className="mx-auto mt-12 max-w-md rounded-md border-2 border-zinc-800 bg-zinc-900 p-6">
+    <div className="mx-auto mt-12 max-w-md rounded-md border-2 border-border-dark bg-zinc-900 p-6">
       <Section className="mb-[32px]">
         <Img
           src="https://images.squarespace-cdn.com/content/v1/655f7cfae0b8892f9f5e1fe0/1700756792420-K5815X1D7LRG2PVD80NT/YLRL_LOGO.png?format=1500w"
@@ -35,7 +35,7 @@ export const EmailTemplate = ({
       <Text className="mx-0 my-2 p-0 text-center text-lg font-semibold text-green-500">
         New Message
       </Text>
-      <Hr className="my-4 border-4 border-zinc-800" />
+      <Hr className="my-4 border-4 border-border-dark" />
       <Text className="my-0 text-center text-xs font-medium text-zinc-400">
         From
       </Text>
@@ -55,7 +55,7 @@ export const EmailTemplate = ({
         <span className="font-semibold text-zinc-400">Message: </span>
         {message}
       </Text>
-      <Hr className="my-4 border-4 border-zinc-800" />
+      <Hr className="my-4 border-4 border-border-dark" />
       {/* <Text className="text-zinc-200">
         <span className="mr-2">Unsubscribe</span>
         <span className="mr-2">•</span>

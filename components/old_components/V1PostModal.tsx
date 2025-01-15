@@ -64,7 +64,7 @@ const PostModal = () => {
         )}
 
         {post.contentType === "VIDEO" && (
-          <div className="relative aspect-video w-full overflow-hidden border border-zinc-800">
+          <div className="relative aspect-video w-full overflow-hidden border border-border-dark">
             <video src={post.postContent} className="h-full w-full" controls />
           </div>
         )}
@@ -82,7 +82,7 @@ const PostModal = () => {
               : ""
           }`}
         >
-          <div className="flex w-full justify-between gap-2.5 rounded-md border border-zinc-800 bg-zinc-800 px-2 py-1.5">
+          <div className="flex w-full justify-between gap-2.5 rounded-md border border-border-dark bg-zinc-800 px-2 py-1.5">
             <LikeButton
               postId={post.id}
               likes={post.likes}

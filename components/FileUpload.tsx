@@ -41,7 +41,7 @@ const FileUpload: FC<FileUploadProps> = ({
           <button
             onClick={() => onChange("")}
             type="button"
-            className="morph-sm group absolute -right-2 -top-2 rounded-md border border-zinc-800 bg-zinc-900 text-zinc-300 hover:text-red-500"
+            className="morph-sm group absolute -right-2 -top-2 rounded-md border border-border-dark bg-zinc-900 text-zinc-300 hover:text-red-500"
           >
             <X className="size-6 transition group-hover:rotate-90" />
           </button>
@@ -51,7 +51,7 @@ const FileUpload: FC<FileUploadProps> = ({
 
     if (endPoint === "video") {
       return (
-        <div className="relative aspect-video max-h-[40vh] w-full border border-zinc-800">
+        <div className="relative aspect-video max-h-[40vh] w-full border border-border-dark">
           <video
             src={value}
             controls
@@ -60,7 +60,7 @@ const FileUpload: FC<FileUploadProps> = ({
           <button
             onClick={() => onChange("")}
             type="button"
-            className="morph-sm group absolute -right-2 -top-2 rounded-md border border-zinc-800 bg-zinc-900 text-zinc-300 hover:text-red-500"
+            className="morph-sm group absolute -right-2 -top-2 rounded-md border border-border-dark bg-zinc-900 text-zinc-300 hover:text-red-500"
           >
             <X className="size-5 transition group-hover:rotate-90" />
           </button>
@@ -90,7 +90,7 @@ const FileUpload: FC<FileUploadProps> = ({
           <button
             onClick={() => onChange("")}
             type="button"
-            className="morph-sm group absolute -right-2 -top-2 rounded-md border border-zinc-800 bg-zinc-900 text-zinc-300 hover:text-red-500"
+            className="morph-sm group absolute -right-2 -top-2 rounded-md border border-border-dark bg-zinc-900 text-zinc-300 hover:text-red-500"
           >
             <X className="size-5 transition group-hover:rotate-90" />
           </button>
