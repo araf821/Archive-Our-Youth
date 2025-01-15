@@ -21,38 +21,83 @@ module.exports = {
         xs: "412px",
       },
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        // Our custom color palette
+        // Primary colors
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#22c55e", // green-500
+          light: "#4ade80", // green-400
+          dark: "#16a34a", // green-600
+          subtle: "#14532d", // green-900
+          hover: "#15803d", // green-700
         },
+
+        // Secondary colors
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "#3b82f6", // blue-500
+          light: "#60a5fa", // blue-400
+          dark: "#2563eb", // blue-600
+          subtle: "#1e40af", // blue-800
         },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+
+        // Background colors
+        background: {
+          DEFAULT: "#09090b", // zinc-950
+          muted: "#18181b", // zinc-900
+          elevated: "#27272a", // zinc-800
+          surface: "#3f3f46", // zinc-700
         },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+
+        // Text colors
+        text: {
+          primary: "#fafafa", // zinc-50
+          secondary: "#a1a1aa", // zinc-400
+          muted: "#71717a", // zinc-500
+          inverted: "#09090b", // zinc-950
         },
+
+        // Border colors
+        border: {
+          DEFAULT: "#3f3f46", // zinc-700
+          light: "#52525b", // zinc-600
+          dark: "#27272a", // zinc-800
+        },
+
+        // Functional colors
+        success: {
+          DEFAULT: "#22c55e", // green-500
+          light: "#4ade80", // green-400
+          dark: "#16a34a", // green-600
+        },
+        warning: {
+          DEFAULT: "#f59e0b", // amber-500
+          light: "#fbbf24", // amber-400
+          dark: "#d97706", // amber-600
+        },
+        error: {
+          DEFAULT: "#ef4444", // red-500
+          light: "#f87171", // red-400
+          dark: "#dc2626", // red-600
+        },
+        info: {
+          DEFAULT: "#0ea5e9", // sky-500
+          light: "#38bdf8", // sky-400
+          dark: "#0284c7", // sky-600
+        },
+
+        // Accent colors
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          rose: "#f43f5e", // rose-500
+          indigo: "#6366f1", // indigo-500
+          lime: "#84cc16", // lime-500
+          teal: "#0d9488", // teal-600
+          fuchsia: "#d946ef", // fuchsia-500
         },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+
+        // Shadow colors
+        shadow: {
+          DEFAULT: "rgba(0, 0, 0, 0.1)",
+          light: "rgba(255, 255, 255, 0.05)",
+          dark: "rgba(0, 0, 0, 0.2)",
         },
       },
       borderRadius: {

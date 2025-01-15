@@ -37,7 +37,7 @@ const LandingPageClient: FC<LandingPageClientProps> = ({}) => {
               transition: { duration: 0.5 },
             }}
             viewport={{ once: true }}
-            className={`${kobata.className} neon-text relative select-none pb-8 text-center text-[4.5rem] font-semibold leading-none text-white sm:px-4 md:px-8 md:text-[5rem] lg:text-[6rem]`}
+            className={`${kobata.className} relative select-none pb-8 text-center text-[4.5rem] font-semibold leading-none text-white [text-shadow:2px_7px_5px_#000] sm:px-4 md:px-8 md:text-[5rem] lg:text-[6rem]`}
           >
             Archive
             <br className="hidden max-md:block" /> Our
