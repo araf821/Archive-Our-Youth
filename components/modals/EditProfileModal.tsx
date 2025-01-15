@@ -86,7 +86,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({
       >
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-lg bg-zinc-900 p-4 text-zinc-100 md:p-6">
+      <DialogContent className="max-w-lg bg-background-muted p-4 text-zinc-100 md:p-6">
         <DialogHeader>
           <DialogTitle>Edit Profile</DialogTitle>
           <DialogDescription>

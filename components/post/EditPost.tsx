@@ -351,7 +351,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                     <li
                       key={tag}
                       className={cn(
-                        "text-bold flex items-center justify-between gap-1 rounded-md px-2.5 py-1 text-zinc-900",
+                        "text-bold flex items-center justify-between gap-1 rounded-md px-2.5 py-1 text-background-muted",
                         {
                           "border-2 border-rose-500 text-rose-500": index === 0,
                           "border-2 border-lime-500 text-lime-500": index === 1,

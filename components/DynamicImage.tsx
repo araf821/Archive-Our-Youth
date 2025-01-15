@@ -76,12 +76,20 @@ export default function DynamicImage({
           imageProps?.className,
         )}
         priority={modal}
+        loading={modal ? "eager" : "lazy"}
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+        // style={{
+        //   maxWidth: modal ? "900px" : "600px",
+        //   maxHeight: modal ? "600px" : "400px",
+        //   width: "100%",
+        //   height: "100%",
+        // }}
       />
 
       {showResizeButton && (
         <button
           onClick={() => setContained((prev) => !prev)}
-          className="absolute bottom-2 right-2 h-8 w-8 rounded-md bg-zinc-900/40 outline-white backdrop-blur-md transition-all hover:bg-zinc-900/60 focus-visible:outline-2 active:scale-90 sm:h-10 sm:w-10"
+          className="absolute bottom-2 right-2 h-8 w-8 rounded-md bg-background-muted/40 outline-white backdrop-blur-md transition-all hover:bg-background-muted/60 focus-visible:outline-2 active:scale-90 sm:h-10 sm:w-10"
           title={contained ? "Switch to cover mode" : "Switch to contain mode"}
         >
           <span className="sr-only">

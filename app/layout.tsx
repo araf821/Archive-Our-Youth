@@ -37,7 +37,7 @@ export default function RootLayout({
     >
       <html lang="en">
         <body
-          className={`${poppins.className} min-h-[100dvh] bg-zinc-900 antialiased selection:bg-green-500 selection:text-black`}
+          className={`${poppins.className} min-h-[100dvh] bg-background-muted antialiased selection:bg-primary selection:text-black`}
         >
           <Providers>{children}</Providers>
         </body>

@@ -185,7 +185,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                         <SelectContent className="rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
                           <SelectItem
                             className={cn("py-3 hover:bg-zinc-700", {
-                              "bg-zinc-900":
+                              "bg-background-muted":
                                 form.getValues().sortBy === "latest",
                             })}
                             value="latest"
@@ -194,7 +194,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                           </SelectItem>
                           <SelectItem
                             className={cn("py-2 hover:bg-zinc-700", {
-                              "bg-zinc-900":
+                              "bg-background-muted":
                                 form.getValues().sortBy === "oldest",
                             })}
                             value="oldest"
@@ -203,7 +203,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                           </SelectItem>
                           <SelectItem
                             className={cn("py-2 hover:bg-zinc-700", {
-                              "bg-zinc-900":
+                              "bg-background-muted":
                                 form.getValues().sortBy === "most-popular",
                             })}
                             value="most-popular"
@@ -212,7 +212,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                           </SelectItem>
                           <SelectItem
                             className={cn("py-2 hover:bg-zinc-700", {
-                              "bg-zinc-900":
+                              "bg-background-muted":
                                 form.getValues().sortBy === "least-popular",
                             })}
                             value="least-popular"
@@ -290,7 +290,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                               className={cn(
                                 "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
                                 {
-                                  "bg-zinc-900 focus:bg-zinc-900":
+                                  "bg-background-muted focus:bg-background-muted":
                                     country === c.toLowerCase(),
                                 },
                               )}
@@ -332,7 +332,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                             className={cn(
                               "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
                               {
-                                "bg-zinc-900 focus:bg-zinc-900":
+                                "bg-background-muted focus:bg-background-muted":
                                   form.getValues().question === "any",
                               },
                             )}
@@ -345,7 +345,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                               className={cn(
                                 "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
                                 {
-                                  "bg-zinc-900 focus:bg-zinc-900":
+                                  "bg-background-muted focus:bg-background-muted":
                                     form.getValues().question === question,
                                 },
                               )}
@@ -385,7 +385,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                             className={cn(
                               "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
                               {
-                                "bg-zinc-900 focus:bg-zinc-900":
+                                "bg-background-muted focus:bg-background-muted":
                                   form.getValues().postType === "ANY",
                               },
                             )}
@@ -398,7 +398,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                               className={cn(
                                 "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
                                 {
-                                  "bg-zinc-900 focus:bg-zinc-900":
+                                  "bg-background-muted focus:bg-background-muted":
                                     form.getValues().postType ===
                                     type.toUpperCase(),
                                 },
@@ -429,9 +429,9 @@ const Filters: FC<FiltersProps> = ({}) => {
                   className="morph-sm w-fit border border-zinc-700 bg-zinc-800 hover:bg-zinc-800"
                 >
                   Reset
-                  <RefreshCcw className="size-4 ml-2" />
+                  <RefreshCcw className="ml-2 size-4" />
                 </Button>
-                <Button className="morph-md w-fit bg-green-500 tracking-wider text-black hover:bg-green-600">
+                <Button className="morph-md w-fit bg-primary tracking-wider text-black hover:bg-primary-dark">
                   Search
                 </Button>
               </div>

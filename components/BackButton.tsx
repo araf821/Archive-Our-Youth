@@ -23,7 +23,7 @@ const BackButton: FC<BackButtonProps> = ({ classNames, label }) => {
       >
         {label ? label : "Back"}
       </button>
-      <span className="absolute inset-0 translate-x-1 translate-y-1 rounded-md bg-zinc-950"></span>
+      <span className="absolute inset-0 translate-x-1 translate-y-1 rounded-md bg-background"></span>
     </div>
   );
 };

@@ -46,7 +46,7 @@ const DeletePostModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md space-y-4 bg-zinc-900 px-4 py-8 outline-none">
+      <DialogContent className="max-w-md space-y-4 bg-background-muted px-4 py-8 outline-none">
         <DialogTrigger className="absolute right-2 top-2  transition hover:rotate-90">
           <X className="text-zinc-500 max-md:h-5 max-md:w-5" />
         </DialogTrigger>
@@ -78,7 +78,7 @@ const DeletePostModal = () => {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md border border-zinc-700/50 bg-zinc-900 py-2 tracking-wider text-white transition hover:bg-zinc-800"
+            className="rounded-md border border-zinc-700/50 bg-background-muted py-2 tracking-wider text-white transition hover:bg-zinc-800"
           >
             Cancel
           </button>

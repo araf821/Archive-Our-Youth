@@ -462,7 +462,7 @@
 }
 
 .cl-formButtonPrimary {
-  @apply bg-green-600 py-1 text-base font-semibold text-white hover:bg-green-600 focus:border-none;
+  @apply bg-primary-dark py-1 text-base font-semibold text-white hover:bg-primary-dark focus:border-none;
 }
 
 .cl-footerActionText,
@@ -478,7 +478,7 @@
 }
 
 .cl-internal-b3fm6y {
-  @apply bg-green-500 text-black;
+  @apply bg-primary text-black;
 }
 
 .cl-formFieldInputShowPasswordButton {
@@ -519,5 +519,5 @@
 }
 
 .cl-badge {
-  @apply bg-green-500 pt-1 text-black;
+  @apply bg-primary pt-1 text-black;
 } */

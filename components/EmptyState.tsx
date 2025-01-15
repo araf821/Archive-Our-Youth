@@ -33,7 +33,7 @@ const EmptyState: FC<EmptyStateProps> = ({
   return (
     <section
       className={cn(
-        "grid h-[85dvh] w-full place-items-center bg-zinc-900 px-4 text-center",
+        "grid h-[85dvh] w-full place-items-center bg-background-muted px-4 text-center",
         classNames,
       )}
     >

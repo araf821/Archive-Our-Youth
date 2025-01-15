@@ -70,7 +70,7 @@ const GridItem = ({}) => {
 
   return (
     <div
-      className={`aspect-square w-full outline outline-4 outline-zinc-900/50 transition duration-1000 ${classes}`}
+      className={`aspect-square w-full outline outline-4 outline-background-muted/50 transition duration-1000 ${classes}`}
     />
   );
 };

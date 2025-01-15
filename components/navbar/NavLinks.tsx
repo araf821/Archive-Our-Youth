@@ -60,7 +60,7 @@ const NavLinks = () => {
           className={cn(
             "-translate-x-4 rounded-xl bg-zinc-800 p-2 text-white transition hover:bg-zinc-700 active:scale-90 max-lg:hidden",
             {
-              "bg-green-500 shadow-[0_0_15px_2px] shadow-green-500/50 hover:bg-green-600":
+              "bg-primary shadow-[0_0_15px_2px] shadow-green-500/50 hover:bg-primary-dark":
                 isOpen,
               "scale-0": pathname !== "/home",
             },

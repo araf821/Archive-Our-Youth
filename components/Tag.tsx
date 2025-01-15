@@ -14,7 +14,7 @@ const Tag: FC<TagProps> = ({ small, tag, index, onDelete }) => {
     <li
       key={tag}
       className={cn(
-        "text-bold flex w-fit items-center justify-between gap-2 rounded-lg px-3 py-1 capitalize text-zinc-900",
+        "text-bold flex w-fit items-center justify-between gap-2 rounded-lg px-3 py-1 capitalize text-background-muted",
         {
           "border-2 border-green-400 text-green-400": index === 0,
           "border-2 border-rose-400 text-rose-400": index === 1,

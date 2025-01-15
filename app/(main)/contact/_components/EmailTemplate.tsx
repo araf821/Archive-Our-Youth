@@ -19,7 +19,7 @@ export const EmailTemplate = ({
   subject,
 }: EmailTemplateProps) => (
   <Tailwind>
-    <div className="mx-auto mt-12 max-w-md rounded-md border-2 border-border-dark bg-zinc-900 p-6">
+    <div className="mx-auto mt-12 max-w-md rounded-md border-2 border-border-dark bg-background-muted p-6">
       <Section className="mb-[32px]">
         <Img
           src="https://images.squarespace-cdn.com/content/v1/655f7cfae0b8892f9f5e1fe0/1700756792420-K5815X1D7LRG2PVD80NT/YLRL_LOGO.png?format=1500w"

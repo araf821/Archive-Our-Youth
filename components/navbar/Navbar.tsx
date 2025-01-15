@@ -59,7 +59,7 @@ const Navbar = () => {
   return (
     <nav
       className={cn(
-        "z-40 h-20 w-full border-b border-border-dark bg-zinc-900 shadow-[0_4px_20px_black] transition duration-300 hover:opacity-100",
+        "z-40 h-20 w-full border-b border-border-dark bg-background-muted shadow-[0_4px_20px_black] transition duration-300 hover:opacity-100",
         {
           "translate-y-0": visible,
         },

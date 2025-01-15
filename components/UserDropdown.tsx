@@ -51,7 +51,7 @@ const UserDropdown = ({ user }: Props) => {
 
         <DropdownMenuItem
           onClick={() => router.push("/dashboard")}
-          className="cursor-pointer p-4 font-medium focus-visible:bg-green-500/50"
+          className="cursor-pointer p-4 font-medium focus-visible:bg-primary/50"
         >
           <UserIcon className="mr-4" />
           Dashboard
@@ -61,7 +61,7 @@ const UserDropdown = ({ user }: Props) => {
           onClick={() => {
             signOut(() => router.push("/home"));
           }}
-          className="cursor-pointer p-4 font-medium focus-visible:bg-green-500/50"
+          className="cursor-pointer p-4 font-medium focus-visible:bg-primary/50"
         >
           <LogOut className="mr-4" />
           Sign Out

@@ -43,7 +43,7 @@ const LocationSelection: FC<LocationSelectionProps> = ({ form }) => {
                 {allCountries.map((c) => (
                   <SelectItem
                     className={cn("py-3 hover:bg-zinc-700 focus:bg-zinc-700", {
-                      "bg-zinc-900 focus:bg-zinc-900":
+                      "bg-background-muted focus:bg-background-muted":
                         country === c.toLowerCase(),
                     })}
                     key={c}
