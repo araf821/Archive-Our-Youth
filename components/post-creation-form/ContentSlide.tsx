@@ -1,14 +1,12 @@
 import { TPostCreationForm } from "@/lib/types/form";
 import { FC, useState } from "react";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
-import { Button } from "../ui/button";
+import { AnimatedTabs } from "../ui/animated-tabs";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import FileUpload from "../FileUpload";
-import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { isYouTubeUrl } from "@/lib/utils";
-import { Input } from "../ui/input";
 
 interface ContentSlideProps {
   form: TPostCreationForm;
@@ -31,38 +29,15 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
               What have you got for us?
             </p>
             <div className="flex w-full flex-col gap-2">
-              <div className="mx-auto space-x-2">
-                <Button
-                  type="button"
-                  size="sm"
-                  onClick={() => setPreview(false)}
-                  className={cn(
-                    "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
-                    {
-                      "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
-                        !preview,
-                    },
-                  )}
-                >
-                  Write
-                </Button>
-                <Button
-                  type="button"
-                  size="sm"
-                  onClick={() => {
-                    setPreview(true);
-                  }}
-                  className={cn(
-                    "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
-                    {
-                      "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
-                        preview,
-                    },
-                  )}
-                >
-                  Preview
-                </Button>
-              </div>
+              <AnimatedTabs
+                tabs={[
+                  { id: "write", label: "Write" },
+                  { id: "preview", label: "Preview" },
+                ]}
+                defaultTab={preview ? "preview" : "write"}
+                onChange={(tabId) => setPreview(tabId === "preview")}
+                layoutId="text-content-tabs"
+              />
               <FormControl className="min-h-[200px]">
                 {preview ? (
                   form.getValues().content ? (
@@ -124,22 +99,15 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         render={({ field }) => (
           <FormItem className="mx-auto flex w-full max-w-screen-sm flex-col gap-8 max-sm:mt-12 md:gap-12">
             <p className="text-center text-xl md:text-2xl">Add a video</p>
-            <div className="flex justify-center gap-2">
-              <Button
-                type="button"
-                variant={videoSourceType === "file" ? "default" : "secondary"}
-                onClick={() => setVideoSourceType("file")}
-              >
-                Upload Video
-              </Button>
-              <Button
-                type="button"
-                variant={videoSourceType === "url" ? "default" : "secondary"}
-                onClick={() => setVideoSourceType("url")}
-              >
-                YouTube URL
-              </Button>
-            </div>
+            <AnimatedTabs
+              tabs={[
+                { id: "file", label: "Upload Video" },
+                { id: "url", label: "YouTube URL" },
+              ]}
+              defaultTab={videoSourceType}
+              onChange={(tabId) => setVideoSourceType(tabId as "file" | "url")}
+              layoutId="video-tabs"
+            />
             <FormControl>
               {videoSourceType === "file" ? (
                 <FileUpload
@@ -150,9 +118,10 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                 />
               ) : (
                 <div className="space-y-2">
-                  <Input
+                  <input
                     {...field}
                     placeholder="Enter YouTube video URL. e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    className="w-full rounded-sm border border-background-surface bg-zinc-800 px-3 py-2 focus-visible:outline-none focus-visible:outline-2 focus-visible:outline-zinc-600"
                     onChange={(e) => {
                       const url = e.target.value;
                       if (isYouTubeUrl(url)) {

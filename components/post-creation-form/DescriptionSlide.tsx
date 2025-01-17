@@ -1,8 +1,7 @@
 import { TPostCreationForm } from "@/lib/types/form";
 import { FC, useState } from "react";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
-import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
+import { AnimatedTabs } from "../ui/animated-tabs";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { ExternalLink } from "lucide-react";
 
@@ -24,38 +23,15 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
             <p className="text-sm text-zinc-400">Optional</p>
           </div>
           <div className="flex w-full flex-col gap-2">
-            <div className="mx-auto space-x-2">
-              <Button
-                type="button"
-                size="sm"
-                onClick={() => setPreview(false)}
-                className={cn(
-                  "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
-                  {
-                    "bg-gradient-to-br from-[#FFA573] to-[#FD9747] text-black":
-                      !preview,
-                  },
-                )}
-              >
-                Write
-              </Button>
-              <Button
-                type="button"
-                size="sm"
-                onClick={() => {
-                  setPreview(true);
-                }}
-                className={cn(
-                  "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
-                  {
-                    "bg-gradient-to-br from-[#FFA573] to-[#FD9747] text-black":
-                      preview,
-                  },
-                )}
-              >
-                Preview
-              </Button>
-            </div>
+            <AnimatedTabs
+              tabs={[
+                { id: "write", label: "Write" },
+                { id: "preview", label: "Preview" },
+              ]}
+              defaultTab={preview ? "preview" : "write"}
+              onChange={(tabId) => setPreview(tabId === "preview")}
+              layoutId="description-tabs"
+            />
 
             <FormControl className="min-h-[150px]">
               {preview ? (
