@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { isYouTubeUrl } from "@/lib/utils";
+import { Input } from "../ui/input";
 
 interface ContentSlideProps {
   form: TPostCreationForm;
@@ -149,21 +150,25 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                 />
               ) : (
                 <div className="space-y-2">
-                  <input
+                  <Input
                     {...field}
-                    type="url"
-                    placeholder="Enter YouTube video URL"
-                    className="w-full rounded-md border border-background-surface bg-zinc-800 p-2 text-zinc-50 focus:outline-none focus:ring-2 focus:ring-lime-500"
+                    placeholder="Enter YouTube video URL. e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                     onChange={(e) => {
                       const url = e.target.value;
                       if (isYouTubeUrl(url)) {
                         field.onChange(url);
+                      } else {
+                        field.onChange(e.target.value);
                       }
                     }}
                   />
-                  <p className="text-sm text-zinc-400">
-                    Paste a valid YouTube video URL
-                  </p>
+                  {!isYouTubeUrl(field.value) && (
+                    <p className="text-sm text-zinc-400">
+                      Paste a valid YouTube video URL starting with
+                      &lsquo;https://&rsquo;
+                    </p>
+                  )}
+                  <FormMessage />
                 </div>
               )}
             </FormControl>

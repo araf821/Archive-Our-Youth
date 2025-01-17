@@ -4,7 +4,7 @@ import { PostCreationValidator } from "@/lib/validators/post";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { cn, isYouTubeUrl } from "@/lib/utils";
 import Tag from "@/components/Tag";
 import { CarouselApi } from "@/components/ui/carousel";
 import { useAuth } from "@clerk/nextjs";
@@ -30,6 +30,7 @@ export const ConfirmationScreen = ({
   const { userId } = useAuth();
   const contentType = form.watch("contentType");
   const tags = form.watch("tags");
+  const content = form.watch("content");
 
   return (
     <div className="mx-auto flex max-w-screen-sm flex-col justify-center space-y-4">
@@ -125,9 +126,9 @@ export const ConfirmationScreen = ({
                   {form.formState.errors.content.message}
                 </p>
               )}
-              {form.getValues().content ? (
+              {content ? (
                 <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
-                  {form.getValues().content || ""}
+                  {content || ""}
                 </ReactMarkdown>
               ) : (
                 <p className="text-zinc-400">
@@ -143,7 +144,7 @@ export const ConfirmationScreen = ({
               )}
             </>
           )}
-          {contentType !== "TEXT" && !form.getValues().content ? (
+          {contentType !== "TEXT" && !content ? (
             <>
               <p
                 className={cn("", {
@@ -171,7 +172,7 @@ export const ConfirmationScreen = ({
                   <p className="pb-4">Uploaded Content</p>
                   <Image
                     fill
-                    src={form.getValues().content}
+                    src={content}
                     className="object-contain"
                     alt="post image"
                   />
@@ -180,7 +181,7 @@ export const ConfirmationScreen = ({
               {contentType === "VIDEO" && (
                 <div className="relative aspect-video">
                   <p className="pb-4">Uploaded Content</p>
-                  {form.getValues().content.startsWith("http") ? (
+                  {isYouTubeUrl(content) ? (
                     <iframe
                       src={`https://www.youtube.com/embed/${
                         form
@@ -190,36 +191,28 @@ export const ConfirmationScreen = ({
                               .getValues()
                               .content.split("v=")[1]
                               .split("&")[0]
-                          : form.getValues().content.split("/").pop()
+                          : content.split("/").pop()
                       }`}
                       className="h-full w-full rounded-md"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />
                   ) : (
-                    <video
-                      src={form.getValues().content}
-                      className="object-cover"
-                      controls
-                    />
+                    <video src={content} className="object-cover" controls />
                   )}
                 </div>
               )}
               {contentType === "AUDIO" && (
                 <div className="w-full">
                   <p className="pb-4">Uploaded Content</p>
-                  <audio
-                    src={form.getValues().content}
-                    controls
-                    className="w-full"
-                  />
+                  <audio src={content} controls className="w-full" />
                 </div>
               )}
               {contentType === "PDF" && (
                 <div className="w-full">
                   <p className="pb-4">PDF</p>
                   <Link
-                    href={form.getValues().content}
+                    href={content}
                     target="_blank"
                     className="group relative font-semibold text-blue-600 transition hover:text-blue-500"
                   >
