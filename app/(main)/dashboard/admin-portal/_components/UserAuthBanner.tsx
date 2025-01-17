@@ -18,7 +18,7 @@ const UserAuthBanner = ({ user }: UserAuthBannerProps) => {
   }
 
   return (
-    <div className="mt-4 flex items-center justify-between gap-2 overflow-hidden rounded-md border border-green-400 bg-green-400/10">
+    <div className="mt-4 flex items-center justify-between gap-2 overflow-hidden rounded-md border border-green-400 bg-primary-light/10">
       <div className="m-2.5 flex-1">
         <p className="md:text-lg">
           Currently logged in as{" "}

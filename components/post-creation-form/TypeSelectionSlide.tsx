@@ -9,37 +9,39 @@ import { ContentType } from "@prisma/client";
 interface TypeSelectionSlideProps {
   form: TPostCreationForm;
   handleTypeChange: (type: ContentType) => void;
-  nextStep: () => void;
 }
 
 const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
-  nextStep,
   form,
   handleTypeChange,
 }) => {
   const type = form.watch("contentType");
   return (
-    <div className="flex w-full flex-col items-center justify-center space-y-10 md:space-y-14">
-      <p className="text-center text-xl max-md:max-w-[290px] md:text-2xl">
-        What type of content would you like to submit?
-      </p>
+    <div className="mx-auto w-full max-w-4xl rounded-lg border p-4 md:p-6">
       <FormField
         control={form.control}
         name="contentType"
         render={() => (
-          <FormItem className="flex flex-col items-center gap-2 md:gap-4">
-            <div className="flex justify-around max-md:flex-col max-md:gap-4 md:gap-8">
+          <FormItem className="space-y-6">
+            <div>
+              <p className="text-lg font-medium text-text-primary">
+                Content Type
+              </p>
+              <p className="text-sm text-text-secondary">
+                Select the format for your post
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
               <FormControl>
                 <button
                   type="button"
                   onClick={() => {
-                    nextStep();
                     handleTypeChange("TEXT");
                   }}
                   className={cn(
-                    "morph-sm w-36 border-2 border-green-600 bg-transparent py-2 transition duration-200 hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50",
+                    "w-full rounded-md border border-border px-4 py-3 text-sm text-text-primary transition-colors hover:bg-primary/10",
                     {
-                      "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
+                      "border-primary/50 bg-background-elevated bg-primary/10":
                         type === "TEXT",
                     },
                   )}
@@ -51,13 +53,12 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                 <button
                   type="button"
                   onClick={() => {
-                    nextStep();
                     handleTypeChange("IMAGE");
                   }}
                   className={cn(
-                    "w-36 border-2 border-green-600 bg-transparent py-2 transition duration-200 hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50",
+                    "w-full rounded-md border border-border px-3 py-2 text-sm text-text-primary transition-colors hover:bg-primary/10",
                     {
-                      "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
+                      "border-primary/50 bg-background-elevated bg-primary/10":
                         type === "IMAGE",
                     },
                   )}
@@ -69,13 +70,12 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                 <button
                   type="button"
                   onClick={() => {
-                    nextStep();
                     handleTypeChange("VIDEO");
                   }}
                   className={cn(
-                    "w-36 border-2 border-green-600 bg-transparent py-2 transition duration-200 hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50",
+                    "w-full rounded-md border border-border px-3 py-2 text-sm text-text-primary transition-colors hover:bg-primary/10",
                     {
-                      "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
+                      "border-primary/50 bg-background-elevated bg-primary/10":
                         type === "VIDEO",
                     },
                   )}
@@ -83,20 +83,16 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                   Video
                 </button>
               </FormControl>
-            </div>
-
-            <div className="flex justify-around max-md:flex-col max-md:gap-4 md:gap-8">
               <FormControl>
                 <button
                   type="button"
                   onClick={() => {
-                    nextStep();
                     handleTypeChange("AUDIO");
                   }}
                   className={cn(
-                    "w-36 border-2 border-green-600 bg-transparent py-2 transition duration-200 hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50",
+                    "w-full rounded-md border border-border px-3 py-2 text-sm text-text-primary transition-colors hover:bg-primary/10",
                     {
-                      "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
+                      "border-primary/50 bg-background-elevated bg-primary/10":
                         type === "AUDIO",
                     },
                   )}
@@ -108,13 +104,12 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                 <button
                   type="button"
                   onClick={() => {
-                    nextStep();
                     handleTypeChange("PDF");
                   }}
                   className={cn(
-                    "w-36 border-2 border-green-600 bg-transparent py-2 transition duration-200 hover:shadow-[0_0_20px_2px] hover:shadow-green-600/50",
+                    "w-full rounded-md border border-border px-3 py-2 text-sm text-text-primary transition-colors hover:bg-primary/10",
                     {
-                      "bg-green-600 shadow-[0_4px_20px_4px] shadow-white/10 md:text-lg":
+                      "border-primary/50 bg-background-elevated bg-primary/10":
                         type === "PDF",
                     },
                   )}

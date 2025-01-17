@@ -4,65 +4,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: 240 10% 3.9%; /* zinc-950 */
+    --foreground: 0 0% 98%; /* zinc-50 */
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card: 240 10% 3.9%; /* zinc-950 */
+    --card-foreground: 0 0% 98%; /* zinc-50 */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
+    --popover: 240 10% 3.9%; /* zinc-950 */
+    --popover-foreground: 0 0% 98%; /* zinc-50 */
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 142.1 76.2% 36.3%; /* green-500 */
+    --primary-foreground: 144.9 80.4% 10%; /* green-900 */
 
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 217.2 91.2% 59.8%; /* blue-500 */
+    --secondary-foreground: 210 40% 98%; /* zinc-50 */
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+    --muted: 240 3.7% 15.9%; /* zinc-800 */
+    --muted-foreground: 240 5% 64.9%; /* zinc-500 */
 
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --accent: 240 3.7% 15.9%; /* zinc-800 */
+    --accent-foreground: 0 0% 98%; /* zinc-50 */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%; /* red-500 */
+    --destructive-foreground: 0 0% 98%; /* zinc-50 */
 
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 240 3.7% 15.9%; /* zinc-800 */
+    --input: 240 3.7% 15.9%; /* zinc-800 */
+    --ring: 142.1 76.2% 36.3%; /* green-500 */
 
-    --radius: 0.6rem;
-  }
-
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --radius: 0.5rem;
   }
 }
 
@@ -86,37 +56,37 @@
 
 .morph-lg {
   box-shadow:
-    4px 4px 8px #09090be9,
-    6px 6px 15px #09090bb5,
-    8px 8px 30px #09090b7a,
-    -2px -2px 4px #333333df,
-    -4px -4px 12px #3333339a,
-    -6px -6px 30px #33333364;
+    4px 4px 8px theme(colors.background.DEFAULT / 0.9),
+    6px 6px 15px theme(colors.background.DEFAULT / 0.7),
+    8px 8px 30px theme(colors.background.DEFAULT / 0.5),
+    -2px -2px 4px theme(colors.background.muted / 0.9),
+    -4px -4px 12px theme(colors.background.muted / 0.6),
+    -6px -6px 30px theme(colors.background.muted / 0.4);
 }
 
 .morph-lg:hover {
   box-shadow:
-    4px 4px 8px #09090be9,
-    6px 6px 15px #09090bb5,
-    8px 8px 30px #09090b7a,
-    -2px -2px 4px #333333df,
-    -4px -4px 12px #3333339a,
-    -6px -6px 30px #33333364,
-    -6px -6px 50px #33333333;
+    4px 4px 8px theme(colors.background.DEFAULT / 0.9),
+    6px 6px 15px theme(colors.background.DEFAULT / 0.7),
+    8px 8px 30px theme(colors.background.DEFAULT / 0.5),
+    -2px -2px 4px theme(colors.background.muted / 0.9),
+    -4px -4px 12px theme(colors.background.muted / 0.6),
+    -6px -6px 30px theme(colors.background.muted / 0.4),
+    -6px -6px 50px theme(colors.background.muted / 0.2);
 }
 
 .morph-md {
   box-shadow:
-    20px 20px 50px #151515,
-    -20px -20px 50px #272727;
+    20px 20px 50px theme(colors.background.DEFAULT),
+    -20px -20px 50px theme(colors.background.muted);
 }
 
 .morph-sm {
   box-shadow:
-    4px 4px 7px #09090b1f,
-    6px 6px 12px #09090b5b,
-    -2px -2px 4px #333333aa,
-    -4px -4px 7px #3333331a;
+    4px 4px 7px theme(colors.background.DEFAULT / 0.1),
+    6px 6px 12px theme(colors.background.DEFAULT / 0.3),
+    -2px -2px 4px theme(colors.background.muted / 0.7),
+    -4px -4px 7px theme(colors.background.muted / 0.1);
 }
 
 .morph-none {
@@ -134,23 +104,33 @@
 
 .neon-text-green {
   text-shadow:
-    0px 0px 4px theme("colors.green.50"),
-    0px 0px 50px theme("colors.green.400"),
-    0px 0px 90px theme("colors.green.400"),
-    0px 0px 150px theme("colors.green.600");
+    0px 0px 4px theme(colors.primary.light),
+    0px 0px 50px theme(colors.primary.DEFAULT),
+    0px 0px 90px theme(colors.primary.DEFAULT),
+    0px 0px 150px theme(colors.primary.dark),
+    0px 0px 200px theme(colors.primary.dark / 0.5);
 }
 
 .repeating-bg {
-  background: linear-gradient(to bottom, #171717 0%, #1e1e1e 40%, #171717 150%);
+  background: linear-gradient(
+    to bottom,
+    theme(colors.background.DEFAULT) 0%,
+    theme(colors.background.muted) 40%,
+    theme(colors.background.DEFAULT) 150%,
+    theme(colors.primary.light / 0.1),
+    theme(colors.primary.dark / 0.05)
+  );
   background-blend-mode: multiply;
 }
 
 .moving-bg {
   background: linear-gradient(
     -45deg,
-    rgb(4, 168, 197),
-    #f7f7f7,
-    rgb(13, 205, 48)
+    theme(colors.primary.DEFAULT),
+    theme(colors.background.DEFAULT),
+    theme(colors.secondary.DEFAULT),
+    theme(colors.primary.light),
+    theme(colors.primary.dark)
   );
   background-size: 600% 600%;
   animation: gradient 10s ease infinite;
@@ -169,25 +149,23 @@
     background-position: 0% 50%;
   }
 }
-
+/* 
 ::-webkit-scrollbar {
-  width: 0.65em;
+  width: 0.75em;
 }
 
 ::-webkit-scrollbar-track {
-  background: #585858;
+  background: theme(colors.background.surface);
 }
 
 ::-webkit-scrollbar-thumb {
-  /* border: 0.3rem solid transparent; */
   border-radius: 100vw;
-  background-color: #323232;
+  background-color: theme(colors.border.dark);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0c0c0c;
-  /* background: linear-gradient(#b92341, rgba(0, 0, 0, 0.1), #3767c7); */
-}
+  background: theme(colors.primary.DEFAULT);
+} */
 
 /* loader */
 .loader {
@@ -205,8 +183,12 @@
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3) inset;
 }
 .loader:after {
-  box-shadow: 0 2px 0 #22c55e inset;
+  box-shadow:
+    0 2px 0 theme(colors.primary.DEFAULT) inset,
+    0 0 10px theme(colors.primary.light / 0.3),
+    0 0 20px theme(colors.primary.dark / 0.2);
   animation: rotate 2s linear infinite;
+  border: 2px solid theme(colors.primary.light);
 }
 
 @keyframes rotate {
@@ -216,16 +198,6 @@
   100% {
     transform: rotate(360deg);
   }
-}
-
-.text-background {
-  outline: none;
-  background: url(https://cdn.dribbble.com/users/32512/screenshots/3581570/white_abstract_by_gleb.gif);
-  background-size: contain;
-  background-position: top left;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
 }
 
 .animate-next {
@@ -274,7 +246,11 @@
 }
 
 .neon-text {
-  text-shadow: 2px 7px 5px #000;
+  text-shadow:
+    0 0 4px theme(colors.primary.light),
+    0 0 10px theme(colors.primary.DEFAULT),
+    0 0 20px theme(colors.primary.dark),
+    0 0 40px theme(colors.primary.dark / 0.5);
 }
 
 @keyframes moveToEachCorner1 {
@@ -411,7 +387,7 @@
 .cl-signIn-start,
 .cl-signUp-start,
 .cl-card {
-  @apply border-zinc-700 bg-[#1c1c1c] shadow-xl shadow-green-500/10;
+  @apply border-background-surface bg-[#1c1c1c] shadow-xl shadow-green-500/10;
 }
 
 .cl-modalCloseButton {
@@ -446,7 +422,7 @@
 .cl-dividerText,
 .cl-alertText,
 .cl-alert {
-  @apply border-zinc-700 text-zinc-400;
+  @apply border-background-surface text-zinc-400;
 }
 
 .cl-identityPreviewText {
@@ -464,7 +440,7 @@
 }
 
 .cl-identityPreview {
-  @apply border-zinc-700;
+  @apply border-background-surface;
 }
 
 .cl-formFieldInfoText__password {
@@ -472,11 +448,11 @@
 }
 
 .cl-formFieldInput {
-  @apply border-zinc-700 bg-zinc-800 text-zinc-100;
+  @apply border-background-surface bg-zinc-800 text-zinc-100;
 }
 
 .cl-formButtonPrimary {
-  @apply bg-green-600 py-1 text-base font-semibold text-white hover:bg-green-600 focus:border-none;
+  @apply bg-primary-dark py-1 text-base font-semibold text-white hover:bg-primary-dark focus:border-none;
 }
 
 .cl-footerActionText,
@@ -492,7 +468,7 @@
 }
 
 .cl-internal-b3fm6y {
-  @apply bg-green-500 text-black;
+  @apply bg-primary text-black;
 }
 
 .cl-formFieldInputShowPasswordButton {
@@ -529,9 +505,9 @@
 }
 
 .cl-internal-1xg0u4s {
-  @apply border-b-zinc-700;
+  @apply border-b-background-surface;
 }
 
 .cl-badge {
-  @apply bg-green-500 pt-1 text-black;
+  @apply bg-primary pt-1 text-black;
 } */

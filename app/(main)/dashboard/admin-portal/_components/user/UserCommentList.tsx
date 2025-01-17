@@ -39,7 +39,7 @@ const UserCommentList = async ({ userId }: UserCommentListProps) => {
       <h2 className="pt-6 text-lg font-medium md:text-xl">
         User&apos;s Comments
       </h2>
-      <hr className="mt-2 border-zinc-700" />
+      <hr className="mt-2 border-background-surface" />
       <ul className="mt-6 space-y-6">
         {comments.map((comment) => (
           <Comment key={comment.id} comment={comment} userPage />

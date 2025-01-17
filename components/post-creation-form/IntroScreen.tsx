@@ -1,20 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { kobata } from "@/app/fonts";
-import { CarouselApi } from "@/components/ui/carousel";
 
-interface IntroScreenProps {
-  api: CarouselApi | null;
-}
-
-export const IntroScreen = ({ api }: IntroScreenProps) => {
+export const IntroScreen = () => {
   return (
     <div className="flex w-full flex-col gap-8">
-      <p
-        className={`${kobata.className} text-6xl font-semibold leading-[4.5rem] max-md:text-5xl max-sm:text-4xl`}
-      >
-        Archive Our Youth
-      </p>
+      <div>
+        <p className="mb-4 text-2xl font-medium max-md:text-xl">
+          Submit a post
+        </p>
+        <hr />
+      </div>
 
       <p className="leading-6 tracking-widest text-zinc-300 max-md:text-sm">
         Welcome to{" "}
@@ -48,22 +42,8 @@ export const IntroScreen = ({ api }: IntroScreenProps) => {
         the submission portal remains open for continual submissions.
       </p>
 
-      <Button
-        onClick={() => api?.scrollNext()}
-        type="button"
-        size="lg"
-        variant="outline"
-        className="w-fit border-2"
-      >
-        <span className="pl-1">Get Started</span>
-        <ArrowRight className="size-5" />
-      </Button>
-
-      <p className="text-zinc-400 max-md:hidden">
-        You can use arrow keys to navigate.
-      </p>
-      <p className="text-zinc-400 md:hidden">
-        Swipe left or right to navigate.
+      <p className="text-zinc-400">
+        Scroll down to complete the submission form.
       </p>
     </div>
   );

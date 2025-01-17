@@ -37,7 +37,7 @@ const LandingPageClient: FC<LandingPageClientProps> = ({}) => {
               transition: { duration: 0.5 },
             }}
             viewport={{ once: true }}
-            className={`${kobata.className} neon-text relative select-none pb-8 text-center text-[4.5rem] font-semibold leading-none text-white sm:px-4 md:px-8 md:text-[5rem] lg:text-[6rem]`}
+            className={`${kobata.className} relative select-none pb-8 text-center text-[4.5rem] font-semibold leading-none text-white [text-shadow:2px_7px_5px_#000] sm:px-4 md:px-8 md:text-[5rem] lg:text-[6rem]`}
           >
             Archive
             <br className="hidden max-md:block" /> Our
@@ -64,7 +64,7 @@ const LandingPageClient: FC<LandingPageClientProps> = ({}) => {
               className="relative block"
               href="/submit"
             >
-              <div className="w-56 rounded-md bg-green-500 px-4 py-2.5 font-medium tracking-wide text-zinc-800 transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:text-black active:translate-x-1 active:translate-y-1 md:text-lg ">
+              <div className="w-56 rounded-md bg-primary px-4 py-2.5 font-medium tracking-wide text-zinc-800 transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:text-black active:translate-x-1 active:translate-y-1 md:text-lg ">
                 Submit A Post
               </div>
               <span className="absolute inset-0 -z-10 translate-x-1 translate-y-1 rounded-md bg-green-950" />
@@ -75,7 +75,7 @@ const LandingPageClient: FC<LandingPageClientProps> = ({}) => {
             <Link className="relative block" href="/home">
               <div
                 className={
-                  "relative w-56 rounded-md bg-green-500 px-4 py-2.5 font-medium tracking-wide text-zinc-800 transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:text-black active:translate-x-1 active:translate-y-1 md:text-lg"
+                  "relative w-56 rounded-md bg-primary px-4 py-2.5 font-medium tracking-wide text-zinc-800 transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:text-black active:translate-x-1 active:translate-y-1 md:text-lg"
                 }
               >
                 View Submissions

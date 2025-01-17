@@ -14,6 +14,14 @@ import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { ExternalLink, RefreshCcw, X } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+import { allCountries } from "@/lib/constants";
 import MultiSelect from "../MultiSelect";
 import { allTags } from "../post-creation-form/TagSelectionSlide";
 import { z } from "zod";
@@ -33,13 +41,15 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const form = useForm({
+  const form = useForm<z.infer<typeof PostEditValidator>>({
     resolver: zodResolver(PostEditValidator),
     defaultValues: {
-      content: post.postContent,
-      tags: post.tags,
-      description: post.description,
+      content: post.postContent || "",
+      tags: post.tags || [],
+      description: post.description || "",
       thumbnail: post.thumbnail || "",
+      location: post.location || "",
+      researchQuestions: post.researchQuestions || [],
     },
   });
 
@@ -83,25 +93,31 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
         <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
           {/* -------------------- THUMBNAIL ----------------------- */}
           {post.contentType !== "IMAGE" && (
-            <div>
-              <p className="text-zinc-400 max-sm:text-sm">THUMBNAIL</p>
-              <FormField
-                name="thumbnail"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem className="">
-                    <FormControl>
+            <FormField
+              name="thumbnail"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className="mx-auto w-full max-w-4xl space-y-4 rounded-lg border p-4 md:p-6">
+                  <div>
+                    <p className="text-lg font-medium">Thumbnail</p>
+                    <p className="text-sm text-zinc-400">
+                      Optional but recommended
+                    </p>
+                  </div>
+                  <FormControl>
+                    <div className="flex justify-center">
                       <FileUpload
-                        classNames="aspect-square max-sm:max-w-[250px] max-w-[300px]"
+                        classNames="aspect-square w-full max-w-[200px] md:max-w-[300px] lg:max-w-[400px]"
                         endPoint="thumbnail"
                         onChange={field.onChange}
-                        value={field.value}
+                        value={field.value || ""}
                       />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-            </div>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           )}
 
           {/* -------------------- TEXT CONTENT ----------------------- */}
@@ -119,7 +135,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                         size="sm"
                         onClick={() => setPreview(false)}
                         className={cn(
-                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
                           {
                             "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
                               !preview,
@@ -137,7 +153,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                           }
                         }}
                         className={cn(
-                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
                           {
                             "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
                               preview,
@@ -265,7 +281,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                         size="sm"
                         onClick={() => setPreview(false)}
                         className={cn(
-                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
                           {
                             "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
                               !preview,
@@ -283,7 +299,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                           }
                         }}
                         className={cn(
-                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
                           {
                             "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
                               preview,
@@ -297,7 +313,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                       {preview ? (
                         form.getValues().description ? (
                           <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
-                            {form.getValues().description}
+                            {form.getValues().description || ""}
                           </ReactMarkdown>
                         ) : (
                           <p className="grid h-96 place-items-center text-zinc-400">
@@ -327,7 +343,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
             </div>
           )}
 
-          <hr className="mt-4 border-zinc-700" />
+          <hr className="mt-4 border-background-surface" />
 
           <FormField
             control={form.control}
@@ -351,7 +367,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                     <li
                       key={tag}
                       className={cn(
-                        "text-bold flex items-center justify-between gap-1 rounded-md px-2.5 py-1 text-zinc-900",
+                        "text-bold flex items-center justify-between gap-1 rounded-md px-2.5 py-1 text-background-muted",
                         {
                           "border-2 border-rose-500 text-rose-500": index === 0,
                           "border-2 border-lime-500 text-lime-500": index === 1,
@@ -386,7 +402,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                     <button
                       type="button"
                       onClick={() => form.setValue("tags", [])}
-                      className="morph-sm flex w-fit items-center gap-2 rounded-sm border border-zinc-700 bg-zinc-800 px-3 py-2 text-white transition max-md:text-sm md:text-base"
+                      className="morph-sm flex w-fit items-center gap-2 rounded-sm border border-background-surface bg-zinc-800 px-3 py-2 text-white transition max-md:text-sm md:text-base"
                     >
                       Reset
                       <RefreshCcw size={16} />
@@ -397,7 +413,80 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
             )}
           />
 
-          <div className="mt-6 border-y border-zinc-700">
+          <div className="mt-6">
+            <p className="text-zinc-400 max-sm:text-sm">RESEARCH QUESTIONS</p>
+            <FormField
+              control={form.control}
+              name="researchQuestions"
+              render={({ field }) => (
+                <div className="space-y-2 rounded-md bg-zinc-800 p-4">
+                  {[
+                    "Challenges or barriers",
+                    "What wellbeing means to you",
+                    "Advice to my older or younger self",
+                    "Practices, habits, and routines",
+                    "The impact of digital technology",
+                    "The future (fears, hopes, or dreams)",
+                    "Resources or groups that support wellbeing",
+                  ].map((question) => (
+                    <div key={question} className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={field.value?.includes(question)}
+                        onChange={(e) => {
+                          const newValue = e.target.checked
+                            ? [...(field.value || []), question]
+                            : field.value?.filter(
+                                (q: string) => q !== question,
+                              );
+                          field.onChange(newValue);
+                        }}
+                        className="h-4 w-4 rounded border-zinc-500 bg-zinc-700 text-lime-500 focus:ring-lime-500"
+                      />
+                      <label className="text-sm text-zinc-100">
+                        {question}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              )}
+            />
+          </div>
+
+          <FormField
+            control={form.control}
+            name="location"
+            render={({ field }) => (
+              <FormItem className="mt-6">
+                <p className="text-zinc-400 max-sm:text-sm">LOCATION</p>
+                <FormControl>
+                  <div className="rounded-md bg-zinc-800 p-4">
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger className="border border-background-surface bg-zinc-800 text-zinc-100 outline-none">
+                        <SelectValue
+                          className="placeholder-zinc-400"
+                          placeholder="Select a country"
+                        />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-[300px] rounded-sm border-background-surface bg-zinc-800 text-zinc-100">
+                        {allCountries.map((c) => (
+                          <SelectItem
+                            className="hover:bg-background-surface focus:bg-background-surface"
+                            key={c}
+                            value={c.toLowerCase()}
+                          >
+                            {c}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          <div className="mt-6 border-y border-background-surface">
             <p className="py-4 text-neutral-400 max-md:text-sm">
               Note: Some fields on this form are intentionally non-editable to
               prevent misuse or unintended alterations. If you require changes

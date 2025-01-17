@@ -28,7 +28,7 @@ const FileUpload: FC<FileUploadProps> = ({
       return (
         <div
           className={cn(
-            "relative aspect-square h-full w-full rounded-sm border border-zinc-700 bg-zinc-800",
+            "relative aspect-square h-full w-full rounded-sm border border-background-surface bg-zinc-800",
             classNames,
           )}
         >
@@ -41,7 +41,7 @@ const FileUpload: FC<FileUploadProps> = ({
           <button
             onClick={() => onChange("")}
             type="button"
-            className="morph-sm group absolute -right-2 -top-2 rounded-md border border-zinc-800 bg-zinc-900 text-zinc-300 hover:text-red-500"
+            className="morph-sm group absolute -right-2 -top-2 rounded-md border border-border-dark bg-background-muted text-zinc-300 hover:text-red-500"
           >
             <X className="size-6 transition group-hover:rotate-90" />
           </button>
@@ -51,7 +51,7 @@ const FileUpload: FC<FileUploadProps> = ({
 
     if (endPoint === "video") {
       return (
-        <div className="relative aspect-video max-h-[40vh] w-full border border-zinc-800">
+        <div className="relative aspect-video max-h-[40vh] w-full border border-border-dark">
           <video
             src={value}
             controls
@@ -60,7 +60,7 @@ const FileUpload: FC<FileUploadProps> = ({
           <button
             onClick={() => onChange("")}
             type="button"
-            className="morph-sm group absolute -right-2 -top-2 rounded-md border border-zinc-800 bg-zinc-900 text-zinc-300 hover:text-red-500"
+            className="morph-sm group absolute -right-2 -top-2 rounded-md border border-border-dark bg-background-muted text-zinc-300 hover:text-red-500"
           >
             <X className="size-5 transition group-hover:rotate-90" />
           </button>
@@ -75,7 +75,7 @@ const FileUpload: FC<FileUploadProps> = ({
           <button
             onClick={() => onChange("")}
             type="button"
-            className="morph-sm rounded-sm bg-zinc-800 px-2.5 py-1.5 text-zinc-300 transition duration-200 hover:bg-zinc-700 hover:text-zinc-100 max-md:text-sm"
+            className="morph-sm rounded-sm bg-zinc-800 px-2.5 py-1.5 text-zinc-300 transition duration-200 hover:bg-background-surface hover:text-zinc-100 max-md:text-sm"
           >
             Remove selected audio
           </button>
@@ -90,7 +90,7 @@ const FileUpload: FC<FileUploadProps> = ({
           <button
             onClick={() => onChange("")}
             type="button"
-            className="morph-sm group absolute -right-2 -top-2 rounded-md border border-zinc-800 bg-zinc-900 text-zinc-300 hover:text-red-500"
+            className="morph-sm group absolute -right-2 -top-2 rounded-md border border-border-dark bg-background-muted text-zinc-300 hover:text-red-500"
           >
             <X className="size-5 transition group-hover:rotate-90" />
           </button>
@@ -110,7 +110,7 @@ const FileUpload: FC<FileUploadProps> = ({
   return (
     <UploadDropzone
       className={cn(
-        "morph-md h-full w-full border-2 border-zinc-700 bg-zinc-800",
+        "morph-md h-full w-full border-2 border-background-surface bg-zinc-800",
         classNames,
       )}
       endpoint={endPoint}

@@ -19,7 +19,7 @@ const AudioItem: FC<AudioItemProps> = ({ onClick, post, clicked, onClose }) => {
     <button
       onClick={onClick}
       aria-label="post modal button"
-      className="group relative grid aspect-square h-full w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800 bg-zinc-900 outline-none focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-white"
+      className="group relative grid aspect-square h-full w-full cursor-pointer place-items-center overflow-hidden border border-border-dark bg-background-muted outline-none focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-white"
     >
       <span className="sr-only">post modal button</span>
       <AnimatePresence>

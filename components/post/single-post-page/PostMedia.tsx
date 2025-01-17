@@ -2,6 +2,7 @@ import { FC } from "react";
 import DynamicImage from "../../DynamicImage";
 import PDFViewer from "../../PDFViewer";
 import Link from "next/link";
+import { isYouTubeUrl, getYouTubeVideoId } from "@/lib/utils";
 
 interface PostMediaProps {
   contentType: string;
@@ -15,8 +16,19 @@ const PostMedia: FC<PostMediaProps> = ({ contentType, postContent }) => {
 
   if (contentType === "VIDEO") {
     return (
-      <div className="relative aspect-video w-full overflow-hidden border border-zinc-800">
-        <video src={postContent} className="h-full w-full" controls />
+      <div className="relative aspect-video w-full overflow-hidden border border-border-dark">
+        {isYouTubeUrl(postContent) ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${getYouTubeVideoId(
+              postContent,
+            )}`}
+            className="h-full w-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <video src={postContent} className="h-full w-full" controls />
+        )}
       </div>
     );
   }

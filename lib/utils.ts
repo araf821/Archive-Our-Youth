@@ -50,3 +50,29 @@ export const formatDateString = (
 };
 
 export const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+
+export function isYouTubeUrl(url: string): boolean {
+  const patterns = [
+    /^https?:\/\/(www\.)?youtube\.com\/watch\?v=[\w-]+/,
+    /^https?:\/\/(www\.)?youtube\.com\/embed\/[\w-]+/,
+    /^https?:\/\/(www\.)?youtube\.com\/v\/[\w-]+/,
+    /^https?:\/\/youtu\.be\/[\w-]+/,
+  ];
+  return patterns.some((pattern) => pattern.test(url));
+}
+
+export function getYouTubeVideoId(url: string): string | null {
+  if (url.includes("youtube.com/watch?v=")) {
+    return url.split("v=")[1].split("&")[0];
+  }
+  if (url.includes("youtube.com/embed/")) {
+    return url.split("embed/")[1].split("?")[0];
+  }
+  if (url.includes("youtube.com/v/")) {
+    return url.split("v/")[1].split("?")[0];
+  }
+  if (url.includes("youtu.be/")) {
+    return url.split("youtu.be/")[1].split("?")[0];
+  }
+  return null;
+}

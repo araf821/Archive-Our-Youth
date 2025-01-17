@@ -65,7 +65,7 @@ const CollageItem: FC<CollageItemProps> = ({ post, currentUser }) => {
       }}
       aria-label="post modal button"
       onClick={handleClick}
-      className={`group relative aspect-square cursor-pointer overflow-hidden border border-zinc-800 outline-none transition duration-500 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-white`}
+      className={`group relative aspect-square cursor-pointer overflow-hidden border border-border-dark outline-none transition duration-500 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-white`}
     >
       <span className="sr-only">post modal button</span>
       {(post.contentType === "TEXT" || post.contentType === "PDF") &&

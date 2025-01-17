@@ -12,7 +12,7 @@ interface DashboardSidebarProps {
 
 const DashboardSidebar: FC<DashboardSidebarProps> = ({ currentUser }) => {
   return (
-    <div className="morph-lg flex h-fit gap-4 rounded-md border-2 border-zinc-700 p-2 transition duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black max-[450px]:flex-col lg:sticky lg:top-8 lg:flex-col">
+    <div className="flex h-fit gap-4 rounded-md border-2 border-border-dark/50 p-2 transition duration-300 hover:scale-[1.02] hover:border-border-dark hover:shadow-md hover:shadow-black max-[450px]:flex-col lg:sticky lg:top-8 lg:flex-col">
       <div className="relative aspect-square w-40 shrink-0 overflow-hidden max-[450px]:w-full min-[450px]:h-40 lg:h-full lg:w-full">
         <Image
           src={
@@ -27,7 +27,7 @@ const DashboardSidebar: FC<DashboardSidebarProps> = ({ currentUser }) => {
       </div>
       <div className="flex w-full flex-col gap-1.5 px-2 pb-2">
         <div className="flex items-center justify-between">
-          <p className="text-lg font-semibold tracking-wider sm:text-xl md:text-2xl">
+          <p className="text-lg font-semibold tracking-wider md:text-xl">
             {currentUser.name}
           </p>
           <EditProfileModal
@@ -35,25 +35,25 @@ const DashboardSidebar: FC<DashboardSidebarProps> = ({ currentUser }) => {
             name={currentUser.name}
             asChild
           >
-            <button>
+            <button title="Edit Profile">
               <span className="sr-only">edit button</span>
-              <Edit2 className="size-4 focus:outline-none md:h-5 md:w-5" />
+              <Edit2 className="size-4 focus:outline-none" />
             </button>
           </EditProfileModal>
         </div>
-        <div className="mb-2 lg:mb-4">
-          <p className="text-zinc-400 max-sm:text-sm">
+        <div className="mb-2 text-sm lg:mb-4">
+          <p className="text-text-secondary">
             Member Since:{" "}
             {dateFormat(new Date(currentUser.createdAt).toISOString()) || ""}
           </p>
-          <p className="text-zinc-400 max-sm:text-sm">
+          <p className="text-text-secondary">
             Posts: {currentUser._count.posts}
           </p>
         </div>
         {currentUser.role === UserType.ADMIN && (
           <Link
             href={"/dashboard/admin-portal/stats"}
-            className="group flex w-full items-center justify-between gap-1.5 rounded-sm bg-gradient-to-tr from-lime-400 via-emerald-500 to-green-600 px-3 py-1.5 font-semibold tracking-wider text-black min-[450px]:w-fit lg:hidden lg:w-full"
+            className="group flex w-full items-center justify-between gap-1.5 rounded-sm bg-gradient-to-tr from-lime-400 via-emerald-500 to-green-600 px-3 py-1.5 font-semibold tracking-wider text-text-inverted min-[450px]:w-fit lg:hidden lg:w-full"
           >
             Admin Portal
             <ArrowUpRight className="rotate-45 transition group-hover:rotate-0 max-lg:h-5 max-lg:w-5" />

@@ -42,13 +42,13 @@ const ShareModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-lg border-zinc-800 bg-zinc-900 p-4 outline-none md:p-8">
+      <DialogContent className="max-w-lg border-border-dark bg-background-muted p-4 outline-none md:p-8">
         <DialogHeader>
           <DialogTitle className="text-xl text-zinc-100 md:text-center md:text-2xl">
             Share this post
           </DialogTitle>
         </DialogHeader>
-        <hr className="border-zinc-700" />
+        <hr className="border-background-surface" />
 
         <div className="flex flex-col gap-4">
           <div className="mt-4 grid grid-cols-4 place-items-center gap-2">
@@ -83,14 +83,14 @@ const ShareModal = () => {
               caption="Email"
             />
           </div>
-          <div className="mt-4 flex w-full items-center justify-between gap-2 rounded-md border border-zinc-700 bg-zinc-800 p-2">
+          <div className="mt-4 flex w-full items-center justify-between gap-2 rounded-md border border-background-surface bg-zinc-800 p-2">
             <p className="w-fit text-zinc-300 max-md:text-sm max-sm:w-60 max-sm:truncate">
               {currentUrl}
             </p>
             <button
               onClick={() => handleCopy(currentUrl)}
               disabled={clicked}
-              className="rounded-md bg-zinc-700 p-2 text-zinc-300 transition hover:bg-zinc-600"
+              className="rounded-md bg-background-surface p-2 text-zinc-300 transition hover:bg-zinc-600"
             >
               {clicked ? (
                 <p className="flex items-center gap-1.5 text-green-500">

@@ -17,7 +17,7 @@ const AdminPortalLayout = async ({ children }: AdminPortalLayoutProps) => {
         <p className="mt-1 text-zinc-400 max-md:text-sm">
           Manage and moderate the Archive to your heart&apos;s content!
         </p>
-        <hr className="mt-2 border-zinc-700" />
+        <hr className="mt-2 border-background-surface" />
       </div>
 
       {/* Content */}

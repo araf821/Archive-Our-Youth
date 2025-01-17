@@ -39,11 +39,11 @@ const DashboardPage = async ({
   }
 
   return (
-    <div className="relative mx-auto grid max-w-screen-xl grid-cols-1 px-4 pt-8 text-zinc-100 max-lg:space-y-4 lg:grid-cols-6 lg:gap-4 lg:px-6 lg:pt-12 xl:gap-8">
+    <div className="relative mx-auto grid max-w-screen-xl grid-cols-1 px-4 pt-8 text-zinc-100 max-lg:space-y-4 lg:grid-cols-4 lg:gap-4 lg:px-6 lg:pt-12 xl:gap-8">
       {/* Header */}
-      <div className="col-span-1 lg:col-span-2">
+      <div className="col-span-1">
         <p className="text-4xl font-medium md:text-5xl lg:hidden">Dashboard</p>
-        <hr className="mb-4 mt-2 border-zinc-700 lg:hidden" />
+        <hr className="mb-4 mt-2 border-background-surface lg:hidden" />
 
         <DashboardSidebar currentUser={dbUser} />
       </div>

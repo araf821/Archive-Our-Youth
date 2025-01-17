@@ -11,12 +11,12 @@ const loading = () => {
     //     <Skeleton className="h-4 w-20" />
     //     <Skeleton className="h-10 w-40" />
     //     <Skeleton className="mx-auto flex w-full max-w-sm flex-col items-center gap-4 px-4 py-8">
-    //       <Skeleton className="h-6 w-20 bg-zinc-700" />
-    //       <Skeleton className="h-32 w-32 bg-zinc-700" />
+    //       <Skeleton className="h-6 w-20 bg-background-surface" />
+    //       <Skeleton className="h-32 w-32 bg-background-surface" />
 
     //       <div className="w-full space-y-2 self-start">
-    //         <Skeleton className="h-6 w-20 bg-zinc-700" />
-    //         <Skeleton className="h-10 w-full bg-zinc-700" />
+    //         <Skeleton className="h-6 w-20 bg-background-surface" />
+    //         <Skeleton className="h-10 w-full bg-background-surface" />
     //       </div>
 
     //       <Skeleton className="h-8 w-full bg-zinc-600" />

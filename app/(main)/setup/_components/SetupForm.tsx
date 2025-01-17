@@ -59,7 +59,7 @@ const SetupForm: FC<SetupFormProps> = ({ user }) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="morph-lg relative mx-auto mt-6 flex w-full max-w-lg flex-col gap-6 overflow-hidden rounded-xl border-zinc-800 bg-zinc-900 px-4 py-8 md:px-6"
+        className="morph-lg relative mx-auto mt-6 flex w-full max-w-lg flex-col gap-6 overflow-hidden rounded-xl border-border-dark bg-background-muted px-4 py-8 md:px-6"
       >
         <h2 className="mb-4 mt-2 text-center text-xl text-zinc-200 md:text-2xl">
           Let&rsquo;s get you set up!
@@ -105,7 +105,7 @@ const SetupForm: FC<SetupFormProps> = ({ user }) => {
         <Button
           disabled={isLoading}
           type="submit"
-          className="morph-md bg-green-500 text-black hover:bg-green-500 hover:bg-opacity-80"
+          className="morph-md bg-primary text-black hover:bg-primary hover:bg-opacity-80"
         >
           Create new Account
         </Button>

@@ -38,7 +38,7 @@ const MobileNavbar = ({ pathname }: MobileNavbarProps) => {
     <DropdownMenu>
       <DropdownMenuTrigger
         ref={dropdownTriggerRef}
-        className="flex w-full items-center justify-between rounded-2xl border border-green-600 bg-green-500/20 p-4 text-left font-medium text-green-200"
+        className="flex w-full items-center justify-between rounded-2xl border border-green-600 bg-primary/20 p-4 text-left font-medium text-green-200"
       >
         <span>{pathLabel}</span>
         <ChevronDown />
@@ -46,16 +46,16 @@ const MobileNavbar = ({ pathname }: MobileNavbarProps) => {
       <DropdownMenuContent
         align="start"
         style={{ width: `${contentWidth}px` }}
-        className="mt-1 space-y-2 border border-green-600 bg-green-500/20 backdrop-blur-md"
+        className="mt-1 space-y-2 border border-green-600 bg-primary/20 backdrop-blur-md"
       >
         {adminNavItems.map((item) => (
           <DropdownMenuItem
             asChild
             key={item.label}
             className={cn(
-              "border border-green-500 bg-green-500/30 focus-visible:bg-green-500/40",
+              "border border-green-500 bg-primary/30 focus-visible:bg-primary/40",
               {
-                "bg-green-600 focus-visible:bg-green-500": pathname.includes(
+                "bg-primary-dark focus-visible:bg-primary": pathname.includes(
                   item.label.toLowerCase(),
                 ),
               },

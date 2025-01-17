@@ -12,7 +12,7 @@ const layout = ({ children }: Props) => {
     <div className="relative mx-auto grid min-h-[calc(100dvh-80px)] max-w-screen-xl place-items-center lg:px-8">
       <main className="z-10 flex justify-center backdrop-blur-sm max-lg:flex-col max-lg:items-center lg:flex-row-reverse lg:px-8 lg:py-20">
         <div className="px-8 max-lg:hidden">
-          <h2 className={cn("text-xs text-muted-foreground md:text-sm")}>
+          <h2 className={cn("text-xs text-text-secondary md:text-sm")}>
             Welcome to
           </h2>
           <h2
@@ -33,7 +33,7 @@ const layout = ({ children }: Props) => {
           </p>
         </div>
         <ClerkLoading>
-          <div className="flex aspect-[4/5] max-h-[500px] flex-col justify-center gap-1 rounded-xl border border-zinc-700 bg-zinc-900 p-8 max-lg:w-full lg:w-[400px]">
+          <div className="flex aspect-[4/5] max-h-[500px] flex-col justify-center gap-1 rounded-xl border border-background-surface bg-background-muted p-8 max-lg:w-full lg:w-[400px]">
             <Skeleton className="h-8 w-60" />
             <Skeleton className="h-4 w-full" />
 
@@ -53,7 +53,7 @@ const layout = ({ children }: Props) => {
         </ClerkLoading>
         <ClerkLoaded>{children}</ClerkLoaded>
       </main>
-      <div className="fixed inset-0 bg-gradient-to-b from-zinc-900 via-green-800/10 to-zinc-950"></div>
+      <div className="fixed inset-0 bg-gradient-to-b from-background-muted via-green-800/10 to-background"></div>
     </div>
   );
 };

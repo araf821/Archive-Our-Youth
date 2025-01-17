@@ -9,7 +9,7 @@ const Stats = async ({}: StatsProps) => {
   return (
     <>
       <div>
-        <p className="my-4 w-fit rounded-md bg-green-500 px-3 py-1 text-sm font-semibold tracking-widest text-black">
+        <p className="my-4 w-fit rounded-md bg-primary px-3 py-1 text-sm font-semibold tracking-widest text-black">
           Overall
         </p>
         <ul className="grid gap-4 sm:grid-cols-2">
@@ -38,7 +38,7 @@ const Stats = async ({}: StatsProps) => {
 
       {/* By PostType */}
       <div>
-        <p className="mb-4 mt-6 w-fit rounded-md bg-green-500 px-3 py-1 text-sm font-semibold tracking-widest text-black">
+        <p className="mb-4 mt-6 w-fit rounded-md bg-primary px-3 py-1 text-sm font-semibold tracking-widest text-black">
           Post Types
         </p>
         <ul className="grid gap-4 sm:grid-cols-2">
@@ -71,7 +71,7 @@ const Stats = async ({}: StatsProps) => {
       </div>
 
       <div className="mb-12">
-        <p className="mb-4 mt-6 w-fit rounded-md bg-green-500 px-3 py-1 text-sm font-semibold tracking-widest text-black">
+        <p className="mb-4 mt-6 w-fit rounded-md bg-primary px-3 py-1 text-sm font-semibold tracking-widest text-black">
           Users
         </p>
         <ul className="grid gap-4 sm:grid-cols-2">

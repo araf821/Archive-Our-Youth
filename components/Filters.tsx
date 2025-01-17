@@ -127,7 +127,7 @@ const Filters: FC<FiltersProps> = ({}) => {
       initial={{ height: 0, opacity: 0 }}
       variants={filterVariants}
       animate={isOpen ? "visible" : "hidden"}
-      className="border-b border-zinc-700 px-4 text-zinc-100"
+      className="border-b border-background-surface px-4 text-zinc-100"
     >
       <div className="mx-auto flex max-w-screen-lg flex-row-reverse gap-8">
         <div className="relative aspect-square w-full max-w-[300px] max-lg:hidden">
@@ -140,7 +140,7 @@ const Filters: FC<FiltersProps> = ({}) => {
         </div>
         <div className="mx-auto flex w-full max-w-screen-md flex-col gap-4 pb-8 pt-6">
           <p className="text-2xl font-medium md:text-3xl">Search & Filter</p>
-          <hr className="-mt-3 border-zinc-700" />
+          <hr className="-mt-3 border-background-surface" />
 
           <Form {...form}>
             <form
@@ -159,7 +159,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                           {...field}
                           type="text"
                           placeholder="Title"
-                          className="morph-sm border border-zinc-700 bg-zinc-800 px-4 py-3 outline-none focus-visible:outline-zinc-700"
+                          className="morph-sm border border-background-surface bg-zinc-800 px-4 py-3 outline-none focus-visible:outline-background-surface"
                         />
                       </FormControl>
                       <FormMessage />
@@ -178,14 +178,14 @@ const Filters: FC<FiltersProps> = ({}) => {
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger className="morph-sm border border-zinc-700 bg-zinc-800 py-5 text-zinc-100 outline-none">
+                          <SelectTrigger className="morph-sm border border-background-surface bg-zinc-800 py-5 text-zinc-100 outline-none">
                             <SelectValue placeholder="Sort by..." />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
+                        <SelectContent className="rounded-sm border-background-surface bg-zinc-800 text-zinc-100">
                           <SelectItem
-                            className={cn("py-3 hover:bg-zinc-700", {
-                              "bg-zinc-900":
+                            className={cn("py-3 hover:bg-background-surface", {
+                              "bg-background-muted":
                                 form.getValues().sortBy === "latest",
                             })}
                             value="latest"
@@ -193,8 +193,8 @@ const Filters: FC<FiltersProps> = ({}) => {
                             Latest Posts
                           </SelectItem>
                           <SelectItem
-                            className={cn("py-2 hover:bg-zinc-700", {
-                              "bg-zinc-900":
+                            className={cn("py-2 hover:bg-background-surface", {
+                              "bg-background-muted":
                                 form.getValues().sortBy === "oldest",
                             })}
                             value="oldest"
@@ -202,8 +202,8 @@ const Filters: FC<FiltersProps> = ({}) => {
                             Oldest Posts
                           </SelectItem>
                           <SelectItem
-                            className={cn("py-2 hover:bg-zinc-700", {
-                              "bg-zinc-900":
+                            className={cn("py-2 hover:bg-background-surface", {
+                              "bg-background-muted":
                                 form.getValues().sortBy === "most-popular",
                             })}
                             value="most-popular"
@@ -211,8 +211,8 @@ const Filters: FC<FiltersProps> = ({}) => {
                             Most Popular
                           </SelectItem>
                           <SelectItem
-                            className={cn("py-2 hover:bg-zinc-700", {
-                              "bg-zinc-900":
+                            className={cn("py-2 hover:bg-background-surface", {
+                              "bg-background-muted":
                                 form.getValues().sortBy === "least-popular",
                             })}
                             value="least-popular"
@@ -255,7 +255,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                           ))}
                           <button
                             onClick={() => form.setValue("tags", [])}
-                            className="my-auto h-full rounded-md bg-zinc-800 px-3 py-1.5 text-zinc-300 transition duration-200 hover:bg-zinc-700 hover:text-zinc-100"
+                            className="my-auto h-full rounded-md bg-zinc-800 px-3 py-1.5 text-zinc-300 transition duration-200 hover:bg-background-surface hover:text-zinc-100"
                           >
                             Clear
                           </button>
@@ -277,20 +277,20 @@ const Filters: FC<FiltersProps> = ({}) => {
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger className="morph-sm border border-zinc-700 bg-zinc-800 py-5 text-zinc-100 outline-none">
+                          <SelectTrigger className="morph-sm border border-background-surface bg-zinc-800 py-5 text-zinc-100 outline-none">
                             <SelectValue
                               className="placeholder-zinc-400"
                               placeholder="Select a country"
                             />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="max-h-[400px] overflow-y-auto rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
+                        <SelectContent className="max-h-[400px] overflow-y-auto rounded-sm border-background-surface bg-zinc-800 text-zinc-100">
                           {allCountries.map((c) => (
                             <SelectItem
                               className={cn(
-                                "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
+                                "py-3 hover:bg-background-surface focus:bg-background-surface",
                                 {
-                                  "bg-zinc-900 focus:bg-zinc-900":
+                                  "bg-background-muted focus:bg-background-muted":
                                     country === c.toLowerCase(),
                                 },
                               )}
@@ -320,19 +320,19 @@ const Filters: FC<FiltersProps> = ({}) => {
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger className="morph-sm h-fit border border-zinc-700 bg-zinc-800 text-zinc-100 outline-none">
+                          <SelectTrigger className="morph-sm h-fit border border-background-surface bg-zinc-800 text-zinc-100 outline-none">
                             <SelectValue
                               className="placeholder-zinc-400"
                               placeholder="Search by a question"
                             />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="max-h-[400px] max-w-[510px] rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
+                        <SelectContent className="max-h-[400px] max-w-[510px] rounded-sm border-background-surface bg-zinc-800 text-zinc-100">
                           <SelectItem
                             className={cn(
-                              "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
+                              "py-3 hover:bg-background-surface focus:bg-background-surface",
                               {
-                                "bg-zinc-900 focus:bg-zinc-900":
+                                "bg-background-muted focus:bg-background-muted":
                                   form.getValues().question === "any",
                               },
                             )}
@@ -343,9 +343,9 @@ const Filters: FC<FiltersProps> = ({}) => {
                           {researchQuestions.map((question) => (
                             <SelectItem
                               className={cn(
-                                "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
+                                "py-3 hover:bg-background-surface focus:bg-background-surface",
                                 {
-                                  "bg-zinc-900 focus:bg-zinc-900":
+                                  "bg-background-muted focus:bg-background-muted":
                                     form.getValues().question === question,
                                 },
                               )}
@@ -373,19 +373,19 @@ const Filters: FC<FiltersProps> = ({}) => {
                         defaultValue={field.value || ""}
                       >
                         <FormControl>
-                          <SelectTrigger className="morph-sm border border-zinc-700 bg-zinc-800 py-5 text-zinc-100 outline-none">
+                          <SelectTrigger className="morph-sm border border-background-surface bg-zinc-800 py-5 text-zinc-100 outline-none">
                             <SelectValue
                               className="placeholder-zinc-400"
                               placeholder="Select a media"
                             />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="max-h-[400px] rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
+                        <SelectContent className="max-h-[400px] rounded-sm border-background-surface bg-zinc-800 text-zinc-100">
                           <SelectItem
                             className={cn(
-                              "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
+                              "py-3 hover:bg-background-surface focus:bg-background-surface",
                               {
-                                "bg-zinc-900 focus:bg-zinc-900":
+                                "bg-background-muted focus:bg-background-muted":
                                   form.getValues().postType === "ANY",
                               },
                             )}
@@ -396,9 +396,9 @@ const Filters: FC<FiltersProps> = ({}) => {
                           {postTypes.map((type) => (
                             <SelectItem
                               className={cn(
-                                "py-3 hover:bg-zinc-700 focus:bg-zinc-700",
+                                "py-3 hover:bg-background-surface focus:bg-background-surface",
                                 {
-                                  "bg-zinc-900 focus:bg-zinc-900":
+                                  "bg-background-muted focus:bg-background-muted":
                                     form.getValues().postType ===
                                     type.toUpperCase(),
                                 },
@@ -417,7 +417,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                 />
               </div>
 
-              <hr className="border-zinc-700" />
+              <hr className="border-background-surface" />
 
               <div className="flex gap-4">
                 <Button
@@ -426,12 +426,12 @@ const Filters: FC<FiltersProps> = ({}) => {
                     onClose();
                   }}
                   type="button"
-                  className="morph-sm w-fit border border-zinc-700 bg-zinc-800 hover:bg-zinc-800"
+                  className="morph-sm w-fit border border-background-surface bg-zinc-800 hover:bg-zinc-800"
                 >
                   Reset
-                  <RefreshCcw className="size-4 ml-2" />
+                  <RefreshCcw className="ml-2 size-4" />
                 </Button>
-                <Button className="morph-md w-fit bg-green-500 tracking-wider text-black hover:bg-green-600">
+                <Button className="morph-md w-fit bg-primary tracking-wider text-black hover:bg-primary-dark">
                   Search
                 </Button>
               </div>

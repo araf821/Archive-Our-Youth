@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 const NotFoundPage = () => {
   return (
     <div className="grid min-h-[100dvh] place-items-center px-4 sm:px-8">
-      <div className="flex w-full max-w-xl flex-col gap-4 rounded-xl bg-zinc-950 px-4 py-6 text-center md:gap-8 md:px-8 md:py-10">
+      <div className="flex w-full max-w-xl flex-col gap-4 rounded-xl bg-background px-4 py-6 text-center md:gap-8 md:px-8 md:py-10">
         <h2 className={cn("text-3xl md:text-4xl", kobata.className)}>
           Not Found
         </h2>

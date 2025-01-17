@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/Dialog";
-import { Edit2, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { Input } from "../ui/input";
 import { toast } from "sonner";
 import axios from "axios";
@@ -82,24 +82,22 @@ const EditProfileModal: FC<EditProfileModalProps> = ({
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogTrigger
         asChild
-        className="morph-sm rounded-lg border border-zinc-900 bg-zinc-800 p-1.5 text-zinc-400 transition duration-500 hover:text-green-500"
+        className="morph-sm rounded-lg bg-zinc-800 p-1.5 text-text-muted transition hover:text-primary"
       >
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-lg bg-zinc-900 px-4 py-6 text-zinc-100">
-        <DialogHeader className="space-y-0">
+      <DialogContent className="max-w-lg bg-background-muted p-4 text-zinc-100 md:p-6">
+        <DialogHeader>
           <DialogTitle>Edit Profile</DialogTitle>
           <DialogDescription>
             Change your name or profile picture.
           </DialogDescription>
         </DialogHeader>
-        <hr className="-mt-2 border-zinc-700" />
+
+        <hr />
 
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="-mt-2 space-y-4"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               name="newImageUrl"
               control={form.control}
@@ -136,7 +134,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({
               )}
             />
 
-            <hr className="border-zinc-700" />
+            <hr className="border-border" />
 
             <div className="flex items-center gap-4">
               <Button

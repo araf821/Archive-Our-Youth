@@ -25,7 +25,7 @@ const PostModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="w-full max-w-screen-sm rounded-sm border border-zinc-700 bg-[#202020] p-4 text-zinc-100 shadow-[0_0_20px_5px_black] outline-none max-md:w-[95%] md:rounded-md md:p-6">
+      <DialogContent className="w-full max-w-screen-sm rounded-sm border border-background-surface bg-[#202020] p-4 text-zinc-100 shadow-[0_0_20px_5px_black] outline-none max-md:w-[95%] md:rounded-md md:p-6">
         <div className="flex items-center justify-between">
           <button
             onClick={() => onClose()}
@@ -38,17 +38,17 @@ const PostModal = () => {
             <span className="absolute inset-0 translate-x-1 translate-y-1 rounded-md bg-green-800"></span>
             <Link
               href={`/post/${post.slug}`}
-              className="relative z-10 flex rounded-md bg-green-500 px-2 py-1 text-center font-medium tracking-wide text-zinc-950 transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-green-600 active:translate-x-1 active:translate-y-1"
+              className="relative z-10 flex rounded-md bg-primary px-2 py-1 text-center font-medium tracking-wide text-background transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-primary-dark active:translate-x-1 active:translate-y-1"
             >
               View Post
             </Link>
           </div>
         </div>
 
-        <hr className="border-zinc-700" />
+        <hr className="border-background-surface" />
 
         {(post.contentType === "TEXT" || post.contentType === "PDF") && (
-          <div className="w-fit rounded-sm bg-zinc-700 px-2.5 py-1 font-bold max-md:text-sm">
+          <div className="w-fit rounded-sm bg-background-surface px-2.5 py-1 font-bold max-md:text-sm">
             {post.contentType === "PDF"
               ? "PDF File"
               : post.contentType === "TEXT"
@@ -64,7 +64,7 @@ const PostModal = () => {
         )}
 
         {post.contentType === "VIDEO" && (
-          <div className="relative aspect-video w-full overflow-hidden border border-zinc-800">
+          <div className="relative aspect-video w-full overflow-hidden border border-border-dark">
             <video src={post.postContent} className="h-full w-full" controls />
           </div>
         )}
@@ -82,7 +82,7 @@ const PostModal = () => {
               : ""
           }`}
         >
-          <div className="flex w-full justify-between gap-2.5 rounded-md border border-zinc-800 bg-zinc-800 px-2 py-1.5">
+          <div className="flex w-full justify-between gap-2.5 rounded-md border border-border-dark bg-zinc-800 px-2 py-1.5">
             <LikeButton
               postId={post.id}
               likes={post.likes}

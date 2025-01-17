@@ -2,6 +2,7 @@
 
 import { Post } from "@prisma/client";
 import DynamicImage from "../DynamicImage";
+import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
 
 interface PostModalMediaProps {
   post: Post;
@@ -10,8 +11,10 @@ interface PostModalMediaProps {
 export default function PostModalMedia({ post }: PostModalMediaProps) {
   if (post.contentType === "TEXT" || post.contentType === "PDF") {
     return (
-      <div className="w-fit rounded-sm bg-zinc-700 px-2.5 py-1 font-bold max-md:text-sm">
-        {post.contentType === "PDF" ? "PDF File" : "Written"}
+      <div className="w-fit rounded-sm bg-background-surface px-2.5 py-1 max-md:text-sm">
+        <p className="text-xs font-bold md:text-sm">
+          {post.contentType === "PDF" ? "PDF File" : "Written"}
+        </p>
       </div>
     );
   }
@@ -26,8 +29,19 @@ export default function PostModalMedia({ post }: PostModalMediaProps) {
 
   if (post.contentType === "VIDEO") {
     return (
-      <div className="relative aspect-video w-full overflow-hidden border border-zinc-800">
-        <video src={post.postContent} className="h-full w-full" controls />
+      <div className="relative aspect-video w-full overflow-hidden border border-border-dark">
+        {isYouTubeUrl(post.postContent) ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${getYouTubeVideoId(
+              post.postContent,
+            )}`}
+            className="h-full w-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <video src={post.postContent} className="h-full w-full" controls />
+        )}
       </div>
     );
   }

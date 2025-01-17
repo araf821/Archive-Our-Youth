@@ -17,71 +17,68 @@ const TagSelectionSlide: FC<TagSelectionSlideProps> = ({ form }) => {
       control={form.control}
       name="tags"
       render={() => (
-        <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
-          <div className="text-center">
-            <p className="balance text-xl md:text-2xl">Add some tags</p>
-            <p className="balance text-sm text-zinc-400 max-md:text-xs">
+        <FormItem className="space-y-4 rounded-lg border p-4 md:p-6">
+          <div>
+            <p className="font-medium">Tags</p>
+            <p className="text-sm text-zinc-400">
               Relevant tags lead your posts to the right people!
             </p>
           </div>
-          <div className="w-full space-y-4">
-            <FormControl>
-              <MultiSelect
-                maxSelection={8}
-                onChange={(values: string[]) => {
-                  form.setValue("tags", values);
-                }}
-                options={allTags}
-                selectedOptions={tags}
-              />
-            </FormControl>
-            {tags.length < 1 && <FormMessage />}
-            <ul className="flex flex-wrap gap-4 text-white">
-              {form.getValues().tags.map((tag, index) => (
-                <li
-                  key={tag}
-                  className={cn(
-                    "text-bold flex items-center justify-between gap-1 rounded-md px-2.5 py-1 text-zinc-900",
-                    {
-                      "border-2 border-rose-500 text-rose-500": index === 0,
-                      "border-2 border-lime-500 text-lime-500": index === 1,
-                      "border-2 border-sky-500 text-sky-500": index === 2,
-                      "border-2 border-amber-500 text-amber-500": index === 3,
-                      "border-2 border-fuchsia-500 text-fuchsia-500":
-                        index === 4,
-                      "border-2 border-teal-400 text-teal-400": index === 5,
-                      "border-2 border-red-400 text-red-400": index === 6,
-                      "border-2 border-indigo-400 text-indigo-400": index === 7,
-                    },
-                  )}
-                >
-                  {tag}
-                  <button
-                    onClick={() =>
-                      form.setValue(
-                        "tags",
-                        tags.filter((t) => t !== tag),
-                      )
-                    }
-                    type="button"
-                    className=""
-                  >
-                    <X size={15} />
-                  </button>
-                </li>
-              ))}
-              {!!tags.length && (
+          <FormControl>
+            <MultiSelect
+              maxSelection={8}
+              onChange={(values: string[]) => {
+                form.setValue("tags", values);
+              }}
+              options={allTags}
+              selectedOptions={tags}
+            />
+          </FormControl>
+          {tags.length < 1 && <FormMessage />}
+          <ul className="flex flex-wrap gap-2 text-white">
+            {form.getValues().tags.map((tag, index) => (
+              <li
+                key={tag}
+                className={cn(
+                  "text-bold flex items-center justify-between gap-1 rounded-md px-2.5 py-1 text-background-muted",
+                  {
+                    "border-2 border-rose-500 text-rose-500": index === 0,
+                    "border-2 border-lime-500 text-lime-500": index === 1,
+                    "border-2 border-sky-500 text-sky-500": index === 2,
+                    "border-2 border-amber-500 text-amber-500": index === 3,
+                    "border-2 border-fuchsia-500 text-fuchsia-500": index === 4,
+                    "border-2 border-teal-400 text-teal-400": index === 5,
+                    "border-2 border-red-400 text-red-400": index === 6,
+                    "border-2 border-indigo-400 text-indigo-400": index === 7,
+                  },
+                )}
+              >
+                {tag}
                 <button
+                  onClick={() =>
+                    form.setValue(
+                      "tags",
+                      tags.filter((t) => t !== tag),
+                    )
+                  }
                   type="button"
-                  onClick={() => form.setValue("tags", [])}
-                  className="flex w-fit items-center gap-2 rounded-sm px-3 py-2 text-white transition hover:bg-zinc-800 max-md:text-sm md:text-base"
+                  className=""
                 >
-                  Reset
-                  <RefreshCcw size={16} />
+                  <X size={15} />
                 </button>
-              )}
-            </ul>
-          </div>
+              </li>
+            ))}
+            {!!tags.length && (
+              <button
+                type="button"
+                onClick={() => form.setValue("tags", [])}
+                className="flex w-fit items-center gap-2 rounded-sm px-3 py-2 text-white transition hover:bg-zinc-800 max-md:text-sm md:text-base"
+              >
+                Reset
+                <RefreshCcw size={16} />
+              </button>
+            )}
+          </ul>
         </FormItem>
       )}
     />

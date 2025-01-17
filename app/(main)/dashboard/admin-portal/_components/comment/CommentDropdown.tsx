@@ -36,11 +36,11 @@ const CommentDropdown = ({
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-[250px] space-y-1.5 border-2 border-zinc-700"
+        className="w-[250px] space-y-1.5 border-2 border-background-surface"
         align="end"
       >
         <DropdownMenuItem
-          className="focus:ring-none justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2"
+          className="focus:ring-none justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background-surface focus-visible:ring-offset-2"
           asChild
         >
           <Link
@@ -51,7 +51,7 @@ const CommentDropdown = ({
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem
-          className="focus:ring-none justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2"
+          className="focus:ring-none justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background-surface focus-visible:ring-offset-2"
           asChild
         >
           <Link
@@ -64,7 +64,7 @@ const CommentDropdown = ({
         {!deleted && (
           <DropdownMenuItem
             onClick={() => setIsModalOpen(true)}
-            className="focus:ring-none w-full cursor-pointer justify-center tracking-widest outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2"
+            className="focus:ring-none w-full cursor-pointer justify-center tracking-widest outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background-surface focus-visible:ring-offset-2"
           >
             Delete Comment
           </DropdownMenuItem>

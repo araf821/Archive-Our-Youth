@@ -26,8 +26,8 @@ export default function DynamicImage({
   classNames,
   modal = false,
   sizes = modal
-    ? "(max-width: 480px) 80vw, (max-width: 768px) 60vw, (max-width: 1024px) 50vw, 30vw"
-    : "(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw",
+    ? "(max-width: 480px) 90vw, (max-width: 768px) 80vw, (max-width: 1024px) 60vw, (max-width: 1280px) 45vw, 250px"
+    : "(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1024px) 70vw, (max-width: 1280px) 50vw, 384px",
   alt = "Image",
   fallbackSrc = "/placeholder_post_image.svg",
   quality = 90,
@@ -48,7 +48,7 @@ export default function DynamicImage({
   return (
     <div
       className={cn(
-        "relative aspect-[4/3] overflow-hidden rounded-sm border border-zinc-700",
+        "relative aspect-[4/3] overflow-hidden rounded-sm border border-background-surface",
         { "bg-zinc-800": loading },
         classNames,
       )}
@@ -76,12 +76,14 @@ export default function DynamicImage({
           imageProps?.className,
         )}
         priority={modal}
+        loading={modal ? "eager" : "lazy"}
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
       />
 
       {showResizeButton && (
         <button
           onClick={() => setContained((prev) => !prev)}
-          className="absolute bottom-2 right-2 h-8 w-8 rounded-md bg-zinc-900/40 outline-white backdrop-blur-md transition-all hover:bg-zinc-900/60 focus-visible:outline-2 active:scale-90 sm:h-10 sm:w-10"
+          className="absolute bottom-2 right-2 h-8 w-8 rounded-md bg-background-muted/40 outline-white backdrop-blur-md transition-all hover:bg-background-muted/60 focus-visible:outline-2 active:scale-90 sm:h-10 sm:w-10"
           title={contained ? "Switch to cover mode" : "Switch to contain mode"}
         >
           <span className="sr-only">

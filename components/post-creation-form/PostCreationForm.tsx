@@ -2,18 +2,9 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
-import {
-  Carousel,
-  CarouselApi,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../ui/carousel";
 import { Form } from "../ui/Form";
 
 import { IntroScreen } from "./IntroScreen";
-import { ConfirmationScreen } from "./ConfirmationScreen";
 import ResearchQuestions from "./ResearchQuestions";
 import TypeSelectionSlide from "./TypeSelectionSlide";
 import TitleSlide from "./TitleSlide";
@@ -23,21 +14,16 @@ import TagSelectionSlide from "./TagSelectionSlide";
 import ThumbnailSlide from "./ThumbnailSlide";
 import LocationSelection from "./LocationSelection";
 
-// Hooks
 import { usePostForm } from "./hooks/usePostForm";
-import { useCarouselNavigation } from "./hooks/useCarouselNavigation";
+import { ConsentForm } from "./ConsentForm";
 
 const PostCreationForm = () => {
   const { form, handleTypeChange, onSubmit, isLoading, contentType } =
     usePostForm();
-  const [api, setApi] = useState<CarouselApi | null>(null);
   const [{ checked, error }, setConsentChecked] = useState({
     checked: false,
     error: false,
   });
-
-  // Setup keyboard navigation
-  useCarouselNavigation(api);
 
   const handleSubmit = async () => {
     const result = await onSubmit(form.getValues(), checked);
@@ -62,68 +48,52 @@ const PostCreationForm = () => {
   };
 
   return (
-    <Carousel setApi={setApi} className="w-full max-w-screen-md px-4">
-      <Form {...form}>
-        <form className="mx-auto" onSubmit={form.handleSubmit(handleSubmit)}>
-          <CarouselContent>
-            <CarouselItem>
-              <IntroScreen api={api} />
-            </CarouselItem>
+    <Form {...form}>
+      <form className="space-y-8" onSubmit={form.handleSubmit(handleSubmit)}>
+        <ResearchQuestions form={form} />
 
-            <CarouselItem>
-              <ResearchQuestions form={form} />
-            </CarouselItem>
+        <TypeSelectionSlide form={form} handleTypeChange={handleTypeChange} />
 
-            <CarouselItem>
-              <TypeSelectionSlide
-                form={form}
-                nextStep={() => api?.scrollNext()}
-                handleTypeChange={handleTypeChange}
-              />
-            </CarouselItem>
+        <TitleSlide control={form.control} />
 
-            <CarouselItem>
-              <TitleSlide form={form} />
-            </CarouselItem>
+        <ContentSlide form={form} />
 
-            <CarouselItem>
-              <ContentSlide form={form} />
-            </CarouselItem>
+        {contentType !== "IMAGE" && <ThumbnailSlide form={form} />}
 
-            <CarouselItem>
-              <ThumbnailSlide form={form} />
-            </CarouselItem>
+        {contentType !== "TEXT" && <DescriptionSlide form={form} />}
 
-            {contentType !== "TEXT" && (
-              <CarouselItem>
-                <DescriptionSlide form={form} />
-              </CarouselItem>
-            )}
+        <TagSelectionSlide form={form} />
 
-            <CarouselItem>
-              <TagSelectionSlide form={form} />
-            </CarouselItem>
+        <LocationSelection form={form} />
 
-            <CarouselItem>
-              <LocationSelection form={form} />
-            </CarouselItem>
+        <ConsentForm
+          checked={checked}
+          error={error}
+          onCheckedChange={handleConsentChange}
+        />
 
-            <CarouselItem>
-              <ConfirmationScreen
-                form={form}
-                api={api}
-                isLoading={isLoading}
-                checked={checked}
-                error={error}
-                onCheckedChange={handleConsentChange}
-              />
-            </CarouselItem>
-          </CarouselContent>
-        </form>
-      </Form>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+        <hr />
+
+        <button
+          type="submit"
+          disabled={
+            isLoading ||
+            !!form.formState.errors.content ||
+            !!form.formState.errors.contentType ||
+            !!form.formState.errors.title ||
+            !!form.formState.errors.description
+          }
+          className="rounded-md bg-zinc-800 px-3 py-2 transition hover:bg-background-surface disabled:opacity-70 disabled:hover:bg-zinc-800"
+        >
+          {!!form.formState.errors.content ||
+          !!form.formState.errors.contentType ||
+          !!form.formState.errors.title ||
+          !!form.formState.errors.description
+            ? "Form Incomplete"
+            : "Submit Post"}
+        </button>
+      </form>
+    </Form>
   );
 };
 

@@ -19,7 +19,7 @@ const VideoItem: FC<VideoItemProps> = ({ post, onClick, clicked, onClose }) => {
     <button
       onClick={onClick}
       aria-label="post modal button"
-      className="group relative grid aspect-square w-full cursor-pointer place-items-center overflow-hidden border border-zinc-800 outline-none focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-white"
+      className="group relative grid aspect-square w-full cursor-pointer place-items-center overflow-hidden border border-border-dark outline-none focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-white"
     >
       <span className="sr-only">post modal button</span>
       <AnimatePresence>

@@ -43,7 +43,7 @@ const Carousel = ({}) => {
   slide1 = (
     <div className="max-w-screen-lg">
       <p
-        className={`${kobata.className} neon-text relative z-10 my-8 flex select-none flex-col gap-4 py-16 text-center text-[5rem] font-semibold leading-none text-white after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-20 after:my-auto after:hidden after:origin-right after:scale-x-0 after:bg-green-600 after:transition after:duration-300 hover:after:origin-left hover:after:scale-x-100 sm:px-4 md:px-8 md:text-[6rem] lg:text-[7rem]`}
+        className={`${kobata.className} neon-text relative z-10 my-8 flex select-none flex-col gap-4 py-16 text-center text-[5rem] font-semibold leading-none text-white after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-20 after:my-auto after:hidden after:origin-right after:scale-x-0 after:bg-primary-dark after:transition after:duration-300 hover:after:origin-left hover:after:scale-x-100 sm:px-4 md:px-8 md:text-[6rem] lg:text-[7rem]`}
       >
         Archive Our Youth
       </p>
@@ -96,7 +96,7 @@ const Carousel = ({}) => {
             router.push("/submit");
           }
         }}
-        className="relative mt-2 w-full rounded-md border-2 border-green-500 bg-green-500/20 px-4 py-2 font-semibold text-green-500 shadow-[inset_0_0_10px] shadow-green-500 backdrop-blur-sm transition [text-shadow:0_0_4px_black] before:absolute before:inset-0 before:transition before:duration-200 before:content-[''] before:hover:shadow-[0_0_20px_2px] before:hover:shadow-green-500/75 md:text-lg"
+        className="relative mt-2 w-full rounded-md border-2 border-green-500 bg-primary/20 px-4 py-2 font-semibold text-green-500 shadow-[inset_0_0_10px] shadow-green-500 backdrop-blur-sm transition [text-shadow:0_0_4px_black] before:absolute before:inset-0 before:transition before:duration-200 before:content-[''] before:hover:shadow-[0_0_20px_2px] before:hover:shadow-green-500/75 md:text-lg"
       >
         Submit A Post
       </button>
@@ -133,7 +133,7 @@ const Carousel = ({}) => {
               router.push("/submit");
             }
           }}
-          className="relative w-64 rounded-md border-2 border-green-500 bg-green-500/20 px-4 py-2 font-semibold text-green-500 shadow-[inset_0_0_10px] shadow-green-500 backdrop-blur-sm transition [text-shadow:0_0_4px_black] before:absolute before:inset-0 before:transition before:duration-200 before:content-[''] before:hover:shadow-[0_0_20px_2px] before:hover:shadow-green-500/75 md:text-lg"
+          className="relative w-64 rounded-md border-2 border-green-500 bg-primary/20 px-4 py-2 font-semibold text-green-500 shadow-[inset_0_0_10px] shadow-green-500 backdrop-blur-sm transition [text-shadow:0_0_4px_black] before:absolute before:inset-0 before:transition before:duration-200 before:content-[''] before:hover:shadow-[0_0_20px_2px] before:hover:shadow-green-500/75 md:text-lg"
         >
           Submit A Post
         </button>
@@ -166,7 +166,7 @@ const Carousel = ({}) => {
       <div className="z-20 mb-10 mt-auto space-x-28 md:mb-20 md:space-x-40">
         {slide > 1 && (
           <button
-            className="next rounded-full bg-black/40 p-1.5 text-zinc-400 transition duration-300 hover:bg-zinc-900 hover:text-white active:scale-90"
+            className="next rounded-full bg-black/40 p-1.5 text-zinc-400 transition duration-300 hover:bg-background-muted hover:text-white active:scale-90"
             onClick={() => (slide === 1 ? null : paginate(-1))}
           >
             <ArrowLeftCircle
@@ -177,7 +177,7 @@ const Carousel = ({}) => {
         )}
         {slide < 4 && (
           <button
-            className="prev rounded-full bg-black/40 p-1.5 text-zinc-400 transition duration-300 hover:bg-zinc-900 hover:text-white active:scale-90"
+            className="prev rounded-full bg-black/40 p-1.5 text-zinc-400 transition duration-300 hover:bg-background-muted hover:text-white active:scale-90"
             onClick={() => (slide === 4 ? null : paginate(1))}
           >
             <ArrowRightCircle

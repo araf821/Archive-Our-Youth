@@ -38,7 +38,7 @@ const UserMoreInformation = async ({ userId }: UserMoreInformationProps) => {
   }
 
   return (
-    <div className="border-b-2 border-zinc-700 pb-4 pt-8">
+    <div className="border-b-2 border-background-surface pb-4 pt-8">
       <div className="space-y-1">
         <h3 className="text-xl font-medium md:text-2xl">
           More Information on {user.name}
@@ -46,7 +46,7 @@ const UserMoreInformation = async ({ userId }: UserMoreInformationProps) => {
         <p className="text-zinc-400 max-md:text-sm">
           View the latest activity from this user.
         </p>
-        <hr className="border-zinc-700" />
+        <hr className="border-background-surface" />
       </div>
 
       <div className="relative my-6 aspect-square w-20 overflow-hidden rounded-lg bg-black">
@@ -59,7 +59,7 @@ const UserMoreInformation = async ({ userId }: UserMoreInformationProps) => {
         />
       </div>
 
-      <div className="flex flex-col gap-2.5 divide-y-2 divide-zinc-700">
+      <div className="flex flex-col gap-2.5 divide-y-2 divide-background-surface">
         <div className="flex items-center justify-between gap-8">
           <p className="self-start tracking-wider text-zinc-400 max-md:text-sm">
             Name

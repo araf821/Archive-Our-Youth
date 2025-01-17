@@ -1,12 +1,12 @@
 import { TPostCreationForm } from "@/lib/types/form";
 import { FC, useState } from "react";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
-import { Button } from "../ui/button";
+import { AnimatedTabs } from "../ui/animated-tabs";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import FileUpload from "../FileUpload";
-import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
 
 interface ContentSlideProps {
   form: TPostCreationForm;
@@ -14,6 +14,9 @@ interface ContentSlideProps {
 
 const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
   const [preview, setPreview] = useState(false);
+  const [videoSourceType, setVideoSourceType] = useState<"url" | "file">(
+    "file",
+  );
 
   if (form.getValues().contentType === "TEXT") {
     return (
@@ -21,71 +24,48 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto grid w-full max-w-screen-sm place-items-center gap-8 md:gap-12">
-            <p className="text-center text-xl md:text-2xl">
-              What have you got for us?
-            </p>
-            <div className="flex w-full flex-col gap-2">
-              <div className="mx-auto space-x-2">
-                <Button
-                  type="button"
-                  size="sm"
-                  onClick={() => setPreview(false)}
-                  className={cn(
-                    "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
-                    {
-                      "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
-                        !preview,
-                    },
-                  )}
-                >
-                  Write
-                </Button>
-                <Button
-                  type="button"
-                  size="sm"
-                  onClick={() => {
-                    setPreview(true);
-                  }}
-                  className={cn(
-                    "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
-                    {
-                      "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
-                        preview,
-                    },
-                  )}
-                >
-                  Preview
-                </Button>
-              </div>
-              <FormControl className="min-h-[200px]">
-                {preview ? (
-                  form.getValues().content ? (
-                    <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
-                      {form.getValues().content}
-                    </ReactMarkdown>
+          <FormItem className="rounded-lg border p-4 md:p-6">
+            <div className="space-y-4">
+              <p className="font-medium">What have you got for us?</p>
+              <div className="space-y-3">
+                <AnimatedTabs
+                  tabs={[
+                    { id: "write", label: "Write" },
+                    { id: "preview", label: "Preview" },
+                  ]}
+                  defaultTab={preview ? "preview" : "write"}
+                  onChange={(tabId) => setPreview(tabId === "preview")}
+                  layoutId="text-content-tabs"
+                />
+                <FormControl className="min-h-[200px]">
+                  {preview ? (
+                    form.getValues().content ? (
+                      <ReactMarkdown className="prose prose-sm h-full max-w-full overflow-y-auto break-words rounded-md border p-2 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                        {form.getValues().content}
+                      </ReactMarkdown>
+                    ) : (
+                      <p className="grid h-40 place-items-center rounded-md border text-sm text-zinc-400">
+                        Nothing to preview
+                      </p>
+                    )
                   ) : (
-                    <p className="grid h-40 place-items-center rounded-lg border border-zinc-700 bg-zinc-800">
-                      Nothing to preview
-                    </p>
-                  )
-                ) : (
-                  <textarea
-                    {...field}
-                    placeholder="What's on your mind?!"
-                    className="morph-sm mt-2 h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-zinc-50 outline-none focus:outline-none md:text-lg"
-                  />
-                )}
-              </FormControl>
-              <FormMessage />
-              <Link
-                href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
-                target="_blank"
-                className="flex w-fit items-center gap-1 text-zinc-400 transition hover:text-blue-400 max-md:mx-auto"
-              >
-                Markdown is supported!
-                <ExternalLink className="size-4" />
-              </Link>
+                    <textarea
+                      {...field}
+                      placeholder="What's on your mind?!"
+                      className="h-full w-full resize-none rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-600"
+                    />
+                  )}
+                </FormControl>
+                <FormMessage />
+                <Link
+                  href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
+                  target="_blank"
+                  className="flex w-fit items-center gap-1 text-sm text-zinc-400 transition hover:text-blue-400"
+                >
+                  Markdown is supported!
+                  <ExternalLink className="size-4" />
+                </Link>
+              </div>
             </div>
           </FormItem>
         )}
@@ -97,16 +77,18 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex w-full max-w-screen-sm flex-col items-center gap-8 max-sm:mt-12 md:gap-12">
-            <p className="text-center text-xl md:text-2xl">Add an image</p>
-            <FormControl>
-              <FileUpload
-                classNames="aspect-[4/3]"
-                endPoint="image"
-                onChange={field.onChange}
-                value={field.value}
-              />
-            </FormControl>
+          <FormItem className="rounded-lg border p-4 md:p-6">
+            <div className="space-y-4">
+              <p className="font-medium">Add an image</p>
+              <FormControl>
+                <FileUpload
+                  classNames="aspect-[4/3]"
+                  endPoint="image"
+                  onChange={field.onChange}
+                  value={field.value}
+                />
+              </FormControl>
+            </div>
           </FormItem>
         )}
       />
@@ -117,16 +99,66 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex w-full max-w-screen-sm flex-col gap-8 max-sm:mt-12 md:gap-12">
-            <p className="text-center text-xl md:text-2xl">Add a video</p>{" "}
-            <FormControl>
-              <FileUpload
-                classNames="aspect-video"
-                endPoint="video"
-                onChange={field.onChange}
-                value={field.value}
-              />
-            </FormControl>
+          <FormItem className="rounded-lg border p-4 md:p-6">
+            <div className="space-y-4">
+              <p className="font-medium">Add a video</p>
+              <div className="space-y-3">
+                <AnimatedTabs
+                  tabs={[
+                    { id: "file", label: "Upload Video" },
+                    { id: "url", label: "YouTube URL" },
+                  ]}
+                  defaultTab={videoSourceType}
+                  onChange={(tabId) =>
+                    setVideoSourceType(tabId as "file" | "url")
+                  }
+                  layoutId="video-tabs"
+                />
+                <FormControl>
+                  {videoSourceType === "file" ? (
+                    <FileUpload
+                      classNames="aspect-video"
+                      endPoint="video"
+                      onChange={field.onChange}
+                      value={field.value}
+                    />
+                  ) : (
+                    <div className="space-y-2">
+                      <input
+                        {...field}
+                        placeholder="Enter YouTube video URL. e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                        className="w-full rounded-md border bg-zinc-800 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-600"
+                        onChange={(e) => {
+                          const url = e.target.value;
+                          if (isYouTubeUrl(url)) {
+                            field.onChange(url);
+                          } else {
+                            field.onChange(e.target.value);
+                          }
+                        }}
+                      />
+                      {!isYouTubeUrl(field.value) && (
+                        <p className="text-sm text-zinc-400">
+                          Paste a valid YouTube video URL starting with
+                          &lsquo;https://&rsquo;
+                        </p>
+                      )}
+                      {isYouTubeUrl(field.value) && (
+                        <iframe
+                          src={`https://www.youtube.com/embed/${getYouTubeVideoId(
+                            field.value,
+                          )}`}
+                          className="aspect-video h-full w-full"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      )}
+                      <FormMessage />
+                    </div>
+                  )}
+                </FormControl>
+              </div>
+            </div>
           </FormItem>
         )}
       />
@@ -137,16 +169,18 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto flex w-full max-w-screen-sm flex-col gap-8 max-sm:mt-12 md:gap-12">
-            <p className="text-center text-xl md:text-2xl">Add an audio</p>
-            <FormControl>
-              <FileUpload
-                classNames="aspect-video"
-                endPoint="audio"
-                onChange={field.onChange}
-                value={field.value}
-              />
-            </FormControl>
+          <FormItem className="rounded-lg border p-4 md:p-6">
+            <div className="space-y-4">
+              <p className="font-medium">Add an audio</p>
+              <FormControl>
+                <FileUpload
+                  classNames="aspect-video"
+                  endPoint="audio"
+                  onChange={field.onChange}
+                  value={field.value}
+                />
+              </FormControl>
+            </div>
           </FormItem>
         )}
       />
@@ -157,16 +191,18 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem className="mx-auto grid w-full max-w-screen-sm place-items-center gap-8 max-sm:mt-12 md:gap-12">
-            <p className="text-center text-xl md:text-2xl">Upload a PDF</p>
-            <FormControl>
-              <FileUpload
-                endPoint="pdf"
-                onChange={field.onChange}
-                value={field.value}
-                classNames="aspect-[3/4] max-w-[300px]"
-              />
-            </FormControl>
+          <FormItem className="rounded-lg border p-4 md:p-6">
+            <div className="space-y-4">
+              <p className="font-medium">Upload a PDF</p>
+              <FormControl>
+                <FileUpload
+                  endPoint="pdf"
+                  onChange={field.onChange}
+                  value={field.value}
+                  classNames="aspect-[3/4] max-w-[300px]"
+                />
+              </FormControl>
+            </div>
           </FormItem>
         )}
       />

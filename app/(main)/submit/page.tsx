@@ -1,3 +1,4 @@
+import { IntroScreen } from "@/components/post-creation-form/IntroScreen";
 import PostCreationForm from "@/components/post-creation-form/PostCreationForm";
 import { initializeUser } from "@/lib/initializeUser";
 import { Metadata } from "next";
@@ -12,7 +13,8 @@ const SubmitPage = async () => {
   await initializeUser();
 
   return (
-    <div className="flex min-h-[calc(100dvh-80px)] items-center justify-center overflow-x-hidden py-8 text-white md:py-12 lg:pt-16">
+    <div className="mx-auto my-12 max-w-3xl space-y-8 px-4 md:my-20">
+      <IntroScreen />
       <PostCreationForm />
     </div>
   );

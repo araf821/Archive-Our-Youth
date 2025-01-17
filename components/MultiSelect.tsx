@@ -54,7 +54,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
         type="text"
         placeholder="Select Tags"
         onChange={(e) => setInput(e.target.value)}
-        className="morph-sm w-full rounded-sm border border-zinc-700 bg-zinc-800 px-4 py-3 placeholder-zinc-200 outline-zinc-700 focus:border-none focus:outline-none"
+        className="morph-sm w-full rounded-sm border border-background-surface bg-zinc-800 px-4 py-3 placeholder-zinc-200 outline-background-surface focus:border-none focus:outline-none"
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();
@@ -68,7 +68,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
         onBlur={() => setIsOpen(false)}
         className={`${
           isOpen ? "scale-y-100" : "scale-y-0"
-        } absolute left-0 top-[110%] z-[9999] max-h-72 w-full origin-top-left divide-y-[1px] divide-zinc-700 overflow-y-auto rounded-md border border-zinc-700 bg-zinc-800 text-zinc-100 transition duration-200 ease-out`}
+        } absolute left-0 top-[110%] z-[9999] max-h-72 w-full origin-top-left divide-y-[1px] divide-background-surface overflow-y-auto rounded-md border border-background-surface bg-zinc-800 text-zinc-100 transition duration-200 ease-out`}
       >
         {[input, ...options].map((option, index) => {
           if (!option.toLowerCase().includes(input.toLowerCase())) return;
@@ -90,9 +90,9 @@ const MultiSelect: FC<MultiSelectProps> = ({
               className={cn(
                 "z-[9999] cursor-pointer list-none px-3 py-2.5 transition focus-visible:outline-none",
                 {
-                  "bg-green-600 text-white hover:bg-opacity-80 focus-visible:opacity-75":
+                  "bg-primary-dark text-white hover:bg-opacity-80 focus-visible:opacity-75":
                     isSelected(option),
-                  "hover:bg-zinc-700 focus-visible:bg-zinc-700":
+                  "hover:bg-background-surface focus-visible:bg-background-surface":
                     !isSelected(option),
                 },
               )}

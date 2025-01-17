@@ -44,33 +44,32 @@ const CommentSection = async ({ postId, user }: CommentSectionProps) => {
         <span className="text-green-600 max-md:text-sm">Comments</span>
         <div className="mt-2.5 h-[1px] w-full bg-gradient-to-l from-green-500 to-lime-500" />
       </div>
-      {user ? (
-        <CommentInput user={user} postId={postId} />
-      ) : (
-        <p className="pb-2 font-medium text-zinc-300 md:text-lg">
-          Please{" "}
-          <Link
-            href="/sign-in"
-            className="text-green-500 underline underline-offset-2"
-          >
-            sign in
-          </Link>{" "}
-          to leave a comment.
-        </p>
-      )}
-
-      <hr className="border-zinc-700" />
+      {user && <CommentInput user={user} postId={postId} />}
 
       {currentPost.comments.length > 0 ? (
-        <div className="-mt-2 divide-y divide-zinc-700">
+        <div className="-mt-2 divide-y divide-background-surface">
           {currentPost.comments.map((comment) => (
             <Comment key={comment.id} comment={comment} user={user} />
           ))}
         </div>
       ) : (
-        <p className="pt-4 text-center font-medium tracking-wide text-zinc-300 xl:text-lg">
-          Be the first to leave a comment!
-        </p>
+        <div className="space-y-4 pt-4">
+          {!user && (
+            <p className="text-center font-medium text-zinc-300 max-md:text-sm">
+              Please{" "}
+              <Link
+                href="/sign-in"
+                className="text-green-500 underline underline-offset-2"
+              >
+                sign in
+              </Link>{" "}
+              to leave a comment
+            </p>
+          )}
+          <p className="text-center font-medium text-zinc-300 max-md:text-sm">
+            {user ? "Be the first to leave a comment!" : "No comments yet"}
+          </p>
+        </div>
       )}
     </section>
   );

@@ -57,7 +57,7 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
       variants={sidebarVariants}
       animate={isOpen ? "show" : "hidden"}
       className={cn(
-        "fixed inset-0 z-50 flex flex-col bg-zinc-900 px-12 sm:px-20 md:px-28 lg:hidden",
+        "fixed inset-0 z-50 flex flex-col bg-background-muted px-12 sm:px-20 md:px-28 lg:hidden",
         {
           "pointer-events-none": !isOpen,
         },
