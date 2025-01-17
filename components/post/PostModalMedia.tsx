@@ -22,7 +22,7 @@ export default function PostModalMedia({ post }: PostModalMediaProps) {
   if (post.contentType === "IMAGE") {
     return (
       <div className="relative w-full overflow-hidden">
-        <DynamicImage src={post.postContent} modal sizes="500px" />
+        <DynamicImage src={post.postContent} modal />
       </div>
     );
   }

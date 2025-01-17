@@ -149,7 +149,7 @@
     background-position: 0% 50%;
   }
 }
-
+/* 
 ::-webkit-scrollbar {
   width: 0.75em;
 }
@@ -165,7 +165,7 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: theme(colors.primary.DEFAULT);
-}
+} */
 
 /* loader */
 .loader {

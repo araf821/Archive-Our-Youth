@@ -26,8 +26,8 @@ export default function DynamicImage({
   classNames,
   modal = false,
   sizes = modal
-    ? "(max-width: 480px) 80vw, (max-width: 768px) 60vw, (max-width: 1024px) 50vw, 30vw"
-    : "(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw",
+    ? "(max-width: 480px) 90vw, (max-width: 768px) 80vw, (max-width: 1024px) 60vw, (max-width: 1280px) 45vw, 250px"
+    : "(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1024px) 70vw, (max-width: 1280px) 50vw, 384px",
   alt = "Image",
   fallbackSrc = "/placeholder_post_image.svg",
   quality = 90,
@@ -78,12 +78,6 @@ export default function DynamicImage({
         priority={modal}
         loading={modal ? "eager" : "lazy"}
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-        // style={{
-        //   maxWidth: modal ? "900px" : "600px",
-        //   maxHeight: modal ? "600px" : "400px",
-        //   width: "100%",
-        //   height: "100%",
-        // }}
       />
 
       {showResizeButton && (
