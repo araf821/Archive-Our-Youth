@@ -2,7 +2,7 @@ import { kobata } from "@/app/fonts";
 
 export const IntroScreen = () => {
   return (
-    <div className="mt-12 flex w-full flex-col gap-8 md:mt-20">
+    <div className="flex w-full flex-col gap-8">
       <div>
         <p className="mb-4 text-2xl font-medium max-md:text-xl">
           Submit a post

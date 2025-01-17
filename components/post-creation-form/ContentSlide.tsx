@@ -14,7 +14,7 @@ interface ContentSlideProps {
 
 const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
   const [preview, setPreview] = useState(false);
-  const [videoSourceType, setVideoSourceType] = useState<"file" | "url">(
+  const [videoSourceType, setVideoSourceType] = useState<"url" | "file">(
     "file",
   );
 
@@ -24,7 +24,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="rounded-lg border p-4 md:p-6">
             <div className="space-y-4">
               <p className="font-medium">What have you got for us?</p>
               <div className="space-y-3">
@@ -77,7 +77,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="rounded-lg border p-4 md:p-6">
             <div className="space-y-4">
               <p className="font-medium">Add an image</p>
               <FormControl>
@@ -99,7 +99,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="rounded-lg border p-4 md:p-6">
             <div className="space-y-4">
               <p className="font-medium">Add a video</p>
               <div className="space-y-3">
@@ -159,7 +159,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="rounded-lg border p-4 md:p-6">
             <div className="space-y-4">
               <p className="font-medium">Add an audio</p>
               <FormControl>
@@ -181,7 +181,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         name="content"
         control={form.control}
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="rounded-lg border p-4 md:p-6">
             <div className="space-y-4">
               <p className="font-medium">Upload a PDF</p>
               <FormControl>

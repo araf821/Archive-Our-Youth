@@ -1,18 +1,19 @@
 import { TPostCreationForm } from "@/lib/types/form";
 import { FC } from "react";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
+import { Control } from "react-hook-form";
 
 interface TitleSlideProps {
-  form: TPostCreationForm;
+  control: Control<TPostCreationForm>;
 }
 
-const TitleSlide: FC<TitleSlideProps> = ({ form }) => {
+const TitleSlide: FC<TitleSlideProps> = ({ control }) => {
   return (
     <FormField
-      control={form.control}
+      control={control}
       name="title"
       render={({ field }) => (
-        <FormItem>
+        <FormItem className="rounded-lg border p-4 md:p-6">
           <div className="space-y-2">
             <p className="font-medium">
               What would you like to call this masterpiece?

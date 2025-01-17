@@ -5,7 +5,6 @@ import { toast } from "sonner";
 import { Form } from "../ui/Form";
 
 import { IntroScreen } from "./IntroScreen";
-import { ConfirmationScreen } from "./ConfirmationScreen";
 import ResearchQuestions from "./ResearchQuestions";
 import TypeSelectionSlide from "./TypeSelectionSlide";
 import TitleSlide from "./TitleSlide";
@@ -15,8 +14,8 @@ import TagSelectionSlide from "./TagSelectionSlide";
 import ThumbnailSlide from "./ThumbnailSlide";
 import LocationSelection from "./LocationSelection";
 
-// Hooks
 import { usePostForm } from "./hooks/usePostForm";
+import { ConsentForm } from "./ConsentForm";
 
 const PostCreationForm = () => {
   const { form, handleTypeChange, onSubmit, isLoading, contentType } =
@@ -49,47 +48,52 @@ const PostCreationForm = () => {
   };
 
   return (
-    <div className="mx-auto max-w-3xl">
-      <Form {...form}>
-        <form
-          className="mx-auto space-y-8"
-          onSubmit={form.handleSubmit(handleSubmit)}
+    <Form {...form}>
+      <form className="space-y-8" onSubmit={form.handleSubmit(handleSubmit)}>
+        <ResearchQuestions form={form} />
+
+        <TypeSelectionSlide form={form} handleTypeChange={handleTypeChange} />
+
+        <TitleSlide control={form.control} />
+
+        <ContentSlide form={form} />
+
+        {contentType !== "IMAGE" && <ThumbnailSlide form={form} />}
+
+        {contentType !== "TEXT" && <DescriptionSlide form={form} />}
+
+        <TagSelectionSlide form={form} />
+
+        <LocationSelection form={form} />
+
+        <ConsentForm
+          checked={checked}
+          error={error}
+          onCheckedChange={handleConsentChange}
+        />
+
+        <hr />
+
+        <button
+          type="submit"
+          disabled={
+            isLoading ||
+            !!form.formState.errors.content ||
+            !!form.formState.errors.contentType ||
+            !!form.formState.errors.title ||
+            !!form.formState.errors.description
+          }
+          className="rounded-md bg-zinc-800 px-3 py-2 transition hover:bg-background-surface disabled:opacity-70 disabled:hover:bg-zinc-800"
         >
-          <div className="space-y-8">
-            <IntroScreen />
-
-            <div className="space-y-8 rounded-lg border border-zinc-800 p-6">
-              <ResearchQuestions form={form} />
-
-              <TypeSelectionSlide
-                form={form}
-                handleTypeChange={handleTypeChange}
-              />
-
-              <TitleSlide form={form} />
-
-              <ContentSlide form={form} />
-
-              <ThumbnailSlide form={form} />
-
-              {contentType !== "TEXT" && <DescriptionSlide form={form} />}
-
-              <TagSelectionSlide form={form} />
-
-              <LocationSelection form={form} />
-            </div>
-
-            <ConfirmationScreen
-              form={form}
-              isLoading={isLoading}
-              checked={checked}
-              error={error}
-              onCheckedChange={handleConsentChange}
-            />
-          </div>
-        </form>
-      </Form>
-    </div>
+          {!!form.formState.errors.content ||
+          !!form.formState.errors.contentType ||
+          !!form.formState.errors.title ||
+          !!form.formState.errors.description
+            ? "Form Incomplete"
+            : "Submit Post"}
+        </button>
+      </form>
+    </Form>
   );
 };
 

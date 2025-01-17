@@ -41,7 +41,7 @@ export function AnimatedTabs({
           key={tab.id}
           onClick={() => handleTabChange(tab.id)}
           className={`
-            outline-ring relative rounded-lg px-3 py-1.5 text-sm
+            outline-ring relative rounded-md px-3 py-1.5 text-sm
             font-medium text-text-primary transition
             focus-visible:outline-2
             ${

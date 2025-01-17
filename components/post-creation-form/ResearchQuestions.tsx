@@ -100,18 +100,18 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
   };
 
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-4 rounded-lg border p-4 md:p-6">
       <div>
         <p className="font-medium text-text-primary">Research Questions</p>
         <p className="text-sm text-text-secondary">
           How does your post explore wellbeing? (Choose all that apply)
         </p>
       </div>
-      <div className="w-full space-y-2">
+      <div className="w-full">
         {RESEARCH_QUESTIONS.map((question) => (
           <div
             key={question.id}
-            className="flex items-center gap-3 transition-colors hover:bg-background-elevated"
+            className="flex items-center gap-3 rounded-md px-2 transition-colors hover:bg-background-elevated"
           >
             <Checkbox
               id={question.id}
@@ -127,7 +127,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
             />
             <Label
               htmlFor={question.id}
-              className="w-full cursor-pointer py-2 text-sm  text-text-primary"
+              className="w-full cursor-pointer py-3 text-sm  text-text-primary"
             >
               {question.text}
               {question.additionalInfo && (
@@ -139,7 +139,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
           </div>
         ))}
 
-        <div className="flex items-center gap-3 transition-colors hover:bg-background-elevated">
+        <div className="flex items-center gap-3 rounded-md px-2 transition-colors hover:bg-background-elevated">
           <Checkbox
             id="none"
             checked={checkboxStates.none}
@@ -151,7 +151,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
           />
           <Label
             htmlFor="none"
-            className="w-full cursor-pointer py-2 text-sm text-text-primary"
+            className="w-full cursor-pointer py-3 text-sm text-text-primary"
           >
             None of the above
           </Label>

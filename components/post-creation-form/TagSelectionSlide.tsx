@@ -17,7 +17,7 @@ const TagSelectionSlide: FC<TagSelectionSlideProps> = ({ form }) => {
       control={form.control}
       name="tags"
       render={() => (
-        <FormItem className="space-y-4">
+        <FormItem className="space-y-4 rounded-lg border p-4 md:p-6">
           <div>
             <p className="font-medium">Tags</p>
             <p className="text-sm text-zinc-400">

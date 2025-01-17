@@ -23,7 +23,7 @@ const LocationSelection: FC<LocationSelectionProps> = ({ form }) => {
       control={form.control}
       name="location"
       render={({ field }) => (
-        <FormItem className="space-y-4">
+        <FormItem className="space-y-4 rounded-lg border p-4 md:p-6">
           <div>
             <p className="font-medium">Location</p>
           </div>

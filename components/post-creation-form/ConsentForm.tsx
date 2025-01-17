@@ -14,7 +14,7 @@ export const ConsentForm = ({
   onCheckedChange,
 }: ConsentFormProps) => {
   return (
-    <motion.div className="py-6">
+    <motion.div className="rounded-lg border p-4 md:p-6">
       <AnimatePresence>
         {error ? (
           <motion.p
@@ -29,7 +29,7 @@ export const ConsentForm = ({
               opacity: 1,
               transition: { duration: 0.2 },
             }}
-            className="text-red-500"
+            className="mb-2 text-red-500"
           >
             Your consent is required for us to approve your submission.
           </motion.p>
@@ -40,7 +40,7 @@ export const ConsentForm = ({
           id="consent"
           checked={checked}
           onCheckedChange={(checked) => onCheckedChange(checked as boolean)}
-          className="size-5 translate-y-1 border border-zinc-500 bg-background-surface checked:bg-zinc-600 data-[state=checked]:bg-primary-dark"
+          className="size-5 translate-y-1"
         />
         <label
           htmlFor="consent"

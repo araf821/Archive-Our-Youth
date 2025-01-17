@@ -17,19 +17,21 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
 }) => {
   const type = form.watch("contentType");
   return (
-    <div className="w-full">
+    <div className="mx-auto w-full max-w-4xl rounded-lg border p-4 md:p-6">
       <FormField
         control={form.control}
         name="contentType"
         render={() => (
-          <FormItem className="space-y-4">
+          <FormItem className="space-y-6">
             <div>
-              <p className="font-medium text-text-primary">Content Type</p>
+              <p className="text-lg font-medium text-text-primary">
+                Content Type
+              </p>
               <p className="text-sm text-text-secondary">
                 Select the format for your post
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
               <FormControl>
                 <button
                   type="button"
@@ -37,10 +39,10 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     handleTypeChange("TEXT");
                   }}
                   className={cn(
-                    "w-full rounded-sm border px-3 py-1.5 text-sm transition-colors hover:bg-zinc-800/50",
+                    "w-full rounded-md border border-border px-4 py-3 text-sm text-text-primary transition-colors hover:bg-primary/10",
                     {
-                      "border-zinc-700 bg-zinc-800/50": type === "TEXT",
-                      "border-zinc-800": type !== "TEXT",
+                      "border-primary/50 bg-background-elevated bg-primary/10":
+                        type === "TEXT",
                     },
                   )}
                 >
@@ -56,7 +58,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                   className={cn(
                     "w-full rounded-md border border-border px-3 py-2 text-sm text-text-primary transition-colors hover:bg-primary/10",
                     {
-                      "border-primary/50 bg-background-elevated":
+                      "border-primary/50 bg-background-elevated bg-primary/10":
                         type === "IMAGE",
                     },
                   )}
@@ -73,7 +75,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                   className={cn(
                     "w-full rounded-md border border-border px-3 py-2 text-sm text-text-primary transition-colors hover:bg-primary/10",
                     {
-                      "border-primary/50 bg-background-elevated":
+                      "border-primary/50 bg-background-elevated bg-primary/10":
                         type === "VIDEO",
                     },
                   )}
@@ -90,7 +92,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                   className={cn(
                     "w-full rounded-md border border-border px-3 py-2 text-sm text-text-primary transition-colors hover:bg-primary/10",
                     {
-                      "border-primary/50 bg-background-elevated":
+                      "border-primary/50 bg-background-elevated bg-primary/10":
                         type === "AUDIO",
                     },
                   )}
@@ -107,7 +109,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                   className={cn(
                     "w-full rounded-md border border-border px-3 py-2 text-sm text-text-primary transition-colors hover:bg-primary/10",
                     {
-                      "border-primary/50 bg-background-elevated":
+                      "border-primary/50 bg-background-elevated bg-primary/10":
                         type === "PDF",
                     },
                   )}

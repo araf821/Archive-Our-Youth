@@ -13,18 +13,20 @@ const ThumbnailSlide: FC<ThumbnailSlideProps> = ({ form }) => {
       name="thumbnail"
       control={form.control}
       render={({ field }) => (
-        <FormItem className="space-y-4">
-          <div>
-            <p className="font-medium">Thumbnail</p>
+        <FormItem className="mx-auto w-full max-w-4xl space-y-4 rounded-lg border p-4 md:p-6">
+          <div className="">
+            <p className="text-lg font-medium">Thumbnail</p>
             <p className="text-sm text-zinc-400">Optional but recommended</p>
           </div>
           <FormControl>
-            <FileUpload
-              classNames="aspect-square max-w-[200px]"
-              endPoint="image"
-              onChange={field.onChange}
-              value={field.value || ""}
-            />
+            <div className="flex justify-center">
+              <FileUpload
+                classNames="aspect-square w-full max-w-[200px] md:max-w-[300px] lg:max-w-[400px]"
+                endPoint="image"
+                onChange={field.onChange}
+                value={field.value || ""}
+              />
+            </div>
           </FormControl>
           <FormMessage />
         </FormItem>
