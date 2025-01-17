@@ -6,7 +6,7 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import FileUpload from "../FileUpload";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { isYouTubeUrl } from "@/lib/utils";
+import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
 
 interface ContentSlideProps {
   form: TPostCreationForm;
@@ -142,6 +142,16 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                           Paste a valid YouTube video URL starting with
                           &lsquo;https://&rsquo;
                         </p>
+                      )}
+                      {isYouTubeUrl(field.value) && (
+                        <iframe
+                          src={`https://www.youtube.com/embed/${getYouTubeVideoId(
+                            field.value,
+                          )}`}
+                          className="aspect-video h-full w-full"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
                       )}
                       <FormMessage />
                     </div>
