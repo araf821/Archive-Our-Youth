@@ -54,7 +54,7 @@ const PostCreationForm = () => {
 
         <TypeSelectionSlide form={form} handleTypeChange={handleTypeChange} />
 
-        <TitleSlide control={form.control} />
+        <TitleSlide form={form} />
 
         <ContentSlide form={form} />
 

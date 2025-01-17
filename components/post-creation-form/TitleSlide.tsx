@@ -4,13 +4,13 @@ import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
 import { Control } from "react-hook-form";
 
 interface TitleSlideProps {
-  control: Control<TPostCreationForm>;
+  form: TPostCreationForm;
 }
 
-const TitleSlide: FC<TitleSlideProps> = ({ control }) => {
+const TitleSlide: FC<TitleSlideProps> = ({ form }) => {
   return (
     <FormField
-      control={control}
+      control={form.control}
       name="title"
       render={({ field }) => (
         <FormItem className="rounded-lg border p-4 md:p-6">
