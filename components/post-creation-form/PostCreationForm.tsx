@@ -2,14 +2,6 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
-import {
-  Carousel,
-  CarouselApi,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../ui/carousel";
 import { Form } from "../ui/Form";
 
 import { IntroScreen } from "./IntroScreen";
@@ -25,19 +17,14 @@ import LocationSelection from "./LocationSelection";
 
 // Hooks
 import { usePostForm } from "./hooks/usePostForm";
-import { useCarouselNavigation } from "./hooks/useCarouselNavigation";
 
 const PostCreationForm = () => {
   const { form, handleTypeChange, onSubmit, isLoading, contentType } =
     usePostForm();
-  const [api, setApi] = useState<CarouselApi | null>(null);
   const [{ checked, error }, setConsentChecked] = useState({
     checked: false,
     error: false,
   });
-
-  // Setup keyboard navigation
-  useCarouselNavigation(api);
 
   const handleSubmit = async () => {
     const result = await onSubmit(form.getValues(), checked);
@@ -62,68 +49,47 @@ const PostCreationForm = () => {
   };
 
   return (
-    <Carousel setApi={setApi} className="w-full max-w-screen-md px-4">
+    <div className="mx-auto max-w-3xl">
       <Form {...form}>
-        <form className="mx-auto" onSubmit={form.handleSubmit(handleSubmit)}>
-          <CarouselContent>
-            <CarouselItem>
-              <IntroScreen api={api} />
-            </CarouselItem>
+        <form
+          className="mx-auto space-y-8"
+          onSubmit={form.handleSubmit(handleSubmit)}
+        >
+          <div className="space-y-8">
+            <IntroScreen />
 
-            <CarouselItem>
+            <div className="space-y-8 rounded-lg border border-zinc-800 p-6">
               <ResearchQuestions form={form} />
-            </CarouselItem>
 
-            <CarouselItem>
               <TypeSelectionSlide
                 form={form}
-                nextStep={() => api?.scrollNext()}
                 handleTypeChange={handleTypeChange}
               />
-            </CarouselItem>
 
-            <CarouselItem>
               <TitleSlide form={form} />
-            </CarouselItem>
 
-            <CarouselItem>
               <ContentSlide form={form} />
-            </CarouselItem>
 
-            <CarouselItem>
               <ThumbnailSlide form={form} />
-            </CarouselItem>
 
-            {contentType !== "TEXT" && (
-              <CarouselItem>
-                <DescriptionSlide form={form} />
-              </CarouselItem>
-            )}
+              {contentType !== "TEXT" && <DescriptionSlide form={form} />}
 
-            <CarouselItem>
               <TagSelectionSlide form={form} />
-            </CarouselItem>
 
-            <CarouselItem>
               <LocationSelection form={form} />
-            </CarouselItem>
+            </div>
 
-            <CarouselItem>
-              <ConfirmationScreen
-                form={form}
-                api={api}
-                isLoading={isLoading}
-                checked={checked}
-                error={error}
-                onCheckedChange={handleConsentChange}
-              />
-            </CarouselItem>
-          </CarouselContent>
+            <ConfirmationScreen
+              form={form}
+              isLoading={isLoading}
+              checked={checked}
+              error={error}
+              onCheckedChange={handleConsentChange}
+            />
+          </div>
         </form>
       </Form>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+    </div>
   );
 };
 

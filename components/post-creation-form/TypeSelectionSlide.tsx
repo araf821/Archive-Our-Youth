@@ -9,11 +9,9 @@ import { ContentType } from "@prisma/client";
 interface TypeSelectionSlideProps {
   form: TPostCreationForm;
   handleTypeChange: (type: ContentType) => void;
-  nextStep: () => void;
 }
 
 const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
-  nextStep,
   form,
   handleTypeChange,
 }) => {
@@ -33,7 +31,6 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                 <button
                   type="button"
                   onClick={() => {
-                    nextStep();
                     handleTypeChange("TEXT");
                   }}
                   className={cn(
@@ -51,7 +48,6 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                 <button
                   type="button"
                   onClick={() => {
-                    nextStep();
                     handleTypeChange("IMAGE");
                   }}
                   className={cn(
@@ -69,7 +65,6 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                 <button
                   type="button"
                   onClick={() => {
-                    nextStep();
                     handleTypeChange("VIDEO");
                   }}
                   className={cn(
@@ -90,7 +85,6 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                 <button
                   type="button"
                   onClick={() => {
-                    nextStep();
                     handleTypeChange("AUDIO");
                   }}
                   className={cn(
@@ -108,7 +102,6 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                 <button
                   type="button"
                   onClick={() => {
-                    nextStep();
                     handleTypeChange("PDF");
                   }}
                   className={cn(
