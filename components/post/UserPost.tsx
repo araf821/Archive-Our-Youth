@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, isYouTubeUrl, getYouTubeVideoId } from "@/lib/utils";
 import { Post } from "@prisma/client";
 import Image from "next/image";
 import { FC, useState } from "react";
@@ -71,10 +71,22 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
           {post.contentType === "VIDEO" && (
             <>
               <div className="relative aspect-video max-h-[40vh] w-full rounded-md border border-background-surface md:max-w-[300px]">
-                <video
-                  src={`${post.postContent}#t=15`}
-                  className="h-full w-full "
-                />
+                {isYouTubeUrl(post.postContent) ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${getYouTubeVideoId(
+                      post.postContent,
+                    )}?autoplay=0&mute=1`}
+                    className="h-full w-full rounded-md"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <video
+                    src={`${post.postContent}#t=15`}
+                    className="h-full w-full rounded-md"
+                    controls
+                  />
+                )}
               </div>
               <DashboardPostInfo post={post} />
             </>
