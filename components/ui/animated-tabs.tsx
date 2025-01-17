@@ -15,6 +15,7 @@ interface AnimatedTabsProps {
   onChange?: (tabId: string) => void;
   className?: string;
   layoutId?: string;
+  activeTab?: string;
 }
 
 export function AnimatedTabs({
@@ -23,11 +24,9 @@ export function AnimatedTabs({
   onChange,
   className,
   layoutId,
+  activeTab = defaultTab || tabs[0].id,
 }: AnimatedTabsProps) {
-  const [activeTab, setActiveTab] = useState(defaultTab || tabs[0].id);
-
   const handleTabChange = (tabId: string) => {
-    setActiveTab(tabId);
     onChange?.(tabId);
   };
 
