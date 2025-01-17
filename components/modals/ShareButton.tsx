@@ -25,7 +25,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({
         title={`Share on ${platform}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="morph-md flex size-9 items-center justify-center rounded-full bg-zinc-800 text-zinc-300 transition hover:bg-zinc-700 sm:size-12"
+        className="morph-md flex size-9 items-center justify-center rounded-full bg-zinc-800 text-zinc-300 transition hover:bg-background-surface sm:size-12"
       >
         {typeof IconComponent === "string" ? (
           <Image

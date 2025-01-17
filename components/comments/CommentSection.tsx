@@ -47,7 +47,7 @@ const CommentSection = async ({ postId, user }: CommentSectionProps) => {
       {user && <CommentInput user={user} postId={postId} />}
 
       {currentPost.comments.length > 0 ? (
-        <div className="-mt-2 divide-y divide-zinc-700">
+        <div className="-mt-2 divide-y divide-background-surface">
           {currentPost.comments.map((comment) => (
             <Comment key={comment.id} comment={comment} user={user} />
           ))}

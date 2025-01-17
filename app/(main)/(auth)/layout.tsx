@@ -33,7 +33,7 @@ const layout = ({ children }: Props) => {
           </p>
         </div>
         <ClerkLoading>
-          <div className="flex aspect-[4/5] max-h-[500px] flex-col justify-center gap-1 rounded-xl border border-zinc-700 bg-background-muted p-8 max-lg:w-full lg:w-[400px]">
+          <div className="flex aspect-[4/5] max-h-[500px] flex-col justify-center gap-1 rounded-xl border border-background-surface bg-background-muted p-8 max-lg:w-full lg:w-[400px]">
             <Skeleton className="h-8 w-60" />
             <Skeleton className="h-4 w-full" />
 

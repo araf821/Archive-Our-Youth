@@ -27,12 +27,12 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-[250px] space-y-1.5 border-2 border-zinc-700"
+        className="w-[250px] space-y-1.5 border-2 border-background-surface"
         align="end"
       >
         <DropdownMenuItem
           onSelect={(e) => e.preventDefault()}
-          className="focus:ring-none justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2"
+          className="focus:ring-none justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background-surface focus-visible:ring-offset-2"
           asChild
         >
           <Link
@@ -44,7 +44,7 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setIsManageOpen(true)}
-          className="w-full cursor-pointer justify-center tracking-widest focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="focus-visible:ring-ring w-full cursor-pointer justify-center tracking-widest focus-visible:ring-2 focus-visible:ring-offset-2"
         >
           Manage
         </DropdownMenuItem>

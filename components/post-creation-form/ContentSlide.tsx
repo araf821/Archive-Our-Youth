@@ -36,7 +36,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                   size="sm"
                   onClick={() => setPreview(false)}
                   className={cn(
-                    "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                    "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
                     {
                       "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
                         !preview,
@@ -52,7 +52,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                     setPreview(true);
                   }}
                   className={cn(
-                    "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                    "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
                     {
                       "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
                         preview,
@@ -69,7 +69,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                       {form.getValues().content}
                     </ReactMarkdown>
                   ) : (
-                    <p className="grid h-40 place-items-center rounded-lg border border-zinc-700 bg-zinc-800">
+                    <p className="grid h-40 place-items-center rounded-lg border border-background-surface bg-zinc-800">
                       Nothing to preview
                     </p>
                   )
@@ -153,7 +153,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                     {...field}
                     type="url"
                     placeholder="Enter YouTube video URL"
-                    className="w-full rounded-md border border-zinc-700 bg-zinc-800 p-2 text-zinc-50 focus:outline-none focus:ring-2 focus:ring-lime-500"
+                    className="w-full rounded-md border border-background-surface bg-zinc-800 p-2 text-zinc-50 focus:outline-none focus:ring-2 focus:ring-lime-500"
                     onChange={(e) => {
                       const url = e.target.value;
                       if (isYouTubeUrl(url)) {

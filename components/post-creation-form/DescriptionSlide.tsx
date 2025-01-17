@@ -30,7 +30,7 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
                 size="sm"
                 onClick={() => setPreview(false)}
                 className={cn(
-                  "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                  "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
                   {
                     "bg-gradient-to-br from-[#FFA573] to-[#FD9747] text-black":
                       !preview,
@@ -46,7 +46,7 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
                   setPreview(true);
                 }}
                 className={cn(
-                  "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                  "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
                   {
                     "bg-gradient-to-br from-[#FFA573] to-[#FD9747] text-black":
                       preview,
@@ -64,7 +64,7 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
                     {form.getValues().description || ""}
                   </ReactMarkdown>
                 ) : (
-                  <p className="grid h-40 place-items-center rounded-lg border border-zinc-700 bg-zinc-800 px-4 text-center">
+                  <p className="grid h-40 place-items-center rounded-lg border border-background-surface bg-zinc-800 px-4 text-center">
                     A preview of what the finished product will look like.
                   </p>
                 )

@@ -38,7 +38,7 @@ const ManageUserModal = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-screen-sm rounded-2xl border-zinc-700 bg-[#1c1c1c] py-6 shadow-md focus:outline-none">
+      <DialogContent className="max-w-screen-sm rounded-2xl border-background-surface bg-[#1c1c1c] py-6 shadow-md focus:outline-none">
         <DialogHeader>
           <DialogTitle className={cn(isDeleting && "text-rose-500")}>
             {isDeleting ? "Delete User" : "Manager User"}{" "}
@@ -50,7 +50,7 @@ const ManageUserModal = ({
               : "Manage this user's activity or account."}
           </DialogDescription>
         </DialogHeader>
-        <hr className="border-zinc-700" />
+        <hr className="border-background-surface" />
 
         <div className="grid grid-cols-2 items-center justify-between gap-8 max-md:px-4 sm:grid-cols-3">
           <p className="w-full text-zinc-200 sm:col-span-2">Current Role</p>
@@ -62,14 +62,14 @@ const ManageUserModal = ({
             <SelectTrigger className="bg-zinc-800 font-medium">
               {currentRole}
             </SelectTrigger>
-            <SelectContent className="border-zinc-700 bg-zinc-800 text-zinc-200">
+            <SelectContent className="border-background-surface bg-zinc-800 text-zinc-200">
               <SelectItem value={UserType.MEMBER}>MEMBER</SelectItem>
               <SelectItem value={UserType.ADMIN}>ADMIN</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
-        <hr className="border-zinc-700 max-md:px-4" />
+        <hr className="border-background-surface max-md:px-4" />
 
         {isDeleting ? (
           <ConfirmDeletion

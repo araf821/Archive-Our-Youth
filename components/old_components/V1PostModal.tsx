@@ -25,7 +25,7 @@ const PostModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="w-full max-w-screen-sm rounded-sm border border-zinc-700 bg-[#202020] p-4 text-zinc-100 shadow-[0_0_20px_5px_black] outline-none max-md:w-[95%] md:rounded-md md:p-6">
+      <DialogContent className="w-full max-w-screen-sm rounded-sm border border-background-surface bg-[#202020] p-4 text-zinc-100 shadow-[0_0_20px_5px_black] outline-none max-md:w-[95%] md:rounded-md md:p-6">
         <div className="flex items-center justify-between">
           <button
             onClick={() => onClose()}
@@ -45,10 +45,10 @@ const PostModal = () => {
           </div>
         </div>
 
-        <hr className="border-zinc-700" />
+        <hr className="border-background-surface" />
 
         {(post.contentType === "TEXT" || post.contentType === "PDF") && (
-          <div className="w-fit rounded-sm bg-zinc-700 px-2.5 py-1 font-bold max-md:text-sm">
+          <div className="w-fit rounded-sm bg-background-surface px-2.5 py-1 font-bold max-md:text-sm">
             {post.contentType === "PDF"
               ? "PDF File"
               : post.contentType === "TEXT"

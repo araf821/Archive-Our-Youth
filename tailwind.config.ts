@@ -44,7 +44,7 @@ module.exports = {
           DEFAULT: "#09090b", // zinc-950
           muted: "#18181b", // zinc-900
           elevated: "#27272a", // zinc-800
-          surface: "#3f3f46", // zinc-700
+          surface: "#3f3f46", // background-surface
         },
 
         // Text colors
@@ -57,7 +57,7 @@ module.exports = {
 
         // Border colors
         border: {
-          DEFAULT: "#3f3f46", // zinc-700
+          DEFAULT: "#3f3f46", // background-surface
           light: "#52525b", // zinc-600
           dark: "#27272a", // zinc-800
         },

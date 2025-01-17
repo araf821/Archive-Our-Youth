@@ -122,7 +122,7 @@ const ContactForm = ({}: Props) => {
         <Link
           className={buttonVariants({
             variant: "ghost",
-            className: "bg-[#2f2f2f] hover:bg-zinc-700",
+            className: "bg-[#2f2f2f] hover:bg-background-surface",
           })}
           href={"/home"}
         >
@@ -156,7 +156,7 @@ const ContactForm = ({}: Props) => {
                         : "Technical"}
                     </SelectValue>
                   </SelectTrigger>
-                  <SelectContent className="border-zinc-700 bg-zinc-800 text-zinc-50">
+                  <SelectContent className="border-background-surface bg-zinc-800 text-zinc-50">
                     <SelectItem className="py-2.5" value={ContactType.GENERAL}>
                       General
                     </SelectItem>
@@ -200,7 +200,7 @@ const ContactForm = ({}: Props) => {
                 {...field}
                 disabled={isPending}
                 placeholder="Your message..."
-                className="morph-sm min-h-[180px] w-full rounded-md bg-zinc-800 px-2.5 py-2 outline-none focus:outline focus:outline-zinc-700 disabled:pointer-events-none disabled:opacity-50"
+                className="morph-sm min-h-[180px] w-full rounded-md bg-zinc-800 px-2.5 py-2 outline-none focus:outline focus:outline-background-surface disabled:pointer-events-none disabled:opacity-50"
               />
               <FormMessage />
             </FormItem>

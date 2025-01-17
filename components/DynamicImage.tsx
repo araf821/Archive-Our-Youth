@@ -48,7 +48,7 @@ export default function DynamicImage({
   return (
     <div
       className={cn(
-        "relative aspect-[4/3] overflow-hidden rounded-sm border border-zinc-700",
+        "relative aspect-[4/3] overflow-hidden rounded-sm border border-background-surface",
         { "bg-zinc-800": loading },
         classNames,
       )}

@@ -47,9 +47,9 @@ export const ConfirmationScreen = ({
             us.
           </p>
         )}
-        <hr className="mt-1.5 w-full border-zinc-700" />
+        <hr className="mt-1.5 w-full border-background-surface" />
       </div>
-      <div className="max-h-[60dvh] divide-y-2 divide-zinc-700 overflow-y-auto rounded-md border border-zinc-700 px-4">
+      <div className="max-h-[60dvh] divide-y-2 divide-background-surface overflow-y-auto rounded-md border border-background-surface px-4">
         <div className="py-4">
           <p>
             Research Questions <span className="text-zinc-400">(optional)</span>
@@ -348,7 +348,7 @@ export const ConfirmationScreen = ({
           !!form.formState.errors.title ||
           !!form.formState.errors.description
         }
-        className="morph-md rounded-md bg-zinc-800 px-3 py-2 transition hover:bg-zinc-700 disabled:opacity-70 disabled:hover:bg-zinc-800"
+        className="morph-md rounded-md bg-zinc-800 px-3 py-2 transition hover:bg-background-surface disabled:opacity-70 disabled:hover:bg-zinc-800"
       >
         {!!form.formState.errors.content ||
         !!form.formState.errors.contentType ||

@@ -35,7 +35,7 @@ const ManagePostModal = ({
             Manage this post, its author, comments, or delete it.
           </DialogDescription>
         </DialogHeader>
-        <hr className="border-zinc-700" />
+        <hr className="border-background-surface" />
 
         {isDeleting ? (
           <ConfirmDeletion
@@ -50,7 +50,7 @@ const ManagePostModal = ({
         ) : (
           <>
             <div className="mt-4 flex flex-col gap-2 max-md:px-4">
-              <div className="flex items-center justify-between gap-8 border-b border-zinc-700 pb-2">
+              <div className="flex items-center justify-between gap-8 border-b border-background-surface pb-2">
                 <p className="text-zinc-400">Author</p>
                 {post.user ? (
                   <Link
@@ -68,17 +68,17 @@ const ManagePostModal = ({
                 )}
               </div>
 
-              <div className="flex items-center justify-between gap-8 border-b border-zinc-700 pb-2">
+              <div className="flex items-center justify-between gap-8 border-b border-background-surface pb-2">
                 <p className="text-zinc-400">Published</p>
                 <p>{dateFormat(post.createdAt.toISOString())}</p>
               </div>
 
-              <div className="flex items-center justify-between gap-8 border-b border-zinc-700 pb-2">
+              <div className="flex items-center justify-between gap-8 border-b border-background-surface pb-2">
                 <p className="text-zinc-400">Likes</p>
                 <p>{post.likes}</p>
               </div>
 
-              <div className="flex items-center justify-between gap-8 border-b border-zinc-700 pb-2">
+              <div className="flex items-center justify-between gap-8 border-b border-background-surface pb-2">
                 <p className="text-zinc-400">Comments</p>
                 <Link
                   href={`/dashboard/admin-portal/comments?post=${post.id}`}

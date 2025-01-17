@@ -31,7 +31,7 @@ const SubmitAuthModal = () => {
           </DialogDescription>
         </DialogHeader>
 
-        <hr className="border-zinc-700" />
+        <hr className="border-background-surface" />
         <button
           onClick={() => {
             router.push("/sign-in");
@@ -42,7 +42,7 @@ const SubmitAuthModal = () => {
         </button>
         <Link
           href="/submit"
-          className="rounded-sm border border-zinc-700 py-1.5 text-center font-medium text-zinc-300 transition duration-200"
+          className="rounded-sm border border-background-surface py-1.5 text-center font-medium text-zinc-300 transition duration-200"
         >
           Continue as guest
         </Link>
@@ -50,7 +50,7 @@ const SubmitAuthModal = () => {
           *Note: You will not have the chance to edit or delete your posts if
           you submit without signing in.
         </p>
-        <hr className="border-zinc-700" />
+        <hr className="border-background-surface" />
 
         <p className="text-center text-text-secondary max-md:text-sm">
           New to the Archive?
@@ -59,7 +59,7 @@ const SubmitAuthModal = () => {
           onClick={() => {
             router.push("/sign-up");
           }}
-          className="mb-2 rounded-sm border border-zinc-700 bg-background-muted py-1.5 text-center font-medium text-zinc-300 transition duration-200 hover:bg-zinc-800 hover:text-zinc-100"
+          className="mb-2 rounded-sm border border-background-surface bg-background-muted py-1.5 text-center font-medium text-zinc-300 transition duration-200 hover:bg-zinc-800 hover:text-zinc-100"
         >
           Create New Account
         </button>

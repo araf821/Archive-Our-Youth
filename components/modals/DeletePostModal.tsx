@@ -78,14 +78,14 @@ const DeletePostModal = () => {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md border border-zinc-700/50 bg-background-muted py-2 tracking-wider text-white transition hover:bg-zinc-800"
+            className="rounded-md border border-background-surface/50 bg-background-muted py-2 tracking-wider text-white transition hover:bg-zinc-800"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={isPending}
-            className={`rounded-md bg-amber-500 py-2 font-medium text-black transition hover:bg-amber-600 ${
+            className={`rounded-md bg-amber-500 py-2 font-semibold text-text-primary transition hover:bg-amber-600 ${
               confirmingDelete ? "bg-red-500 hover:bg-red-600" : ""
             }`}
           >

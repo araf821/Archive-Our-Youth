@@ -44,7 +44,7 @@ const AuthModal = () => {
           </p>
           <Link
             href="/sign-up"
-            className="mb-2 rounded-sm border border-zinc-700 bg-background-muted py-1.5 text-center font-medium text-zinc-300 transition duration-200 hover:bg-zinc-800 hover:text-zinc-100"
+            className="mb-2 rounded-sm border border-background-surface bg-background-muted py-1.5 text-center font-medium text-zinc-300 transition duration-200 hover:bg-zinc-800 hover:text-zinc-100"
           >
             Create New Account
           </Link>

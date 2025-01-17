@@ -32,20 +32,23 @@ const LocationSelection: FC<LocationSelectionProps> = ({ form }) => {
           <div className="w-full space-y-4">
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
-                <SelectTrigger className="morph-md border border-zinc-700 bg-zinc-800 py-5 text-zinc-100 outline-none">
+                <SelectTrigger className="morph-md border border-background-surface bg-zinc-800 py-5 text-zinc-100 outline-none">
                   <SelectValue
                     className="placeholder-zinc-400"
                     placeholder="Select a country"
                   />
                 </SelectTrigger>
               </FormControl>
-              <SelectContent className="max-h-[300px] rounded-sm border-zinc-700 bg-zinc-800 text-zinc-100">
+              <SelectContent className="max-h-[300px] rounded-sm border-background-surface bg-zinc-800 text-zinc-100">
                 {allCountries.map((c) => (
                   <SelectItem
-                    className={cn("py-3 hover:bg-zinc-700 focus:bg-zinc-700", {
-                      "bg-background-muted focus:bg-background-muted":
-                        country === c.toLowerCase(),
-                    })}
+                    className={cn(
+                      "py-3 hover:bg-background-surface focus:bg-background-surface",
+                      {
+                        "bg-background-muted focus:bg-background-muted":
+                          country === c.toLowerCase(),
+                      },
+                    )}
                     key={c}
                     value={c.toLowerCase()}
                   >

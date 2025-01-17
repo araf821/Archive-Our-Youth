@@ -28,12 +28,12 @@ const UserDropdown = ({ user }: Props) => {
           alt="profile"
           width={48}
           height={48}
-          className="rounded-full border-2 border-zinc-700"
+          className="rounded-full border-2 border-background-surface"
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="min-w-[325px] space-y-2 rounded-3xl border border-zinc-700 p-4"
+        className="min-w-[325px] space-y-2 rounded-3xl border border-background-surface p-4"
       >
         <DropdownMenuItem className="pointer-events-none flex gap-2 bg-transparent">
           <Image
@@ -41,7 +41,7 @@ const UserDropdown = ({ user }: Props) => {
             alt="profile"
             width={56}
             height={56}
-            className="rounded-full border-2 border-zinc-700"
+            className="rounded-full border-2 border-background-surface"
           />
           <div>
             <p className="font-medium">{user.name}</p>

@@ -35,7 +35,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
         >
           {post.contentType === "IMAGE" && (
             <>
-              <div className="relative aspect-[4/3] w-full overflow-hidden border border-zinc-700 md:max-w-[300px]">
+              <div className="relative aspect-[4/3] w-full overflow-hidden border border-background-surface md:max-w-[300px]">
                 <Image
                   src={error ? "/placeholder_post_image.svg" : post.postContent}
                   alt="post image"
@@ -70,7 +70,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
 
           {post.contentType === "VIDEO" && (
             <>
-              <div className="relative aspect-video max-h-[40vh] w-full rounded-md border border-zinc-700 md:max-w-[300px]">
+              <div className="relative aspect-video max-h-[40vh] w-full rounded-md border border-background-surface md:max-w-[300px]">
                 <video
                   src={`${post.postContent}#t=15`}
                   className="h-full w-full "
@@ -89,20 +89,20 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
             </div>
           )}
         </div>
-        <hr className="border-zinc-700" />
+        <hr className="border-border" />
         <div className="flex items-center justify-between pb-2">
           <button
             onClick={() => onOpen("deletePostModal", { postWithoutUser: post })}
-            className="morph-md flex items-center gap-1 rounded-xl border border-background-muted p-2 text-center font-semibold tracking-wide text-zinc-400 transition hover:bg-amber-500 hover:text-black"
+            className="flex items-center gap-1 rounded-md border border-border p-2 text-center font-semibold tracking-wide text-text-secondary transition hover:bg-amber-500 hover:text-black"
           >
             <span className="sr-only">Delete Post</span>
-            <Trash strokeWidth={3} className="size-5" />
+            <Trash strokeWidth={3} className="size-4" />
           </button>
           <div className="relative">
             <span className="absolute inset-0 translate-x-1 translate-y-1 rounded-md bg-green-800"></span>
             <Link
               href={`/post/${post.slug}`}
-              className="relative z-10 flex items-center gap-1 rounded-md bg-primary px-2 py-1 text-center font-medium tracking-wide text-background transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-primary-dark active:translate-x-1 active:translate-y-1"
+              className="relative z-10 flex items-center gap-1 rounded-md bg-primary px-2 py-1 text-center text-sm font-medium text-text-inverted transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-primary-dark hover:text-text-primary active:translate-x-1 active:translate-y-1"
             >
               View Post
               <ArrowRight className="size-5" />

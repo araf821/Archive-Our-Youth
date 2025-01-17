@@ -200,16 +200,6 @@
   }
 }
 
-.text-background {
-  outline: none;
-  background: url(https://cdn.dribbble.com/users/32512/screenshots/3581570/white_abstract_by_gleb.gif);
-  background-size: contain;
-  background-position: top left;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
 .animate-next {
   animation: animate-next 1s ease infinite;
 }
@@ -397,7 +387,7 @@
 .cl-signIn-start,
 .cl-signUp-start,
 .cl-card {
-  @apply border-zinc-700 bg-[#1c1c1c] shadow-xl shadow-green-500/10;
+  @apply border-background-surface bg-[#1c1c1c] shadow-xl shadow-green-500/10;
 }
 
 .cl-modalCloseButton {
@@ -432,7 +422,7 @@
 .cl-dividerText,
 .cl-alertText,
 .cl-alert {
-  @apply border-zinc-700 text-zinc-400;
+  @apply border-background-surface text-zinc-400;
 }
 
 .cl-identityPreviewText {
@@ -450,7 +440,7 @@
 }
 
 .cl-identityPreview {
-  @apply border-zinc-700;
+  @apply border-background-surface;
 }
 
 .cl-formFieldInfoText__password {
@@ -458,7 +448,7 @@
 }
 
 .cl-formFieldInput {
-  @apply border-zinc-700 bg-zinc-800 text-zinc-100;
+  @apply border-background-surface bg-zinc-800 text-zinc-100;
 }
 
 .cl-formButtonPrimary {
@@ -515,7 +505,7 @@
 }
 
 .cl-internal-1xg0u4s {
-  @apply border-b-zinc-700;
+  @apply border-b-background-surface;
 }
 
 .cl-badge {

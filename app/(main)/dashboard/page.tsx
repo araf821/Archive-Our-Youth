@@ -43,7 +43,7 @@ const DashboardPage = async ({
       {/* Header */}
       <div className="col-span-1">
         <p className="text-4xl font-medium md:text-5xl lg:hidden">Dashboard</p>
-        <hr className="mb-4 mt-2 border-zinc-700 lg:hidden" />
+        <hr className="mb-4 mt-2 border-background-surface lg:hidden" />
 
         <DashboardSidebar currentUser={dbUser} />
       </div>

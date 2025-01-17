@@ -20,7 +20,7 @@ const TitleSlide: FC<TitleSlideProps> = ({ form }) => {
             <FormControl>
               <input
                 placeholder="Title"
-                className="w-full rounded-sm border border-zinc-700 bg-zinc-800 px-3 py-2 text-2xl focus-visible:outline-none focus-visible:outline-2 focus-visible:outline-zinc-600 md:text-3xl"
+                className="w-full rounded-sm border border-background-surface bg-zinc-800 px-3 py-2 text-2xl focus-visible:outline-none focus-visible:outline-2 focus-visible:outline-zinc-600 md:text-3xl"
                 type="text"
                 {...field}
               />

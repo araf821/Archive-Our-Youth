@@ -11,8 +11,10 @@ interface PostModalMediaProps {
 export default function PostModalMedia({ post }: PostModalMediaProps) {
   if (post.contentType === "TEXT" || post.contentType === "PDF") {
     return (
-      <div className="w-fit rounded-sm bg-zinc-700 px-2.5 py-1 font-bold max-md:text-sm">
-        {post.contentType === "PDF" ? "PDF File" : "Written"}
+      <div className="w-fit rounded-sm bg-background-surface px-2.5 py-1 max-md:text-sm">
+        <p className="text-xs font-bold md:text-sm">
+          {post.contentType === "PDF" ? "PDF File" : "Written"}
+        </p>
       </div>
     );
   }

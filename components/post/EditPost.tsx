@@ -119,7 +119,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                         size="sm"
                         onClick={() => setPreview(false)}
                         className={cn(
-                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
                           {
                             "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
                               !preview,
@@ -137,7 +137,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                           }
                         }}
                         className={cn(
-                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
                           {
                             "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
                               preview,
@@ -265,7 +265,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                         size="sm"
                         onClick={() => setPreview(false)}
                         className={cn(
-                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
                           {
                             "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
                               !preview,
@@ -283,7 +283,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                           }
                         }}
                         className={cn(
-                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-700",
+                          "bg-zinc-800 transition duration-300 hover:-translate-y-0.5 hover:bg-background-surface",
                           {
                             "bg-gradient-to-br from-lime-500 to-emerald-600 text-black":
                               preview,
@@ -327,7 +327,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
             </div>
           )}
 
-          <hr className="mt-4 border-zinc-700" />
+          <hr className="mt-4 border-background-surface" />
 
           <FormField
             control={form.control}
@@ -386,7 +386,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
                     <button
                       type="button"
                       onClick={() => form.setValue("tags", [])}
-                      className="morph-sm flex w-fit items-center gap-2 rounded-sm border border-zinc-700 bg-zinc-800 px-3 py-2 text-white transition max-md:text-sm md:text-base"
+                      className="morph-sm flex w-fit items-center gap-2 rounded-sm border border-background-surface bg-zinc-800 px-3 py-2 text-white transition max-md:text-sm md:text-base"
                     >
                       Reset
                       <RefreshCcw size={16} />
@@ -397,7 +397,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
             )}
           />
 
-          <div className="mt-6 border-y border-zinc-700">
+          <div className="mt-6 border-y border-background-surface">
             <p className="py-4 text-neutral-400 max-md:text-sm">
               Note: Some fields on this form are intentionally non-editable to
               prevent misuse or unintended alterations. If you require changes
