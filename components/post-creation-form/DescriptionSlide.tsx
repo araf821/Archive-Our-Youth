@@ -17,12 +17,12 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
       name="description"
       control={form.control}
       render={({ field }) => (
-        <FormItem className="mx-auto grid max-w-screen-sm place-items-center gap-8 md:gap-12">
-          <div className="text-center">
-            <p className="text-xl md:text-2xl">Add a description</p>
+        <FormItem className="space-y-4">
+          <div>
+            <p className="font-medium">Description</p>
             <p className="text-sm text-zinc-400">Optional</p>
           </div>
-          <div className="flex w-full flex-col gap-2">
+          <div className="flex flex-col gap-2">
             <AnimatedTabs
               tabs={[
                 { id: "write", label: "Write" },
@@ -33,14 +33,14 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
               layoutId="description-tabs"
             />
 
-            <FormControl className="min-h-[150px]">
+            <FormControl>
               {preview ? (
                 form.getValues().description ? (
-                  <ReactMarkdown className="prose-headings:font-josefin prose prose-xl h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
+                  <ReactMarkdown className="prose-headings:font-josefin prose h-full max-w-full overflow-y-auto break-words rounded-md bg-zinc-800 p-2.5 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-h1:m-0 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
                     {form.getValues().description || ""}
                   </ReactMarkdown>
                 ) : (
-                  <p className="grid h-40 place-items-center rounded-lg border border-background-surface bg-zinc-800 px-4 text-center">
+                  <p className="rounded-md border border-background-surface bg-zinc-800 px-4 py-2 text-sm">
                     A preview of what the finished product will look like.
                   </p>
                 )
@@ -48,14 +48,14 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
                 <textarea
                   {...field}
                   placeholder="Describe your content..."
-                  className="morph-sm mt-2 h-full resize-none rounded-sm border-none bg-zinc-800 px-3 py-1.5 text-lg text-zinc-50 outline-none focus:outline-none"
+                  className="h-32 resize-none rounded-md border-none bg-zinc-800 px-3 py-2 text-sm text-zinc-50 outline-none focus:outline-none"
                 />
               )}
             </FormControl>
             <a
               href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
               target="_blank"
-              className="flex w-fit items-center gap-1 text-zinc-400 transition duration-200 hover:text-blue-500"
+              className="flex w-fit items-center gap-1 text-sm text-zinc-400 transition duration-200 hover:text-blue-500"
             >
               Markdown is supported!
               <ExternalLink className="size-4" />

@@ -1,5 +1,7 @@
 import { TPostCreationForm } from "@/lib/types/form";
 import { ChangeEvent, FC, useState } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/Label";
 
 interface ResearchQuestion {
   id: string;
@@ -98,54 +100,62 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
   };
 
   return (
-    <div className="grid max-w-screen-md place-items-center gap-8 md:gap-12">
-      <div className="text-center max-sm:max-w-[340px]">
-        <p className="balance text-xl md:text-2xl">
-          How does your post explore wellbeing?
-        </p>
-        <p className="balance text-zinc-500 max-md:text-sm">
-          Wellbeing: Personal. Family. Community. Planetary. Other.{" "}
-          <span className="font-semibold">(Choose all that apply)</span>
+    <div className="w-full space-y-4">
+      <div>
+        <p className="font-medium text-text-primary">Research Questions</p>
+        <p className="text-sm text-text-secondary">
+          How does your post explore wellbeing? (Choose all that apply)
         </p>
       </div>
       <div className="w-full space-y-2">
         {RESEARCH_QUESTIONS.map((question) => (
-          <label
+          <div
             key={question.id}
-            htmlFor={question.id}
-            className="group relative flex items-center gap-2 rounded-sm bg-zinc-800 px-3 py-1.5 pl-10 md:text-lg"
+            className="flex items-center gap-3 transition-colors hover:bg-background-elevated"
           >
-            <input
-              type="checkbox"
+            <Checkbox
               id={question.id}
               checked={checkboxStates[question.id]}
-              onChange={(e) => handleCheckboxChange(e, question)}
-              className="absolute left-2 top-2.5 size-5 appearance-none rounded-md border-2 border-zinc-600 bg-background-muted fill-pink-400 transition checked:border-background-muted checked:bg-primary group-hover:bg-background-surface group-hover:checked:bg-primary-dark"
+              onCheckedChange={(checked) => {
+                handleCheckboxChange(
+                  {
+                    target: { checked: !!checked },
+                  } as ChangeEvent<HTMLInputElement>,
+                  question,
+                );
+              }}
             />
-            <div>
+            <Label
+              htmlFor={question.id}
+              className="w-full cursor-pointer py-2 text-sm  text-text-primary"
+            >
               {question.text}
               {question.additionalInfo && (
-                <span className="block text-sm text-zinc-400">
+                <span className="block text-xs text-text-secondary">
                   {question.additionalInfo}
                 </span>
               )}
-            </div>
-          </label>
+            </Label>
+          </div>
         ))}
 
-        <label
-          htmlFor="none"
-          className="group relative flex items-center gap-2 rounded-sm bg-zinc-800 px-3 py-1.5 pl-10 md:text-lg"
-        >
-          <input
-            type="checkbox"
+        <div className="flex items-center gap-3 transition-colors hover:bg-background-elevated">
+          <Checkbox
             id="none"
             checked={checkboxStates.none}
-            onChange={handleSelectNone}
-            className="absolute left-2 top-2.5 size-5 appearance-none rounded-md border-2 border-zinc-600 bg-background-muted fill-pink-400 transition checked:border-background-muted checked:bg-primary group-hover:bg-background-surface group-hover:checked:bg-primary-dark"
+            onCheckedChange={(checked) => {
+              handleSelectNone({
+                target: { checked: !!checked },
+              } as ChangeEvent<HTMLInputElement>);
+            }}
           />
-          None of the above
-        </label>
+          <Label
+            htmlFor="none"
+            className="w-full cursor-pointer py-2 text-sm text-text-primary"
+          >
+            None of the above
+          </Label>
+        </div>
       </div>
     </div>
   );

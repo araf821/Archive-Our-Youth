@@ -23,41 +23,37 @@ const LocationSelection: FC<LocationSelectionProps> = ({ form }) => {
       control={form.control}
       name="location"
       render={({ field }) => (
-        <FormItem className="mx-auto grid w-full max-w-screen-sm place-items-center gap-8 md:gap-12">
-          <div className="text-center">
-            <p className="balance text-xl md:text-2xl">
-              Where are you posting from?
-            </p>
+        <FormItem className="space-y-4">
+          <div>
+            <p className="font-medium">Location</p>
           </div>
-          <div className="w-full space-y-4">
-            <Select onValueChange={field.onChange} defaultValue={field.value}>
-              <FormControl>
-                <SelectTrigger className="morph-md border border-background-surface bg-zinc-800 py-5 text-zinc-100 outline-none">
-                  <SelectValue
-                    className="placeholder-zinc-400"
-                    placeholder="Select a country"
-                  />
-                </SelectTrigger>
-              </FormControl>
-              <SelectContent className="max-h-[300px] rounded-sm border-background-surface bg-zinc-800 text-zinc-100">
-                {allCountries.map((c) => (
-                  <SelectItem
-                    className={cn(
-                      "py-3 hover:bg-background-surface focus:bg-background-surface",
-                      {
-                        "bg-background-muted focus:bg-background-muted":
-                          country === c.toLowerCase(),
-                      },
-                    )}
-                    key={c}
-                    value={c.toLowerCase()}
-                  >
-                    {c}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+          <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <FormControl>
+              <SelectTrigger className="border border-background-surface bg-zinc-800 text-zinc-100 outline-none">
+                <SelectValue
+                  className="placeholder-zinc-400"
+                  placeholder="Select a country"
+                />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent className="max-h-[300px] rounded-sm border-background-surface bg-zinc-800 text-zinc-100">
+              {allCountries.map((c) => (
+                <SelectItem
+                  className={cn(
+                    "hover:bg-background-surface focus:bg-background-surface",
+                    {
+                      "bg-background-muted focus:bg-background-muted":
+                        country === c.toLowerCase(),
+                    },
+                  )}
+                  key={c}
+                  value={c.toLowerCase()}
+                >
+                  {c}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </FormItem>
       )}
     />

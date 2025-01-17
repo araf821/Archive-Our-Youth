@@ -12,15 +12,15 @@ const TitleSlide: FC<TitleSlideProps> = ({ form }) => {
       control={form.control}
       name="title"
       render={({ field }) => (
-        <FormItem className="flex w-full flex-col items-center justify-center space-y-10 px-2 md:space-y-14">
-          <p className="text-center text-xl md:text-2xl">
-            What would you like to call this masterpiece?
-          </p>
-          <div className="w-full space-y-1">
+        <FormItem>
+          <div className="space-y-2">
+            <p className="font-medium">
+              What would you like to call this masterpiece?
+            </p>
             <FormControl>
               <input
-                placeholder="Title"
-                className="w-full rounded-sm border border-background-surface bg-zinc-800 px-3 py-2 text-2xl focus-visible:outline-none focus-visible:outline-2 focus-visible:outline-zinc-600 md:text-3xl"
+                placeholder="Enter a title"
+                className="w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-600"
                 type="text"
                 {...field}
               />
