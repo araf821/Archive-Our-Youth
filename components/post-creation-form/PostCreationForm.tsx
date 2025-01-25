@@ -4,7 +4,6 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Form } from "../ui/Form";
 
-import { IntroScreen } from "./IntroScreen";
 import ResearchQuestions from "./ResearchQuestions";
 import TypeSelectionSlide from "./TypeSelectionSlide";
 import TitleSlide from "./TitleSlide";
@@ -26,18 +25,24 @@ const PostCreationForm = () => {
   });
 
   const handleSubmit = async () => {
-    const result = await onSubmit(form.getValues(), checked);
+    try {
+      const result = await onSubmit(form.getValues(), checked);
 
-    if (!result.success) {
-      setConsentChecked((prev) => ({
-        ...prev,
-        error: true,
-      }));
-      toast.error(result.error || "Something went wrong.");
-      return;
+      if (!result.success) {
+        setConsentChecked((prev) => ({
+          ...prev,
+          error: true,
+        }));
+        toast.error(result.error || "Something went wrong.");
+        return;
+      }
+
+      toast.success("Your post has been published!");
+    } catch (error) {
+      toast.error(
+        "Something went wrong. Please try again or contact us if the error persists.",
+      );
     }
-
-    toast.success("Your post has been published!");
   };
 
   const handleConsentChange = (checked: boolean) => {
