@@ -48,20 +48,30 @@ export const aboutConfig = {
   webDevelopers: {
     title: "Web Developers",
     description: [
-      "We are so grateful to Araf Alam for working patiently with us to turn our dream into reality—thank you for producing this amazing, responsive, and engaging website!",
+      "We are so grateful to <a href='https://github.com/araf821' target='_blank' rel='noopener noreferrer' class='developer-link'>Araf A Alam</a> for working patiently with us to turn our dream into reality—thank you for producing this amazing, responsive, and engaging website!",
       "Thank you Vyjayanthi for designing the home page and working closely with Araf to help translate our vision into a working site.",
     ],
   },
   logos: {
     ylrl: {
       href: "https://www.younglivesresearch.org",
-      src: "/ylrl-logo.svg",
+      src: "/ylrl-logo.webp",
       alt: "Young Lives Research Lab logo",
     },
     york: {
       href: "https://www.yorku.ca/edu",
-      src: "/york-logo.svg",
+      src: "/york-logo.webp",
       alt: "York University logo",
+    },
+    ghr: {
+      href: "#",
+      src: "/ghr-logo.webp",
+      alt: "GHR logo",
+    },
+    kmhunter: {
+      href: "#",
+      src: "/kmhunter-logo.webp",
+      alt: "KM Hunter Foundation logo",
     },
   },
 } as const;

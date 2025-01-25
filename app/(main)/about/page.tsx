@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { aboutConfig } from "./config";
+import LogoGrid from "@/components/LogoGrid";
 
 export const metadata: Metadata = {
   title: "About",
@@ -58,7 +59,7 @@ const AboutPage = () => {
         </section>
 
         {/* Who Are We */}
-        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-all duration-500 hover:bg-background-elevated/70">
+        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 hover:bg-background-elevated/70">
           <h2 className="text-3xl font-bold tracking-tight text-primary max-md:text-2xl">
             {whoAreWe.title}
           </h2>
@@ -71,7 +72,7 @@ const AboutPage = () => {
             {whoAreWe.yacActivities.map((activity, index) => (
               <li
                 key={index}
-                className="flex items-start space-x-3 rounded-lg border border-border-light bg-background-muted p-4 transition-all duration-300 hover:border-primary/30 hover:bg-background-muted/80"
+                className="flex items-start space-x-3 rounded-lg border border-border-light bg-background-muted p-4 transition-colors duration-300 hover:border-primary/30 hover:bg-background-muted/80"
               >
                 <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-primary" />
                 <span className="text-text-primary/90">{activity}</span>
@@ -84,12 +85,18 @@ const AboutPage = () => {
         </section>
 
         {/* Youth Advisory Committee - Canada */}
-        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-all duration-500 hover:bg-background-elevated/70">
+        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 hover:bg-background-elevated/70">
           <h2 className="text-3xl font-bold tracking-tight text-primary max-md:text-2xl">
             {youthAdvisoryCommittee.title}
           </h2>
-          <div className="aspect-video w-full overflow-hidden rounded-xl bg-background-surface">
-            <div className="h-full w-full animate-pulse bg-gradient-to-br from-background-muted to-background-elevated" />
+          <div className="aspect-video w-full overflow-hidden rounded-xl">
+            <Image
+              src="/yac-team.webp"
+              alt="Youth Advisory Committee Team"
+              width={1920}
+              height={1080}
+              className="h-full w-full object-cover"
+            />
           </div>
           <div className="space-y-4 leading-relaxed text-text-primary md:text-lg">
             {youthAdvisoryCommittee.description.map((paragraph, index) => (
@@ -104,7 +111,7 @@ const AboutPage = () => {
         </section>
 
         {/* Young Lives Research Lab */}
-        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-all duration-500 hover:bg-background-elevated/70">
+        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 hover:bg-background-elevated/70">
           <h2 className="text-3xl font-bold tracking-tight text-primary max-md:text-2xl">
             {youngLivesResearchLab.title}
           </h2>
@@ -126,37 +133,23 @@ const AboutPage = () => {
         </section>
 
         {/* Web Developers */}
-        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-all duration-500 hover:bg-background-elevated/70">
+        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 hover:bg-background-elevated/70">
           <h2 className="text-3xl font-bold tracking-tight text-primary max-md:text-2xl">
             {webDevelopers.title}
           </h2>
           <div className="space-y-4 leading-relaxed text-text-primary md:text-lg">
             {webDevelopers.description.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
+              <p
+                key={index}
+                dangerouslySetInnerHTML={{ __html: paragraph }}
+                className="[&_.developer-link]:text-secondary [&_.developer-link]:underline [&_.developer-link]:decoration-secondary/30 [&_.developer-link]:decoration-2 [&_.developer-link]:underline-offset-4 [&_.developer-link]:transition-colors [&_.developer-link]:duration-300"
+              />
             ))}
           </div>
         </section>
 
         {/* Logos */}
-        <section className="mt-8 grid grid-cols-2 gap-8 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-all duration-500 hover:bg-background-elevated/70">
-          {[logos.ylrl, logos.york].map((logo, index) => (
-            <Link
-              key={index}
-              href={logo.href}
-              target="_blank"
-              className="group relative aspect-square w-full"
-            >
-              <div className="absolute inset-0 rounded-xl bg-background-surface transition-colors duration-300 group-hover:bg-background-muted" />
-              <Image
-                src={logo.src}
-                alt={logo.alt}
-                fill
-                sizes="(min-width: 768px) 25vw, 50vw"
-                className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-              />
-            </Link>
-          ))}
-        </section>
+        <LogoGrid logos={[logos.ylrl, logos.york, logos.ghr, logos.kmhunter]} />
       </div>
     </div>
   );
