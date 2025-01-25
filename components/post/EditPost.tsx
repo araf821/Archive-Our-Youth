@@ -11,19 +11,10 @@ import {
   FormMessage,
 } from "../ui/Form";
 import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { ExternalLink, RefreshCcw, X } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
-import { allCountries } from "@/lib/constants";
-import MultiSelect from "../MultiSelect";
-import { allTags } from "../post-creation-form/TagSelectionSlide";
+import { ExternalLink } from "lucide-react";
+
+import { TagsInput } from "./edit-post-form/TagsInput";
 import { z } from "zod";
 import { PostEditValidator } from "@/lib/validators/post";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,8 +25,10 @@ import { toast } from "sonner";
 import { AnimatedTabs } from "../ui/animated-tabs";
 import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
 import Link from "next/link";
-import { Label } from "../ui/Label";
-import { Checkbox } from "../ui/checkbox";
+import { ResearchQuestions } from "./edit-post-form/ResearchQuestions";
+import { LocationSelect } from "./edit-post-form/LocationSelect";
+import { DescriptionField } from "./edit-post-form/DescriptionField";
+import DynamicImage from "../DynamicImage";
 
 interface EditPostProps {
   post: Post;
@@ -61,16 +54,21 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
     },
   });
 
-  const tags = form.watch("tags");
-
   const onSubmit = async (values: z.infer<typeof PostEditValidator>) => {
     try {
       setIsLoading(true);
+
+      console.log("researchQuestions", values.researchQuestions);
+      console.log("post.researchQuestions", post.researchQuestions);
+
       if (
         values.content === post.postContent &&
         values.description === post.description &&
         values.tags.toString() == post.tags.toString() &&
-        values.thumbnail === post.thumbnail
+        values.thumbnail === post.thumbnail &&
+        values.researchQuestions.toString() ==
+          post.researchQuestions.toString() &&
+        values.location === post.location
       ) {
         toast.error("No changes have been made.");
       } else {
@@ -104,6 +102,9 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
           <p className="rounded-md border border-border bg-zinc-800 px-3 py-2 text-sm text-text-primary">
             {post.contentType}
           </p>
+          {post.contentType === "IMAGE" && (
+            <DynamicImage src={post.postContent} alt={post.title} />
+          )}
         </div>
       </div>
 
@@ -139,7 +140,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
           )}
 
           {/* -------------------- TEXT CONTENT ----------------------- */}
-          {post.contentType === "IMAGE" && (
+          {post.contentType === "TEXT" && (
             <div>
               <FormField
                 name="content"
@@ -320,243 +321,13 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
           )}
 
           {/* -------------------- DESCRIPTION ----------------------- */}
-          {post.contentType !== "TEXT" && (
-            <div>
-              <FormField
-                name="description"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem className="space-y-4 rounded-lg border p-4 md:p-6">
-                    <div>
-                      <p className="font-medium">Description</p>
-                      <p className="text-sm text-zinc-400">Optional</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <AnimatedTabs
-                        tabs={[
-                          { id: "write", label: "Write" },
-                          { id: "preview", label: "Preview" },
-                        ]}
-                        defaultTab={preview ? "preview" : "write"}
-                        onChange={(tabId) => setPreview(tabId === "preview")}
-                        layoutId="description-tabs"
-                      />
-                      <FormControl>
-                        {preview ? (
-                          form.getValues().description ? (
-                            <ReactMarkdown className="prose prose-sm h-full max-w-full overflow-y-auto break-words rounded-md border p-2 text-start text-zinc-100 prose-headings:font-semibold prose-headings:text-zinc-50 prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-code:whitespace-pre-wrap prose-img:rounded-md">
-                              {form.getValues().description || ""}
-                            </ReactMarkdown>
-                          ) : (
-                            <p className="rounded-md border border-background-surface bg-zinc-800 px-4 py-2 text-sm">
-                              A preview of what the finished product will look
-                              like.
-                            </p>
-                          )
-                        ) : (
-                          <textarea
-                            {...field}
-                            placeholder="Describe your content..."
-                            className="h-32 resize-none rounded-md border-none bg-zinc-800 px-3 py-2 text-sm text-zinc-50 outline-none focus:outline-none"
-                          />
-                        )}
-                      </FormControl>
-                      <a
-                        href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
-                        target="_blank"
-                        className="flex w-fit items-center gap-1 text-sm text-zinc-400 transition duration-200 hover:text-blue-500"
-                      >
-                        Markdown is supported!
-                        <ExternalLink className="size-4" />
-                      </a>
-                      <FormMessage />
-                    </div>
-                  </FormItem>
-                )}
-              />
-            </div>
-          )}
+          {post.contentType !== "TEXT" && <DescriptionField form={form} />}
 
-          <FormField
-            control={form.control}
-            name="tags"
-            render={() => (
-              <FormItem className="space-y-4 rounded-lg border p-4 md:p-6">
-                <div>
-                  <p className="font-medium">Tags</p>
-                  <p className="text-sm text-zinc-400">
-                    Relevant tags lead your posts to the right people!
-                  </p>
-                </div>
-                <FormControl>
-                  <MultiSelect
-                    maxSelection={8}
-                    onChange={(values: string[]) => {
-                      form.setValue("tags", values);
-                    }}
-                    options={allTags}
-                    selectedOptions={tags}
-                  />
-                </FormControl>
-                {tags.length < 1 && <FormMessage />}
-                <ul className="flex flex-wrap gap-4 pt-2 text-white">
-                  {form.getValues().tags.map((tag, index) => (
-                    <li
-                      key={tag}
-                      className={cn(
-                        "text-bold flex items-center justify-between gap-1 rounded-md px-2.5 py-1 text-background-muted",
-                        {
-                          "border-2 border-rose-500 text-rose-500": index === 0,
-                          "border-2 border-lime-500 text-lime-500": index === 1,
-                          "border-2 border-sky-500 text-sky-500": index === 2,
-                          "border-2 border-amber-500 text-amber-500":
-                            index === 3,
-                          "border-2 border-fuchsia-500 text-fuchsia-500":
-                            index === 4,
-                          "border-2 border-teal-400 text-teal-400": index === 5,
-                          "border-2 border-red-400 text-red-400": index === 6,
-                          "border-2 border-indigo-400 text-indigo-400":
-                            index === 7,
-                        },
-                      )}
-                    >
-                      {tag}
-                      <button
-                        onClick={() =>
-                          form.setValue(
-                            "tags",
-                            tags.filter((t) => t !== tag),
-                          )
-                        }
-                        type="button"
-                        className=""
-                      >
-                        <X size={15} />
-                      </button>
-                    </li>
-                  ))}
-                  {!!tags.length && (
-                    <button
-                      type="button"
-                      onClick={() => form.setValue("tags", [])}
-                      className="morph-sm flex w-fit items-center gap-2 rounded-sm border border-background-surface bg-zinc-800 px-3 py-2 text-white transition max-md:text-sm md:text-base"
-                    >
-                      Reset
-                      <RefreshCcw size={16} />
-                    </button>
-                  )}
-                </ul>
-              </FormItem>
-            )}
-          />
+          <TagsInput form={form} />
 
-          <FormField
-            control={form.control}
-            name="researchQuestions"
-            render={({ field }) => (
-              <FormItem className="w-full space-y-4 rounded-lg border p-4 md:p-6">
-                <div>
-                  <p className="font-medium text-text-primary">
-                    Research Questions
-                  </p>
-                  <p className="text-sm text-text-secondary">
-                    How does your post explore wellbeing? (Choose all that
-                    apply)
-                  </p>
-                </div>
-                <div className="w-full">
-                  {[
-                    "Challenges or barriers",
-                    "What wellbeing means to you",
-                    "Advice to my older or younger self",
-                    "Practices, habits, and routines",
-                    "The impact of digital technology",
-                    "The future (fears, hopes, or dreams)",
-                    "Resources or groups that support wellbeing",
-                  ].map((question) => (
-                    <div
-                      key={question}
-                      className="flex items-center gap-3 rounded-md px-2 transition-colors hover:bg-background-elevated"
-                    >
-                      <Checkbox
-                        id={question}
-                        checked={field.value?.includes(question)}
-                        onCheckedChange={(checked) => {
-                          const newValue = checked
-                            ? [...(field.value || []), question]
-                            : field.value?.filter((q) => q !== question);
-                          field.onChange(newValue);
-                        }}
-                      />
-                      <Label
-                        htmlFor={question}
-                        className="w-full cursor-pointer py-3 text-sm text-text-primary"
-                      >
-                        {question}
-                      </Label>
-                    </div>
-                  ))}
-                  <div className="flex items-center gap-3 rounded-md px-2 transition-colors hover:bg-background-elevated">
-                    <Checkbox
-                      id="none"
-                      checked={!field.value?.length}
-                      onCheckedChange={(checked) => {
-                        field.onChange(checked ? [] : field.value);
-                      }}
-                    />
-                    <Label
-                      htmlFor="none"
-                      className="w-full cursor-pointer py-3 text-sm text-text-primary"
-                    >
-                      None of the above
-                    </Label>
-                  </div>
-                </div>
-              </FormItem>
-            )}
-          />
+          <ResearchQuestions form={form} />
 
-          <FormField
-            control={form.control}
-            name="location"
-            render={({ field }) => (
-              <FormItem className="space-y-4 rounded-lg border p-4 md:p-6">
-                <div>
-                  <p className="font-medium">Location</p>
-                </div>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger className="border border-background-surface bg-zinc-800 text-zinc-100 outline-none">
-                      <SelectValue
-                        className="placeholder-zinc-400"
-                        placeholder="Select a country"
-                      />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent className="max-h-[300px] rounded-sm border-background-surface bg-zinc-800 text-zinc-100">
-                    {allCountries.map((c) => (
-                      <SelectItem
-                        className={cn(
-                          "hover:bg-background-surface focus:bg-background-surface",
-                          {
-                            "bg-background-muted focus:bg-background-muted":
-                              field.value === c.toLowerCase(),
-                          },
-                        )}
-                        key={c}
-                        value={c.toLowerCase()}
-                      >
-                        {c}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </FormItem>
-            )}
-          />
+          <LocationSelect form={form} />
 
           <div className="mt-6 border-y border-background-surface">
             <p className="py-4 text-neutral-400 max-md:text-sm">
