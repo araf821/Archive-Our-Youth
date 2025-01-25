@@ -42,9 +42,6 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
     try {
       setIsLoading(true);
 
-      console.log("researchQuestions", values.researchQuestions);
-      console.log("post.researchQuestions", post.researchQuestions);
-
       if (
         values.content === post.postContent &&
         values.description === post.description &&
@@ -61,7 +58,7 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
         router.push(`/post/${post.slug}`);
       }
     } catch (error) {
-      toast.error("Something went wrong.");
+      toast.error("Something went wrong. Please try again later.");
     } finally {
       setIsLoading(false);
     }
