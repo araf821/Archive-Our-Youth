@@ -1,112 +1,165 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { aboutConfig } from "./config";
 
 export const metadata: Metadata = {
   title: "About",
 };
 
 const AboutPage = () => {
+  const {
+    whatIsAOY,
+    whoAreWe,
+    youthAdvisoryCommittee,
+    youngLivesResearchLab,
+    webDevelopers,
+    logos,
+  } = aboutConfig;
+
   return (
-    <div className="relative mx-auto max-w-screen-md space-y-12 px-6 pb-14 pt-8 text-white md:space-y-4">
-      <span className="absolute left-0 top-0 h-80 w-80 bg-primary/20 blur-3xl max-md:hidden"></span>
-      <div className="group relative space-y-4 border-2 border-transparent bg-opacity-75 text-lg tracking-wide text-zinc-200 transition duration-300 md:rounded-t-2xl md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/10">
-        <h4 className="text-xl font-semibold text-white transition duration-200 md:group-hover:text-green-500">
-          Who Are We
-        </h4>
-        <p>
-          Our Archive is a dynamic hub dedicated to exploring dream futures,
-          various perspectives on wellbeing, and both exist`ing and desired
-          resources that promote personal and planetary wellbeing. We extend an
-          open invitation to youth, youth groups, and engaged collectives
-          worldwide to actively contribute to this repository of knowledge.
-        </p>
-        <p>
-          Here, you&rsquo;ll find a collection of multimedia and artifacts that
-          reflect the diverse and innovative ideas of young minds. We encourage
-          you to take part in this initiative by sharing your insights and
-          creations or by exploring the content curated within our digital
-          space.
-        </p>
-        <p>
-          Join us in shaping a future where the dreams and aspirations of
-          today&rsquo;s youth pave the way for a healthier and more sustainable
-          tomorrow. Your participation matters, and together, we can make a
-          meaningful impact on the world&rsquo;s wellbeing.
-        </p>
-      </div>
+    <div className="relative min-h-svh bg-gradient-to-b from-background to-background-muted px-4 pb-20 pt-8">
+      {/* Background */}
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(34,197,94,0.1),rgba(0,0,0,0))]" />
 
-      <div className="group relative space-y-4 border-2 border-transparent bg-opacity-75 text-lg tracking-wide text-zinc-200 duration-300 md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/20">
-        <h4 className="text-xl font-semibold text-white transition duration-200 md:group-hover:text-green-500">
-          Youth Advisory Committee
-        </h4>
-        <p>
-          Our Archive is a dynamic hub dedicated to exploring dream futures,
-          various perspectives on wellbeing, and both existing and desired
-          resources that promote personal and planetary wellbeing. We extend an
-          open invitation to youth, youth groups, and engaged collectives
-          worldwide to actively contribute to this repository of knowledge.
-        </p>
-        <p>
-          Here, you&rsquo;ll find a collection of multimedia and artifacts that
-          reflect the diverse and innovative ideas of young minds. We encourage
-          you to take part in this initiative by sharing your insights and
-          creations or by exploring the content curated within our digital
-          space.
-        </p>
-        <p>
-          Join us in shaping a future where the dreams and aspirations of
-          today&rsquo;s youth pave the way for a healthier and more sustainable
-          tomorrow. Your participation matters, and together, we can make a
-          meaningful impact on the world&rsquo;s wellbeing.
-        </p>
-      </div>
+      <div className="mx-auto max-w-4xl">
+        {/* What is Archive Our Youth? */}
+        <section className="relative space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 hover:bg-background-elevated/70">
+          <h1 className="text-4xl font-bold tracking-tight text-primary max-md:text-3xl">
+            {whatIsAOY.title}
+          </h1>
+          <div className="space-y-4 leading-relaxed text-text-primary md:text-lg">
+            {whatIsAOY.description.map((paragraph, index) => (
+              <p
+                key={index}
+                className="transition-colors duration-300 hover:text-text-primary/90"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
 
-      <div className="group relative space-y-4 border-2 border-transparent bg-opacity-75 text-lg tracking-wide text-zinc-200 duration-300 md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/20">
-        <h4 className="text-xl font-semibold text-white transition duration-200 md:group-hover:text-green-500">
-          Young Lives Research Lab
-        </h4>
-        <p>
-          Founded in 2009 by Kate Tilleczek, we are dedicated to developing
-          culturally and youth-attuned research, education & dialogue across
-          countries, ages, communities and sectors.
-        </p>
-        <p>
-          We work with/for youth and their communities to design and implement
-          quality education that transcends formal schooling through integrated,
-          holistic, land-based, culturally relevant and youth-centred education.
-        </p>
-      </div>
+          <div className="mt-8 space-y-4">
+            <h2 className="text-2xl font-semibold text-primary-light max-md:text-xl">
+              {whatIsAOY.howItStarted.title}
+            </h2>
+            {whatIsAOY.howItStarted.description.map((paragraph, index) => (
+              <p
+                key={index}
+                className="leading-relaxed text-text-primary/90 md:text-lg"
+              >
+                {paragraph}
+              </p>
+            ))}
+            <p className="border-l-4 border-primary-subtle bg-background-muted/50 p-4 italic text-text-primary/80 md:text-lg">
+              {whatIsAOY.howItStarted.note}
+            </p>
+          </div>
+        </section>
 
-      <div className="flex items-center gap-8 border-2 border-transparent duration-300 md:rounded-b-2xl md:bg-[#222222] md:p-4 md:hover:border-green-500/20 md:hover:shadow-[0_0_25px] md:hover:shadow-green-500/20">
-        <Link
-          href="https://www.younglivesresearch.org"
-          target="_blank"
-          className="relative mx-auto aspect-square w-full max-w-[300px]"
-        >
-          <Image
-            src="/ylrl-logo.svg"
-            alt="ylrl logo"
-            fill
-            sizes="50vw, (min-width: 768px) 25vw"
-            className="object-contain"
-          />
-        </Link>
-        <Link
-          href="https://www.yorku.ca/edu"
-          target="_blank"
-          className="relative mx-auto aspect-square w-full max-w-[300px]"
-        >
-          <Image
-            src="/york-logo.svg"
-            alt="york logo"
-            fill
-            sizes="50vw, (min-width: 768px) 25vw"
-            className="object-contain"
-          />
-        </Link>
+        {/* Who Are We */}
+        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-all duration-500 hover:bg-background-elevated/70">
+          <h2 className="text-3xl font-bold tracking-tight text-primary max-md:text-2xl">
+            {whoAreWe.title}
+          </h2>
+          <div className="space-y-4 leading-relaxed text-text-primary md:text-lg">
+            {whoAreWe.description.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+          <ul className="grid gap-4 md:grid-cols-2">
+            {whoAreWe.yacActivities.map((activity, index) => (
+              <li
+                key={index}
+                className="flex items-start space-x-3 rounded-lg border border-border-light bg-background-muted p-4 transition-all duration-300 hover:border-primary/30 hover:bg-background-muted/80"
+              >
+                <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-primary" />
+                <span className="text-text-primary/90">{activity}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="rounded-lg border border-border-light bg-background-muted p-4 text-text-primary/90 md:text-lg">
+            {whoAreWe.funding}
+          </p>
+        </section>
+
+        {/* Youth Advisory Committee - Canada */}
+        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-all duration-500 hover:bg-background-elevated/70">
+          <h2 className="text-3xl font-bold tracking-tight text-primary max-md:text-2xl">
+            {youthAdvisoryCommittee.title}
+          </h2>
+          <div className="aspect-video w-full overflow-hidden rounded-xl bg-background-surface">
+            <div className="h-full w-full animate-pulse bg-gradient-to-br from-background-muted to-background-elevated" />
+          </div>
+          <div className="space-y-4 leading-relaxed text-text-primary md:text-lg">
+            {youthAdvisoryCommittee.description.map((paragraph, index) => (
+              <p
+                key={index}
+                className="transition-colors duration-300 hover:text-text-primary/80"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </section>
+
+        {/* Young Lives Research Lab */}
+        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-all duration-500 hover:bg-background-elevated/70">
+          <h2 className="text-3xl font-bold tracking-tight text-primary max-md:text-2xl">
+            {youngLivesResearchLab.title}
+          </h2>
+          <div className="space-y-4 leading-relaxed text-text-primary md:text-lg">
+            {youngLivesResearchLab.description.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+            <p className="pt-2">
+              To learn more, visit:{" "}
+              <Link
+                href={youngLivesResearchLab.website}
+                target="_blank"
+                className="break-words text-primary-light underline decoration-primary-subtle/30 decoration-2 underline-offset-4 transition-colors duration-300 hover:text-primary hover:decoration-primary-subtle/50"
+              >
+                {youngLivesResearchLab.website}
+              </Link>
+            </p>
+          </div>
+        </section>
+
+        {/* Web Developers */}
+        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-all duration-500 hover:bg-background-elevated/70">
+          <h2 className="text-3xl font-bold tracking-tight text-primary max-md:text-2xl">
+            {webDevelopers.title}
+          </h2>
+          <div className="space-y-4 leading-relaxed text-text-primary md:text-lg">
+            {webDevelopers.description.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+        </section>
+
+        {/* Logos */}
+        <section className="mt-8 grid grid-cols-2 gap-8 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-all duration-500 hover:bg-background-elevated/70">
+          {[logos.ylrl, logos.york].map((logo, index) => (
+            <Link
+              key={index}
+              href={logo.href}
+              target="_blank"
+              className="group relative aspect-square w-full"
+            >
+              <div className="absolute inset-0 rounded-xl bg-background-surface transition-colors duration-300 group-hover:bg-background-muted" />
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                fill
+                sizes="(min-width: 768px) 25vw, 50vw"
+                className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+              />
+            </Link>
+          ))}
+        </section>
       </div>
     </div>
   );
 };
+
 export default AboutPage;

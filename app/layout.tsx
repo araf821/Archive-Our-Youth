@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import Providers from "@/components/Providers";
 import { siteConfig } from "@/lib/config/site";
 import { dark } from "@clerk/themes";
+import { kobata } from "./fonts";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -37,7 +38,7 @@ export default function RootLayout({
     >
       <html lang="en">
         <body
-          className={`${poppins.className} min-h-[100dvh] bg-background-muted antialiased selection:bg-primary selection:text-black`}
+          className={`${poppins.className} ${kobata.variable} min-h-[100dvh] bg-background-muted antialiased selection:bg-primary selection:text-black`}
         >
           <Providers>{children}</Providers>
         </body>

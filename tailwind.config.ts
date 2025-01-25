@@ -120,7 +120,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        kobata: ["'__Kobata_870a87', '__Kobata_Fallback_870a87'"],
+        kobata: ["var(--font-kobata)", "sans-serif"],
       },
     },
   },
