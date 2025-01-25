@@ -102,9 +102,11 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
   return (
     <div className="w-full space-y-4 rounded-lg border p-4 md:p-6">
       <div>
-        <p className="font-medium text-text-primary">Research Questions</p>
+        <p className="mb-1 font-medium text-text-primary">Research Questions</p>
         <p className="text-sm text-text-secondary">
-          How does your post explore wellbeing? (Choose all that apply)
+          How does your post explore wellbeing? <br />
+          Wellbeing: Personal. Family. Community. Planetary. Other. (Choose all
+          that apply)
         </p>
       </div>
       <div className="w-full">

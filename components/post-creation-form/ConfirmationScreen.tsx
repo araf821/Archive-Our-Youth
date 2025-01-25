@@ -6,23 +6,27 @@ import { ConsentForm } from "./ConsentForm";
 interface ConfirmationScreenProps {
   form: UseFormReturn<z.infer<typeof PostCreationValidator>>;
   isLoading: boolean;
-  checked: boolean;
+  ageVerified: boolean;
+  consentChecked: boolean;
   error: boolean;
-  onCheckedChange: (checked: boolean) => void;
+  onAgeVerificationChange: (checked: boolean) => void;
+  onConsentChange: (checked: boolean) => void;
 }
 
 export const ConfirmationScreen = ({
-  form,
-  isLoading,
-  checked,
+  ageVerified,
+  consentChecked,
   error,
-  onCheckedChange,
+  onAgeVerificationChange,
+  onConsentChange,
 }: ConfirmationScreenProps) => {
   return (
     <ConsentForm
-      checked={checked}
+      ageVerified={ageVerified}
+      consentChecked={consentChecked}
       error={error}
-      onCheckedChange={onCheckedChange}
+      onAgeVerificationChange={onAgeVerificationChange}
+      onConsentChange={onConsentChange}
     />
   );
 };

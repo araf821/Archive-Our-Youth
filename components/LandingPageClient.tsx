@@ -19,7 +19,6 @@ const LandingPageClient: FC<LandingPageClientProps> = ({}) => {
 
   useEffect(() => {
     setIsMounted(true);
-    console.log("user", user);
   }, []);
 
   if (!isMounted) return null;
@@ -49,7 +48,8 @@ const LandingPageClient: FC<LandingPageClientProps> = ({}) => {
             viewport={{ once: true }}
             className="mx-4 rounded-sm px-1.5 py-0.5 text-lg font-medium tracking-wide text-white [text-shadow:0px_0px_2px_black] max-md:text-base"
           >
-            Explore our youth&rsquo;s visions and creations for wellbeing.
+            Explore, Share, Inspire: Youth Perspectives on Wellbeing in the
+            Digital Age
           </motion.p>
         </motion.div>
         <div className="flex gap-16 pb-8 pt-12 max-xl:gap-12 max-lg:gap-8 max-md:flex-col max-md:gap-4">

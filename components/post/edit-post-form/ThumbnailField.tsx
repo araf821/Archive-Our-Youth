@@ -1,19 +1,27 @@
-import { TPostCreationForm } from "@/lib/types/form";
-import { FC } from "react";
-import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
-import FileUpload from "../FileUpload";
+"use client";
 
-interface ThumbnailSlideProps {
-  form: TPostCreationForm;
-}
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/Form";
+import type { UseFormReturn } from "react-hook-form";
+import { PostEditValidator } from "@/lib/validators/post";
+import { z } from "zod";
+import FileUpload from "@/components/FileUpload";
 
-const ThumbnailSlide: FC<ThumbnailSlideProps> = ({ form }) => {
+type Props = {
+  form: UseFormReturn<z.infer<typeof PostEditValidator>>;
+};
+
+const ThumbnailField = ({ form }: Props) => {
   return (
     <FormField
       name="thumbnail"
       control={form.control}
       render={({ field }) => (
-        <FormItem className="bebi mx-auto w-full max-w-4xl space-y-0 rounded-lg border p-4 pb-6 sm:flex sm:justify-between sm:gap-4 md:p-6">
+        <FormItem className="mx-auto w-full max-w-4xl space-y-0 rounded-lg border p-4 pb-6 sm:flex sm:justify-between sm:gap-4 md:p-6">
           <div className="max-sm:mb-2">
             <p className="text-lg font-medium">Thumbnail</p>
             <p className="text-sm text-zinc-400">Optional but recommended</p>
@@ -34,5 +42,4 @@ const ThumbnailSlide: FC<ThumbnailSlideProps> = ({ form }) => {
     />
   );
 };
-
-export default ThumbnailSlide;
+export default ThumbnailField;

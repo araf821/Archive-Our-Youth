@@ -1,50 +1,51 @@
-import { kobata } from "@/app/fonts";
+import Link from "next/link";
+import { Sparkles } from "lucide-react";
 
 export const IntroScreen = () => {
   return (
-    <div className="flex w-full flex-col gap-8">
-      <div>
-        <p className="mb-4 text-2xl font-medium max-md:text-xl">
-          Submit a post
+    <div className="animate-fade-in flex w-full flex-col gap-8">
+      <div className="space-y-4">
+        <div className="flex items-center gap-3">
+          <Sparkles className="size-6 text-secondary md:size-7" />
+          <h1 className="text-2xl font-bold tracking-tight max-md:text-xl">
+            Create New Post
+          </h1>
+        </div>
+        <p className="text-text-secondary max-md:text-sm">
+          Share your vision for a better future
         </p>
-        <hr />
       </div>
 
-      <p className="leading-6 tracking-widest text-zinc-300 max-md:text-sm">
-        Welcome to{" "}
-        <span className={`font-semibold ${kobata.className}`}>
-          Archive Our Youth
-        </span>{" "}
-        on Youth and Planetary Wellbeing! You&apos;re invited to contribute to
-        the Archive and/or explore the multimedia and artifacts preserved here.
-        The Digital Archive explores dream futures, perspectives on wellbeing,
-        and resources both real and desired that support personal to planetary
-        wellbeing. We welcome youth, youth groups and engaged collectives from
-        all over the world to contribute!
-      </p>
+      <hr className="border-t-2" />
 
-      <p className="leading-6 tracking-widest text-zinc-300 max-md:text-sm">
-        Archive Our Youth was launched as part of the international research
-        study: Partnership for Youth and Planetary Wellbeing, led by the{" "}
-        <a
-          target="_blank"
-          className="text-green-500 underline underline-offset-4"
-          href="https://www.younglivesresearch.org/"
-        >
-          Young Lives Research Lab
-        </a>
-        , and 4 Youth Advisory Councils (YACs) in Canada, Chile, Costa Rica and
-        Belize.
-      </p>
+      <div className="space-y-6 text-text-secondary">
+        <div className="space-y-4">
+          <h2 className="text-lg font-medium text-text-primary max-md:text-base">
+            Welcome to Archive Our Youth!
+          </h2>
+          <p className="leading-relaxed">
+            You’re invited to add to our Youth and Planetary Wellbeing Archive:
+            a time capsule of dream futures, perspectives, and resources (both
+            real and desired). We welcome all kinds of multi-media posts, and
+            we’re excited to see what you upload!
+          </p>
+          <p className="leading-relaxed">
+            To learn more about the Archive and our research partners in Chile,
+            Costa Rica, and Belize, visit{" "}
+            <Link
+              href="/about"
+              className="font-medium text-secondary underline underline-offset-4 transition-colors hover:text-secondary/80"
+            >
+              About Us
+            </Link>
+            .
+          </p>
+          <p className="font-medium">Xoxo</p>
+          <p>- The Canadian Youth Advisory Committee (YAC)</p>
+        </div>
+      </div>
 
-      <p className="leading-6 tracking-widest text-zinc-300 max-md:text-sm">
-        The Archive was launched in the Fall of 2023 by Canada&apos;s YAC, but
-        the submission portal remains open for continual submissions.
-      </p>
-
-      <p className="text-zinc-400">
-        Scroll down to complete the submission form.
-      </p>
+      <hr className="border-t-2" />
     </div>
   );
 };
