@@ -45,7 +45,7 @@ export const IntroScreen = () => {
         </div>
       </div>
 
-      <hr className="border-t-2 border-border" />
+      <hr className="border-t-2" />
     </div>
   );
 };

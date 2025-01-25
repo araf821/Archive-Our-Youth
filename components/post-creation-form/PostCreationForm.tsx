@@ -19,17 +19,27 @@ import { ConsentForm } from "./ConsentForm";
 const PostCreationForm = () => {
   const { form, handleTypeChange, onSubmit, isLoading, contentType } =
     usePostForm();
-  const [{ checked, error }, setConsentChecked] = useState({
-    checked: false,
+  const [{ ageVerified, consentChecked, error }, setConsent] = useState({
+    ageVerified: false,
+    consentChecked: false,
     error: false,
   });
 
   const handleSubmit = async () => {
     try {
-      const result = await onSubmit(form.getValues(), checked);
+      if (!ageVerified || !consentChecked) {
+        setConsent((prev) => ({
+          ...prev,
+          error: true,
+        }));
+        toast.error("Please check both consent boxes to proceed.");
+        return;
+      }
+
+      const result = await onSubmit(form.getValues(), consentChecked);
 
       if (!result.success) {
-        setConsentChecked((prev) => ({
+        setConsent((prev) => ({
           ...prev,
           error: true,
         }));
@@ -45,10 +55,19 @@ const PostCreationForm = () => {
     }
   };
 
+  const handleAgeVerificationChange = (checked: boolean) => {
+    setConsent((prev) => ({
+      ...prev,
+      ageVerified: checked,
+      error: checked ? prev.error : true,
+    }));
+  };
+
   const handleConsentChange = (checked: boolean) => {
-    setConsentChecked(() => ({
-      checked,
-      error: checked ? false : true,
+    setConsent((prev) => ({
+      ...prev,
+      consentChecked: checked,
+      error: checked ? prev.error : true,
     }));
   };
 
@@ -72,9 +91,11 @@ const PostCreationForm = () => {
         <LocationSelection form={form} />
 
         <ConsentForm
-          checked={checked}
+          ageVerified={ageVerified}
+          consentChecked={consentChecked}
           error={error}
-          onCheckedChange={handleConsentChange}
+          onAgeVerificationChange={handleAgeVerificationChange}
+          onConsentChange={handleConsentChange}
         />
 
         <hr />
