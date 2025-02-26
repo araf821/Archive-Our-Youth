@@ -40,7 +40,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
                   src={error ? "/placeholder_post_image.svg" : post.postContent}
                   alt="post image"
                   fill
-                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 300px"
+                  sizes="(max-width: 768px) 128px, 192px"
                   onLoad={() => setIsLoading(false)}
                   onError={() => setError(true)}
                   className={cn(

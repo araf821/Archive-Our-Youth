@@ -47,7 +47,7 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
             <div className="relative aspect-square">
               <Image
                 alt="thumbnail"
-                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 25vw"
+                sizes="(max-width: 768px) 128px, 192px"
                 fill
                 onError={() => setOnError(true)}
                 onLoad={() => setIsLoading(false)}
@@ -76,7 +76,7 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
           <Image
             alt="post image"
             src={onError ? "/placeholder_post_image.svg" : post.postContent}
-            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 35vw, 25vw"
+            sizes="(max-width: 768px) 128px, 192px"
             fill
             onLoad={() => setIsLoading(false)}
             onError={() => setOnError(true)}

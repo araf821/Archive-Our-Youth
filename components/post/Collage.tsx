@@ -2,7 +2,6 @@ import { db } from "@/lib/db";
 import EmptyState from "../EmptyState";
 import { RefreshCcw } from "lucide-react";
 import { getCurrentUser } from "@/lib/getCurrentUser";
-import FadeInContainer from "../FadeInContainer";
 import { Skeleton } from "../ui/skeleton";
 import { ContentType } from "@prisma/client";
 import InfinitePosts from "./InfinitePosts";
