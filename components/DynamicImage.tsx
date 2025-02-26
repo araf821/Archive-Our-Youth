@@ -2,48 +2,51 @@
 
 import { cn } from "@/lib/utils";
 import { Loader2, Scaling } from "lucide-react";
-import Image from "next/image";
-import { ComponentProps, useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
-type ImageProps = ComponentProps<typeof Image>;
-
-interface DynamicImageProps {
+interface DynamicImageProps
+  extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, "src"> {
   src: string;
   classNames?: string;
   modal?: boolean;
-  sizes?: string;
-  alt?: string;
   fallbackSrc?: string;
-  quality?: number;
   loadingComponent?: React.ReactNode;
   showResizeButton?: boolean;
   onError?: () => void;
-  imageProps?: Partial<ImageProps>; // Additional image props from next/image
 }
 
 export default function DynamicImage({
   src,
   classNames,
   modal = false,
-  sizes = modal
-    ? "(max-width: 480px) 90vw, (max-width: 768px) 80vw, (max-width: 1024px) 60vw, (max-width: 1280px) 45vw, 250px"
-    : "(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1024px) 70vw, (max-width: 1280px) 50vw, 384px",
   alt = "Image",
   fallbackSrc = "/placeholder_post_image.svg",
-  quality = 90,
   loadingComponent,
   showResizeButton = true,
   onError,
-  imageProps,
+  ...imgProps
 }: DynamicImageProps) {
   const [loading, setLoading] = useState(true);
   const [contained, setContained] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   const handleError = () => {
     setHasError(true);
     onError?.();
   };
+
+  // Handle image loading
+  const handleLoad = () => {
+    setLoading(false);
+  };
+
+  // Set proper dimensions when the component mounts
+  useEffect(() => {
+    if (imgRef.current && imgRef.current.complete) {
+      setLoading(false);
+    }
+  }, []);
 
   return (
     <div
@@ -61,23 +64,25 @@ export default function DynamicImage({
         </div>
       )}
 
-      <Image
-        {...imageProps}
-        fill
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        {...imgProps}
+        ref={imgRef}
         src={hasError ? fallbackSrc : src}
         alt={alt}
-        sizes={sizes}
-        quality={quality}
-        onLoad={() => setLoading(false)}
+        onLoad={handleLoad}
         onError={handleError}
         className={cn(
-          "rounded-sm transition-all duration-300",
+          "absolute h-full w-full rounded-sm transition-all duration-300",
           contained ? "object-contain" : "object-cover",
-          imageProps?.className,
+          imgProps?.className,
         )}
-        priority={modal}
         loading={modal ? "eager" : "lazy"}
-        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+        // Add a small transparent placeholder to improve performance
+        style={{
+          ...imgProps?.style,
+          backgroundColor: loading ? "transparent" : undefined,
+        }}
       />
 
       {showResizeButton && (
