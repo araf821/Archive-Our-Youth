@@ -24,10 +24,12 @@ export const ImageRenderer: FC<ImageRendererProps> = ({
         className,
       )}
     >
-      <DynamicImage
+      <Image
         src={value}
         alt="uploaded image"
-        // className="h-full w-full rounded-sm object-cover"
+        fill
+        sizes="(max-width: 768px) 192px, 320px"
+        className="object-cover"
       />
       <DeleteButton
         onClick={onDelete}
