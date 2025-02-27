@@ -3,6 +3,7 @@
 import { Post } from "@prisma/client";
 import DynamicImage from "../DynamicImage";
 import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
+import { AudioPlayer } from "../ui/AudioPlayer";
 
 interface PostModalMediaProps {
   post: Post;
@@ -47,11 +48,7 @@ export default function PostModalMedia({ post }: PostModalMediaProps) {
   }
 
   if (post.contentType === "AUDIO") {
-    return (
-      <div className="relative w-full overflow-hidden">
-        <audio src={post.postContent} controls className="w-full py-0.5" />
-      </div>
-    );
+    return <AudioPlayer src={post.postContent} />;
   }
 
   return null;

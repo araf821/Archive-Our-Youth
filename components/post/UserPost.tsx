@@ -9,6 +9,7 @@ import { ArrowRight, Trash } from "lucide-react";
 import Link from "next/link";
 import { useModal } from "@/hooks/useModal";
 import { motion } from "framer-motion";
+import { AudioPlayer } from "../ui/AudioPlayer";
 
 interface UserPostProps {
   post: Post;
@@ -94,9 +95,7 @@ const UserPost: FC<UserPostProps> = ({ post }) => {
 
           {post.contentType === "AUDIO" && (
             <div>
-              <div className="relative m-2">
-                <audio src={post.postContent} controls className="w-full" />
-              </div>
+              <AudioPlayer src={post.postContent} className="mb-2" />
               <DashboardPostInfo post={post} />
             </div>
           )}

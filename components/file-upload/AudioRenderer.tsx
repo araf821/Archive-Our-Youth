@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { DeleteButton } from "./DeleteButton";
+import { AudioPlayer } from "../ui/AudioPlayer";
 
 interface AudioRendererProps {
   value: string;
@@ -13,14 +13,11 @@ export const AudioRenderer: FC<AudioRendererProps> = ({
   isPending,
 }) => {
   return (
-    <div className="w-full space-y-2 text-center">
-      <audio src={value} controls className="w-full" />
-      <DeleteButton
-        onClick={onDelete}
-        isPending={isPending}
-        title="Remove audio"
-        variant="text"
-      />
-    </div>
+    <AudioPlayer
+      src={value}
+      showDelete
+      onDelete={onDelete}
+      isPending={isPending}
+    />
   );
 };

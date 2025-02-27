@@ -3,6 +3,7 @@ import DynamicImage from "../../DynamicImage";
 import PDFViewer from "../../PDFViewer";
 import Link from "next/link";
 import { isYouTubeUrl, getYouTubeVideoId } from "@/lib/utils";
+import { AudioPlayer } from "../../ui/AudioPlayer";
 
 interface PostMediaProps {
   contentType: string;
@@ -34,11 +35,7 @@ const PostMedia: FC<PostMediaProps> = ({ contentType, postContent }) => {
   }
 
   if (contentType === "AUDIO") {
-    return (
-      <div className="relative my-4 w-full overflow-hidden">
-        <audio src={postContent} controls className="w-full py-0.5" />
-      </div>
-    );
+    return <AudioPlayer src={postContent} />;
   }
 
   if (contentType === "PDF") {
