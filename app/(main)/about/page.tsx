@@ -25,16 +25,13 @@ const AboutPage = () => {
 
       <div className="mx-auto max-w-4xl">
         {/* What is Archive Our Youth? */}
-        <section className="relative space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 hover:bg-background-elevated/70">
+        <section className="relative space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500">
           <h1 className="text-4xl font-bold tracking-tight text-primary max-md:text-3xl">
             {whatIsAOY.title}
           </h1>
           <div className="space-y-4 leading-relaxed text-text-primary md:text-lg">
             {whatIsAOY.description.map((paragraph, index) => (
-              <p
-                key={index}
-                className="transition-colors duration-300 hover:text-text-primary/90"
-              >
+              <p key={index} className="transition-colors duration-300">
                 {paragraph}
               </p>
             ))}
@@ -59,7 +56,7 @@ const AboutPage = () => {
         </section>
 
         {/* Who Are We */}
-        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 hover:bg-background-elevated/70">
+        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 ">
           <h2 className="text-3xl font-bold tracking-tight text-primary max-md:text-2xl">
             {whoAreWe.title}
           </h2>
@@ -72,7 +69,7 @@ const AboutPage = () => {
             {whoAreWe.yacActivities.map((activity, index) => (
               <li
                 key={index}
-                className="flex items-start space-x-3 rounded-lg border border-border-light bg-background-muted p-4 transition-colors duration-300 hover:border-primary/30 hover:bg-background-muted/80"
+                className="flex items-start space-x-3 rounded-lg border border-border-light bg-background-muted p-4 transition-colors duration-300 "
               >
                 <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-primary" />
                 <span className="text-text-primary/90">{activity}</span>
@@ -85,7 +82,7 @@ const AboutPage = () => {
         </section>
 
         {/* Youth Advisory Committee - Canada */}
-        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 hover:bg-background-elevated/70">
+        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 ">
           <h2 className="text-3xl font-bold tracking-tight text-primary max-md:text-2xl">
             {youthAdvisoryCommittee.title}
           </h2>
@@ -100,10 +97,7 @@ const AboutPage = () => {
           </div>
           <div className="space-y-4 leading-relaxed text-text-primary md:text-lg">
             {youthAdvisoryCommittee.description.map((paragraph, index) => (
-              <p
-                key={index}
-                className="transition-colors duration-300 hover:text-text-primary/80"
-              >
+              <p key={index} className="transition-colors duration-300 ">
                 {paragraph}
               </p>
             ))}
@@ -111,7 +105,7 @@ const AboutPage = () => {
         </section>
 
         {/* Young Lives Research Lab */}
-        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 hover:bg-background-elevated/70">
+        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 ">
           <h2 className="text-3xl font-bold tracking-tight text-primary max-md:text-2xl">
             {youngLivesResearchLab.title}
           </h2>
@@ -124,7 +118,7 @@ const AboutPage = () => {
               <Link
                 href={youngLivesResearchLab.website}
                 target="_blank"
-                className="break-words text-primary-light underline decoration-primary-subtle/30 decoration-2 underline-offset-4 transition-colors duration-300 hover:text-primary hover:decoration-primary-subtle/50"
+                className="break-words text-primary-light underline decoration-primary-subtle/30 decoration-2 underline-offset-4 transition-colors duration-300 "
               >
                 {youngLivesResearchLab.website}
               </Link>
@@ -133,7 +127,7 @@ const AboutPage = () => {
         </section>
 
         {/* Web Developers */}
-        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 hover:bg-background-elevated/70">
+        <section className="mt-8 space-y-6 rounded-2xl bg-background-elevated/50 p-8 backdrop-blur-xl transition-colors duration-500 ">
           <h2 className="text-3xl font-bold tracking-tight text-primary max-md:text-2xl">
             {webDevelopers.title}
           </h2>
