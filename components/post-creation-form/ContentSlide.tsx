@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
 import { AnimatedTabs } from "../ui/animated-tabs";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import FileUpload from "../FileUpload";
+import FileUpload from "../file-upload/FileUpload";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";

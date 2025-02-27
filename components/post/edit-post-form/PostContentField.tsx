@@ -15,7 +15,7 @@ import { useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
-import FileUpload from "@/components/FileUpload";
+import FileUpload from "@/components/file-upload/FileUpload";
 import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
 
 type Props = {

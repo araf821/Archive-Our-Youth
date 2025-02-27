@@ -1,7 +1,7 @@
 import { TPostCreationForm } from "@/lib/types/form";
 import { FC } from "react";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
-import FileUpload from "../FileUpload";
+import FileUpload from "../file-upload/FileUpload";
 
 interface ThumbnailSlideProps {
   form: TPostCreationForm;

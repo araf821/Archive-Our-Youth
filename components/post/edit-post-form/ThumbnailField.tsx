@@ -9,7 +9,7 @@ import {
 import type { UseFormReturn } from "react-hook-form";
 import { PostEditValidator } from "@/lib/validators/post";
 import { z } from "zod";
-import FileUpload from "@/components/FileUpload";
+import FileUpload from "@/components/file-upload/FileUpload";
 
 type Props = {
   form: UseFormReturn<z.infer<typeof PostEditValidator>>;
