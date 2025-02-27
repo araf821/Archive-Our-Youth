@@ -21,7 +21,7 @@ const PostHeader: FC<PostHeaderProps> = ({ postId, slug, isAuthor }) => {
           className={cn("morph-md", buttonVariants({ variant: "outline" }))}
         >
           Edit Post
-          <Edit2 className="size-4 ml-2" />
+          <Edit2 className="ml-2 size-4" />
         </Link>
       )}
     </div>

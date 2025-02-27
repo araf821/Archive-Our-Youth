@@ -22,10 +22,10 @@ export default function PostModalHeader({
         <X className="size-5" />
       </button>
       <div className="relative">
-        <span className="bg-primary-subtle absolute inset-0 translate-x-1 translate-y-1 rounded-md"></span>
+        <span className="absolute inset-0 translate-x-1 translate-y-1 rounded-md bg-primary-subtle"></span>
         <Link
           href={`/post/${slug}`}
-          className="hover:bg-primary-dark text-text-inverted hover:text-text-primary relative z-10 flex rounded-md bg-primary px-3 py-1.5 text-center font-medium tracking-wide transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 focus-visible:-translate-x-0.5 focus-visible:-translate-y-0.5 active:translate-x-1 active:translate-y-1"
+          className="relative z-10 flex rounded-md bg-primary px-3 py-1.5 text-center font-medium tracking-wide text-text-inverted transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-primary-dark hover:text-text-primary focus-visible:-translate-x-0.5 focus-visible:-translate-y-0.5 active:translate-x-1 active:translate-y-1"
         >
           View Post
         </Link>

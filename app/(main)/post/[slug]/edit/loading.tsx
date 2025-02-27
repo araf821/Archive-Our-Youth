@@ -32,7 +32,7 @@ const loading: FC<loadingProps> = ({}) => {
         <Skeleton className="h-14 w-full" />
       </div>
 
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <Skeleton className="h-10 w-24" />
         <Skeleton className="h-10 w-24" />
       </div>
