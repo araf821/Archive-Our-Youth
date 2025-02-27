@@ -31,14 +31,12 @@ import { Button } from "../ui/button";
 interface EditProfileModalProps {
   name: string;
   imageUrl: string;
-  asChild: boolean;
   children: React.ReactNode;
 }
 
 const EditProfileModal: FC<EditProfileModalProps> = ({
   imageUrl,
   name,
-  asChild,
   children,
 }) => {
   const router = useRouter();
@@ -109,6 +107,7 @@ const EditProfileModal: FC<EditProfileModalProps> = ({
                       endPoint="image"
                       onChange={field.onChange}
                       value={field.value}
+                      imageSizes="(max-width: 640px) 128px, 192px"
                     />
                   </FormControl>
                   <FormMessage />

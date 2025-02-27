@@ -14,6 +14,7 @@ interface FileUploadProps {
   onChange: (url?: string) => void;
   value: string;
   classNames?: string;
+  imageSizes?: string;
 }
 
 const FileUpload: FC<FileUploadProps> = ({
@@ -21,6 +22,7 @@ const FileUpload: FC<FileUploadProps> = ({
   onChange,
   value,
   classNames,
+  imageSizes,
 }) => {
   const { handleDelete, isPending: isDeleting } = useFileDelete(onChange);
   const { handleFileUpload, isPending: isUploading } = useFileUpload(
@@ -36,6 +38,7 @@ const FileUpload: FC<FileUploadProps> = ({
           onDelete={() => handleDelete(value)}
           isPending={isDeleting}
           className={classNames}
+          sizes={imageSizes}
         />
       );
     }

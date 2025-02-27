@@ -2,13 +2,13 @@ import { FC } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { DeleteButton } from "./DeleteButton";
-import DynamicImage from "../DynamicImage";
 
 interface ImageRendererProps {
   value: string;
   onDelete: () => void;
   isPending: boolean;
   className?: string;
+  sizes?: string;
 }
 
 export const ImageRenderer: FC<ImageRendererProps> = ({
@@ -16,6 +16,7 @@ export const ImageRenderer: FC<ImageRendererProps> = ({
   onDelete,
   isPending,
   className,
+  sizes,
 }) => {
   return (
     <div
@@ -28,7 +29,7 @@ export const ImageRenderer: FC<ImageRendererProps> = ({
         src={value}
         alt="uploaded image"
         fill
-        sizes="(max-width: 768px) 192px, 320px"
+        sizes={sizes || "(max-width: 768px) 192px, 320px"}
         className="object-cover"
       />
       <DeleteButton

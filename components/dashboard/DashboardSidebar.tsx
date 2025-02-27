@@ -33,7 +33,6 @@ const DashboardSidebar: FC<DashboardSidebarProps> = ({ currentUser }) => {
           <EditProfileModal
             imageUrl={currentUser.imageUrl || ""}
             name={currentUser.name}
-            asChild
           >
             <button title="Edit Profile">
               <span className="sr-only">edit button</span>
