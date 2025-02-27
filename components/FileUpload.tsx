@@ -1,8 +1,8 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useTransition } from "react";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -21,82 +21,80 @@ const FileUpload: FC<FileUploadProps> = ({
   value,
   classNames,
 }) => {
-  const [isPending, setIsPending] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
-  const handleDelete = async () => {
-    try {
-      if (!value) return;
+  const handleDelete = () => {
+    if (!value) return;
 
-      const response = await fetch("/api/uploadthing", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ url: value }),
-      });
+    startTransition(async () => {
+      try {
+        const response = await fetch("/api/uploadthing", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ url: value }),
+        });
 
-      if (!response.ok) {
-        throw new Error("Failed to delete file");
+        if (!response.ok) {
+          throw new Error("Failed to delete file");
+        }
+
+        onChange("");
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to delete file");
       }
-
-      onChange("");
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to delete file");
-    }
+    });
   };
 
-  const handleFileUpload = async (file: File) => {
-    try {
-      if (!file) return;
+  const handleFileUpload = (file: File) => {
+    if (!file) return;
 
-      // File size validation (5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        toast.error(
-          "File size limit exceeded. Please choose a different file.",
-        );
-        return;
-      }
-
-      // File type validation
-      const validTypes = {
-        image: ["image/jpeg", "image/png", "image/webp"],
-        thumbnail: ["image/jpeg", "image/png", "image/webp"],
-        video: ["video/mp4", "video/webm"],
-        audio: ["audio/mpeg", "audio/wav"],
-        pdf: ["application/pdf"],
-      };
-
-      if (!validTypes[endPoint].includes(file.type)) {
-        toast.error("Invalid file type. Please choose a different file.");
-        return;
-      }
-
-      setIsPending(true);
-
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("endpoint", endPoint);
-
-      const response = await fetch("/api/uploadthing", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("Upload failed");
-      }
-
-      const data = await response.json();
-      onChange(data.url);
-    } catch (error) {
-      console.error(error);
-      toast.error(
-        "Something went wrong. Could not upload your file at this time.",
-      );
-    } finally {
-      setIsPending(false);
+    // File size validation (5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("File size limit exceeded. Please choose a different file.");
+      return;
     }
+
+    // File type validation
+    const validTypes = {
+      image: ["image/jpeg", "image/png", "image/webp"],
+      thumbnail: ["image/jpeg", "image/png", "image/webp"],
+      video: ["video/mp4", "video/webm"],
+      audio: ["audio/mpeg", "audio/wav"],
+      pdf: ["application/pdf"],
+    };
+
+    if (!validTypes[endPoint].includes(file.type)) {
+      toast.error("Invalid file type. Please choose a different file.");
+      return;
+    }
+
+    startTransition(async () => {
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("endpoint", endPoint);
+
+        const response = await fetch("/api/uploadthing", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          throw new Error("Upload failed");
+        }
+
+        const data = await response.json();
+        onChange(data.url);
+      } catch (error) {
+        console.error(error);
+        toast.error(
+          "Something went wrong. Could not upload your file at this time.",
+        );
+      }
+    });
   };
 
   if (value) {
@@ -118,9 +116,14 @@ const FileUpload: FC<FileUploadProps> = ({
             title="Remove image"
             onClick={handleDelete}
             type="button"
+            disabled={isPending}
             className="morph-sm group absolute -right-2 -top-2 rounded-md border border-border-dark bg-background-muted text-zinc-300 hover:text-red-500"
           >
-            <X className="size-6 transition group-hover:rotate-90" />
+            {isPending ? (
+              <Loader2 className="animate-spin text-error" />
+            ) : (
+              <X className="size-6 transition group-hover:rotate-90" />
+            )}
           </button>
         </div>
       );
@@ -138,9 +141,14 @@ const FileUpload: FC<FileUploadProps> = ({
             title="Remove video"
             onClick={handleDelete}
             type="button"
+            disabled={isPending}
             className="morph-sm group absolute -right-2 -top-2 rounded-md border border-border-dark bg-background-muted text-zinc-300 hover:text-red-500"
           >
-            <X className="size-5 transition group-hover:rotate-90" />
+            {isPending ? (
+              <Loader2 className="size-5 animate-spin text-error" />
+            ) : (
+              <X className="size-5 transition group-hover:rotate-90" />
+            )}
           </button>
         </div>
       );
@@ -154,9 +162,17 @@ const FileUpload: FC<FileUploadProps> = ({
             title="Remove audio"
             onClick={handleDelete}
             type="button"
-            className="morph-sm rounded-sm bg-zinc-800 px-2.5 py-1.5 text-zinc-300 transition duration-200 hover:bg-background-surface hover:text-zinc-100 max-md:text-sm"
+            disabled={isPending}
+            className="morph-sm rounded-sm bg-zinc-800 px-2.5 py-1.5 text-xs text-zinc-300 transition duration-200 hover:bg-background-surface hover:text-zinc-100 md:text-sm"
           >
-            Remove selected audio
+            {isPending ? (
+              <span className="flex items-center justify-center gap-2">
+                <Loader2 className="size-4 animate-spin" />
+                Deleting...
+              </span>
+            ) : (
+              "Remove selected audio"
+            )}
           </button>
         </div>
       );
@@ -170,9 +186,14 @@ const FileUpload: FC<FileUploadProps> = ({
             title="Remove PDF"
             onClick={handleDelete}
             type="button"
+            disabled={isPending}
             className="morph-sm group absolute -right-2 -top-2 rounded-md border border-border-dark bg-background-muted text-zinc-300 hover:text-red-500"
           >
-            <X className="size-5 transition group-hover:rotate-90" />
+            {isPending ? (
+              <Loader2 className="size-5 animate-spin text-error" />
+            ) : (
+              <X className="size-5 transition group-hover:rotate-90" />
+            )}
           </button>
           <Link
             href={value}
