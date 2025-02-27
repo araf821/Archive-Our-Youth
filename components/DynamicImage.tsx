@@ -15,6 +15,19 @@ interface DynamicImageProps
   onError?: () => void;
 }
 
+// Function to append width parameter to URL
+const getResizedImageUrl = (url: string, width: number) => {
+  try {
+    const parsedUrl = new URL(url);
+    parsedUrl.searchParams.set("width", width.toString());
+    return parsedUrl.toString();
+  } catch {
+    // If URL parsing fails (e.g., relative URL), try a simple append
+    const separator = url.includes("?") ? "&" : "?";
+    return `${url}${separator}width=${width}`;
+  }
+};
+
 export default function DynamicImage({
   src,
   classNames,
@@ -48,11 +61,22 @@ export default function DynamicImage({
     }
   }, []);
 
+  // Define image sizes based on modal state
+  const imageSizes = modal
+    ? "500px"
+    : "(min-width: 1280px) 800px, (min-width: 768px) 600px, 400px";
+
+  // Generate srcset with multiple sizes
+  const srcset = hasError
+    ? fallbackSrc
+    : [300].map((w) => `${getResizedImageUrl(src, w)} ${w}w`).join(", ");
+
   return (
     <div
       className={cn(
         "relative aspect-[4/3] overflow-hidden rounded-sm border border-background-surface",
         { "bg-zinc-800": loading },
+        modal && "max-w-[500px]",
         classNames,
       )}
     >
@@ -68,7 +92,11 @@ export default function DynamicImage({
       <img
         {...imgProps}
         ref={imgRef}
-        src={hasError ? fallbackSrc : src}
+        src={
+          hasError ? fallbackSrc : getResizedImageUrl(src, modal ? 500 : 800)
+        }
+        srcSet={srcset}
+        sizes={imageSizes}
         alt={alt}
         onLoad={handleLoad}
         onError={handleError}
