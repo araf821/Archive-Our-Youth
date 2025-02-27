@@ -23,6 +23,29 @@ const FileUpload: FC<FileUploadProps> = ({
 }) => {
   const [isPending, setIsPending] = useState(false);
 
+  const handleDelete = async () => {
+    try {
+      if (!value) return;
+
+      const response = await fetch("/api/uploadthing", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url: value }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete file");
+      }
+
+      onChange("");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to delete file");
+    }
+  };
+
   const handleFileUpload = async (file: File) => {
     try {
       if (!file) return;
@@ -92,7 +115,8 @@ const FileUpload: FC<FileUploadProps> = ({
             fill
           />
           <button
-            onClick={() => onChange("")}
+            title="Remove image"
+            onClick={handleDelete}
             type="button"
             className="morph-sm group absolute -right-2 -top-2 rounded-md border border-border-dark bg-background-muted text-zinc-300 hover:text-red-500"
           >
@@ -111,7 +135,8 @@ const FileUpload: FC<FileUploadProps> = ({
             className="h-full w-full rounded-sm object-contain"
           />
           <button
-            onClick={() => onChange("")}
+            title="Remove video"
+            onClick={handleDelete}
             type="button"
             className="morph-sm group absolute -right-2 -top-2 rounded-md border border-border-dark bg-background-muted text-zinc-300 hover:text-red-500"
           >
@@ -126,7 +151,8 @@ const FileUpload: FC<FileUploadProps> = ({
         <div className="w-full space-y-2 text-center">
           <audio src={value} controls className="w-full" />
           <button
-            onClick={() => onChange("")}
+            title="Remove audio"
+            onClick={handleDelete}
             type="button"
             className="morph-sm rounded-sm bg-zinc-800 px-2.5 py-1.5 text-zinc-300 transition duration-200 hover:bg-background-surface hover:text-zinc-100 max-md:text-sm"
           >
@@ -141,7 +167,8 @@ const FileUpload: FC<FileUploadProps> = ({
         <div className="relative w-full">
           <PDFViewer url={value} />
           <button
-            onClick={() => onChange("")}
+            title="Remove PDF"
+            onClick={handleDelete}
             type="button"
             className="morph-sm group absolute -right-2 -top-2 rounded-md border border-border-dark bg-background-muted text-zinc-300 hover:text-red-500"
           >
@@ -162,6 +189,7 @@ const FileUpload: FC<FileUploadProps> = ({
 
   return (
     <button
+      title="Upload file"
       type="button"
       className={cn(
         "morph-md h-full w-full cursor-pointer rounded-lg border-2 border-dashed p-6 text-center transition-colors hover:bg-zinc-700 disabled:cursor-not-allowed disabled:opacity-50",
