@@ -29,7 +29,7 @@ const ThumbnailField = ({ form }: Props) => {
           <FormControl>
             <div className="flex justify-center">
               <FileUpload
-                classNames="aspect-square mt-0 w-full max-w-[225px]"
+                classNames="aspect-square mt-0 min-w-52 w-full max-w-[225px]"
                 endPoint="image"
                 onChange={field.onChange}
                 value={field.value || ""}

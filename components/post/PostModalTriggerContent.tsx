@@ -51,13 +51,17 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
                 fill
                 onError={() => setOnError(true)}
                 onLoad={() => setIsLoading(false)}
-                src={onError ? "/placeholder_post_image.svg" : post.thumbnail}
+                src={
+                  onError
+                    ? "/placeholder_post_image.svg"
+                    : post.thumbnail || "/placeholder_post_image.svg"
+                }
                 className="object-cover"
               />
               {isLoading && (
                 <Image
                   src={post.thumbnail}
-                  sizes="24px"
+                  sizes="12px"
                   fill
                   className="object-cover blur-lg"
                   alt="blur"
@@ -75,7 +79,11 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
         <>
           <Image
             alt="post image"
-            src={onError ? "/placeholder_post_image.svg" : post.postContent}
+            src={
+              onError
+                ? "/placeholder_post_image.svg"
+                : post.postContent || "/placeholder_post_image.svg"
+            }
             sizes="(max-width: 768px) 128px, 192px"
             fill
             onLoad={() => setIsLoading(false)}
@@ -85,7 +93,7 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
           {isLoading && (
             <Image
               src={post.postContent}
-              sizes="24px"
+              sizes="12px"
               fill
               className="object-cover blur-lg"
               alt="blur"
