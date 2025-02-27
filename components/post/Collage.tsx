@@ -97,7 +97,7 @@ const Collage = async ({
     take: 20,
   });
 
-  if ((!posts || !posts.length) && (keyword || sortBy)) {
+  if (!posts || !posts.length) {
     return (
       <EmptyState
         title="No Posts Found"

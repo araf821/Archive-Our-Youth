@@ -14,11 +14,7 @@ const FiltersProvider = ({}) => {
     return null;
   }
 
-  return (
-    <>
-      <Filters />
-    </>
-  );
+  return <Filters />;
 };
 
 export default FiltersProvider;

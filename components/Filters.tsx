@@ -127,18 +127,20 @@ const Filters: FC<FiltersProps> = ({}) => {
       initial={{ height: 0, opacity: 0 }}
       variants={filterVariants}
       animate={isOpen ? "visible" : "hidden"}
-      className="border-b border-background-surface px-4 text-zinc-100"
+      className={cn("border-b border-background-surface px-4 text-zinc-100", {
+        "pointer-events-none": !isOpen,
+      })}
     >
-      <div className="mx-auto flex max-w-screen-lg flex-row-reverse gap-8">
-        <div className="relative aspect-square w-full max-w-[300px] max-lg:hidden">
+      <div className="mx-auto flex flex-row-reverse gap-8">
+        {/* <div className="relative aspect-square w-full max-w-[300px] max-lg:hidden">
           <Image
             src={"/search.svg"}
             alt=""
             fill
             className="object-contain mix-blend-lighten"
           />
-        </div>
-        <div className="mx-auto flex w-full max-w-screen-md flex-col gap-4 pb-8 pt-6">
+        </div> */}
+        <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 pb-8 pt-6">
           <p className="text-2xl font-medium md:text-3xl">Search & Filter</p>
           <hr className="-mt-3 border-background-surface" />
 
