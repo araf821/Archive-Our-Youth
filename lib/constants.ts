@@ -1,8 +1,38 @@
-export const researchQuestions = [
-  "What is the future that you dream of?",
-  "What does well-being mean to you right now?",
-  "What would you tell your younger or older self?",
-  "What groups, initiatives, projects, and resources support your wellbeing and the wellbeing of the planet? What more would be helpful and of value to you right now?",
+export type ResearchQuestion = {
+  id: string;
+  text: string;
+  additionalInfo?: string;
+};
+
+export const RESEARCH_QUESTIONS: ResearchQuestion[] = [
+  {
+    id: "q1",
+    text: "Challenges or barriers",
+  },
+  {
+    id: "q2",
+    text: "What wellbeing means to you",
+  },
+  {
+    id: "q3",
+    text: "Advice to my older or younger self",
+  },
+  {
+    id: "q4",
+    text: "Practices, habits, and routines",
+  },
+  {
+    id: "q5",
+    text: "The impact of digital technology",
+  },
+  {
+    id: "q6",
+    text: "The future (fears, hopes, or dreams)",
+  },
+  {
+    id: "q7",
+    text: "Resources or groups that support wellbeing",
+  },
 ];
 
 export const postTypes = ["Text", "Image", "Video", "Audio", "PDF"];

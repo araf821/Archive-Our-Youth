@@ -29,7 +29,7 @@ import MultiSelect from "./MultiSelect";
 import Tag from "./Tag";
 import { allTags } from "./post-creation-form/TagSelectionSlide";
 import Image from "next/image";
-import { allCountries, postTypes, researchQuestions } from "@/lib/constants";
+import { allCountries, postTypes, RESEARCH_QUESTIONS } from "@/lib/constants";
 import { ContentType } from "@prisma/client";
 
 interface FiltersProps {}
@@ -342,19 +342,19 @@ const Filters: FC<FiltersProps> = ({}) => {
                           >
                             Any
                           </SelectItem>
-                          {researchQuestions.map((question) => (
+                          {RESEARCH_QUESTIONS.map(({ id, text }) => (
                             <SelectItem
                               className={cn(
                                 "py-3 hover:bg-background-surface focus:bg-background-surface",
                                 {
                                   "bg-background-muted focus:bg-background-muted":
-                                    form.getValues().question === question,
+                                    form.getValues().question === text,
                                 },
                               )}
-                              key={question}
-                              value={question}
+                              key={id}
+                              value={text}
                             >
-                              {question}
+                              {text}
                             </SelectItem>
                           ))}
                         </SelectContent>

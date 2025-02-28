@@ -2,43 +2,7 @@ import { TPostCreationForm } from "@/lib/types/form";
 import { ChangeEvent, FC, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/Label";
-
-interface ResearchQuestion {
-  id: string;
-  text: string;
-  additionalInfo?: string;
-}
-
-const RESEARCH_QUESTIONS: ResearchQuestion[] = [
-  {
-    id: "q1",
-    text: "Challenges or barriers",
-  },
-  {
-    id: "q2",
-    text: "What wellbeing means to you",
-  },
-  {
-    id: "q3",
-    text: "Advice to my older or younger self",
-  },
-  {
-    id: "q4",
-    text: "Practices, habits, and routines",
-  },
-  {
-    id: "q5",
-    text: "The impact of digital technology",
-  },
-  {
-    id: "q6",
-    text: "The future (fears, hopes, or dreams)",
-  },
-  {
-    id: "q7",
-    text: "Resources or groups that support wellbeing",
-  },
-];
+import { RESEARCH_QUESTIONS, ResearchQuestion } from "@/lib/constants";
 
 interface ResearchQuestionsProps {
   form: TPostCreationForm;

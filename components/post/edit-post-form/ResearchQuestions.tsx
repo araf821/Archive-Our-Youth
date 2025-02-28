@@ -2,10 +2,11 @@
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/Label";
-import { FormControl, FormField, FormItem } from "@/components/ui/Form";
+import { FormField, FormItem } from "@/components/ui/Form";
 import { UseFormReturn } from "react-hook-form";
 import { PostEditValidator } from "@/lib/validators/post";
 import { z } from "zod";
+import { RESEARCH_QUESTIONS } from "@/lib/constants";
 
 interface ResearchQuestionsProps {
   form: UseFormReturn<z.infer<typeof PostEditValidator>>;
@@ -25,34 +26,26 @@ export const ResearchQuestions = ({ form }: ResearchQuestionsProps) => {
             </p>
           </div>
           <div className="w-full">
-            {[
-              "Challenges or barriers",
-              "What wellbeing means to you",
-              "Advice to my older or younger self",
-              "Practices, habits, and routines",
-              "The impact of digital technology",
-              "The future (fears, hopes, or dreams)",
-              "Resources or groups that support wellbeing",
-            ].map((question) => (
+            {RESEARCH_QUESTIONS.map((question) => (
               <div
-                key={question}
+                key={question.id}
                 className="flex items-center gap-3 rounded-md px-2 transition-colors hover:bg-background-elevated"
               >
                 <Checkbox
-                  id={question}
-                  checked={field.value?.includes(question)}
+                  id={question.id}
+                  checked={field.value?.includes(question.text)}
                   onCheckedChange={(checked) => {
                     const newValue = checked
-                      ? [...(field.value || []), question]
-                      : field.value?.filter((q) => q !== question);
+                      ? [...(field.value || []), question.text]
+                      : field.value?.filter((q) => q !== question.text);
                     field.onChange(newValue);
                   }}
                 />
                 <Label
-                  htmlFor={question}
+                  htmlFor={question.id}
                   className="w-full cursor-pointer py-3 text-sm text-text-primary"
                 >
-                  {question}
+                  {question.text}
                 </Label>
               </div>
             ))}
