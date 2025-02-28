@@ -69,7 +69,7 @@ export default function DynamicImage({
         onLoadingComplete={() => setIsLoading(false)}
         onError={handleError}
         className={cn(
-          "rounded-sm transition-all duration-300",
+          "h-full w-full rounded-sm transition-all duration-300",
           contained ? "object-contain" : "object-cover",
           className,
         )}
