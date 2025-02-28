@@ -17,6 +17,8 @@ import { DescriptionField } from "./edit-post-form/DescriptionField";
 import DynamicImage from "../DynamicImage";
 import PostContentField from "./edit-post-form/PostContentField";
 import ThumbnailField from "./edit-post-form/ThumbnailField";
+import { ResearchQuestions } from "./edit-post-form/ResearchQuestions";
+import { LocationSelect } from "./edit-post-form/LocationSelect";
 
 interface EditPostProps {
   post: Post;
@@ -55,7 +57,8 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
       } else {
         await axios.put(`/api/post/${post.id}`, values);
         toast.success("Post updated successfully!");
-        router.push(`/post/${post.slug}`);
+        router.replace(`/post/${post.slug}`);
+        router.refresh();
       }
     } catch (error) {
       toast.error("Something went wrong. Please try again later.");
@@ -103,9 +106,8 @@ const EditPost: FC<EditPostProps> = ({ post }) => {
           {/* -------------------- TAGS ----------------------- */}
           <TagsInput form={form} />
 
-          {/* TODO: Uncomment these once the backend to update them is ready */}
-          {/* <ResearchQuestions form={form} />
-          <LocationSelect form={form} /> */}
+          <ResearchQuestions form={form} />
+          <LocationSelect form={form} />
 
           <div className="mt-6 border-y border-background-surface">
             <p className="py-4 text-neutral-400 max-md:text-sm">

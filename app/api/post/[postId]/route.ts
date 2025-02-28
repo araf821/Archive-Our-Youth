@@ -21,8 +21,14 @@ export async function PUT(
 
     const body = await req.json();
 
-    const { content, tags, description, thumbnail } =
-      PostEditValidator.parse(body);
+    const {
+      content,
+      tags,
+      description,
+      thumbnail,
+      researchQuestions,
+      location,
+    } = PostEditValidator.parse(body);
 
     await db.post.update({
       where: { id: postId },
@@ -31,6 +37,8 @@ export async function PUT(
         tags,
         description,
         thumbnail,
+        researchQuestions,
+        location,
       },
     });
 
