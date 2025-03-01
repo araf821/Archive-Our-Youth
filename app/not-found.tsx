@@ -17,10 +17,10 @@ const NotFoundPage = () => {
           If you believe that there is an issue on our end, please feel free to
           report to us at{" "}
           <Link
-            href="mailto:araf821@my.yorku.ca"
+            href="mailto:dmacd@yorku.ca"
             className="text-blue-400 underline underline-offset-2"
           >
-            araf821@my.yorku.ca
+            dmacd@yorku.ca
           </Link>
           .
         </p>
