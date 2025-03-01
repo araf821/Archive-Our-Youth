@@ -69,7 +69,7 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
               )}
             </div>
           </div>
-          <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/75 px-1.5 py-0.5 text-zinc-200 max-md:text-sm">
+          <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/75 px-1.5 py-0.5 text-xs text-zinc-200">
             {post.user?.name || "Anonymous"}
           </span>
         </>
