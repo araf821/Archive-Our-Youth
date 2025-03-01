@@ -52,7 +52,7 @@ const DashboardSidebar: FC<DashboardSidebarProps> = ({ currentUser }) => {
         {currentUser.role === UserType.ADMIN && (
           <Link
             href={"/dashboard/admin-portal/stats"}
-            className="group flex w-full items-center justify-between gap-1.5 rounded-sm bg-gradient-to-tr from-lime-400 via-emerald-500 to-green-600 px-3 py-1.5 font-semibold tracking-wider text-text-inverted min-[450px]:w-fit lg:hidden lg:w-full"
+            className="group flex w-full items-center justify-between gap-1.5 rounded-sm bg-gradient-to-tr from-lime-400 via-emerald-500 to-green-600 px-3 py-1.5 font-semibold tracking-wider text-text-inverted min-[450px]:w-fit lg:w-full"
           >
             Admin Portal
             <ArrowUpRight className="rotate-45 transition group-hover:rotate-0 max-lg:h-5 max-lg:w-5" />
