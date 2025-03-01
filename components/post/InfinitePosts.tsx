@@ -74,7 +74,7 @@ const InfinitePosts = ({ initialPosts, currentUser }: InfinitePostsProps) => {
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
 
   return (
-    <div className="grid grid-cols-2 items-center gap-0.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+    <div className="grid grid-cols-2 items-center gap-0.5 overflow-hidden sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
       {posts.map((post, index) => {
         if (index === posts.length - 2) {
           return (
