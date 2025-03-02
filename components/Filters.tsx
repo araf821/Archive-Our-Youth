@@ -15,7 +15,6 @@ import {
 } from "./ui/Form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { RefreshCcw } from "lucide-react";
 import {
   Select,
@@ -28,9 +27,11 @@ import { cn } from "@/lib/utils";
 import MultiSelect from "./MultiSelect";
 import Tag from "./Tag";
 import { allTags } from "./post-creation-form/TagSelectionSlide";
-import Image from "next/image";
 import { allCountries, postTypes, RESEARCH_QUESTIONS } from "@/lib/constants";
-import { ContentType } from "@prisma/client";
+import {
+  filterFormSchema,
+  type FilterFormType,
+} from "@/lib/validators/filters";
 
 interface FiltersProps {}
 
@@ -46,33 +47,14 @@ const filterVariants = {
   },
 };
 
-const formSchema = z.object({
-  keyword: z.string().optional(),
-  sortBy: z.string().optional(),
-  tags: z.string().array().max(5),
-  location: z.string().optional(),
-  question: z.string().optional(),
-  postType: z
-    .enum([
-      ContentType.TEXT,
-      ContentType.IMAGE,
-      ContentType.VIDEO,
-      ContentType.AUDIO,
-      ContentType.PDF,
-      "ANY",
-    ])
-    .nullable()
-    .optional(),
-});
-
 const Filters: FC<FiltersProps> = ({}) => {
   const { onClose, isOpen } = useFilters();
   const router = useRouter();
 
   const searchParams = useSearchParams();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<FilterFormType>({
+    resolver: zodResolver(filterFormSchema),
     defaultValues: {
       keyword: searchParams.get("keyword") || "",
       tags: [],
@@ -86,7 +68,7 @@ const Filters: FC<FiltersProps> = ({}) => {
   const tags = form.watch("tags");
   const country = form.watch("location");
 
-  const handleSearch = (values: z.infer<typeof formSchema>) => {
+  const handleSearch = (values: FilterFormType) => {
     let currentQuery = {};
 
     if (searchParams) {
@@ -132,14 +114,6 @@ const Filters: FC<FiltersProps> = ({}) => {
       })}
     >
       <div className="mx-auto flex flex-row-reverse gap-8">
-        {/* <div className="relative aspect-square w-full max-w-[300px] max-lg:hidden">
-          <Image
-            src={"/search.svg"}
-            alt=""
-            fill
-            className="object-contain mix-blend-lighten"
-          />
-        </div> */}
         <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 pb-8 pt-6">
           <p className="text-2xl font-medium md:text-3xl">Search & Filter</p>
           <hr className="-mt-3 border-background-surface" />
