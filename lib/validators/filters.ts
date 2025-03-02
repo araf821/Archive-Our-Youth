@@ -26,6 +26,7 @@ export const filterFormSchema = z.object({
     .refine(
       (val) =>
         !val ||
+        val === "any" ||
         allCountries.map((c) => c.toLowerCase()).includes(val.toLowerCase()),
       "Please select a valid country",
     )

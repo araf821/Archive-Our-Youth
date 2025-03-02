@@ -19,7 +19,7 @@ const PostModal = ({ post, currentUser }: PostModalProps) => {
     <>
       <button
         onClick={onOpen}
-        className="group relative aspect-square cursor-pointer overflow-hidden outline-none outline outline-4 outline-offset-0 transition-all duration-150 ease-out hover:z-50 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-green-600 lg:hover:scale-110 lg:hover:rounded-lg lg:hover:shadow-[0_0_40px] lg:hover:shadow-black lg:hover:outline-zinc-950"
+        className="group relative aspect-square cursor-pointer overflow-hidden outline-none outline outline-[3px] outline-offset-0 transition-all duration-150 ease-out hover:z-50 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-green-600 lg:hover:scale-110 lg:hover:rounded-lg lg:hover:shadow-[0_0_40px] lg:hover:shadow-black lg:hover:outline-zinc-950"
       >
         <PostModalTriggerContent post={post} currentUser={currentUser} />
       </button>
