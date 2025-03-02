@@ -80,7 +80,7 @@ const Filters: FC<FiltersProps> = ({}) => {
       keyword: values.keyword || null,
       sortBy: values.sortBy || null,
       tags: values.tags.length ? values.tags.join(",") : null,
-      country: values.location || null,
+      country: values.location === "any" ? null : values.location || null,
       postType: values.postType === "ANY" ? null : values.postType || null,
       question: values.question === "any" ? null : values.question || null,
     };
@@ -109,21 +109,23 @@ const Filters: FC<FiltersProps> = ({}) => {
       initial={{ height: 0, opacity: 0 }}
       variants={filterVariants}
       animate={isOpen ? "visible" : "hidden"}
-      className={cn("border-b border-background-surface px-4 text-zinc-100", {
+      className={cn("border-b border-background-surface px-6 text-zinc-100", {
         "pointer-events-none": !isOpen,
       })}
     >
       <div className="mx-auto flex flex-row-reverse gap-8">
-        <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 pb-8 pt-6">
-          <p className="text-2xl font-medium md:text-3xl">Search & Filter</p>
-          <hr className="-mt-3 border-background-surface" />
+        <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 pb-10 pt-8">
+          <div className="space-y-4">
+            <p className="text-2xl font-medium md:text-3xl">Search & Filter</p>
+            <hr className="border-background-surface" />
+          </div>
 
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(handleSearch)}
-              className="flex flex-col gap-6"
+              className="flex flex-col gap-8"
             >
-              <div className="flex gap-6 max-md:flex-col">
+              <div className="flex gap-6 max-md:flex-col md:gap-8">
                 <FormField
                   name="keyword"
                   control={form.control}
@@ -203,7 +205,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                 />
               </div>
 
-              <div className="flex gap-6 max-md:flex-col">
+              <div className="flex gap-6 max-md:flex-col md:gap-8">
                 <FormField
                   name="tags"
                   control={form.control}
@@ -220,7 +222,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                       </FormControl>
                       <FormMessage />
                       {!!tags.length && (
-                        <ul className="flex flex-wrap gap-4 pt-2">
+                        <ul className="mt-4 flex flex-wrap items-center gap-4">
                           {tags.map((tag, index) => (
                             <Tag
                               key={tag}
@@ -231,13 +233,12 @@ const Filters: FC<FiltersProps> = ({}) => {
                           ))}
                           <button
                             onClick={() => form.setValue("tags", [])}
-                            className="my-auto h-full rounded-md bg-zinc-800 px-3 py-1.5 text-zinc-300 transition duration-200 hover:bg-background-surface hover:text-zinc-100"
+                            className="morph-sm rounded-md border border-background-surface bg-zinc-800 px-4 py-2 text-zinc-300 transition duration-200 hover:bg-background-surface hover:text-zinc-100"
                           >
                             Clear
                           </button>
                         </ul>
                       )}
-                      <div className=""></div>
                     </FormItem>
                   )}
                 />
@@ -261,6 +262,18 @@ const Filters: FC<FiltersProps> = ({}) => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent className="max-h-[400px] overflow-y-auto rounded-sm border-background-surface bg-zinc-800 text-zinc-100">
+                          <SelectItem
+                            className={cn(
+                              "py-3 hover:bg-background-surface focus:bg-background-surface",
+                              {
+                                "bg-background-muted focus:bg-background-muted":
+                                  country === "any",
+                              },
+                            )}
+                            value="any"
+                          >
+                            Any
+                          </SelectItem>
                           {allCountries.map((c) => (
                             <SelectItem
                               className={cn(
@@ -283,8 +296,7 @@ const Filters: FC<FiltersProps> = ({}) => {
                   )}
                 />
               </div>
-
-              <div className="flex gap-6 max-md:flex-col">
+              <div className="flex gap-6 max-md:flex-col md:gap-8">
                 <FormField
                   name="question"
                   control={form.control}
@@ -393,9 +405,9 @@ const Filters: FC<FiltersProps> = ({}) => {
                 />
               </div>
 
-              <hr className="border-background-surface" />
+              <hr className="my-4 border-background-surface" />
 
-              <div className="flex gap-4">
+              <div className="flex items-center gap-4">
                 <Button
                   onClick={() => {
                     form.reset();
