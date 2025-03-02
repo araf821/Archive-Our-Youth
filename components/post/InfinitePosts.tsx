@@ -74,19 +74,53 @@ const InfinitePosts = ({ initialPosts, currentUser }: InfinitePostsProps) => {
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
 
   return (
-    <div className="grid grid-cols-2 items-center gap-0.5 overflow-hidden sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+    <div
+      className="grid grid-cols-2 items-center gap-0.5 overflow-hidden sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+      data-grid-cols="lg:5 xl:6"
+    >
       {posts.map((post, index) => {
+        // Add position data attributes
+        const lgColPosition = index % 5;
+        const xlColPosition = index % 6;
+        const lgRowPosition = Math.floor(index / 5);
+        const xlRowPosition = Math.floor(index / 6);
+        const lgIsLastRow =
+          lgRowPosition === Math.floor((posts.length - 1) / 5);
+        const xlIsLastRow =
+          xlRowPosition === Math.floor((posts.length - 1) / 6);
+        const lgIsFirstRow = lgRowPosition === 0;
+        const xlIsFirstRow = xlRowPosition === 0;
+
+        const positionProps = {
+          "data-lg-pos": lgColPosition,
+          "data-xl-pos": xlColPosition,
+          "data-lg-last-row": lgIsLastRow ? "true" : "false",
+          "data-xl-last-row": xlIsLastRow ? "true" : "false",
+          "data-lg-first-row": lgIsFirstRow ? "true" : "false",
+          "data-xl-first-row": xlIsFirstRow ? "true" : "false",
+        };
+
         if (index === posts.length - 2) {
           return (
             <>
               {hasNextPage && !isFetchingNextPage && <span ref={ref} />}
-              <PostModal key={post.id} post={post} currentUser={currentUser} />
+              <PostModal
+                key={post.id}
+                post={post}
+                currentUser={currentUser}
+                {...positionProps}
+              />
             </>
           );
         }
 
         return (
-          <PostModal key={post.id} post={post} currentUser={currentUser} />
+          <PostModal
+            key={post.id}
+            post={post}
+            currentUser={currentUser}
+            {...positionProps}
+          />
         );
       })}
       {isFetchingNextPage && (

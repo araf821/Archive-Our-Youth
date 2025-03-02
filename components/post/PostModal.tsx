@@ -10,16 +10,53 @@ import PostModalInfo from "./PostModalInfo";
 interface PostModalProps {
   post: Post & { user: User | null };
   currentUser: User | null;
+  "data-lg-pos"?: number;
+  "data-xl-pos"?: number;
+  "data-lg-last-row"?: string;
+  "data-xl-last-row"?: string;
+  "data-lg-first-row"?: string;
+  "data-xl-first-row"?: string;
 }
 
-const PostModal = ({ post, currentUser }: PostModalProps) => {
+const PostModal = ({
+  post,
+  currentUser,
+  "data-lg-pos": lgPos,
+  "data-xl-pos": xlPos,
+  "data-lg-last-row": lgLastRow,
+  "data-xl-last-row": xlLastRow,
+  "data-lg-first-row": lgFirstRow,
+  "data-xl-first-row": xlFirstRow,
+}: PostModalProps) => {
   const { onOpen, onOpenChange, isOpen } = useDisclosure();
 
   return (
     <>
       <button
         onClick={onOpen}
-        className="group relative aspect-square cursor-pointer overflow-hidden outline-none outline outline-[3px] outline-offset-0 transition-all duration-150 ease-out hover:z-50 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-green-600 lg:hover:scale-110 lg:hover:rounded-lg lg:hover:shadow-[0_0_40px] lg:hover:shadow-black lg:hover:outline-zinc-950"
+        data-lg-pos={lgPos}
+        data-xl-pos={xlPos}
+        data-lg-last-row={lgLastRow}
+        data-xl-last-row={xlLastRow}
+        data-lg-first-row={lgFirstRow}
+        data-xl-first-row={xlFirstRow}
+        className={`
+          group relative aspect-square cursor-pointer overflow-hidden outline-none outline outline-[3px] outline-offset-0
+          transition-all duration-150 ease-out hover:z-50 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4
+          focus-visible:outline-green-600 lg:hover:scale-110 lg:hover:rounded-md lg:hover:shadow-[0_0_60px,0_0_30px] lg:hover:shadow-black
+
+          lg:hover:outline-zinc-950
+          lg:[&[data-lg-first-row="true"]]:hover:translate-y-[7%]
+          lg:[&[data-lg-last-row="true"]]:hover:-translate-y-[7%]
+          lg:[&[data-lg-pos="0"]]:hover:translate-x-[7%]
+
+          lg:[&[data-lg-pos="4"]]:hover:-translate-x-[7%]
+          xl:[&[data-lg-pos]]:hover:translate-x-0
+          xl:[&[data-xl-first-row="true"]]:hover:translate-y-[7%]
+          xl:[&[data-xl-last-row="true"]]:hover:-translate-y-[7%]
+          xl:[&[data-xl-pos="0"]]:hover:translate-x-[7%]
+          xl:[&[data-xl-pos="5"]]:hover:-translate-x-[7%]
+        `}
       >
         <PostModalTriggerContent post={post} currentUser={currentUser} />
       </button>
