@@ -1,0 +1,28 @@
+{
+  "Index": {
+    "title": "Archive Our Youth",
+    "subtitle": "Explore, Share, Inspire: Youth Perspectives on Wellbeing in the Digital Age",
+    "submitPost": "Submit A Post",
+    "viewSubmissions": "View Submissions"
+  },
+  "Navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "submit": "Submit"
+  },
+  "Auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out"
+  },
+  "Common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit"
+  }
+}

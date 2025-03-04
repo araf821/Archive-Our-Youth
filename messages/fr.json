@@ -1,0 +1,28 @@
+{
+  "Index": {
+    "title": "Archiver Notre Jeunesse",
+    "subtitle": "Explorer, Partager, Inspirer: Perspectives des Jeunes sur le Bien-être à l'Ère Numérique",
+    "submitPost": "Soumettre un Article",
+    "viewSubmissions": "Voir les Soumissions"
+  },
+  "Navigation": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "contact": "Contact",
+    "dashboard": "Tableau de Bord",
+    "submit": "Soumettre"
+  },
+  "Auth": {
+    "signIn": "Se Connecter",
+    "signUp": "S'inscrire",
+    "signOut": "Se Déconnecter"
+  },
+  "Common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier"
+  }
+}

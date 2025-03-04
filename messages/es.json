@@ -1,0 +1,28 @@
+{
+  "Index": {
+    "title": "Archivar Nuestra Juventud",
+    "subtitle": "Explorar, Compartir, Inspirar: Perspectivas de los Jóvenes sobre el Bienestar en la Era Digital",
+    "submitPost": "Enviar una Publicación",
+    "viewSubmissions": "Ver Publicaciones"
+  },
+  "Navigation": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "dashboard": "Panel",
+    "submit": "Enviar"
+  },
+  "Auth": {
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "signOut": "Cerrar Sesión"
+  },
+  "Common": {
+    "loading": "Cargando...",
+    "error": "Ha ocurrido un error",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar"
+  }
+}

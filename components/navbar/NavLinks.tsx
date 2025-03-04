@@ -1,27 +1,28 @@
-"client";
+"use client";
 
 import { useFilters } from "@/hooks/useFilters";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export const navLinks = [
   {
-    label: "Home",
+    label: "home",
     pathname: "/home",
   },
   {
-    label: "About",
+    label: "about",
     pathname: "/about",
   },
   {
-    label: "Contact",
+    label: "contact",
     pathname: "/contact",
   },
   {
-    label: "Dashboard",
+    label: "dashboard",
     pathname: "/dashboard",
   },
 ];
@@ -29,6 +30,7 @@ export const navLinks = [
 const NavLinks = () => {
   const { isOpen, onOpen, onClose } = useFilters();
   const pathname = usePathname();
+  const t = useTranslations("Navigation");
 
   return (
     <div className="items-center gap-4 max-lg:hidden lg:flex">
@@ -52,7 +54,7 @@ const NavLinks = () => {
               />
             )}
             <span className="relative font-medium transition">
-              {link.label}
+              {t(link.label)}
             </span>
           </Link>
         ))}

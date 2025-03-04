@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { User } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { useFilters } from "@/hooks/useFilters";
 import { usePathname, useRouter } from "next/navigation";
@@ -14,6 +13,7 @@ import { useMenu } from "@/hooks/useMenu";
 import Image from "next/image";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import {LanguageSwitcher} from "../LanguageSwitcher";
 
 const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
@@ -76,6 +76,7 @@ const Navbar = () => {
         <NavLinks />
 
         <div className="max-lg:hidden md:items-center md:gap-x-6 lg:flex">
+          <LanguageSwitcher />
           <button
             className={cn(
               "group relative font-medium tracking-wide text-white transition-all duration-300 hover:text-green-500 lg:hover:tracking-widest",
