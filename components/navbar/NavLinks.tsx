@@ -2,7 +2,7 @@
 
 import { useFilters } from "@/hooks/useFilters";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -34,47 +34,72 @@ const NavLinks = () => {
 
   return (
     <div className="items-center gap-4 max-lg:hidden lg:flex">
-      <div className="flex items-center gap-8 tracking-wider text-zinc-50 lg:gap-12 xl:gap-14">
+      <div className="flex items-center gap-8 tracking-wider text-zinc-50 lg:gap-10 xl:gap-12">
         {navLinks.map((link) => (
-          <Link
+          <motion.div
             key={link.pathname}
-            href={link.pathname}
-            className={cn("group relative py-1 text-sm")}
+            whileHover={{ y: -2 }}
+            className="relative"
           >
-            <span className="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-green-800 transition duration-300 group-hover:scale-x-100" />
-            {pathname === link.pathname && (
-              <motion.div
-                layoutId="nav-link"
-                className="absolute inset-0 border-b-2 border-green-500"
-                transition={{
-                  type: "spring",
-                  damping: 15,
-                  duration: 0.2,
-                }}
+            <Link
+              href={link.pathname}
+              className={cn(
+                "group relative py-2 text-sm font-medium transition-all duration-300",
+                pathname === link.pathname
+                  ? "text-green-400"
+                  : "text-zinc-100 hover:text-green-300",
+              )}
+            >
+              {/* Hover indicator */}
+              <motion.span
+                className="absolute bottom-0 left-0 h-0.5 w-full origin-left bg-gradient-to-r from-green-500 to-green-300"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               />
-            )}
-            <span className="relative font-medium transition">
-              {t(link.label)}
-            </span>
-          </Link>
+
+              {/* Active indicator */}
+              {pathname === link.pathname && (
+                <motion.div
+                  layoutId="nav-link"
+                  className="absolute -bottom-0.5 left-0 h-0.5 w-full bg-gradient-to-r from-green-500 to-green-300"
+                  transition={{
+                    type: "spring",
+                    stiffness: 380,
+                    damping: 30,
+                  }}
+                />
+              )}
+
+              <span className="relative">{t(link.label)}</span>
+            </Link>
+          </motion.div>
         ))}
-        <button
-          className={cn(
-            "-translate-x-4 rounded-xl bg-zinc-800 p-2 text-white transition hover:bg-background-surface active:scale-90 max-lg:hidden",
-            {
-              "bg-primary shadow-[0_0_15px_2px] shadow-green-500/50 hover:bg-primary-dark":
-                isOpen,
-              "scale-0": pathname !== "/home",
-            },
+
+        <AnimatePresence>
+          {pathname === "/home" && (
+            <motion.button
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className={cn(
+                "rounded-full bg-gradient-to-r p-2.5 text-white transition-all duration-300 hover:shadow-lg",
+                isOpen
+                  ? "from-green-600 to-green-400 shadow-md shadow-green-500/20"
+                  : "from-zinc-800 to-zinc-700 hover:shadow-white/10",
+              )}
+              onClick={() => {
+                if (isOpen) onClose();
+                else onOpen();
+              }}
+            >
+              <span className="sr-only">search button</span>
+              <Search className="size-5" />
+            </motion.button>
           )}
-          onClick={() => {
-            if (isOpen) onClose();
-            else onOpen();
-          }}
-        >
-          <span className="sr-only">search button</span>
-          <Search className="size-5" />
-        </button>
+        </AnimatePresence>
       </div>
     </div>
   );
