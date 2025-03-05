@@ -47,6 +47,11 @@
       "termsAgreement": "J'ai lu et j'accepte les conditions de participation"
     },
     "slides": {
+      "researchQuestions": {
+        "title": "Questions de Recherche",
+        "description": "Comment votre publication explore-t-elle le bien-être ?\nBien-être : Personnel. Familial. Communautaire. Planétaire. Autre. (Choisissez tout ce qui s'applique)",
+        "noneOfTheAbove": "Aucune des réponses ci-dessus"
+      },
       "type": {
         "title": "Type de Contenu",
         "description": "Sélectionnez le format de votre publication"
@@ -83,15 +88,21 @@
       },
       "description": {
         "label": "Description",
-        "placeholder": "Fournissez une description de votre contenu"
+        "optional": "Optionnel",
+        "placeholder": "Décrivez votre contenu...",
+        "write": "Écrire",
+        "preview": "Aperçu",
+        "previewEmpty": "Un aperçu de ce que sera le produit final.",
+        "markdownSupported": "Markdown est supporté !"
       },
       "tags": {
-        "title": "Sélectionner les Tags",
-        "description": "Choisissez les tags qui décrivent le mieux votre contenu"
+        "title": "Tags",
+        "description": "Les tags pertinents dirigent vos publications vers les bonnes personnes !",
+        "reset": "Réinitialiser"
       },
       "thumbnail": {
-        "title": "Télécharger une Vignette",
-        "description": "Sélectionnez une image miniature pour votre article"
+        "title": "Vignette",
+        "description": "Optionnel mais recommandé"
       },
       "location": {
         "title": "Localisation",

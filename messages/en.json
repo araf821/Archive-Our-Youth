@@ -47,6 +47,11 @@
       "termsAgreement": "I have read and agree to the terms of participation"
     },
     "slides": {
+      "researchQuestions": {
+        "title": "Research Questions",
+        "description": "How does your post explore wellbeing?\nWellbeing: Personal. Family. Community. Planetary. Other. (Choose all that apply)",
+        "noneOfTheAbove": "None of the above"
+      },
       "type": {
         "title": "Content Type",
         "description": "Select the format for your post"
@@ -83,15 +88,21 @@
       },
       "description": {
         "label": "Description",
-        "placeholder": "Provide a description of your content"
+        "optional": "Optional",
+        "placeholder": "Describe your content...",
+        "write": "Write",
+        "preview": "Preview",
+        "previewEmpty": "A preview of what the finished product will look like.",
+        "markdownSupported": "Markdown is supported!"
       },
       "tags": {
-        "title": "Select Tags",
-        "description": "Choose tags that best describe your content"
+        "title": "Tags",
+        "description": "Relevant tags lead your posts to the right people!",
+        "reset": "Reset"
       },
       "thumbnail": {
-        "title": "Upload Thumbnail",
-        "description": "Select a thumbnail image for your post"
+        "title": "Thumbnail",
+        "description": "Optional but recommended"
       },
       "location": {
         "title": "Location",

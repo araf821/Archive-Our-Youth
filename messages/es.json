@@ -47,6 +47,11 @@
       "termsAgreement": "He leído y acepto los términos de participación"
     },
     "slides": {
+      "researchQuestions": {
+        "title": "Preguntas de Investigación",
+        "description": "¿Cómo explora tu publicación el bienestar?\nBienestar: Personal. Familiar. Comunitario. Planetario. Otro. (Selecciona todos los que correspondan)",
+        "noneOfTheAbove": "Ninguna de las anteriores"
+      },
       "type": {
         "title": "Tipo de Contenido",
         "description": "Seleccione el formato de su publicación"
@@ -83,15 +88,21 @@
       },
       "description": {
         "label": "Descripción",
-        "placeholder": "Proporcione una descripción de su contenido"
+        "optional": "Opcional",
+        "placeholder": "Describe tu contenido...",
+        "write": "Escribir",
+        "preview": "Vista previa",
+        "previewEmpty": "Una vista previa de cómo se verá el producto final.",
+        "markdownSupported": "¡Markdown es compatible!"
       },
       "tags": {
-        "title": "Seleccionar Etiquetas",
-        "description": "Elija las etiquetas que mejor describan su contenido"
+        "title": "Etiquetas",
+        "description": "¡Las etiquetas relevantes dirigen tus publicaciones a las personas adecuadas!",
+        "reset": "Reiniciar"
       },
       "thumbnail": {
-        "title": "Subir Miniatura",
-        "description": "Seleccione una imagen en miniatura para su publicación"
+        "title": "Miniatura",
+        "description": "Opcional pero recomendado"
       },
       "location": {
         "title": "Ubicación",
