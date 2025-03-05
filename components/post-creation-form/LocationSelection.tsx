@@ -10,12 +10,14 @@ import {
   SelectValue,
 } from "../ui/select";
 import { allCountries } from "@/lib/constants";
+import { useTranslations } from "next-intl";
 
 interface LocationSelectionProps {
   form: TPostCreationForm;
 }
 
 const LocationSelection: FC<LocationSelectionProps> = ({ form }) => {
+  const t = useTranslations("PostCreation.slides.location");
   const country = form.watch("location");
 
   return (
@@ -25,14 +27,14 @@ const LocationSelection: FC<LocationSelectionProps> = ({ form }) => {
       render={({ field }) => (
         <FormItem className="space-y-4 rounded-lg border p-4 md:p-6">
           <div>
-            <p className="font-medium">Location</p>
+            <p className="font-medium">{t("title")}</p>
           </div>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
               <SelectTrigger className="border border-background-surface bg-zinc-800 text-zinc-100 outline-none">
                 <SelectValue
                   className="placeholder-zinc-400"
-                  placeholder="Select a country"
+                  placeholder={t("description")}
                 />
               </SelectTrigger>
             </FormControl>

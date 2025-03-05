@@ -1,0 +1,141 @@
+{
+  "Index": {
+    "title": "Archiver Notre Jeunesse",
+    "subtitle": "Explorer, Partager, Inspirer: Perspectives des Jeunes sur le Bien-être à l'Ère Numérique",
+    "submitPost": "Soumettre un Article",
+    "viewSubmissions": "Voir les Soumissions"
+  },
+  "Navigation": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "contact": "Contact",
+    "dashboard": "Tableau de Bord",
+    "submit": "Soumettre"
+  },
+  "Auth": {
+    "signIn": "Se Connecter",
+    "signUp": "S'inscrire",
+    "signOut": "Se Déconnecter"
+  },
+  "Common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "contentTypes": {
+      "text": "Texte",
+      "image": "Image",
+      "video": "Vidéo",
+      "audio": "Audio",
+      "pdf": "PDF"
+    }
+  },
+  "PostCreation": {
+    "consentForm": {
+      "ageVerification": {
+        "label": {
+          "part1": "Cochez cette case si vous avez 16 ans ou plus.",
+          "part2": "Si vous avez moins de 16 ans, nous aimerions recevoir votre publication par e-mail ! Veuillez nous contacter à",
+          "part3": ", avec comme objet : Soumission d'Archive."
+        }
+      },
+      "consent": {
+        "label": "Cochez cette case si vous acceptez que votre soumission soit utilisée à des fins de recherche.",
+        "researchPurpose": "Quel est l'objectif de la recherche ? Documenter et mieux comprendre le bien-être des jeunes et de la planète. Les publications de l'archive pourront être utilisées dans des présentations, des salles de classe et/ou des publications comme des posts sur les réseaux sociaux, des articles de journaux et des livres.",
+        "rightsNotice": "Tous les droits intellectuels et créatifs restent les vôtres.",
+        "deletionInfo": "Vous pouvez supprimer votre publication à tout moment en vous connectant et en la supprimant directement, ou en envoyant un e-mail à Deborah MacDonald au Laboratoire de Recherche Young Lives de l'Université York à : dmacd@yorku.ca.",
+        "anonymousNote": "Si vous soumettez anonymement (vous ne créez pas de compte/ne vous connectez pas), vous ne pouvez supprimer votre publication qu'en envoyant un e-mail au contact ci-dessus.",
+        "readMore": "Nous vous encourageons à lire le formulaire de consentement complet ici"
+      }
+    },
+    "intro": {
+      "title": "Créer un Nouvel Article",
+      "subtitle": "Partagez votre vision pour un meilleur avenir",
+      "welcomeTitle": "Bienvenue sur Archive Notre Jeunesse !",
+      "welcomeText": "Vous êtes invité(e) à contribuer à notre Archive du Bien-être des Jeunes et de la Planète : une capsule temporelle de futurs rêvés, de perspectives et de ressources (réelles et souhaitées). Nous accueillons tous types de publications multimédias, et nous sommes impatients de voir ce que vous allez partager !",
+      "aboutLinkText": "Pour en savoir plus sur l'Archive et nos partenaires de recherche au Chili, au Costa Rica et au Belize, visitez",
+      "signOff": {
+        "message": "Xoxo",
+        "signature": "- Le Comité Consultatif des Jeunes Canadiens (CCJ)"
+      }
+    },
+    "formIncomplete": "Formulaire Incomplet",
+    "submitPost": "Soumettre l'Article",
+    "errors": {
+      "consentRequired": "Veuillez cocher les deux cases de consentement pour continuer.",
+      "generalError": "Une erreur s'est produite. Veuillez réessayer ou nous contacter si l'erreur persiste."
+    },
+    "success": {
+      "published": "Votre article a été publié !"
+    },
+    "consent": {
+      "ageVerification": "Je confirme avoir 13 ans ou plus",
+      "termsAgreement": "J'ai lu et j'accepte les conditions de participation"
+    },
+    "slides": {
+      "researchQuestions": {
+        "title": "Questions de Recherche",
+        "description": "Comment votre publication explore-t-elle le bien-être ?\nBien-être : Personnel. Familial. Communautaire. Planétaire. Autre. (Choisissez tout ce qui s'applique)",
+        "noneOfTheAbove": "Aucune des réponses ci-dessus"
+      },
+      "type": {
+        "title": "Type de Contenu",
+        "description": "Sélectionnez le format de votre publication"
+      },
+      "title": {
+        "label": "Comment voulez-vous appeler ce chef-d'œuvre ?",
+        "placeholder": "Entrez un titre pour votre article"
+      },
+      "content": {
+        "textContent": {
+          "label": "Qu'avez-vous à nous proposer ?",
+          "placeholder": "Qu'est-ce qui vous passe par la tête ?!",
+          "write": "Écrire",
+          "preview": "Aperçu",
+          "nothingToPreview": "Rien à prévisualiser",
+          "markdownSupported": "Markdown est supporté !"
+        },
+        "imageContent": {
+          "label": "Ajouter une image"
+        },
+        "videoContent": {
+          "label": "Ajouter une vidéo",
+          "uploadVideo": "Télécharger une vidéo",
+          "youtubeUrl": "URL YouTube",
+          "placeholder": "Entrez l'URL d'une vidéo YouTube. ex: https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "urlHint": "Collez une URL YouTube valide commençant par 'https://'"
+        },
+        "audioContent": {
+          "label": "Ajouter un audio"
+        },
+        "pdfContent": {
+          "label": "Télécharger un PDF"
+        }
+      },
+      "description": {
+        "label": "Description",
+        "optional": "Optionnel",
+        "placeholder": "Décrivez votre contenu...",
+        "write": "Écrire",
+        "preview": "Aperçu",
+        "previewEmpty": "Un aperçu de ce que sera le produit final.",
+        "markdownSupported": "Markdown est supporté !"
+      },
+      "tags": {
+        "title": "Tags",
+        "description": "Les tags pertinents dirigent vos publications vers les bonnes personnes !",
+        "reset": "Réinitialiser"
+      },
+      "thumbnail": {
+        "title": "Vignette",
+        "description": "Optionnel mais recommandé"
+      },
+      "location": {
+        "title": "Localisation",
+        "description": "Partagez votre localisation (optionnel)"
+      }
+    }
+  }
+}

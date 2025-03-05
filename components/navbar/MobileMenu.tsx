@@ -6,42 +6,53 @@ import { usePathname, useRouter } from "next/navigation";
 import { useAuth, useClerk } from "@clerk/nextjs";
 import { useMenu } from "@/hooks/useMenu";
 import { kobata } from "@/app/fonts";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useModal } from "@/hooks/useModal";
+import { useTranslations } from "next-intl";
+
 interface MobileMenuProps {}
 
+// Enhanced animations with staggered children
 const sidebarVariants = {
   hidden: {
     y: "-100%",
     opacity: 0,
     transition: {
-      delay: 0.5,
+      duration: 0.4,
+      ease: [0.4, 0, 0.2, 1],
+      when: "afterChildren",
+      staggerChildren: 0.05,
+      staggerDirection: -1,
     },
   },
   show: {
     y: 0,
     opacity: 1,
-    duration: 0.3,
+    transition: {
+      duration: 0.5,
+      ease: [0, 0.55, 0.45, 1],
+      when: "beforeChildren",
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
   },
 };
 
-const buttonVariants = (index: number) => ({
+// Improved button animations
+const buttonVariants = {
   hidden: {
-    x: -250,
-    transition: {
-      delay: 0.1 * index,
-      duration: 0.1,
-    },
+    x: -60,
+    opacity: 0,
   },
   show: {
     x: 0,
     opacity: 1,
     transition: {
-      delay: 0.15 + 0.1 * (index + 1),
-      duration: 0.1,
+      duration: 0.5,
+      ease: [0.25, 1, 0.5, 1],
     },
   },
-});
+};
 
 const MobileMenu: FC<MobileMenuProps> = ({}) => {
   const { isOpen, onClose } = useMenu();
@@ -50,118 +61,155 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
   const router = useRouter();
   const { userId } = useAuth();
   const { signOut, openSignIn } = useClerk();
+  const t = useTranslations("Navigation");
 
   return (
-    <motion.div
-      initial={false}
-      variants={sidebarVariants}
-      animate={isOpen ? "show" : "hidden"}
-      className={cn(
-        "fixed inset-0 z-50 flex flex-col bg-background-muted px-12 sm:px-20 md:px-28 lg:hidden",
-        {
-          "pointer-events-none": !isOpen,
-        },
-      )}
-    >
-      <div className="pb-4 pt-16">
-        <button
-          className="text-zinc-300 transition hover:scale-110 hover:text-white active:scale-90"
-          onClick={onClose}
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial="hidden"
+          animate="show"
+          exit="hidden"
+          variants={sidebarVariants}
+          className="fixed inset-0 z-50 flex flex-col bg-gradient-to-b from-background-muted to-background-muted/95 px-8 backdrop-blur-md sm:px-16 md:px-24 lg:hidden"
         >
-          <span className="sr-only">close menu button</span>
-          <X className="sm:h-8 sm:w-8 md:h-10 md:w-10" />
-        </button>
-      </div>
-      <motion.ul
-        animate
-        className="flex w-full flex-1 flex-col gap-8 overflow-y-auto pb-12 pt-12"
-      >
-        <motion.li
-          variants={buttonVariants(0)}
-          animate={isOpen ? "show" : "hidden"}
-          className="list-none"
-        >
-          <button
-            onClick={() => {
-              if (!userId) {
-                onClose();
-                return onOpen("submitAuthModal");
-              }
-              onClose();
-              router.push("/submit");
-            }}
-            className={cn(
-              "w-fit text-2xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white",
-              {
-                "text-green-500 hover:text-green-500": pathname === "/submit",
-              },
-            )}
-          >
-            Submit A Post
-          </button>
-        </motion.li>
-        {navLinks.map((link, index) => (
-          <motion.li
-            variants={buttonVariants(index + 1)}
-            animate={isOpen ? "show" : "hidden"}
-            className="list-none"
-            key={link.label}
-          >
-            <button
-              onClick={() => {
-                onClose();
-                router.push(link.pathname);
-              }}
-              className={cn(
-                "w-fit text-2xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white",
-                {
-                  "text-green-500 hover:text-green-500":
-                    pathname === link.pathname,
-                },
-              )}
+          <div className="flex justify-end pb-4 pt-16">
+            <motion.button
+              whileHover={{ scale: 1.1, rotate: 90 }}
+              whileTap={{ scale: 0.9 }}
+              className="rounded-full bg-zinc-800/50 p-3 text-zinc-300 transition hover:bg-zinc-700/50 hover:text-white"
+              onClick={onClose}
             >
-              {link.label}
-            </button>
-          </motion.li>
-        ))}
-        <motion.li
-          variants={buttonVariants(4)}
-          animate={isOpen ? "show" : "hidden"}
-          className="list-none"
-        >
-          {userId ? (
-            <button
-              onClick={() =>
-                signOut(() => {
+              <span className="sr-only">close menu button</span>
+              <X className="sm:h-7 sm:w-7 md:h-8 md:w-8" />
+            </motion.button>
+          </div>
+
+          <motion.ul className="flex w-full flex-1 flex-col gap-8 overflow-y-auto pb-12 pt-8">
+            <motion.li variants={buttonVariants} className="list-none">
+              <motion.button
+                whileHover={{ x: 10, color: "#4ade80" }}
+                onClick={() => {
+                  if (!userId) {
+                    onClose();
+                    return onOpen("submitAuthModal");
+                  }
                   onClose();
-                  router.push("/home");
-                })
-              }
-              className="w-fit text-2xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white"
+                  router.push("/submit");
+                }}
+                className={cn(
+                  "w-fit text-2xl font-light transition-all duration-300",
+                  pathname === "/submit" ? "text-green-500" : "text-zinc-100",
+                )}
+              >
+                <span className="relative">
+                  Submit A Post
+                  <motion.span
+                    className="absolute -bottom-1 left-0 h-0.5 w-full origin-left bg-gradient-to-r from-green-500 to-green-300"
+                    initial={{ scaleX: pathname === "/submit" ? 1 : 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </span>
+              </motion.button>
+            </motion.li>
+
+            {navLinks.map((link, index) => (
+              <motion.li
+                variants={buttonVariants}
+                className="list-none"
+                key={link.label}
+              >
+                <motion.button
+                  whileHover={{ x: 10, color: "#4ade80" }}
+                  onClick={() => {
+                    onClose();
+                    router.push(link.pathname);
+                  }}
+                  className={cn(
+                    "w-fit text-2xl font-light transition-all duration-300",
+                    pathname === link.pathname
+                      ? "text-green-500"
+                      : "text-zinc-100",
+                  )}
+                >
+                  <span className="relative capitalize">
+                    {t(link.label)}
+                    <motion.span
+                      className="absolute -bottom-1 left-0 h-0.5 w-full origin-left bg-gradient-to-r from-green-500 to-green-300"
+                      initial={{ scaleX: pathname === link.pathname ? 1 : 0 }}
+                      whileHover={{ scaleX: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </span>
+                </motion.button>
+              </motion.li>
+            ))}
+
+            <motion.li variants={buttonVariants} className="list-none">
+              {userId ? (
+                <motion.button
+                  whileHover={{ x: 10, color: "#4ade80" }}
+                  onClick={() =>
+                    signOut(() => {
+                      onClose();
+                      router.push("/home");
+                    })
+                  }
+                  className="w-fit text-2xl font-light text-zinc-100 transition-all duration-300"
+                >
+                  <span className="relative">
+                    Sign Out
+                    <motion.span
+                      className="absolute -bottom-1 left-0 h-0.5 w-full origin-left bg-gradient-to-r from-green-500 to-green-300"
+                      initial={{ scaleX: 0 }}
+                      whileHover={{ scaleX: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </span>
+                </motion.button>
+              ) : (
+                <motion.button
+                  whileHover={{ x: 10, color: "#4ade80" }}
+                  onClick={() => {
+                    onClose();
+                    openSignIn({
+                      appearance: {
+                        elements: { modalContent: { paddingTop: 20 } },
+                      },
+                    });
+                  }}
+                  className="w-fit text-2xl font-light text-zinc-100 transition-all duration-300"
+                >
+                  <span className="relative">
+                    Sign In
+                    <motion.span
+                      className="absolute -bottom-1 left-0 h-0.5 w-full origin-left bg-gradient-to-r from-green-500 to-green-300"
+                      initial={{ scaleX: 0 }}
+                      whileHover={{ scaleX: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </span>
+                </motion.button>
+              )}
+            </motion.li>
+          </motion.ul>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="pb-8"
+          >
+            <p
+              className={`${kobata.className} bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-2xl text-transparent`}
             >
-              Sign Out
-            </button>
-          ) : (
-            <button
-              onClick={() => {
-                onClose();
-                openSignIn({
-                  appearance: {
-                    elements: { modalContent: { paddingTop: 20 } },
-                  },
-                });
-              }}
-              className="w-fit text-3xl font-light text-zinc-100 transition-all hover:tracking-[4px] hover:text-white"
-            >
-              Sign In
-            </button>
-          )}
-        </motion.li>
-      </motion.ul>
-      <p className={`${kobata.className} pb-8 text-2xl text-white`}>
-        Archive Our Youth
-      </p>
-    </motion.div>
+              Archive Our Youth
+            </p>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

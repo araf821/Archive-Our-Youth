@@ -7,7 +7,8 @@ export type ModalType =
   | "authModal"
   | "shareModal"
   | "deletePostModal"
-  | "submitAuthModal";
+  | "submitAuthModal"
+  | "languageSwitcherModal";
 
 interface ModalData {
   post?: Post & { user: User | null };

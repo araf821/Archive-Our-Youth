@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { User } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { useFilters } from "@/hooks/useFilters";
 import { usePathname, useRouter } from "next/navigation";
@@ -14,10 +13,14 @@ import { useMenu } from "@/hooks/useMenu";
 import Image from "next/image";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { LanguageSwitcher } from "../LanguageSwitcher";
+import { motion, AnimatePresence } from "framer-motion";
+import SubmitButton from "./SubmitButton";
 
 const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>(true);
+  const [scrolledDown, setScrolledDown] = useState<boolean>(false);
   const pathname = usePathname();
   const router = useRouter();
   const { user } = useUser();
@@ -27,83 +30,94 @@ const Navbar = () => {
   const { onOpen: openMenu } = useMenu();
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-
     const handleScroll = () => {
-      clearTimeout(timeoutId);
+      const currentScrollPos = window.scrollY;
 
-      timeoutId = setTimeout(() => {
-        const currentScrollPos = window.scrollY;
+      // Update scrolled state for glass effect enhancement
+      setScrolledDown(currentScrollPos > 20);
 
-        // The navbar stays visible if the scroll distance from the top is less than 100px
-        if (currentScrollPos < 100) {
-          setVisible(true);
-        } else if (prevScrollPos > currentScrollPos) {
-          setVisible(true);
-        } else {
-          setVisible(false);
-        }
+      // Visibility logic with improved threshold
+      if (currentScrollPos < 80) {
+        setVisible(true);
+      } else if (prevScrollPos > currentScrollPos + 5) {
+        // Added threshold to prevent flickering
+        setVisible(true);
+      } else if (currentScrollPos > prevScrollPos + 5) {
+        setVisible(false);
+      }
 
-        setPrevScrollPos(currentScrollPos);
-      }, 50); // debounce delay
+      setPrevScrollPos(currentScrollPos);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    // Use requestAnimationFrame for smoother performance
+    let ticking = false;
+    const scrollListener = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", scrollListener);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timeoutId);
+      window.removeEventListener("scroll", scrollListener);
     };
   }, [prevScrollPos]);
 
   return (
-    <nav
+    <motion.nav
+      initial={{ y: 0, opacity: 1 }}
+      animate={{
+        y: visible ? 0 : -80,
+        opacity: visible ? 1 : 0,
+      }}
+      transition={{
+        duration: 0.3,
+        ease: [0.1, 0.9, 0.2, 1], // Custom ease for smoother motion
+      }}
       className={cn(
-        "z-40 h-20 w-full border-b border-border-dark bg-background-muted shadow-[0_4px_20px_black] transition duration-300 hover:opacity-100",
-        {
-          "translate-y-0": visible,
-        },
+        "fixed z-40 h-20 w-full border-b border-border-dark/40 backdrop-blur-md transition-all",
+        scrolledDown
+          ? "bg-background-muted/85 shadow-lg"
+          : "bg-background-muted/60",
       )}
     >
-      <div className="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 opacity-100 md:px-8 xl:px-12">
+      <div className="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8 xl:px-12">
         <Link
           href="/"
-          className={`${kobata.className} flex items-center text-lg text-zinc-100 transition duration-200 md:text-xl`}
+          className={`${kobata.className} group flex items-center text-lg text-zinc-100 transition-all duration-300 hover:scale-105 md:text-xl`}
         >
-          Archive Our Youth
+          <motion.span>Archive Our Youth</motion.span>
         </Link>
 
         <NavLinks />
 
         <div className="max-lg:hidden md:items-center md:gap-x-6 lg:flex">
-          <button
-            className={cn(
-              "group relative font-medium tracking-wide text-white transition-all duration-300 hover:text-green-500 lg:hover:tracking-widest",
-              {
-                "text-green-500 hover:text-green-500": pathname === "/submit",
-              },
-            )}
-            onClick={() => {
-              if (user) {
-                router.push("/submit");
-              } else {
-                onOpenModal("submitAuthModal");
-              }
-            }}
-          >
-            Submit
-          </button>
+          <LanguageSwitcher />
+          <SubmitButton pathname={pathname} />
+
           {user ? (
-            // <UserDropdown user={user} />
-            <UserButton
-              appearance={{
-                baseTheme: dark,
-              }}
-            />
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <UserButton
+                appearance={{
+                  baseTheme: dark,
+                  elements: {
+                    avatarBox:
+                      "hover:scale-110 transition-transform duration-200",
+                  },
+                }}
+              />
+            </motion.div>
           ) : (
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => onOpenModal("authModal")}
-              className="relative aspect-square w-8 overflow-hidden rounded-full"
+              className="relative aspect-square w-9 overflow-hidden rounded-full border border-zinc-700/50 shadow-md transition-all duration-300 hover:border-green-500/50 hover:shadow-green-500/20"
             >
               <span className="sr-only">profile picture</span>
               <Image
@@ -113,42 +127,68 @@ const Navbar = () => {
                 className="object-cover"
                 sizes="50px"
               />
-            </button>
+            </motion.button>
           )}
         </div>
 
         {/* Mobile menu */}
-        <div className="items-center justify-center gap-3 rounded-md bg-zinc-800 p-2 text-white max-lg:flex lg:hidden">
-          {pathname === "/home" && (
-            <button
-              className={cn("transition", { "text-green-600": isOpen })}
-              onClick={() => {
-                if (isOpen) onClose();
-                else onOpen();
-              }}
-            >
-              <span className="sr-only">search</span>
-              <Search className="size-5" />
-            </button>
-          )}
-          <button onClick={() => openMenu()} className="relative">
+        <div className="items-center justify-center gap-4 max-lg:flex lg:hidden">
+          <AnimatePresence>
+            {pathname === "/home" && (
+              <motion.button
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className={cn(
+                  "rounded-full bg-gradient-to-r p-2.5 text-white transition-all duration-300 hover:shadow-lg",
+                  isOpen
+                    ? "from-green-600 to-green-400 shadow-md shadow-green-500/20"
+                    : "from-zinc-800 to-zinc-700 hover:shadow-white/10",
+                )}
+                onClick={() => {
+                  if (isOpen) onClose();
+                  else onOpen();
+                }}
+              >
+                <span className="sr-only">search</span>
+                <Search className="size-5" />
+              </motion.button>
+            )}
+          </AnimatePresence>
+
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => openMenu()}
+            className="group relative rounded-full bg-gradient-to-r from-zinc-800 to-zinc-700 p-2.5 transition-all duration-300 hover:shadow-lg hover:shadow-white/10"
+          >
             <span className="sr-only">side menu</span>
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-6 fill-white"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M4 5C3.44772 5 3 5.44772 3 6C3 6.55228 3.44772 7 4 7H20C20.5523 7 21 6.55228 21 6C21 5.44772 20.5523 5 20 5H4ZM7 12C7 11.4477 7.44772 11 8 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H8C7.44772 13 7 12.5523 7 12ZM13 18C13 17.4477 13.4477 17 14 17H20C20.5523 17 21 17.4477 21 18C21 18.5523 20.5523 19 20 19H14C13.4477 19 13 18.5523 13 18Z"
+            <div className="flex size-5 flex-col items-end justify-center gap-1.5">
+              <motion.span
+                className="h-0.5 origin-right bg-white"
+                initial={{ width: "1.25rem" }}
+                whileHover={{ width: "0.75rem" }}
+                transition={{ duration: 0.2 }}
               />
-            </svg>
-          </button>
+              <motion.span
+                className="h-0.5 origin-right bg-white"
+                initial={{ width: "0.75rem" }}
+                whileHover={{ width: "1.25rem" }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.span
+                className="h-0.5 origin-right bg-white"
+                initial={{ width: "1rem" }}
+                whileHover={{ width: "0.75rem" }}
+                transition={{ duration: 0.2 }}
+              />
+            </div>
+          </motion.button>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

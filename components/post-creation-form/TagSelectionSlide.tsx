@@ -4,12 +4,14 @@ import { FC } from "react";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
 import MultiSelect from "../MultiSelect";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface TagSelectionSlideProps {
   form: TPostCreationForm;
 }
 
 const TagSelectionSlide: FC<TagSelectionSlideProps> = ({ form }) => {
+  const t = useTranslations("PostCreation.slides.tags");
   const tags = form.watch("tags");
 
   return (
@@ -19,10 +21,8 @@ const TagSelectionSlide: FC<TagSelectionSlideProps> = ({ form }) => {
       render={() => (
         <FormItem className="space-y-4 rounded-lg border p-4 md:p-6">
           <div>
-            <p className="font-medium">Tags</p>
-            <p className="text-sm text-zinc-400">
-              Relevant tags lead your posts to the right people!
-            </p>
+            <p className="font-medium">{t("title")}</p>
+            <p className="text-sm text-zinc-400">{t("description")}</p>
           </div>
           <FormControl>
             <MultiSelect
@@ -74,7 +74,7 @@ const TagSelectionSlide: FC<TagSelectionSlideProps> = ({ form }) => {
                 onClick={() => form.setValue("tags", [])}
                 className="flex w-fit items-center gap-2 rounded-sm px-3 py-2 text-white transition hover:bg-zinc-800 max-md:text-sm md:text-base"
               >
-                Reset
+                {t("reset")}
                 <RefreshCcw size={16} />
               </button>
             )}

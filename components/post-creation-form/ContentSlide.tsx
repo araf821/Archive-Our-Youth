@@ -7,12 +7,14 @@ import FileUpload from "../file-upload/FileUpload";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface ContentSlideProps {
   form: TPostCreationForm;
 }
 
 const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
+  const t = useTranslations("PostCreation.slides.content");
   const [preview, setPreview] = useState(false);
   const [videoSourceType, setVideoSourceType] = useState<"url" | "file">(
     "file",
@@ -26,12 +28,12 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         render={({ field }) => (
           <FormItem className="rounded-lg border p-4 md:p-6">
             <div className="space-y-4">
-              <p className="font-medium">What have you got for us?</p>
+              <p className="font-medium">{t("textContent.label")}</p>
               <div className="space-y-3">
                 <AnimatedTabs
                   tabs={[
-                    { id: "write", label: "Write" },
-                    { id: "preview", label: "Preview" },
+                    { id: "write", label: t("textContent.write") },
+                    { id: "preview", label: t("textContent.preview") },
                   ]}
                   defaultTab={preview ? "preview" : "write"}
                   onChange={(tabId) => setPreview(tabId === "preview")}
@@ -45,13 +47,13 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                       </ReactMarkdown>
                     ) : (
                       <p className="grid h-40 place-items-center rounded-md border text-sm text-zinc-400">
-                        Nothing to preview
+                        {t("textContent.nothingToPreview")}
                       </p>
                     )
                   ) : (
                     <textarea
                       {...field}
-                      placeholder="What's on your mind?!"
+                      placeholder={t("textContent.placeholder")}
                       className="h-full w-full resize-none rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-600"
                     />
                   )}
@@ -62,7 +64,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                   target="_blank"
                   className="flex w-fit items-center gap-1 text-sm text-zinc-400 transition hover:text-blue-400"
                 >
-                  Markdown is supported!
+                  {t("textContent.markdownSupported")}
                   <ExternalLink className="size-4" />
                 </Link>
               </div>
@@ -79,7 +81,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         render={({ field }) => (
           <FormItem className="rounded-lg border p-4 md:p-6">
             <div className="space-y-4">
-              <p className="font-medium">Add an image</p>
+              <p className="font-medium">{t("imageContent.label")}</p>
               <FormControl>
                 <FileUpload
                   classNames="aspect-[4/3]"
@@ -101,12 +103,12 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         render={({ field }) => (
           <FormItem className="rounded-lg border p-4 md:p-6">
             <div className="space-y-4">
-              <p className="font-medium">Add a video</p>
+              <p className="font-medium">{t("videoContent.label")}</p>
               <div className="space-y-3">
                 <AnimatedTabs
                   tabs={[
-                    { id: "file", label: "Upload Video" },
-                    { id: "url", label: "YouTube URL" },
+                    { id: "file", label: t("videoContent.uploadVideo") },
+                    { id: "url", label: t("videoContent.youtubeUrl") },
                   ]}
                   defaultTab={videoSourceType}
                   onChange={(tabId) =>
@@ -126,7 +128,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                     <div className="space-y-2">
                       <input
                         {...field}
-                        placeholder="Enter YouTube video URL. e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                        placeholder={t("videoContent.placeholder")}
                         className="w-full rounded-md border bg-zinc-800 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-600"
                         onChange={(e) => {
                           const url = e.target.value;
@@ -139,8 +141,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
                       />
                       {!isYouTubeUrl(field.value) && (
                         <p className="text-sm text-zinc-400">
-                          Paste a valid YouTube video URL starting with
-                          &lsquo;https://&rsquo;
+                          {t("videoContent.urlHint")}
                         </p>
                       )}
                       {isYouTubeUrl(field.value) && (
@@ -171,7 +172,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         render={({ field }) => (
           <FormItem className="rounded-lg border p-4 md:p-6">
             <div className="space-y-4">
-              <p className="font-medium">Add an audio</p>
+              <p className="font-medium">{t("audioContent.label")}</p>
               <FormControl>
                 <FileUpload
                   classNames="aspect-video"
@@ -193,7 +194,7 @@ const ContentSlide: FC<ContentSlideProps> = ({ form }) => {
         render={({ field }) => (
           <FormItem className="rounded-lg border p-4 md:p-6">
             <div className="space-y-4">
-              <p className="font-medium">Upload a PDF</p>
+              <p className="font-medium">{t("pdfContent.label")}</p>
               <FormControl>
                 <FileUpload
                   endPoint="pdf"

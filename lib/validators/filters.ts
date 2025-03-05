@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { ContentType } from "@prisma/client";
 import { allCountries, postTypes, RESEARCH_QUESTIONS } from "@/lib/constants";
 
 const SortByOptions = [

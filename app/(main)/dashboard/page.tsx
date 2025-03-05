@@ -34,7 +34,7 @@ const DashboardPage = async ({
     },
   });
 
-  if (!dbUser) {
+  if (!dbUser?.id) {
     return redirect("/home");
   }
 

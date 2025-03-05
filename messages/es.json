@@ -1,0 +1,141 @@
+{
+  "Index": {
+    "title": "Archivar Nuestra Juventud",
+    "subtitle": "Explorar, Compartir, Inspirar: Perspectivas de los Jóvenes sobre el Bienestar en la Era Digital",
+    "submitPost": "Enviar una Publicación",
+    "viewSubmissions": "Ver Publicaciones"
+  },
+  "Navigation": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "dashboard": "Panel",
+    "submit": "Enviar"
+  },
+  "Auth": {
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "signOut": "Cerrar Sesión"
+  },
+  "Common": {
+    "loading": "Cargando...",
+    "error": "Ha ocurrido un error",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "contentTypes": {
+      "text": "Texto",
+      "image": "Imagen",
+      "video": "Video",
+      "audio": "Audio",
+      "pdf": "PDF"
+    }
+  },
+  "PostCreation": {
+    "consentForm": {
+      "ageVerification": {
+        "label": {
+          "part1": "Marque esta casilla si tiene 16 años o más.",
+          "part2": "Si tiene menos de 16 años, ¡nos encantaría recibir su publicación por correo electrónico! Por favor, contáctenos en",
+          "part3": "con el asunto: Envío de Archivo."
+        }
+      },
+      "consent": {
+        "label": "Marque esta casilla si está de acuerdo en que su envío se utilice con fines de investigación.",
+        "researchPurpose": "¿Cuál es el propósito de la investigación? Documentar y comprender mejor el bienestar juvenil y planetario. Las publicaciones en el archivo pueden utilizarse en presentaciones, aulas y/o publicaciones como publicaciones en redes sociales, artículos de revistas y libros.",
+        "rightsNotice": "Todos los derechos intelectuales y creativos siguen siendo suyos.",
+        "deletionInfo": "Puede eliminar su publicación en cualquier momento iniciando sesión y eliminándola directamente, o enviando un correo electrónico a Deborah MacDonald en el Laboratorio de Investigación Young Lives de la Universidad de York a: dmacd@yorku.ca.",
+        "anonymousNote": "Si envía de forma anónima (no crea una cuenta/no inicia sesión), solo puede eliminar su publicación enviando un correo electrónico al contacto anterior.",
+        "readMore": "Le animamos a leer el formulario de consentimiento completo aquí"
+      }
+    },
+    "intro": {
+      "title": "Crear Nueva Publicación",
+      "subtitle": "Comparte tu visión para un mejor futuro",
+      "welcomeTitle": "¡Bienvenido a Archivar Nuestra Juventud!",
+      "welcomeText": "Te invitamos a contribuir a nuestro Archivo del Bienestar Juvenil y Planetario: una cápsula del tiempo de futuros soñados, perspectivas y recursos (tanto reales como deseados). Damos la bienvenida a todo tipo de publicaciones multimedia, ¡y estamos emocionados de ver lo que subirás!",
+      "aboutLinkText": "Para conocer más sobre el Archivo y nuestros socios de investigación en Chile, Costa Rica y Belice, visita",
+      "signOff": {
+        "message": "Xoxo",
+        "signature": "- El Comité Asesor Juvenil Canadiense (CAJ)"
+      }
+    },
+    "formIncomplete": "Formulario Incompleto",
+    "submitPost": "Enviar Publicación",
+    "errors": {
+      "consentRequired": "Por favor, marque ambas casillas de consentimiento para continuar.",
+      "generalError": "Algo salió mal. Por favor, inténtelo de nuevo o contáctenos si el error persiste."
+    },
+    "success": {
+      "published": "¡Su publicación ha sido publicada!"
+    },
+    "consent": {
+      "ageVerification": "Confirmo que tengo 13 años o más",
+      "termsAgreement": "He leído y acepto los términos de participación"
+    },
+    "slides": {
+      "researchQuestions": {
+        "title": "Preguntas de Investigación",
+        "description": "¿Cómo explora tu publicación el bienestar?\nBienestar: Personal. Familiar. Comunitario. Planetario. Otro. (Selecciona todos los que correspondan)",
+        "noneOfTheAbove": "Ninguna de las anteriores"
+      },
+      "type": {
+        "title": "Tipo de Contenido",
+        "description": "Seleccione el formato de su publicación"
+      },
+      "title": {
+        "label": "¿Cómo te gustaría llamar a esta obra maestra?",
+        "placeholder": "Ingrese un título para su publicación"
+      },
+      "content": {
+        "textContent": {
+          "label": "¿Qué tienes para nosotros?",
+          "placeholder": "¡¿Qué tienes en mente?!",
+          "write": "Escribir",
+          "preview": "Vista previa",
+          "nothingToPreview": "Nada para previsualizar",
+          "markdownSupported": "¡Markdown es compatible!"
+        },
+        "imageContent": {
+          "label": "Agregar una imagen"
+        },
+        "videoContent": {
+          "label": "Agregar un video",
+          "uploadVideo": "Subir video",
+          "youtubeUrl": "URL de YouTube",
+          "placeholder": "Ingrese la URL del video de YouTube. ej: https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "urlHint": "Pegue una URL válida de YouTube que comience con 'https://'"
+        },
+        "audioContent": {
+          "label": "Agregar un audio"
+        },
+        "pdfContent": {
+          "label": "Subir un PDF"
+        }
+      },
+      "description": {
+        "label": "Descripción",
+        "optional": "Opcional",
+        "placeholder": "Describe tu contenido...",
+        "write": "Escribir",
+        "preview": "Vista previa",
+        "previewEmpty": "Una vista previa de cómo se verá el producto final.",
+        "markdownSupported": "¡Markdown es compatible!"
+      },
+      "tags": {
+        "title": "Etiquetas",
+        "description": "¡Las etiquetas relevantes dirigen tus publicaciones a las personas adecuadas!",
+        "reset": "Reiniciar"
+      },
+      "thumbnail": {
+        "title": "Miniatura",
+        "description": "Opcional pero recomendado"
+      },
+      "location": {
+        "title": "Ubicación",
+        "description": "Comparta su ubicación (opcional)"
+      }
+    }
+  }
+}

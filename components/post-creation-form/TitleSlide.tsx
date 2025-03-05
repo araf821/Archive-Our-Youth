@@ -1,13 +1,15 @@
 import { TPostCreationForm } from "@/lib/types/form";
 import { FC } from "react";
 import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
-import { Control } from "react-hook-form";
+import { useTranslations } from "next-intl";
 
 interface TitleSlideProps {
   form: TPostCreationForm;
 }
 
 const TitleSlide: FC<TitleSlideProps> = ({ form }) => {
+  const t = useTranslations("PostCreation.slides.title");
+
   return (
     <FormField
       control={form.control}
@@ -15,12 +17,10 @@ const TitleSlide: FC<TitleSlideProps> = ({ form }) => {
       render={({ field }) => (
         <FormItem className="rounded-lg border p-4 md:p-6">
           <div className="space-y-2">
-            <p className="font-medium">
-              What would you like to call this masterpiece?
-            </p>
+            <p className="font-medium">{t("label")}</p>
             <FormControl>
               <input
-                placeholder="Enter a title"
+                placeholder={t("placeholder")}
                 className="w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-600"
                 type="text"
                 {...field}

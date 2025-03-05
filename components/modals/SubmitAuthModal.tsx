@@ -35,6 +35,7 @@ const SubmitAuthModal = () => {
         <button
           onClick={() => {
             router.push("/sign-in");
+            onClose();
           }}
           className="mt-1 w-full rounded-sm bg-primary py-1.5 text-center font-semibold text-background transition duration-200 hover:bg-primary-dark"
         >
@@ -42,6 +43,7 @@ const SubmitAuthModal = () => {
         </button>
         <Link
           href="/submit"
+          onClick={onClose}
           className="rounded-sm border border-background-surface py-1.5 text-center font-medium text-zinc-300 transition duration-200"
         >
           Continue as guest
@@ -58,6 +60,7 @@ const SubmitAuthModal = () => {
         <button
           onClick={() => {
             router.push("/sign-up");
+            onClose();
           }}
           className="mb-2 rounded-sm border border-background-surface bg-background-muted py-1.5 text-center font-medium text-zinc-300 transition duration-200 hover:bg-zinc-800 hover:text-zinc-100"
         >

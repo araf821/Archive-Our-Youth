@@ -4,12 +4,14 @@ import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
 import { AnimatedTabs } from "../ui/animated-tabs";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { ExternalLink } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface DescriptionSlideProps {
   form: TPostCreationForm;
 }
 
 const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
+  const t = useTranslations("PostCreation.slides.description");
   const [preview, setPreview] = useState(false);
 
   return (
@@ -19,14 +21,14 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
       render={({ field }) => (
         <FormItem className="space-y-4 rounded-lg border p-4 md:p-6">
           <div>
-            <p className="font-medium">Description</p>
-            <p className="text-sm text-zinc-400">Optional</p>
+            <p className="font-medium">{t("label")}</p>
+            <p className="text-sm text-zinc-400">{t("optional")}</p>
           </div>
           <div className="flex flex-col gap-2">
             <AnimatedTabs
               tabs={[
-                { id: "write", label: "Write" },
-                { id: "preview", label: "Preview" },
+                { id: "write", label: t("write") },
+                { id: "preview", label: t("preview") },
               ]}
               defaultTab={preview ? "preview" : "write"}
               onChange={(tabId) => setPreview(tabId === "preview")}
@@ -41,13 +43,13 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
                   </ReactMarkdown>
                 ) : (
                   <p className="rounded-md border border-background-surface bg-zinc-800 px-4 py-2 text-sm">
-                    A preview of what the finished product will look like.
+                    {t("previewEmpty")}
                   </p>
                 )
               ) : (
                 <textarea
                   {...field}
-                  placeholder="Describe your content..."
+                  placeholder={t("placeholder")}
                   className="h-32 resize-none rounded-md border-none bg-zinc-800 px-3 py-2 text-sm text-zinc-50 outline-none focus:outline-none"
                 />
               )}
@@ -57,7 +59,7 @@ const DescriptionSlide: FC<DescriptionSlideProps> = ({ form }) => {
               target="_blank"
               className="flex w-fit items-center gap-1 text-sm text-zinc-400 transition duration-200 hover:text-blue-500"
             >
-              Markdown is supported!
+              {t("markdownSupported")}
               <ExternalLink className="size-4" />
             </a>
             <FormMessage />

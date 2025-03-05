@@ -3,12 +3,14 @@ import { ChangeEvent, FC, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/Label";
 import { RESEARCH_QUESTIONS, ResearchQuestion } from "@/lib/constants";
+import { useTranslations } from "next-intl";
 
 interface ResearchQuestionsProps {
   form: TPostCreationForm;
 }
 
 const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
+  const t = useTranslations("PostCreation.slides.researchQuestions");
   const selected = form.watch("researchQuestions");
 
   // Dynamic checkbox states initialization
@@ -66,11 +68,9 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
   return (
     <div className="w-full space-y-4 rounded-lg border p-4 md:p-6">
       <div>
-        <p className="mb-1 font-medium text-text-primary">Research Questions</p>
-        <p className="text-sm text-text-secondary">
-          How does your post explore wellbeing? <br />
-          Wellbeing: Personal. Family. Community. Planetary. Other. (Choose all
-          that apply)
+        <p className="mb-1 font-medium text-text-primary">{t("title")}</p>
+        <p className="whitespace-pre-line text-sm text-text-secondary">
+          {t("description")}
         </p>
       </div>
       <div className="w-full">
@@ -119,7 +119,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
             htmlFor="none"
             className="w-full cursor-pointer py-3 text-sm text-text-primary"
           >
-            None of the above
+            {t("noneOfTheAbove")}
           </Label>
         </div>
       </div>
