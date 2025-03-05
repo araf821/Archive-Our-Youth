@@ -33,6 +33,17 @@
     }
   },
   "PostCreation": {
+    "intro": {
+      "title": "Créer un Nouvel Article",
+      "subtitle": "Partagez votre vision pour un meilleur avenir",
+      "welcomeTitle": "Bienvenue sur Archive Notre Jeunesse !",
+      "welcomeText": "Vous êtes invité(e) à contribuer à notre Archive du Bien-être des Jeunes et de la Planète : une capsule temporelle de futurs rêvés, de perspectives et de ressources (réelles et souhaitées). Nous accueillons tous types de publications multimédias, et nous sommes impatients de voir ce que vous allez partager !",
+      "aboutLinkText": "Pour en savoir plus sur l'Archive et nos partenaires de recherche au Chili, au Costa Rica et au Belize, visitez",
+      "signOff": {
+        "message": "Xoxo",
+        "signature": "- Le Comité Consultatif des Jeunes Canadiens (CCJ)"
+      }
+    },
     "formIncomplete": "Formulaire Incomplet",
     "submitPost": "Soumettre l'Article",
     "errors": {

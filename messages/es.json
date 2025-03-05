@@ -33,6 +33,17 @@
     }
   },
   "PostCreation": {
+    "intro": {
+      "title": "Crear Nueva Publicación",
+      "subtitle": "Comparte tu visión para un mejor futuro",
+      "welcomeTitle": "¡Bienvenido a Archivar Nuestra Juventud!",
+      "welcomeText": "Te invitamos a contribuir a nuestro Archivo del Bienestar Juvenil y Planetario: una cápsula del tiempo de futuros soñados, perspectivas y recursos (tanto reales como deseados). Damos la bienvenida a todo tipo de publicaciones multimedia, ¡y estamos emocionados de ver lo que subirás!",
+      "aboutLinkText": "Para conocer más sobre el Archivo y nuestros socios de investigación en Chile, Costa Rica y Belice, visita",
+      "signOff": {
+        "message": "Xoxo",
+        "signature": "- El Comité Asesor Juvenil Canadiense (CAJ)"
+      }
+    },
     "formIncomplete": "Formulario Incompleto",
     "submitPost": "Enviar Publicación",
     "errors": {

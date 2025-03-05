@@ -33,6 +33,17 @@
     }
   },
   "PostCreation": {
+    "intro": {
+      "title": "Create New Post",
+      "subtitle": "Share your vision for a better future",
+      "welcomeTitle": "Welcome to Archive Our Youth!",
+      "welcomeText": "You're invited to add to our Youth and Planetary Wellbeing Archive: a time capsule of dream futures, perspectives, and resources (both real and desired). We welcome all kinds of multi-media posts, and we're excited to see what you upload!",
+      "aboutLinkText": "To learn more about the Archive and our research partners in Chile, Costa Rica, and Belize, visit",
+      "signOff": {
+        "message": "Xoxo",
+        "signature": "- The Canadian Youth Advisory Committee (YAC)"
+      }
+    },
     "formIncomplete": "Form Incomplete",
     "submitPost": "Submit Post",
     "errors": {
