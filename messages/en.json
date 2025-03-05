@@ -33,6 +33,23 @@
     }
   },
   "PostCreation": {
+    "consentForm": {
+      "ageVerification": {
+        "label": {
+          "part1": "Marca esta casilla si tienes 16 años o más.",
+          "part2": "Si tienes menos de 16 años, ¡nos encantaría recibir tu publicación por correo electrónico! Por favor, contáctanos en",
+          "part3": ", con el asunto: Archive Submission."
+        }
+      },
+      "consent": {
+        "label": "Click this box if you agree that your submission can be used for research purposes.",
+        "researchPurpose": "What's the research purpose? To document and better understand youth and planetary well-being. Posts on the archive might be used in presentations, classrooms, and/or publications like social media posts, journal articles, and books.",
+        "rightsNotice": "All intellectual and creative rights remain yours.",
+        "deletionInfo": "You can delete your post at any time by signing in and deleting it directly, or by emailing Deborah MacDonald at the Young Lives Research Lab at York University at: dmacd@yorku.ca.",
+        "anonymousNote": "If you submit anonymously (you don't make an account/sign in), you can only delete your post by emailing the contact above.",
+        "readMore": "We encourage you to read the full consent form here"
+      }
+    },
     "intro": {
       "title": "Create New Post",
       "subtitle": "Share your vision for a better future",

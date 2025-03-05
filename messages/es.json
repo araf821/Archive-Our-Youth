@@ -33,6 +33,23 @@
     }
   },
   "PostCreation": {
+    "consentForm": {
+      "ageVerification": {
+        "label": {
+          "part1": "Marque esta casilla si tiene 16 años o más.",
+          "part2": "Si tiene menos de 16 años, ¡nos encantaría recibir su publicación por correo electrónico! Por favor, contáctenos en",
+          "part3": "con el asunto: Envío de Archivo."
+        }
+      },
+      "consent": {
+        "label": "Marque esta casilla si está de acuerdo en que su envío se utilice con fines de investigación.",
+        "researchPurpose": "¿Cuál es el propósito de la investigación? Documentar y comprender mejor el bienestar juvenil y planetario. Las publicaciones en el archivo pueden utilizarse en presentaciones, aulas y/o publicaciones como publicaciones en redes sociales, artículos de revistas y libros.",
+        "rightsNotice": "Todos los derechos intelectuales y creativos siguen siendo suyos.",
+        "deletionInfo": "Puede eliminar su publicación en cualquier momento iniciando sesión y eliminándola directamente, o enviando un correo electrónico a Deborah MacDonald en el Laboratorio de Investigación Young Lives de la Universidad de York a: dmacd@yorku.ca.",
+        "anonymousNote": "Si envía de forma anónima (no crea una cuenta/no inicia sesión), solo puede eliminar su publicación enviando un correo electrónico al contacto anterior.",
+        "readMore": "Le animamos a leer el formulario de consentimiento completo aquí"
+      }
+    },
     "intro": {
       "title": "Crear Nueva Publicación",
       "subtitle": "Comparte tu visión para un mejor futuro",

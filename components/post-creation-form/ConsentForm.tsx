@@ -56,16 +56,15 @@ export const ConsentForm = ({
             htmlFor="age-verification"
             className="leading-relaxed text-text-secondary max-md:text-sm"
           >
-            Click this box if you are 16 years old or older. If you are under
-            16, we&apos;d love to hear from you with your post over email!
-            Please reach out to us at{" "}
+            {t("consentForm.ageVerification.label.part1")}{" "}
+            {t("consentForm.ageVerification.label.part2")}{" "}
             <a
               href="mailto:younglives@edu.yorku.ca"
               className="text-blue-400 underline"
             >
               younglives@edu.yorku.ca
             </a>
-            , subject line: Archive Submission.
+            {t("consentForm.ageVerification.label.part3")}
           </label>
         </div>
 
@@ -80,46 +79,23 @@ export const ConsentForm = ({
             htmlFor="consent"
             className="space-y-4 leading-relaxed text-text-secondary max-md:text-sm"
           >
+            <p>{t("consentForm.consent.label")}</p>
+            <p>{t("consentForm.consent.researchPurpose")}</p>
+            <p>{t("consentForm.consent.rightsNotice")}</p>
             <p>
-              Click this box if you agree that your submission can be used for
-              research purposes.
+              {t("consentForm.consent.deletionInfo")}
             </p>
-
             <p>
-              What&apos;s the research purpose? To document and better
-              understand youth and planetary well-being. Posts on the archive
-              might be used in presentations, classrooms, and/or publications
-              like social media posts, journal articles, and books.
+              {t("consentForm.consent.anonymousNote")}
             </p>
-
-            <p>All intellectual and creative rights remain yours.</p>
-
             <p>
-              You can delete your post at any time by signing in and deleting it
-              directly, or by emailing Deborah MacDonald at the Young Lives
-              Research Lab at York University at:{" "}
-              <a
-                className="text-blue-400 underline"
-                href="mailto:dmacd@yorku.ca"
-              >
-                dmacd@yorku.ca
-              </a>
-              .
-            </p>
-
-            <p>
-              If you submit anonymously (you don&apos;t make an account/sign
-              in), you can only delete your post by emailing the contact above.
-            </p>
-
-            <p>
-              We encourage you to read the full{" "}
+              {t("consentForm.consent.readMore")}
               <Link
                 href="/consent-form.pdf"
                 target="_blank"
                 className="text-blue-400 underline"
               >
-                consent form here
+                {t("consentForm.consent.readMore")}
               </Link>
               .
             </p>
