@@ -5,6 +5,7 @@ import { FC } from "react";
 import { FormControl, FormField, FormItem } from "../ui/Form";
 import { cn } from "@/lib/utils";
 import { ContentType } from "@prisma/client";
+import { useTranslations } from "next-intl";
 
 interface TypeSelectionSlideProps {
   form: TPostCreationForm;
@@ -15,7 +16,10 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
   form,
   handleTypeChange,
 }) => {
+  const t = useTranslations("PostCreation.slides.type");
+  const ct = useTranslations("Common.contentTypes");
   const type = form.watch("contentType");
+
   return (
     <div className="mx-auto w-full max-w-4xl rounded-lg border p-4 md:p-6">
       <FormField
@@ -25,11 +29,9 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
           <FormItem className="space-y-6">
             <div>
               <p className="text-lg font-medium text-text-primary">
-                Content Type
+                {t("title")}
               </p>
-              <p className="text-sm text-text-secondary">
-                Select the format for your post
-              </p>
+              <p className="text-sm text-text-secondary">{t("description")}</p>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
               <FormControl>
@@ -46,7 +48,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     },
                   )}
                 >
-                  Text
+                  {ct("text")}
                 </button>
               </FormControl>
               <FormControl>
@@ -63,7 +65,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     },
                   )}
                 >
-                  Image
+                  {ct("image")}
                 </button>
               </FormControl>
               <FormControl>
@@ -80,7 +82,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     },
                   )}
                 >
-                  Video
+                  {ct("video")}
                 </button>
               </FormControl>
               <FormControl>
@@ -97,7 +99,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     },
                   )}
                 >
-                  Audio
+                  {ct("audio")}
                 </button>
               </FormControl>
               <FormControl>
@@ -114,7 +116,7 @@ const TypeSelectionSlide: FC<TypeSelectionSlideProps> = ({
                     },
                   )}
                 >
-                  PDF
+                  {ct("pdf")}
                 </button>
               </FormControl>
             </div>

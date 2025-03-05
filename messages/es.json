@@ -23,6 +23,80 @@
     "save": "Guardar",
     "cancel": "Cancelar",
     "delete": "Eliminar",
-    "edit": "Editar"
+    "edit": "Editar",
+    "contentTypes": {
+      "text": "Texto",
+      "image": "Imagen",
+      "video": "Video",
+      "audio": "Audio",
+      "pdf": "PDF"
+    }
+  },
+  "PostCreation": {
+    "formIncomplete": "Formulario Incompleto",
+    "submitPost": "Enviar Publicación",
+    "errors": {
+      "consentRequired": "Por favor, marque ambas casillas de consentimiento para continuar.",
+      "generalError": "Algo salió mal. Por favor, inténtelo de nuevo o contáctenos si el error persiste."
+    },
+    "success": {
+      "published": "¡Su publicación ha sido publicada!"
+    },
+    "consent": {
+      "ageVerification": "Confirmo que tengo 13 años o más",
+      "termsAgreement": "He leído y acepto los términos de participación"
+    },
+    "slides": {
+      "type": {
+        "title": "Tipo de Contenido",
+        "description": "Seleccione el formato de su publicación"
+      },
+      "title": {
+        "label": "¿Cómo te gustaría llamar a esta obra maestra?",
+        "placeholder": "Ingrese un título para su publicación"
+      },
+      "content": {
+        "textContent": {
+          "label": "¿Qué tienes para nosotros?",
+          "placeholder": "¡¿Qué tienes en mente?!",
+          "write": "Escribir",
+          "preview": "Vista previa",
+          "nothingToPreview": "Nada para previsualizar",
+          "markdownSupported": "¡Markdown es compatible!"
+        },
+        "imageContent": {
+          "label": "Agregar una imagen"
+        },
+        "videoContent": {
+          "label": "Agregar un video",
+          "uploadVideo": "Subir video",
+          "youtubeUrl": "URL de YouTube",
+          "placeholder": "Ingrese la URL del video de YouTube. ej: https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "urlHint": "Pegue una URL válida de YouTube que comience con 'https://'"
+        },
+        "audioContent": {
+          "label": "Agregar un audio"
+        },
+        "pdfContent": {
+          "label": "Subir un PDF"
+        }
+      },
+      "description": {
+        "label": "Descripción",
+        "placeholder": "Proporcione una descripción de su contenido"
+      },
+      "tags": {
+        "title": "Seleccionar Etiquetas",
+        "description": "Elija las etiquetas que mejor describan su contenido"
+      },
+      "thumbnail": {
+        "title": "Subir Miniatura",
+        "description": "Seleccione una imagen en miniatura para su publicación"
+      },
+      "location": {
+        "title": "Ubicación",
+        "description": "Comparta su ubicación (opcional)"
+      }
+    }
   }
 }

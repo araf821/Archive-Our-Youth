@@ -23,6 +23,80 @@
     "save": "Save",
     "cancel": "Cancel",
     "delete": "Delete",
-    "edit": "Edit"
+    "edit": "Edit",
+    "contentTypes": {
+      "text": "Text",
+      "image": "Image",
+      "video": "Video",
+      "audio": "Audio",
+      "pdf": "PDF"
+    }
+  },
+  "PostCreation": {
+    "formIncomplete": "Form Incomplete",
+    "submitPost": "Submit Post",
+    "errors": {
+      "consentRequired": "Please check both consent boxes to proceed.",
+      "generalError": "Something went wrong. Please try again or contact us if the error persists."
+    },
+    "success": {
+      "published": "Your post has been published!"
+    },
+    "consent": {
+      "ageVerification": "I confirm that I am 13 years or older",
+      "termsAgreement": "I have read and agree to the terms of participation"
+    },
+    "slides": {
+      "type": {
+        "title": "Content Type",
+        "description": "Select the format for your post"
+      },
+      "title": {
+        "label": "What would you like to call this masterpiece?",
+        "placeholder": "Enter a title for your post"
+      },
+      "content": {
+        "textContent": {
+          "label": "What have you got for us?",
+          "placeholder": "What's on your mind?!",
+          "write": "Write",
+          "preview": "Preview",
+          "nothingToPreview": "Nothing to preview",
+          "markdownSupported": "Markdown is supported!"
+        },
+        "imageContent": {
+          "label": "Add an image"
+        },
+        "videoContent": {
+          "label": "Add a video",
+          "uploadVideo": "Upload Video",
+          "youtubeUrl": "YouTube URL",
+          "placeholder": "Enter YouTube video URL. e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "urlHint": "Paste a valid YouTube video URL starting with 'https://'"
+        },
+        "audioContent": {
+          "label": "Add an audio"
+        },
+        "pdfContent": {
+          "label": "Upload a PDF"
+        }
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Provide a description of your content"
+      },
+      "tags": {
+        "title": "Select Tags",
+        "description": "Choose tags that best describe your content"
+      },
+      "thumbnail": {
+        "title": "Upload Thumbnail",
+        "description": "Select a thumbnail image for your post"
+      },
+      "location": {
+        "title": "Location",
+        "description": "Share your location (optional)"
+      }
+    }
   }
 }

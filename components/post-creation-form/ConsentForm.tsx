@@ -1,6 +1,7 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 interface ConsentFormProps {
   ageVerified: boolean;
@@ -17,6 +18,8 @@ export const ConsentForm = ({
   onAgeVerificationChange,
   onConsentChange,
 }: ConsentFormProps) => {
+  const t = useTranslations("PostCreation");
+
   return (
     <motion.div className="rounded-lg border p-4 md:p-6">
       <AnimatePresence>
@@ -35,7 +38,7 @@ export const ConsentForm = ({
             }}
             className="mb-2 text-red-500"
           >
-            Your consent is required for us to approve your submission.
+            {t("errors.consentRequired")}
           </motion.p>
         ) : null}
       </AnimatePresence>

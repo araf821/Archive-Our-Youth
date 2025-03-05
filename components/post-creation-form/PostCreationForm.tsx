@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Form } from "../ui/Form";
+import { useTranslations } from "next-intl";
 
 import ResearchQuestions from "./ResearchQuestions";
 import TypeSelectionSlide from "./TypeSelectionSlide";
@@ -17,6 +18,7 @@ import { usePostForm } from "./hooks/usePostForm";
 import { ConsentForm } from "./ConsentForm";
 
 const PostCreationForm = () => {
+  const t = useTranslations("PostCreation");
   const { form, handleTypeChange, onSubmit, isLoading, contentType } =
     usePostForm();
   const [{ ageVerified, consentChecked, error }, setConsent] = useState({
@@ -32,7 +34,7 @@ const PostCreationForm = () => {
           ...prev,
           error: true,
         }));
-        toast.error("Please check both consent boxes to proceed.");
+        toast.error(t("errors.consentRequired"));
         return;
       }
 
@@ -43,15 +45,13 @@ const PostCreationForm = () => {
           ...prev,
           error: true,
         }));
-        toast.error(result.error || "Something went wrong.");
+        toast.error(result.error || t("errors.generalError"));
         return;
       }
 
-      toast.success("Your post has been published!");
+      toast.success(t("success.published"));
     } catch (error) {
-      toast.error(
-        "Something went wrong. Please try again or contact us if the error persists.",
-      );
+      toast.error(t("errors.generalError"));
     }
   };
 
@@ -115,8 +115,8 @@ const PostCreationForm = () => {
           !!form.formState.errors.contentType ||
           !!form.formState.errors.title ||
           !!form.formState.errors.description
-            ? "Form Incomplete"
-            : "Submit Post"}
+            ? t("formIncomplete")
+            : t("submitPost")}
         </button>
       </form>
     </Form>

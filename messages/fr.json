@@ -23,6 +23,80 @@
     "save": "Enregistrer",
     "cancel": "Annuler",
     "delete": "Supprimer",
-    "edit": "Modifier"
+    "edit": "Modifier",
+    "contentTypes": {
+      "text": "Texte",
+      "image": "Image",
+      "video": "Vidéo",
+      "audio": "Audio",
+      "pdf": "PDF"
+    }
+  },
+  "PostCreation": {
+    "formIncomplete": "Formulaire Incomplet",
+    "submitPost": "Soumettre l'Article",
+    "errors": {
+      "consentRequired": "Veuillez cocher les deux cases de consentement pour continuer.",
+      "generalError": "Une erreur s'est produite. Veuillez réessayer ou nous contacter si l'erreur persiste."
+    },
+    "success": {
+      "published": "Votre article a été publié !"
+    },
+    "consent": {
+      "ageVerification": "Je confirme avoir 13 ans ou plus",
+      "termsAgreement": "J'ai lu et j'accepte les conditions de participation"
+    },
+    "slides": {
+      "type": {
+        "title": "Type de Contenu",
+        "description": "Sélectionnez le format de votre publication"
+      },
+      "title": {
+        "label": "Comment voulez-vous appeler ce chef-d'œuvre ?",
+        "placeholder": "Entrez un titre pour votre article"
+      },
+      "content": {
+        "textContent": {
+          "label": "Qu'avez-vous à nous proposer ?",
+          "placeholder": "Qu'est-ce qui vous passe par la tête ?!",
+          "write": "Écrire",
+          "preview": "Aperçu",
+          "nothingToPreview": "Rien à prévisualiser",
+          "markdownSupported": "Markdown est supporté !"
+        },
+        "imageContent": {
+          "label": "Ajouter une image"
+        },
+        "videoContent": {
+          "label": "Ajouter une vidéo",
+          "uploadVideo": "Télécharger une vidéo",
+          "youtubeUrl": "URL YouTube",
+          "placeholder": "Entrez l'URL d'une vidéo YouTube. ex: https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "urlHint": "Collez une URL YouTube valide commençant par 'https://'"
+        },
+        "audioContent": {
+          "label": "Ajouter un audio"
+        },
+        "pdfContent": {
+          "label": "Télécharger un PDF"
+        }
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Fournissez une description de votre contenu"
+      },
+      "tags": {
+        "title": "Sélectionner les Tags",
+        "description": "Choisissez les tags qui décrivent le mieux votre contenu"
+      },
+      "thumbnail": {
+        "title": "Télécharger une Vignette",
+        "description": "Sélectionnez une image miniature pour votre article"
+      },
+      "location": {
+        "title": "Localisation",
+        "description": "Partagez votre localisation (optionnel)"
+      }
+    }
   }
 }
