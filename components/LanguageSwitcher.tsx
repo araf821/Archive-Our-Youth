@@ -26,7 +26,7 @@ export const LanguageSwitcher = () => {
         size="sm"
         onClick={() => onOpen("languageSwitcherModal")}
         className={cn(
-          "gap-2 border-zinc-700/50 bg-zinc-800/50 text-zinc-100 backdrop-blur-sm transition-all duration-300",
+          "h-auto gap-2 rounded-full border-zinc-700/50 bg-zinc-800/50 px-4 py-2 font-normal text-zinc-100 backdrop-blur-sm transition-all duration-300",
           "hover:border-green-500/30 hover:bg-zinc-800/70 hover:text-green-400 hover:shadow-md hover:shadow-green-500/10",
         )}
       >

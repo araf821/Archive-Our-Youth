@@ -9,6 +9,7 @@ interface MultiSelectProps {
   selectedOptions: string[];
   onChange: (value: string[]) => void;
   maxSelection: number;
+  className?: string;
 }
 
 const MultiSelect: FC<MultiSelectProps> = ({
@@ -54,7 +55,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
         type="text"
         placeholder="Select Tags"
         onChange={(e) => setInput(e.target.value)}
-        className="morph-sm w-full rounded-sm border border-background-surface bg-zinc-800 px-4 py-3 placeholder-zinc-200 outline-background-surface focus:border-none focus:outline-none"
+        className="morph-sm w-full rounded-sm border border-background-surface bg-zinc-800 px-4 py-3 placeholder-zinc-200 outline-background-surface focus:outline-none"
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();

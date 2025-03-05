@@ -76,30 +76,33 @@ const NavLinks = () => {
           </motion.div>
         ))}
 
-        <AnimatePresence>
-          {pathname === "/home" && (
-            <motion.button
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className={cn(
-                "rounded-full bg-gradient-to-r p-2.5 text-white transition-all duration-300 hover:shadow-lg",
-                isOpen
-                  ? "from-green-600 to-green-400 shadow-md shadow-green-500/20"
-                  : "from-zinc-800 to-zinc-700 hover:shadow-white/10",
-              )}
-              onClick={() => {
-                if (isOpen) onClose();
-                else onOpen();
-              }}
-            >
-              <span className="sr-only">search button</span>
-              <Search className="size-5" />
-            </motion.button>
-          )}
-        </AnimatePresence>
+        {/* Fixed-width container to prevent layout shift */}
+        <div className="relative flex w-10 items-center justify-center">
+          <AnimatePresence mode="wait">
+            {pathname === "/home" && (
+              <motion.button
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className={cn(
+                  "absolute rounded-full bg-gradient-to-r p-2.5 text-white transition-all duration-300 hover:shadow-lg",
+                  isOpen
+                    ? "from-green-600 to-green-400 shadow-md shadow-green-500/20"
+                    : "from-zinc-800 to-zinc-700 hover:shadow-white/10",
+                )}
+                onClick={() => {
+                  if (isOpen) onClose();
+                  else onOpen();
+                }}
+              >
+                <span className="sr-only">search button</span>
+                <Search className="size-5" />
+              </motion.button>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );

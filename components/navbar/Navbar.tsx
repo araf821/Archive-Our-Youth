@@ -90,12 +90,7 @@ const Navbar = () => {
           href="/"
           className={`${kobata.className} group flex items-center text-lg text-zinc-100 transition-all duration-300 hover:scale-105 md:text-xl`}
         >
-          <motion.span
-            whileHover={{ scale: 1.05 }}
-            className="bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent transition-all duration-300 group-hover:from-green-400 group-hover:to-green-600"
-          >
-            Archive Our Youth
-          </motion.span>
+          <motion.span>Archive Our Youth</motion.span>
         </Link>
 
         <NavLinks />
