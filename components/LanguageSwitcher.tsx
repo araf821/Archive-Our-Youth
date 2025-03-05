@@ -2,7 +2,8 @@
 
 import { useLanguage } from "./providers/LanguageProvider";
 import { Button } from "./ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/DropdownMenu";
+import { Languages } from "lucide-react";
+import { useModal } from "@/hooks/useModal";
 
 const languages = [
   { code: "en", label: "English" },
@@ -11,27 +12,20 @@ const languages = [
 ];
 
 export const LanguageSwitcher = () => {
-  const { currentLocale, setLocale } = useLanguage();
+  const { currentLocale } = useLanguage();
+  const { onOpen } = useModal();
 
   const currentLanguage = languages.find((lang) => lang.code === currentLocale);
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm">
-          {currentLanguage?.label || "Language"}
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        {languages.map((language) => (
-          <DropdownMenuItem
-            key={language.code}
-            onClick={() => setLocale(language.code)}
-          >
-            {language.label}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={() => onOpen("languageSwitcherModal")}
+      className="gap-2"
+    >
+      <Languages className="size-4" />
+      {currentLanguage?.label || "Language"}
+    </Button>
   );
 };

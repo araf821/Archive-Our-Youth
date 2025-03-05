@@ -1,32 +1,28 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import PostModal from "../old_components/V1PostModal";
+import { LanguageSwitcherModal } from "./LanguageSwitcherModal";
 import AuthModal from "./AuthModal";
-import ShareModal from "./ShareModal";
 import DeletePostModal from "./DeletePostModal";
+import ShareModal from "./ShareModal";
 import SubmitAuthModal from "./SubmitAuthModal";
 
-const ModalProvider = ({}) => {
+export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  if (!isMounted) {
-    return null;
-  }
+  if (!isMounted) return null;
 
   return (
     <>
-      <PostModal />
       <AuthModal />
       <ShareModal />
       <DeletePostModal />
       <SubmitAuthModal />
+      <LanguageSwitcherModal />
     </>
   );
 };
-
-export default ModalProvider;

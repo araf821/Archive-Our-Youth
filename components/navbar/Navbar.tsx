@@ -13,7 +13,7 @@ import { useMenu } from "@/hooks/useMenu";
 import Image from "next/image";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import {LanguageSwitcher} from "../LanguageSwitcher";
+import { LanguageSwitcher } from "../LanguageSwitcher";
 
 const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
@@ -59,7 +59,7 @@ const Navbar = () => {
   return (
     <nav
       className={cn(
-        "z-40 h-20 w-full border-b border-border-dark bg-background-muted shadow-[0_4px_20px_black] transition duration-300 hover:opacity-100",
+        "fixed z-40 h-20 w-full border-b border-border-dark bg-background-muted/95 shadow-md backdrop-blur-md transition duration-300 hover:opacity-100",
         {
           "translate-y-0": visible,
         },
