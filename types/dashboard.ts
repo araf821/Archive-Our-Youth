@@ -1,25 +1,21 @@
-import { UserType } from "@prisma/client";
+import { User, UserType } from "@prisma/client";
 
-export interface User {
-  name: string;
-  imageUrl: string;
-  createdAt: string;
-  role: UserType;
+export interface DashboardUser extends User {
   _count: {
     posts: number;
   };
 }
 
 export interface DashboardSidebarProps {
-  currentUser: User;
+  currentUser: DashboardUser;
 }
 
 export interface ProfileImageProps {
-  imageUrl: string;
+  imageUrl: string | null;
 }
 
 export interface UserInfoProps {
-  user: User;
+  user: DashboardUser;
 }
 
 export interface AdminPortalLinkProps {

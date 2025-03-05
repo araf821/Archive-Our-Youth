@@ -48,7 +48,7 @@ export const LanguageSwitcherModal = () => {
         <hr className="border-background-surface" />
 
         <div className="space-y-4">
-          <p className="text-text-secondary">
+          <p className="text-sm text-text-secondary">
             Archive Our Youth is currently in beta. While we strive to provide
             accurate translations, some content may only be available in English
             during this phase.
