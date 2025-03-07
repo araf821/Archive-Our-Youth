@@ -19,6 +19,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/Form";
+import { useTranslations } from "next-intl";
 
 interface TagsAndCountryProps {
   control: Control<FilterFormType>;
@@ -35,6 +36,8 @@ const TagsAndCountry = ({
   onDeleteTag,
   setValue,
 }: TagsAndCountryProps) => {
+  const t = useTranslations("Filters");
+
   return (
     <div className="flex gap-6 max-md:flex-col md:gap-8">
       <FormField
@@ -42,7 +45,7 @@ const TagsAndCountry = ({
         control={control}
         render={({ field }) => (
           <FormItem className="z-40 w-full space-y-0 md:w-[70%]">
-            <FormLabel className="text-zinc-300">Tags</FormLabel>
+            <FormLabel className="text-zinc-300">{t("tags.label")}</FormLabel>
             <FormControl className="pt-2">
               <div className="relative">
                 <MultiSelect
@@ -59,13 +62,13 @@ const TagsAndCountry = ({
               <div className="mt-4 rounded-md border border-zinc-700/50 bg-zinc-800/50 p-3">
                 <div className="mb-2 flex items-center justify-between">
                   <p className="text-sm text-zinc-400">
-                    Selected Tags ({tags.length}/5)
+                    {t("tags.selected")} ({tags.length}/5)
                   </p>
                   <button
                     onClick={() => setValue("tags", [])}
                     className="text-xs text-zinc-400 transition-colors hover:text-primary"
                   >
-                    Clear All
+                    {t("buttons.reset")}
                   </button>
                 </div>
                 <ul className="flex flex-wrap items-center gap-2">
@@ -89,13 +92,15 @@ const TagsAndCountry = ({
         control={control}
         render={({ field }) => (
           <FormItem className="w-full md:w-[30%]">
-            <FormLabel className="text-zinc-300">Country</FormLabel>
+            <FormLabel className="text-zinc-300">
+              {t("location.label")}
+            </FormLabel>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
                 <SelectTrigger className="morph-sm border border-zinc-700/50 bg-zinc-800/80 py-6 text-zinc-100 outline-none transition-all duration-200 focus:ring-1 focus:ring-primary/50">
                   <SelectValue
                     className="placeholder-zinc-400"
-                    placeholder="Select a country"
+                    placeholder={t("location.placeholder")}
                   />
                 </SelectTrigger>
               </FormControl>
@@ -106,7 +111,7 @@ const TagsAndCountry = ({
                   })}
                   value="any"
                 >
-                  Any
+                  {t("location.any")}
                 </SelectItem>
                 {allCountries.map((c) => (
                   <SelectItem

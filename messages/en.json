@@ -137,5 +137,47 @@
         "description": "Share your location (optional)"
       }
     }
+  },
+  "Filters": {
+    "title": "Filter Posts",
+    "close": "Close",
+    "search": {
+      "label": "Search posts",
+      "placeholder": "Enter keywords..."
+    },
+    "sort": {
+      "label": "Sort by",
+      "latest": "Latest",
+      "oldest": "Oldest",
+      "mostLiked": "Most Liked"
+    },
+    "tags": {
+      "label": "Tags",
+      "placeholder": "Add a tag...",
+      "selected": "Selected tags"
+    },
+    "location": {
+      "label": "Location",
+      "placeholder": "Select a country",
+      "any": "Any"
+    },
+    "postType": {
+      "label": "Post Type",
+      "all": "All",
+      "research": "Research"
+    },
+    "researchQuestion": {
+      "label": "Research Questions",
+      "all": "All",
+      "personal": "Personal",
+      "family": "Family",
+      "community": "Community",
+      "planetary": "Planetary",
+      "other": "Other"
+    },
+    "buttons": {
+      "apply": "Apply Filters",
+      "reset": "Reset"
+    }
   }
 }

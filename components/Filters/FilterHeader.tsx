@@ -1,18 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { SlidersHorizontal } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface FilterHeaderProps {
   onClose: () => void;
 }
 
 const FilterHeader = ({ onClose }: FilterHeaderProps) => {
+  const t = useTranslations("Filters");
+
   return (
     <>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <SlidersHorizontal className="h-6 w-6 text-primary" />
           <h2 className="bg-gradient-to-r from-zinc-100 to-zinc-400 bg-clip-text text-2xl font-medium text-transparent md:text-3xl">
-            Search & Filter
+            {t("title")}
           </h2>
         </div>
         <Button
@@ -21,7 +24,7 @@ const FilterHeader = ({ onClose }: FilterHeaderProps) => {
           size="icon"
           className="rounded-full hover:bg-zinc-800/50"
         >
-          <span className="sr-only">Close</span>
+          <span className="sr-only">{t("close")}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

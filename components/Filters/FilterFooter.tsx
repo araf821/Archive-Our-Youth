@@ -1,11 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { RefreshCcw, Search } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface FilterFooterProps {
   onReset: () => void;
 }
 
 const FilterFooter = ({ onReset }: FilterFooterProps) => {
+  const t = useTranslations("Filters");
+
   return (
     <>
       <div className="my-6 h-px w-full bg-gradient-to-r from-transparent via-zinc-700 to-transparent"></div>
@@ -19,7 +22,7 @@ const FilterFooter = ({ onReset }: FilterFooterProps) => {
         >
           <span className="absolute inset-0 -translate-y-full bg-gradient-to-b from-zinc-700/0 to-zinc-700/20 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"></span>
           <span className="relative z-10 flex items-center">
-            Reset
+            {t("buttons.reset")}
             <RefreshCcw className="ml-2 size-4 transition-transform duration-300 group-hover:rotate-180" />
           </span>
         </Button>
@@ -27,7 +30,7 @@ const FilterFooter = ({ onReset }: FilterFooterProps) => {
           <span className="absolute inset-0 -translate-y-full bg-gradient-to-b from-black/0 to-black/10 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"></span>
           <span className="relative z-10 flex items-center font-medium tracking-wider">
             <Search className="mr-2 h-4 w-4" />
-            Search
+            {t("buttons.apply")}
           </span>
         </Button>
       </div>

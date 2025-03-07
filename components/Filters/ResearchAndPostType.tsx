@@ -16,6 +16,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/Form";
+import { useTranslations } from "next-intl";
 
 interface ResearchAndPostTypeProps {
   control: Control<FilterFormType>;
@@ -26,6 +27,8 @@ const ResearchAndPostType = ({
   control,
   getValues,
 }: ResearchAndPostTypeProps) => {
+  const t = useTranslations("Filters");
+
   return (
     <div className="flex gap-6 max-md:flex-col md:gap-8">
       <FormField
@@ -33,13 +36,15 @@ const ResearchAndPostType = ({
         control={control}
         render={({ field }) => (
           <FormItem className="w-full md:w-[70%]">
-            <FormLabel className="text-zinc-300">Research Question</FormLabel>
+            <FormLabel className="text-zinc-300">
+              {t("researchQuestion.label")}
+            </FormLabel>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
                 <SelectTrigger className="morph-sm h-fit border border-zinc-700/50 bg-zinc-800/80 py-3.5 text-zinc-100 outline-none transition-all duration-200 focus:ring-1 focus:ring-primary/50">
                   <SelectValue
                     className="placeholder-zinc-400"
-                    placeholder="Search by a question"
+                    placeholder={t("researchQuestion.label")}
                   />
                 </SelectTrigger>
               </FormControl>
@@ -51,7 +56,7 @@ const ResearchAndPostType = ({
                   })}
                   value="any"
                 >
-                  Any
+                  {t("researchQuestion.all")}
                 </SelectItem>
                 {RESEARCH_QUESTIONS.map(({ id, text }) => (
                   <SelectItem
@@ -80,7 +85,9 @@ const ResearchAndPostType = ({
         control={control}
         render={({ field }) => (
           <FormItem className="w-full md:w-[30%]">
-            <FormLabel className="text-zinc-300">Post Type</FormLabel>
+            <FormLabel className="text-zinc-300">
+              {t("postType.label")}
+            </FormLabel>
             <Select
               onValueChange={field.onChange}
               defaultValue={field.value || ""}
@@ -89,7 +96,7 @@ const ResearchAndPostType = ({
                 <SelectTrigger className="morph-sm border border-zinc-700/50 bg-zinc-800/80 py-6 text-zinc-100 outline-none transition-all duration-200 focus:ring-1 focus:ring-primary/50">
                   <SelectValue
                     className="placeholder-zinc-400"
-                    placeholder="Select a media"
+                    placeholder={t("postType.label")}
                   />
                 </SelectTrigger>
               </FormControl>
@@ -101,7 +108,7 @@ const ResearchAndPostType = ({
                   })}
                   value="ANY"
                 >
-                  Any
+                  {t("postType.all")}
                 </SelectItem>
                 {postTypes.map((type) => (
                   <SelectItem

@@ -137,5 +137,47 @@
         "description": "Partagez votre localisation (optionnel)"
       }
     }
+  },
+  "Filters": {
+    "title": "Filtrer les Articles",
+    "close": "Fermer",
+    "search": {
+      "label": "Rechercher des articles",
+      "placeholder": "Entrez des mots-clés..."
+    },
+    "sort": {
+      "label": "Trier par",
+      "latest": "Plus récents",
+      "oldest": "Plus anciens",
+      "mostLiked": "Plus aimés"
+    },
+    "tags": {
+      "label": "Tags",
+      "placeholder": "Ajouter un tag...",
+      "selected": "Tags sélectionnés"
+    },
+    "location": {
+      "label": "Localisation",
+      "placeholder": "Sélectionner un pays",
+      "any": "Tous"
+    },
+    "postType": {
+      "label": "Type d'Article",
+      "all": "Tous",
+      "research": "Recherche"
+    },
+    "researchQuestion": {
+      "label": "Questions de Recherche",
+      "all": "Toutes",
+      "personal": "Personnel",
+      "family": "Familial",
+      "community": "Communautaire",
+      "planetary": "Planétaire",
+      "other": "Autre"
+    },
+    "buttons": {
+      "apply": "Appliquer les Filtres",
+      "reset": "Réinitialiser"
+    }
   }
 }

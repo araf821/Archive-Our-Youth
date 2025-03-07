@@ -137,5 +137,47 @@
         "description": "Comparta su ubicación (opcional)"
       }
     }
+  },
+  "Filters": {
+    "title": "Filtrar Publicaciones",
+    "close": "Cerrar",
+    "search": {
+      "label": "Buscar publicaciones",
+      "placeholder": "Ingrese palabras clave..."
+    },
+    "sort": {
+      "label": "Ordenar por",
+      "latest": "Más recientes",
+      "oldest": "Más antiguos",
+      "mostLiked": "Más gustados"
+    },
+    "tags": {
+      "label": "Etiquetas",
+      "placeholder": "Agregar una etiqueta...",
+      "selected": "Etiquetas seleccionadas"
+    },
+    "location": {
+      "label": "Ubicación",
+      "placeholder": "Seleccionar un país",
+      "any": "Cualquiera"
+    },
+    "postType": {
+      "label": "Tipo de Publicación",
+      "all": "Todas",
+      "research": "Investigación"
+    },
+    "researchQuestion": {
+      "label": "Preguntas de Investigación",
+      "all": "Todas",
+      "personal": "Personal",
+      "family": "Familiar",
+      "community": "Comunitario",
+      "planetary": "Planetario",
+      "other": "Otro"
+    },
+    "buttons": {
+      "apply": "Aplicar Filtros",
+      "reset": "Restablecer"
+    }
   }
 }
