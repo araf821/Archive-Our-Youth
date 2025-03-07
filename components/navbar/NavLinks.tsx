@@ -1,12 +1,13 @@
 "use client";
 
-import { useFilters } from "@/hooks/useFilters";
-import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
-import { Search } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import { Search } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+import { cn } from "@/lib/utils";
+import { useFilters } from "@/hooks/useFilters";
 
 export const navLinks = [
   {

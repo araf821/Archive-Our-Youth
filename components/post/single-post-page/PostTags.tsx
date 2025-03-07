@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import Tag from "../../Tag";
 
 interface PostTagsProps {

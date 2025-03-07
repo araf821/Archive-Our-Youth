@@ -1,6 +1,6 @@
-import UserPost from "@/components/post/UserPost";
-import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/lib/db";
+import { Skeleton } from "@/components/ui/skeleton";
+import UserPost from "@/components/post/UserPost";
 
 interface PostListProps {
   userId: string;

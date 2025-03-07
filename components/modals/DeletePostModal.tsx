@@ -1,6 +1,13 @@
 "use client";
 
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { Loader2, X } from "lucide-react";
+import { toast } from "sonner";
+
 import { useModal } from "@/hooks/useModal";
+
 import {
   Dialog,
   DialogContent,
@@ -9,11 +16,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/Dialog";
-import axios from "axios";
-import { useTransition, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Loader2, X } from "lucide-react";
-import { toast } from "sonner";
 
 const DeletePostModal = () => {
   const { onClose, type, data, isOpen } = useModal();
@@ -47,7 +49,7 @@ const DeletePostModal = () => {
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md space-y-4 bg-background-muted px-4 py-8 outline-none">
-        <DialogTrigger className="absolute right-2 top-2  transition hover:rotate-90">
+        <DialogTrigger className="absolute right-2 top-2 transition hover:rotate-90">
           <X className="text-zinc-500 max-md:h-5 max-md:w-5" />
         </DialogTrigger>
         <DialogHeader>

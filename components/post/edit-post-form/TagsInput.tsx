@@ -1,18 +1,19 @@
 "use client";
 
-import { X, RefreshCcw } from "lucide-react";
+import { RefreshCcw, X } from "lucide-react";
+import type { UseFormReturn } from "react-hook-form";
+import { z } from "zod";
+
 import { cn } from "@/lib/utils";
-import { allTags } from "@/components/post-creation-form/TagSelectionSlide";
+import { PostEditValidator } from "@/lib/validators/post";
 import {
   FormControl,
   FormField,
   FormItem,
   FormMessage,
 } from "@/components/ui/Form";
-import type { UseFormReturn } from "react-hook-form";
-import { PostEditValidator } from "@/lib/validators/post";
-import { z } from "zod";
 import MultiSelect from "@/components/MultiSelect";
+import { allTags } from "@/components/post-creation-form/TagSelectionSlide";
 
 interface TagsInputProps {
   form: UseFormReturn<z.infer<typeof PostEditValidator>>;

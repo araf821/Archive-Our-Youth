@@ -1,6 +1,7 @@
 "use client";
 
 import { SignOutButton as SignOut } from "@clerk/nextjs";
+
 import { cn } from "@/lib/utils";
 
 interface SignOutButtonProps {

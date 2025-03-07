@@ -1,6 +1,10 @@
 "use client";
 
+import Link from "next/link";
+import { X } from "lucide-react";
+
 import { useModal } from "@/hooks/useModal";
+
 import {
   Dialog,
   DialogContent,
@@ -9,8 +13,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/Dialog";
-import { X } from "lucide-react";
-import Link from "next/link";
 
 const AuthModal = () => {
   const { onClose, type, isOpen } = useModal();
@@ -32,7 +34,7 @@ const AuthModal = () => {
 
         <Link
           href="/sign-in"
-          className="mt-1 w-full  rounded-sm bg-primary py-1.5 text-center font-semibold text-background transition duration-200 hover:bg-primary-dark"
+          className="mt-1 w-full rounded-sm bg-primary py-1.5 text-center font-semibold text-background transition duration-200 hover:bg-primary-dark"
         >
           Sign In
         </Link>

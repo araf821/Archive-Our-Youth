@@ -1,9 +1,10 @@
-import EmptyState from "@/components/EmptyState";
-import CommentSection from "@/components/comments/CommentSection";
-import SinglePost from "@/components/post/SinglePost";
+import { FC, Suspense } from "react";
+
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
-import { FC, Suspense } from "react";
+import CommentSection from "@/components/comments/CommentSection";
+import EmptyState from "@/components/EmptyState";
+import SinglePost from "@/components/post/SinglePost";
 
 interface SinglePostPageParams {
   params: {
@@ -53,7 +54,7 @@ const page: FC<SinglePostPageParams> = async ({ params }) => {
 
   return (
     <main className="px-4 pb-12">
-      <div className="mx-auto w-full max-w-screen-md ">
+      <div className="mx-auto w-full max-w-screen-md">
         <SinglePost currentUser={currentUser} post={post} />
         <Suspense fallback={<CommentSection.Skeleton />}>
           <CommentSection user={currentUser} postId={post.id} />

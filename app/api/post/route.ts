@@ -1,9 +1,10 @@
-import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
-import slugify from "slugify";
 import { nanoid } from "nanoid";
-import { PostCreationValidator } from "@/lib/validators/post";
+import slugify from "slugify";
+
+import { db } from "@/lib/db";
 import { initializeUser } from "@/lib/initializeUser";
+import { PostCreationValidator } from "@/lib/validators/post";
 
 export async function POST(req: Request) {
   try {

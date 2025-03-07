@@ -1,6 +1,7 @@
 "use client";
 
 import { FC } from "react";
+
 import GridItem from "./GridItem";
 
 interface AnimatedGridProps {}

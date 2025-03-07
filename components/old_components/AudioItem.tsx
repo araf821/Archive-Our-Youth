@@ -1,9 +1,10 @@
+import { FC, useState } from "react";
+import Image from "next/image";
 import { Post, User } from "@prisma/client";
 import { AnimatePresence } from "framer-motion";
 import { Volume2 } from "lucide-react";
-import { FC, useState } from "react";
+
 import Overlay from "../Overlay";
-import Image from "next/image";
 
 interface AudioItemProps {
   post: Post & { user: User | null };

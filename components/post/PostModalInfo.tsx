@@ -1,9 +1,11 @@
 "use client";
 
 import { Post, User } from "@prisma/client";
-import LikeButton from "../LikeButton";
-import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+
+import { cn } from "@/lib/utils";
+
+import LikeButton from "../LikeButton";
 
 interface PostModalInfoProps {
   post: Post & { user: User | null };

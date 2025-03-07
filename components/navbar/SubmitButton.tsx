@@ -1,11 +1,12 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
-import { useModal } from "@/hooks/useModal";
+import { useUser } from "@clerk/nextjs";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+
+import { cn } from "@/lib/utils";
+import { useModal } from "@/hooks/useModal";
 
 const SubmitButton = ({ pathname }: { pathname: string }) => {
   const t = useTranslations();

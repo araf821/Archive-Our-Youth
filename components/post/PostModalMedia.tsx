@@ -1,10 +1,12 @@
 "use client";
 
 import { Post } from "@prisma/client";
-import DynamicImage from "../DynamicImage";
-import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
-import { AudioPlayer } from "../ui/AudioPlayer";
 import { useTranslations } from "next-intl";
+
+import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
+
+import DynamicImage from "../DynamicImage";
+import { AudioPlayer } from "../ui/AudioPlayer";
 
 interface PostModalMediaProps {
   post: Post;

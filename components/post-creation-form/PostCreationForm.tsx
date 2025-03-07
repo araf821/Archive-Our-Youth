@@ -1,21 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { toast } from "sonner";
-import { Form } from "../ui/Form";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
-import ResearchQuestions from "./ResearchQuestions";
-import TypeSelectionSlide from "./TypeSelectionSlide";
-import TitleSlide from "./TitleSlide";
+import { Form } from "../ui/Form";
+import { ConsentForm } from "./ConsentForm";
 import ContentSlide from "./ContentSlide";
 import DescriptionSlide from "./DescriptionSlide";
+import { usePostForm } from "./hooks/usePostForm";
+import LocationSelection from "./LocationSelection";
+import ResearchQuestions from "./ResearchQuestions";
 import TagSelectionSlide from "./TagSelectionSlide";
 import ThumbnailSlide from "./ThumbnailSlide";
-import LocationSelection from "./LocationSelection";
-
-import { usePostForm } from "./hooks/usePostForm";
-import { ConsentForm } from "./ConsentForm";
+import TitleSlide from "./TitleSlide";
+import TypeSelectionSlide from "./TypeSelectionSlide";
 
 const PostCreationForm = () => {
   const t = useTranslations("PostCreation");

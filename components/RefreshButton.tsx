@@ -1,7 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { ListRestart } from "lucide-react";
+
+import { cn } from "@/lib/utils";
 
 interface RefreshButtonProps {
   className?: string;

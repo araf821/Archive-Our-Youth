@@ -1,6 +1,8 @@
 import { FC } from "react";
 import Image from "next/image";
+
 import { cn } from "@/lib/utils";
+
 import { DeleteButton } from "./DeleteButton";
 
 interface ImageRendererProps {

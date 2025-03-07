@@ -1,14 +1,15 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { User } from "@prisma/client";
-import { Heart } from "lucide-react";
 import { FC, useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useModal } from "@/hooks/useModal";
-import { toast } from "sonner";
+import { User } from "@prisma/client";
+import axios from "axios";
+import { Heart } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
+
+import { cn } from "@/lib/utils";
+import { useModal } from "@/hooks/useModal";
 
 interface LikeButtonProps {
   postId: string;

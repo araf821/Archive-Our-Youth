@@ -1,8 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { FC, useState } from "react";
 import { toast } from "sonner";
+
+import { cn } from "@/lib/utils";
 
 interface MultiSelectProps {
   options: string[];

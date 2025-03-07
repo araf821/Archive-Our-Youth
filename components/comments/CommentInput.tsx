@@ -1,16 +1,18 @@
 "use client";
 
-import { openSans } from "@/app/fonts";
-import { cn } from "@/lib/utils";
+import { FC, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { User } from "@prisma/client";
 import axios from "axios";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { FC, useState } from "react";
 import { toast } from "sonner";
-import { Button } from "../ui/button";
+
+import { cn } from "@/lib/utils";
 import { CommentValidator } from "@/lib/validators/comment";
-import Link from "next/link";
+import { openSans } from "@/app/fonts";
+
+import { Button } from "../ui/button";
 
 interface CommentInputProps {
   user: User | null;

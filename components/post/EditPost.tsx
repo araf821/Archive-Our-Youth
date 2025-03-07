@@ -1,24 +1,25 @@
 "use client";
 
-import { Post } from "@prisma/client";
 import { FC, useState } from "react";
-import { useForm } from "react-hook-form";
-import { Form } from "../ui/Form";
-import { Button } from "../ui/button";
-
-import { TagsInput } from "./edit-post-form/TagsInput";
-import { z } from "zod";
-import { PostEditValidator } from "@/lib/validators/post";
-import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Post } from "@prisma/client";
+import axios from "axios";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { DescriptionField } from "./edit-post-form/DescriptionField";
+import { z } from "zod";
+
+import { PostEditValidator } from "@/lib/validators/post";
+
 import DynamicImage from "../DynamicImage";
-import PostContentField from "./edit-post-form/PostContentField";
-import ThumbnailField from "./edit-post-form/ThumbnailField";
-import { ResearchQuestions } from "./edit-post-form/ResearchQuestions";
+import { Button } from "../ui/button";
+import { Form } from "../ui/Form";
+import { DescriptionField } from "./edit-post-form/DescriptionField";
 import { LocationSelect } from "./edit-post-form/LocationSelect";
+import PostContentField from "./edit-post-form/PostContentField";
+import { ResearchQuestions } from "./edit-post-form/ResearchQuestions";
+import { TagsInput } from "./edit-post-form/TagsInput";
+import ThumbnailField from "./edit-post-form/ThumbnailField";
 
 interface EditPostProps {
   post: Post;

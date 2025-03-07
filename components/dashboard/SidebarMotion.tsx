@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { FC, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 interface SidebarMotionProps {
   children: React.ReactNode;

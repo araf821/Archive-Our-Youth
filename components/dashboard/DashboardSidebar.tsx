@@ -1,7 +1,8 @@
 import { DashboardSidebarProps } from "@/types/dashboard";
+
+import AdminPortalLink from "./AdminPortalLink";
 import ProfileImage from "./ProfileImage";
 import UserInfo from "./UserInfo";
-import AdminPortalLink from "./AdminPortalLink";
 
 const DashboardSidebar = ({ currentUser }: DashboardSidebarProps) => {
   return (

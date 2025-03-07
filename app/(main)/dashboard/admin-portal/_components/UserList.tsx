@@ -1,15 +1,18 @@
 "use client";
 
-import { cn, formatDateString } from "@/lib/utils";
-import Image from "next/image";
-import UserDropdown from "./UserDropdown";
-import { Skeleton } from "@/components/ui/skeleton";
-import Pagination from "./Pagination";
 import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
+import { fetchUsers } from "@/actions/admin-fetch/fetchUsers";
 import { User } from "@prisma/client";
 import { toast } from "sonner";
-import { fetchUsers } from "@/actions/admin-fetch/fetchUsers";
+
 import { FETCH_USERS_MAX } from "@/lib/constants";
+import { cn, formatDateString } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
+
+import Pagination from "./Pagination";
+import UserDropdown from "./UserDropdown";
+
 interface UserListProps {
   page?: number;
 }

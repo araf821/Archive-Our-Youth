@@ -1,10 +1,12 @@
-import { TPostCreationForm } from "@/lib/types/form";
 import { FC, useState } from "react";
-import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
-import { AnimatedTabs } from "../ui/animated-tabs";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { ExternalLink } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+
+import { TPostCreationForm } from "@/lib/types/form";
+
+import { AnimatedTabs } from "../ui/animated-tabs";
+import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
 
 interface DescriptionSlideProps {
   form: TPostCreationForm;

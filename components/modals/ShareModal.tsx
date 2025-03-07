@@ -1,5 +1,10 @@
 "use client";
 
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { Check, Copy, Facebook, Mail, Twitter } from "lucide-react";
+import { toast } from "sonner";
+
 import { useModal } from "@/hooks/useModal";
 import {
   Dialog,
@@ -7,10 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/Dialog";
-import { usePathname } from "next/navigation";
-import { Check, Copy, Facebook, Mail, Twitter } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
+
 import ShareButton from "./ShareButton";
 
 const ShareModal = () => {

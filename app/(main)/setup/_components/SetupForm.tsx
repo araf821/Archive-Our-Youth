@@ -1,6 +1,15 @@
 "use client";
 
-import FileUpload from "@/components/file-upload/FileUpload";
+import { FC, useState } from "react";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { User } from "@prisma/client";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+
+import { UserSetupValidator } from "@/lib/validators/user-setup";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,15 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/Form";
 import { Input } from "@/components/ui/input";
-import { UserSetupValidator } from "@/lib/validators/user-setup";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { User } from "@prisma/client";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { FC, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
+import FileUpload from "@/components/file-upload/FileUpload";
 
 interface SetupFormProps {
   user: User;

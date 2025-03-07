@@ -1,7 +1,8 @@
+import { NextResponse } from "next/server";
+import { Post } from "@prisma/client";
+
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
-import { Post } from "@prisma/client";
-import { NextResponse } from "next/server";
 
 export async function PUT(
   req: Request,

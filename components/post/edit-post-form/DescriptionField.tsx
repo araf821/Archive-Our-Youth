@@ -1,3 +1,10 @@
+import { useState } from "react";
+import { ExternalLink } from "lucide-react";
+import { UseFormReturn } from "react-hook-form";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { z } from "zod";
+
+import { PostEditValidator } from "@/lib/validators/post";
 import { AnimatedTabs } from "@/components/ui/animated-tabs";
 import {
   FormControl,
@@ -5,12 +12,6 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/Form";
-import { PostEditValidator } from "@/lib/validators/post";
-import { ExternalLink } from "lucide-react";
-import { useState } from "react";
-import { UseFormReturn } from "react-hook-form";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { z } from "zod";
 
 type Props = {
   form: UseFormReturn<z.infer<typeof PostEditValidator>>;

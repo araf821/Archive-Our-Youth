@@ -1,14 +1,15 @@
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { ChevronDown } from "lucide-react";
+
+import { adminNavItems } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
-import { adminNavItems } from "@/lib/constants";
-import { cn } from "@/lib/utils";
-import { ChevronDown } from "lucide-react";
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
 
 interface MobileNavbarProps {
   pathname: string;
@@ -22,14 +23,14 @@ const MobileNavbar = ({ pathname }: MobileNavbarProps) => {
   const pathLabel = pathname.includes("stats")
     ? "Stats"
     : pathname.includes("users")
-    ? "Users"
-    : pathname.includes("posts")
-    ? "Posts"
-    : pathname.includes("comments")
-    ? "Comments"
-    : pathname.includes("logs")
-    ? "Logs"
-    : "Select";
+      ? "Users"
+      : pathname.includes("posts")
+        ? "Posts"
+        : pathname.includes("comments")
+          ? "Comments"
+          : pathname.includes("logs")
+            ? "Logs"
+            : "Select";
   useEffect(() => {
     setContentWidth(dropdownTriggerRef.current?.clientWidth || 300);
   }, [dropdownTriggerRef.current?.clientWidth]);

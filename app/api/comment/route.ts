@@ -1,8 +1,9 @@
+import { revalidatePath } from "next/cache";
+import { NextResponse } from "next/server";
+
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { CommentValidator } from "@/lib/validators/comment";
-import { revalidatePath } from "next/cache";
-import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {

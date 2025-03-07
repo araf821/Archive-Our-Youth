@@ -1,15 +1,17 @@
 "use client";
 
-import { cn, isYouTubeUrl, getYouTubeVideoId } from "@/lib/utils";
-import { Post } from "@prisma/client";
-import Image from "next/image";
 import { FC, useState } from "react";
-import DashboardPostInfo from "./DashboardPostInfo";
-import { ArrowRight, Trash } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { useModal } from "@/hooks/useModal";
+import { Post } from "@prisma/client";
 import { motion } from "framer-motion";
+import { ArrowRight, Trash } from "lucide-react";
+
+import { cn, getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
+import { useModal } from "@/hooks/useModal";
+
 import { AudioPlayer } from "../ui/AudioPlayer";
+import DashboardPostInfo from "./DashboardPostInfo";
 
 interface UserPostProps {
   post: Post;

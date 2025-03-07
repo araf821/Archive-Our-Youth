@@ -1,18 +1,20 @@
 "use client";
 
+import { Languages, X } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { useModal } from "@/hooks/useModal";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogDescription,
 } from "@/components/ui/Dialog";
-import { Button } from "@/components/ui/button";
-import { useModal } from "@/hooks/useModal";
+
 import { useLanguage } from "../providers/LanguageProvider";
-import { Languages, X } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const languages = [
   { code: "en", label: "English" },

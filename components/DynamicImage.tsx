@@ -1,9 +1,10 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Loader2, Scaling } from "lucide-react";
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
+import { Loader2, Scaling } from "lucide-react";
+
+import { cn } from "@/lib/utils";
 
 interface DynamicImageProps {
   src: string;

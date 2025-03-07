@@ -1,7 +1,9 @@
 import { FC } from "react";
-import { User } from "@prisma/client";
 import Image from "next/image";
+import { User } from "@prisma/client";
+
 import { dateFormat } from "@/lib/dateFormat";
+
 import AnonymousPostInfo from "../../AnonymousPostInfo";
 
 interface PostAuthorProps {

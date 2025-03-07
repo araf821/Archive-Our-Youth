@@ -1,17 +1,9 @@
+import { useTranslations } from "next-intl";
+import { Control } from "react-hook-form";
+
 import { allCountries } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { Control } from "react-hook-form";
 import { FilterFormType } from "@/lib/validators/filters";
-import { allTags } from "@/components/post-creation-form/TagSelectionSlide";
-import MultiSelect from "@/components/MultiSelect";
-import Tag from "@/components/Tag";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   FormControl,
   FormField,
@@ -19,7 +11,16 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/Form";
-import { useTranslations } from "next-intl";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import MultiSelect from "@/components/MultiSelect";
+import { allTags } from "@/components/post-creation-form/TagSelectionSlide";
+import Tag from "@/components/Tag";
 
 interface TagsAndCountryProps {
   control: Control<FilterFormType>;

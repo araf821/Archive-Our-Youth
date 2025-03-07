@@ -1,5 +1,12 @@
 "use client";
 
+import { UseFormReturn } from "react-hook-form";
+import { z } from "zod";
+
+import { allCountries } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+import { PostEditValidator } from "@/lib/validators/post";
+import { FormControl, FormField, FormItem } from "@/components/ui/Form";
 import {
   Select,
   SelectContent,
@@ -7,12 +14,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { allCountries } from "@/lib/constants";
-import { cn } from "@/lib/utils";
-import { FormControl, FormField, FormItem } from "@/components/ui/Form";
-import { UseFormReturn } from "react-hook-form";
-import { PostEditValidator } from "@/lib/validators/post";
-import { z } from "zod";
 
 interface LocationSelectProps {
   form: UseFormReturn<z.infer<typeof PostEditValidator>>;

@@ -1,8 +1,9 @@
 "use client";
 
-import { useModal } from "@/hooks/useModal";
-import { Share } from "lucide-react";
 import { FC } from "react";
+import { Share } from "lucide-react";
+
+import { useModal } from "@/hooks/useModal";
 
 interface ShareButtonProps {
   link: string;

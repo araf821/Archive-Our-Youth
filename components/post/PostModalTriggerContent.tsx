@@ -1,12 +1,14 @@
 "use client";
 
-import { Post, User } from "@prisma/client";
-import Overlay from "../Overlay";
 import { useState } from "react";
 import Image from "next/image";
+import { Post, User } from "@prisma/client";
 import { File, Pen, Video, Volume2 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+
+import { cn } from "@/lib/utils";
+
+import Overlay from "../Overlay";
 
 interface PostModalTriggerContentProps {
   post: Post & { user: User | null };
@@ -26,19 +28,19 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
           <Overlay />
           <div className="group absolute inset-0 z-10 grid place-items-center">
             {post.contentType === "AUDIO" && (
-              <Volume2 className="text-black/50 transition-colors  hover:text-black md:h-8 md:w-8" />
+              <Volume2 className="text-black/50 transition-colors hover:text-black md:h-8 md:w-8" />
             )}
 
             {post.contentType === "VIDEO" && (
-              <Video className="text-black/50 transition-colors  hover:text-black md:h-8 md:w-8" />
+              <Video className="text-black/50 transition-colors hover:text-black md:h-8 md:w-8" />
             )}
 
             {post.contentType === "TEXT" && (
-              <Pen className="text-black/50 transition-colors  hover:text-black md:h-8 md:w-8" />
+              <Pen className="text-black/50 transition-colors hover:text-black md:h-8 md:w-8" />
             )}
 
             {post.contentType === "PDF" && (
-              <File className="text-black/50 transition-colors  hover:text-black md:h-8 md:w-8" />
+              <File className="text-black/50 transition-colors hover:text-black md:h-8 md:w-8" />
             )}
           </div>
         </>

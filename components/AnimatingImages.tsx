@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export const images = [
   "https://utfs.io/f/16cf66ae-25c4-4bd3-8dec-b79cd388dac9-30qgi1.jpg",

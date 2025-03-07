@@ -1,5 +1,6 @@
-import { getCurrentUser } from "@/lib/getCurrentUser";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
+
+import { getCurrentUser } from "@/lib/getCurrentUser";
 
 const f = createUploadthing();
 

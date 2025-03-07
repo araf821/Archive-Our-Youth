@@ -1,13 +1,15 @@
 "use client";
 
-import { useModal } from "@/hooks/useModal";
-import { useUser } from "@clerk/nextjs";
-import Link from "next/link";
 import { FC, useEffect, useState } from "react";
-import FadeInX from "./FadeInX";
-import { motion } from "framer-motion";
-import { kobata } from "@/app/fonts";
 import Image from "next/image";
+import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
+import { motion } from "framer-motion";
+
+import { useModal } from "@/hooks/useModal";
+import { kobata } from "@/app/fonts";
+
+import FadeInX from "./FadeInX";
 import FadeInY from "./FadeInY";
 
 interface LandingPageClientProps {}
@@ -64,7 +66,7 @@ const LandingPageClient: FC<LandingPageClientProps> = ({}) => {
               className="relative block"
               href="/submit"
             >
-              <div className="w-56 rounded-md bg-primary px-4 py-2.5 font-medium tracking-wide text-zinc-800 transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:text-black active:translate-x-1 active:translate-y-1 md:text-lg ">
+              <div className="w-56 rounded-md bg-primary px-4 py-2.5 font-medium tracking-wide text-zinc-800 transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:text-black active:translate-x-1 active:translate-y-1 md:text-lg">
                 Submit A Post
               </div>
               <span className="absolute inset-0 -z-10 translate-x-1 translate-y-1 rounded-md bg-green-950" />

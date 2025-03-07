@@ -1,11 +1,12 @@
 "use client";
 
-import { Post, User } from "@prisma/client";
 import { Modal, ModalContent, useDisclosure } from "@nextui-org/modal";
-import PostModalTriggerContent from "./PostModalTriggerContent";
-import PostModalMedia from "./PostModalMedia";
+import { Post, User } from "@prisma/client";
+
 import PostModalHeader from "./PostModalHeader";
 import PostModalInfo from "./PostModalInfo";
+import PostModalMedia from "./PostModalMedia";
+import PostModalTriggerContent from "./PostModalTriggerContent";
 
 interface PostModalProps {
   post: Post & { user: User | null };
@@ -40,23 +41,7 @@ const PostModal = ({
         data-xl-last-row={xlLastRow}
         data-lg-first-row={lgFirstRow}
         data-xl-first-row={xlFirstRow}
-        className={`
-          group relative aspect-square cursor-pointer overflow-hidden outline-none outline outline-[3px] outline-offset-0
-          transition-all duration-150 ease-out hover:z-50 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4
-          focus-visible:outline-green-600 lg:hover:scale-110 lg:hover:rounded-md lg:hover:shadow-[0_0_60px,0_0_30px] lg:hover:shadow-black
-
-          lg:hover:outline-zinc-950
-          lg:[&[data-lg-first-row="true"]]:hover:translate-y-[7%]
-          lg:[&[data-lg-last-row="true"]]:hover:-translate-y-[7%]
-          lg:[&[data-lg-pos="0"]]:hover:translate-x-[7%]
-
-          lg:[&[data-lg-pos="4"]]:hover:-translate-x-[7%]
-          xl:[&[data-lg-pos]]:hover:translate-x-0
-          xl:[&[data-xl-first-row="true"]]:hover:translate-y-[7%]
-          xl:[&[data-xl-last-row="true"]]:hover:-translate-y-[7%]
-          xl:[&[data-xl-pos="0"]]:hover:translate-x-[7%]
-          xl:[&[data-xl-pos="5"]]:hover:-translate-x-[7%]
-        `}
+        className={`group relative aspect-square cursor-pointer overflow-hidden outline-none outline outline-[3px] outline-offset-0 transition-all duration-150 ease-out hover:z-50 focus-visible:z-[9999] focus-visible:outline focus-visible:outline-4 focus-visible:outline-green-600 lg:hover:scale-110 lg:hover:rounded-md lg:hover:shadow-[0_0_60px,0_0_30px] lg:hover:shadow-black lg:hover:outline-zinc-950 lg:[&[data-lg-first-row="true"]]:hover:translate-y-[7%] lg:[&[data-lg-last-row="true"]]:hover:-translate-y-[7%] lg:[&[data-lg-pos="0"]]:hover:translate-x-[7%] lg:[&[data-lg-pos="4"]]:hover:-translate-x-[7%] xl:[&[data-lg-pos]]:hover:translate-x-0 xl:[&[data-xl-first-row="true"]]:hover:translate-y-[7%] xl:[&[data-xl-last-row="true"]]:hover:-translate-y-[7%] xl:[&[data-xl-pos="0"]]:hover:translate-x-[7%] xl:[&[data-xl-pos="5"]]:hover:-translate-x-[7%]`}
       >
         <PostModalTriggerContent post={post} currentUser={currentUser} />
       </button>

@@ -1,8 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { FC, useEffect, useRef, useState } from "react";
-import { Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { Pause, Play, Volume2, VolumeX } from "lucide-react";
+
+import { cn } from "@/lib/utils";
 
 interface AudioPlayerProps {
   src: string;
@@ -96,7 +97,7 @@ export const AudioPlayer: FC<AudioPlayerProps> = ({
     >
       <audio ref={audioRef} src={src} />
 
-      <div className=" flex  items-center gap-6">
+      <div className="flex items-center gap-6">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -120,19 +121,7 @@ export const AudioPlayer: FC<AudioPlayerProps> = ({
               max={Math.floor(duration || 0)}
               value={currentTime}
               onChange={handleProgress}
-              className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-gradient-to-r from-primary/20 to-background-elevated transition-all hover:from-primary/30
-               [&::-webkit-slider-thumb]:h-3.5
-               [&::-webkit-slider-thumb]:w-3.5
-               [&::-webkit-slider-thumb]:appearance-none
-               [&::-webkit-slider-thumb]:rounded-full
-               [&::-webkit-slider-thumb]:border-2
-               [&::-webkit-slider-thumb]:border-primary/60
-               [&::-webkit-slider-thumb]:bg-primary-light
-               [&::-webkit-slider-thumb]:opacity-0
-               [&::-webkit-slider-thumb]:shadow-sm
-               [&::-webkit-slider-thumb]:transition-all
-               group-hover:[&::-webkit-slider-thumb]:border-primary
-               group-hover:[&::-webkit-slider-thumb]:opacity-100"
+              className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-gradient-to-r from-primary/20 to-background-elevated transition-all hover:from-primary/30 [&::-webkit-slider-thumb]:h-3.5 [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-primary/60 [&::-webkit-slider-thumb]:bg-primary-light [&::-webkit-slider-thumb]:opacity-0 [&::-webkit-slider-thumb]:shadow-sm [&::-webkit-slider-thumb]:transition-all group-hover:[&::-webkit-slider-thumb]:border-primary group-hover:[&::-webkit-slider-thumb]:opacity-100"
               style={{
                 background: `linear-gradient(to right, rgb(34, 197, 94, 0.5) 0%, rgb(34, 197, 94, 0.5) ${
                   (currentTime / (duration || 1)) * 100
@@ -173,19 +162,7 @@ export const AudioPlayer: FC<AudioPlayerProps> = ({
             step={0.1}
             value={isMuted ? 0 : volume}
             onChange={handleVolume}
-            className="h-1.5 w-20 cursor-pointer appearance-none rounded-full bg-gradient-to-r from-primary/20 to-background-elevated transition-all hover:from-primary/30
-              [&::-webkit-slider-thumb]:h-3
-              [&::-webkit-slider-thumb]:w-3
-              [&::-webkit-slider-thumb]:appearance-none
-              [&::-webkit-slider-thumb]:rounded-full
-              [&::-webkit-slider-thumb]:border-2
-              [&::-webkit-slider-thumb]:border-primary/60
-              [&::-webkit-slider-thumb]:bg-primary-light
-              [&::-webkit-slider-thumb]:opacity-0
-              [&::-webkit-slider-thumb]:shadow-sm
-              [&::-webkit-slider-thumb]:transition-all
-              hover:[&::-webkit-slider-thumb]:border-primary
-              group-hover:[&::-webkit-slider-thumb]:opacity-100"
+            className="h-1.5 w-20 cursor-pointer appearance-none rounded-full bg-gradient-to-r from-primary/20 to-background-elevated transition-all hover:from-primary/30 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-primary/60 [&::-webkit-slider-thumb]:bg-primary-light [&::-webkit-slider-thumb]:opacity-0 [&::-webkit-slider-thumb]:shadow-sm [&::-webkit-slider-thumb]:transition-all hover:[&::-webkit-slider-thumb]:border-primary group-hover:[&::-webkit-slider-thumb]:opacity-100"
             style={{
               background: `linear-gradient(to right, rgb(34, 197, 94, 0.5) 0%, rgb(34, 197, 94, 0.5) ${
                 (isMuted ? 0 : volume) * 100

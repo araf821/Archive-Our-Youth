@@ -1,7 +1,8 @@
-import { AdminPortalLinkProps } from "@/types/dashboard";
+import Link from "next/link";
 import { UserType } from "@prisma/client";
 import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
+
+import { AdminPortalLinkProps } from "@/types/dashboard";
 
 const AdminPortalLink = ({ role }: AdminPortalLinkProps) => {
   if (role !== UserType.ADMIN) return null;

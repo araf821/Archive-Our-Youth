@@ -1,7 +1,9 @@
 import { Search } from "lucide-react";
-import { SelectItem } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
+import { useTranslations } from "next-intl";
+import { Control } from "react-hook-form";
+
 import { cn } from "@/lib/utils";
+import { FilterFormType } from "@/lib/validators/filters";
 import {
   FormControl,
   FormField,
@@ -9,15 +11,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/Form";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
+  SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Control } from "react-hook-form";
-import { FilterFormType } from "@/lib/validators/filters";
-import { useTranslations } from "next-intl";
 
 interface SearchAndSortProps {
   control: Control<FilterFormType>;

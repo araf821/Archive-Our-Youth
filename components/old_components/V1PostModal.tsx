@@ -1,12 +1,14 @@
-import { Dialog, DialogContent } from "../ui/Dialog";
-import { useModal } from "@/hooks/useModal";
-import DynamicImage from "../DynamicImage";
-import Link from "next/link";
-import LikeButton from "../LikeButton";
-import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { useModal } from "@/hooks/useModal";
+
+import DynamicImage from "../DynamicImage";
+import LikeButton from "../LikeButton";
+import { Dialog, DialogContent } from "../ui/Dialog";
 
 const PostModal = () => {
   const { onClose, data, type, isOpen } = useModal();
@@ -52,8 +54,8 @@ const PostModal = () => {
             {post.contentType === "PDF"
               ? "PDF File"
               : post.contentType === "TEXT"
-              ? "Written"
-              : null}
+                ? "Written"
+                : null}
           </div>
         )}
 

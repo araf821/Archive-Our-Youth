@@ -1,8 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 import { useState } from "react";
+import { motion } from "framer-motion";
+
+import { cn } from "@/lib/utils";
 
 interface Tab {
   id: string;
@@ -39,16 +40,11 @@ export function AnimatedTabs({
           type="button"
           key={tab.id}
           onClick={() => handleTabChange(tab.id)}
-          className={`
-            outline-ring relative rounded-md px-3 py-1.5 text-sm
-            font-medium text-text-primary transition
-            focus-visible:outline-2
-            ${
-              activeTab === tab.id
-                ? "text-text-primary"
-                : "text-text-secondary hover:text-text-primary"
-            }
-          `}
+          className={`outline-ring relative rounded-md px-3 py-1.5 text-sm font-medium text-text-primary transition focus-visible:outline-2 ${
+            activeTab === tab.id
+              ? "text-text-primary"
+              : "text-text-secondary hover:text-text-primary"
+          } `}
           style={{
             WebkitTapHighlightColor: "transparent",
           }}

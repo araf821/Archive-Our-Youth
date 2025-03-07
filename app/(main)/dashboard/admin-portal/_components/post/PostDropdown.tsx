@@ -1,15 +1,17 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
+import { Post, User } from "@prisma/client";
+import { MoreVertical } from "lucide-react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
-import { Post, User } from "@prisma/client";
-import { MoreVertical } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
+
 import ManagePostModal from "./ManagePostModal";
 
 interface PostDropdownProps {

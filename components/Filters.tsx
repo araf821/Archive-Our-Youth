@@ -1,23 +1,25 @@
 "use client";
 
-import { useFilters } from "@/hooks/useFilters";
-import { motion } from "framer-motion";
-import { useRouter, useSearchParams } from "next/navigation";
 import { FC } from "react";
-import qs from "query-string";
-import { Form } from "./ui/Form";
-import { useForm } from "react-hook-form";
+import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { motion } from "framer-motion";
+import qs from "query-string";
+import { useForm } from "react-hook-form";
+
 import { cn } from "@/lib/utils";
 import {
   filterFormSchema,
   type FilterFormType,
 } from "@/lib/validators/filters";
+import { useFilters } from "@/hooks/useFilters";
+
+import FilterFooter from "./Filters/FilterFooter";
 import FilterHeader from "./Filters/FilterHeader";
+import ResearchAndPostType from "./Filters/ResearchAndPostType";
 import SearchAndSort from "./Filters/SearchAndSort";
 import TagsAndCountry from "./Filters/TagsAndCountry";
-import ResearchAndPostType from "./Filters/ResearchAndPostType";
-import FilterFooter from "./Filters/FilterFooter";
+import { Form } from "./ui/Form";
 
 interface FiltersProps {}
 

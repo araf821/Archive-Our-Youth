@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { SlidersHorizontal } from "lucide-react";
 import { useTranslations } from "next-intl";
+
+import { Button } from "@/components/ui/button";
 
 interface FilterHeaderProps {
   onClose: () => void;

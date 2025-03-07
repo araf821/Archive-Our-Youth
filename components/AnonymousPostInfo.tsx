@@ -1,6 +1,9 @@
 "use client";
 
 import { FC, useState } from "react";
+import Link from "next/link";
+import { Info, X } from "lucide-react";
+
 import {
   Dialog,
   DialogContent,
@@ -8,8 +11,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/Dialog";
-import { Info, X } from "lucide-react";
-import Link from "next/link";
 
 interface AnonymousPostInfoProps {}
 
@@ -33,7 +34,7 @@ const AnonymousPostInfo: FC<AnonymousPostInfoProps> = ({}) => {
         </DialogHeader>
         <hr className="border-border-dark" />
         <div className="flex flex-col gap-3">
-          <p className="text-zinc-200  md:text-lg">
+          <p className="text-zinc-200 md:text-lg">
             This submission was made without signing in.
           </p>
           <p className="leading-5 text-zinc-400 max-md:text-sm">

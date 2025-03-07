@@ -1,10 +1,11 @@
 "use client";
 
-import SignOutButton from "@/components/SignOutButton";
+import { useState } from "react";
 import { User } from "@prisma/client";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import { useState } from "react";
+
+import SignOutButton from "@/components/SignOutButton";
 
 interface UserAuthBannerProps {
   user: User;

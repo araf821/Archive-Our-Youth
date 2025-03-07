@@ -1,9 +1,11 @@
 import { FC } from "react";
-import { Edit2 } from "lucide-react";
 import Link from "next/link";
+import { Edit2 } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+
 import BackButton from "../../BackButton";
 import { buttonVariants } from "../../ui/button";
-import { cn } from "@/lib/utils";
 
 interface PostHeaderProps {
   postId: string;

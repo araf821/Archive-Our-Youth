@@ -1,14 +1,9 @@
-import { RESEARCH_QUESTIONS, postTypes } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 import { Control } from "react-hook-form";
+
+import { postTypes, RESEARCH_QUESTIONS } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 import { FilterFormType } from "@/lib/validators/filters";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   FormControl,
   FormField,
@@ -16,7 +11,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/Form";
-import { useTranslations } from "next-intl";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface ResearchAndPostTypeProps {
   control: Control<FilterFormType>;

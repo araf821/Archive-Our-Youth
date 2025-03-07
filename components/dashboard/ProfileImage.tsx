@@ -1,5 +1,6 @@
-import { ProfileImageProps } from "@/types/dashboard";
 import Image from "next/image";
+
+import { ProfileImageProps } from "@/types/dashboard";
 
 const ProfileImage = ({ imageUrl }: ProfileImageProps) => {
   return (

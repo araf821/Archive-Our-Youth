@@ -1,15 +1,17 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
+import { User } from "@prisma/client";
+import { MoreVertical } from "lucide-react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
-import { MoreVertical } from "lucide-react";
-import { useState } from "react";
-import { User } from "@prisma/client";
-import Link from "next/link";
+
 import ManageUserModal from "./user/ManageUserModal";
 
 interface UserDropdownProps {

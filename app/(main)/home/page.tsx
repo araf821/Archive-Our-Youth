@@ -1,8 +1,9 @@
-import Collage from "@/components/post/Collage";
-import { initializeUser } from "@/lib/initializeUser";
-import { ContentType } from "@prisma/client";
-import { Metadata } from "next";
 import { Suspense } from "react";
+import { Metadata } from "next";
+import { ContentType } from "@prisma/client";
+
+import { initializeUser } from "@/lib/initializeUser";
+import Collage from "@/components/post/Collage";
 
 export const metadata: Metadata = {
   title: "Home",

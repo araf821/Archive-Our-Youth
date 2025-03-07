@@ -1,7 +1,8 @@
+import { NextResponse } from "next/server";
+
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { PostEditValidator } from "@/lib/validators/post";
-import { NextResponse } from "next/server";
 
 export async function PUT(
   req: Request,

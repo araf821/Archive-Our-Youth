@@ -1,7 +1,8 @@
 "use server";
 
-import { db } from "@/lib/db";
 import { ACTION_TYPE, LOG_TYPE } from "@prisma/client";
+
+import { db } from "@/lib/db";
 
 interface createLogProps {
   userId: string;

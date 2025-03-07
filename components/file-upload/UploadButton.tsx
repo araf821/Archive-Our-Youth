@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import { cn } from "@/lib/utils";
 
 interface UploadButtonProps {
@@ -102,10 +103,10 @@ export const UploadButton: FC<UploadButtonProps> = ({
             endPoint === "image" || endPoint === "thumbnail"
               ? "image/*"
               : endPoint === "video"
-              ? "video/*"
-              : endPoint === "audio"
-              ? "audio/*"
-              : ".pdf"
+                ? "video/*"
+                : endPoint === "audio"
+                  ? "audio/*"
+                  : ".pdf"
           }
         />
       </div>

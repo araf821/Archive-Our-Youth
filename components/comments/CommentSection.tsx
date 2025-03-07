@@ -1,9 +1,11 @@
-import { db } from "@/lib/db";
-import { User } from "@prisma/client";
 import Link from "next/link";
-import CommentInput from "./CommentInput";
-import Comment from "./Comment";
+import { User } from "@prisma/client";
+
+import { db } from "@/lib/db";
+
 import { Skeleton } from "../ui/skeleton";
+import Comment from "./Comment";
+import CommentInput from "./CommentInput";
 
 interface CommentSectionProps {
   postId: string;

@@ -1,13 +1,15 @@
 "use client";
 
-import AdminSinglePost from "./AdminSinglePost";
-import { Skeleton } from "@/components/ui/skeleton";
-import Pagination from "../Pagination";
-import { FETCH_POSTS_MAX } from "@/lib/constants";
 import { useCallback, useEffect, useState } from "react";
 import { fetchPosts } from "@/actions/admin-fetch/fetchPosts";
-import { toast } from "sonner";
 import { Post, User } from "@prisma/client";
+import { toast } from "sonner";
+
+import { FETCH_POSTS_MAX } from "@/lib/constants";
+import { Skeleton } from "@/components/ui/skeleton";
+
+import Pagination from "../Pagination";
+import AdminSinglePost from "./AdminSinglePost";
 
 interface AdminPostListProps {
   page?: number;

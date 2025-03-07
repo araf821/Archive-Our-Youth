@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import { CarouselApi } from "@/components/ui/carousel";
 
 export const useCarouselNavigation = (api: CarouselApi | null) => {

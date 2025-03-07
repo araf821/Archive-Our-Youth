@@ -1,8 +1,12 @@
 "use client";
 
-import { ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { ExternalLink } from "lucide-react";
+import { UseFormReturn } from "react-hook-form";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { z } from "zod";
+
+import { PostEditValidator } from "@/lib/validators/post";
 import { AnimatedTabs } from "@/components/ui/animated-tabs";
 import {
   FormControl,
@@ -10,9 +14,6 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/Form";
-import { UseFormReturn } from "react-hook-form";
-import { PostEditValidator } from "@/lib/validators/post";
-import { z } from "zod";
 
 interface ImageContentProps {
   form: UseFormReturn<z.infer<typeof PostEditValidator>>;

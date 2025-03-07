@@ -1,6 +1,7 @@
 "use client";
 
 import { FC } from "react";
+
 interface PDFViewerProps {
   url: string;
 }

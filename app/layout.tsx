@@ -1,10 +1,13 @@
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
-import { Poppins } from "next/font/google";
+
 import { Metadata } from "next";
-import Providers from "@/components/Providers";
-import { siteConfig } from "@/lib/config/site";
+import { Poppins } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+
+import { siteConfig } from "@/lib/config/site";
+import Providers from "@/components/Providers";
+
 import { kobata } from "./fonts";
 
 const poppins = Poppins({

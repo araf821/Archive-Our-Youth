@@ -1,6 +1,7 @@
 import { Suspense } from "react";
-import CommentList from "../_components/comment/CommentList";
+
 import CommentFilters from "../_components/comment/CommentFilters";
+import CommentList from "../_components/comment/CommentList";
 
 interface AdminPortalCommentsPageProps {
   searchParams: {

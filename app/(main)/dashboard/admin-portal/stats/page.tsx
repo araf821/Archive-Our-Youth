@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+
 import Stats from "../_components/Stats";
 
 const AdminStatsPage = () => {

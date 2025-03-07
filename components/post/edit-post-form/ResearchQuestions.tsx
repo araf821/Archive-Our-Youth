@@ -1,12 +1,13 @@
 "use client";
 
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/Label";
-import { FormField, FormItem } from "@/components/ui/Form";
 import { UseFormReturn } from "react-hook-form";
-import { PostEditValidator } from "@/lib/validators/post";
 import { z } from "zod";
+
 import { RESEARCH_QUESTIONS } from "@/lib/constants";
+import { PostEditValidator } from "@/lib/validators/post";
+import { Checkbox } from "@/components/ui/checkbox";
+import { FormField, FormItem } from "@/components/ui/Form";
+import { Label } from "@/components/ui/Label";
 
 interface ResearchQuestionsProps {
   form: UseFormReturn<z.infer<typeof PostEditValidator>>;

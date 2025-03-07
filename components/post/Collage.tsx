@@ -1,9 +1,11 @@
-import { db } from "@/lib/db";
-import EmptyState from "../EmptyState";
-import { RefreshCcw } from "lucide-react";
-import { getCurrentUser } from "@/lib/getCurrentUser";
-import { Skeleton } from "../ui/skeleton";
 import { ContentType } from "@prisma/client";
+import { RefreshCcw } from "lucide-react";
+
+import { db } from "@/lib/db";
+import { getCurrentUser } from "@/lib/getCurrentUser";
+
+import EmptyState from "../EmptyState";
+import { Skeleton } from "../ui/skeleton";
 import InfinitePosts from "./InfinitePosts";
 
 interface CollageProps {

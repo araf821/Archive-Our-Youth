@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+
 import { db } from "@/lib/db";
 
 export const getPosts = async () => {

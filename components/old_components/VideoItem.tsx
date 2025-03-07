@@ -1,9 +1,10 @@
-import { Post, User } from "@prisma/client";
 import { FC, useState } from "react";
-import { VideoIcon } from "lucide-react";
-import { AnimatePresence } from "framer-motion";
-import Overlay from "../Overlay";
 import Image from "next/image";
+import { Post, User } from "@prisma/client";
+import { AnimatePresence } from "framer-motion";
+import { VideoIcon } from "lucide-react";
+
+import Overlay from "../Overlay";
 
 interface VideoItemProps {
   post: Post & { user: User | null };

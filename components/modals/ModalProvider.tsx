@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LanguageSwitcherModal } from "./LanguageSwitcherModal";
+
 import AuthModal from "./AuthModal";
 import DeletePostModal from "./DeletePostModal";
+import { LanguageSwitcherModal } from "./LanguageSwitcherModal";
 import ShareModal from "./ShareModal";
 import SubmitAuthModal from "./SubmitAuthModal";
 

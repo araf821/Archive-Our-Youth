@@ -1,6 +1,18 @@
 "use client";
 
 import { FC, FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { Loader2 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z, ZodError } from "zod";
+
+import { EditProfileValidator } from "@/lib/validators/edit-profile";
+
+import FileUpload from "../file-upload/FileUpload";
+import { Button } from "../ui/button";
 import {
   Dialog,
   DialogContent,
@@ -9,15 +21,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/Dialog";
-import { Loader2 } from "lucide-react";
-import { Input } from "../ui/input";
-import { toast } from "sonner";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { EditProfileValidator } from "@/lib/validators/edit-profile";
-import { ZodError, z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
@@ -25,8 +28,7 @@ import {
   FormItem,
   FormMessage,
 } from "../ui/Form";
-import FileUpload from "../file-upload/FileUpload";
-import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 
 interface EditProfileModalProps {
   name: string;

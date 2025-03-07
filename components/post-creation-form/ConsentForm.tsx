@@ -1,7 +1,8 @@
-import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface ConsentFormProps {
   ageVerified: boolean;
@@ -82,12 +83,8 @@ export const ConsentForm = ({
             <p>{t("consentForm.consent.label")}</p>
             <p>{t("consentForm.consent.researchPurpose")}</p>
             <p>{t("consentForm.consent.rightsNotice")}</p>
-            <p>
-              {t("consentForm.consent.deletionInfo")}
-            </p>
-            <p>
-              {t("consentForm.consent.anonymousNote")}
-            </p>
+            <p>{t("consentForm.consent.deletionInfo")}</p>
+            <p>{t("consentForm.consent.anonymousNote")}</p>
             <p>
               {t("consentForm.consent.readMore")}
               <Link

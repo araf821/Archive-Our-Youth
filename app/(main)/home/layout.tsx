@@ -1,5 +1,6 @@
-import FiltersProvider from "@/components/FiltersProvider";
 import { FC } from "react";
+
+import FiltersProvider from "@/components/FiltersProvider";
 
 interface layoutProps {
   children: React.ReactNode;

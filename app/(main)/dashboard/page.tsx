@@ -1,10 +1,11 @@
-import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
-import UserPostsSection from "@/components/post/UserPostsSection";
-import { db } from "@/lib/db";
-import { currentUser } from "@clerk/nextjs/server";
+import { Suspense } from "react";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { Suspense } from "react";
+import { currentUser } from "@clerk/nextjs/server";
+
+import { db } from "@/lib/db";
+import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
+import UserPostsSection from "@/components/post/UserPostsSection";
 
 export const metadata: Metadata = {
   title: "Dashboard",
