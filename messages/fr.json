@@ -24,12 +24,34 @@
     "cancel": "Annuler",
     "delete": "Supprimer",
     "edit": "Modifier",
+    "likes": "{count} J'aime",
     "contentTypes": {
       "text": "Texte",
       "image": "Image",
       "video": "Vidéo",
       "audio": "Audio",
       "pdf": "PDF"
+    }
+  },
+  "PostModal": {
+    "header": {
+      "closeModal": "fermer la fenêtre",
+      "viewPost": "Voir l'Article"
+    },
+    "info": {
+      "postedBy": "Publié par {name}",
+      "postedAnonymously": "Publié Anonymement"
+    },
+    "content": {
+      "openModal": "ouvrir la fenêtre de l'article",
+      "thumbnail": "vignette",
+      "blur": "flou",
+      "postImage": "image de l'article",
+      "anonymous": "Anonyme"
+    },
+    "media": {
+      "pdfFile": "Fichier PDF",
+      "written": "Écrit"
     }
   },
   "PostCreation": {

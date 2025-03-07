@@ -24,12 +24,34 @@
     "cancel": "Cancel",
     "delete": "Delete",
     "edit": "Edit",
+    "likes": "{count} Likes",
     "contentTypes": {
       "text": "Text",
       "image": "Image",
       "video": "Video",
       "audio": "Audio",
       "pdf": "PDF"
+    }
+  },
+  "PostModal": {
+    "header": {
+      "closeModal": "close modal",
+      "viewPost": "View Post"
+    },
+    "info": {
+      "postedBy": "Posted by {name}",
+      "postedAnonymously": "Posted Anonymously"
+    },
+    "content": {
+      "openModal": "open post modal",
+      "thumbnail": "thumbnail",
+      "blur": "blur",
+      "postImage": "post image",
+      "anonymous": "Anonymous"
+    },
+    "media": {
+      "pdfFile": "PDF File",
+      "written": "Written"
     }
   },
   "PostCreation": {

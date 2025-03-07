@@ -24,12 +24,34 @@
     "cancel": "Cancelar",
     "delete": "Eliminar",
     "edit": "Editar",
+    "likes": "{count} Me gusta",
     "contentTypes": {
       "text": "Texto",
       "image": "Imagen",
       "video": "Video",
       "audio": "Audio",
       "pdf": "PDF"
+    }
+  },
+  "PostModal": {
+    "header": {
+      "closeModal": "cerrar modal",
+      "viewPost": "Ver Publicación"
+    },
+    "info": {
+      "postedBy": "Publicado por {name}",
+      "postedAnonymously": "Publicado Anónimamente"
+    },
+    "content": {
+      "openModal": "abrir modal de publicación",
+      "thumbnail": "miniatura",
+      "blur": "difuminar",
+      "postImage": "imagen de publicación",
+      "anonymous": "Anónimo"
+    },
+    "media": {
+      "pdfFile": "Archivo PDF",
+      "written": "Escrito"
     }
   },
   "PostCreation": {

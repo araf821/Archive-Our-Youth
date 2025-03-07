@@ -8,6 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/useModal";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 interface LikeButtonProps {
   postId: string;
@@ -24,6 +25,7 @@ const LikeButton: FC<LikeButtonProps> = ({
 }) => {
   const { onOpen } = useModal();
   const router = useRouter();
+  const t = useTranslations("Common");
 
   const [isLoading, setIsLoading] = useState(false);
   const [liked, setLiked] = useState(
@@ -48,7 +50,7 @@ const LikeButton: FC<LikeButtonProps> = ({
       }
     } catch (error) {
       setLiked((liked) => !liked);
-      toast.error("Something went wrong.");
+      toast.error(t("error"));
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -66,7 +68,7 @@ const LikeButton: FC<LikeButtonProps> = ({
           "fill-rose-500 text-rose-500": liked,
         })}
       />{" "}
-      {likes} Likes
+      {t("likes", { count: likes })}
     </button>
   );
 };
