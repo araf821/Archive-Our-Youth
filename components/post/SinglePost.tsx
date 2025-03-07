@@ -1,12 +1,13 @@
-import { Comment, Post, User } from "@prisma/client";
 import { FC } from "react";
-import PostHeader from "./single-post-page/PostHeader";
-import PostMedia from "./single-post-page/PostMedia";
+import { Comment, Post, User } from "@prisma/client";
+
 import PostActions from "./single-post-page/PostActions";
-import PostTitle from "./single-post-page/PostTitle";
 import PostAuthor from "./single-post-page/PostAuthor";
 import PostContent from "./single-post-page/PostContent";
+import PostHeader from "./single-post-page/PostHeader";
+import PostMedia from "./single-post-page/PostMedia";
 import PostTags from "./single-post-page/PostTags";
+import PostTitle from "./single-post-page/PostTitle";
 
 interface SinglePostProps {
   currentUser: User | null;

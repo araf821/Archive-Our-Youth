@@ -1,7 +1,8 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import Image from "next/image";
+
 import { dateFormat } from "@/lib/dateFormat";
 import { db } from "@/lib/db";
-import Image from "next/image";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface UserMoreInformationProps {
   userId: string;

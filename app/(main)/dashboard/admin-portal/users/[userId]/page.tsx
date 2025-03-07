@@ -1,8 +1,10 @@
-import BackButton from "@/components/BackButton";
 import React, { Suspense } from "react";
-import UserMoreInformation from "../../_components/user/UserMoreInformation";
+
+import BackButton from "@/components/BackButton";
+
 import PostList from "../../_components/user/PostList";
 import UserCommentList from "../../_components/user/UserCommentList";
+import UserMoreInformation from "../../_components/user/UserMoreInformation";
 
 interface SingleUserPageProps {
   params: {

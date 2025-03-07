@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { MapPin } from "lucide-react";
+
 import { dateFormat } from "@/lib/dateFormat";
 
 interface PostTitleProps {

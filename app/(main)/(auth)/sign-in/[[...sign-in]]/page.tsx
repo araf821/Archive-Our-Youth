@@ -1,6 +1,6 @@
-import { SignIn, ClerkLoaded } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
 import { Metadata } from "next";
+import { ClerkLoaded, SignIn } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 export const metadata: Metadata = {
   title: "Sign In",

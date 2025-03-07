@@ -1,5 +1,6 @@
-import { Post } from "@prisma/client";
 import { FC, Fragment } from "react";
+import { Post } from "@prisma/client";
+
 import UserPost from "./UserPost";
 
 interface DynamicUserPostsProps {

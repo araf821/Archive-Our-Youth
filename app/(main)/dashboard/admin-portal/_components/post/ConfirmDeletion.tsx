@@ -1,10 +1,11 @@
-import { deletePost } from "@/actions/deletePost";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/Label";
-import { Input } from "@/components/ui/input";
-import Image from "next/image";
 import { useState, useTransition } from "react";
+import Image from "next/image";
+import { deletePost } from "@/actions/deletePost";
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/Label";
 
 interface ConfirmDeletionProps {
   cancel: () => void;

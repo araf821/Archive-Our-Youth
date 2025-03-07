@@ -1,12 +1,13 @@
+import { FC } from "react";
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
+import { Edit2 } from "lucide-react";
+
+import { db } from "@/lib/db";
+import { getCurrentUser } from "@/lib/getCurrentUser";
 import BackButton from "@/components/BackButton";
 import EmptyState from "@/components/EmptyState";
 import EditPost from "@/components/post/EditPost";
-import { db } from "@/lib/db";
-import { getCurrentUser } from "@/lib/getCurrentUser";
-import { Edit2 } from "lucide-react";
-import { Metadata } from "next";
-import { redirect } from "next/navigation";
-import { FC } from "react";
 
 interface pageProps {
   params: {

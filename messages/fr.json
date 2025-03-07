@@ -24,12 +24,34 @@
     "cancel": "Annuler",
     "delete": "Supprimer",
     "edit": "Modifier",
+    "likes": "{count} J'aime",
     "contentTypes": {
       "text": "Texte",
       "image": "Image",
       "video": "Vidéo",
       "audio": "Audio",
       "pdf": "PDF"
+    }
+  },
+  "PostModal": {
+    "header": {
+      "closeModal": "fermer la fenêtre",
+      "viewPost": "Voir l'Article"
+    },
+    "info": {
+      "postedBy": "Publié par {name}",
+      "postedAnonymously": "Publié Anonymement"
+    },
+    "content": {
+      "openModal": "ouvrir la fenêtre de l'article",
+      "thumbnail": "vignette",
+      "blur": "flou",
+      "postImage": "image de l'article",
+      "anonymous": "Anonyme"
+    },
+    "media": {
+      "pdfFile": "Fichier PDF",
+      "written": "Écrit"
     }
   },
   "PostCreation": {
@@ -136,6 +158,48 @@
         "title": "Localisation",
         "description": "Partagez votre localisation (optionnel)"
       }
+    }
+  },
+  "Filters": {
+    "title": "Filtrer les Articles",
+    "close": "Fermer",
+    "search": {
+      "label": "Rechercher des articles",
+      "placeholder": "Entrez des mots-clés..."
+    },
+    "sort": {
+      "label": "Trier par",
+      "latest": "Plus récents",
+      "oldest": "Plus anciens",
+      "mostLiked": "Plus aimés"
+    },
+    "tags": {
+      "label": "Tags",
+      "placeholder": "Ajouter un tag...",
+      "selected": "Tags sélectionnés"
+    },
+    "location": {
+      "label": "Localisation",
+      "placeholder": "Sélectionner un pays",
+      "any": "Tous"
+    },
+    "postType": {
+      "label": "Type d'Article",
+      "all": "Tous",
+      "research": "Recherche"
+    },
+    "researchQuestion": {
+      "label": "Questions de Recherche",
+      "all": "Toutes",
+      "personal": "Personnel",
+      "family": "Familial",
+      "community": "Communautaire",
+      "planetary": "Planétaire",
+      "other": "Autre"
+    },
+    "buttons": {
+      "apply": "Appliquer les Filtres",
+      "reset": "Réinitialiser"
     }
   }
 }

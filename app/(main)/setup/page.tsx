@@ -1,9 +1,11 @@
-import { kobata } from "@/app/fonts";
+import { redirect } from "next/navigation";
+import { currentUser } from "@clerk/nextjs/server";
+
 import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
-import { redirect } from "next/navigation";
+import { kobata } from "@/app/fonts";
+
 import SetupForm from "./_components/SetupForm";
-import { currentUser } from "@clerk/nextjs/server";
 
 const page = async ({}) => {
   const clerkUser = await currentUser();

@@ -1,13 +1,14 @@
 "use client";
 
-import { Post, User } from "@prisma/client";
-import PostModal from "./PostModal";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { useIntersection } from "@mantine/hooks";
-import axios from "axios";
 import { useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
+import { useIntersection } from "@mantine/hooks";
+import { Post, User } from "@prisma/client";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import axios from "axios";
+
 import { Skeleton } from "../ui/skeleton";
+import PostModal from "./PostModal";
 
 interface InfinitePostsProps {
   initialPosts: (Post & { user: User | null })[];

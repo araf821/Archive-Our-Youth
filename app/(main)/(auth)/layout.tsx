@@ -1,7 +1,8 @@
-import { kobata } from "@/app/fonts";
-import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/lib/utils";
 import { ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
+
+import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
+import { kobata } from "@/app/fonts";
 
 type Props = {
   children: React.ReactNode;

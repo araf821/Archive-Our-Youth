@@ -24,12 +24,34 @@
     "cancel": "Cancel",
     "delete": "Delete",
     "edit": "Edit",
+    "likes": "{count} Likes",
     "contentTypes": {
       "text": "Text",
       "image": "Image",
       "video": "Video",
       "audio": "Audio",
       "pdf": "PDF"
+    }
+  },
+  "PostModal": {
+    "header": {
+      "closeModal": "close modal",
+      "viewPost": "View Post"
+    },
+    "info": {
+      "postedBy": "Posted by {name}",
+      "postedAnonymously": "Posted Anonymously"
+    },
+    "content": {
+      "openModal": "open post modal",
+      "thumbnail": "thumbnail",
+      "blur": "blur",
+      "postImage": "post image",
+      "anonymous": "Anonymous"
+    },
+    "media": {
+      "pdfFile": "PDF File",
+      "written": "Written"
     }
   },
   "PostCreation": {
@@ -136,6 +158,48 @@
         "title": "Location",
         "description": "Share your location (optional)"
       }
+    }
+  },
+  "Filters": {
+    "title": "Filter Posts",
+    "close": "Close",
+    "search": {
+      "label": "Search posts",
+      "placeholder": "Enter keywords..."
+    },
+    "sort": {
+      "label": "Sort by",
+      "latest": "Latest",
+      "oldest": "Oldest",
+      "mostLiked": "Most Liked"
+    },
+    "tags": {
+      "label": "Tags",
+      "placeholder": "Add a tag...",
+      "selected": "Selected tags"
+    },
+    "location": {
+      "label": "Location",
+      "placeholder": "Select a country",
+      "any": "Any"
+    },
+    "postType": {
+      "label": "Post Type",
+      "all": "All",
+      "research": "Research"
+    },
+    "researchQuestion": {
+      "label": "Research Questions",
+      "all": "All",
+      "personal": "Personal",
+      "family": "Family",
+      "community": "Community",
+      "planetary": "Planetary",
+      "other": "Other"
+    },
+    "buttons": {
+      "apply": "Apply Filters",
+      "reset": "Reset"
     }
   }
 }

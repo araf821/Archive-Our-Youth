@@ -1,20 +1,22 @@
 "use client";
 
-import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { useFilters } from "@/hooks/useFilters";
-import { usePathname, useRouter } from "next/navigation";
-import { Search } from "lucide-react";
-import NavLinks from "./NavLinks";
-import { useModal } from "@/hooks/useModal";
-import { kobata } from "@/app/fonts";
-import { useMenu } from "@/hooks/useMenu";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { AnimatePresence, motion } from "framer-motion";
+import { Search } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { useFilters } from "@/hooks/useFilters";
+import { useMenu } from "@/hooks/useMenu";
+import { useModal } from "@/hooks/useModal";
+import { kobata } from "@/app/fonts";
+
 import { LanguageSwitcher } from "../LanguageSwitcher";
-import { motion, AnimatePresence } from "framer-motion";
+import NavLinks from "./NavLinks";
 import SubmitButton from "./SubmitButton";
 
 const Navbar = () => {

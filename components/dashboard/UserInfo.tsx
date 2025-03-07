@@ -1,7 +1,9 @@
+import { Edit2 } from "lucide-react";
+
 import { UserInfoProps } from "@/types/dashboard";
 import { dateFormat } from "@/lib/dateFormat";
+
 import EditProfileModal from "../modals/EditProfileModal";
-import { Edit2 } from "lucide-react";
 
 const UserInfo = ({ user }: UserInfoProps) => {
   return (

@@ -1,7 +1,8 @@
-import { ContactFormValidator, ContactType } from "@/lib/validators/contact";
-import { Resend } from "resend";
-import { EmailTemplate } from "@/app/(main)/contact/_components/EmailTemplate";
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
+
+import { ContactFormValidator, ContactType } from "@/lib/validators/contact";
+import { EmailTemplate } from "@/app/(main)/contact/_components/EmailTemplate";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

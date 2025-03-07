@@ -1,8 +1,9 @@
 "use server";
 
+import { UserType } from "@prisma/client";
+
 import { db } from "@/lib/db";
 import { getCurrentUser } from "@/lib/getCurrentUser";
-import { UserType } from "@prisma/client";
 
 export const updateUserRole = async (role: UserType, userId: string) => {
   const user = await getCurrentUser();

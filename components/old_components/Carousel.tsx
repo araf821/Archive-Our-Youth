@@ -1,11 +1,12 @@
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
-import { useState } from "react";
-import { useAuth } from "@clerk/nextjs";
-import { useModal } from "@/hooks/useModal";
-import { useRouter } from "next/navigation";
-import { kobata } from "@/app/fonts";
+
 import { cn } from "@/lib/utils";
+import { useModal } from "@/hooks/useModal";
+import { kobata } from "@/app/fonts";
 
 const variants = {
   enter: (direction: number) => {

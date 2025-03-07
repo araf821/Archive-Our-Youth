@@ -1,7 +1,9 @@
+import Image from "next/image";
+import { Post, User } from "@prisma/client";
+
 import { dateFormat } from "@/lib/dateFormat";
 import { cn } from "@/lib/utils";
-import { Post, User } from "@prisma/client";
-import Image from "next/image";
+
 import PostDropdown from "./PostDropdown";
 
 interface AdminSinglePostProps {

@@ -1,17 +1,19 @@
 "use client";
 
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { X } from "lucide-react";
+
 import { useModal } from "@/hooks/useModal";
+
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTrigger,
-  DialogTitle,
   DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "../ui/Dialog";
-import Link from "next/link";
-import { X } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 const SubmitAuthModal = () => {
   const { onClose, type, isOpen } = useModal();

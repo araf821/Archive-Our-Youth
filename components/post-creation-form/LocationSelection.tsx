@@ -1,7 +1,11 @@
-import { TPostCreationForm } from "@/lib/types/form";
 import { FC } from "react";
-import { FormControl, FormField, FormItem } from "../ui/Form";
+import { useTranslations } from "next-intl";
+
+import { allCountries } from "@/lib/constants";
+import { TPostCreationForm } from "@/lib/types/form";
 import { cn } from "@/lib/utils";
+
+import { FormControl, FormField, FormItem } from "../ui/Form";
 import {
   Select,
   SelectContent,
@@ -9,8 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { allCountries } from "@/lib/constants";
-import { useTranslations } from "next-intl";
 
 interface LocationSelectionProps {
   form: TPostCreationForm;

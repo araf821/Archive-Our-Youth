@@ -1,10 +1,12 @@
-import { TPostCreationForm } from "@/lib/types/form";
-import { RefreshCcw, X } from "lucide-react";
 import { FC } from "react";
-import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
-import MultiSelect from "../MultiSelect";
-import { cn } from "@/lib/utils";
+import { RefreshCcw, X } from "lucide-react";
 import { useTranslations } from "next-intl";
+
+import { TPostCreationForm } from "@/lib/types/form";
+import { cn } from "@/lib/utils";
+
+import MultiSelect from "../MultiSelect";
+import { FormControl, FormField, FormItem, FormMessage } from "../ui/Form";
 
 interface TagSelectionSlideProps {
   form: TPostCreationForm;

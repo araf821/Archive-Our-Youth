@@ -1,13 +1,15 @@
 "use client";
 
 import { FC } from "react";
+
 import { useFileDelete } from "@/hooks/useFileDelete";
 import { useFileUpload } from "@/hooks/useFileUpload";
-import { ImageRenderer } from "./ImageRenderer";
-import { VideoRenderer } from "./VideoRenderer";
+
 import { AudioRenderer } from "./AudioRenderer";
+import { ImageRenderer } from "./ImageRenderer";
 import { PDFRenderer } from "./PDFRenderer";
 import { UploadButton } from "./UploadButton";
+import { VideoRenderer } from "./VideoRenderer";
 
 interface FileUploadProps {
   endPoint: "audio" | "image" | "pdf" | "video" | "thumbnail";

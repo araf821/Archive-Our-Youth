@@ -1,6 +1,8 @@
-import { dateFormat } from "@/lib/dateFormat";
-import { Post } from "@prisma/client";
 import { FC } from "react";
+import { Post } from "@prisma/client";
+
+import { dateFormat } from "@/lib/dateFormat";
+
 import Tag from "../Tag";
 
 interface DashboardPostInfoProps {

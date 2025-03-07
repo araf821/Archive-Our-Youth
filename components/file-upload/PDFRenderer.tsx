@@ -1,7 +1,8 @@
 import { FC } from "react";
 import Link from "next/link";
-import { DeleteButton } from "./DeleteButton";
+
 import PDFViewer from "../PDFViewer";
+import { DeleteButton } from "./DeleteButton";
 
 interface PDFRendererProps {
   value: string;

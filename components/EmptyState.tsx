@@ -1,8 +1,10 @@
-import { cn } from "@/lib/utils";
-import { LucideIcon } from "lucide-react";
+import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { LucideIcon } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+
 import { Button } from "./ui/button";
 
 interface EmptyStateProps {

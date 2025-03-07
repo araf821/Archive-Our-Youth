@@ -1,4 +1,5 @@
 import RefreshButton from "@/components/RefreshButton";
+
 import AdminPostList from "../_components/post/AdminPostList";
 
 interface pageProps {

@@ -1,5 +1,5 @@
-import { utapi } from "@/lib/uploadthing-utils";
 import { fileUploader } from "@/lib/config/uploadthing";
+import { utapi } from "@/lib/uploadthing-utils";
 
 export async function DELETE(request: Request) {
   try {

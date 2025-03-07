@@ -1,8 +1,11 @@
 "use client";
 
 import { Post, User } from "@prisma/client";
-import LikeButton from "../LikeButton";
+import { useTranslations } from "next-intl";
+
 import { cn } from "@/lib/utils";
+
+import LikeButton from "../LikeButton";
 
 interface PostModalInfoProps {
   post: Post & { user: User | null };
@@ -13,6 +16,8 @@ export default function PostModalInfo({
   post,
   currentUser,
 }: PostModalInfoProps) {
+  const t = useTranslations("PostModal");
+
   return (
     <div
       className={cn(
@@ -29,7 +34,9 @@ export default function PostModalInfo({
           modal={true}
         />
         <p className="truncate text-zinc-400 max-md:text-sm max-sm:text-xs">
-          {post.user ? `Posted by ${post.user.name}` : "Posted Anonymously"}
+          {post.user
+            ? t("info.postedBy", { name: post.user.name })
+            : t("info.postedAnonymously")}
         </p>
       </div>
 

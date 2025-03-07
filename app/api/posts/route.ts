@@ -1,7 +1,8 @@
-import { db } from "@/lib/db";
-import { ContentType } from "@prisma/client";
 import { NextResponse } from "next/server";
+import { ContentType } from "@prisma/client";
 import { ZodError } from "zod";
+
+import { db } from "@/lib/db";
 
 export async function GET(req: Request) {
   try {

@@ -1,7 +1,8 @@
 import { FC } from "react";
+import { User } from "@prisma/client";
+
 import LikeButton from "../../LikeButton";
 import ShareButton from "../../ShareButton";
-import { User } from "@prisma/client";
 
 interface PostActionsProps {
   postId: string;

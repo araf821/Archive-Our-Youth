@@ -1,14 +1,15 @@
 "use client";
 
+import type { UseFormReturn } from "react-hook-form";
+import { z } from "zod";
+
+import { PostEditValidator } from "@/lib/validators/post";
 import {
   FormControl,
   FormField,
   FormItem,
   FormMessage,
 } from "@/components/ui/Form";
-import type { UseFormReturn } from "react-hook-form";
-import { PostEditValidator } from "@/lib/validators/post";
-import { z } from "zod";
 import FileUpload from "@/components/file-upload/FileUpload";
 
 type Props = {

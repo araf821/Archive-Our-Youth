@@ -1,13 +1,15 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { User } from "@prisma/client";
-import { Heart } from "lucide-react";
 import { FC, useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useModal } from "@/hooks/useModal";
+import { User } from "@prisma/client";
+import axios from "axios";
+import { Heart } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+
+import { cn } from "@/lib/utils";
+import { useModal } from "@/hooks/useModal";
 
 interface LikeButtonProps {
   postId: string;
@@ -24,6 +26,7 @@ const LikeButton: FC<LikeButtonProps> = ({
 }) => {
   const { onOpen } = useModal();
   const router = useRouter();
+  const t = useTranslations("Common");
 
   const [isLoading, setIsLoading] = useState(false);
   const [liked, setLiked] = useState(
@@ -48,7 +51,7 @@ const LikeButton: FC<LikeButtonProps> = ({
       }
     } catch (error) {
       setLiked((liked) => !liked);
-      toast.error("Something went wrong.");
+      toast.error(t("error"));
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -66,7 +69,7 @@ const LikeButton: FC<LikeButtonProps> = ({
           "fill-rose-500 text-rose-500": liked,
         })}
       />{" "}
-      {likes} Likes
+      {t("likes", { count: likes })}
     </button>
   );
 };

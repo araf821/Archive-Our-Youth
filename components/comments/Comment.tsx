@@ -1,18 +1,20 @@
 "use client";
 
-import { openSans } from "@/app/fonts";
-import { cn, formatDateString } from "@/lib/utils";
-import { Heart, Reply, Trash } from "lucide-react";
-import Image from "next/image";
 import { FC, useState } from "react";
-import ReplySection from "./ReplySection";
-import { motion } from "framer-motion";
-import { User, Comment as CommentModel } from "@prisma/client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import { Comment as CommentModel, User } from "@prisma/client";
 import axios from "axios";
+import { motion } from "framer-motion";
+import { Heart, Reply, Trash } from "lucide-react";
 import queryString from "query-string";
+import { toast } from "sonner";
+
+import { cn, formatDateString } from "@/lib/utils";
 import { useModal } from "@/hooks/useModal";
+import { openSans } from "@/app/fonts";
+
+import ReplySection from "./ReplySection";
 
 interface CommentProps {
   reply?: boolean;

@@ -18,7 +18,11 @@ export const useLanguage = () => {
   return context;
 };
 
-export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
+export const LanguageProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [messages, setMessages] = useState({});
   const [currentLocale, setCurrentLocale] = useState("en");
 

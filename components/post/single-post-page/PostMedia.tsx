@@ -1,8 +1,10 @@
 import { FC } from "react";
+import Link from "next/link";
+
+import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
+
 import DynamicImage from "../../DynamicImage";
 import PDFViewer from "../../PDFViewer";
-import Link from "next/link";
-import { isYouTubeUrl, getYouTubeVideoId } from "@/lib/utils";
 import { AudioPlayer } from "../../ui/AudioPlayer";
 
 interface PostMediaProps {

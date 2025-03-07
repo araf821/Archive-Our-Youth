@@ -1,5 +1,12 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
+import { updateUserRole } from "@/actions/update-user";
+import { User, UserType } from "@prisma/client";
+import { toast } from "sonner";
+
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -8,19 +15,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/Dialog";
-import { User, UserType } from "@prisma/client";
-import Link from "next/link";
-import { useState } from "react";
-import ConfirmDeletion from "./ConfirmDeletion";
-import { cn } from "@/lib/utils";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
 } from "@/components/ui/select";
-import { updateUserRole } from "@/actions/update-user";
-import { toast } from "sonner";
+
+import ConfirmDeletion from "./ConfirmDeletion";
 
 interface ManageUserModalProps {
   user: User;

@@ -1,14 +1,16 @@
 import { FC } from "react";
-import { X } from "lucide-react";
-import { navLinks } from "./NavLinks";
-import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth, useClerk } from "@clerk/nextjs";
-import { useMenu } from "@/hooks/useMenu";
-import { kobata } from "@/app/fonts";
-import { motion, AnimatePresence } from "framer-motion";
-import { useModal } from "@/hooks/useModal";
+import { AnimatePresence, motion } from "framer-motion";
+import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
+
+import { cn } from "@/lib/utils";
+import { useMenu } from "@/hooks/useMenu";
+import { useModal } from "@/hooks/useModal";
+import { kobata } from "@/app/fonts";
+
+import { navLinks } from "./NavLinks";
 
 interface MobileMenuProps {}
 

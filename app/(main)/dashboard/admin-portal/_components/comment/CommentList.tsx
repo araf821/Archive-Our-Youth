@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
-import Comment from "./Comment";
 import { Skeleton } from "@/components/ui/skeleton";
+
+import Comment from "./Comment";
 
 interface CommentListProps {
   searchParams: {

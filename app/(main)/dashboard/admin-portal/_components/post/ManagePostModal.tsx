@@ -1,3 +1,9 @@
+import { useState } from "react";
+import Link from "next/link";
+import { Post, User } from "@prisma/client";
+import { ExternalLink } from "lucide-react";
+
+import { dateFormat } from "@/lib/dateFormat";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -6,11 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/Dialog";
-import { dateFormat } from "@/lib/dateFormat";
-import { Post, User } from "@prisma/client";
-import { ExternalLink } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
+
 import ConfirmDeletion from "./ConfirmDeletion";
 
 interface ManagePostModalProps {

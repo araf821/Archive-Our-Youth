@@ -1,9 +1,10 @@
-import { TPostCreationForm } from "@/lib/types/form";
 import { ChangeEvent, FC, useState } from "react";
+import { useTranslations } from "next-intl";
+
+import { RESEARCH_QUESTIONS, ResearchQuestion } from "@/lib/constants";
+import { TPostCreationForm } from "@/lib/types/form";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/Label";
-import { RESEARCH_QUESTIONS, ResearchQuestion } from "@/lib/constants";
-import { useTranslations } from "next-intl";
 
 interface ResearchQuestionsProps {
   form: TPostCreationForm;
@@ -93,7 +94,7 @@ const ResearchQuestions: FC<ResearchQuestionsProps> = ({ form }) => {
             />
             <Label
               htmlFor={question.id}
-              className="w-full cursor-pointer py-3 text-sm  text-text-primary"
+              className="w-full cursor-pointer py-3 text-sm text-text-primary"
             >
               {question.text}
               {question.additionalInfo && (

@@ -1,11 +1,12 @@
 "use client";
 
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { Toaster } from "sonner";
-import SidebarProvider from "./navbar/SidebarProvider";
 import { NextUIProvider } from "@nextui-org/react";
-import { LanguageProvider } from "./providers/LanguageProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "sonner";
+
 import { ModalProvider } from "./modals/ModalProvider";
+import SidebarProvider from "./navbar/SidebarProvider";
+import { LanguageProvider } from "./providers/LanguageProvider";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   const queryClient = new QueryClient();

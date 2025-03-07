@@ -1,6 +1,7 @@
-import { cn } from "@/lib/utils";
-import { X } from "lucide-react";
 import { FC } from "react";
+import { X } from "lucide-react";
+
+import { cn } from "@/lib/utils";
 
 interface TagProps {
   tag: string;

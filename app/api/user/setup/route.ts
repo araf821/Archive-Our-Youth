@@ -1,7 +1,8 @@
+import { NextResponse } from "next/server";
+import { currentUser } from "@clerk/nextjs/server";
+
 import { db } from "@/lib/db";
 import { UserSetupValidator } from "@/lib/validators/user-setup";
-import { currentUser } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
 
 export async function PUT(req: Request) {
   try {

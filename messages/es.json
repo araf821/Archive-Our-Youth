@@ -24,12 +24,34 @@
     "cancel": "Cancelar",
     "delete": "Eliminar",
     "edit": "Editar",
+    "likes": "{count} Me gusta",
     "contentTypes": {
       "text": "Texto",
       "image": "Imagen",
       "video": "Video",
       "audio": "Audio",
       "pdf": "PDF"
+    }
+  },
+  "PostModal": {
+    "header": {
+      "closeModal": "cerrar modal",
+      "viewPost": "Ver Publicación"
+    },
+    "info": {
+      "postedBy": "Publicado por {name}",
+      "postedAnonymously": "Publicado Anónimamente"
+    },
+    "content": {
+      "openModal": "abrir modal de publicación",
+      "thumbnail": "miniatura",
+      "blur": "difuminar",
+      "postImage": "imagen de publicación",
+      "anonymous": "Anónimo"
+    },
+    "media": {
+      "pdfFile": "Archivo PDF",
+      "written": "Escrito"
     }
   },
   "PostCreation": {
@@ -136,6 +158,48 @@
         "title": "Ubicación",
         "description": "Comparta su ubicación (opcional)"
       }
+    }
+  },
+  "Filters": {
+    "title": "Filtrar Publicaciones",
+    "close": "Cerrar",
+    "search": {
+      "label": "Buscar publicaciones",
+      "placeholder": "Ingrese palabras clave..."
+    },
+    "sort": {
+      "label": "Ordenar por",
+      "latest": "Más recientes",
+      "oldest": "Más antiguos",
+      "mostLiked": "Más gustados"
+    },
+    "tags": {
+      "label": "Etiquetas",
+      "placeholder": "Agregar una etiqueta...",
+      "selected": "Etiquetas seleccionadas"
+    },
+    "location": {
+      "label": "Ubicación",
+      "placeholder": "Seleccionar un país",
+      "any": "Cualquiera"
+    },
+    "postType": {
+      "label": "Tipo de Publicación",
+      "all": "Todas",
+      "research": "Investigación"
+    },
+    "researchQuestion": {
+      "label": "Preguntas de Investigación",
+      "all": "Todas",
+      "personal": "Personal",
+      "family": "Familiar",
+      "community": "Comunitario",
+      "planetary": "Planetario",
+      "other": "Otro"
+    },
+    "buttons": {
+      "apply": "Aplicar Filtros",
+      "reset": "Restablecer"
     }
   }
 }

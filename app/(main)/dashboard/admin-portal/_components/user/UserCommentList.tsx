@@ -1,5 +1,6 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/lib/db";
+import { Skeleton } from "@/components/ui/skeleton";
+
 import Comment from "../comment/Comment";
 
 interface UserCommentListProps {

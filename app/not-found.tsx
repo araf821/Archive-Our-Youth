@@ -1,7 +1,9 @@
-import { cn } from "@/lib/utils";
-import { kobata } from "./fonts";
 import Link from "next/link";
+
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+
+import { kobata } from "./fonts";
 
 const NotFoundPage = () => {
   return (

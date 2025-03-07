@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { kobata } from "@/app/fonts";
+import React, { useEffect, useState } from "react";
+
 import { cn } from "@/lib/utils";
+import { kobata } from "@/app/fonts";
 
 const colors = [
   "text-[#007190]",

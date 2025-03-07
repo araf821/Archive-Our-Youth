@@ -1,10 +1,11 @@
 import { FC, useCallback, useEffect, useState } from "react";
-import Comment from "./Comment";
-import axios from "axios";
-import queryString from "query-string";
 import { Comment as CommentModel, User } from "@prisma/client";
-import CommentInput from "./CommentInput";
+import axios from "axios";
 import { Loader2 } from "lucide-react";
+import queryString from "query-string";
+
+import Comment from "./Comment";
+import CommentInput from "./CommentInput";
 
 interface ReplySectionProps {
   user: User | null;

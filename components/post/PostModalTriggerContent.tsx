@@ -1,11 +1,14 @@
 "use client";
 
-import { Post, User } from "@prisma/client";
-import Overlay from "../Overlay";
 import { useState } from "react";
 import Image from "next/image";
+import { Post, User } from "@prisma/client";
 import { File, Pen, Video, Volume2 } from "lucide-react";
+import { useTranslations } from "next-intl";
+
 import { cn } from "@/lib/utils";
+
+import Overlay from "../Overlay";
 
 interface PostModalTriggerContentProps {
   post: Post & { user: User | null };
@@ -15,28 +18,29 @@ interface PostModalTriggerContentProps {
 const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
   const [onError, setOnError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const t = useTranslations("PostModal");
 
   return (
     <>
-      <span className="sr-only">open post modal</span>
+      <span className="sr-only">{t("content.openModal")}</span>
       {post.contentType !== "IMAGE" && !post.thumbnail && (
         <>
           <Overlay />
           <div className="group absolute inset-0 z-10 grid place-items-center">
             {post.contentType === "AUDIO" && (
-              <Volume2 className="text-black/50 transition-colors  hover:text-black md:h-8 md:w-8" />
+              <Volume2 className="text-black/50 transition-colors hover:text-black md:h-8 md:w-8" />
             )}
 
             {post.contentType === "VIDEO" && (
-              <Video className="text-black/50 transition-colors  hover:text-black md:h-8 md:w-8" />
+              <Video className="text-black/50 transition-colors hover:text-black md:h-8 md:w-8" />
             )}
 
             {post.contentType === "TEXT" && (
-              <Pen className="text-black/50 transition-colors  hover:text-black md:h-8 md:w-8" />
+              <Pen className="text-black/50 transition-colors hover:text-black md:h-8 md:w-8" />
             )}
 
             {post.contentType === "PDF" && (
-              <File className="text-black/50 transition-colors  hover:text-black md:h-8 md:w-8" />
+              <File className="text-black/50 transition-colors hover:text-black md:h-8 md:w-8" />
             )}
           </div>
         </>
@@ -46,7 +50,7 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
           <div className="absolute inset-0">
             <div className="relative aspect-square">
               <Image
-                alt="thumbnail"
+                alt={t("content.thumbnail")}
                 sizes="(max-width: 768px) 128px, 192px"
                 fill
                 onError={() => setOnError(true)}
@@ -64,13 +68,13 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
                   sizes="12px"
                   fill
                   className="object-cover blur-lg"
-                  alt="blur"
+                  alt={t("content.blur")}
                 />
               )}
             </div>
           </div>
           <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/75 px-1.5 py-0.5 text-xs text-zinc-200">
-            {post.user?.name || "Anonymous"}
+            {post.user?.name || t("content.anonymous")}
           </span>
         </>
       )}
@@ -78,7 +82,7 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
       {post.contentType === "IMAGE" && (
         <>
           <Image
-            alt="post image"
+            alt={t("content.postImage")}
             src={
               onError
                 ? "/placeholder_post_image.svg"
@@ -96,11 +100,11 @@ const PostModalTriggerContent = ({ post }: PostModalTriggerContentProps) => {
               sizes="12px"
               fill
               className="object-cover blur-lg"
-              alt="blur"
+              alt={t("content.blur")}
             />
           )}
           <span className="absolute bottom-0 right-0 rounded-tl-md bg-black/75 px-1.5 py-0.5 text-sm text-zinc-200">
-            {post.user?.name || "Anonymous"}
+            {post.user?.name || t("content.anonymous")}
           </span>
         </>
       )}

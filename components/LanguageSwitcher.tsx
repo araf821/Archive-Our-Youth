@@ -1,11 +1,13 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { Languages } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { useModal } from "@/hooks/useModal";
+
 import { useLanguage } from "./providers/LanguageProvider";
 import { Button } from "./ui/button";
-import { Languages } from "lucide-react";
-import { useModal } from "@/hooks/useModal";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 const languages = [
   { code: "en", label: "English" },

@@ -1,9 +1,11 @@
 import Link from "next/link";
+
 import { db } from "@/lib/db";
+
 import FadeInContainer from "../FadeInContainer";
 import { Skeleton } from "../ui/skeleton";
-import UserPost from "./UserPost";
 import LoadMoreButton from "./LoadMoreButton";
+import UserPost from "./UserPost";
 
 interface UserPostsSectionProps {
   userId: string;

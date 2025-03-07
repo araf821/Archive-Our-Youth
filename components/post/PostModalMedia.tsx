@@ -1,8 +1,11 @@
 "use client";
 
 import { Post } from "@prisma/client";
-import DynamicImage from "../DynamicImage";
+import { useTranslations } from "next-intl";
+
 import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
+
+import DynamicImage from "../DynamicImage";
 import { AudioPlayer } from "../ui/AudioPlayer";
 
 interface PostModalMediaProps {
@@ -10,11 +13,13 @@ interface PostModalMediaProps {
 }
 
 export default function PostModalMedia({ post }: PostModalMediaProps) {
+  const t = useTranslations("PostModal");
+
   if (post.contentType === "TEXT" || post.contentType === "PDF") {
     return (
       <div className="w-fit rounded-sm bg-background-surface px-2.5 py-1 max-md:text-sm">
         <p className="text-xs font-bold md:text-sm">
-          {post.contentType === "PDF" ? "PDF File" : "Written"}
+          {post.contentType === "PDF" ? t("media.pdfFile") : t("media.written")}
         </p>
       </div>
     );

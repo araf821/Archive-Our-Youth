@@ -1,13 +1,15 @@
 "use client";
 
-import { useModal } from "@/hooks/useModal";
-import { Post, User } from "@prisma/client";
-import Image from "next/image";
 import { FC, useState } from "react";
-import VideoItem from "./VideoItem";
-import AudioItem from "./AudioItem";
+import Image from "next/image";
+import { Post, User } from "@prisma/client";
 import { File, Pen } from "lucide-react";
+
+import { useModal } from "@/hooks/useModal";
+
 import Overlay from "../Overlay";
+import AudioItem from "./AudioItem";
+import VideoItem from "./VideoItem";
 
 interface CollageItemProps {
   post: Post & { user: User | null };

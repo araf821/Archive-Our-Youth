@@ -1,22 +1,23 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
+import { Post } from "@prisma/client";
+import { ExternalLink } from "lucide-react";
+import type { UseFormReturn } from "react-hook-form";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { z } from "zod";
+
+import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
+import { PostEditValidator } from "@/lib/validators/post";
+import { AnimatedTabs } from "@/components/ui/animated-tabs";
 import {
   FormControl,
   FormField,
   FormItem,
   FormMessage,
 } from "@/components/ui/Form";
-import type { UseFormReturn } from "react-hook-form";
-import { PostEditValidator } from "@/lib/validators/post";
-import { z } from "zod";
-import { Post } from "@prisma/client";
-import { AnimatedTabs } from "@/components/ui/animated-tabs";
-import { useState } from "react";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import Link from "next/link";
-import { ExternalLink } from "lucide-react";
 import FileUpload from "@/components/file-upload/FileUpload";
-import { getYouTubeVideoId, isYouTubeUrl } from "@/lib/utils";
 
 type Props = {
   form: UseFormReturn<z.infer<typeof PostEditValidator>>;
