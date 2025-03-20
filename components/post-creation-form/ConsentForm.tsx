@@ -86,7 +86,6 @@ export const ConsentForm = ({
             <p>{t("consentForm.consent.deletionInfo")}</p>
             <p>{t("consentForm.consent.anonymousNote")}</p>
             <p>
-              {t("consentForm.consent.readMore")}
               <Link
                 href="/consent-form.pdf"
                 target="_blank"

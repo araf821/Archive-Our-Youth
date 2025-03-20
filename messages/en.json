@@ -58,9 +58,9 @@
     "consentForm": {
       "ageVerification": {
         "label": {
-          "part1": "Marca esta casilla si tienes 16 años o más.",
-          "part2": "Si tienes menos de 16 años, ¡nos encantaría recibir tu publicación por correo electrónico! Por favor, contáctanos en",
-          "part3": ", con el asunto: Archive Submission."
+          "part1": "Click this box if you are 16 years old or older.",
+          "part2": "If you are under 16, we'd love to hear from you with your post over email! Please reach out to us at",
+          "part3": ", subject line: Archive Submission."
         }
       },
       "consent": {
